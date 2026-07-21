@@ -37,50 +37,15 @@ import dev.zernio.ApiClient;
   UploadPhoneNumberPortInDocumentRequest.JSON_PROPERTY_FILE,
   UploadPhoneNumberPortInDocumentRequest.JSON_PROPERTY_KIND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T10:31:28.563630012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadPhoneNumberPortInDocumentRequest {
   public static final String JSON_PROPERTY_FILE = "file";
   @javax.annotation.Nonnull
   private File _file;
 
-  /**
-   * Informational; used for the stored filename.
-   */
-  public enum KindEnum {
-    LOA(String.valueOf("loa")),
-    
-    INVOICE(String.valueOf("invoice"));
-
-    private String value;
-
-    KindEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static KindEnum fromValue(String value) {
-      for (KindEnum b : KindEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_KIND = "kind";
   @javax.annotation.Nullable
-  private KindEnum kind;
+  private String kind;
 
   public UploadPhoneNumberPortInDocumentRequest() { 
   }
@@ -109,26 +74,26 @@ public class UploadPhoneNumberPortInDocumentRequest {
   }
 
 
-  public UploadPhoneNumberPortInDocumentRequest kind(@javax.annotation.Nullable KindEnum kind) {
+  public UploadPhoneNumberPortInDocumentRequest kind(@javax.annotation.Nullable String kind) {
     this.kind = kind;
     return this;
   }
 
   /**
-   * Informational; used for the stored filename.
+   * &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename.
    * @return kind
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_KIND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public KindEnum getKind() {
+  public String getKind() {
     return kind;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_KIND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKind(@javax.annotation.Nullable KindEnum kind) {
+  public void setKind(@javax.annotation.Nullable String kind) {
     this.kind = kind;
   }
 

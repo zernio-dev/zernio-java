@@ -19539,10 +19539,18 @@ paths:
 
         Run the portability check (POST /v1/phone-numbers/port-in/check) and
         upload the two documents (POST /v1/phone-numbers/port-in/documents)
-        first. The carrier may split the numbers into several orders (by
-        country, number type, losing carrier); `orders` carries per-order
-        results, and a partial failure still returns 201 with the failed
-        orders' `error` set (they stay as cancellable drafts).
+        first — uploaded documents must be attached to an order within 30
+        minutes or the carrier deletes them, so upload right before this call.
+        The carrier may split the numbers into several orders (by country,
+        number type, losing carrier); `orders` carries per-order results, and a
+        partial failure still returns 201 with the failed orders' `error` set
+        (they stay as cancellable drafts).
+
+        Non-US/CA numbers additionally need the country-specific values from
+        GET /v1/phone-numbers/port-in/requirements, passed via `requirements`,
+        and must be submitted one country per request. When required
+        information is still missing after submission, the order is kept as a
+        resumable draft whose `error` / `declineReason` names the gaps.
       operationId: createPhoneNumberPortIn
       requestBody:
         content:
@@ -19558,14 +19566,16 @@ paths:
                 $ref: "#/components/schemas/createPhoneNumberPortIn_201_response"
           description: Port submitted. Top-level fields mirror the first successfully
             submitted order; per-order truth (including failures) is in `orders`.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
           description: "A number is already provisioned, or already in an in-flight\
             \ port"
         "422":
-          description: "A number is not portable (reason included), or every split\
-            \ order failed to submit"
+          description: "A number is not portable (reason included), numbers span multiple\
+            \ non-US/CA countries, or every split order failed to submit"
       security:
       - bearerAuth: []
       summary: Port numbers in
@@ -19608,9 +19618,13 @@ paths:
   /v1/phone-numbers/port-in/documents:
     post:
       description: |
-        Upload ONE porting document (the signed LOA or a recent carrier invoice)
-        and get back its `documentId`, which the port-in create request takes as
-        `loaDocumentId` / `invoiceDocumentId`. PDF, JPEG, or PNG, 10MB max.
+        Upload ONE porting document and get back its `documentId`. For the
+        signed LOA / carrier invoice the id goes to `loaDocumentId` /
+        `invoiceDocumentId`; for a country-specific document requirement
+        (international ports) it becomes that requirement's `fieldValue`.
+        Requirement documents are normalized to PDF automatically (regulators
+        reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be
+        attached to an order within 30 minutes or the carrier deletes them.
       operationId: uploadPhoneNumberPortInDocument
       requestBody:
         content:
@@ -19635,6 +19649,101 @@ paths:
       tags:
       - Phone Numbers
       x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /v1/phone-numbers/port-in/requirements:
+    get:
+      description: |
+        The country-specific information a port-in needs BEYOND the LOA,
+        invoice, and account/address details — e.g. an ID copy, proof of
+        address, a tax id, or a porting code. Call it after the portability
+        check (which returns each number's `countryCode` and
+        `phoneNumberType`), render the fields, and pass the collected values as
+        the create request's `requirements`. US/CA return an empty list.
+      operationId: getPhoneNumberPortInRequirements
+      parameters:
+      - description: ISO country of the numbers being ported (a supported port-in
+          country).
+        explode: true
+        in: query
+        name: country
+        required: true
+        schema:
+          maxLength: 2
+          minLength: 2
+          type: string
+        style: form
+      - description: The portability check's phoneNumberType — requirements differ
+          by type.
+        explode: true
+        in: query
+        name: numberType
+        required: false
+        schema:
+          default: local
+          enum:
+          - local
+          - mobile
+          - national
+          - toll_free
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPhoneNumberPortInRequirements_200_response"
+          description: Requirement fields for the country/type combination.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          description: Country not supported for port-in
+      security:
+      - bearerAuth: []
+      summary: Country porting requirements
+      tags:
+      - Phone Numbers
+      x-accepts:
+      - application/json
+  /v1/phone-numbers/port-in/{id}/requirements:
+    get:
+      description: |
+        The live requirements on an EXISTING porting order: which are filled,
+        which are still pending, and which bounced on review
+        (`requirement-info-exception`). Use it to fix and resubmit a rejected
+        international port. Same field shape as the country-level requirements
+        endpoint, plus per-requirement status.
+      operationId: getPhoneNumberPortInOrderRequirements
+      parameters:
+      - description: Porting order ID (from the port-in list).
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPhoneNumberPortInOrderRequirements_200_response"
+          description: The order's requirements with statuses.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Porting order not found
+      security:
+      - bearerAuth: []
+      summary: A port-in order's pending requirements
+      tags:
+      - Phone Numbers
       x-accepts:
       - application/json
   /v1/phone-numbers/port-in/{id}:
@@ -57483,8 +57592,19 @@ components:
             number itself).
           type: string
         pinPasscode:
-          description: "Transfer PIN. Required for mobile numbers (wireless carriers\
-            \ reject PIN-less ports). Forwarded to the carrier, never stored."
+          description: "Transfer PIN. Required for US/CA mobile numbers (wireless\
+            \ carriers reject PIN-less ports). Forwarded to the carrier, never stored.\
+            \ International porting codes (e.g. the UK PAC) go through `requirements`\
+            \ instead."
+          type: string
+        taxIdentifier:
+          description: "Company tax id on the carrier account (EU ports, e.g. Spanish\
+            \ CIF)."
+          maxLength: 50
+          type: string
+        businessIdentifier:
+          description: Business registration id on the carrier account (EU ports).
+          maxLength: 50
           type: string
         streetAddress:
           type: string
@@ -57493,28 +57613,48 @@ components:
         locality:
           type: string
         administrativeArea:
-          description: 2-letter US state / CA province code (full names are accepted
-            and normalized).
+          description: Region. Required for US/CA as the 2-letter state/province code
+            (full names are accepted and normalized); optional elsewhere.
           type: string
         postalCode:
-          description: "US ZIP (5 digits) or Canadian postal code, matching countryCode."
+          description: Postal code. Validated as a US ZIP / Canadian postal code for
+            US/CA; free-form elsewhere.
           type: string
         countryCode:
+          description: Service-address country (a supported port-in country).
           enum:
           - US
           - CA
+          - GB
+          - ES
+          - DE
+          - FR
+          - NL
+          - AU
           maxLength: 2
           minLength: 2
           type: string
       required:
       - accountNumber
-      - administrativeArea
       - authPersonName
       - countryCode
       - entityName
       - locality
       - postalCode
       - streetAddress
+    createPhoneNumberPortIn_request_requirements_inner:
+      properties:
+        requirementTypeId:
+          description: "The requirement's id, from the requirements endpoint."
+          type: string
+        fieldValue:
+          description: "Text value, ISO datetime, or a documentId from POST /v1/phone-numbers/port-in/documents,\
+            \ per the requirement's kind."
+          maxLength: 1000
+          type: string
+      required:
+      - fieldValue
+      - requirementTypeId
     createPhoneNumberPortIn_request:
       properties:
         phoneNumbers:
@@ -57534,7 +57674,9 @@ components:
           type: string
         focDatetimeRequested:
           description: Requested port date; the carrier confirms the actual FOC later.
-            Defaults to one week out (shifted off weekends) when omitted.
+            US/CA default is one week out (shifted off weekends); international orders
+            are scheduled into the carrier's next allowed porting window at or after
+            this date.
           format: date-time
           type: string
         customerReference:
@@ -57548,6 +57690,15 @@ components:
           - full
           - partial
           type: string
+        requirements:
+          description: "Country-specific requirement values for international ports\
+            \ (from GET /v1/phone-numbers/port-in/requirements). Not needed for US/CA.\
+            \ The LOA and invoice requirements are satisfied automatically by loaDocumentId/invoiceDocumentId,\
+            \ and address-type requirements by the endUser service address."
+          items:
+            $ref: "#/components/schemas/createPhoneNumberPortIn_request_requirements_inner"
+          maxItems: 30
+          type: array
       required:
       - endUser
       - invoiceDocumentId
@@ -57637,7 +57788,9 @@ components:
     checkPhoneNumberPortability_200_response_results_inner:
       example:
         phoneNumber: phoneNumber
+        countryCode: countryCode
         lineType: lineType
+        phoneNumberType: phoneNumberType
         portable: true
         notPortableReason: notPortableReason
         fastPortable: true
@@ -57650,8 +57803,18 @@ components:
           description: Qualifies for the carrier's accelerated FastPort lane.
           type: boolean
         lineType:
-          description: "Line type when known (mobile, landline, voip…). A mobile number\
-            \ requires the transfer PIN at submit."
+          description: "Line type when known (mobile, landline, voip…). A US/CA mobile\
+            \ number requires the transfer PIN at submit."
+          nullable: true
+          type: string
+        countryCode:
+          description: ISO country of the number — pass it to GET /v1/phone-numbers/port-in/requirements
+            for international numbers.
+          nullable: true
+          type: string
+        phoneNumberType:
+          description: "Carrier number-type classification (local, mobile, national,\
+            \ toll_free…) — the numberType for the requirements endpoint."
           nullable: true
           type: string
         notPortableReason:
@@ -57662,12 +57825,16 @@ components:
       example:
         results:
         - phoneNumber: phoneNumber
+          countryCode: countryCode
           lineType: lineType
+          phoneNumberType: phoneNumberType
           portable: true
           notPortableReason: notPortableReason
           fastPortable: true
         - phoneNumber: phoneNumber
+          countryCode: countryCode
           lineType: lineType
+          phoneNumberType: phoneNumberType
           portable: true
           notPortableReason: notPortableReason
           fastPortable: true
@@ -57683,10 +57850,8 @@ components:
           format: binary
           type: string
         kind:
-          description: Informational; used for the stored filename.
-          enum:
-          - loa
-          - invoice
+          description: "'loa', 'invoice', or any short slug for requirement documents.\
+            \ Informational; used for the stored filename."
           type: string
       required:
       - file
@@ -57696,6 +57861,148 @@ components:
       properties:
         documentId:
           type: string
+    getPhoneNumberPortInRequirements_200_response_fields_inner:
+      example:
+        acceptableValues:
+        - acceptableValues
+        - acceptableValues
+        kind: text
+        description: description
+        label: label
+        requirementId: requirementId
+        example: example
+      properties:
+        requirementId:
+          description: "Pass back as requirements[].requirementTypeId."
+          type: string
+        label:
+          type: string
+        kind:
+          description: text/date take a string value; file takes a documentId from
+            the documents endpoint; address is satisfied automatically from the end-user
+            service address.
+          enum:
+          - text
+          - date
+          - address
+          - file
+          - action
+          type: string
+        description:
+          type: string
+        example:
+          type: string
+        acceptableValues:
+          description: "When present, the value must be one of these."
+          items:
+            type: string
+          type: array
+    getPhoneNumberPortInRequirements_200_response:
+      example:
+        country: country
+        numberType: numberType
+        fields:
+        - acceptableValues:
+          - acceptableValues
+          - acceptableValues
+          kind: text
+          description: description
+          label: label
+          requirementId: requirementId
+          example: example
+        - acceptableValues:
+          - acceptableValues
+          - acceptableValues
+          kind: text
+          description: description
+          label: label
+          requirementId: requirementId
+          example: example
+        supported: true
+      properties:
+        country:
+          type: string
+        numberType:
+          type: string
+        supported:
+          description: false when the combination includes a step that can't be completed
+            through the API (e.g. an in-person identity verification) — porting it
+            needs support.
+          type: boolean
+        fields:
+          items:
+            $ref: "#/components/schemas/getPhoneNumberPortInRequirements_200_response_fields_inner"
+          type: array
+    getPhoneNumberPortInOrderRequirements_200_response_requirements_inner:
+      example:
+        acceptableValues:
+        - acceptableValues
+        - acceptableValues
+        kind: text
+        description: description
+        filled: true
+        label: label
+        requirementId: requirementId
+        example: example
+        status: status
+      properties:
+        requirementId:
+          type: string
+        label:
+          type: string
+        kind:
+          enum:
+          - text
+          - date
+          - address
+          - file
+          - action
+          type: string
+        description:
+          type: string
+        example:
+          type: string
+        acceptableValues:
+          items:
+            type: string
+          type: array
+        status:
+          description: requirement-info-pending | requirement-info-under-review |
+            requirement-info-exception | approved
+          type: string
+        filled:
+          type: boolean
+    getPhoneNumberPortInOrderRequirements_200_response:
+      example:
+        country: country
+        requirements:
+        - acceptableValues:
+          - acceptableValues
+          - acceptableValues
+          kind: text
+          description: description
+          filled: true
+          label: label
+          requirementId: requirementId
+          example: example
+          status: status
+        - acceptableValues:
+          - acceptableValues
+          - acceptableValues
+          kind: text
+          description: description
+          filled: true
+          label: label
+          requirementId: requirementId
+          example: example
+          status: status
+      properties:
+        country:
+          type: string
+        requirements:
+          items:
+            $ref: "#/components/schemas/getPhoneNumberPortInOrderRequirements_200_response_requirements_inner"
+          type: array
     cancelPhoneNumberPortIn_200_response:
       example:
         id: id

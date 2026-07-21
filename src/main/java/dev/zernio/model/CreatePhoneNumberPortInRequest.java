@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreatePhoneNumberPortInRequestEndUser;
+import dev.zernio.model.CreatePhoneNumberPortInRequestRequirementsInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,9 +44,10 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequest.JSON_PROPERTY_INVOICE_DOCUMENT_ID,
   CreatePhoneNumberPortInRequest.JSON_PROPERTY_FOC_DATETIME_REQUESTED,
   CreatePhoneNumberPortInRequest.JSON_PROPERTY_CUSTOMER_REFERENCE,
-  CreatePhoneNumberPortInRequest.JSON_PROPERTY_PORT_TYPE
+  CreatePhoneNumberPortInRequest.JSON_PROPERTY_PORT_TYPE,
+  CreatePhoneNumberPortInRequest.JSON_PROPERTY_REQUIREMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T10:31:28.563630012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequest {
   public static final String JSON_PROPERTY_PHONE_NUMBERS = "phoneNumbers";
   @javax.annotation.Nonnull
@@ -109,6 +111,10 @@ public class CreatePhoneNumberPortInRequest {
   public static final String JSON_PROPERTY_PORT_TYPE = "portType";
   @javax.annotation.Nullable
   private PortTypeEnum portType = PortTypeEnum.FULL;
+
+  public static final String JSON_PROPERTY_REQUIREMENTS = "requirements";
+  @javax.annotation.Nullable
+  private List<CreatePhoneNumberPortInRequestRequirementsInner> requirements = new ArrayList<>();
 
   public CreatePhoneNumberPortInRequest() { 
   }
@@ -223,7 +229,7 @@ public class CreatePhoneNumberPortInRequest {
   }
 
   /**
-   * Requested port date; the carrier confirms the actual FOC later. Defaults to one week out (shifted off weekends) when omitted.
+   * Requested port date; the carrier confirms the actual FOC later. US/CA default is one week out (shifted off weekends); international orders are scheduled into the carrier&#39;s next allowed porting window at or after this date.
    * @return focDatetimeRequested
    */
   @javax.annotation.Nullable
@@ -289,6 +295,38 @@ public class CreatePhoneNumberPortInRequest {
   }
 
 
+  public CreatePhoneNumberPortInRequest requirements(@javax.annotation.Nullable List<CreatePhoneNumberPortInRequestRequirementsInner> requirements) {
+    this.requirements = requirements;
+    return this;
+  }
+
+  public CreatePhoneNumberPortInRequest addRequirementsItem(CreatePhoneNumberPortInRequestRequirementsInner requirementsItem) {
+    if (this.requirements == null) {
+      this.requirements = new ArrayList<>();
+    }
+    this.requirements.add(requirementsItem);
+    return this;
+  }
+
+  /**
+   * Country-specific requirement values for international ports (from GET /v1/phone-numbers/port-in/requirements). Not needed for US/CA. The LOA and invoice requirements are satisfied automatically by loaDocumentId/invoiceDocumentId, and address-type requirements by the endUser service address.
+   * @return requirements
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REQUIREMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreatePhoneNumberPortInRequestRequirementsInner> getRequirements() {
+    return requirements;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REQUIREMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRequirements(@javax.annotation.Nullable List<CreatePhoneNumberPortInRequestRequirementsInner> requirements) {
+    this.requirements = requirements;
+  }
+
+
   /**
    * Return true if this createPhoneNumberPortIn_request object is equal to o.
    */
@@ -307,12 +345,13 @@ public class CreatePhoneNumberPortInRequest {
         Objects.equals(this.invoiceDocumentId, createPhoneNumberPortInRequest.invoiceDocumentId) &&
         Objects.equals(this.focDatetimeRequested, createPhoneNumberPortInRequest.focDatetimeRequested) &&
         Objects.equals(this.customerReference, createPhoneNumberPortInRequest.customerReference) &&
-        Objects.equals(this.portType, createPhoneNumberPortInRequest.portType);
+        Objects.equals(this.portType, createPhoneNumberPortInRequest.portType) &&
+        Objects.equals(this.requirements, createPhoneNumberPortInRequest.requirements);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumbers, endUser, loaDocumentId, invoiceDocumentId, focDatetimeRequested, customerReference, portType);
+    return Objects.hash(phoneNumbers, endUser, loaDocumentId, invoiceDocumentId, focDatetimeRequested, customerReference, portType, requirements);
   }
 
   @Override
@@ -326,6 +365,7 @@ public class CreatePhoneNumberPortInRequest {
     sb.append("    focDatetimeRequested: ").append(toIndentedString(focDatetimeRequested)).append("\n");
     sb.append("    customerReference: ").append(toIndentedString(customerReference)).append("\n");
     sb.append("    portType: ").append(toIndentedString(portType)).append("\n");
+    sb.append("    requirements: ").append(toIndentedString(requirements)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -410,6 +450,16 @@ public class CreatePhoneNumberPortInRequest {
     // add `portType` to the URL query string
     if (getPortType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sportType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortType()))));
+    }
+
+    // add `requirements` to the URL query string
+    if (getRequirements() != null) {
+      for (int i = 0; i < getRequirements().size(); i++) {
+        if (getRequirements().get(i) != null) {
+          joiner.add(getRequirements().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%srequirements%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

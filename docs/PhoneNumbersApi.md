@@ -18,6 +18,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getPhoneNumberWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberWithHttpInfo) | **GET** /v1/phone-numbers/{id} | Get phone number |
 | [**getPhoneNumberKycForm**](PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
 | [**getPhoneNumberKycFormWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberKycFormWithHttpInfo) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
+| [**getPhoneNumberPortInOrderRequirements**](PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements |
+| [**getPhoneNumberPortInOrderRequirementsWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirementsWithHttpInfo) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements |
+| [**getPhoneNumberPortInRequirements**](PhoneNumbersApi.md#getPhoneNumberPortInRequirements) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements |
+| [**getPhoneNumberPortInRequirementsWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberPortInRequirementsWithHttpInfo) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements |
 | [**getPhoneNumberRemediation**](PhoneNumbersApi.md#getPhoneNumberRemediation) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements |
 | [**getPhoneNumberRemediationWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberRemediationWithHttpInfo) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements |
 | [**listPhoneNumberCountries**](PhoneNumbersApi.md#listPhoneNumberCountries) | **GET** /v1/phone-numbers/countries | List offerable number countries |
@@ -649,7 +653,7 @@ ApiResponse<[**CreatePhoneNumberKycLink200Response**](CreatePhoneNumberKycLink20
 
 Port numbers in
 
-Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts). 
+Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
 
 ### Example
 
@@ -712,9 +716,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Port submitted. Top-level fields mirror the first successfully submitted order; per-order truth (including failures) is in &#x60;orders&#x60;. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | A number is already provisioned, or already in an in-flight port |  -  |
-| **422** | A number is not portable (reason included), or every split order failed to submit |  -  |
+| **422** | A number is not portable (reason included), numbers span multiple non-US/CA countries, or every split order failed to submit |  -  |
 
 ## createPhoneNumberPortInWithHttpInfo
 
@@ -722,7 +727,7 @@ public class Example {
 
 Port numbers in
 
-Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts). 
+Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
 
 ### Example
 
@@ -788,9 +793,10 @@ ApiResponse<[**CreatePhoneNumberPortIn201Response**](CreatePhoneNumberPortIn201R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Port submitted. Top-level fields mirror the first successfully submitted order; per-order truth (including failures) is in &#x60;orders&#x60;. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | A number is already provisioned, or already in an in-flight port |  -  |
-| **422** | A number is not portable (reason included), or every split order failed to submit |  -  |
+| **422** | A number is not portable (reason included), numbers span multiple non-US/CA countries, or every split order failed to submit |  -  |
 
 
 ## getPhoneNumber
@@ -1091,6 +1097,310 @@ ApiResponse<[**GetPhoneNumberKycForm200Response**](GetPhoneNumberKycForm200Respo
 | **200** | The KYC form spec. |  -  |
 | **400** | Country not available |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## getPhoneNumberPortInOrderRequirements
+
+> GetPhoneNumberPortInOrderRequirements200Response getPhoneNumberPortInOrderRequirements(id)
+
+A port-in order&#39;s pending requirements
+
+The live requirements on an EXISTING porting order: which are filled, which are still pending, and which bounced on review (&#x60;requirement-info-exception&#x60;). Use it to fix and resubmit a rejected international port. Same field shape as the country-level requirements endpoint, plus per-requirement status. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | Porting order ID (from the port-in list).
+        try {
+            GetPhoneNumberPortInOrderRequirements200Response result = apiInstance.getPhoneNumberPortInOrderRequirements(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberPortInOrderRequirements");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Porting order ID (from the port-in list). | |
+
+### Return type
+
+[**GetPhoneNumberPortInOrderRequirements200Response**](GetPhoneNumberPortInOrderRequirements200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The order&#39;s requirements with statuses. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Porting order not found |  -  |
+
+## getPhoneNumberPortInOrderRequirementsWithHttpInfo
+
+> ApiResponse<GetPhoneNumberPortInOrderRequirements200Response> getPhoneNumberPortInOrderRequirements getPhoneNumberPortInOrderRequirementsWithHttpInfo(id)
+
+A port-in order&#39;s pending requirements
+
+The live requirements on an EXISTING porting order: which are filled, which are still pending, and which bounced on review (&#x60;requirement-info-exception&#x60;). Use it to fix and resubmit a rejected international port. Same field shape as the country-level requirements endpoint, plus per-requirement status. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | Porting order ID (from the port-in list).
+        try {
+            ApiResponse<GetPhoneNumberPortInOrderRequirements200Response> response = apiInstance.getPhoneNumberPortInOrderRequirementsWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberPortInOrderRequirements");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Porting order ID (from the port-in list). | |
+
+### Return type
+
+ApiResponse<[**GetPhoneNumberPortInOrderRequirements200Response**](GetPhoneNumberPortInOrderRequirements200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The order&#39;s requirements with statuses. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Porting order not found |  -  |
+
+
+## getPhoneNumberPortInRequirements
+
+> GetPhoneNumberPortInRequirements200Response getPhoneNumberPortInRequirements(country, numberType)
+
+Country porting requirements
+
+The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String country = "country_example"; // String | ISO country of the numbers being ported (a supported port-in country).
+        String numberType = "local"; // String | The portability check's phoneNumberType — requirements differ by type.
+        try {
+            GetPhoneNumberPortInRequirements200Response result = apiInstance.getPhoneNumberPortInRequirements(country, numberType);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberPortInRequirements");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **country** | **String**| ISO country of the numbers being ported (a supported port-in country). | |
+| **numberType** | **String**| The portability check&#39;s phoneNumberType — requirements differ by type. | [optional] [default to local] [enum: local, mobile, national, toll_free] |
+
+### Return type
+
+[**GetPhoneNumberPortInRequirements200Response**](GetPhoneNumberPortInRequirements200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Requirement fields for the country/type combination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **422** | Country not supported for port-in |  -  |
+
+## getPhoneNumberPortInRequirementsWithHttpInfo
+
+> ApiResponse<GetPhoneNumberPortInRequirements200Response> getPhoneNumberPortInRequirements getPhoneNumberPortInRequirementsWithHttpInfo(country, numberType)
+
+Country porting requirements
+
+The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String country = "country_example"; // String | ISO country of the numbers being ported (a supported port-in country).
+        String numberType = "local"; // String | The portability check's phoneNumberType — requirements differ by type.
+        try {
+            ApiResponse<GetPhoneNumberPortInRequirements200Response> response = apiInstance.getPhoneNumberPortInRequirementsWithHttpInfo(country, numberType);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberPortInRequirements");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **country** | **String**| ISO country of the numbers being ported (a supported port-in country). | |
+| **numberType** | **String**| The portability check&#39;s phoneNumberType — requirements differ by type. | [optional] [default to local] [enum: local, mobile, national, toll_free] |
+
+### Return type
+
+ApiResponse<[**GetPhoneNumberPortInRequirements200Response**](GetPhoneNumberPortInRequirements200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Requirement fields for the country/type combination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **422** | Country not supported for port-in |  -  |
 
 
 ## getPhoneNumberRemediation
@@ -2757,7 +3067,7 @@ ApiResponse<[**UploadPhoneNumberKycDocument200Response**](UploadPhoneNumberKycDo
 
 Upload a porting document
 
-Upload ONE porting document (the signed LOA or a recent carrier invoice) and get back its &#x60;documentId&#x60;, which the port-in create request takes as &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;. PDF, JPEG, or PNG, 10MB max. 
+Upload ONE porting document and get back its &#x60;documentId&#x60;. For the signed LOA / carrier invoice the id goes to &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;; for a country-specific document requirement (international ports) it becomes that requirement&#39;s &#x60;fieldValue&#x60;. Requirement documents are normalized to PDF automatically (regulators reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be attached to an order within 30 minutes or the carrier deletes them. 
 
 ### Example
 
@@ -2781,7 +3091,7 @@ public class Example {
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         File _file = new File("/path/to/file"); // File | The document (PDF/JPEG/PNG, 10MB max).
-        String kind = "loa"; // String | Informational; used for the stored filename.
+        String kind = "kind_example"; // String | 'loa', 'invoice', or any short slug for requirement documents. Informational; used for the stored filename.
         try {
             UploadPhoneNumberPortInDocument200Response result = apiInstance.uploadPhoneNumberPortInDocument(_file, kind);
             System.out.println(result);
@@ -2802,7 +3112,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **_file** | **File**| The document (PDF/JPEG/PNG, 10MB max). | |
-| **kind** | **String**| Informational; used for the stored filename. | [optional] [enum: loa, invoice] |
+| **kind** | **String**| &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename. | [optional] |
 
 ### Return type
 
@@ -2831,7 +3141,7 @@ public class Example {
 
 Upload a porting document
 
-Upload ONE porting document (the signed LOA or a recent carrier invoice) and get back its &#x60;documentId&#x60;, which the port-in create request takes as &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;. PDF, JPEG, or PNG, 10MB max. 
+Upload ONE porting document and get back its &#x60;documentId&#x60;. For the signed LOA / carrier invoice the id goes to &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;; for a country-specific document requirement (international ports) it becomes that requirement&#39;s &#x60;fieldValue&#x60;. Requirement documents are normalized to PDF automatically (regulators reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be attached to an order within 30 minutes or the carrier deletes them. 
 
 ### Example
 
@@ -2856,7 +3166,7 @@ public class Example {
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         File _file = new File("/path/to/file"); // File | The document (PDF/JPEG/PNG, 10MB max).
-        String kind = "loa"; // String | Informational; used for the stored filename.
+        String kind = "kind_example"; // String | 'loa', 'invoice', or any short slug for requirement documents. Informational; used for the stored filename.
         try {
             ApiResponse<UploadPhoneNumberPortInDocument200Response> response = apiInstance.uploadPhoneNumberPortInDocumentWithHttpInfo(_file, kind);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2879,7 +3189,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **_file** | **File**| The document (PDF/JPEG/PNG, 10MB max). | |
-| **kind** | **String**| Informational; used for the stored filename. | [optional] [enum: loa, invoice] |
+| **kind** | **String**| &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename. | [optional] |
 
 ### Return type
 

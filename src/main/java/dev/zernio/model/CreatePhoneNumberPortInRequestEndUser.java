@@ -38,6 +38,8 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_BILLING_PHONE_NUMBER,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_ACCOUNT_NUMBER,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_PIN_PASSCODE,
+  CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_TAX_IDENTIFIER,
+  CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_BUSINESS_IDENTIFIER,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_STREET_ADDRESS,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_EXTENDED_ADDRESS,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_LOCALITY,
@@ -45,7 +47,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_POSTAL_CODE,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T10:31:28.563630012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequestEndUser {
   public static final String JSON_PROPERTY_ENTITY_NAME = "entityName";
   @javax.annotation.Nonnull
@@ -67,6 +69,14 @@ public class CreatePhoneNumberPortInRequestEndUser {
   @javax.annotation.Nullable
   private String pinPasscode;
 
+  public static final String JSON_PROPERTY_TAX_IDENTIFIER = "taxIdentifier";
+  @javax.annotation.Nullable
+  private String taxIdentifier;
+
+  public static final String JSON_PROPERTY_BUSINESS_IDENTIFIER = "businessIdentifier";
+  @javax.annotation.Nullable
+  private String businessIdentifier;
+
   public static final String JSON_PROPERTY_STREET_ADDRESS = "streetAddress";
   @javax.annotation.Nonnull
   private String streetAddress;
@@ -80,7 +90,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   private String locality;
 
   public static final String JSON_PROPERTY_ADMINISTRATIVE_AREA = "administrativeArea";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String administrativeArea;
 
   public static final String JSON_PROPERTY_POSTAL_CODE = "postalCode";
@@ -88,12 +98,24 @@ public class CreatePhoneNumberPortInRequestEndUser {
   private String postalCode;
 
   /**
-   * Gets or Sets countryCode
+   * Service-address country (a supported port-in country).
    */
   public enum CountryCodeEnum {
     US(String.valueOf("US")),
     
-    CA(String.valueOf("CA"));
+    CA(String.valueOf("CA")),
+    
+    GB(String.valueOf("GB")),
+    
+    ES(String.valueOf("ES")),
+    
+    DE(String.valueOf("DE")),
+    
+    FR(String.valueOf("FR")),
+    
+    NL(String.valueOf("NL")),
+    
+    AU(String.valueOf("AU"));
 
     private String value;
 
@@ -231,7 +253,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored.
+   * Transfer PIN. Required for US/CA mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. International porting codes (e.g. the UK PAC) go through &#x60;requirements&#x60; instead.
    * @return pinPasscode
    */
   @javax.annotation.Nullable
@@ -246,6 +268,54 @@ public class CreatePhoneNumberPortInRequestEndUser {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPinPasscode(@javax.annotation.Nullable String pinPasscode) {
     this.pinPasscode = pinPasscode;
+  }
+
+
+  public CreatePhoneNumberPortInRequestEndUser taxIdentifier(@javax.annotation.Nullable String taxIdentifier) {
+    this.taxIdentifier = taxIdentifier;
+    return this;
+  }
+
+  /**
+   * Company tax id on the carrier account (EU ports, e.g. Spanish CIF).
+   * @return taxIdentifier
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAX_IDENTIFIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTaxIdentifier() {
+    return taxIdentifier;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_IDENTIFIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaxIdentifier(@javax.annotation.Nullable String taxIdentifier) {
+    this.taxIdentifier = taxIdentifier;
+  }
+
+
+  public CreatePhoneNumberPortInRequestEndUser businessIdentifier(@javax.annotation.Nullable String businessIdentifier) {
+    this.businessIdentifier = businessIdentifier;
+    return this;
+  }
+
+  /**
+   * Business registration id on the carrier account (EU ports).
+   * @return businessIdentifier
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_IDENTIFIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBusinessIdentifier() {
+    return businessIdentifier;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_IDENTIFIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBusinessIdentifier(@javax.annotation.Nullable String businessIdentifier) {
+    this.businessIdentifier = businessIdentifier;
   }
 
 
@@ -321,26 +391,26 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
 
-  public CreatePhoneNumberPortInRequestEndUser administrativeArea(@javax.annotation.Nonnull String administrativeArea) {
+  public CreatePhoneNumberPortInRequestEndUser administrativeArea(@javax.annotation.Nullable String administrativeArea) {
     this.administrativeArea = administrativeArea;
     return this;
   }
 
   /**
-   * 2-letter US state / CA province code (full names are accepted and normalized).
+   * Region. Required for US/CA as the 2-letter state/province code (full names are accepted and normalized); optional elsewhere.
    * @return administrativeArea
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ADMINISTRATIVE_AREA, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ADMINISTRATIVE_AREA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAdministrativeArea() {
     return administrativeArea;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ADMINISTRATIVE_AREA, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAdministrativeArea(@javax.annotation.Nonnull String administrativeArea) {
+  @JsonProperty(value = JSON_PROPERTY_ADMINISTRATIVE_AREA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdministrativeArea(@javax.annotation.Nullable String administrativeArea) {
     this.administrativeArea = administrativeArea;
   }
 
@@ -351,7 +421,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * US ZIP (5 digits) or Canadian postal code, matching countryCode.
+   * Postal code. Validated as a US ZIP / Canadian postal code for US/CA; free-form elsewhere.
    * @return postalCode
    */
   @javax.annotation.Nonnull
@@ -375,7 +445,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Get countryCode
+   * Service-address country (a supported port-in country).
    * @return countryCode
    */
   @javax.annotation.Nonnull
@@ -410,6 +480,8 @@ public class CreatePhoneNumberPortInRequestEndUser {
         Objects.equals(this.billingPhoneNumber, createPhoneNumberPortInRequestEndUser.billingPhoneNumber) &&
         Objects.equals(this.accountNumber, createPhoneNumberPortInRequestEndUser.accountNumber) &&
         Objects.equals(this.pinPasscode, createPhoneNumberPortInRequestEndUser.pinPasscode) &&
+        Objects.equals(this.taxIdentifier, createPhoneNumberPortInRequestEndUser.taxIdentifier) &&
+        Objects.equals(this.businessIdentifier, createPhoneNumberPortInRequestEndUser.businessIdentifier) &&
         Objects.equals(this.streetAddress, createPhoneNumberPortInRequestEndUser.streetAddress) &&
         Objects.equals(this.extendedAddress, createPhoneNumberPortInRequestEndUser.extendedAddress) &&
         Objects.equals(this.locality, createPhoneNumberPortInRequestEndUser.locality) &&
@@ -420,7 +492,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityName, authPersonName, billingPhoneNumber, accountNumber, pinPasscode, streetAddress, extendedAddress, locality, administrativeArea, postalCode, countryCode);
+    return Objects.hash(entityName, authPersonName, billingPhoneNumber, accountNumber, pinPasscode, taxIdentifier, businessIdentifier, streetAddress, extendedAddress, locality, administrativeArea, postalCode, countryCode);
   }
 
   @Override
@@ -432,6 +504,8 @@ public class CreatePhoneNumberPortInRequestEndUser {
     sb.append("    billingPhoneNumber: ").append(toIndentedString(billingPhoneNumber)).append("\n");
     sb.append("    accountNumber: ").append(toIndentedString(accountNumber)).append("\n");
     sb.append("    pinPasscode: ").append(toIndentedString(pinPasscode)).append("\n");
+    sb.append("    taxIdentifier: ").append(toIndentedString(taxIdentifier)).append("\n");
+    sb.append("    businessIdentifier: ").append(toIndentedString(businessIdentifier)).append("\n");
     sb.append("    streetAddress: ").append(toIndentedString(streetAddress)).append("\n");
     sb.append("    extendedAddress: ").append(toIndentedString(extendedAddress)).append("\n");
     sb.append("    locality: ").append(toIndentedString(locality)).append("\n");
@@ -508,6 +582,16 @@ public class CreatePhoneNumberPortInRequestEndUser {
     // add `pinPasscode` to the URL query string
     if (getPinPasscode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spinPasscode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPinPasscode()))));
+    }
+
+    // add `taxIdentifier` to the URL query string
+    if (getTaxIdentifier() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxIdentifier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxIdentifier()))));
+    }
+
+    // add `businessIdentifier` to the URL query string
+    if (getBusinessIdentifier() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessIdentifier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessIdentifier()))));
     }
 
     // add `streetAddress` to the URL query string

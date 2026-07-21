@@ -41,9 +41,11 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PORTABLE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_FAST_PORTABLE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_LINE_TYPE,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_COUNTRY_CODE,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PHONE_NUMBER_TYPE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T10:31:28.563630012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -59,6 +61,12 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   public static final String JSON_PROPERTY_LINE_TYPE = "lineType";
   private JsonNullable<String> lineType = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_COUNTRY_CODE = "countryCode";
+  private JsonNullable<String> countryCode = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_PHONE_NUMBER_TYPE = "phoneNumberType";
+  private JsonNullable<String> phoneNumberType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NOT_PORTABLE_REASON = "notPortableReason";
   private JsonNullable<String> notPortableReason = JsonNullable.<String>undefined();
@@ -144,7 +152,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
   /**
-   * Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit.
+   * Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit.
    * @return lineType
    */
   @javax.annotation.Nullable
@@ -167,6 +175,70 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   public void setLineType(@javax.annotation.Nullable String lineType) {
     this.lineType = JsonNullable.<String>of(lineType);
+  }
+
+
+  public CheckPhoneNumberPortability200ResponseResultsInner countryCode(@javax.annotation.Nullable String countryCode) {
+    this.countryCode = JsonNullable.<String>of(countryCode);
+    return this;
+  }
+
+  /**
+   * ISO country of the number — pass it to GET /v1/phone-numbers/port-in/requirements for international numbers.
+   * @return countryCode
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCountryCode() {
+        return countryCode.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCountryCode_JsonNullable() {
+    return countryCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COUNTRY_CODE)
+  public void setCountryCode_JsonNullable(JsonNullable<String> countryCode) {
+    this.countryCode = countryCode;
+  }
+
+  public void setCountryCode(@javax.annotation.Nullable String countryCode) {
+    this.countryCode = JsonNullable.<String>of(countryCode);
+  }
+
+
+  public CheckPhoneNumberPortability200ResponseResultsInner phoneNumberType(@javax.annotation.Nullable String phoneNumberType) {
+    this.phoneNumberType = JsonNullable.<String>of(phoneNumberType);
+    return this;
+  }
+
+  /**
+   * Carrier number-type classification (local, mobile, national, toll_free…) — the numberType for the requirements endpoint.
+   * @return phoneNumberType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getPhoneNumberType() {
+        return phoneNumberType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getPhoneNumberType_JsonNullable() {
+    return phoneNumberType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER_TYPE)
+  public void setPhoneNumberType_JsonNullable(JsonNullable<String> phoneNumberType) {
+    this.phoneNumberType = phoneNumberType;
+  }
+
+  public void setPhoneNumberType(@javax.annotation.Nullable String phoneNumberType) {
+    this.phoneNumberType = JsonNullable.<String>of(phoneNumberType);
   }
 
 
@@ -218,6 +290,8 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
         Objects.equals(this.portable, checkPhoneNumberPortability200ResponseResultsInner.portable) &&
         Objects.equals(this.fastPortable, checkPhoneNumberPortability200ResponseResultsInner.fastPortable) &&
         equalsNullable(this.lineType, checkPhoneNumberPortability200ResponseResultsInner.lineType) &&
+        equalsNullable(this.countryCode, checkPhoneNumberPortability200ResponseResultsInner.countryCode) &&
+        equalsNullable(this.phoneNumberType, checkPhoneNumberPortability200ResponseResultsInner.phoneNumberType) &&
         equalsNullable(this.notPortableReason, checkPhoneNumberPortability200ResponseResultsInner.notPortableReason);
   }
 
@@ -227,7 +301,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, portable, fastPortable, hashCodeNullable(lineType), hashCodeNullable(notPortableReason));
+    return Objects.hash(phoneNumber, portable, fastPortable, hashCodeNullable(lineType), hashCodeNullable(countryCode), hashCodeNullable(phoneNumberType), hashCodeNullable(notPortableReason));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -245,6 +319,8 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     sb.append("    portable: ").append(toIndentedString(portable)).append("\n");
     sb.append("    fastPortable: ").append(toIndentedString(fastPortable)).append("\n");
     sb.append("    lineType: ").append(toIndentedString(lineType)).append("\n");
+    sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
+    sb.append("    phoneNumberType: ").append(toIndentedString(phoneNumberType)).append("\n");
     sb.append("    notPortableReason: ").append(toIndentedString(notPortableReason)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -311,6 +387,16 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     // add `lineType` to the URL query string
     if (getLineType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slineType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineType()))));
+    }
+
+    // add `countryCode` to the URL query string
+    if (getCountryCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scountryCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountryCode()))));
+    }
+
+    // add `phoneNumberType` to the URL query string
+    if (getPhoneNumberType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumberType()))));
     }
 
     // add `notPortableReason` to the URL query string

@@ -26,9 +26,12 @@ import dev.zernio.model.CreatePhoneNumberKycLink200Response;
 import dev.zernio.model.CreatePhoneNumberKycLinkRequest;
 import dev.zernio.model.CreatePhoneNumberPortIn201Response;
 import dev.zernio.model.CreatePhoneNumberPortInRequest;
+import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetPhoneNumber200Response;
 import dev.zernio.model.GetPhoneNumberKycForm200Response;
+import dev.zernio.model.GetPhoneNumberPortInOrderRequirements200Response;
+import dev.zernio.model.GetPhoneNumberPortInRequirements200Response;
 import dev.zernio.model.GetPhoneNumberRemediation200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -84,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T10:31:28.563630012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -705,7 +708,7 @@ public class PhoneNumbersApi {
 
   /**
    * Port numbers in
-   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts). 
+   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
    * @param createPhoneNumberPortInRequest  (required)
    * @return CreatePhoneNumberPortIn201Response
    * @throws ApiException if fails to make API call
@@ -716,7 +719,7 @@ public class PhoneNumbersApi {
 
   /**
    * Port numbers in
-   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts). 
+   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
    * @param createPhoneNumberPortInRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreatePhoneNumberPortIn201Response
@@ -729,7 +732,7 @@ public class PhoneNumbersApi {
 
   /**
    * Port numbers in
-   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts). 
+   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
    * @param createPhoneNumberPortInRequest  (required)
    * @return ApiResponse&lt;CreatePhoneNumberPortIn201Response&gt;
    * @throws ApiException if fails to make API call
@@ -740,7 +743,7 @@ public class PhoneNumbersApi {
 
   /**
    * Port numbers in
-   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts). 
+   * Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
    * @param createPhoneNumberPortInRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreatePhoneNumberPortIn201Response&gt;
@@ -1048,6 +1051,262 @@ public class PhoneNumbersApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/phone-numbers/kyc";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "country";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("country", country));
+    localVarQueryParameterBaseName = "numberType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("numberType", numberType));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * A port-in order&#39;s pending requirements
+   * The live requirements on an EXISTING porting order: which are filled, which are still pending, and which bounced on review (&#x60;requirement-info-exception&#x60;). Use it to fix and resubmit a rejected international port. Same field shape as the country-level requirements endpoint, plus per-requirement status. 
+   * @param id Porting order ID (from the port-in list). (required)
+   * @return GetPhoneNumberPortInOrderRequirements200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberPortInOrderRequirements200Response getPhoneNumberPortInOrderRequirements(@javax.annotation.Nonnull String id) throws ApiException {
+    return getPhoneNumberPortInOrderRequirements(id, null);
+  }
+
+  /**
+   * A port-in order&#39;s pending requirements
+   * The live requirements on an EXISTING porting order: which are filled, which are still pending, and which bounced on review (&#x60;requirement-info-exception&#x60;). Use it to fix and resubmit a rejected international port. Same field shape as the country-level requirements endpoint, plus per-requirement status. 
+   * @param id Porting order ID (from the port-in list). (required)
+   * @param headers Optional headers to include in the request
+   * @return GetPhoneNumberPortInOrderRequirements200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberPortInOrderRequirements200Response getPhoneNumberPortInOrderRequirements(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetPhoneNumberPortInOrderRequirements200Response> localVarResponse = getPhoneNumberPortInOrderRequirementsWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * A port-in order&#39;s pending requirements
+   * The live requirements on an EXISTING porting order: which are filled, which are still pending, and which bounced on review (&#x60;requirement-info-exception&#x60;). Use it to fix and resubmit a rejected international port. Same field shape as the country-level requirements endpoint, plus per-requirement status. 
+   * @param id Porting order ID (from the port-in list). (required)
+   * @return ApiResponse&lt;GetPhoneNumberPortInOrderRequirements200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberPortInOrderRequirements200Response> getPhoneNumberPortInOrderRequirementsWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return getPhoneNumberPortInOrderRequirementsWithHttpInfo(id, null);
+  }
+
+  /**
+   * A port-in order&#39;s pending requirements
+   * The live requirements on an EXISTING porting order: which are filled, which are still pending, and which bounced on review (&#x60;requirement-info-exception&#x60;). Use it to fix and resubmit a rejected international port. Same field shape as the country-level requirements endpoint, plus per-requirement status. 
+   * @param id Porting order ID (from the port-in list). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetPhoneNumberPortInOrderRequirements200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberPortInOrderRequirements200Response> getPhoneNumberPortInOrderRequirementsWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPhoneNumberPortInOrderRequirementsRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPhoneNumberPortInOrderRequirements", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetPhoneNumberPortInOrderRequirements200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetPhoneNumberPortInOrderRequirements200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPhoneNumberPortInOrderRequirements200Response>() {});
+        
+
+        return new ApiResponse<GetPhoneNumberPortInOrderRequirements200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPhoneNumberPortInOrderRequirementsRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getPhoneNumberPortInOrderRequirements");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/port-in/{id}/requirements"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Country porting requirements
+   * The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+   * @param country ISO country of the numbers being ported (a supported port-in country). (required)
+   * @param numberType The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)
+   * @return GetPhoneNumberPortInRequirements200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberPortInRequirements200Response getPhoneNumberPortInRequirements(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType) throws ApiException {
+    return getPhoneNumberPortInRequirements(country, numberType, null);
+  }
+
+  /**
+   * Country porting requirements
+   * The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+   * @param country ISO country of the numbers being ported (a supported port-in country). (required)
+   * @param numberType The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)
+   * @param headers Optional headers to include in the request
+   * @return GetPhoneNumberPortInRequirements200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberPortInRequirements200Response getPhoneNumberPortInRequirements(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetPhoneNumberPortInRequirements200Response> localVarResponse = getPhoneNumberPortInRequirementsWithHttpInfo(country, numberType, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Country porting requirements
+   * The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+   * @param country ISO country of the numbers being ported (a supported port-in country). (required)
+   * @param numberType The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)
+   * @return ApiResponse&lt;GetPhoneNumberPortInRequirements200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberPortInRequirements200Response> getPhoneNumberPortInRequirementsWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType) throws ApiException {
+    return getPhoneNumberPortInRequirementsWithHttpInfo(country, numberType, null);
+  }
+
+  /**
+   * Country porting requirements
+   * The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+   * @param country ISO country of the numbers being ported (a supported port-in country). (required)
+   * @param numberType The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetPhoneNumberPortInRequirements200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberPortInRequirements200Response> getPhoneNumberPortInRequirementsWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPhoneNumberPortInRequirementsRequestBuilder(country, numberType, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPhoneNumberPortInRequirements", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetPhoneNumberPortInRequirements200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetPhoneNumberPortInRequirements200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPhoneNumberPortInRequirements200Response>() {});
+        
+
+        return new ApiResponse<GetPhoneNumberPortInRequirements200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPhoneNumberPortInRequirementsRequestBuilder(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'country' is set
+    if (country == null) {
+      throw new ApiException(400, "Missing the required parameter 'country' when calling getPhoneNumberPortInRequirements");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/port-in/requirements";
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
@@ -2471,9 +2730,9 @@ public class PhoneNumbersApi {
 
   /**
    * Upload a porting document
-   * Upload ONE porting document (the signed LOA or a recent carrier invoice) and get back its &#x60;documentId&#x60;, which the port-in create request takes as &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;. PDF, JPEG, or PNG, 10MB max. 
+   * Upload ONE porting document and get back its &#x60;documentId&#x60;. For the signed LOA / carrier invoice the id goes to &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;; for a country-specific document requirement (international ports) it becomes that requirement&#39;s &#x60;fieldValue&#x60;. Requirement documents are normalized to PDF automatically (regulators reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be attached to an order within 30 minutes or the carrier deletes them. 
    * @param _file The document (PDF/JPEG/PNG, 10MB max). (required)
-   * @param kind Informational; used for the stored filename. (optional)
+   * @param kind &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename. (optional)
    * @return UploadPhoneNumberPortInDocument200Response
    * @throws ApiException if fails to make API call
    */
@@ -2483,9 +2742,9 @@ public class PhoneNumbersApi {
 
   /**
    * Upload a porting document
-   * Upload ONE porting document (the signed LOA or a recent carrier invoice) and get back its &#x60;documentId&#x60;, which the port-in create request takes as &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;. PDF, JPEG, or PNG, 10MB max. 
+   * Upload ONE porting document and get back its &#x60;documentId&#x60;. For the signed LOA / carrier invoice the id goes to &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;; for a country-specific document requirement (international ports) it becomes that requirement&#39;s &#x60;fieldValue&#x60;. Requirement documents are normalized to PDF automatically (regulators reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be attached to an order within 30 minutes or the carrier deletes them. 
    * @param _file The document (PDF/JPEG/PNG, 10MB max). (required)
-   * @param kind Informational; used for the stored filename. (optional)
+   * @param kind &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename. (optional)
    * @param headers Optional headers to include in the request
    * @return UploadPhoneNumberPortInDocument200Response
    * @throws ApiException if fails to make API call
@@ -2497,9 +2756,9 @@ public class PhoneNumbersApi {
 
   /**
    * Upload a porting document
-   * Upload ONE porting document (the signed LOA or a recent carrier invoice) and get back its &#x60;documentId&#x60;, which the port-in create request takes as &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;. PDF, JPEG, or PNG, 10MB max. 
+   * Upload ONE porting document and get back its &#x60;documentId&#x60;. For the signed LOA / carrier invoice the id goes to &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;; for a country-specific document requirement (international ports) it becomes that requirement&#39;s &#x60;fieldValue&#x60;. Requirement documents are normalized to PDF automatically (regulators reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be attached to an order within 30 minutes or the carrier deletes them. 
    * @param _file The document (PDF/JPEG/PNG, 10MB max). (required)
-   * @param kind Informational; used for the stored filename. (optional)
+   * @param kind &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename. (optional)
    * @return ApiResponse&lt;UploadPhoneNumberPortInDocument200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2509,9 +2768,9 @@ public class PhoneNumbersApi {
 
   /**
    * Upload a porting document
-   * Upload ONE porting document (the signed LOA or a recent carrier invoice) and get back its &#x60;documentId&#x60;, which the port-in create request takes as &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;. PDF, JPEG, or PNG, 10MB max. 
+   * Upload ONE porting document and get back its &#x60;documentId&#x60;. For the signed LOA / carrier invoice the id goes to &#x60;loaDocumentId&#x60; / &#x60;invoiceDocumentId&#x60;; for a country-specific document requirement (international ports) it becomes that requirement&#39;s &#x60;fieldValue&#x60;. Requirement documents are normalized to PDF automatically (regulators reject raw images). PDF, JPEG, or PNG, 10MB max. Uploads must be attached to an order within 30 minutes or the carrier deletes them. 
    * @param _file The document (PDF/JPEG/PNG, 10MB max). (required)
-   * @param kind Informational; used for the stored filename. (optional)
+   * @param kind &#39;loa&#39;, &#39;invoice&#39;, or any short slug for requirement documents. Informational; used for the stored filename. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UploadPhoneNumberPortInDocument200Response&gt;
    * @throws ApiException if fails to make API call

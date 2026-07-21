@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-21T07:48:19.536617019Z[Etc/UTC]
+- Build date: 2026-07-21T10:31:28.563630012Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -696,6 +696,10 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**getPhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberWithHttpInfo) | **GET** /v1/phone-numbers/{id} | Get phone number
 *PhoneNumbersApi* | [**getPhoneNumberKycForm**](docs/PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
 *PhoneNumbersApi* | [**getPhoneNumberKycFormWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberKycFormWithHttpInfo) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
+*PhoneNumbersApi* | [**getPhoneNumberPortInOrderRequirements**](docs/PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements
+*PhoneNumbersApi* | [**getPhoneNumberPortInOrderRequirementsWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirementsWithHttpInfo) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements
+*PhoneNumbersApi* | [**getPhoneNumberPortInRequirements**](docs/PhoneNumbersApi.md#getPhoneNumberPortInRequirements) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements
+*PhoneNumbersApi* | [**getPhoneNumberPortInRequirementsWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberPortInRequirementsWithHttpInfo) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements
 *PhoneNumbersApi* | [**getPhoneNumberRemediation**](docs/PhoneNumbersApi.md#getPhoneNumberRemediation) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements
 *PhoneNumbersApi* | [**getPhoneNumberRemediationWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberRemediationWithHttpInfo) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements
 *PhoneNumbersApi* | [**listPhoneNumberCountries**](docs/PhoneNumbersApi.md#listPhoneNumberCountries) | **GET** /v1/phone-numbers/countries | List offerable number countries
@@ -1302,6 +1306,7 @@ Class | Method | HTTP request | Description
  - [CreatePhoneNumberPortIn201ResponseOrdersInner](docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md)
  - [CreatePhoneNumberPortInRequest](docs/CreatePhoneNumberPortInRequest.md)
  - [CreatePhoneNumberPortInRequestEndUser](docs/CreatePhoneNumberPortInRequestEndUser.md)
+ - [CreatePhoneNumberPortInRequestRequirementsInner](docs/CreatePhoneNumberPortInRequestRequirementsInner.md)
  - [CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
@@ -1672,6 +1677,10 @@ Class | Method | HTTP request | Description
  - [GetPhoneNumberKycForm200ResponseReusable](docs/GetPhoneNumberKycForm200ResponseReusable.md)
  - [GetPhoneNumberKycForm200ResponseReusableDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableDetailsInner.md)
  - [GetPhoneNumberKycForm200ResponseReusableOptionsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInner.md)
+ - [GetPhoneNumberPortInOrderRequirements200Response](docs/GetPhoneNumberPortInOrderRequirements200Response.md)
+ - [GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner](docs/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.md)
+ - [GetPhoneNumberPortInRequirements200Response](docs/GetPhoneNumberPortInRequirements200Response.md)
+ - [GetPhoneNumberPortInRequirements200ResponseFieldsInner](docs/GetPhoneNumberPortInRequirements200ResponseFieldsInner.md)
  - [GetPhoneNumberRemediation200Response](docs/GetPhoneNumberRemediation200Response.md)
  - [GetPinterestBoards200Response](docs/GetPinterestBoards200Response.md)
  - [GetPinterestBoards200ResponseBoardsInner](docs/GetPinterestBoards200ResponseBoardsInner.md)
