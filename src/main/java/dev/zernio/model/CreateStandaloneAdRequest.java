@@ -70,6 +70,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_OPTIMIZATION_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_BILLING_EVENT,
+  CreateStandaloneAdRequest.JSON_PROPERTY_BUYING_TYPE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_RF_PREDICTION_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_STATUS,
@@ -133,7 +135,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -225,6 +227,49 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_BILLING_EVENT = "billingEvent";
   @javax.annotation.Nullable
   private String billingEvent;
+
+  /**
+   * Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
+   */
+  public enum BuyingTypeEnum {
+    AUCTION(String.valueOf("AUCTION")),
+    
+    RESERVED(String.valueOf("RESERVED"));
+
+    private String value;
+
+    BuyingTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BuyingTypeEnum fromValue(String value) {
+      for (BuyingTypeEnum b : BuyingTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUYING_TYPE = "buyingType";
+  @javax.annotation.Nullable
+  private BuyingTypeEnum buyingType;
+
+  public static final String JSON_PROPERTY_RF_PREDICTION_ID = "rfPredictionId";
+  @javax.annotation.Nullable
+  private String rfPredictionId;
 
   public static final String JSON_PROPERTY_BUDGET_AMOUNT = "budgetAmount";
   @javax.annotation.Nullable
@@ -1142,6 +1187,54 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBillingEvent(@javax.annotation.Nullable String billingEvent) {
     this.billingEvent = billingEvent;
+  }
+
+
+  public CreateStandaloneAdRequest buyingType(@javax.annotation.Nullable BuyingTypeEnum buyingType) {
+    this.buyingType = buyingType;
+    return this;
+  }
+
+  /**
+   * Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
+   * @return buyingType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUYING_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BuyingTypeEnum getBuyingType() {
+    return buyingType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUYING_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBuyingType(@javax.annotation.Nullable BuyingTypeEnum buyingType) {
+    this.buyingType = buyingType;
+  }
+
+
+  public CreateStandaloneAdRequest rfPredictionId(@javax.annotation.Nullable String rfPredictionId) {
+    this.rfPredictionId = rfPredictionId;
+    return this;
+  }
+
+  /**
+   * Meta only. The RESERVED prediction id the R&amp;F ad set runs on (reserving mints a new id — pass that one). Requires buyingType RESERVED.
+   * @return rfPredictionId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RF_PREDICTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRfPredictionId() {
+    return rfPredictionId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RF_PREDICTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRfPredictionId(@javax.annotation.Nullable String rfPredictionId) {
+    this.rfPredictionId = rfPredictionId;
   }
 
 
@@ -2795,6 +2888,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.goal, createStandaloneAdRequest.goal) &&
         Objects.equals(this.optimizationGoal, createStandaloneAdRequest.optimizationGoal) &&
         Objects.equals(this.billingEvent, createStandaloneAdRequest.billingEvent) &&
+        Objects.equals(this.buyingType, createStandaloneAdRequest.buyingType) &&
+        Objects.equals(this.rfPredictionId, createStandaloneAdRequest.rfPredictionId) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
         Objects.equals(this.status, createStandaloneAdRequest.status) &&
@@ -2861,7 +2956,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2878,6 +2973,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("    billingEvent: ").append(toIndentedString(billingEvent)).append("\n");
+    sb.append("    buyingType: ").append(toIndentedString(buyingType)).append("\n");
+    sb.append("    rfPredictionId: ").append(toIndentedString(rfPredictionId)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -3035,6 +3132,16 @@ public class CreateStandaloneAdRequest {
     // add `billingEvent` to the URL query string
     if (getBillingEvent() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbillingEvent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillingEvent()))));
+    }
+
+    // add `buyingType` to the URL query string
+    if (getBuyingType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbuyingType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuyingType()))));
+    }
+
+    // add `rfPredictionId` to the URL query string
+    if (getRfPredictionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srfPredictionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRfPredictionId()))));
     }
 
     // add `budgetAmount` to the URL query string

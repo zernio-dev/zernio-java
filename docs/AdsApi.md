@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**archiveLeadFormWithHttpInfo**](AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**boostPost**](AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**boostPostWithHttpInfo**](AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad |
+| [**cancelRfReservation**](AdsApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta) |
+| [**cancelRfReservationWithHttpInfo**](AdsApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta) |
 | [**createAdInsightsReport**](AdsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
 | [**createAdInsightsReportWithHttpInfo**](AdsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
 | [**createCallAd**](AdsApi.md#createCallAd) | **POST** /v1/ads/call | Create Click-to-Call ad |
@@ -24,6 +26,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createLeadFormWithHttpInfo**](AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createMessagingAd**](AdsApi.md#createMessagingAd) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) |
 | [**createMessagingAdWithHttpInfo**](AdsApi.md#createMessagingAdWithHttpInfo) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) |
+| [**createRfPrediction**](AdsApi.md#createRfPrediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta) |
+| [**createRfPredictionWithHttpInfo**](AdsApi.md#createRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta) |
 | [**createStandaloneAd**](AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad |
 | [**createStandaloneAdWithHttpInfo**](AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad |
 | [**createTestLead**](AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
@@ -70,6 +74,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getLinkedInBidPricingWithHttpInfo**](AdsApi.md#getLinkedInBidPricingWithHttpInfo) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn) |
 | [**getLinkedInSupplyForecast**](AdsApi.md#getLinkedInSupplyForecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn) |
 | [**getLinkedInSupplyForecastWithHttpInfo**](AdsApi.md#getLinkedInSupplyForecastWithHttpInfo) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn) |
+| [**getRfPrediction**](AdsApi.md#getRfPrediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta) |
+| [**getRfPredictionWithHttpInfo**](AdsApi.md#getRfPredictionWithHttpInfo) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta) |
 | [**listAdAccounts**](AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdCatalogProductSets**](AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
@@ -98,6 +104,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**queryAdInsightsWithHttpInfo**](AdsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query (Meta) |
 | [**removeConversionAssociations**](AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeConversionAssociationsWithHttpInfo**](AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
+| [**reserveRfPrediction**](AdsApi.md#reserveRfPrediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta) |
+| [**reserveRfPredictionWithHttpInfo**](AdsApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta) |
 | [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**searchAdInterestsWithHttpInfo**](AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests |
 | [**searchAdTargeting**](AdsApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options |
@@ -739,6 +747,162 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
+
+
+## cancelRfReservation
+
+> void cancelRfReservation(predictionId, accountId, adAccountId)
+
+Cancel a Reach &amp; Frequency reservation (Meta)
+
+Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String predictionId = "predictionId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        try {
+            apiInstance.cancelRfReservation(predictionId, accountId, adAccountId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#cancelRfReservation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **predictionId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reservation cancelled |  -  |
+| **400** | Invalid input, or Meta rejected the cancel |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## cancelRfReservationWithHttpInfo
+
+> ApiResponse<Void> cancelRfReservation cancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId)
+
+Cancel a Reach &amp; Frequency reservation (Meta)
+
+Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String predictionId = "predictionId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        try {
+            ApiResponse<Void> response = apiInstance.cancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#cancelRfReservation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **predictionId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reservation cancelled |  -  |
+| **400** | Invalid input, or Meta rejected the cancel |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## createAdInsightsReport
@@ -1657,6 +1821,158 @@ ApiResponse<Void>
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+
+
+## createRfPrediction
+
+> CreateRfPrediction201Response createRfPrediction(createRfPredictionRequest)
+
+Create a Reach &amp; Frequency prediction (Meta)
+
+Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateRfPredictionRequest createRfPredictionRequest = new CreateRfPredictionRequest(); // CreateRfPredictionRequest | 
+        try {
+            CreateRfPrediction201Response result = apiInstance.createRfPrediction(createRfPredictionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createRfPrediction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createRfPredictionRequest** | [**CreateRfPredictionRequest**](CreateRfPredictionRequest.md)|  | |
+
+### Return type
+
+[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Prediction created (usually ready within seconds) |  -  |
+| **400** | Invalid input, or Meta rejected the prediction — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## createRfPredictionWithHttpInfo
+
+> ApiResponse<CreateRfPrediction201Response> createRfPrediction createRfPredictionWithHttpInfo(createRfPredictionRequest)
+
+Create a Reach &amp; Frequency prediction (Meta)
+
+Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateRfPredictionRequest createRfPredictionRequest = new CreateRfPredictionRequest(); // CreateRfPredictionRequest | 
+        try {
+            ApiResponse<CreateRfPrediction201Response> response = apiInstance.createRfPredictionWithHttpInfo(createRfPredictionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createRfPrediction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createRfPredictionRequest** | [**CreateRfPredictionRequest**](CreateRfPredictionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Prediction created (usually ready within seconds) |  -  |
+| **400** | Invalid input, or Meta rejected the prediction — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## createStandaloneAd
@@ -5279,6 +5595,160 @@ ApiResponse<[**GetLinkedInSupplyForecast200Response**](GetLinkedInSupplyForecast
 | **404** | Resource not found |  -  |
 
 
+## getRfPrediction
+
+> CreateRfPrediction201Response getRfPrediction(predictionId, accountId, adAccountId)
+
+Read a Reach &amp; Frequency prediction (Meta)
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String predictionId = "predictionId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        try {
+            CreateRfPrediction201Response result = apiInstance.getRfPrediction(predictionId, accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getRfPrediction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **predictionId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+
+### Return type
+
+[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Prediction status and estimates |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getRfPredictionWithHttpInfo
+
+> ApiResponse<CreateRfPrediction201Response> getRfPrediction getRfPredictionWithHttpInfo(predictionId, accountId, adAccountId)
+
+Read a Reach &amp; Frequency prediction (Meta)
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String predictionId = "predictionId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        try {
+            ApiResponse<CreateRfPrediction201Response> response = apiInstance.getRfPredictionWithHttpInfo(predictionId, accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getRfPrediction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **predictionId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Prediction status and estimates |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
 ## listAdAccounts
 
 > ListAdAccounts200Response listAdAccounts(accountId, adAccountId, limit)
@@ -7587,6 +8057,160 @@ ApiResponse<[**RemoveConversionAssociations200Response**](RemoveConversionAssoci
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support associations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## reserveRfPrediction
+
+> ReserveRfPrediction201Response reserveRfPrediction(predictionId, reserveRfPredictionRequest)
+
+Reserve a Reach &amp; Frequency prediction (Meta)
+
+Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String predictionId = "predictionId_example"; // String | 
+        ReserveRfPredictionRequest reserveRfPredictionRequest = new ReserveRfPredictionRequest(); // ReserveRfPredictionRequest | 
+        try {
+            ReserveRfPrediction201Response result = apiInstance.reserveRfPrediction(predictionId, reserveRfPredictionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#reserveRfPrediction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **predictionId** | **String**|  | |
+| **reserveRfPredictionRequest** | [**ReserveRfPredictionRequest**](ReserveRfPredictionRequest.md)|  | |
+
+### Return type
+
+[**ReserveRfPrediction201Response**](ReserveRfPrediction201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
+| **400** | Invalid input, or Meta rejected the reserve |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## reserveRfPredictionWithHttpInfo
+
+> ApiResponse<ReserveRfPrediction201Response> reserveRfPrediction reserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest)
+
+Reserve a Reach &amp; Frequency prediction (Meta)
+
+Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String predictionId = "predictionId_example"; // String | 
+        ReserveRfPredictionRequest reserveRfPredictionRequest = new ReserveRfPredictionRequest(); // ReserveRfPredictionRequest | 
+        try {
+            ApiResponse<ReserveRfPrediction201Response> response = apiInstance.reserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#reserveRfPrediction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **predictionId** | **String**|  | |
+| **reserveRfPredictionRequest** | [**ReserveRfPredictionRequest**](ReserveRfPredictionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ReserveRfPrediction201Response**](ReserveRfPrediction201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
+| **400** | Invalid input, or Meta rejected the reserve |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## searchAdInterests

@@ -25741,6 +25741,179 @@ paths:
       - Ads
       x-accepts:
       - application/json
+  /v1/ads/rf-predictions:
+    post:
+      description: |-
+        Creates an R&F prediction — a QUOTE, nothing is bought and no ad entities are created.
+        Provide a date range plus exactly one of `budgetAmount` (Meta predicts reach) or `reach`
+        (Meta predicts the budget). The response carries the estimate and its allowed bounds
+        (min/max budget and reach). Predictions expire on their own; to buy, reserve one via
+        POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to
+        POST /v1/ads/create with `buyingType: "RESERVED"`.
+
+        Reservation campaigns reject automatic placements, so omitted `placements` default to
+        Facebook feed (+ Instagram stream when a linked IG professional account resolves);
+        Instagram placements require that IG account. Meta only.
+      operationId: createRfPrediction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createRfPrediction_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createRfPrediction_201_response"
+          description: Prediction created (usually ready within seconds)
+        "400":
+          description: "Invalid input, or Meta rejected the prediction — message carries\
+            \ Meta's error"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          description: No Facebook Page resolved for the account
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Create a Reach & Frequency prediction (Meta)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/rf-predictions/{predictionId}:
+    delete:
+      description: Releases a RESERVATION's locked price and inventory. Unreserved
+        predictions expire on their own.
+      operationId: cancelRfReservation
+      parameters:
+      - explode: false
+        in: path
+        name: predictionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Reservation cancelled
+        "400":
+          description: "Invalid input, or Meta rejected the cancel"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Cancel a Reach & Frequency reservation (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    get:
+      operationId: getRfPrediction
+      parameters:
+      - explode: false
+        in: path
+        name: predictionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createRfPrediction_201_response"
+          description: Prediction status and estimates
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Read a Reach & Frequency prediction (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+  /v1/ads/rf-predictions/{predictionId}/reserve:
+    post:
+      description: |-
+        Locks the quoted price + inventory until the returned `expiresAt` and mints a NEW
+        prediction id — pass that RESERVED id (not the original) as `rfPredictionId` on
+        POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+      operationId: reserveRfPrediction
+      parameters:
+      - explode: false
+        in: path
+        name: predictionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/reserveRfPrediction_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/reserveRfPrediction_201_response"
+          description: Reserved; `prediction.predictionId` is the new RESERVED id
+        "400":
+          description: "Invalid input, or Meta rejected the reserve"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Reserve a Reach & Frequency prediction (Meta)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/studies:
     get:
       description: |-
@@ -28767,6 +28940,67 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) to adjust the contract's limit.
   schemas:
+    RfPrediction:
+      description: A Meta Reach & Frequency prediction. Money values in whole units
+        of the ad account currency.
+      example:
+        reach: 6
+        maxBudget: 5.637376656633329
+        impressions: 1
+        expiresAt: expiresAt
+        minReach: 2
+        maxReach: 7
+        startTime: 3
+        stopTime: 2
+        frequencyCap: 9
+        minBudget: 5.962133916683182
+        predictionId: predictionId
+        status: status
+        budget: 0.8008281904610115
+      properties:
+        predictionId:
+          type: string
+        status:
+          description: ready | pending | failed:<meta code>
+          type: string
+        budget:
+          description: Quoted (or provided) lifetime budget for the window.
+          nullable: true
+          type: number
+        reach:
+          description: Predicted (or requested) unique reach.
+          nullable: true
+          type: integer
+        impressions:
+          nullable: true
+          type: integer
+        minBudget:
+          description: Meta's allowed lower bound for this spec.
+          nullable: true
+          type: number
+        maxBudget:
+          nullable: true
+          type: number
+        minReach:
+          nullable: true
+          type: integer
+        maxReach:
+          nullable: true
+          type: integer
+        frequencyCap:
+          nullable: true
+          type: integer
+        startTime:
+          description: Unix seconds; the reserved window the R&F ad set will run on.
+          nullable: true
+          type: integer
+        stopTime:
+          nullable: true
+          type: integer
+        expiresAt:
+          description: When the reservation's locked price expires (set after reserving).
+          nullable: true
+          type: string
     CtwaAdRequestBody:
       description: |
         In addition to the `required` list, the request must use
@@ -65981,6 +66215,100 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+    createRfPrediction_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant).
+          type: string
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        budgetAmount:
+          description: Whole currency units. Exactly one of budgetAmount / reach.
+          type: number
+        reach:
+          description: Target unique reach. Exactly one of budgetAmount / reach.
+          type: integer
+        startDate:
+          description: Campaign window start (must be in the future).
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        frequencyCap:
+          description: Max impressions per person over the window.
+          maximum: 90
+          minimum: 1
+          type: integer
+        targeting:
+          description: "Canonical camelCase TargetingSpec (same shape as /v1/ads/create's\
+            \ `targeting`). Defaults to countries: [US]."
+          type: object
+        placements:
+          description: Meta placements object (same shape as /v1/ads/create's `placements`).
+          type: object
+      required:
+      - accountId
+      - adAccountId
+      - endDate
+      - startDate
+    createRfPrediction_201_response:
+      example:
+        adAccountId: adAccountId
+        prediction:
+          reach: 6
+          maxBudget: 5.637376656633329
+          impressions: 1
+          expiresAt: expiresAt
+          minReach: 2
+          maxReach: 7
+          startTime: 3
+          stopTime: 2
+          frequencyCap: 9
+          minBudget: 5.962133916683182
+          predictionId: predictionId
+          status: status
+          budget: 0.8008281904610115
+        currency: currency
+      properties:
+        adAccountId:
+          type: string
+        currency:
+          type: string
+        prediction:
+          $ref: "#/components/schemas/RfPrediction"
+    reserveRfPrediction_request:
+      properties:
+        accountId:
+          type: string
+        adAccountId:
+          type: string
+      required:
+      - accountId
+      - adAccountId
+    reserveRfPrediction_201_response:
+      example:
+        adAccountId: adAccountId
+        prediction:
+          reach: 6
+          maxBudget: 5.637376656633329
+          impressions: 1
+          expiresAt: expiresAt
+          minReach: 2
+          maxReach: 7
+          startTime: 3
+          stopTime: 2
+          frequencyCap: 9
+          minBudget: 5.962133916683182
+          predictionId: predictionId
+          status: status
+          budget: 0.8008281904610115
+      properties:
+        adAccountId:
+          type: string
+        prediction:
+          $ref: "#/components/schemas/RfPrediction"
     listAdStudies_200_response:
       example:
         data:
@@ -67196,6 +67524,20 @@ components:
           description: "Meta only. Explicit ad-set `billing_event`. Defaults to `IMPRESSIONS`.\
             \ Forwarded verbatim to Meta, which validates compatibility with the optimization\
             \ goal."
+          type: string
+        buyingType:
+          description: "Meta only. RESERVED = Reach & Frequency: requires `rfPredictionId`\
+            \ (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget,\
+            \ schedule and pricing come from the reservation, so budgetAmount/budgetType\
+            \ are not required and bid fields are ignored. Only the plain single-ad\
+            \ shape (no creatives[], adSetId, existingCampaignId or dynamicCreative)."
+          enum:
+          - AUCTION
+          - RESERVED
+          type: string
+        rfPredictionId:
+          description: Meta only. The RESERVED prediction id the R&F ad set runs on
+            (reserving mints a new id — pass that one). Requires buyingType RESERVED.
           type: string
         budgetAmount:
           description: Required on legacy + multi-creative shapes. Inherited on attach.

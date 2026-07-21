@@ -34,6 +34,8 @@ import dev.zernio.model.CreateCtwaAd201Response;
 import dev.zernio.model.CreateLeadForm200Response;
 import dev.zernio.model.CreateLeadFormRequest;
 import dev.zernio.model.CreateMessagingAdRequest;
+import dev.zernio.model.CreateRfPrediction201Response;
+import dev.zernio.model.CreateRfPredictionRequest;
 import dev.zernio.model.CreateStandaloneAd201Response;
 import dev.zernio.model.CreateStandaloneAdRequest;
 import dev.zernio.model.CreateTestLead200Response;
@@ -80,6 +82,8 @@ import dev.zernio.model.ListWhatsAppConversions200Response;
 import java.time.LocalDate;
 import dev.zernio.model.QueryAdInsights200Response;
 import dev.zernio.model.RemoveConversionAssociations200Response;
+import dev.zernio.model.ReserveRfPrediction201Response;
+import dev.zernio.model.ReserveRfPredictionRequest;
 import dev.zernio.model.SearchAdInterests200Response;
 import dev.zernio.model.SearchAdTargeting200Response;
 import dev.zernio.model.SendConversions200Response;
@@ -122,7 +126,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -756,6 +760,143 @@ public class AdsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Cancel a Reach &amp; Frequency reservation (Meta)
+   * Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void cancelRfReservation(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    cancelRfReservation(predictionId, accountId, adAccountId, null);
+  }
+
+  /**
+   * Cancel a Reach &amp; Frequency reservation (Meta)
+   * Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void cancelRfReservation(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    cancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId, headers);
+  }
+
+  /**
+   * Cancel a Reach &amp; Frequency reservation (Meta)
+   * Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> cancelRfReservationWithHttpInfo(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return cancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId, null);
+  }
+
+  /**
+   * Cancel a Reach &amp; Frequency reservation (Meta)
+   * Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> cancelRfReservationWithHttpInfo(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cancelRfReservationRequestBuilder(predictionId, accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("cancelRfReservation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder cancelRfReservationRequestBuilder(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'predictionId' is set
+    if (predictionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'predictionId' when calling cancelRfReservation");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling cancelRfReservation");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling cancelRfReservation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/rf-predictions/{predictionId}"
+        .replace("{predictionId}", ApiClient.urlEncode(predictionId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -1479,6 +1620,129 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createMessagingAdRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a Reach &amp; Frequency prediction (Meta)
+   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+   * @param createRfPredictionRequest  (required)
+   * @return CreateRfPrediction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateRfPrediction201Response createRfPrediction(@javax.annotation.Nonnull CreateRfPredictionRequest createRfPredictionRequest) throws ApiException {
+    return createRfPrediction(createRfPredictionRequest, null);
+  }
+
+  /**
+   * Create a Reach &amp; Frequency prediction (Meta)
+   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+   * @param createRfPredictionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateRfPrediction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateRfPrediction201Response createRfPrediction(@javax.annotation.Nonnull CreateRfPredictionRequest createRfPredictionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateRfPrediction201Response> localVarResponse = createRfPredictionWithHttpInfo(createRfPredictionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a Reach &amp; Frequency prediction (Meta)
+   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+   * @param createRfPredictionRequest  (required)
+   * @return ApiResponse&lt;CreateRfPrediction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateRfPrediction201Response> createRfPredictionWithHttpInfo(@javax.annotation.Nonnull CreateRfPredictionRequest createRfPredictionRequest) throws ApiException {
+    return createRfPredictionWithHttpInfo(createRfPredictionRequest, null);
+  }
+
+  /**
+   * Create a Reach &amp; Frequency prediction (Meta)
+   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+   * @param createRfPredictionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateRfPrediction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateRfPrediction201Response> createRfPredictionWithHttpInfo(@javax.annotation.Nonnull CreateRfPredictionRequest createRfPredictionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createRfPredictionRequestBuilder(createRfPredictionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createRfPrediction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateRfPrediction201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateRfPrediction201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateRfPrediction201Response>() {});
+        
+
+        return new ApiResponse<CreateRfPrediction201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createRfPredictionRequestBuilder(@javax.annotation.Nonnull CreateRfPredictionRequest createRfPredictionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createRfPredictionRequest' is set
+    if (createRfPredictionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createRfPredictionRequest' when calling createRfPrediction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/rf-predictions";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createRfPredictionRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4681,6 +4945,157 @@ public class AdsApi {
   }
 
   /**
+   * Read a Reach &amp; Frequency prediction (Meta)
+   * 
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @return CreateRfPrediction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateRfPrediction201Response getRfPrediction(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getRfPrediction(predictionId, accountId, adAccountId, null);
+  }
+
+  /**
+   * Read a Reach &amp; Frequency prediction (Meta)
+   * 
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateRfPrediction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateRfPrediction201Response getRfPrediction(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateRfPrediction201Response> localVarResponse = getRfPredictionWithHttpInfo(predictionId, accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read a Reach &amp; Frequency prediction (Meta)
+   * 
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @return ApiResponse&lt;CreateRfPrediction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateRfPrediction201Response> getRfPredictionWithHttpInfo(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getRfPredictionWithHttpInfo(predictionId, accountId, adAccountId, null);
+  }
+
+  /**
+   * Read a Reach &amp; Frequency prediction (Meta)
+   * 
+   * @param predictionId  (required)
+   * @param accountId  (required)
+   * @param adAccountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateRfPrediction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateRfPrediction201Response> getRfPredictionWithHttpInfo(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getRfPredictionRequestBuilder(predictionId, accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getRfPrediction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateRfPrediction201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateRfPrediction201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateRfPrediction201Response>() {});
+        
+
+        return new ApiResponse<CreateRfPrediction201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getRfPredictionRequestBuilder(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'predictionId' is set
+    if (predictionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'predictionId' when calling getRfPrediction");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getRfPrediction");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getRfPrediction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/rf-predictions/{predictionId}"
+        .replace("{predictionId}", ApiClient.urlEncode(predictionId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List ad accounts
    * Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry. 
    * @param accountId Social account ID (required)
@@ -6841,6 +7256,138 @@ public class AdsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reserve a Reach &amp; Frequency prediction (Meta)
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+   * @param predictionId  (required)
+   * @param reserveRfPredictionRequest  (required)
+   * @return ReserveRfPrediction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReserveRfPrediction201Response reserveRfPrediction(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull ReserveRfPredictionRequest reserveRfPredictionRequest) throws ApiException {
+    return reserveRfPrediction(predictionId, reserveRfPredictionRequest, null);
+  }
+
+  /**
+   * Reserve a Reach &amp; Frequency prediction (Meta)
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+   * @param predictionId  (required)
+   * @param reserveRfPredictionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReserveRfPrediction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReserveRfPrediction201Response reserveRfPrediction(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull ReserveRfPredictionRequest reserveRfPredictionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReserveRfPrediction201Response> localVarResponse = reserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Reserve a Reach &amp; Frequency prediction (Meta)
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+   * @param predictionId  (required)
+   * @param reserveRfPredictionRequest  (required)
+   * @return ApiResponse&lt;ReserveRfPrediction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReserveRfPrediction201Response> reserveRfPredictionWithHttpInfo(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull ReserveRfPredictionRequest reserveRfPredictionRequest) throws ApiException {
+    return reserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest, null);
+  }
+
+  /**
+   * Reserve a Reach &amp; Frequency prediction (Meta)
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+   * @param predictionId  (required)
+   * @param reserveRfPredictionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReserveRfPrediction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReserveRfPrediction201Response> reserveRfPredictionWithHttpInfo(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull ReserveRfPredictionRequest reserveRfPredictionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = reserveRfPredictionRequestBuilder(predictionId, reserveRfPredictionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("reserveRfPrediction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReserveRfPrediction201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReserveRfPrediction201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReserveRfPrediction201Response>() {});
+        
+
+        return new ApiResponse<ReserveRfPrediction201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder reserveRfPredictionRequestBuilder(@javax.annotation.Nonnull String predictionId, @javax.annotation.Nonnull ReserveRfPredictionRequest reserveRfPredictionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'predictionId' is set
+    if (predictionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'predictionId' when calling reserveRfPrediction");
+    }
+    // verify the required parameter 'reserveRfPredictionRequest' is set
+    if (reserveRfPredictionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'reserveRfPredictionRequest' when calling reserveRfPrediction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/rf-predictions/{predictionId}/reserve"
+        .replace("{predictionId}", ApiClient.urlEncode(predictionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(reserveRfPredictionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

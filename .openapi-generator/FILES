@@ -232,6 +232,8 @@ docs/CreatePostRequestPlatformsInnerPlatformSpecificData.md
 docs/CreateProfileRequest.md
 docs/CreateQueueSlot201Response.md
 docs/CreateQueueSlotRequest.md
+docs/CreateRfPrediction201Response.md
+docs/CreateRfPredictionRequest.md
 docs/CreateSequence200Response.md
 docs/CreateSequence200ResponseSequence.md
 docs/CreateSequenceRequest.md
@@ -1005,6 +1007,8 @@ docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
+docs/ReserveRfPrediction201Response.md
+docs/ReserveRfPredictionRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/RetweetPost200Response.md
@@ -1017,6 +1021,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/RfPrediction.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
 docs/ScheduleBroadcast200ResponseBroadcast.md
@@ -1785,6 +1790,8 @@ src/main/java/dev/zernio/model/CreatePostRequestPlatformsInnerPlatformSpecificDa
 src/main/java/dev/zernio/model/CreateProfileRequest.java
 src/main/java/dev/zernio/model/CreateQueueSlot201Response.java
 src/main/java/dev/zernio/model/CreateQueueSlotRequest.java
+src/main/java/dev/zernio/model/CreateRfPrediction201Response.java
+src/main/java/dev/zernio/model/CreateRfPredictionRequest.java
 src/main/java/dev/zernio/model/CreateSequence200Response.java
 src/main/java/dev/zernio/model/CreateSequence200ResponseSequence.java
 src/main/java/dev/zernio/model/CreateSequenceRequest.java
@@ -2535,6 +2542,8 @@ src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToMention200Response.java
 src/main/java/dev/zernio/model/ReplyToMentionRequest.java
 src/main/java/dev/zernio/model/ResendSmsRegistrationOtp200Response.java
+src/main/java/dev/zernio/model/ReserveRfPrediction201Response.java
+src/main/java/dev/zernio/model/ReserveRfPredictionRequest.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200ResponseWorkflow.java
 src/main/java/dev/zernio/model/RetweetPost200Response.java
@@ -2546,6 +2555,7 @@ src/main/java/dev/zernio/model/ReviewPhoneNumberKycPacketRequest.java
 src/main/java/dev/zernio/model/ReviewWebhookReview.java
 src/main/java/dev/zernio/model/ReviewWebhookReviewReply.java
 src/main/java/dev/zernio/model/ReviewWebhookReviewReviewer.java
+src/main/java/dev/zernio/model/RfPrediction.java
 src/main/java/dev/zernio/model/SavedTargetingAudience.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200Response.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200ResponseBroadcast.java
@@ -3009,11 +3019,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSourceTest.java
-src/test/java/dev/zernio/model/GetAdAccountFinance200ResponseTest.java
-src/test/java/dev/zernio/model/GetAdSetDetails200ResponseTest.java
-src/test/java/dev/zernio/model/GetAdsActivityLog200ResponseTest.java
-src/test/java/dev/zernio/model/ListAdStudies200ResponseTest.java
-src/test/java/dev/zernio/model/UploadAdImage201ResponseImageTest.java
-src/test/java/dev/zernio/model/UploadAdImage201ResponseTest.java
-src/test/java/dev/zernio/model/UploadAdImageRequestTest.java
+src/test/java/dev/zernio/model/CreateRfPrediction201ResponseTest.java
+src/test/java/dev/zernio/model/CreateRfPredictionRequestTest.java
+src/test/java/dev/zernio/model/ReserveRfPrediction201ResponseTest.java
+src/test/java/dev/zernio/model/ReserveRfPredictionRequestTest.java
+src/test/java/dev/zernio/model/RfPredictionTest.java

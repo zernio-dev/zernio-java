@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformDataConversationMessagesInner.JSON_PROPERTY_TEXT,
   LinkedInAdsPlatformDataConversationMessagesInner.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:48:19.536617019Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataConversationMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

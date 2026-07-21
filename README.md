@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-21T07:17:45.446511555Z[Etc/UTC]
+- Build date: 2026-07-21T07:48:19.536617019Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -196,6 +196,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**archiveLeadFormWithHttpInfo**](docs/AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *AdsApi* | [**boostPost**](docs/AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**boostPostWithHttpInfo**](docs/AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
+*AdsApi* | [**cancelRfReservation**](docs/AdsApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta)
+*AdsApi* | [**cancelRfReservationWithHttpInfo**](docs/AdsApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta)
 *AdsApi* | [**createAdInsightsReport**](docs/AdsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
 *AdsApi* | [**createAdInsightsReportWithHttpInfo**](docs/AdsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
 *AdsApi* | [**createCallAd**](docs/AdsApi.md#createCallAd) | **POST** /v1/ads/call | Create Click-to-Call ad
@@ -208,6 +210,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**createLeadFormWithHttpInfo**](docs/AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
 *AdsApi* | [**createMessagingAd**](docs/AdsApi.md#createMessagingAd) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 *AdsApi* | [**createMessagingAdWithHttpInfo**](docs/AdsApi.md#createMessagingAdWithHttpInfo) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+*AdsApi* | [**createRfPrediction**](docs/AdsApi.md#createRfPrediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta)
+*AdsApi* | [**createRfPredictionWithHttpInfo**](docs/AdsApi.md#createRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta)
 *AdsApi* | [**createStandaloneAd**](docs/AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad
 *AdsApi* | [**createStandaloneAdWithHttpInfo**](docs/AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad
 *AdsApi* | [**createTestLead**](docs/AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
@@ -254,6 +258,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getLinkedInBidPricingWithHttpInfo**](docs/AdsApi.md#getLinkedInBidPricingWithHttpInfo) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
 *AdsApi* | [**getLinkedInSupplyForecast**](docs/AdsApi.md#getLinkedInSupplyForecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
 *AdsApi* | [**getLinkedInSupplyForecastWithHttpInfo**](docs/AdsApi.md#getLinkedInSupplyForecastWithHttpInfo) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
+*AdsApi* | [**getRfPrediction**](docs/AdsApi.md#getRfPrediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta)
+*AdsApi* | [**getRfPredictionWithHttpInfo**](docs/AdsApi.md#getRfPredictionWithHttpInfo) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta)
 *AdsApi* | [**listAdAccounts**](docs/AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdAccountsWithHttpInfo**](docs/AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdCatalogProductSets**](docs/AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
@@ -282,6 +288,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
 *AdsApi* | [**removeConversionAssociations**](docs/AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *AdsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*AdsApi* | [**reserveRfPrediction**](docs/AdsApi.md#reserveRfPrediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta)
+*AdsApi* | [**reserveRfPredictionWithHttpInfo**](docs/AdsApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta)
 *AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**searchAdTargeting**](docs/AdsApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options
@@ -1307,6 +1315,8 @@ Class | Method | HTTP request | Description
  - [CreateProfileRequest](docs/CreateProfileRequest.md)
  - [CreateQueueSlot201Response](docs/CreateQueueSlot201Response.md)
  - [CreateQueueSlotRequest](docs/CreateQueueSlotRequest.md)
+ - [CreateRfPrediction201Response](docs/CreateRfPrediction201Response.md)
+ - [CreateRfPredictionRequest](docs/CreateRfPredictionRequest.md)
  - [CreateSequence200Response](docs/CreateSequence200Response.md)
  - [CreateSequence200ResponseSequence](docs/CreateSequence200ResponseSequence.md)
  - [CreateSequenceRequest](docs/CreateSequenceRequest.md)
@@ -2057,6 +2067,8 @@ Class | Method | HTTP request | Description
  - [ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
  - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
+ - [ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
+ - [ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)
@@ -2068,6 +2080,7 @@ Class | Method | HTTP request | Description
  - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [RfPrediction](docs/RfPrediction.md)
  - [SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)
