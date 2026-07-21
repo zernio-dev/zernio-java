@@ -1667,7 +1667,7 @@ paths:
                   value:
                     error: Breakdowns are only supported with metricType=total_value
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Bad request (invalid parameters)
         "401":
           $ref: "#/components/responses/Unauthorized"

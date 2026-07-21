@@ -3029,8 +3029,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreatePhoneNumberPortInRequestRequirementsInnerTest.java
-src/test/java/dev/zernio/model/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInnerTest.java
-src/test/java/dev/zernio/model/GetPhoneNumberPortInOrderRequirements200ResponseTest.java
-src/test/java/dev/zernio/model/GetPhoneNumberPortInRequirements200ResponseFieldsInnerTest.java
-src/test/java/dev/zernio/model/GetPhoneNumberPortInRequirements200ResponseTest.java
