@@ -6,8 +6,12 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**appealSmsRegistration**](SmsApi.md#appealSmsRegistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign |
 | [**appealSmsRegistrationWithHttpInfo**](SmsApi.md#appealSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign |
+| [**createSmsSenderId**](SmsApi.md#createSmsSenderId) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID |
+| [**createSmsSenderIdWithHttpInfo**](SmsApi.md#createSmsSenderIdWithHttpInfo) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID |
 | [**deactivateSmsRegistration**](SmsApi.md#deactivateSmsRegistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration |
 | [**deactivateSmsRegistrationWithHttpInfo**](SmsApi.md#deactivateSmsRegistrationWithHttpInfo) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration |
+| [**deleteSmsSenderId**](SmsApi.md#deleteSmsSenderId) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID |
+| [**deleteSmsSenderIdWithHttpInfo**](SmsApi.md#deleteSmsSenderIdWithHttpInfo) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID |
 | [**disableSmsOnNumber**](SmsApi.md#disableSmsOnNumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number |
 | [**disableSmsOnNumberWithHttpInfo**](SmsApi.md#disableSmsOnNumberWithHttpInfo) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number |
 | [**enableSmsOnNumber**](SmsApi.md#enableSmsOnNumber) | **POST** /v1/phone-numbers/{id}/sms | Enable SMS on a number |
@@ -18,8 +22,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**listSmsOptOutsWithHttpInfo**](SmsApi.md#listSmsOptOutsWithHttpInfo) | **GET** /v1/sms/opt-outs | List SMS opt-outs |
 | [**listSmsRegistrations**](SmsApi.md#listSmsRegistrations) | **GET** /v1/sms/registrations | List carrier registrations |
 | [**listSmsRegistrationsWithHttpInfo**](SmsApi.md#listSmsRegistrationsWithHttpInfo) | **GET** /v1/sms/registrations | List carrier registrations |
+| [**listSmsSenderIds**](SmsApi.md#listSmsSenderIds) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs |
+| [**listSmsSenderIdsWithHttpInfo**](SmsApi.md#listSmsSenderIdsWithHttpInfo) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs |
 | [**lookupSmsNumber**](SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
 | [**lookupSmsNumberWithHttpInfo**](SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type |
+| [**requestSmsSenderIdLimitIncrease**](SmsApi.md#requestSmsSenderIdLimitIncrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit |
+| [**requestSmsSenderIdLimitIncreaseWithHttpInfo**](SmsApi.md#requestSmsSenderIdLimitIncreaseWithHttpInfo) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit |
 | [**resendSmsRegistrationOtp**](SmsApi.md#resendSmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
 | [**resendSmsRegistrationOtpWithHttpInfo**](SmsApi.md#resendSmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
 | [**reuseSmsRegistrationForNumber**](SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
@@ -193,6 +201,160 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 | **404** | Registration not found |  -  |
 
 
+## createSmsSenderId
+
+> CreateSmsSenderId200Response createSmsSenderId(createSmsSenderIdRequest)
+
+Create an alphanumeric sender ID
+
+Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        CreateSmsSenderIdRequest createSmsSenderIdRequest = new CreateSmsSenderIdRequest(); // CreateSmsSenderIdRequest | 
+        try {
+            CreateSmsSenderId200Response result = apiInstance.createSmsSenderId(createSmsSenderIdRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#createSmsSenderId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createSmsSenderIdRequest** | [**CreateSmsSenderIdRequest**](CreateSmsSenderIdRequest.md)|  | |
+
+### Return type
+
+[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sender ID created (or re-activated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Workspace is not on usage-based billing, or already holds the maximum of 5 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Sender ID already registered by another workspace (code &#x60;sender_id_taken&#x60;). |  -  |
+| **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
+
+## createSmsSenderIdWithHttpInfo
+
+> ApiResponse<CreateSmsSenderId200Response> createSmsSenderId createSmsSenderIdWithHttpInfo(createSmsSenderIdRequest)
+
+Create an alphanumeric sender ID
+
+Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        CreateSmsSenderIdRequest createSmsSenderIdRequest = new CreateSmsSenderIdRequest(); // CreateSmsSenderIdRequest | 
+        try {
+            ApiResponse<CreateSmsSenderId200Response> response = apiInstance.createSmsSenderIdWithHttpInfo(createSmsSenderIdRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#createSmsSenderId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createSmsSenderIdRequest** | [**CreateSmsSenderIdRequest**](CreateSmsSenderIdRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sender ID created (or re-activated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Workspace is not on usage-based billing, or already holds the maximum of 5 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Sender ID already registered by another workspace (code &#x60;sender_id_taken&#x60;). |  -  |
+| **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
+
+
 ## deactivateSmsRegistration
 
 > DeactivateSmsRegistration200Response deactivateSmsRegistration(id)
@@ -339,6 +501,156 @@ ApiResponse<[**DeactivateSmsRegistration200Response**](DeactivateSmsRegistration
 | **200** | Registration deactivated. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
+
+
+## deleteSmsSenderId
+
+> DeleteSmsSenderId200Response deleteSmsSenderId(id)
+
+Delete an alphanumeric sender ID
+
+Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | Sender ID resource id.
+        try {
+            DeleteSmsSenderId200Response result = apiInstance.deleteSmsSenderId(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#deleteSmsSenderId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Sender ID resource id. | |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sender ID deactivated. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Sender ID not found. |  -  |
+
+## deleteSmsSenderIdWithHttpInfo
+
+> ApiResponse<DeleteSmsSenderId200Response> deleteSmsSenderId deleteSmsSenderIdWithHttpInfo(id)
+
+Delete an alphanumeric sender ID
+
+Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | Sender ID resource id.
+        try {
+            ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.deleteSmsSenderIdWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#deleteSmsSenderId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Sender ID resource id. | |
+
+### Return type
+
+ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sender ID deactivated. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Sender ID not found. |  -  |
 
 
 ## disableSmsOnNumber
@@ -1079,6 +1391,140 @@ ApiResponse<[**ListSmsRegistrations200Response**](ListSmsRegistrations200Respons
 | **401** | Unauthorized |  -  |
 
 
+## listSmsSenderIds
+
+> ListSmsSenderIds200Response listSmsSenderIds()
+
+List alphanumeric sender IDs
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        try {
+            ListSmsSenderIds200Response result = apiInstance.listSmsSenderIds();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#listSmsSenderIds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListSmsSenderIds200Response**](ListSmsSenderIds200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s sender IDs, newest first. |  -  |
+| **401** | Unauthorized |  -  |
+
+## listSmsSenderIdsWithHttpInfo
+
+> ApiResponse<ListSmsSenderIds200Response> listSmsSenderIds listSmsSenderIdsWithHttpInfo()
+
+List alphanumeric sender IDs
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        try {
+            ApiResponse<ListSmsSenderIds200Response> response = apiInstance.listSmsSenderIdsWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#listSmsSenderIds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**ListSmsSenderIds200Response**](ListSmsSenderIds200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s sender IDs, newest first. |  -  |
+| **401** | Unauthorized |  -  |
+
+
 ## lookupSmsNumber
 
 > LookupSmsNumber200Response lookupSmsNumber(number)
@@ -1225,6 +1671,158 @@ ApiResponse<[**LookupSmsNumber200Response**](LookupSmsNumber200Response.md)>
 | **200** | Lookup result. An unknown/invalid number returns lineType &#x60;unknown&#x60; with &#x60;smsReachable&#x60; false rather than an error. |  -  |
 | **401** | Unauthorized |  -  |
 | **502** | Lookup provider failed |  -  |
+
+
+## requestSmsSenderIdLimitIncrease
+
+> RequestSmsSenderIdLimitIncrease200Response requestSmsSenderIdLimitIncrease(requestSmsSenderIdLimitIncreaseRequest)
+
+Request a higher sender ID daily limit
+
+Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest = new RequestSmsSenderIdLimitIncreaseRequest(); // RequestSmsSenderIdLimitIncreaseRequest | 
+        try {
+            RequestSmsSenderIdLimitIncrease200Response result = apiInstance.requestSmsSenderIdLimitIncrease(requestSmsSenderIdLimitIncreaseRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#requestSmsSenderIdLimitIncrease");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestSmsSenderIdLimitIncreaseRequest** | [**RequestSmsSenderIdLimitIncreaseRequest**](RequestSmsSenderIdLimitIncreaseRequest.md)|  | |
+
+### Return type
+
+[**RequestSmsSenderIdLimitIncrease200Response**](RequestSmsSenderIdLimitIncrease200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Request submitted for review. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | A cap-raise request is already awaiting review (code &#x60;sender_id_raise_pending&#x60;); one at a time. |  -  |
+| **503** | Request could not be submitted; retry or contact support. |  -  |
+
+## requestSmsSenderIdLimitIncreaseWithHttpInfo
+
+> ApiResponse<RequestSmsSenderIdLimitIncrease200Response> requestSmsSenderIdLimitIncrease requestSmsSenderIdLimitIncreaseWithHttpInfo(requestSmsSenderIdLimitIncreaseRequest)
+
+Request a higher sender ID daily limit
+
+Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest = new RequestSmsSenderIdLimitIncreaseRequest(); // RequestSmsSenderIdLimitIncreaseRequest | 
+        try {
+            ApiResponse<RequestSmsSenderIdLimitIncrease200Response> response = apiInstance.requestSmsSenderIdLimitIncreaseWithHttpInfo(requestSmsSenderIdLimitIncreaseRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#requestSmsSenderIdLimitIncrease");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestSmsSenderIdLimitIncreaseRequest** | [**RequestSmsSenderIdLimitIncreaseRequest**](RequestSmsSenderIdLimitIncreaseRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RequestSmsSenderIdLimitIncrease200Response**](RequestSmsSenderIdLimitIncrease200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Request submitted for review. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | A cap-raise request is already awaiting review (code &#x60;sender_id_raise_pending&#x60;); one at a time. |  -  |
+| **503** | Request could not be submitted; retry or contact support. |  -  |
 
 
 ## resendSmsRegistrationOtp
@@ -1535,7 +2133,7 @@ ApiResponse<[**ReuseSmsRegistrationForNumber200Response**](ReuseSmsRegistrationF
 
 Send an SMS/MMS
 
-Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers, or from an approved alphanumeric sender ID (&#x60;/v1/sms/sender-ids&#x60;). At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Alphanumeric sender IDs** are one-way and international only: they cannot reach the US, Canada, or Puerto Rico (403), are text-only (no MMS), and recipients cannot reply. Some destination countries substitute a numeric sender to ensure delivery.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
 
 ### Example
 
@@ -1600,10 +2198,13 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Message accepted for delivery. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
+| **403** | Send refused by a gate: US registration missing/pending, MMS not supported by this sender, or an alphanumeric sender ID addressed to the US, Canada or Puerto Rico. |  -  |
+| **404** | No SMS-enabled number or sender ID matches &#x60;from&#x60; |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different body |  -  |
+| **429** | Daily sender ID message limit reached for the workspace (alphanumeric sends only, code &#x60;alpha_daily_limit_reached&#x60;; resets midnight UTC, raisable via support). |  -  |
 | **502** | Carrier-side send failed |  -  |
 
 ## sendSmsWithHttpInfo
@@ -1612,7 +2213,7 @@ public class Example {
 
 Send an SMS/MMS
 
-Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers, or from an approved alphanumeric sender ID (&#x60;/v1/sms/sender-ids&#x60;). At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Alphanumeric sender IDs** are one-way and international only: they cannot reach the US, Canada, or Puerto Rico (403), are text-only (no MMS), and recipients cannot reply. Some destination countries substitute a numeric sender to ensure delivery.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
 
 ### Example
 
@@ -1680,10 +2281,13 @@ ApiResponse<[**SendSms200Response**](SendSms200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Message accepted for delivery. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
+| **403** | Send refused by a gate: US registration missing/pending, MMS not supported by this sender, or an alphanumeric sender ID addressed to the US, Canada or Puerto Rico. |  -  |
+| **404** | No SMS-enabled number or sender ID matches &#x60;from&#x60; |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different body |  -  |
+| **429** | Daily sender ID message limit reached for the workspace (alphanumeric sends only, code &#x60;alpha_daily_limit_reached&#x60;; resets midnight UTC, raisable via support). |  -  |
 | **502** | Carrier-side send failed |  -  |
 
 

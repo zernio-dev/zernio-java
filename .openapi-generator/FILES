@@ -241,6 +241,8 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateSmsSenderId200Response.md
+docs/CreateSmsSenderIdRequest.md
 docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
@@ -314,6 +316,7 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
+docs/DeleteSmsSenderId200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
@@ -877,6 +880,10 @@ docs/ListSmsOptOuts200ResponseOptOutsInner.md
 docs/ListSmsRegistrations200Response.md
 docs/ListSmsRegistrations200ResponseRegistrationsInner.md
 docs/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md
+docs/ListSmsSenderIds200Response.md
+docs/ListSmsSenderIds200ResponseBudget.md
+docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md
+docs/ListSmsSenderIds200ResponseSenderIdsInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListTrackingTagSharedAccounts200Response.md
@@ -1011,6 +1018,8 @@ docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
+docs/RequestSmsSenderIdLimitIncrease200Response.md
+docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
 docs/ReserveRfPrediction201Response.md
 docs/ReserveRfPredictionRequest.md
@@ -1804,6 +1813,8 @@ src/main/java/dev/zernio/model/CreateSequenceRequest.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInner.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInnerTemplate.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.java
+src/main/java/dev/zernio/model/CreateSmsSenderId200Response.java
+src/main/java/dev/zernio/model/CreateSmsSenderIdRequest.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201Response.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf1.java
@@ -1876,6 +1887,7 @@ src/main/java/dev/zernio/model/DeleteGoogleBusinessReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxComment200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
+src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequest.java
 src/main/java/dev/zernio/model/DialVoiceWebCall200Response.java
 src/main/java/dev/zernio/model/DialVoiceWebCallRequest.java
@@ -2426,6 +2438,10 @@ src/main/java/dev/zernio/model/ListSmsOptOuts200ResponseOptOutsInner.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200Response.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200ResponseRegistrationsInner.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200Response.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseBudget.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseBudgetPendingRequest.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseSenderIdsInner.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200Response.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200ResponsePublicProfilesInner.java
 src/main/java/dev/zernio/model/ListTrackingTagSharedAccounts200Response.java
@@ -2551,6 +2567,8 @@ src/main/java/dev/zernio/model/ReplyToInboxReview200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToMention200Response.java
 src/main/java/dev/zernio/model/ReplyToMentionRequest.java
+src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncrease200Response.java
+src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncreaseRequest.java
 src/main/java/dev/zernio/model/ResendSmsRegistrationOtp200Response.java
 src/main/java/dev/zernio/model/ReserveRfPrediction201Response.java
 src/main/java/dev/zernio/model/ReserveRfPredictionRequest.java
@@ -3029,3 +3047,12 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateSmsSenderId200ResponseTest.java
+src/test/java/dev/zernio/model/CreateSmsSenderIdRequestTest.java
+src/test/java/dev/zernio/model/DeleteSmsSenderId200ResponseTest.java
+src/test/java/dev/zernio/model/ListSmsSenderIds200ResponseBudgetPendingRequestTest.java
+src/test/java/dev/zernio/model/ListSmsSenderIds200ResponseBudgetTest.java
+src/test/java/dev/zernio/model/ListSmsSenderIds200ResponseSenderIdsInnerTest.java
+src/test/java/dev/zernio/model/ListSmsSenderIds200ResponseTest.java
+src/test/java/dev/zernio/model/RequestSmsSenderIdLimitIncrease200ResponseTest.java
+src/test/java/dev/zernio/model/RequestSmsSenderIdLimitIncreaseRequestTest.java

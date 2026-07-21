@@ -17420,12 +17420,18 @@ paths:
     post:
       description: |
         Sends an SMS (or MMS when `mediaUrls` is set) from one of your
-        SMS-enabled numbers. At least one of `text` / `mediaUrls` is required.
-        Both numbers are normalized to E.164, so `from` matches regardless of
-        formatting and replies thread into the same inbox conversation.
+        SMS-enabled numbers, or from an approved alphanumeric sender ID
+        (`/v1/sms/sender-ids`). At least one of `text` / `mediaUrls` is
+        required. Numbers are normalized to E.164, so `from` matches regardless
+        of formatting and replies thread into the same inbox conversation.
 
         US numbers must have an approved carrier registration
         (`/v1/sms/registrations`) before messages deliver.
+
+        **Alphanumeric sender IDs** are one-way and international only: they
+        cannot reach the US, Canada, or Puerto Rico (403), are text-only (no
+        MMS), and recipients cannot reply. Some destination countries
+        substitute a numeric sender to ensure delivery.
 
         **Idempotency:** send an `Idempotency-Key` header to make retries safe:
         same key + same body replays the original response instead of sending a
@@ -17457,15 +17463,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/sendSms_200_response"
           description: Message accepted for delivery.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Send refused by a gate: US registration missing/pending, MMS\
+            \ not supported by this sender, or an alphanumeric sender ID addressed\
+            \ to the US, Canada or Puerto Rico."
         "404":
-          description: No SMS-enabled number matches `from`
+          description: No SMS-enabled number or sender ID matches `from`
         "409":
           description: Same Idempotency-Key still processing; retry after a short
             backoff
         "422":
           description: Idempotency-Key reused with a different body
+        "429":
+          description: "Daily sender ID message limit reached for the workspace (alphanumeric\
+            \ sends only, code `alpha_daily_limit_reached`; resets midnight UTC, raisable\
+            \ via support)."
         "502":
           description: Carrier-side send failed
       security:
@@ -17566,6 +17582,146 @@ paths:
       x-accepts:
       - application/json
       - text/csv
+  /v1/sms/sender-ids:
+    get:
+      operationId: listSmsSenderIds
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listSmsSenderIds_200_response"
+          description: "The workspace's sender IDs, newest first."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List alphanumeric sender IDs
+      tags:
+      - SMS
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from`
+        for one-way international SMS. No phone number purchase or carrier
+        registration is needed; once created, pass it as `from` on
+        `POST /v1/sms/messages`.
+
+        Constraints: 3-11 characters (letters, digits, spaces; at least one
+        letter). Sends cannot reach the US, Canada, or Puerto Rico, are
+        text-only, and recipients cannot reply. Sender IDs that impersonate
+        well-known brands or institutions are rejected, and an ID already
+        registered by another workspace returns 409 (active sender IDs are
+        globally unique, first-come-first-served). Creating the same sender ID
+        again is a no-op (re-activates it after a delete).
+      operationId: createSmsSenderId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createSmsSenderId_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createSmsSenderId_200_response"
+          description: Sender ID created (or re-activated).
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Workspace is not on usage-based billing, or already holds\
+            \ the maximum of 5 active sender IDs (code `sender_id_limit_reached`;\
+            \ raisable via support)."
+        "409":
+          description: Sender ID already registered by another workspace (code `sender_id_taken`).
+        "422":
+          description: "Sender ID rejected: it appears to impersonate a protected\
+            \ brand or institution."
+      security:
+      - bearerAuth: []
+      summary: Create an alphanumeric sender ID
+      tags:
+      - SMS
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/sms/sender-ids/limit-request:
+    post:
+      description: |
+        Asks support to raise the workspace's daily sender-ID message cap.
+        There is no self-serve raise: the request (desired cap + use case) is
+        reviewed manually, usually within a business day.
+      operationId: requestSmsSenderIdLimitIncrease
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/requestSmsSenderIdLimitIncrease_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/requestSmsSenderIdLimitIncrease_200_response"
+          description: Request submitted for review.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "409":
+          description: A cap-raise request is already awaiting review (code `sender_id_raise_pending`);
+            one at a time.
+        "503":
+          description: Request could not be submitted; retry or contact support.
+      security:
+      - bearerAuth: []
+      summary: Request a higher sender ID daily limit
+      tags:
+      - SMS
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/sms/sender-ids/{id}:
+    delete:
+      description: |
+        Deactivates the sender ID so it can no longer send. Re-creating the
+        same sender ID via `POST /v1/sms/sender-ids` re-activates it.
+      operationId: deleteSmsSenderId
+      parameters:
+      - description: Sender ID resource id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteSmsSenderId_200_response"
+          description: Sender ID deactivated.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Sender ID not found.
+      security:
+      - bearerAuth: []
+      summary: Delete an alphanumeric sender ID
+      tags:
+      - SMS
+      x-accepts:
+      - application/json
   /v1/sms/registrations:
     get:
       operationId: listSmsRegistrations
@@ -54954,7 +55110,9 @@ components:
     sendSms_request:
       properties:
         from:
-          description: One of your SMS-enabled numbers (E.164; formatting is normalized).
+          description: "One of your SMS-enabled numbers (E.164; formatting is normalized),\
+            \ or an approved alphanumeric sender ID (3-11 letters/digits/spaces, created\
+            \ via `/v1/sms/sender-ids`)."
           type: string
         to:
           description: Recipient number (E.164).
@@ -55060,6 +55218,139 @@ components:
           type: array
         count:
           type: integer
+    listSmsSenderIds_200_response_senderIds_inner:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        senderId: senderId
+        id: id
+        isActive: true
+      properties:
+        id:
+          type: string
+        senderId:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          format: date-time
+          nullable: true
+          type: string
+    listSmsSenderIds_200_response_budget_pendingRequest:
+      description: "The in-flight cap-raise request awaiting review, or null. While\
+        \ set, further requests return 409."
+      example:
+        level: 5
+        requestedAt: 2000-01-23T04:56:07.000+00:00
+        requestedCap: 5
+      properties:
+        requestedCap:
+          type: integer
+        level:
+          type: integer
+        requestedAt:
+          format: date-time
+          nullable: true
+          type: string
+    listSmsSenderIds_200_response_budget:
+      description: "Workspace-wide daily sending budget, shared by every sender ID\
+        \ (resets midnight UTC)."
+      example:
+        cap: 0
+        pendingRequest:
+          level: 5
+          requestedAt: 2000-01-23T04:56:07.000+00:00
+          requestedCap: 5
+        level: 1
+        usedToday: 6
+      properties:
+        cap:
+          description: Daily message cap (raisable via `/v1/sms/sender-ids/limit-request`).
+          type: integer
+        usedToday:
+          description: Messages already counted against today's cap.
+          type: integer
+        level:
+          description: Cap tier (Level 1 = 500/day).
+          type: integer
+        pendingRequest:
+          $ref: "#/components/schemas/listSmsSenderIds_200_response_budget_pendingRequest"
+    listSmsSenderIds_200_response:
+      example:
+        senderIds:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          senderId: senderId
+          id: id
+          isActive: true
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          senderId: senderId
+          id: id
+          isActive: true
+        budget:
+          cap: 0
+          pendingRequest:
+            level: 5
+            requestedAt: 2000-01-23T04:56:07.000+00:00
+            requestedCap: 5
+          level: 1
+          usedToday: 6
+      properties:
+        senderIds:
+          items:
+            $ref: "#/components/schemas/listSmsSenderIds_200_response_senderIds_inner"
+          type: array
+        budget:
+          $ref: "#/components/schemas/listSmsSenderIds_200_response_budget"
+    createSmsSenderId_request:
+      properties:
+        senderId:
+          description: "The sender ID recipients will see (3-11 letters/digits/spaces,\
+            \ at least one letter, no leading/trailing space)."
+          maxLength: 11
+          minLength: 3
+          type: string
+      required:
+      - senderId
+    createSmsSenderId_200_response:
+      example:
+        senderId: senderId
+        id: id
+        isActive: true
+      properties:
+        id:
+          description: Sender ID resource id.
+          type: string
+        senderId:
+          type: string
+        isActive:
+          type: boolean
+    requestSmsSenderIdLimitIncrease_request:
+      properties:
+        requestedCap:
+          description: Desired daily message cap. Must exceed the current cap.
+          type: integer
+        reason:
+          description: "Use case and audience (what you send, to whom, opt-in status)."
+          maxLength: 2000
+          minLength: 10
+          type: string
+      required:
+      - reason
+      - requestedCap
+    requestSmsSenderIdLimitIncrease_200_response:
+      example:
+        requested: true
+        requestedCap: 0
+      properties:
+        requested:
+          type: boolean
+        requestedCap:
+          type: integer
+    deleteSmsSenderId_200_response:
+      example:
+        deleted: true
+      properties:
+        deleted:
+          type: boolean
     listSmsRegistrations_200_response_registrations_inner_throughput:
       description: Carrier throughput tier derived from the trust score.
       example:

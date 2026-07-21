@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CancelPhoneNumberPortIn200Response.JSON_PROPERTY_ID,
   CancelPhoneNumberPortIn200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T14:19:37.881913068Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T14:48:33.900358981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CancelPhoneNumberPortIn200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
