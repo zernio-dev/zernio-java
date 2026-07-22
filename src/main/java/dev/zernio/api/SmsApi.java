@@ -20,22 +20,15 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AppealSmsRegistration200Response;
 import dev.zernio.model.AppealSmsRegistrationRequest;
-import dev.zernio.model.CreateSmsSenderId200Response;
-import dev.zernio.model.CreateSmsSenderIdRequest;
 import dev.zernio.model.DeactivateSmsRegistration200Response;
-import dev.zernio.model.DeleteSmsSenderId200Response;
 import dev.zernio.model.DisableSmsOnNumber200Response;
 import dev.zernio.model.EnableSmsOnNumber200Response;
-import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetSmsRegistration200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListSmsOptOuts200Response;
 import dev.zernio.model.ListSmsRegistrations200Response;
-import dev.zernio.model.ListSmsSenderIds200Response;
 import dev.zernio.model.LookupSmsNumber200Response;
-import dev.zernio.model.RequestSmsSenderIdLimitIncrease200Response;
-import dev.zernio.model.RequestSmsSenderIdLimitIncreaseRequest;
 import dev.zernio.model.ResendSmsRegistrationOtp200Response;
 import dev.zernio.model.ReuseSmsRegistrationForNumber200Response;
 import dev.zernio.model.SendSms200Response;
@@ -79,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:21:04.491657349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -329,129 +322,6 @@ public class SmsApi {
   }
 
   /**
-   * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
-   * @param createSmsSenderIdRequest  (required)
-   * @return CreateSmsSenderId200Response
-   * @throws ApiException if fails to make API call
-   */
-  public CreateSmsSenderId200Response createSmsSenderId(@javax.annotation.Nonnull CreateSmsSenderIdRequest createSmsSenderIdRequest) throws ApiException {
-    return createSmsSenderId(createSmsSenderIdRequest, null);
-  }
-
-  /**
-   * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
-   * @param createSmsSenderIdRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return CreateSmsSenderId200Response
-   * @throws ApiException if fails to make API call
-   */
-  public CreateSmsSenderId200Response createSmsSenderId(@javax.annotation.Nonnull CreateSmsSenderIdRequest createSmsSenderIdRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateSmsSenderId200Response> localVarResponse = createSmsSenderIdWithHttpInfo(createSmsSenderIdRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
-   * @param createSmsSenderIdRequest  (required)
-   * @return ApiResponse&lt;CreateSmsSenderId200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateSmsSenderId200Response> createSmsSenderIdWithHttpInfo(@javax.annotation.Nonnull CreateSmsSenderIdRequest createSmsSenderIdRequest) throws ApiException {
-    return createSmsSenderIdWithHttpInfo(createSmsSenderIdRequest, null);
-  }
-
-  /**
-   * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
-   * @param createSmsSenderIdRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateSmsSenderId200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateSmsSenderId200Response> createSmsSenderIdWithHttpInfo(@javax.annotation.Nonnull CreateSmsSenderIdRequest createSmsSenderIdRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createSmsSenderIdRequestBuilder(createSmsSenderIdRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createSmsSenderId", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<CreateSmsSenderId200Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateSmsSenderId200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateSmsSenderId200Response>() {});
-        
-
-        return new ApiResponse<CreateSmsSenderId200Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder createSmsSenderIdRequestBuilder(@javax.annotation.Nonnull CreateSmsSenderIdRequest createSmsSenderIdRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'createSmsSenderIdRequest' is set
-    if (createSmsSenderIdRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createSmsSenderIdRequest' when calling createSmsSenderId");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/sms/sender-ids";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createSmsSenderIdRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
    * Deactivate a brand/campaign registration
    * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
    * @param id  (required)
@@ -551,124 +421,6 @@ public class SmsApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/sms/registrations/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Delete an alphanumeric sender ID
-   * Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
-   * @param id Sender ID resource id. (required)
-   * @return DeleteSmsSenderId200Response
-   * @throws ApiException if fails to make API call
-   */
-  public DeleteSmsSenderId200Response deleteSmsSenderId(@javax.annotation.Nonnull String id) throws ApiException {
-    return deleteSmsSenderId(id, null);
-  }
-
-  /**
-   * Delete an alphanumeric sender ID
-   * Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
-   * @param id Sender ID resource id. (required)
-   * @param headers Optional headers to include in the request
-   * @return DeleteSmsSenderId200Response
-   * @throws ApiException if fails to make API call
-   */
-  public DeleteSmsSenderId200Response deleteSmsSenderId(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteSmsSenderId200Response> localVarResponse = deleteSmsSenderIdWithHttpInfo(id, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Delete an alphanumeric sender ID
-   * Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
-   * @param id Sender ID resource id. (required)
-   * @return ApiResponse&lt;DeleteSmsSenderId200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<DeleteSmsSenderId200Response> deleteSmsSenderIdWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    return deleteSmsSenderIdWithHttpInfo(id, null);
-  }
-
-  /**
-   * Delete an alphanumeric sender ID
-   * Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
-   * @param id Sender ID resource id. (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;DeleteSmsSenderId200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<DeleteSmsSenderId200Response> deleteSmsSenderIdWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteSmsSenderIdRequestBuilder(id, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("deleteSmsSenderId", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<DeleteSmsSenderId200Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        DeleteSmsSenderId200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteSmsSenderId200Response>() {});
-        
-
-        return new ApiResponse<DeleteSmsSenderId200Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder deleteSmsSenderIdRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling deleteSmsSenderId");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/sms/sender-ids/{id}"
         .replace("{id}", ApiClient.urlEncode(id.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
@@ -1304,115 +1056,6 @@ public class SmsApi {
   }
 
   /**
-   * List alphanumeric sender IDs
-   * 
-   * @return ListSmsSenderIds200Response
-   * @throws ApiException if fails to make API call
-   */
-  public ListSmsSenderIds200Response listSmsSenderIds() throws ApiException {
-    return listSmsSenderIds(null);
-  }
-
-  /**
-   * List alphanumeric sender IDs
-   * 
-   * @param headers Optional headers to include in the request
-   * @return ListSmsSenderIds200Response
-   * @throws ApiException if fails to make API call
-   */
-  public ListSmsSenderIds200Response listSmsSenderIds(Map<String, String> headers) throws ApiException {
-    ApiResponse<ListSmsSenderIds200Response> localVarResponse = listSmsSenderIdsWithHttpInfo(headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * List alphanumeric sender IDs
-   * 
-   * @return ApiResponse&lt;ListSmsSenderIds200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ListSmsSenderIds200Response> listSmsSenderIdsWithHttpInfo() throws ApiException {
-    return listSmsSenderIdsWithHttpInfo(null);
-  }
-
-  /**
-   * List alphanumeric sender IDs
-   * 
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ListSmsSenderIds200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ListSmsSenderIds200Response> listSmsSenderIdsWithHttpInfo(Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listSmsSenderIdsRequestBuilder(headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("listSmsSenderIds", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<ListSmsSenderIds200Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        ListSmsSenderIds200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSmsSenderIds200Response>() {});
-        
-
-        return new ApiResponse<ListSmsSenderIds200Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder listSmsSenderIdsRequestBuilder(Map<String, String> headers) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/sms/sender-ids";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
    * Look up carrier + line type
    * Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
    * @param number Number to look up (E.164; formatting is normalized). (required)
@@ -1533,129 +1176,6 @@ public class SmsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
-   * @param requestSmsSenderIdLimitIncreaseRequest  (required)
-   * @return RequestSmsSenderIdLimitIncrease200Response
-   * @throws ApiException if fails to make API call
-   */
-  public RequestSmsSenderIdLimitIncrease200Response requestSmsSenderIdLimitIncrease(@javax.annotation.Nonnull RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest) throws ApiException {
-    return requestSmsSenderIdLimitIncrease(requestSmsSenderIdLimitIncreaseRequest, null);
-  }
-
-  /**
-   * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
-   * @param requestSmsSenderIdLimitIncreaseRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return RequestSmsSenderIdLimitIncrease200Response
-   * @throws ApiException if fails to make API call
-   */
-  public RequestSmsSenderIdLimitIncrease200Response requestSmsSenderIdLimitIncrease(@javax.annotation.Nonnull RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<RequestSmsSenderIdLimitIncrease200Response> localVarResponse = requestSmsSenderIdLimitIncreaseWithHttpInfo(requestSmsSenderIdLimitIncreaseRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
-   * @param requestSmsSenderIdLimitIncreaseRequest  (required)
-   * @return ApiResponse&lt;RequestSmsSenderIdLimitIncrease200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<RequestSmsSenderIdLimitIncrease200Response> requestSmsSenderIdLimitIncreaseWithHttpInfo(@javax.annotation.Nonnull RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest) throws ApiException {
-    return requestSmsSenderIdLimitIncreaseWithHttpInfo(requestSmsSenderIdLimitIncreaseRequest, null);
-  }
-
-  /**
-   * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
-   * @param requestSmsSenderIdLimitIncreaseRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;RequestSmsSenderIdLimitIncrease200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<RequestSmsSenderIdLimitIncrease200Response> requestSmsSenderIdLimitIncreaseWithHttpInfo(@javax.annotation.Nonnull RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = requestSmsSenderIdLimitIncreaseRequestBuilder(requestSmsSenderIdLimitIncreaseRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("requestSmsSenderIdLimitIncrease", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<RequestSmsSenderIdLimitIncrease200Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        RequestSmsSenderIdLimitIncrease200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RequestSmsSenderIdLimitIncrease200Response>() {});
-        
-
-        return new ApiResponse<RequestSmsSenderIdLimitIncrease200Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder requestSmsSenderIdLimitIncreaseRequestBuilder(@javax.annotation.Nonnull RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'requestSmsSenderIdLimitIncreaseRequest' is set
-    if (requestSmsSenderIdLimitIncreaseRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'requestSmsSenderIdLimitIncreaseRequest' when calling requestSmsSenderIdLimitIncrease");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/sms/sender-ids/limit-request";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(requestSmsSenderIdLimitIncreaseRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -1905,7 +1425,7 @@ public class SmsApi {
 
   /**
    * Send an SMS/MMS
-   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers, or from an approved alphanumeric sender ID (&#x60;/v1/sms/sender-ids&#x60;). At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Alphanumeric sender IDs** are one-way and international only: they cannot reach the US, Canada, or Puerto Rico (403), are text-only (no MMS), and recipients cannot reply. Some destination countries substitute a numeric sender to ensure delivery.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return SendSms200Response
@@ -1917,7 +1437,7 @@ public class SmsApi {
 
   /**
    * Send an SMS/MMS
-   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers, or from an approved alphanumeric sender ID (&#x60;/v1/sms/sender-ids&#x60;). At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Alphanumeric sender IDs** are one-way and international only: they cannot reach the US, Canada, or Puerto Rico (403), are text-only (no MMS), and recipients cannot reply. Some destination countries substitute a numeric sender to ensure delivery.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
@@ -1931,7 +1451,7 @@ public class SmsApi {
 
   /**
    * Send an SMS/MMS
-   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers, or from an approved alphanumeric sender ID (&#x60;/v1/sms/sender-ids&#x60;). At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Alphanumeric sender IDs** are one-way and international only: they cannot reach the US, Canada, or Puerto Rico (403), are text-only (no MMS), and recipients cannot reply. Some destination countries substitute a numeric sender to ensure delivery.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;SendSms200Response&gt;
@@ -1943,7 +1463,7 @@ public class SmsApi {
 
   /**
    * Send an SMS/MMS
-   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers, or from an approved alphanumeric sender ID (&#x60;/v1/sms/sender-ids&#x60;). At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Alphanumeric sender IDs** are one-way and international only: they cannot reach the US, Canada, or Puerto Rico (403), are text-only (no MMS), and recipients cannot reply. Some destination countries substitute a numeric sender to ensure delivery.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request

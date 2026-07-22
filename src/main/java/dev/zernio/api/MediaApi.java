@@ -18,9 +18,9 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetMediaPresignedUrl200Response;
 import dev.zernio.model.GetMediaPresignedUrlRequest;
-import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:21:04.491657349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MediaApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

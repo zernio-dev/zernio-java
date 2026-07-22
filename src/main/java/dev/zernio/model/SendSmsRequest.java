@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendSmsRequest.JSON_PROPERTY_MEDIA_URLS,
   SendSmsRequest.JSON_PROPERTY_SEND_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:21:04.491657349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendSmsRequest {
   public static final String JSON_PROPERTY_FROM = "from";
   @javax.annotation.Nonnull
@@ -74,7 +74,7 @@ public class SendSmsRequest {
   }
 
   /**
-   * One of your SMS-enabled numbers (E.164; formatting is normalized), or an approved alphanumeric sender ID (3-11 letters/digits/spaces, created via &#x60;/v1/sms/sender-ids&#x60;).
+   * One of your SMS-enabled numbers (E.164; formatting is normalized).
    * @return from
    */
   @javax.annotation.Nonnull

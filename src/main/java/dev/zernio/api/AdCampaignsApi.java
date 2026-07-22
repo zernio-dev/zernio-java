@@ -21,14 +21,10 @@ import dev.zernio.Pair;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
 import dev.zernio.model.BulkUpdateAdCampaignStatusRequest;
-import dev.zernio.model.CreateAdCampaign201Response;
-import dev.zernio.model.CreateAdCampaignRequest;
 import dev.zernio.model.DeleteAdCampaign200Response;
 import dev.zernio.model.DeleteAdCampaignRequest;
 import dev.zernio.model.DuplicateAdCampaign200Response;
 import dev.zernio.model.DuplicateAdCampaignRequest;
-import dev.zernio.model.DuplicateAdSet200Response;
-import dev.zernio.model.DuplicateAdSetRequest;
 import dev.zernio.model.GetAdSetDetails200Response;
 import dev.zernio.model.GetAdTree200Response;
 import dev.zernio.model.GetAdsTimeline200Response;
@@ -68,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:21:04.491657349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -293,129 +289,6 @@ public class AdCampaignsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(bulkUpdateAdCampaignStatusRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Create a standalone campaign (Meta)
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-   * @param createAdCampaignRequest  (required)
-   * @return CreateAdCampaign201Response
-   * @throws ApiException if fails to make API call
-   */
-  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest) throws ApiException {
-    return createAdCampaign(createAdCampaignRequest, null);
-  }
-
-  /**
-   * Create a standalone campaign (Meta)
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-   * @param createAdCampaignRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return CreateAdCampaign201Response
-   * @throws ApiException if fails to make API call
-   */
-  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateAdCampaign201Response> localVarResponse = createAdCampaignWithHttpInfo(createAdCampaignRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Create a standalone campaign (Meta)
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-   * @param createAdCampaignRequest  (required)
-   * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest) throws ApiException {
-    return createAdCampaignWithHttpInfo(createAdCampaignRequest, null);
-  }
-
-  /**
-   * Create a standalone campaign (Meta)
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-   * @param createAdCampaignRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createAdCampaignRequestBuilder(createAdCampaignRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createAdCampaign", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<CreateAdCampaign201Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateAdCampaign201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdCampaign201Response>() {});
-        
-
-        return new ApiResponse<CreateAdCampaign201Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder createAdCampaignRequestBuilder(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'createAdCampaignRequest' is set
-    if (createAdCampaignRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createAdCampaignRequest' when calling createAdCampaign");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/ads/campaigns";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdCampaignRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -680,138 +553,6 @@ public class AdCampaignsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(duplicateAdCampaignRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Duplicate an ad set (Meta)
-   * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-   * @param adSetId Source platform ad set ID (required)
-   * @param duplicateAdSetRequest  (required)
-   * @return DuplicateAdSet200Response
-   * @throws ApiException if fails to make API call
-   */
-  public DuplicateAdSet200Response duplicateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest) throws ApiException {
-    return duplicateAdSet(adSetId, duplicateAdSetRequest, null);
-  }
-
-  /**
-   * Duplicate an ad set (Meta)
-   * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-   * @param adSetId Source platform ad set ID (required)
-   * @param duplicateAdSetRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return DuplicateAdSet200Response
-   * @throws ApiException if fails to make API call
-   */
-  public DuplicateAdSet200Response duplicateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<DuplicateAdSet200Response> localVarResponse = duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Duplicate an ad set (Meta)
-   * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-   * @param adSetId Source platform ad set ID (required)
-   * @param duplicateAdSetRequest  (required)
-   * @return ApiResponse&lt;DuplicateAdSet200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<DuplicateAdSet200Response> duplicateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest) throws ApiException {
-    return duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, null);
-  }
-
-  /**
-   * Duplicate an ad set (Meta)
-   * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-   * @param adSetId Source platform ad set ID (required)
-   * @param duplicateAdSetRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;DuplicateAdSet200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<DuplicateAdSet200Response> duplicateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = duplicateAdSetRequestBuilder(adSetId, duplicateAdSetRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("duplicateAdSet", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<DuplicateAdSet200Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        DuplicateAdSet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DuplicateAdSet200Response>() {});
-        
-
-        return new ApiResponse<DuplicateAdSet200Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder duplicateAdSetRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'adSetId' is set
-    if (adSetId == null) {
-      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling duplicateAdSet");
-    }
-    // verify the required parameter 'duplicateAdSetRequest' is set
-    if (duplicateAdSetRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'duplicateAdSetRequest' when calling duplicateAdSet");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/ads/ad-sets/{adSetId}/duplicate"
-        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(duplicateAdSetRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

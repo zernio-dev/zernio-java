@@ -1674,7 +1674,7 @@ paths:
                   value:
                     error: Breakdowns are only supported with metricType=total_value
               schema:
-                $ref: "#/components/schemas/ErrorResponse"
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
           description: Bad request (invalid parameters)
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -3618,20 +3618,10 @@ paths:
         "400":
           content:
             application/json:
-              examples:
-                missing_filename:
-                  value:
-                    error: "Missing required fields: filename and contentType"
-                invalid_type:
-                  value:
-                    error: "Content type not allowed: text/plain"
-                file_too_large:
-                  value:
-                    error: File too large. Maximum size is 5GB.
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
-          description: "Invalid request (missing filename, contentType, or unsupported\
-            \ content type)"
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request (missing filename, unsupported contentType,\
+            \ or size out of range)"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Get upload URL
@@ -14130,6 +14120,71 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/media/{mediaId}:
+    get:
+      description: |
+        Streams the binary for a WhatsApp attachment. This is the endpoint the
+        `url` on a WhatsApp `attachments[]` entry points at, in both the
+        `message.received` webhook and the List messages response.
+
+        **This is an authenticated endpoint, not a public link.** Send
+        `Authorization: Bearer <your API key>` exactly as you would for any other
+        call. Passing the URL straight to a browser, an LLM vision API, or a
+        no-code "download file" step without the header returns `401`. This is
+        the most common integration mistake on this endpoint, and it differs from
+        Instagram, Facebook and Telegram, whose `attachments[].url` is a direct
+        CDN link that needs no header.
+
+        **Fetch on receipt, not lazily.** WhatsApp media lives in Meta's media
+        store, not ours, and it is removed after a limited retention window
+        (currently 7 days, and Meta has been dropping some inbound media sooner).
+        Once Meta drops it the media is unrecoverable and this endpoint answers
+        `400` permanently, so retrying will never succeed. Download and store the
+        bytes when the webhook arrives.
+      operationId: getWhatsAppMedia
+      parameters:
+      - description: "The media id from `attachments[].payload.id`."
+        explode: false
+        in: path
+        name: mediaId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The WhatsApp account that received the media.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: "The media binary, streamed with its original content type."
+        "400":
+          description: "Media is no longer available on WhatsApp servers (expired\
+            \ or deleted by Meta). Permanent, do not retry."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Account not found, not accessible to the caller, or the media\
+            \ does not belong to it."
+        "502":
+          description: Meta could not be reached or returned an unexpected error.
+      security:
+      - bearerAuth: []
+      summary: Download WhatsApp media
+      tags:
+      - Inbox
+      x-accepts:
+      - application/json
+      - application/octet-stream
   /v1/inbox/conversations/{conversationId}/messages/{messageId}:
     delete:
       description: |
@@ -17427,18 +17482,12 @@ paths:
     post:
       description: |
         Sends an SMS (or MMS when `mediaUrls` is set) from one of your
-        SMS-enabled numbers, or from an approved alphanumeric sender ID
-        (`/v1/sms/sender-ids`). At least one of `text` / `mediaUrls` is
-        required. Numbers are normalized to E.164, so `from` matches regardless
-        of formatting and replies thread into the same inbox conversation.
+        SMS-enabled numbers. At least one of `text` / `mediaUrls` is required.
+        Both numbers are normalized to E.164, so `from` matches regardless of
+        formatting and replies thread into the same inbox conversation.
 
         US numbers must have an approved carrier registration
         (`/v1/sms/registrations`) before messages deliver.
-
-        **Alphanumeric sender IDs** are one-way and international only: they
-        cannot reach the US, Canada, or Puerto Rico (403), are text-only (no
-        MMS), and recipients cannot reply. Some destination countries
-        substitute a numeric sender to ensure delivery.
 
         **Idempotency:** send an `Idempotency-Key` header to make retries safe:
         same key + same body replays the original response instead of sending a
@@ -17470,25 +17519,15 @@ paths:
               schema:
                 $ref: "#/components/schemas/sendSms_200_response"
           description: Message accepted for delivery.
-        "400":
-          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: "Send refused by a gate: US registration missing/pending, MMS\
-            \ not supported by this sender, or an alphanumeric sender ID addressed\
-            \ to the US, Canada or Puerto Rico."
         "404":
-          description: No SMS-enabled number or sender ID matches `from`
+          description: No SMS-enabled number matches `from`
         "409":
           description: Same Idempotency-Key still processing; retry after a short
             backoff
         "422":
           description: Idempotency-Key reused with a different body
-        "429":
-          description: "Daily sender ID message limit reached for the workspace (alphanumeric\
-            \ sends only, code `alpha_daily_limit_reached`; resets midnight UTC, raisable\
-            \ via support)."
         "502":
           description: Carrier-side send failed
       security:
@@ -17589,146 +17628,6 @@ paths:
       x-accepts:
       - application/json
       - text/csv
-  /v1/sms/sender-ids:
-    get:
-      operationId: listSmsSenderIds
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listSmsSenderIds_200_response"
-          description: "The workspace's sender IDs, newest first."
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-      security:
-      - bearerAuth: []
-      summary: List alphanumeric sender IDs
-      tags:
-      - SMS
-      x-accepts:
-      - application/json
-    post:
-      description: |
-        Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from`
-        for one-way international SMS. No phone number purchase or carrier
-        registration is needed; once created, pass it as `from` on
-        `POST /v1/sms/messages`.
-
-        Constraints: 3-11 characters (letters, digits, spaces; at least one
-        letter). Sends cannot reach the US, Canada, or Puerto Rico, are
-        text-only, and recipients cannot reply. Sender IDs that impersonate
-        well-known brands or institutions are rejected, and an ID already
-        registered by another workspace returns 409 (active sender IDs are
-        globally unique, first-come-first-served). Creating the same sender ID
-        again is a no-op (re-activates it after a delete).
-      operationId: createSmsSenderId
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/createSmsSenderId_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/createSmsSenderId_200_response"
-          description: Sender ID created (or re-activated).
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: "Workspace is not on usage-based billing, or already holds\
-            \ the maximum of 5 active sender IDs (code `sender_id_limit_reached`;\
-            \ raisable via support)."
-        "409":
-          description: Sender ID already registered by another workspace (code `sender_id_taken`).
-        "422":
-          description: "Sender ID rejected: it appears to impersonate a protected\
-            \ brand or institution."
-      security:
-      - bearerAuth: []
-      summary: Create an alphanumeric sender ID
-      tags:
-      - SMS
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/sms/sender-ids/limit-request:
-    post:
-      description: |
-        Asks support to raise the workspace's daily sender-ID message cap.
-        There is no self-serve raise: the request (desired cap + use case) is
-        reviewed manually, usually within a business day.
-      operationId: requestSmsSenderIdLimitIncrease
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/requestSmsSenderIdLimitIncrease_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/requestSmsSenderIdLimitIncrease_200_response"
-          description: Request submitted for review.
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "409":
-          description: A cap-raise request is already awaiting review (code `sender_id_raise_pending`);
-            one at a time.
-        "503":
-          description: Request could not be submitted; retry or contact support.
-      security:
-      - bearerAuth: []
-      summary: Request a higher sender ID daily limit
-      tags:
-      - SMS
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/sms/sender-ids/{id}:
-    delete:
-      description: |
-        Deactivates the sender ID so it can no longer send. Re-creating the
-        same sender ID via `POST /v1/sms/sender-ids` re-activates it.
-      operationId: deleteSmsSenderId
-      parameters:
-      - description: Sender ID resource id.
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/deleteSmsSenderId_200_response"
-          description: Sender ID deactivated.
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          description: Sender ID not found.
-      security:
-      - bearerAuth: []
-      summary: Delete an alphanumeric sender ID
-      tags:
-      - SMS
-      x-accepts:
-      - application/json
   /v1/sms/registrations:
     get:
       operationId: listSmsRegistrations
@@ -24254,41 +24153,6 @@ paths:
       - Ad Campaigns
       x-accepts:
       - application/json
-    post:
-      description: |-
-        Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it
-        later via `existingCampaignId` on the create endpoints. A budget here is campaign-level
-        (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created
-        `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the
-        next sync discovery pass. Meta only.
-      operationId: createAdCampaign
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/createAdCampaign_request"
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/createAdCampaign_201_response"
-          description: Campaign created
-        "400":
-          description: "Invalid input, or Meta rejected the create"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Create a standalone campaign (Meta)
-      tags:
-      - Ad Campaigns
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /v1/ads/campaigns/{campaignId}/status:
     put:
       description: |
@@ -24531,99 +24395,6 @@ paths:
       summary: Duplicate a campaign
       tags:
       - Ad Campaigns
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/ads/ad-sets/{adSetId}/duplicate:
-    post:
-      description: |-
-        Duplicates an ad set, including its ads and creatives by default (`deepCopy: true`),
-        via Meta's native `POST /{adset-id}/copies`. The copy is created paused so callers can
-        review before launching. `campaignId` retargets the copy into another campaign; omitted
-        = the source's own campaign. The new hierarchy materializes asynchronously — sync
-        discovery is triggered automatically (`syncAfter: false` to skip). Meta only.
-      operationId: duplicateAdSet
-      parameters:
-      - description: Source platform ad set ID
-        explode: false
-        in: path
-        name: adSetId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/duplicateAdSet_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/duplicateAdSet_200_response"
-          description: Ad set duplicated
-        "400":
-          description: Invalid input
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          description: Source ad set not found
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Duplicate an ad set (Meta)
-      tags:
-      - Ad Campaigns
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/ads/{adId}/duplicate:
-    post:
-      description: |-
-        Duplicates a single ad via Meta's native `POST /{ad-id}/copies`. The copy is created
-        paused. `adSetId` retargets the copy into another ad set; omitted = the source's own ad
-        set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered
-        automatically (`syncAfter: false` to skip). Meta only.
-      operationId: duplicateAd
-      parameters:
-      - description: Zernio ad ID or platform ad ID
-        explode: false
-        in: path
-        name: adId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/duplicateAd_request"
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/duplicateAd_200_response"
-          description: Ad duplicated
-        "400":
-          description: Invalid input
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          description: Ad not found
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Duplicate an ad (Meta)
-      tags:
-      - Ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26386,391 +26157,6 @@ paths:
       - Ads
       x-accepts:
       - application/json
-  /v1/ads/labels:
-    get:
-      description: |-
-        Lists the ad account's organizational labels (Meta's `/act_X/adlabels`), rows returned
-        verbatim (id, name, created/updated time). Meta only.
-      operationId: listAdLabels
-      parameters:
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Meta ad account id (act_<n>).
-        explode: true
-        in: query
-        name: adAccountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Rows per page
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: Cursor from paging.after of the previous page.
-        explode: true
-        in: query
-        name: after
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listAdLabels_200_response"
-          description: Ad labels (raw Meta shape)
-        "400":
-          description: "Invalid input, or Meta rejected the query"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Ad labels (Meta)
-      tags:
-      - Ads
-      x-accepts:
-      - application/json
-  /v1/ads/high-demand-periods:
-    get:
-      description: |-
-        Scheduled budget increases (Meta's budget-scheduling API). The Graph edge lives on the
-        campaign and ad-set nodes only, so exactly one of `campaignId` / `adSetId` (platform
-        ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window,
-        recurrence). Meta only.
-      operationId: listHighDemandPeriods
-      parameters:
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Platform campaign id. Exactly one of campaignId / adSetId.
-        explode: true
-        in: query
-        name: campaignId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Platform ad set id. Exactly one of campaignId / adSetId.
-        explode: true
-        in: query
-        name: adSetId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Rows per page
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: Cursor from paging.after of the previous page.
-        explode: true
-        in: query
-        name: after
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listHighDemandPeriods_200_response"
-          description: Budget schedules (raw Meta shape)
-        "400":
-          description: "Invalid input, or Meta rejected the query"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: High demand periods / budget schedules (Meta)
-      tags:
-      - Ads
-      x-accepts:
-      - application/json
-  /v1/ads/creatives:
-    get:
-      description: |-
-        Lists the ad account's creative library (Meta's `/act_X/adcreatives`), rows returned
-        verbatim. The default projection covers id, name, status, object type, thumbnail,
-        object_story_spec / asset_feed_spec and url_tags; `fields` is a raw-passthrough
-        override. Any creative id here is reusable on the create endpoints via
-        `existingCreativeId`. Meta only.
-      operationId: listAdCreatives
-      parameters:
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Meta ad account id (act_<n>).
-        explode: true
-        in: query
-        name: adAccountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Rows per page
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: Cursor from paging.after of the previous page.
-        explode: true
-        in: query
-        name: after
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listAdCreatives_200_response"
-          description: Creatives (raw Meta shape)
-        "400":
-          description: "Invalid input, or Meta rejected the query"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Creative library (Meta)
-      tags:
-      - Ads
-      x-accepts:
-      - application/json
-    post:
-      description: |-
-        Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via
-        `existingCreativeId`. Provide exactly one of `imageUrl` (uploaded server-side),
-        `imageHash` (from POST /v1/ads/images or the library list), or `carouselCards` (2-10
-        hand-built cards). The Page (and linked Instagram account, when present) is resolved
-        from `accountId` as the story actor. Meta only.
-      operationId: createAdCreative
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/createAdCreative_request"
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/createAdCreative_201_response"
-          description: Creative created
-        "400":
-          description: "Invalid input, or Meta rejected the create"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "422":
-          description: No Facebook Page found to act as the story actor
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Create a standalone creative (Meta)
-      tags:
-      - Ads
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/ads/creatives/{creativeId}:
-    delete:
-      description: |-
-        Deletes a creative from the library. Meta only allows deleting creatives not referenced
-        by any ad — otherwise its 400 surfaces verbatim.
-      operationId: deleteAdCreative
-      parameters:
-      - description: Platform creative id
-        explode: false
-        in: path
-        name: creativeId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/deleteAdCreative_200_response"
-          description: Creative deleted
-        "400":
-          description: "Invalid input, the creative is in use, or Meta rejected the\
-            \ delete"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Delete a creative (Meta)
-      tags:
-      - Ads
-      x-accepts:
-      - application/json
-    get:
-      description: |-
-        One creative's details, verbatim from Meta. `fields` is a raw-passthrough override of
-        the default projection. Meta only.
-      operationId: getAdCreative
-      parameters:
-      - description: Platform creative id
-        explode: false
-        in: path
-        name: creativeId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/getAdCreative_200_response"
-          description: Creative details
-        "400":
-          description: "Invalid input, or Meta rejected the query"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Creative details (Meta)
-      tags:
-      - Ads
-      x-accepts:
-      - application/json
-    put:
-      description: |-
-        Renames a creative. Creatives are immutable on Meta beyond `name` — for content changes
-        create a new creative (POST /v1/ads/creatives) and swap it onto the ad
-        (PUT /v1/ads/{adId} with `creative`). Meta only.
-      operationId: updateAdCreative
-      parameters:
-      - description: Platform creative id
-        explode: false
-        in: path
-        name: creativeId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/updateAdCreative_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/updateAdCreative_200_response"
-          description: Creative renamed
-        "400":
-          description: "Invalid input, or Meta rejected the update"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Rename a creative (Meta)
-      tags:
-      - Ads
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /v1/ads/accounts/finance:
     get:
       description: |-
@@ -27404,78 +26790,6 @@ paths:
       x-accepts:
       - application/json
   /v1/ads/images:
-    get:
-      description: |-
-        Lists the ad account's image library (Meta's `/act_X/adimages`), rows returned verbatim.
-        The default projection covers hash, url, name, dimensions and status; `fields` is a
-        raw-passthrough override. Any `hash` here is reusable wherever Meta accepts
-        `image_hash` (e.g. `imageHash` on POST /v1/ads/creatives). Meta only.
-      operationId: listAdImages
-      parameters:
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Meta ad account id (act_<n>).
-        explode: true
-        in: query
-        name: adAccountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Rows per page
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: Cursor from paging.after of the previous page.
-        explode: true
-        in: query
-        name: after
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listAdImages_200_response"
-          description: Ad images (raw Meta shape)
-        "400":
-          description: "Invalid input, or Meta rejected the query"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "501":
-          description: Only supported on Meta (facebook/instagram)
-      security:
-      - bearerAuth: []
-      summary: Ad image library (Meta)
-      tags:
-      - Ads
-      x-accepts:
-      - application/json
     post:
       description: |-
         Uploads raw image bytes to the Meta ad account's image library — for callers whose
@@ -28074,13 +27388,10 @@ paths:
       - application/json
     put:
       description: |
-        Update an audience. `saved_targeting` audiences accept `name`, `description`, and `spec`
-        (full replacement, no merge, Zernio-only, no platform call). Platform audiences
-        (uploaded/website/lookalike) accept `name` and `description` only, updated on the
-        platform first and then mirrored locally; their rules are immutable, so `spec` returns
-        400 for them. Platform audience updates are Meta-only for now (other platforms return
-        501). Ads already created from a saved_targeting audience are unaffected, they snapshot
-        the targeting at creation.
+        Update a `saved_targeting` audience's name, description, or spec. Only `saved_targeting` audiences are
+        updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those
+        instead. `spec` replaces the stored spec wholesale (no merge). Ads already created from this audience are
+        unaffected, they snapshot the targeting at creation.
       operationId: updateAdAudience
       parameters:
       - explode: false
@@ -28104,8 +27415,7 @@ paths:
                 $ref: "#/components/schemas/createAdAudience_201_response"
           description: Audience updated
         "400":
-          description: "Invalid body (no fields provided, malformed spec, or spec\
-            \ on a platform audience)"
+          description: Invalid body (no fields provided or malformed spec)
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28114,12 +27424,11 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
-          description: The audience has no platform counterpart to update
-        "501":
-          description: Platform audience updates are only supported on Meta
+          description: The audience is not saved_targeting (uploaded/derived audiences
+            are managed on the platform)
       security:
       - bearerAuth: []
-      summary: Update an audience
+      summary: Update saved targeting audience
       tags:
       - Ad Audiences
       x-content-type: application/json
@@ -55910,9 +55219,7 @@ components:
     sendSms_request:
       properties:
         from:
-          description: "One of your SMS-enabled numbers (E.164; formatting is normalized),\
-            \ or an approved alphanumeric sender ID (3-11 letters/digits/spaces, created\
-            \ via `/v1/sms/sender-ids`)."
+          description: One of your SMS-enabled numbers (E.164; formatting is normalized).
           type: string
         to:
           description: Recipient number (E.164).
@@ -56018,139 +55325,6 @@ components:
           type: array
         count:
           type: integer
-    listSmsSenderIds_200_response_senderIds_inner:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        senderId: senderId
-        id: id
-        isActive: true
-      properties:
-        id:
-          type: string
-        senderId:
-          type: string
-        isActive:
-          type: boolean
-        createdAt:
-          format: date-time
-          nullable: true
-          type: string
-    listSmsSenderIds_200_response_budget_pendingRequest:
-      description: "The in-flight cap-raise request awaiting review, or null. While\
-        \ set, further requests return 409."
-      example:
-        level: 5
-        requestedAt: 2000-01-23T04:56:07.000+00:00
-        requestedCap: 5
-      properties:
-        requestedCap:
-          type: integer
-        level:
-          type: integer
-        requestedAt:
-          format: date-time
-          nullable: true
-          type: string
-    listSmsSenderIds_200_response_budget:
-      description: "Workspace-wide daily sending budget, shared by every sender ID\
-        \ (resets midnight UTC)."
-      example:
-        cap: 0
-        pendingRequest:
-          level: 5
-          requestedAt: 2000-01-23T04:56:07.000+00:00
-          requestedCap: 5
-        level: 1
-        usedToday: 6
-      properties:
-        cap:
-          description: Daily message cap (raisable via `/v1/sms/sender-ids/limit-request`).
-          type: integer
-        usedToday:
-          description: Messages already counted against today's cap.
-          type: integer
-        level:
-          description: Cap tier (Level 1 = 500/day).
-          type: integer
-        pendingRequest:
-          $ref: "#/components/schemas/listSmsSenderIds_200_response_budget_pendingRequest"
-    listSmsSenderIds_200_response:
-      example:
-        senderIds:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          senderId: senderId
-          id: id
-          isActive: true
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          senderId: senderId
-          id: id
-          isActive: true
-        budget:
-          cap: 0
-          pendingRequest:
-            level: 5
-            requestedAt: 2000-01-23T04:56:07.000+00:00
-            requestedCap: 5
-          level: 1
-          usedToday: 6
-      properties:
-        senderIds:
-          items:
-            $ref: "#/components/schemas/listSmsSenderIds_200_response_senderIds_inner"
-          type: array
-        budget:
-          $ref: "#/components/schemas/listSmsSenderIds_200_response_budget"
-    createSmsSenderId_request:
-      properties:
-        senderId:
-          description: "The sender ID recipients will see (3-11 letters/digits/spaces,\
-            \ at least one letter, no leading/trailing space)."
-          maxLength: 11
-          minLength: 3
-          type: string
-      required:
-      - senderId
-    createSmsSenderId_200_response:
-      example:
-        senderId: senderId
-        id: id
-        isActive: true
-      properties:
-        id:
-          description: Sender ID resource id.
-          type: string
-        senderId:
-          type: string
-        isActive:
-          type: boolean
-    requestSmsSenderIdLimitIncrease_request:
-      properties:
-        requestedCap:
-          description: Desired daily message cap. Must exceed the current cap.
-          type: integer
-        reason:
-          description: "Use case and audience (what you send, to whom, opt-in status)."
-          maxLength: 2000
-          minLength: 10
-          type: string
-      required:
-      - reason
-      - requestedCap
-    requestSmsSenderIdLimitIncrease_200_response:
-      example:
-        requested: true
-        requestedCap: 0
-      properties:
-        requested:
-          type: boolean
-        requestedCap:
-          type: integer
-    deleteSmsSenderId_200_response:
-      example:
-        deleted: true
-      properties:
-        deleted:
-          type: boolean
     listSmsRegistrations_200_response_registrations_inner_throughput:
       description: Carrier throughput tier derived from the trust score.
       example:
@@ -64728,83 +63902,6 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
-    createAdCampaign_request:
-      properties:
-        accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
-          type: string
-        adAccountId:
-          description: Meta ad account id (act_<n>).
-          type: string
-        name:
-          maxLength: 255
-          type: string
-        goal:
-          description: Mapped to the ODAX objective (same mapping as POST /v1/ads/create).
-          enum:
-          - engagement
-          - traffic
-          - awareness
-          - video_views
-          - lead_generation
-          - lead_conversion
-          - job_applicants
-          - conversions
-          - app_promotion
-          - catalog_sales
-          type: string
-        specialAdCategories:
-          items:
-            enum:
-            - HOUSING
-            - EMPLOYMENT
-            - CREDIT
-            - ISSUES_ELECTIONS_POLITICS
-            - FINANCIAL_PRODUCTS_SERVICES
-            - ONLINE_GAMBLING_AND_GAMING
-            type: string
-          type: array
-        budgetAmount:
-          description: Campaign-level (CBO) budget in whole currency units. Requires
-            budgetType.
-          type: number
-        budgetType:
-          enum:
-          - daily
-          - lifetime
-          type: string
-        status:
-          default: PAUSED
-          enum:
-          - ACTIVE
-          - PAUSED
-          type: string
-      required:
-      - accountId
-      - adAccountId
-      - goal
-      - name
-    createAdCampaign_201_response:
-      example:
-        adAccountId: adAccountId
-        campaignId: campaignId
-        objective: objective
-        status: ACTIVE
-      properties:
-        adAccountId:
-          type: string
-        campaignId:
-          description: Platform id of the new campaign
-          type: string
-        objective:
-          description: Resolved ODAX objective (e.g. OUTCOME_SALES).
-          type: string
-        status:
-          enum:
-          - ACTIVE
-          - PAUSED
-          type: string
     updateAdCampaignStatus_request:
       properties:
         status:
@@ -65090,112 +64187,6 @@ components:
         raw:
           description: Platform-native response from the copy endpoint (Meta includes
             ad_object_ids for child copies)
-          type: object
-    duplicateAdSet_request:
-      properties:
-        platform:
-          enum:
-          - facebook
-          - instagram
-          type: string
-        campaignId:
-          description: Destination platform campaign id (defaults to the source's
-            campaign)
-          type: string
-        deepCopy:
-          default: true
-          description: Copy child ads + creatives
-          type: boolean
-        statusOption:
-          default: PAUSED
-          enum:
-          - ACTIVE
-          - PAUSED
-          - INHERITED_FROM_SOURCE
-          type: string
-        startTime:
-          description: Reschedule the copy's start time
-          format: date-time
-          type: string
-        endTime:
-          format: date-time
-          type: string
-        renameStrategy:
-          enum:
-          - DEEP_RENAME
-          - ONLY_TOP_LEVEL_RENAME
-          - NO_RENAME
-          type: string
-        renamePrefix:
-          type: string
-        renameSuffix:
-          type: string
-        syncAfter:
-          default: true
-          type: boolean
-      required:
-      - platform
-    duplicateAdSet_200_response:
-      example:
-        copiedAdSetId: copiedAdSetId
-        discovery: triggered
-        raw: "{}"
-      properties:
-        copiedAdSetId:
-          description: Platform ID of the new ad set
-          type: string
-        discovery:
-          enum:
-          - triggered
-          - skipped
-          - failed
-          type: string
-        raw:
-          description: Meta's native copy response (includes ad_object_ids for child
-            copies)
-          type: object
-    duplicateAd_request:
-      properties:
-        adSetId:
-          description: Destination platform ad set id (defaults to the source's ad
-            set)
-          type: string
-        statusOption:
-          default: PAUSED
-          enum:
-          - ACTIVE
-          - PAUSED
-          - INHERITED_FROM_SOURCE
-          type: string
-        renameStrategy:
-          enum:
-          - DEEP_RENAME
-          - ONLY_TOP_LEVEL_RENAME
-          - NO_RENAME
-          type: string
-        renamePrefix:
-          type: string
-        renameSuffix:
-          type: string
-        syncAfter:
-          default: true
-          type: boolean
-    duplicateAd_200_response:
-      example:
-        discovery: triggered
-        raw: "{}"
-        copiedAdId: copiedAdId
-      properties:
-        copiedAdId:
-          description: Platform ID of the new ad
-          type: string
-        discovery:
-          enum:
-          - triggered
-          - skipped
-          - failed
-          type: string
-        raw:
           type: object
     getAdSetDetails_200_response:
       example:
@@ -67908,180 +66899,6 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/queryAdInsights_200_response_paging"
-    listAdLabels_200_response:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        adAccountId: adAccountId
-        paging:
-          after: after
-      properties:
-        adAccountId:
-          type: string
-        data:
-          items:
-            description: "Raw Meta ad label row (id, name, created_time, updated_time)."
-            type: object
-          type: array
-        paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
-    listHighDemandPeriods_200_response:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        paging:
-          after: after
-        objectId: objectId
-      properties:
-        objectId:
-          description: The campaign / ad set id the schedules belong to.
-          type: string
-        data:
-          items:
-            description: Raw Meta high-demand-period row.
-            type: object
-          type: array
-        paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
-    listAdCreatives_200_response:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        adAccountId: adAccountId
-        paging:
-          after: after
-      properties:
-        adAccountId:
-          type: string
-        data:
-          items:
-            description: Raw Meta creative row.
-            type: object
-          type: array
-        paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
-    createAdCreative_request_carouselCards_inner:
-      properties:
-        imageUrl:
-          format: uri
-          type: string
-        linkUrl:
-          format: uri
-          type: string
-        headline:
-          maxLength: 255
-          type: string
-        description:
-          maxLength: 255
-          type: string
-        callToAction:
-          type: string
-      required:
-      - imageUrl
-      - linkUrl
-    createAdCreative_request:
-      properties:
-        accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token and Page.
-          type: string
-        adAccountId:
-          description: Meta ad account id (act_<n>).
-          type: string
-        headline:
-          maxLength: 255
-          type: string
-        body:
-          description: Primary text
-          type: string
-        description:
-          description: Link description below the headline; omitted = Meta scrapes
-            the destination's OG description.
-          maxLength: 255
-          type: string
-        callToAction:
-          default: LEARN_MORE
-          description: CTA type (same whitelist as POST /v1/ads/create).
-          type: string
-        linkUrl:
-          format: uri
-          type: string
-        imageUrl:
-          description: Publicly reachable image; uploaded to the account's library
-            server-side.
-          format: uri
-          type: string
-        imageHash:
-          description: Existing library image hash (POST /v1/ads/images or GET /v1/ads/images).
-          type: string
-        carouselCards:
-          items:
-            $ref: "#/components/schemas/createAdCreative_request_carouselCards_inner"
-          maxItems: 10
-          minItems: 2
-          type: array
-        urlTags:
-          description: Appended to every outbound URL (e.g. utm_source=fb).
-          type: string
-      required:
-      - accountId
-      - adAccountId
-      - body
-      - headline
-      - linkUrl
-    createAdCreative_201_response:
-      example:
-        adAccountId: adAccountId
-        creativeId: creativeId
-      properties:
-        adAccountId:
-          type: string
-        creativeId:
-          description: "Platform creative id, reusable via existingCreativeId."
-          type: string
-    getAdCreative_200_response:
-      example:
-        creative: "{}"
-      properties:
-        creative:
-          description: Raw Meta creative node
-          type: object
-    updateAdCreative_request:
-      properties:
-        accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
-          type: string
-        name:
-          maxLength: 255
-          type: string
-      required:
-      - accountId
-      - name
-    updateAdCreative_200_response:
-      example:
-        name: name
-        message: message
-        creativeId: creativeId
-      properties:
-        creativeId:
-          type: string
-        name:
-          type: string
-        message:
-          type: string
-    deleteAdCreative_200_response:
-      example:
-        message: message
-        creativeId: creativeId
-      properties:
-        creativeId:
-          type: string
-        message:
-          type: string
     getAdAccountFinance_200_response_fundingSource:
       example:
         displayString: displayString
@@ -70222,24 +69039,6 @@ components:
           type: string
         testLead:
           $ref: "#/components/schemas/createTestLead_200_response_testLead"
-    listAdImages_200_response:
-      example:
-        data:
-        - "{}"
-        - "{}"
-        adAccountId: adAccountId
-        paging:
-          after: after
-      properties:
-        adAccountId:
-          type: string
-        data:
-          items:
-            description: "Raw Meta ad image row (hash, url, name, width, height, status)."
-            type: object
-          type: array
-        paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
     uploadAdImage_request:
       properties:
         accountId:
@@ -73810,7 +72609,13 @@ components:
           description: "Attachment type (image, video, file, sticker, audio)"
           type: string
         url:
-          description: Attachment URL (may expire for Meta platforms)
+          description: |
+            Where to fetch the attachment. The contract depends on direction and
+            platform: inbound WhatsApp media points at the authenticated
+            `GET /v1/whatsapp/media/{mediaId}` and requires
+            `Authorization: Bearer <your API key>`, while outgoing media carries the
+            URL originally supplied and Instagram / Facebook / Telegram carry direct
+            platform CDN links that need no authentication.
           type: string
         payload:
           description: Additional attachment metadata
@@ -73981,6 +72786,36 @@ components:
       - platformMessageId
       - reactedAt
       - sender
+    WebhookPayloadMessage_message_attachments_inner:
+      example:
+        payload: "{}"
+        type: type
+        url: url
+      properties:
+        type:
+          description: "Attachment type (image, video, file, sticker, audio)"
+          type: string
+        url:
+          description: |
+            Where to fetch the attachment. **The contract differs by platform.**
+
+            - **WhatsApp**: points at `GET /v1/whatsapp/media/{mediaId}`, an
+              authenticated Zernio endpoint. You MUST send
+              `Authorization: Bearer <your API key>`; fetching it without that
+              header returns `401`. Download and store the bytes when this
+              webhook arrives: Meta drops inbound media after a limited
+              retention window, after which the endpoint answers `400`
+              permanently and the media is unrecoverable.
+            - **Instagram / Facebook / Telegram**: a direct platform CDN link
+              that needs no authentication and expires on the platform's own
+              schedule.
+          type: string
+        payload:
+          description: Additional attachment metadata
+          type: object
+      required:
+      - type
+      - url
     WebhookPayloadMessage_message_sender_instagramProfile:
       description: Instagram profile data for the sender. Only present for Instagram
         conversations.
@@ -74134,7 +72969,7 @@ components:
           type: string
         attachments:
           items:
-            $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner"
+            $ref: "#/components/schemas/WebhookPayloadMessage_message_attachments_inner"
           type: array
         sender:
           $ref: "#/components/schemas/WebhookPayloadMessage_message_sender"
@@ -74455,6 +73290,30 @@ components:
           type: boolean
         referral:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral"
+    WebhookPayloadMessageSent_message_attachments_inner:
+      example:
+        payload: "{}"
+        type: type
+        url: url
+      properties:
+        type:
+          description: "Attachment type (image, video, file, sticker, audio)"
+          type: string
+        url:
+          description: |
+            Where to fetch the attachment. For outgoing messages this is the
+            media URL as sent, so for WhatsApp it is the URL you supplied when
+            publishing (WhatsApp sends media by link), not a Zernio endpoint,
+            and it needs no Zernio credentials. Contrast the inbound direction:
+            `message.received` attachment URLs on WhatsApp point at the
+            authenticated `GET /v1/whatsapp/media/{mediaId}`.
+          type: string
+        payload:
+          description: Additional attachment metadata
+          type: object
+      required:
+      - type
+      - url
     WebhookPayloadMessageSent_message_sender:
       example:
         contactId: contactId
@@ -74527,7 +73386,7 @@ components:
           type: string
         attachments:
           items:
-            $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner"
+            $ref: "#/components/schemas/WebhookPayloadMessageSent_message_attachments_inner"
           type: array
         sender:
           $ref: "#/components/schemas/WebhookPayloadMessageSent_message_sender"

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   InboxWebhookMessageAttachmentsInner.JSON_PROPERTY_URL,
   InboxWebhookMessageAttachmentsInner.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:21:04.491657349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessageAttachmentsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
@@ -84,7 +84,7 @@ public class InboxWebhookMessageAttachmentsInner {
   }
 
   /**
-   * Attachment URL (may expire for Meta platforms)
+   * Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication. 
    * @return url
    */
   @javax.annotation.Nonnull

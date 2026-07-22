@@ -13,7 +13,7 @@
 |**platformMessageId** | **String** | Platform&#39;s message ID |  |
 |**direction** | [**DirectionEnum**](#DirectionEnum) |  |  |
 |**text** | **String** | Message text content |  |
-|**attachments** | [**List&lt;InboxWebhookMessageAttachmentsInner&gt;**](InboxWebhookMessageAttachmentsInner.md) |  |  |
+|**attachments** | [**List&lt;WebhookPayloadMessageSentMessageAttachmentsInner&gt;**](WebhookPayloadMessageSentMessageAttachmentsInner.md) |  |  |
 |**sender** | [**WebhookPayloadMessageSentMessageSender**](WebhookPayloadMessageSentMessageSender.md) |  |  |
 |**sentAt** | **OffsetDateTime** |  |  |
 |**isRead** | **Boolean** |  |  |

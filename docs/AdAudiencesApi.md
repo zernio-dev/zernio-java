@@ -14,8 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdAudienceWithHttpInfo**](AdAudiencesApi.md#getAdAudienceWithHttpInfo) | **GET** /v1/ads/audiences/{audienceId} | Get audience details |
 | [**listAdAudiences**](AdAudiencesApi.md#listAdAudiences) | **GET** /v1/ads/audiences | List custom audiences |
 | [**listAdAudiencesWithHttpInfo**](AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences |
-| [**updateAdAudience**](AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience |
-| [**updateAdAudienceWithHttpInfo**](AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience |
+| [**updateAdAudience**](AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience |
+| [**updateAdAudienceWithHttpInfo**](AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience |
 
 
 
@@ -791,9 +791,9 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 
 > CreateAdAudience201Response updateAdAudience(audienceId, updateAdAudienceRequest)
 
-Update an audience
+Update saved targeting audience
 
-Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
+Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
 
 ### Example
 
@@ -858,20 +858,19 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Audience updated |  -  |
-| **400** | Invalid body (no fields provided, malformed spec, or spec on a platform audience) |  -  |
+| **400** | Invalid body (no fields provided or malformed spec) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **422** | The audience has no platform counterpart to update |  -  |
-| **501** | Platform audience updates are only supported on Meta |  -  |
+| **422** | The audience is not saved_targeting (uploaded/derived audiences are managed on the platform) |  -  |
 
 ## updateAdAudienceWithHttpInfo
 
 > ApiResponse<CreateAdAudience201Response> updateAdAudience updateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest)
 
-Update an audience
+Update saved targeting audience
 
-Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
+Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
 
 ### Example
 
@@ -939,10 +938,9 @@ ApiResponse<[**CreateAdAudience201Response**](CreateAdAudience201Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Audience updated |  -  |
-| **400** | Invalid body (no fields provided, malformed spec, or spec on a platform audience) |  -  |
+| **400** | Invalid body (no fields provided or malformed spec) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **422** | The audience has no platform counterpart to update |  -  |
-| **501** | Platform audience updates are only supported on Meta |  -  |
+| **422** | The audience is not saved_targeting (uploaded/derived audiences are managed on the platform) |  -  |
 

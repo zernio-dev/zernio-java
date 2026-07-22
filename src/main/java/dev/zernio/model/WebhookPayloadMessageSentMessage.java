@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.InboxWebhookMessageAttachmentsInner;
+import dev.zernio.model.WebhookPayloadMessageSentMessageAttachmentsInner;
 import dev.zernio.model.WebhookPayloadMessageSentMessageSender;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SENT_AT,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_IS_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:21:04.491657349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -151,7 +151,7 @@ public class WebhookPayloadMessageSentMessage {
 
   public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
   @javax.annotation.Nonnull
-  private List<InboxWebhookMessageAttachmentsInner> attachments = new ArrayList<>();
+  private List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SENDER = "sender";
   @javax.annotation.Nonnull
@@ -312,12 +312,12 @@ public class WebhookPayloadMessageSentMessage {
   }
 
 
-  public WebhookPayloadMessageSentMessage attachments(@javax.annotation.Nonnull List<InboxWebhookMessageAttachmentsInner> attachments) {
+  public WebhookPayloadMessageSentMessage attachments(@javax.annotation.Nonnull List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments) {
     this.attachments = attachments;
     return this;
   }
 
-  public WebhookPayloadMessageSentMessage addAttachmentsItem(InboxWebhookMessageAttachmentsInner attachmentsItem) {
+  public WebhookPayloadMessageSentMessage addAttachmentsItem(WebhookPayloadMessageSentMessageAttachmentsInner attachmentsItem) {
     if (this.attachments == null) {
       this.attachments = new ArrayList<>();
     }
@@ -332,14 +332,14 @@ public class WebhookPayloadMessageSentMessage {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<InboxWebhookMessageAttachmentsInner> getAttachments() {
+  public List<WebhookPayloadMessageSentMessageAttachmentsInner> getAttachments() {
     return attachments;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAttachments(@javax.annotation.Nonnull List<InboxWebhookMessageAttachmentsInner> attachments) {
+  public void setAttachments(@javax.annotation.Nonnull List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments) {
     this.attachments = attachments;
   }
 
