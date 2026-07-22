@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   MoneyAmount.JSON_PROPERTY_AMOUNT,
   MoneyAmount.JSON_PROPERTY_CURRENCY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:10:42.177148251Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:26:26.855891996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MoneyAmount {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   @javax.annotation.Nonnull

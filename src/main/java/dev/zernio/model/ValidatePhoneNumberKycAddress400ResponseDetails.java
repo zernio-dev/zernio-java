@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ValidatePhoneNumberKycAddress400ResponseDetails.JSON_PROPERTY_ADDRESS_SUGGESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:10:42.177148251Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:26:26.855891996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePhoneNumberKycAddress400ResponseDetails {
   public static final String JSON_PROPERTY_ADDRESS_SUGGESTIONS = "addressSuggestions";
   @javax.annotation.Nullable

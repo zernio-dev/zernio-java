@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_CALLS_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_IN_STOCK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:10:42.177148251Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:26:26.855891996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   /**
    * Gets or Sets numberType
