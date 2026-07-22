@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   DmButton.JSON_PROPERTY_PAYLOAD,
   DmButton.JSON_PROPERTY_PHONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:12:13.207218198Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DmButton {
   /**
    * Gets or Sets type

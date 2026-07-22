@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppFlowVersions200ResponseVersionsInner.JSON_PROPERTY_STATUS,
   ListWhatsAppFlowVersions200ResponseVersionsInner.JSON_PROPERTY_MISSING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:12:13.207218198Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppFlowVersions200ResponseVersionsInner {
   public static final String JSON_PROPERTY_FLOW_ID = "flowId";
   @javax.annotation.Nullable
