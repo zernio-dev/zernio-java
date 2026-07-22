@@ -93,7 +93,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:35:29.133499426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:48:06.971544378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2368,6 +2368,146 @@ public class WhatsAppApi {
     }
 
     localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Download WhatsApp media
+   * Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+   * @param mediaId The media id from &#x60;attachments[].payload.id&#x60;. (required)
+   * @param accountId The WhatsApp account that received the media. (required)
+   * @return File
+   * @throws ApiException if fails to make API call
+   */
+  public File getWhatsAppMedia(@javax.annotation.Nonnull String mediaId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppMedia(mediaId, accountId, null);
+  }
+
+  /**
+   * Download WhatsApp media
+   * Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+   * @param mediaId The media id from &#x60;attachments[].payload.id&#x60;. (required)
+   * @param accountId The WhatsApp account that received the media. (required)
+   * @param headers Optional headers to include in the request
+   * @return File
+   * @throws ApiException if fails to make API call
+   */
+  public File getWhatsAppMedia(@javax.annotation.Nonnull String mediaId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<File> localVarResponse = getWhatsAppMediaWithHttpInfo(mediaId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Download WhatsApp media
+   * Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+   * @param mediaId The media id from &#x60;attachments[].payload.id&#x60;. (required)
+   * @param accountId The WhatsApp account that received the media. (required)
+   * @return ApiResponse&lt;File&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<File> getWhatsAppMediaWithHttpInfo(@javax.annotation.Nonnull String mediaId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppMediaWithHttpInfo(mediaId, accountId, null);
+  }
+
+  /**
+   * Download WhatsApp media
+   * Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+   * @param mediaId The media id from &#x60;attachments[].payload.id&#x60;. (required)
+   * @param accountId The WhatsApp account that received the media. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;File&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<File> getWhatsAppMediaWithHttpInfo(@javax.annotation.Nonnull String mediaId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppMediaRequestBuilder(mediaId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppMedia", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<File>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        // Handle file downloading.
+        File responseValue = downloadFileFromResponse(localVarResponse, localVarResponseBody);
+        
+
+        return new ApiResponse<File>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppMediaRequestBuilder(@javax.annotation.Nonnull String mediaId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+      throw new ApiException(400, "Missing the required parameter 'mediaId' when calling getWhatsAppMedia");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppMedia");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/media/{mediaId}"
+        .replace("{mediaId}", ApiClient.urlEncode(mediaId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/octet-stream, application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {

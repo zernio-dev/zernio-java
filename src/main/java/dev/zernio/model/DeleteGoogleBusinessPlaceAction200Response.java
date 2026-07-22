@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DeleteGoogleBusinessPlaceAction200Response.JSON_PROPERTY_DELETED,
   DeleteGoogleBusinessPlaceAction200Response.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:35:29.133499426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:48:06.971544378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteGoogleBusinessPlaceAction200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

@@ -718,7 +718,6 @@ docs/HandleOAuthCallbackRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/InboxAnalyticsApi.md
-docs/InboxApi.md
 docs/InboxMessageEditAttachment.md
 docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
@@ -1563,7 +1562,6 @@ src/main/java/dev/zernio/api/GmbReviewsApi.java
 src/main/java/dev/zernio/api/GmbServicesApi.java
 src/main/java/dev/zernio/api/GmbVerificationsApi.java
 src/main/java/dev/zernio/api/InboxAnalyticsApi.java
-src/main/java/dev/zernio/api/InboxApi.java
 src/main/java/dev/zernio/api/InstagramApi.java
 src/main/java/dev/zernio/api/InvitesApi.java
 src/main/java/dev/zernio/api/LinkedInMentionsApi.java

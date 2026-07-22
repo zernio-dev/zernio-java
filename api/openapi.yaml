@@ -14201,7 +14201,7 @@ paths:
       - bearerAuth: []
       summary: Download WhatsApp media
       tags:
-      - Inbox
+      - WhatsApp
       x-accepts:
       - application/json
       - application/octet-stream

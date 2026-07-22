@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-22T10:35:29.133499426Z[Etc/UTC]
+- Build date: 2026-07-22T10:48:06.971544378Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -622,8 +622,6 @@ Class | Method | HTTP request | Description
 *GmbVerificationsApi* | [**getGoogleBusinessVerificationsWithHttpInfo**](docs/GmbVerificationsApi.md#getGoogleBusinessVerificationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-verifications | Get verification state
 *GmbVerificationsApi* | [**startGoogleBusinessVerification**](docs/GmbVerificationsApi.md#startGoogleBusinessVerification) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
 *GmbVerificationsApi* | [**startGoogleBusinessVerificationWithHttpInfo**](docs/GmbVerificationsApi.md#startGoogleBusinessVerificationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
-*InboxApi* | [**getWhatsAppMedia**](docs/InboxApi.md#getWhatsAppMedia) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
-*InboxApi* | [**getWhatsAppMediaWithHttpInfo**](docs/InboxApi.md#getWhatsAppMediaWithHttpInfo) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
 *InboxAnalyticsApi* | [**getInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#getInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get conversation analytics
 *InboxAnalyticsApi* | [**getInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get conversation analytics
 *InboxAnalyticsApi* | [**getInboxHeatmap**](docs/InboxAnalyticsApi.md#getInboxHeatmap) | **GET** /v1/analytics/inbox/heatmap | Get day × hour heatmap
@@ -956,6 +954,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppDisplayNameWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppDisplayNameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
 *WhatsAppApi* | [**getWhatsAppGroupChat**](docs/WhatsAppApi.md#getWhatsAppGroupChat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info
 *WhatsAppApi* | [**getWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppGroupChatWithHttpInfo) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info
+*WhatsAppApi* | [**getWhatsAppMedia**](docs/WhatsAppApi.md#getWhatsAppMedia) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
+*WhatsAppApi* | [**getWhatsAppMediaWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppMediaWithHttpInfo) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
 *WhatsAppApi* | [**getWhatsAppTemplate**](docs/WhatsAppApi.md#getWhatsAppTemplate) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**getWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**getWhatsAppTemplates**](docs/WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates
