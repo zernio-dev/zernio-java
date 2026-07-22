@@ -5673,6 +5673,8 @@ paths:
           $ref: "#/components/responses/PaymentRequired"
         "403":
           description: Profile limit exceeded
+        "409":
+          description: "A profile with this name already exists (code: profile_name_conflict)."
       summary: Create profile
       tags:
       - Profiles
@@ -5797,6 +5799,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          description: "A profile with this name already exists (code: profile_name_conflict)."
       summary: Update profile
       tags:
       - Profiles
@@ -24295,6 +24299,8 @@ paths:
             \ poll interval in seconds. Allow the job a short time to run (typically\
             \ 1-3 minutes) and submit the request again; once ingestion completes\
             \ the same request returns 200 with the full range."
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28074,6 +28080,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listAdCatalogs_200_response"
           description: Catalogs
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28116,6 +28124,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listAdCatalogProductSets_200_response"
           description: Product sets
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28443,6 +28453,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getConversionsQuality_200_response"
           description: "Match-quality rows, one per event name."
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "405":
