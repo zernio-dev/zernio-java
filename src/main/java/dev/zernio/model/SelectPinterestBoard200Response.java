@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SelectPinterestBoard200Response.JSON_PROPERTY_REDIRECT_URL,
   SelectPinterestBoard200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:29:42.281507024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectPinterestBoard200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

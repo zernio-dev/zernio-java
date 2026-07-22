@@ -3099,12 +3099,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/VerifyApiTest.java
-src/test/java/dev/zernio/model/CheckVerification200ResponseTest.java
-src/test/java/dev/zernio/model/CheckVerificationRequestTest.java
-src/test/java/dev/zernio/model/CreateVerificationRequestTest.java
-src/test/java/dev/zernio/model/OnVerificationApprovedRequestTest.java
-src/test/java/dev/zernio/model/OnVerificationApprovedRequestVerificationTest.java
-src/test/java/dev/zernio/model/OnVerificationFailedRequestTest.java
-src/test/java/dev/zernio/model/OnVerificationFailedRequestVerificationTest.java
-src/test/java/dev/zernio/model/VerificationTest.java

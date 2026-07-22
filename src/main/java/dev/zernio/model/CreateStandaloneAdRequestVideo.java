@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_URL,
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:29:42.281507024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:34:51.937690057Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestVideo {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
