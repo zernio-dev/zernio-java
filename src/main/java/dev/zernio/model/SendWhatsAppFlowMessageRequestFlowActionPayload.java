@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppFlowMessageRequestFlowActionPayload.JSON_PROPERTY_SCREEN,
   SendWhatsAppFlowMessageRequestFlowActionPayload.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T15:24:00.536456973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppFlowMessageRequestFlowActionPayload {
   public static final String JSON_PROPERTY_SCREEN = "screen";
   @javax.annotation.Nullable

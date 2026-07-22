@@ -3123,8 +3123,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WhatsAppCarouselCardComponentTest.java
-src/test/java/dev/zernio/model/WhatsAppCarouselComponentCardsInnerTest.java
-src/test/java/dev/zernio/model/WhatsAppCarouselComponentTest.java
-src/test/java/dev/zernio/model/WhatsAppLimitedTimeOfferComponentLimitedTimeOfferTest.java
-src/test/java/dev/zernio/model/WhatsAppLimitedTimeOfferComponentTest.java
