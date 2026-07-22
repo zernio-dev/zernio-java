@@ -24247,6 +24247,41 @@ paths:
       - Ad Campaigns
       x-accepts:
       - application/json
+    post:
+      description: |-
+        Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it
+        later via `existingCampaignId` on the create endpoints. A budget here is campaign-level
+        (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created
+        `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the
+        next sync discovery pass. Meta only.
+      operationId: createAdCampaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCampaign_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCampaign_201_response"
+          description: Campaign created
+        "400":
+          description: "Invalid input, or Meta rejected the create"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Create a standalone campaign (Meta)
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/campaigns/{campaignId}/status:
     put:
       description: |
@@ -24489,6 +24524,99 @@ paths:
       summary: Duplicate a campaign
       tags:
       - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/ad-sets/{adSetId}/duplicate:
+    post:
+      description: |-
+        Duplicates an ad set, including its ads and creatives by default (`deepCopy: true`),
+        via Meta's native `POST /{adset-id}/copies`. The copy is created paused so callers can
+        review before launching. `campaignId` retargets the copy into another campaign; omitted
+        = the source's own campaign. The new hierarchy materializes asynchronously — sync
+        discovery is triggered automatically (`syncAfter: false` to skip). Meta only.
+      operationId: duplicateAdSet
+      parameters:
+      - description: Source platform ad set ID
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/duplicateAdSet_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/duplicateAdSet_200_response"
+          description: Ad set duplicated
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Source ad set not found
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Duplicate an ad set (Meta)
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/{adId}/duplicate:
+    post:
+      description: |-
+        Duplicates a single ad via Meta's native `POST /{ad-id}/copies`. The copy is created
+        paused. `adSetId` retargets the copy into another ad set; omitted = the source's own ad
+        set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered
+        automatically (`syncAfter: false` to skip). Meta only.
+      operationId: duplicateAd
+      parameters:
+      - description: Zernio ad ID or platform ad ID
+        explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/duplicateAd_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/duplicateAd_200_response"
+          description: Ad duplicated
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Ad not found
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Duplicate an ad (Meta)
+      tags:
+      - Ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26251,6 +26379,391 @@ paths:
       - Ads
       x-accepts:
       - application/json
+  /v1/ads/labels:
+    get:
+      description: |-
+        Lists the ad account's organizational labels (Meta's `/act_X/adlabels`), rows returned
+        verbatim (id, name, created/updated time). Meta only.
+      operationId: listAdLabels
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdLabels_200_response"
+          description: Ad labels (raw Meta shape)
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Ad labels (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+  /v1/ads/high-demand-periods:
+    get:
+      description: |-
+        Scheduled budget increases (Meta's budget-scheduling API). The Graph edge lives on the
+        campaign and ad-set nodes only, so exactly one of `campaignId` / `adSetId` (platform
+        ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window,
+        recurrence). Meta only.
+      operationId: listHighDemandPeriods
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Platform campaign id. Exactly one of campaignId / adSetId.
+        explode: true
+        in: query
+        name: campaignId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Platform ad set id. Exactly one of campaignId / adSetId.
+        explode: true
+        in: query
+        name: adSetId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listHighDemandPeriods_200_response"
+          description: Budget schedules (raw Meta shape)
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: High demand periods / budget schedules (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+  /v1/ads/creatives:
+    get:
+      description: |-
+        Lists the ad account's creative library (Meta's `/act_X/adcreatives`), rows returned
+        verbatim. The default projection covers id, name, status, object type, thumbnail,
+        object_story_spec / asset_feed_spec and url_tags; `fields` is a raw-passthrough
+        override. Any creative id here is reusable on the create endpoints via
+        `existingCreativeId`. Meta only.
+      operationId: listAdCreatives
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated Graph field override (supports nested {} projections)."
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdCreatives_200_response"
+          description: Creatives (raw Meta shape)
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Creative library (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via
+        `existingCreativeId`. Provide exactly one of `imageUrl` (uploaded server-side),
+        `imageHash` (from POST /v1/ads/images or the library list), or `carouselCards` (2-10
+        hand-built cards). The Page (and linked Instagram account, when present) is resolved
+        from `accountId` as the story actor. Meta only.
+      operationId: createAdCreative
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCreative_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCreative_201_response"
+          description: Creative created
+        "400":
+          description: "Invalid input, or Meta rejected the create"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          description: No Facebook Page found to act as the story actor
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Create a standalone creative (Meta)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/creatives/{creativeId}:
+    delete:
+      description: |-
+        Deletes a creative from the library. Meta only allows deleting creatives not referenced
+        by any ad — otherwise its 400 surfaces verbatim.
+      operationId: deleteAdCreative
+      parameters:
+      - description: Platform creative id
+        explode: false
+        in: path
+        name: creativeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteAdCreative_200_response"
+          description: Creative deleted
+        "400":
+          description: "Invalid input, the creative is in use, or Meta rejected the\
+            \ delete"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Delete a creative (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    get:
+      description: |-
+        One creative's details, verbatim from Meta. `fields` is a raw-passthrough override of
+        the default projection. Meta only.
+      operationId: getAdCreative
+      parameters:
+      - description: Platform creative id
+        explode: false
+        in: path
+        name: creativeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated Graph field override (supports nested {} projections)."
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdCreative_200_response"
+          description: Creative details
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Creative details (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    put:
+      description: |-
+        Renames a creative. Creatives are immutable on Meta beyond `name` — for content changes
+        create a new creative (POST /v1/ads/creatives) and swap it onto the ad
+        (PUT /v1/ads/{adId} with `creative`). Meta only.
+      operationId: updateAdCreative
+      parameters:
+      - description: Platform creative id
+        explode: false
+        in: path
+        name: creativeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdCreative_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdCreative_200_response"
+          description: Creative renamed
+        "400":
+          description: "Invalid input, or Meta rejected the update"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Rename a creative (Meta)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/accounts/finance:
     get:
       description: |-
@@ -26884,6 +27397,78 @@ paths:
       x-accepts:
       - application/json
   /v1/ads/images:
+    get:
+      description: |-
+        Lists the ad account's image library (Meta's `/act_X/adimages`), rows returned verbatim.
+        The default projection covers hash, url, name, dimensions and status; `fields` is a
+        raw-passthrough override. Any `hash` here is reusable wherever Meta accepts
+        `image_hash` (e.g. `imageHash` on POST /v1/ads/creatives). Meta only.
+      operationId: listAdImages
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated Graph field override (supports nested {} projections)."
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdImages_200_response"
+          description: Ad images (raw Meta shape)
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Ad image library (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
     post:
       description: |-
         Uploads raw image bytes to the Meta ad account's image library — for callers whose
@@ -27482,10 +28067,13 @@ paths:
       - application/json
     put:
       description: |
-        Update a `saved_targeting` audience's name, description, or spec. Only `saved_targeting` audiences are
-        updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those
-        instead. `spec` replaces the stored spec wholesale (no merge). Ads already created from this audience are
-        unaffected, they snapshot the targeting at creation.
+        Update an audience. `saved_targeting` audiences accept `name`, `description`, and `spec`
+        (full replacement, no merge, Zernio-only, no platform call). Platform audiences
+        (uploaded/website/lookalike) accept `name` and `description` only, updated on the
+        platform first and then mirrored locally; their rules are immutable, so `spec` returns
+        400 for them. Platform audience updates are Meta-only for now (other platforms return
+        501). Ads already created from a saved_targeting audience are unaffected, they snapshot
+        the targeting at creation.
       operationId: updateAdAudience
       parameters:
       - explode: false
@@ -27509,7 +28097,8 @@ paths:
                 $ref: "#/components/schemas/createAdAudience_201_response"
           description: Audience updated
         "400":
-          description: Invalid body (no fields provided or malformed spec)
+          description: "Invalid body (no fields provided, malformed spec, or spec\
+            \ on a platform audience)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -27518,11 +28107,12 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
-          description: The audience is not saved_targeting (uploaded/derived audiences
-            are managed on the platform)
+          description: The audience has no platform counterpart to update
+        "501":
+          description: Platform audience updates are only supported on Meta
       security:
       - bearerAuth: []
-      summary: Update saved targeting audience
+      summary: Update an audience
       tags:
       - Ad Audiences
       x-content-type: application/json
@@ -63928,6 +64518,83 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
+    createAdCampaign_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant) used to resolve
+            the Meta token.
+          type: string
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        goal:
+          description: Mapped to the ODAX objective (same mapping as POST /v1/ads/create).
+          enum:
+          - engagement
+          - traffic
+          - awareness
+          - video_views
+          - lead_generation
+          - lead_conversion
+          - job_applicants
+          - conversions
+          - app_promotion
+          - catalog_sales
+          type: string
+        specialAdCategories:
+          items:
+            enum:
+            - HOUSING
+            - EMPLOYMENT
+            - CREDIT
+            - ISSUES_ELECTIONS_POLITICS
+            - FINANCIAL_PRODUCTS_SERVICES
+            - ONLINE_GAMBLING_AND_GAMING
+            type: string
+          type: array
+        budgetAmount:
+          description: Campaign-level (CBO) budget in whole currency units. Requires
+            budgetType.
+          type: number
+        budgetType:
+          enum:
+          - daily
+          - lifetime
+          type: string
+        status:
+          default: PAUSED
+          enum:
+          - ACTIVE
+          - PAUSED
+          type: string
+      required:
+      - accountId
+      - adAccountId
+      - goal
+      - name
+    createAdCampaign_201_response:
+      example:
+        adAccountId: adAccountId
+        campaignId: campaignId
+        objective: objective
+        status: ACTIVE
+      properties:
+        adAccountId:
+          type: string
+        campaignId:
+          description: Platform id of the new campaign
+          type: string
+        objective:
+          description: Resolved ODAX objective (e.g. OUTCOME_SALES).
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - PAUSED
+          type: string
     updateAdCampaignStatus_request:
       properties:
         status:
@@ -64213,6 +64880,112 @@ components:
         raw:
           description: Platform-native response from the copy endpoint (Meta includes
             ad_object_ids for child copies)
+          type: object
+    duplicateAdSet_request:
+      properties:
+        platform:
+          enum:
+          - facebook
+          - instagram
+          type: string
+        campaignId:
+          description: Destination platform campaign id (defaults to the source's
+            campaign)
+          type: string
+        deepCopy:
+          default: true
+          description: Copy child ads + creatives
+          type: boolean
+        statusOption:
+          default: PAUSED
+          enum:
+          - ACTIVE
+          - PAUSED
+          - INHERITED_FROM_SOURCE
+          type: string
+        startTime:
+          description: Reschedule the copy's start time
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+        renameStrategy:
+          enum:
+          - DEEP_RENAME
+          - ONLY_TOP_LEVEL_RENAME
+          - NO_RENAME
+          type: string
+        renamePrefix:
+          type: string
+        renameSuffix:
+          type: string
+        syncAfter:
+          default: true
+          type: boolean
+      required:
+      - platform
+    duplicateAdSet_200_response:
+      example:
+        copiedAdSetId: copiedAdSetId
+        discovery: triggered
+        raw: "{}"
+      properties:
+        copiedAdSetId:
+          description: Platform ID of the new ad set
+          type: string
+        discovery:
+          enum:
+          - triggered
+          - skipped
+          - failed
+          type: string
+        raw:
+          description: Meta's native copy response (includes ad_object_ids for child
+            copies)
+          type: object
+    duplicateAd_request:
+      properties:
+        adSetId:
+          description: Destination platform ad set id (defaults to the source's ad
+            set)
+          type: string
+        statusOption:
+          default: PAUSED
+          enum:
+          - ACTIVE
+          - PAUSED
+          - INHERITED_FROM_SOURCE
+          type: string
+        renameStrategy:
+          enum:
+          - DEEP_RENAME
+          - ONLY_TOP_LEVEL_RENAME
+          - NO_RENAME
+          type: string
+        renamePrefix:
+          type: string
+        renameSuffix:
+          type: string
+        syncAfter:
+          default: true
+          type: boolean
+    duplicateAd_200_response:
+      example:
+        discovery: triggered
+        raw: "{}"
+        copiedAdId: copiedAdId
+      properties:
+        copiedAdId:
+          description: Platform ID of the new ad
+          type: string
+        discovery:
+          enum:
+          - triggered
+          - skipped
+          - failed
+          type: string
+        raw:
           type: object
     getAdSetDetails_200_response:
       example:
@@ -66925,6 +67698,180 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+    listAdLabels_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        adAccountId: adAccountId
+        paging:
+          after: after
+      properties:
+        adAccountId:
+          type: string
+        data:
+          items:
+            description: "Raw Meta ad label row (id, name, created_time, updated_time)."
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+    listHighDemandPeriods_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        paging:
+          after: after
+        objectId: objectId
+      properties:
+        objectId:
+          description: The campaign / ad set id the schedules belong to.
+          type: string
+        data:
+          items:
+            description: Raw Meta high-demand-period row.
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+    listAdCreatives_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        adAccountId: adAccountId
+        paging:
+          after: after
+      properties:
+        adAccountId:
+          type: string
+        data:
+          items:
+            description: Raw Meta creative row.
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+    createAdCreative_request_carouselCards_inner:
+      properties:
+        imageUrl:
+          format: uri
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        headline:
+          maxLength: 255
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        callToAction:
+          type: string
+      required:
+      - imageUrl
+      - linkUrl
+    createAdCreative_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant) used to resolve
+            the Meta token and Page.
+          type: string
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        headline:
+          maxLength: 255
+          type: string
+        body:
+          description: Primary text
+          type: string
+        description:
+          description: Link description below the headline; omitted = Meta scrapes
+            the destination's OG description.
+          maxLength: 255
+          type: string
+        callToAction:
+          default: LEARN_MORE
+          description: CTA type (same whitelist as POST /v1/ads/create).
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        imageUrl:
+          description: Publicly reachable image; uploaded to the account's library
+            server-side.
+          format: uri
+          type: string
+        imageHash:
+          description: Existing library image hash (POST /v1/ads/images or GET /v1/ads/images).
+          type: string
+        carouselCards:
+          items:
+            $ref: "#/components/schemas/createAdCreative_request_carouselCards_inner"
+          maxItems: 10
+          minItems: 2
+          type: array
+        urlTags:
+          description: Appended to every outbound URL (e.g. utm_source=fb).
+          type: string
+      required:
+      - accountId
+      - adAccountId
+      - body
+      - headline
+      - linkUrl
+    createAdCreative_201_response:
+      example:
+        adAccountId: adAccountId
+        creativeId: creativeId
+      properties:
+        adAccountId:
+          type: string
+        creativeId:
+          description: "Platform creative id, reusable via existingCreativeId."
+          type: string
+    getAdCreative_200_response:
+      example:
+        creative: "{}"
+      properties:
+        creative:
+          description: Raw Meta creative node
+          type: object
+    updateAdCreative_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant) used to resolve
+            the Meta token.
+          type: string
+        name:
+          maxLength: 255
+          type: string
+      required:
+      - accountId
+      - name
+    updateAdCreative_200_response:
+      example:
+        name: name
+        message: message
+        creativeId: creativeId
+      properties:
+        creativeId:
+          type: string
+        name:
+          type: string
+        message:
+          type: string
+    deleteAdCreative_200_response:
+      example:
+        message: message
+        creativeId: creativeId
+      properties:
+        creativeId:
+          type: string
+        message:
+          type: string
     getAdAccountFinance_200_response_fundingSource:
       example:
         displayString: displayString
@@ -69065,6 +70012,24 @@ components:
           type: string
         testLead:
           $ref: "#/components/schemas/createTestLead_200_response_testLead"
+    listAdImages_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        adAccountId: adAccountId
+        paging:
+          after: after
+      properties:
+        adAccountId:
+          type: string
+        data:
+          items:
+            description: "Raw Meta ad image row (hash, url, name, width, height, status)."
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
     uploadAdImage_request:
       properties:
         accountId:
