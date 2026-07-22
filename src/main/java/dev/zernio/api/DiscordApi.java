@@ -28,7 +28,9 @@ import dev.zernio.model.CreateDiscordThreadRequest;
 import dev.zernio.model.CrosspostDiscordMessage200Response;
 import dev.zernio.model.DeleteDiscordScheduledEvent200Response;
 import dev.zernio.model.EditDiscordGuildRoleRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetDiscordChannels200Response;
+import dev.zernio.model.GetDiscordGuildMember200Response;
 import dev.zernio.model.GetDiscordSettings200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListDiscordGuildMembers200Response;
@@ -37,6 +39,7 @@ import dev.zernio.model.ListDiscordPinnedMessages200Response;
 import dev.zernio.model.ListDiscordScheduledEvents200Response;
 import dev.zernio.model.PinDiscordMessage200Response;
 import dev.zernio.model.RemoveDiscordMemberRole200Response;
+import dev.zernio.model.SearchDiscordGuildMembers200Response;
 import dev.zernio.model.SendDiscordDirectMessage200Response;
 import dev.zernio.model.SendDiscordDirectMessageRequest;
 import dev.zernio.model.UnpinDiscordMessage200Response;
@@ -70,7 +73,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:48:06.971544378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1671,6 +1674,156 @@ public class DiscordApi {
   }
 
   /**
+   * Get a Discord guild member
+   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param userId Discord user snowflake. (required)
+   * @param accountId  (required)
+   * @return GetDiscordGuildMember200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetDiscordGuildMember200Response getDiscordGuildMember(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getDiscordGuildMember(guildId, userId, accountId, null);
+  }
+
+  /**
+   * Get a Discord guild member
+   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param userId Discord user snowflake. (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetDiscordGuildMember200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetDiscordGuildMember200Response getDiscordGuildMember(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetDiscordGuildMember200Response> localVarResponse = getDiscordGuildMemberWithHttpInfo(guildId, userId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a Discord guild member
+   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param userId Discord user snowflake. (required)
+   * @param accountId  (required)
+   * @return ApiResponse&lt;GetDiscordGuildMember200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetDiscordGuildMember200Response> getDiscordGuildMemberWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getDiscordGuildMemberWithHttpInfo(guildId, userId, accountId, null);
+  }
+
+  /**
+   * Get a Discord guild member
+   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param userId Discord user snowflake. (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetDiscordGuildMember200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetDiscordGuildMember200Response> getDiscordGuildMemberWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getDiscordGuildMemberRequestBuilder(guildId, userId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getDiscordGuildMember", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetDiscordGuildMember200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetDiscordGuildMember200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetDiscordGuildMember200Response>() {});
+        
+
+        return new ApiResponse<GetDiscordGuildMember200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getDiscordGuildMemberRequestBuilder(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'guildId' is set
+    if (guildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'guildId' when calling getDiscordGuildMember");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling getDiscordGuildMember");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getDiscordGuildMember");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/guilds/{guildId}/members/{userId}"
+        .replace("{guildId}", ApiClient.urlEncode(guildId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get a Discord scheduled event
    * 
    * @param guildId  (required)
@@ -1940,7 +2093,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -1954,7 +2107,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -1970,7 +2123,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -1984,7 +2137,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -2818,6 +2971,163 @@ public class DiscordApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search Discord guild members
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param accountId  (required)
+   * @param query Username or nickname prefix to match. (required)
+   * @param limit  (optional, default to 25)
+   * @return SearchDiscordGuildMembers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchDiscordGuildMembers200Response searchDiscordGuildMembers(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchDiscordGuildMembers(guildId, accountId, query, limit, null);
+  }
+
+  /**
+   * Search Discord guild members
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param accountId  (required)
+   * @param query Username or nickname prefix to match. (required)
+   * @param limit  (optional, default to 25)
+   * @param headers Optional headers to include in the request
+   * @return SearchDiscordGuildMembers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchDiscordGuildMembers200Response searchDiscordGuildMembers(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchDiscordGuildMembers200Response> localVarResponse = searchDiscordGuildMembersWithHttpInfo(guildId, accountId, query, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search Discord guild members
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param accountId  (required)
+   * @param query Username or nickname prefix to match. (required)
+   * @param limit  (optional, default to 25)
+   * @return ApiResponse&lt;SearchDiscordGuildMembers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchDiscordGuildMembers200Response> searchDiscordGuildMembersWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchDiscordGuildMembersWithHttpInfo(guildId, accountId, query, limit, null);
+  }
+
+  /**
+   * Search Discord guild members
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * @param guildId  (required)
+   * @param accountId  (required)
+   * @param query Username or nickname prefix to match. (required)
+   * @param limit  (optional, default to 25)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchDiscordGuildMembers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchDiscordGuildMembers200Response> searchDiscordGuildMembersWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchDiscordGuildMembersRequestBuilder(guildId, accountId, query, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchDiscordGuildMembers", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchDiscordGuildMembers200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchDiscordGuildMembers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchDiscordGuildMembers200Response>() {});
+        
+
+        return new ApiResponse<SearchDiscordGuildMembers200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchDiscordGuildMembersRequestBuilder(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'guildId' is set
+    if (guildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'guildId' when calling searchDiscordGuildMembers");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchDiscordGuildMembers");
+    }
+    // verify the required parameter 'query' is set
+    if (query == null) {
+      throw new ApiException(400, "Missing the required parameter 'query' when calling searchDiscordGuildMembers");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/guilds/{guildId}/members/search"
+        .replace("{guildId}", ApiClient.urlEncode(guildId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "query";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("query", query));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

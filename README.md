@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-22T10:48:06.971544378Z[Etc/UTC]
+- Build date: 2026-07-22T11:48:38.668918864Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -164,14 +164,18 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**getAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#getAdAudienceWithHttpInfo) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
 *AdAudiencesApi* | [**listAdAudiences**](docs/AdAudiencesApi.md#listAdAudiences) | **GET** /v1/ads/audiences | List custom audiences
 *AdAudiencesApi* | [**listAdAudiencesWithHttpInfo**](docs/AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences
-*AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience
-*AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience
+*AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdCampaignsApi* | [**bulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkUpdateAdCampaignStatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
 *AdCampaignsApi* | [**bulkUpdateAdCampaignStatusWithHttpInfo**](docs/AdCampaignsApi.md#bulkUpdateAdCampaignStatusWithHttpInfo) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
+*AdCampaignsApi* | [**createAdCampaign**](docs/AdCampaignsApi.md#createAdCampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign (Meta)
+*AdCampaignsApi* | [**createAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#createAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns | Create a standalone campaign (Meta)
 *AdCampaignsApi* | [**deleteAdCampaign**](docs/AdCampaignsApi.md#deleteAdCampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**deleteAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**duplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateAdCampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**duplicateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
+*AdCampaignsApi* | [**duplicateAdSet**](docs/AdCampaignsApi.md#duplicateAdSet) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set (Meta)
+*AdCampaignsApi* | [**duplicateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set (Meta)
 *AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta)
 *AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta)
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
@@ -198,6 +202,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**boostPostWithHttpInfo**](docs/AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**cancelRfReservation**](docs/AdsApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta)
 *AdsApi* | [**cancelRfReservationWithHttpInfo**](docs/AdsApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta)
+*AdsApi* | [**createAdCreative**](docs/AdsApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative (Meta)
+*AdsApi* | [**createAdCreativeWithHttpInfo**](docs/AdsApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative (Meta)
 *AdsApi* | [**createAdInsightsReport**](docs/AdsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
 *AdsApi* | [**createAdInsightsReportWithHttpInfo**](docs/AdsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
 *AdsApi* | [**createCallAd**](docs/AdsApi.md#createCallAd) | **POST** /v1/ads/call | Create Click-to-Call ad
@@ -218,8 +224,12 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**createTestLeadWithHttpInfo**](docs/AdsApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
 *AdsApi* | [**deleteAd**](docs/AdsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdsApi* | [**deleteAdWithHttpInfo**](docs/AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad
+*AdsApi* | [**deleteAdCreative**](docs/AdsApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative (Meta)
+*AdsApi* | [**deleteAdCreativeWithHttpInfo**](docs/AdsApi.md#deleteAdCreativeWithHttpInfo) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative (Meta)
 *AdsApi* | [**deleteConversionDestination**](docs/AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *AdsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
+*AdsApi* | [**duplicateAd**](docs/AdsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad (Meta)
+*AdsApi* | [**duplicateAdWithHttpInfo**](docs/AdsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad (Meta)
 *AdsApi* | [**estimateAdReach**](docs/AdsApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdsApi* | [**estimateAdReachWithHttpInfo**](docs/AdsApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdsApi* | [**generateAdPreviews**](docs/AdsApi.md#generateAdPreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta)
@@ -232,6 +242,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getAdAnalyticsWithHttpInfo**](docs/AdsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdsApi* | [**getAdComments**](docs/AdsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**getAdCommentsWithHttpInfo**](docs/AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
+*AdsApi* | [**getAdCreative**](docs/AdsApi.md#getAdCreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details (Meta)
+*AdsApi* | [**getAdCreativeWithHttpInfo**](docs/AdsApi.md#getAdCreativeWithHttpInfo) | **GET** /v1/ads/creatives/{creativeId} | Creative details (Meta)
 *AdsApi* | [**getAdInsightsReport**](docs/AdsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
 *AdsApi* | [**getAdInsightsReportWithHttpInfo**](docs/AdsApi.md#getAdInsightsReportWithHttpInfo) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
 *AdsApi* | [**getAdPreviews**](docs/AdsApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta)
@@ -266,6 +278,12 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listAdCatalogProductSetsWithHttpInfo**](docs/AdsApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
 *AdsApi* | [**listAdCatalogs**](docs/AdsApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
 *AdsApi* | [**listAdCatalogsWithHttpInfo**](docs/AdsApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*AdsApi* | [**listAdCreatives**](docs/AdsApi.md#listAdCreatives) | **GET** /v1/ads/creatives | Creative library (Meta)
+*AdsApi* | [**listAdCreativesWithHttpInfo**](docs/AdsApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library (Meta)
+*AdsApi* | [**listAdImages**](docs/AdsApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library (Meta)
+*AdsApi* | [**listAdImagesWithHttpInfo**](docs/AdsApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library (Meta)
+*AdsApi* | [**listAdLabels**](docs/AdsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels (Meta)
+*AdsApi* | [**listAdLabelsWithHttpInfo**](docs/AdsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | Ad labels (Meta)
 *AdsApi* | [**listAdStudies**](docs/AdsApi.md#listAdStudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta)
 *AdsApi* | [**listAdStudiesWithHttpInfo**](docs/AdsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta)
 *AdsApi* | [**listAds**](docs/AdsApi.md#listAds) | **GET** /v1/ads | List ads
@@ -278,10 +296,14 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listConversionDestinationsWithHttpInfo**](docs/AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
 *AdsApi* | [**listFormLeads**](docs/AdsApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
 *AdsApi* | [**listFormLeadsWithHttpInfo**](docs/AdsApi.md#listFormLeadsWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
+*AdsApi* | [**listHighDemandPeriods**](docs/AdsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules (Meta)
+*AdsApi* | [**listHighDemandPeriodsWithHttpInfo**](docs/AdsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules (Meta)
 *AdsApi* | [**listLeadForms**](docs/AdsApi.md#listLeadForms) | **GET** /v1/ads/lead-forms | List lead forms
 *AdsApi* | [**listLeadFormsWithHttpInfo**](docs/AdsApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List lead forms
 *AdsApi* | [**listLeads**](docs/AdsApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads
 *AdsApi* | [**listLeadsWithHttpInfo**](docs/AdsApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads
+*AdsApi* | [**listMetaBusinesses**](docs/AdsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list (Meta)
+*AdsApi* | [**listMetaBusinessesWithHttpInfo**](docs/AdsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list (Meta)
 *AdsApi* | [**listWhatsAppConversions**](docs/AdsApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
 *AdsApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/AdsApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
 *AdsApi* | [**queryAdInsights**](docs/AdsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
@@ -302,6 +324,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
 *AdsApi* | [**updateAdAccount**](docs/AdsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdsApi* | [**updateAdAccountWithHttpInfo**](docs/AdsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdsApi* | [**updateAdCreative**](docs/AdsApi.md#updateAdCreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative (Meta)
+*AdsApi* | [**updateAdCreativeWithHttpInfo**](docs/AdsApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative (Meta)
 *AdsApi* | [**updateAdStatus**](docs/AdsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdsApi* | [**updateAdStatusWithHttpInfo**](docs/AdsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdsApi* | [**updateAdTrackingTags**](docs/AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
@@ -550,6 +574,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**editDiscordGuildRoleWithHttpInfo**](docs/DiscordApi.md#editDiscordGuildRoleWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role
 *DiscordApi* | [**getDiscordChannels**](docs/DiscordApi.md#getDiscordChannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
 *DiscordApi* | [**getDiscordChannelsWithHttpInfo**](docs/DiscordApi.md#getDiscordChannelsWithHttpInfo) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
+*DiscordApi* | [**getDiscordGuildMember**](docs/DiscordApi.md#getDiscordGuildMember) | **GET** /v1/discord/guilds/{guildId}/members/{userId} | Get a Discord guild member
+*DiscordApi* | [**getDiscordGuildMemberWithHttpInfo**](docs/DiscordApi.md#getDiscordGuildMemberWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/members/{userId} | Get a Discord guild member
 *DiscordApi* | [**getDiscordScheduledEvent**](docs/DiscordApi.md#getDiscordScheduledEvent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event
 *DiscordApi* | [**getDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#getDiscordScheduledEventWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event
 *DiscordApi* | [**getDiscordSettings**](docs/DiscordApi.md#getDiscordSettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings
@@ -566,6 +592,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**pinDiscordMessageWithHttpInfo**](docs/DiscordApi.md#pinDiscordMessageWithHttpInfo) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message
 *DiscordApi* | [**removeDiscordMemberRole**](docs/DiscordApi.md#removeDiscordMemberRole) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member
 *DiscordApi* | [**removeDiscordMemberRoleWithHttpInfo**](docs/DiscordApi.md#removeDiscordMemberRoleWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member
+*DiscordApi* | [**searchDiscordGuildMembers**](docs/DiscordApi.md#searchDiscordGuildMembers) | **GET** /v1/discord/guilds/{guildId}/members/search | Search Discord guild members
+*DiscordApi* | [**searchDiscordGuildMembersWithHttpInfo**](docs/DiscordApi.md#searchDiscordGuildMembersWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/members/search | Search Discord guild members
 *DiscordApi* | [**sendDiscordDirectMessage**](docs/DiscordApi.md#sendDiscordDirectMessage) | **POST** /v1/discord/dms | Send a Discord Direct Message
 *DiscordApi* | [**sendDiscordDirectMessageWithHttpInfo**](docs/DiscordApi.md#sendDiscordDirectMessageWithHttpInfo) | **POST** /v1/discord/dms | Send a Discord Direct Message
 *DiscordApi* | [**unpinDiscordMessage**](docs/DiscordApi.md#unpinDiscordMessage) | **DELETE** /v1/discord/channels/{channelId}/pins/{messageId} | Unpin a Discord message
@@ -800,8 +828,12 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**updateSequenceWithHttpInfo**](docs/SequencesApi.md#updateSequenceWithHttpInfo) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SmsApi* | [**appealSmsRegistration**](docs/SmsApi.md#appealSmsRegistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
 *SmsApi* | [**appealSmsRegistrationWithHttpInfo**](docs/SmsApi.md#appealSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
+*SmsApi* | [**createSmsSenderId**](docs/SmsApi.md#createSmsSenderId) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID
+*SmsApi* | [**createSmsSenderIdWithHttpInfo**](docs/SmsApi.md#createSmsSenderIdWithHttpInfo) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID
 *SmsApi* | [**deactivateSmsRegistration**](docs/SmsApi.md#deactivateSmsRegistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
 *SmsApi* | [**deactivateSmsRegistrationWithHttpInfo**](docs/SmsApi.md#deactivateSmsRegistrationWithHttpInfo) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
+*SmsApi* | [**deleteSmsSenderId**](docs/SmsApi.md#deleteSmsSenderId) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID
+*SmsApi* | [**deleteSmsSenderIdWithHttpInfo**](docs/SmsApi.md#deleteSmsSenderIdWithHttpInfo) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID
 *SmsApi* | [**disableSmsOnNumber**](docs/SmsApi.md#disableSmsOnNumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number
 *SmsApi* | [**disableSmsOnNumberWithHttpInfo**](docs/SmsApi.md#disableSmsOnNumberWithHttpInfo) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number
 *SmsApi* | [**enableSmsOnNumber**](docs/SmsApi.md#enableSmsOnNumber) | **POST** /v1/phone-numbers/{id}/sms | Enable SMS on a number
@@ -812,8 +844,12 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**listSmsOptOutsWithHttpInfo**](docs/SmsApi.md#listSmsOptOutsWithHttpInfo) | **GET** /v1/sms/opt-outs | List SMS opt-outs
 *SmsApi* | [**listSmsRegistrations**](docs/SmsApi.md#listSmsRegistrations) | **GET** /v1/sms/registrations | List carrier registrations
 *SmsApi* | [**listSmsRegistrationsWithHttpInfo**](docs/SmsApi.md#listSmsRegistrationsWithHttpInfo) | **GET** /v1/sms/registrations | List carrier registrations
+*SmsApi* | [**listSmsSenderIds**](docs/SmsApi.md#listSmsSenderIds) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs
+*SmsApi* | [**listSmsSenderIdsWithHttpInfo**](docs/SmsApi.md#listSmsSenderIdsWithHttpInfo) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs
 *SmsApi* | [**lookupSmsNumber**](docs/SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type
 *SmsApi* | [**lookupSmsNumberWithHttpInfo**](docs/SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type
+*SmsApi* | [**requestSmsSenderIdLimitIncrease**](docs/SmsApi.md#requestSmsSenderIdLimitIncrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit
+*SmsApi* | [**requestSmsSenderIdLimitIncreaseWithHttpInfo**](docs/SmsApi.md#requestSmsSenderIdLimitIncreaseWithHttpInfo) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit
 *SmsApi* | [**resendSmsRegistrationOtp**](docs/SmsApi.md#resendSmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
 *SmsApi* | [**resendSmsRegistrationOtpWithHttpInfo**](docs/SmsApi.md#resendSmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
 *SmsApi* | [**reuseSmsRegistrationForNumber**](docs/SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
@@ -1251,6 +1287,11 @@ Class | Method | HTTP request | Description
  - [CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
  - [CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
  - [CreateAdAudienceRequest](docs/CreateAdAudienceRequest.md)
+ - [CreateAdCampaign201Response](docs/CreateAdCampaign201Response.md)
+ - [CreateAdCampaignRequest](docs/CreateAdCampaignRequest.md)
+ - [CreateAdCreative201Response](docs/CreateAdCreative201Response.md)
+ - [CreateAdCreativeRequest](docs/CreateAdCreativeRequest.md)
+ - [CreateAdCreativeRequestCarouselCardsInner](docs/CreateAdCreativeRequestCarouselCardsInner.md)
  - [CreateAdInsightsReport202Response](docs/CreateAdInsightsReport202Response.md)
  - [CreateAdInsightsReportRequest](docs/CreateAdInsightsReportRequest.md)
  - [CreateAdInsightsReportRequestFilteringInner](docs/CreateAdInsightsReportRequestFilteringInner.md)
@@ -1338,6 +1379,10 @@ Class | Method | HTTP request | Description
  - [CreateSequenceRequestStepsInner](docs/CreateSequenceRequestStepsInner.md)
  - [CreateSequenceRequestStepsInnerTemplate](docs/CreateSequenceRequestStepsInnerTemplate.md)
  - [CreateSequenceRequestStepsInnerTemplateVariableMappingValue](docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md)
+ - [CreateSmsSenderId200Response](docs/CreateSmsSenderId200Response.md)
+ - [CreateSmsSenderIdRequest](docs/CreateSmsSenderIdRequest.md)
+ - [CreateStandaloneAd200Response](docs/CreateStandaloneAd200Response.md)
+ - [CreateStandaloneAd200ResponseResultsInner](docs/CreateStandaloneAd200ResponseResultsInner.md)
  - [CreateStandaloneAd201Response](docs/CreateStandaloneAd201Response.md)
  - [CreateStandaloneAd201ResponseOneOf](docs/CreateStandaloneAd201ResponseOneOf.md)
  - [CreateStandaloneAd201ResponseOneOf1](docs/CreateStandaloneAd201ResponseOneOf1.md)
@@ -1404,6 +1449,7 @@ Class | Method | HTTP request | Description
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
+ - [DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
@@ -1411,11 +1457,14 @@ Class | Method | HTTP request | Description
  - [DeleteInboxComment200Response](docs/DeleteInboxComment200Response.md)
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
+ - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
  - [DisableSmsOnNumber200Response](docs/DisableSmsOnNumber200Response.md)
  - [DisableVoiceOnNumber200Response](docs/DisableVoiceOnNumber200Response.md)
+ - [DiscordGuildMember](docs/DiscordGuildMember.md)
+ - [DiscordGuildMemberUser](docs/DiscordGuildMemberUser.md)
  - [DiscordPlatformData](docs/DiscordPlatformData.md)
  - [DiscordPlatformDataEmbedsInner](docs/DiscordPlatformDataEmbedsInner.md)
  - [DiscordPlatformDataEmbedsInnerAuthor](docs/DiscordPlatformDataEmbedsInnerAuthor.md)
@@ -1430,8 +1479,12 @@ Class | Method | HTTP request | Description
  - [DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
  - [DmButton](docs/DmButton.md)
+ - [DuplicateAd200Response](docs/DuplicateAd200Response.md)
  - [DuplicateAdCampaign200Response](docs/DuplicateAdCampaign200Response.md)
  - [DuplicateAdCampaignRequest](docs/DuplicateAdCampaignRequest.md)
+ - [DuplicateAdRequest](docs/DuplicateAdRequest.md)
+ - [DuplicateAdSet200Response](docs/DuplicateAdSet200Response.md)
+ - [DuplicateAdSetRequest](docs/DuplicateAdSetRequest.md)
  - [DuplicateWorkflow201Response](docs/DuplicateWorkflow201Response.md)
  - [DuplicateWorkflow201ResponseWorkflow](docs/DuplicateWorkflow201ResponseWorkflow.md)
  - [EditDiscordGuildRoleRequest](docs/EditDiscordGuildRoleRequest.md)
@@ -1499,6 +1552,7 @@ Class | Method | HTTP request | Description
  - [GetAdComments200Response](docs/GetAdComments200Response.md)
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
+ - [GetAdCreative200Response](docs/GetAdCreative200Response.md)
  - [GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
  - [GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
  - [GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
@@ -1553,6 +1607,7 @@ Class | Method | HTTP request | Description
  - [GetDailyMetrics200ResponsePlatformBreakdownInner](docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md)
  - [GetDiscordChannels200Response](docs/GetDiscordChannels200Response.md)
  - [GetDiscordChannels200ResponseChannelsInner](docs/GetDiscordChannels200ResponseChannelsInner.md)
+ - [GetDiscordGuildMember200Response](docs/GetDiscordGuildMember200Response.md)
  - [GetDiscordSettings200Response](docs/GetDiscordSettings200Response.md)
  - [GetDiscordSettings200ResponseAccount](docs/GetDiscordSettings200ResponseAccount.md)
  - [GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
@@ -1865,6 +1920,9 @@ Class | Method | HTTP request | Description
  - [ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
  - [ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
  - [ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
+ - [ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
+ - [ListAdImages200Response](docs/ListAdImages200Response.md)
+ - [ListAdLabels200Response](docs/ListAdLabels200Response.md)
  - [ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [ListAds200Response](docs/ListAds200Response.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
@@ -1890,8 +1948,6 @@ Class | Method | HTTP request | Description
  - [ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
  - [ListDiscordGuildMembers200Response](docs/ListDiscordGuildMembers200Response.md)
- - [ListDiscordGuildMembers200ResponseDataInner](docs/ListDiscordGuildMembers200ResponseDataInner.md)
- - [ListDiscordGuildMembers200ResponseDataInnerUser](docs/ListDiscordGuildMembers200ResponseDataInnerUser.md)
  - [ListDiscordGuildMembers200ResponsePagination](docs/ListDiscordGuildMembers200ResponsePagination.md)
  - [ListDiscordGuildRoles200Response](docs/ListDiscordGuildRoles200Response.md)
  - [ListDiscordGuildRoles200ResponseDataInner](docs/ListDiscordGuildRoles200ResponseDataInner.md)
@@ -1909,6 +1965,7 @@ Class | Method | HTTP request | Description
  - [ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation](docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md)
  - [ListGoogleBusinessPlaceActions200Response](docs/ListGoogleBusinessPlaceActions200Response.md)
  - [ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner](docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md)
+ - [ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
  - [ListInboxComments200Response](docs/ListInboxComments200Response.md)
  - [ListInboxComments200ResponseDataInner](docs/ListInboxComments200ResponseDataInner.md)
  - [ListInboxConversationAnalytics200Response](docs/ListInboxConversationAnalytics200Response.md)
@@ -1938,6 +1995,7 @@ Class | Method | HTTP request | Description
  - [ListLogs200Response](docs/ListLogs200Response.md)
  - [ListLogs200ResponseLogsInner](docs/ListLogs200ResponseLogsInner.md)
  - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
+ - [ListMetaBusinesses200Response](docs/ListMetaBusinesses200Response.md)
  - [ListPhoneNumberCountries200Response](docs/ListPhoneNumberCountries200Response.md)
  - [ListPhoneNumberCountries200ResponseCountriesInner](docs/ListPhoneNumberCountries200ResponseCountriesInner.md)
  - [ListPhoneNumberCountries200ResponseCountriesInnerTypesInner](docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md)
@@ -1961,6 +2019,10 @@ Class | Method | HTTP request | Description
  - [ListSmsRegistrations200Response](docs/ListSmsRegistrations200Response.md)
  - [ListSmsRegistrations200ResponseRegistrationsInner](docs/ListSmsRegistrations200ResponseRegistrationsInner.md)
  - [ListSmsRegistrations200ResponseRegistrationsInnerThroughput](docs/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md)
+ - [ListSmsSenderIds200Response](docs/ListSmsSenderIds200Response.md)
+ - [ListSmsSenderIds200ResponseBudget](docs/ListSmsSenderIds200ResponseBudget.md)
+ - [ListSmsSenderIds200ResponseBudgetPendingRequest](docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md)
+ - [ListSmsSenderIds200ResponseSenderIdsInner](docs/ListSmsSenderIds200ResponseSenderIdsInner.md)
  - [ListSnapchatProfiles200Response](docs/ListSnapchatProfiles200Response.md)
  - [ListSnapchatProfiles200ResponsePublicProfilesInner](docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
@@ -2090,6 +2152,8 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
+ - [RequestSmsSenderIdLimitIncrease200Response](docs/RequestSmsSenderIdLimitIncrease200Response.md)
+ - [RequestSmsSenderIdLimitIncreaseRequest](docs/RequestSmsSenderIdLimitIncreaseRequest.md)
  - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
  - [ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
@@ -2117,6 +2181,7 @@ Class | Method | HTTP request | Description
  - [SearchAvailablePhoneNumbers200ResponseNumbersInner](docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md)
  - [SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
  - [SearchAvailableWhatsAppNumbers200ResponseNumbersInner](docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md)
+ - [SearchDiscordGuildMembers200Response](docs/SearchDiscordGuildMembers200Response.md)
  - [SearchInboxConversations200Response](docs/SearchInboxConversations200Response.md)
  - [SearchInboxConversations200ResponseDataInner](docs/SearchInboxConversations200ResponseDataInner.md)
  - [SearchInboxConversations200ResponseDataInnerConversation](docs/SearchInboxConversations200ResponseDataInnerConversation.md)
@@ -2297,6 +2362,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdCampaignRequestPlatformSpecificData](docs/UpdateAdCampaignRequestPlatformSpecificData.md)
  - [UpdateAdCampaignStatus200Response](docs/UpdateAdCampaignStatus200Response.md)
  - [UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
+ - [UpdateAdCreative200Response](docs/UpdateAdCreative200Response.md)
+ - [UpdateAdCreativeRequest](docs/UpdateAdCreativeRequest.md)
  - [UpdateAdRequest](docs/UpdateAdRequest.md)
  - [UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
  - [UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)

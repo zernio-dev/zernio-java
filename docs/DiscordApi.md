@@ -24,6 +24,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**editDiscordGuildRoleWithHttpInfo**](DiscordApi.md#editDiscordGuildRoleWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role |
 | [**getDiscordChannels**](DiscordApi.md#getDiscordChannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels |
 | [**getDiscordChannelsWithHttpInfo**](DiscordApi.md#getDiscordChannelsWithHttpInfo) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels |
+| [**getDiscordGuildMember**](DiscordApi.md#getDiscordGuildMember) | **GET** /v1/discord/guilds/{guildId}/members/{userId} | Get a Discord guild member |
+| [**getDiscordGuildMemberWithHttpInfo**](DiscordApi.md#getDiscordGuildMemberWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/members/{userId} | Get a Discord guild member |
 | [**getDiscordScheduledEvent**](DiscordApi.md#getDiscordScheduledEvent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event |
 | [**getDiscordScheduledEventWithHttpInfo**](DiscordApi.md#getDiscordScheduledEventWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event |
 | [**getDiscordSettings**](DiscordApi.md#getDiscordSettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings |
@@ -40,6 +42,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**pinDiscordMessageWithHttpInfo**](DiscordApi.md#pinDiscordMessageWithHttpInfo) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message |
 | [**removeDiscordMemberRole**](DiscordApi.md#removeDiscordMemberRole) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member |
 | [**removeDiscordMemberRoleWithHttpInfo**](DiscordApi.md#removeDiscordMemberRoleWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member |
+| [**searchDiscordGuildMembers**](DiscordApi.md#searchDiscordGuildMembers) | **GET** /v1/discord/guilds/{guildId}/members/search | Search Discord guild members |
+| [**searchDiscordGuildMembersWithHttpInfo**](DiscordApi.md#searchDiscordGuildMembersWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/members/search | Search Discord guild members |
 | [**sendDiscordDirectMessage**](DiscordApi.md#sendDiscordDirectMessage) | **POST** /v1/discord/dms | Send a Discord Direct Message |
 | [**sendDiscordDirectMessageWithHttpInfo**](DiscordApi.md#sendDiscordDirectMessageWithHttpInfo) | **POST** /v1/discord/dms | Send a Discord Direct Message |
 | [**unpinDiscordMessage**](DiscordApi.md#unpinDiscordMessage) | **DELETE** /v1/discord/channels/{channelId}/pins/{messageId} | Unpin a Discord message |
@@ -1657,6 +1661,164 @@ ApiResponse<[**GetDiscordChannels200Response**](GetDiscordChannels200Response.md
 | **404** | Account not found |  -  |
 
 
+## getDiscordGuildMember
+
+> GetDiscordGuildMember200Response getDiscordGuildMember(guildId, userId, accountId)
+
+Get a Discord guild member
+
+Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | 
+        String userId = "userId_example"; // String | Discord user snowflake.
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetDiscordGuildMember200Response result = apiInstance.getDiscordGuildMember(guildId, userId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#getDiscordGuildMember");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**|  | |
+| **userId** | **String**| Discord user snowflake. | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetDiscordGuildMember200Response**](GetDiscordGuildMember200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The guild member. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, or the user is not a member of this guild. |  -  |
+
+## getDiscordGuildMemberWithHttpInfo
+
+> ApiResponse<GetDiscordGuildMember200Response> getDiscordGuildMember getDiscordGuildMemberWithHttpInfo(guildId, userId, accountId)
+
+Get a Discord guild member
+
+Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | 
+        String userId = "userId_example"; // String | Discord user snowflake.
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetDiscordGuildMember200Response> response = apiInstance.getDiscordGuildMemberWithHttpInfo(guildId, userId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#getDiscordGuildMember");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**|  | |
+| **userId** | **String**| Discord user snowflake. | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetDiscordGuildMember200Response**](GetDiscordGuildMember200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The guild member. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, or the user is not a member of this guild. |  -  |
+
+
 ## getDiscordScheduledEvent
 
 > CreateDiscordScheduledEvent200Response getDiscordScheduledEvent(guildId, eventId, accountId)
@@ -1965,7 +2127,7 @@ ApiResponse<[**GetDiscordSettings200Response**](GetDiscordSettings200Response.md
 
 List Discord guild members
 
-Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
 
 ### Example
 
@@ -2036,6 +2198,7 @@ public class Example {
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The Server Members Intent is not enabled on the Discord application. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 ## listDiscordGuildMembersWithHttpInfo
@@ -2044,7 +2207,7 @@ public class Example {
 
 List Discord guild members
 
-Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
 
 ### Example
 
@@ -2118,6 +2281,7 @@ ApiResponse<[**ListDiscordGuildMembers200Response**](ListDiscordGuildMembers200R
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The Server Members Intent is not enabled on the Discord application. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 
@@ -2919,6 +3083,168 @@ ApiResponse<[**RemoveDiscordMemberRole200Response**](RemoveDiscordMemberRole200R
 | **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request (permission or hierarchy issue). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+
+## searchDiscordGuildMembers
+
+> SearchDiscordGuildMembers200Response searchDiscordGuildMembers(guildId, accountId, query, limit)
+
+Search Discord guild members
+
+Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String query = "query_example"; // String | Username or nickname prefix to match.
+        Integer limit = 25; // Integer | 
+        try {
+            SearchDiscordGuildMembers200Response result = apiInstance.searchDiscordGuildMembers(guildId, accountId, query, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#searchDiscordGuildMembers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **query** | **String**| Username or nickname prefix to match. | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+
+### Return type
+
+[**SearchDiscordGuildMembers200Response**](SearchDiscordGuildMembers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching guild members. |  -  |
+| **400** | Invalid query params. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found or not in this guild. |  -  |
+
+## searchDiscordGuildMembersWithHttpInfo
+
+> ApiResponse<SearchDiscordGuildMembers200Response> searchDiscordGuildMembers searchDiscordGuildMembersWithHttpInfo(guildId, accountId, query, limit)
+
+Search Discord guild members
+
+Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String query = "query_example"; // String | Username or nickname prefix to match.
+        Integer limit = 25; // Integer | 
+        try {
+            ApiResponse<SearchDiscordGuildMembers200Response> response = apiInstance.searchDiscordGuildMembersWithHttpInfo(guildId, accountId, query, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#searchDiscordGuildMembers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **query** | **String**| Username or nickname prefix to match. | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+
+### Return type
+
+ApiResponse<[**SearchDiscordGuildMembers200Response**](SearchDiscordGuildMembers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching guild members. |  -  |
+| **400** | Invalid query params. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found or not in this guild. |  -  |
 
 
 ## sendDiscordDirectMessage

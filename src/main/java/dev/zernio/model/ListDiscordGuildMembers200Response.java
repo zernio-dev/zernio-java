@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.ListDiscordGuildMembers200ResponseDataInner;
+import dev.zernio.model.DiscordGuildMember;
 import dev.zernio.model.ListDiscordGuildMembers200ResponsePagination;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,11 +40,11 @@ import dev.zernio.ApiClient;
   ListDiscordGuildMembers200Response.JSON_PROPERTY_DATA,
   ListDiscordGuildMembers200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:48:06.971544378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListDiscordGuildMembers200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
-  private List<ListDiscordGuildMembers200ResponseDataInner> data = new ArrayList<>();
+  private List<DiscordGuildMember> data = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
@@ -53,12 +53,12 @@ public class ListDiscordGuildMembers200Response {
   public ListDiscordGuildMembers200Response() { 
   }
 
-  public ListDiscordGuildMembers200Response data(@javax.annotation.Nullable List<ListDiscordGuildMembers200ResponseDataInner> data) {
+  public ListDiscordGuildMembers200Response data(@javax.annotation.Nullable List<DiscordGuildMember> data) {
     this.data = data;
     return this;
   }
 
-  public ListDiscordGuildMembers200Response addDataItem(ListDiscordGuildMembers200ResponseDataInner dataItem) {
+  public ListDiscordGuildMembers200Response addDataItem(DiscordGuildMember dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -73,14 +73,14 @@ public class ListDiscordGuildMembers200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<ListDiscordGuildMembers200ResponseDataInner> getData() {
+  public List<DiscordGuildMember> getData() {
     return data;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setData(@javax.annotation.Nullable List<ListDiscordGuildMembers200ResponseDataInner> data) {
+  public void setData(@javax.annotation.Nullable List<DiscordGuildMember> data) {
     this.data = data;
   }
 

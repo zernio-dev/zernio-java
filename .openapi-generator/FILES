@@ -156,6 +156,11 @@ docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
 docs/CreateAdAudience201Response.md
 docs/CreateAdAudienceRequest.md
+docs/CreateAdCampaign201Response.md
+docs/CreateAdCampaignRequest.md
+docs/CreateAdCreative201Response.md
+docs/CreateAdCreativeRequest.md
+docs/CreateAdCreativeRequestCarouselCardsInner.md
 docs/CreateAdInsightsReport202Response.md
 docs/CreateAdInsightsReportRequest.md
 docs/CreateAdInsightsReportRequestFilteringInner.md
@@ -243,6 +248,10 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateSmsSenderId200Response.md
+docs/CreateSmsSenderIdRequest.md
+docs/CreateStandaloneAd200Response.md
+docs/CreateStandaloneAd200ResponseResultsInner.md
 docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
@@ -310,6 +319,7 @@ docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
+docs/DeleteAdCreative200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
@@ -317,12 +327,15 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
+docs/DeleteSmsSenderId200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
 docs/DisableSmsOnNumber200Response.md
 docs/DisableVoiceOnNumber200Response.md
 docs/DiscordApi.md
+docs/DiscordGuildMember.md
+docs/DiscordGuildMemberUser.md
 docs/DiscordPlatformData.md
 docs/DiscordPlatformDataEmbedsInner.md
 docs/DiscordPlatformDataEmbedsInnerAuthor.md
@@ -337,8 +350,12 @@ docs/DiscordRole.md
 docs/DiscordScheduledEvent.md
 docs/DiscordScheduledEventEntityMetadata.md
 docs/DmButton.md
+docs/DuplicateAd200Response.md
 docs/DuplicateAdCampaign200Response.md
 docs/DuplicateAdCampaignRequest.md
+docs/DuplicateAdRequest.md
+docs/DuplicateAdSet200Response.md
+docs/DuplicateAdSetRequest.md
 docs/DuplicateWorkflow201Response.md
 docs/DuplicateWorkflow201ResponseWorkflow.md
 docs/EditDiscordGuildRoleRequest.md
@@ -406,6 +423,7 @@ docs/GetAdAudience200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
+docs/GetAdCreative200Response.md
 docs/GetAdInsightsReport200Response.md
 docs/GetAdInsightsReport200ResponsePaging.md
 docs/GetAdPreviews200Response.md
@@ -460,6 +478,7 @@ docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
 docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md
 docs/GetDiscordChannels200Response.md
 docs/GetDiscordChannels200ResponseChannelsInner.md
+docs/GetDiscordGuildMember200Response.md
 docs/GetDiscordSettings200Response.md
 docs/GetDiscordSettings200ResponseAccount.md
 docs/GetDsaRecommendations200Response.md
@@ -784,6 +803,9 @@ docs/ListAdCatalogProductSets200Response.md
 docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
 docs/ListAdCatalogs200Response.md
 docs/ListAdCatalogs200ResponseCatalogsInner.md
+docs/ListAdCreatives200Response.md
+docs/ListAdImages200Response.md
+docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
 docs/ListAds200Response.md
 docs/ListAdsBusinessCenters200Response.md
@@ -809,8 +831,6 @@ docs/ListConversionDestinations200ResponseDestinationsInner.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
 docs/ListDiscordGuildMembers200Response.md
-docs/ListDiscordGuildMembers200ResponseDataInner.md
-docs/ListDiscordGuildMembers200ResponseDataInnerUser.md
 docs/ListDiscordGuildMembers200ResponsePagination.md
 docs/ListDiscordGuildRoles200Response.md
 docs/ListDiscordGuildRoles200ResponseDataInner.md
@@ -828,6 +848,7 @@ docs/ListGoogleBusinessMedia200ResponseMediaItemsInner.md
 docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md
 docs/ListGoogleBusinessPlaceActions200Response.md
 docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md
+docs/ListHighDemandPeriods200Response.md
 docs/ListInboxComments200Response.md
 docs/ListInboxComments200ResponseDataInner.md
 docs/ListInboxConversationAnalytics200Response.md
@@ -857,6 +878,7 @@ docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
 docs/ListLogs200Response.md
 docs/ListLogs200ResponseLogsInner.md
 docs/ListLogs200ResponsePagination.md
+docs/ListMetaBusinesses200Response.md
 docs/ListPhoneNumberCountries200Response.md
 docs/ListPhoneNumberCountries200ResponseCountriesInner.md
 docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md
@@ -880,6 +902,10 @@ docs/ListSmsOptOuts200ResponseOptOutsInner.md
 docs/ListSmsRegistrations200Response.md
 docs/ListSmsRegistrations200ResponseRegistrationsInner.md
 docs/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md
+docs/ListSmsSenderIds200Response.md
+docs/ListSmsSenderIds200ResponseBudget.md
+docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md
+docs/ListSmsSenderIds200ResponseSenderIdsInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListTrackingTagSharedAccounts200Response.md
@@ -1018,6 +1044,8 @@ docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
+docs/RequestSmsSenderIdLimitIncrease200Response.md
+docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
 docs/ReserveRfPrediction201Response.md
 docs/ReserveRfPredictionRequest.md
@@ -1046,6 +1074,7 @@ docs/SearchAvailablePhoneNumbers200Response.md
 docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md
 docs/SearchAvailableWhatsAppNumbers200Response.md
 docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md
+docs/SearchDiscordGuildMembers200Response.md
 docs/SearchInboxConversations200Response.md
 docs/SearchInboxConversations200ResponseDataInner.md
 docs/SearchInboxConversations200ResponseDataInnerConversation.md
@@ -1230,6 +1259,8 @@ docs/UpdateAdCampaignRequestBudget.md
 docs/UpdateAdCampaignRequestPlatformSpecificData.md
 docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
+docs/UpdateAdCreative200Response.md
+docs/UpdateAdCreativeRequest.md
 docs/UpdateAdRequest.md
 docs/UpdateAdRequestBudget.md
 docs/UpdateAdRequestCreative.md
@@ -1731,6 +1762,11 @@ src/main/java/dev/zernio/model/CreateAccountGroup201ResponseGroup.java
 src/main/java/dev/zernio/model/CreateAccountGroupRequest.java
 src/main/java/dev/zernio/model/CreateAdAudience201Response.java
 src/main/java/dev/zernio/model/CreateAdAudienceRequest.java
+src/main/java/dev/zernio/model/CreateAdCampaign201Response.java
+src/main/java/dev/zernio/model/CreateAdCampaignRequest.java
+src/main/java/dev/zernio/model/CreateAdCreative201Response.java
+src/main/java/dev/zernio/model/CreateAdCreativeRequest.java
+src/main/java/dev/zernio/model/CreateAdCreativeRequestCarouselCardsInner.java
 src/main/java/dev/zernio/model/CreateAdInsightsReport202Response.java
 src/main/java/dev/zernio/model/CreateAdInsightsReportRequest.java
 src/main/java/dev/zernio/model/CreateAdInsightsReportRequestFilteringInner.java
@@ -1818,6 +1854,10 @@ src/main/java/dev/zernio/model/CreateSequenceRequest.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInner.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInnerTemplate.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.java
+src/main/java/dev/zernio/model/CreateSmsSenderId200Response.java
+src/main/java/dev/zernio/model/CreateSmsSenderIdRequest.java
+src/main/java/dev/zernio/model/CreateStandaloneAd200Response.java
+src/main/java/dev/zernio/model/CreateStandaloneAd200ResponseResultsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201Response.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf1.java
@@ -1884,6 +1924,7 @@ src/main/java/dev/zernio/model/DeactivateSmsRegistration200Response.java
 src/main/java/dev/zernio/model/DeleteAccountGroup200Response.java
 src/main/java/dev/zernio/model/DeleteAdCampaign200Response.java
 src/main/java/dev/zernio/model/DeleteAdCampaignRequest.java
+src/main/java/dev/zernio/model/DeleteAdCreative200Response.java
 src/main/java/dev/zernio/model/DeleteDiscordScheduledEvent200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessMedia200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessPlaceAction200Response.java
@@ -1891,11 +1932,14 @@ src/main/java/dev/zernio/model/DeleteGoogleBusinessReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxComment200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
+src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequest.java
 src/main/java/dev/zernio/model/DialVoiceWebCall200Response.java
 src/main/java/dev/zernio/model/DialVoiceWebCallRequest.java
 src/main/java/dev/zernio/model/DisableSmsOnNumber200Response.java
 src/main/java/dev/zernio/model/DisableVoiceOnNumber200Response.java
+src/main/java/dev/zernio/model/DiscordGuildMember.java
+src/main/java/dev/zernio/model/DiscordGuildMemberUser.java
 src/main/java/dev/zernio/model/DiscordPlatformData.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInner.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInnerAuthor.java
@@ -1910,8 +1954,12 @@ src/main/java/dev/zernio/model/DiscordRole.java
 src/main/java/dev/zernio/model/DiscordScheduledEvent.java
 src/main/java/dev/zernio/model/DiscordScheduledEventEntityMetadata.java
 src/main/java/dev/zernio/model/DmButton.java
+src/main/java/dev/zernio/model/DuplicateAd200Response.java
 src/main/java/dev/zernio/model/DuplicateAdCampaign200Response.java
 src/main/java/dev/zernio/model/DuplicateAdCampaignRequest.java
+src/main/java/dev/zernio/model/DuplicateAdRequest.java
+src/main/java/dev/zernio/model/DuplicateAdSet200Response.java
+src/main/java/dev/zernio/model/DuplicateAdSetRequest.java
 src/main/java/dev/zernio/model/DuplicateWorkflow201Response.java
 src/main/java/dev/zernio/model/DuplicateWorkflow201ResponseWorkflow.java
 src/main/java/dev/zernio/model/EditDiscordGuildRoleRequest.java
@@ -1979,6 +2027,7 @@ src/main/java/dev/zernio/model/GetAdAudience200Response.java
 src/main/java/dev/zernio/model/GetAdComments200Response.java
 src/main/java/dev/zernio/model/GetAdComments200ResponseMeta.java
 src/main/java/dev/zernio/model/GetAdComments200ResponsePagination.java
+src/main/java/dev/zernio/model/GetAdCreative200Response.java
 src/main/java/dev/zernio/model/GetAdInsightsReport200Response.java
 src/main/java/dev/zernio/model/GetAdInsightsReport200ResponsePaging.java
 src/main/java/dev/zernio/model/GetAdPreviews200Response.java
@@ -2033,6 +2082,7 @@ src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInnerMetrics.j
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponsePlatformBreakdownInner.java
 src/main/java/dev/zernio/model/GetDiscordChannels200Response.java
 src/main/java/dev/zernio/model/GetDiscordChannels200ResponseChannelsInner.java
+src/main/java/dev/zernio/model/GetDiscordGuildMember200Response.java
 src/main/java/dev/zernio/model/GetDiscordSettings200Response.java
 src/main/java/dev/zernio/model/GetDiscordSettings200ResponseAccount.java
 src/main/java/dev/zernio/model/GetDsaRecommendations200Response.java
@@ -2345,6 +2395,9 @@ src/main/java/dev/zernio/model/ListAdCatalogProductSets200Response.java
 src/main/java/dev/zernio/model/ListAdCatalogProductSets200ResponseProductSetsInner.java
 src/main/java/dev/zernio/model/ListAdCatalogs200Response.java
 src/main/java/dev/zernio/model/ListAdCatalogs200ResponseCatalogsInner.java
+src/main/java/dev/zernio/model/ListAdCreatives200Response.java
+src/main/java/dev/zernio/model/ListAdImages200Response.java
+src/main/java/dev/zernio/model/ListAdLabels200Response.java
 src/main/java/dev/zernio/model/ListAdStudies200Response.java
 src/main/java/dev/zernio/model/ListAds200Response.java
 src/main/java/dev/zernio/model/ListAdsBusinessCenters200Response.java
@@ -2370,8 +2423,6 @@ src/main/java/dev/zernio/model/ListConversionDestinations200ResponseDestinations
 src/main/java/dev/zernio/model/ListCustomFields200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/ListDiscordGuildMembers200Response.java
-src/main/java/dev/zernio/model/ListDiscordGuildMembers200ResponseDataInner.java
-src/main/java/dev/zernio/model/ListDiscordGuildMembers200ResponseDataInnerUser.java
 src/main/java/dev/zernio/model/ListDiscordGuildMembers200ResponsePagination.java
 src/main/java/dev/zernio/model/ListDiscordGuildRoles200Response.java
 src/main/java/dev/zernio/model/ListDiscordGuildRoles200ResponseDataInner.java
@@ -2389,6 +2440,7 @@ src/main/java/dev/zernio/model/ListGoogleBusinessMedia200ResponseMediaItemsInner
 src/main/java/dev/zernio/model/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.java
 src/main/java/dev/zernio/model/ListGoogleBusinessPlaceActions200Response.java
 src/main/java/dev/zernio/model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.java
+src/main/java/dev/zernio/model/ListHighDemandPeriods200Response.java
 src/main/java/dev/zernio/model/ListInboxComments200Response.java
 src/main/java/dev/zernio/model/ListInboxComments200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxConversationAnalytics200Response.java
@@ -2418,6 +2470,7 @@ src/main/java/dev/zernio/model/ListLinkedInOrganizations200ResponseOrganizations
 src/main/java/dev/zernio/model/ListLogs200Response.java
 src/main/java/dev/zernio/model/ListLogs200ResponseLogsInner.java
 src/main/java/dev/zernio/model/ListLogs200ResponsePagination.java
+src/main/java/dev/zernio/model/ListMetaBusinesses200Response.java
 src/main/java/dev/zernio/model/ListPhoneNumberCountries200Response.java
 src/main/java/dev/zernio/model/ListPhoneNumberCountries200ResponseCountriesInner.java
 src/main/java/dev/zernio/model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.java
@@ -2441,6 +2494,10 @@ src/main/java/dev/zernio/model/ListSmsOptOuts200ResponseOptOutsInner.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200Response.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200ResponseRegistrationsInner.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200Response.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseBudget.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseBudgetPendingRequest.java
+src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseSenderIdsInner.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200Response.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200ResponsePublicProfilesInner.java
 src/main/java/dev/zernio/model/ListTrackingTagSharedAccounts200Response.java
@@ -2570,6 +2627,8 @@ src/main/java/dev/zernio/model/ReplyToInboxReview200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToMention200Response.java
 src/main/java/dev/zernio/model/ReplyToMentionRequest.java
+src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncrease200Response.java
+src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncreaseRequest.java
 src/main/java/dev/zernio/model/ResendSmsRegistrationOtp200Response.java
 src/main/java/dev/zernio/model/ReserveRfPrediction201Response.java
 src/main/java/dev/zernio/model/ReserveRfPredictionRequest.java
@@ -2597,6 +2656,7 @@ src/main/java/dev/zernio/model/SearchAvailablePhoneNumbers200Response.java
 src/main/java/dev/zernio/model/SearchAvailablePhoneNumbers200ResponseNumbersInner.java
 src/main/java/dev/zernio/model/SearchAvailableWhatsAppNumbers200Response.java
 src/main/java/dev/zernio/model/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.java
+src/main/java/dev/zernio/model/SearchDiscordGuildMembers200Response.java
 src/main/java/dev/zernio/model/SearchInboxConversations200Response.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseDataInner.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerConversation.java
@@ -2777,6 +2837,8 @@ src/main/java/dev/zernio/model/UpdateAdCampaignRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdCampaignRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/UpdateAdCampaignStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdCampaignStatusRequest.java
+src/main/java/dev/zernio/model/UpdateAdCreative200Response.java
+src/main/java/dev/zernio/model/UpdateAdCreativeRequest.java
 src/main/java/dev/zernio/model/UpdateAdRequest.java
 src/main/java/dev/zernio/model/UpdateAdRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdRequestCreative.java
@@ -3051,3 +3113,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateStandaloneAd200ResponseResultsInnerTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAd200ResponseTest.java
+src/test/java/dev/zernio/model/DiscordGuildMemberTest.java
+src/test/java/dev/zernio/model/DiscordGuildMemberUserTest.java
+src/test/java/dev/zernio/model/GetDiscordGuildMember200ResponseTest.java
+src/test/java/dev/zernio/model/ListMetaBusinesses200ResponseTest.java
+src/test/java/dev/zernio/model/SearchDiscordGuildMembers200ResponseTest.java

@@ -72,6 +72,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BILLING_EVENT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUYING_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_RF_PREDICTION_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CREATIVE_FEATURES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_VALIDATE_ONLY,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_STATUS,
@@ -135,7 +137,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:48:06.971544378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -270,6 +272,49 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_RF_PREDICTION_ID = "rfPredictionId";
   @javax.annotation.Nullable
   private String rfPredictionId;
+
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+
+  public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
+  @javax.annotation.Nullable
+  private Boolean validateOnly;
 
   public static final String JSON_PROPERTY_BUDGET_AMOUNT = "budgetAmount";
   @javax.annotation.Nullable
@@ -1235,6 +1280,62 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRfPredictionId(@javax.annotation.Nullable String rfPredictionId) {
     this.rfPredictionId = rfPredictionId;
+  }
+
+
+  public CreateStandaloneAdRequest creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Advantage+ creative enhancements: a partial map of Meta creative feature keys (snake_case, e.g. enhance_cta, image_brightness_and_contrast, text_optimizations) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Meta validates the keys; unspecified features default to OPT_OUT. The legacy standard_enhancements bundle is deprecated by Meta and rejected.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+  }
+
+
+  public CreateStandaloneAdRequest validateOnly(@javax.annotation.Nullable Boolean validateOnly) {
+    this.validateOnly = validateOnly;
+    return this;
+  }
+
+  /**
+   * Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist — pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad.
+   * @return validateOnly
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALIDATE_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getValidateOnly() {
+    return validateOnly;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALIDATE_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValidateOnly(@javax.annotation.Nullable Boolean validateOnly) {
+    this.validateOnly = validateOnly;
   }
 
 
@@ -2890,6 +2991,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.billingEvent, createStandaloneAdRequest.billingEvent) &&
         Objects.equals(this.buyingType, createStandaloneAdRequest.buyingType) &&
         Objects.equals(this.rfPredictionId, createStandaloneAdRequest.rfPredictionId) &&
+        Objects.equals(this.creativeFeatures, createStandaloneAdRequest.creativeFeatures) &&
+        Objects.equals(this.validateOnly, createStandaloneAdRequest.validateOnly) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
         Objects.equals(this.status, createStandaloneAdRequest.status) &&
@@ -2956,7 +3059,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2975,6 +3078,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    billingEvent: ").append(toIndentedString(billingEvent)).append("\n");
     sb.append("    buyingType: ").append(toIndentedString(buyingType)).append("\n");
     sb.append("    rfPredictionId: ").append(toIndentedString(rfPredictionId)).append("\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
+    sb.append("    validateOnly: ").append(toIndentedString(validateOnly)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -3142,6 +3247,20 @@ public class CreateStandaloneAdRequest {
     // add `rfPredictionId` to the URL query string
     if (getRfPredictionId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srfPredictionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRfPredictionId()))));
+    }
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
+    }
+
+    // add `validateOnly` to the URL query string
+    if (getValidateOnly() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalidateOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValidateOnly()))));
     }
 
     // add `budgetAmount` to the URL query string
