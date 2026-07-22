@@ -16,6 +16,8 @@ What the ad optimises against. Behaviour depends on the platform.  **Meta**: for
 |**customConversionId** | **String** | Custom Conversion ID, when optimising against one instead of a standard event. |  [optional] |
 |**productCatalogId** | **String** | Catalog ID for catalog/Advantage+ Shopping campaigns. |  [optional] |
 |**productSetId** | **String** | Product Set ID inside the catalog. |  [optional] |
+|**offlineConversionDataSetId** | **String** | Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id). |  [optional] |
+|**whatsappPhoneNumber** | **String** | Meta only. WhatsApp number on messaging-destination ad sets. |  [optional] |
 
 
 

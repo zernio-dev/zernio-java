@@ -41,9 +41,11 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OBJECT_STORE_URL,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_CUSTOM_CONVERSION_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PRODUCT_CATALOG_ID,
-  CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PRODUCT_SET_ID
+  CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PRODUCT_SET_ID,
+  CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
+  CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:59:21.037552865Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -76,6 +78,14 @@ public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PRODUCT_SET_ID = "productSetId";
   @javax.annotation.Nullable
   private String productSetId;
+
+  public static final String JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID = "offlineConversionDataSetId";
+  @javax.annotation.Nullable
+  private String offlineConversionDataSetId;
+
+  public static final String JSON_PROPERTY_WHATSAPP_PHONE_NUMBER = "whatsappPhoneNumber";
+  @javax.annotation.Nullable
+  private String whatsappPhoneNumber;
 
   public CreateStandaloneAdRequestPromotedObject() { 
   }
@@ -272,6 +282,54 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
 
+  public CreateStandaloneAdRequestPromotedObject offlineConversionDataSetId(@javax.annotation.Nullable String offlineConversionDataSetId) {
+    this.offlineConversionDataSetId = offlineConversionDataSetId;
+    return this;
+  }
+
+  /**
+   * Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id).
+   * @return offlineConversionDataSetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOfflineConversionDataSetId() {
+    return offlineConversionDataSetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOfflineConversionDataSetId(@javax.annotation.Nullable String offlineConversionDataSetId) {
+    this.offlineConversionDataSetId = offlineConversionDataSetId;
+  }
+
+
+  public CreateStandaloneAdRequestPromotedObject whatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+    return this;
+  }
+
+  /**
+   * Meta only. WhatsApp number on messaging-destination ad sets.
+   * @return whatsappPhoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWhatsappPhoneNumber() {
+    return whatsappPhoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWhatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+  }
+
+
   /**
    * Return true if this createStandaloneAd_request_promotedObject object is equal to o.
    */
@@ -291,12 +349,14 @@ public class CreateStandaloneAdRequestPromotedObject {
         Objects.equals(this.objectStoreUrl, createStandaloneAdRequestPromotedObject.objectStoreUrl) &&
         Objects.equals(this.customConversionId, createStandaloneAdRequestPromotedObject.customConversionId) &&
         Objects.equals(this.productCatalogId, createStandaloneAdRequestPromotedObject.productCatalogId) &&
-        Objects.equals(this.productSetId, createStandaloneAdRequestPromotedObject.productSetId);
+        Objects.equals(this.productSetId, createStandaloneAdRequestPromotedObject.productSetId) &&
+        Objects.equals(this.offlineConversionDataSetId, createStandaloneAdRequestPromotedObject.offlineConversionDataSetId) &&
+        Objects.equals(this.whatsappPhoneNumber, createStandaloneAdRequestPromotedObject.whatsappPhoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pixelId, customEventType, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId);
+    return Objects.hash(pixelId, customEventType, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId, offlineConversionDataSetId, whatsappPhoneNumber);
   }
 
   @Override
@@ -311,6 +371,8 @@ public class CreateStandaloneAdRequestPromotedObject {
     sb.append("    customConversionId: ").append(toIndentedString(customConversionId)).append("\n");
     sb.append("    productCatalogId: ").append(toIndentedString(productCatalogId)).append("\n");
     sb.append("    productSetId: ").append(toIndentedString(productSetId)).append("\n");
+    sb.append("    offlineConversionDataSetId: ").append(toIndentedString(offlineConversionDataSetId)).append("\n");
+    sb.append("    whatsappPhoneNumber: ").append(toIndentedString(whatsappPhoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -396,6 +458,16 @@ public class CreateStandaloneAdRequestPromotedObject {
     // add `productSetId` to the URL query string
     if (getProductSetId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sproductSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductSetId()))));
+    }
+
+    // add `offlineConversionDataSetId` to the URL query string
+    if (getOfflineConversionDataSetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sofflineConversionDataSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOfflineConversionDataSetId()))));
+    }
+
+    // add `whatsappPhoneNumber` to the URL query string
+    if (getWhatsappPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swhatsappPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWhatsappPhoneNumber()))));
     }
 
     return joiner.toString();

@@ -2,7 +2,7 @@
 
 # UpdateAdSetRequestPlatformSpecificDataPromotedObject
 
-Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create).
+Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create). Unknown keys are rejected with 400.
 
 ## Properties
 
@@ -16,6 +16,8 @@ Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create).
 |**customConversionId** | **String** |  |  [optional] |
 |**productCatalogId** | **String** |  |  [optional] |
 |**productSetId** | **String** |  |  [optional] |
+|**offlineConversionDataSetId** | **String** |  |  [optional] |
+|**whatsappPhoneNumber** | **String** |  |  [optional] |
 
 
 

@@ -113,6 +113,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SAVED_TARGETING_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_RAW_TARGETING,
   CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY,
   CreateStandaloneAdRequest.JSON_PROPERTY_END_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_START_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
@@ -137,7 +138,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:59:21.037552865Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -757,6 +758,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORIES = "specialAdCategories";
   @javax.annotation.Nullable
   private List<SpecialAdCategoriesEnum> specialAdCategories = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY = "specialAdCategoryCountry";
+  @javax.annotation.Nullable
+  private List<String> specialAdCategoryCountry = new ArrayList<>();
 
   public static final String JSON_PROPERTY_END_DATE = "endDate";
   @javax.annotation.Nullable
@@ -2375,6 +2380,38 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest specialAdCategoryCountry(@javax.annotation.Nullable List<String> specialAdCategoryCountry) {
+    this.specialAdCategoryCountry = specialAdCategoryCountry;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addSpecialAdCategoryCountryItem(String specialAdCategoryCountryItem) {
+    if (this.specialAdCategoryCountry == null) {
+      this.specialAdCategoryCountry = new ArrayList<>();
+    }
+    this.specialAdCategoryCountry.add(specialAdCategoryCountryItem);
+    return this;
+  }
+
+  /**
+   * Meta (metaads) only. 2-letter ISO country codes the special ad category applies to. Requires specialAdCategories to be set (400 otherwise). Ignored when joining an existing campaign via existingCampaignId (the existing campaign&#39;s category/country already governs it). 
+   * @return specialAdCategoryCountry
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getSpecialAdCategoryCountry() {
+    return specialAdCategoryCountry;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpecialAdCategoryCountry(@javax.annotation.Nullable List<String> specialAdCategoryCountry) {
+    this.specialAdCategoryCountry = specialAdCategoryCountry;
+  }
+
+
   public CreateStandaloneAdRequest endDate(@javax.annotation.Nullable OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
@@ -3032,6 +3069,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.savedTargetingId, createStandaloneAdRequest.savedTargetingId) &&
         Objects.equals(this.rawTargeting, createStandaloneAdRequest.rawTargeting) &&
         Objects.equals(this.specialAdCategories, createStandaloneAdRequest.specialAdCategories) &&
+        Objects.equals(this.specialAdCategoryCountry, createStandaloneAdRequest.specialAdCategoryCountry) &&
         Objects.equals(this.endDate, createStandaloneAdRequest.endDate) &&
         Objects.equals(this.startDate, createStandaloneAdRequest.startDate) &&
         Objects.equals(this.instagramAccountId, createStandaloneAdRequest.instagramAccountId) &&
@@ -3059,7 +3097,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -3119,6 +3157,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    savedTargetingId: ").append(toIndentedString(savedTargetingId)).append("\n");
     sb.append("    rawTargeting: ").append(toIndentedString(rawTargeting)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
+    sb.append("    specialAdCategoryCountry: ").append(toIndentedString(specialAdCategoryCountry)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
@@ -3511,6 +3550,15 @@ public class CreateStandaloneAdRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sspecialAdCategories%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategories().get(i)))));
+      }
+    }
+
+    // add `specialAdCategoryCountry` to the URL query string
+    if (getSpecialAdCategoryCountry() != null) {
+      for (int i = 0; i < getSpecialAdCategoryCountry().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sspecialAdCategoryCountry%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategoryCountry().get(i)))));
       }
     }
 

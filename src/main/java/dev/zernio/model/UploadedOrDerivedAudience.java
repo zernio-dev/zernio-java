@@ -51,13 +51,16 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_COMPANIES,
   UploadedOrDerivedAudience.JSON_PROPERTY_PIXEL_ID,
   UploadedOrDerivedAudience.JSON_PROPERTY_RETENTION_DAYS,
+  UploadedOrDerivedAudience.JSON_PROPERTY_ENGAGEMENT_SOURCE,
+  UploadedOrDerivedAudience.JSON_PROPERTY_SOURCE_ID,
+  UploadedOrDerivedAudience.JSON_PROPERTY_EVENT,
   UploadedOrDerivedAudience.JSON_PROPERTY_SOURCE_AUDIENCE_ID,
   UploadedOrDerivedAudience.JSON_PROPERTY_COUNTRY,
   UploadedOrDerivedAudience.JSON_PROPERTY_RATIO,
   UploadedOrDerivedAudience.JSON_PROPERTY_RULE,
   UploadedOrDerivedAudience.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:59:21.037552865Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -84,6 +87,8 @@ public class UploadedOrDerivedAudience {
     COMPANY_LIST(String.valueOf("company_list")),
     
     ENGAGEMENT(String.valueOf("engagement")),
+    
+    META_ENGAGEMENT(String.valueOf("meta_engagement")),
     
     WEBSITE(String.valueOf("website")),
     
@@ -235,6 +240,55 @@ public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_RETENTION_DAYS = "retentionDays";
   @javax.annotation.Nullable
   private Integer retentionDays;
+
+  /**
+   * Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+   */
+  public enum EngagementSourceEnum {
+    PAGE(String.valueOf("page")),
+    
+    INSTAGRAM(String.valueOf("instagram")),
+    
+    VIDEO(String.valueOf("video"));
+
+    private String value;
+
+    EngagementSourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static EngagementSourceEnum fromValue(String value) {
+      for (EngagementSourceEnum b : EngagementSourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ENGAGEMENT_SOURCE = "engagementSource";
+  @javax.annotation.Nullable
+  private EngagementSourceEnum engagementSource;
+
+  public static final String JSON_PROPERTY_SOURCE_ID = "sourceId";
+  @javax.annotation.Nullable
+  private String sourceId;
+
+  public static final String JSON_PROPERTY_EVENT = "event";
+  @javax.annotation.Nullable
+  private String event;
 
   public static final String JSON_PROPERTY_SOURCE_AUDIENCE_ID = "sourceAudienceId";
   @javax.annotation.Nullable
@@ -577,9 +631,9 @@ public class UploadedOrDerivedAudience {
   }
 
   /**
-   * Required for website audiences
+   * Required for website (max 180) and meta_engagement (max 365) audiences.
    * minimum: 1
-   * maximum: 180
+   * maximum: 365
    * @return retentionDays
    */
   @javax.annotation.Nullable
@@ -594,6 +648,78 @@ public class UploadedOrDerivedAudience {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRetentionDays(@javax.annotation.Nullable Integer retentionDays) {
     this.retentionDays = retentionDays;
+  }
+
+
+  public UploadedOrDerivedAudience engagementSource(@javax.annotation.Nullable EngagementSourceEnum engagementSource) {
+    this.engagementSource = engagementSource;
+    return this;
+  }
+
+  /**
+   * Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+   * @return engagementSource
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ENGAGEMENT_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public EngagementSourceEnum getEngagementSource() {
+    return engagementSource;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ENGAGEMENT_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEngagementSource(@javax.annotation.Nullable EngagementSourceEnum engagementSource) {
+    this.engagementSource = engagementSource;
+  }
+
+
+  public UploadedOrDerivedAudience sourceId(@javax.annotation.Nullable String sourceId) {
+    this.sourceId = sourceId;
+    return this;
+  }
+
+  /**
+   * Required for meta_engagement: the Page / IG account / video id.
+   * @return sourceId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSourceId() {
+    return sourceId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSourceId(@javax.annotation.Nullable String sourceId) {
+    this.sourceId = sourceId;
+  }
+
+
+  public UploadedOrDerivedAudience event(@javax.annotation.Nullable String event) {
+    this.event = event;
+    return this;
+  }
+
+  /**
+   * meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. 
+   * @return event
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEvent() {
+    return event;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEvent(@javax.annotation.Nullable String event) {
+    this.event = event;
   }
 
 
@@ -677,7 +803,7 @@ public class UploadedOrDerivedAudience {
   }
 
   /**
-   * Pixel event rule for website audiences (optional)
+   * Optional raw Meta rule, forwarded verbatim: pixel event rule for website audiences, or the engagement rule for meta_engagement (overrides the built rule, e.g. for event/canvas/lead-form sources).
    * @return rule
    */
   @javax.annotation.Nullable
@@ -744,6 +870,9 @@ public class UploadedOrDerivedAudience {
         Objects.equals(this.companies, uploadedOrDerivedAudience.companies) &&
         Objects.equals(this.pixelId, uploadedOrDerivedAudience.pixelId) &&
         Objects.equals(this.retentionDays, uploadedOrDerivedAudience.retentionDays) &&
+        Objects.equals(this.engagementSource, uploadedOrDerivedAudience.engagementSource) &&
+        Objects.equals(this.sourceId, uploadedOrDerivedAudience.sourceId) &&
+        Objects.equals(this.event, uploadedOrDerivedAudience.event) &&
         Objects.equals(this.sourceAudienceId, uploadedOrDerivedAudience.sourceAudienceId) &&
         Objects.equals(this.country, uploadedOrDerivedAudience.country) &&
         Objects.equals(this.ratio, uploadedOrDerivedAudience.ratio) &&
@@ -753,7 +882,7 @@ public class UploadedOrDerivedAudience {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, description, type, matchRules, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, sourceAudienceId, country, ratio, rule, customerFileSource);
+    return Objects.hash(accountId, adAccountId, name, description, type, matchRules, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, engagementSource, sourceId, event, sourceAudienceId, country, ratio, rule, customerFileSource);
   }
 
   @Override
@@ -773,6 +902,9 @@ public class UploadedOrDerivedAudience {
     sb.append("    companies: ").append(toIndentedString(companies)).append("\n");
     sb.append("    pixelId: ").append(toIndentedString(pixelId)).append("\n");
     sb.append("    retentionDays: ").append(toIndentedString(retentionDays)).append("\n");
+    sb.append("    engagementSource: ").append(toIndentedString(engagementSource)).append("\n");
+    sb.append("    sourceId: ").append(toIndentedString(sourceId)).append("\n");
+    sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    sourceAudienceId: ").append(toIndentedString(sourceAudienceId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    ratio: ").append(toIndentedString(ratio)).append("\n");
@@ -902,6 +1034,21 @@ public class UploadedOrDerivedAudience {
     // add `retentionDays` to the URL query string
     if (getRetentionDays() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sretentionDays%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetentionDays()))));
+    }
+
+    // add `engagementSource` to the URL query string
+    if (getEngagementSource() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sengagementSource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEngagementSource()))));
+    }
+
+    // add `sourceId` to the URL query string
+    if (getSourceId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssourceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSourceId()))));
+    }
+
+    // add `event` to the URL query string
+    if (getEvent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sevent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvent()))));
     }
 
     // add `sourceAudienceId` to the URL query string

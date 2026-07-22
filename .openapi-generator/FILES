@@ -3113,10 +3113,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateStandaloneAd200ResponseResultsInnerTest.java
-src/test/java/dev/zernio/model/CreateStandaloneAd200ResponseTest.java
-src/test/java/dev/zernio/model/DiscordGuildMemberTest.java
-src/test/java/dev/zernio/model/DiscordGuildMemberUserTest.java
-src/test/java/dev/zernio/model/GetDiscordGuildMember200ResponseTest.java
-src/test/java/dev/zernio/model/ListMetaBusinesses200ResponseTest.java
-src/test/java/dev/zernio/model/SearchDiscordGuildMembers200ResponseTest.java

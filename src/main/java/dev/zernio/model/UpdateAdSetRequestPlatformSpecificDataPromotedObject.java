@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create).
+ * Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create). Unknown keys are rejected with 400.
  */
 @JsonPropertyOrder({
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_PIXEL_ID,
@@ -40,9 +40,11 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_OBJECT_STORE_URL,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_CUSTOM_CONVERSION_ID,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_PRODUCT_CATALOG_ID,
-  UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_PRODUCT_SET_ID
+  UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_PRODUCT_SET_ID,
+  UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
+  UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:59:21.037552865Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -75,6 +77,14 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   public static final String JSON_PROPERTY_PRODUCT_SET_ID = "productSetId";
   @javax.annotation.Nullable
   private String productSetId;
+
+  public static final String JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID = "offlineConversionDataSetId";
+  @javax.annotation.Nullable
+  private String offlineConversionDataSetId;
+
+  public static final String JSON_PROPERTY_WHATSAPP_PHONE_NUMBER = "whatsappPhoneNumber";
+  @javax.annotation.Nullable
+  private String whatsappPhoneNumber;
 
   public UpdateAdSetRequestPlatformSpecificDataPromotedObject() { 
   }
@@ -271,6 +281,54 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   }
 
 
+  public UpdateAdSetRequestPlatformSpecificDataPromotedObject offlineConversionDataSetId(@javax.annotation.Nullable String offlineConversionDataSetId) {
+    this.offlineConversionDataSetId = offlineConversionDataSetId;
+    return this;
+  }
+
+  /**
+   * Get offlineConversionDataSetId
+   * @return offlineConversionDataSetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOfflineConversionDataSetId() {
+    return offlineConversionDataSetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOfflineConversionDataSetId(@javax.annotation.Nullable String offlineConversionDataSetId) {
+    this.offlineConversionDataSetId = offlineConversionDataSetId;
+  }
+
+
+  public UpdateAdSetRequestPlatformSpecificDataPromotedObject whatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+    return this;
+  }
+
+  /**
+   * Get whatsappPhoneNumber
+   * @return whatsappPhoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWhatsappPhoneNumber() {
+    return whatsappPhoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWhatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+  }
+
+
   /**
    * Return true if this updateAdSet_request_platformSpecificData_promotedObject object is equal to o.
    */
@@ -290,12 +348,14 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
         Objects.equals(this.objectStoreUrl, updateAdSetRequestPlatformSpecificDataPromotedObject.objectStoreUrl) &&
         Objects.equals(this.customConversionId, updateAdSetRequestPlatformSpecificDataPromotedObject.customConversionId) &&
         Objects.equals(this.productCatalogId, updateAdSetRequestPlatformSpecificDataPromotedObject.productCatalogId) &&
-        Objects.equals(this.productSetId, updateAdSetRequestPlatformSpecificDataPromotedObject.productSetId);
+        Objects.equals(this.productSetId, updateAdSetRequestPlatformSpecificDataPromotedObject.productSetId) &&
+        Objects.equals(this.offlineConversionDataSetId, updateAdSetRequestPlatformSpecificDataPromotedObject.offlineConversionDataSetId) &&
+        Objects.equals(this.whatsappPhoneNumber, updateAdSetRequestPlatformSpecificDataPromotedObject.whatsappPhoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pixelId, customEventType, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId);
+    return Objects.hash(pixelId, customEventType, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId, offlineConversionDataSetId, whatsappPhoneNumber);
   }
 
   @Override
@@ -310,6 +370,8 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
     sb.append("    customConversionId: ").append(toIndentedString(customConversionId)).append("\n");
     sb.append("    productCatalogId: ").append(toIndentedString(productCatalogId)).append("\n");
     sb.append("    productSetId: ").append(toIndentedString(productSetId)).append("\n");
+    sb.append("    offlineConversionDataSetId: ").append(toIndentedString(offlineConversionDataSetId)).append("\n");
+    sb.append("    whatsappPhoneNumber: ").append(toIndentedString(whatsappPhoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -395,6 +457,16 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
     // add `productSetId` to the URL query string
     if (getProductSetId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sproductSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductSetId()))));
+    }
+
+    // add `offlineConversionDataSetId` to the URL query string
+    if (getOfflineConversionDataSetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sofflineConversionDataSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOfflineConversionDataSetId()))));
+    }
+
+    // add `whatsappPhoneNumber` to the URL query string
+    if (getWhatsappPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swhatsappPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWhatsappPhoneNumber()))));
     }
 
     return joiner.toString();

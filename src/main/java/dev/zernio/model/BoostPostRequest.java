@@ -62,13 +62,14 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   BoostPostRequest.JSON_PROPERTY_TRACKING,
   BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
+  BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY,
   BoostPostRequest.JSON_PROPERTY_LINK_URL,
   BoostPostRequest.JSON_PROPERTY_CALL_TO_ACTION,
   BoostPostRequest.JSON_PROPERTY_SPARK_AUTH_CODE,
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:59:21.037552865Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -225,6 +226,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORIES = "specialAdCategories";
   @javax.annotation.Nullable
   private List<SpecialAdCategoriesEnum> specialAdCategories = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY = "specialAdCategoryCountry";
+  @javax.annotation.Nullable
+  private List<String> specialAdCategoryCountry = new ArrayList<>();
 
   public static final String JSON_PROPERTY_LINK_URL = "linkUrl";
   @javax.annotation.Nullable
@@ -673,6 +678,38 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest specialAdCategoryCountry(@javax.annotation.Nullable List<String> specialAdCategoryCountry) {
+    this.specialAdCategoryCountry = specialAdCategoryCountry;
+    return this;
+  }
+
+  public BoostPostRequest addSpecialAdCategoryCountryItem(String specialAdCategoryCountryItem) {
+    if (this.specialAdCategoryCountry == null) {
+      this.specialAdCategoryCountry = new ArrayList<>();
+    }
+    this.specialAdCategoryCountry.add(specialAdCategoryCountryItem);
+    return this;
+  }
+
+  /**
+   * Meta (metaads) only. 2-letter ISO country codes the special ad category applies to. Requires specialAdCategories to be set (400 otherwise).
+   * @return specialAdCategoryCountry
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getSpecialAdCategoryCountry() {
+    return specialAdCategoryCountry;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpecialAdCategoryCountry(@javax.annotation.Nullable List<String> specialAdCategoryCountry) {
+    this.specialAdCategoryCountry = specialAdCategoryCountry;
+  }
+
+
   public BoostPostRequest linkUrl(@javax.annotation.Nullable URI linkUrl) {
     this.linkUrl = linkUrl;
     return this;
@@ -822,6 +859,7 @@ public class BoostPostRequest {
         Objects.equals(this.platformSpecificData, boostPostRequest.platformSpecificData) &&
         Objects.equals(this.tracking, boostPostRequest.tracking) &&
         Objects.equals(this.specialAdCategories, boostPostRequest.specialAdCategories) &&
+        Objects.equals(this.specialAdCategoryCountry, boostPostRequest.specialAdCategoryCountry) &&
         Objects.equals(this.linkUrl, boostPostRequest.linkUrl) &&
         Objects.equals(this.callToAction, boostPostRequest.callToAction) &&
         Objects.equals(this.sparkAuthCode, boostPostRequest.sparkAuthCode) &&
@@ -831,7 +869,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -855,6 +893,7 @@ public class BoostPostRequest {
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
+    sb.append("    specialAdCategoryCountry: ").append(toIndentedString(specialAdCategoryCountry)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    sparkAuthCode: ").append(toIndentedString(sparkAuthCode)).append("\n");
@@ -997,6 +1036,15 @@ public class BoostPostRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sspecialAdCategories%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategories().get(i)))));
+      }
+    }
+
+    // add `specialAdCategoryCountry` to the URL query string
+    if (getSpecialAdCategoryCountry() != null) {
+      for (int i = 0; i < getSpecialAdCategoryCountry().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sspecialAdCategoryCountry%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategoryCountry().get(i)))));
       }
     }
 

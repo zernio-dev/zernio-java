@@ -28179,6 +28179,7 @@ paths:
           - customer_list
           - company_list
           - engagement
+          - meta_engagement
           - website
           - website_retargeting
           - lookalike
@@ -65509,8 +65510,9 @@ components:
           - lifetime
           type: string
     updateAdSet_request_platformSpecificData_promotedObject:
+      additionalProperties: {}
       description: "Meta ad-set promoted_object, forwarded verbatim (same shape as\
-        \ /v1/ads/create)."
+        \ /v1/ads/create). Unknown keys are rejected with 400."
       properties:
         pixelId:
           type: string
@@ -65527,6 +65529,10 @@ components:
         productCatalogId:
           type: string
         productSetId:
+          type: string
+        offlineConversionDataSetId:
+          type: string
+        whatsappPhoneNumber:
           type: string
     updateAdSet_request_platformSpecificData:
       description: |
@@ -68804,6 +68810,12 @@ components:
             - ONLINE_GAMBLING_AND_GAMING
             type: string
           type: array
+        specialAdCategoryCountry:
+          description: Meta (metaads) only. 2-letter ISO country codes the special
+            ad category applies to. Requires specialAdCategories to be set (400 otherwise).
+          items:
+            type: string
+          type: array
         linkUrl:
           description: |
             TikTok-only. Custom destination URL for the Spark Ad. Without this, TikTok
@@ -69459,6 +69471,7 @@ components:
       - displayName
       - imageUrl
     createStandaloneAd_request_promotedObject:
+      additionalProperties: {}
       description: |
         What the ad optimises against. Behaviour depends on the platform.
 
@@ -69526,6 +69539,14 @@ components:
           type: string
         productSetId:
           description: Product Set ID inside the catalog.
+          type: string
+        offlineConversionDataSetId:
+          description: "Meta only. Offline event set (dataset) to optimise toward.\
+            \ Post-merger these are datasets: the id is the dataset id (for pixel-backed\
+            \ datasets, the pixel id)."
+          type: string
+        whatsappPhoneNumber:
+          description: Meta only. WhatsApp number on messaging-destination ad sets.
           type: string
     createStandaloneAd_request:
       properties:
@@ -69988,6 +70009,14 @@ components:
             - FINANCIAL_PRODUCTS_SERVICES
             - ISSUES_ELECTIONS_POLITICS
             - ONLINE_GAMBLING_AND_GAMING
+            type: string
+          type: array
+        specialAdCategoryCountry:
+          description: |
+            Meta (metaads) only. 2-letter ISO country codes the special ad category applies to. Requires
+            specialAdCategories to be set (400 otherwise). Ignored when joining an existing campaign via
+            existingCampaignId (the existing campaign's category/country already governs it).
+          items:
             type: string
           type: array
         endDate:
@@ -71230,6 +71259,7 @@ components:
           - customer_list
           - company_list
           - engagement
+          - meta_engagement
           - website
           - website_retargeting
           - lookalike
@@ -71323,6 +71353,7 @@ components:
           - customer_list
           - company_list
           - engagement
+          - meta_engagement
           - website
           - website_retargeting
           - lookalike
@@ -71397,10 +71428,33 @@ components:
           description: Required for website audiences
           type: string
         retentionDays:
-          description: Required for website audiences
-          maximum: 180
+          description: Required for website (max 180) and meta_engagement (max 365)
+            audiences.
+          maximum: 365
           minimum: 1
           type: integer
+        engagementSource:
+          description: |
+            Required for meta_engagement audiences (Meta only): what people
+            engaged with. `page` = a Facebook Page, `instagram` = an IG
+            professional account, `video` = a video. The source object must be
+            eligible for engagement audiences or Meta rejects with subcode
+            1713151 ("Invalid Event Name"), surfaced verbatim.
+          enum:
+          - page
+          - instagram
+          - video
+          type: string
+        sourceId:
+          description: "Required for meta_engagement: the Page / IG account / video\
+            \ id."
+          type: string
+        event:
+          description: |
+            meta_engagement only. The engagement event; defaults per source
+            (page → page_engaged, instagram → ig_business_profile_all,
+            video → video_watched). Ignored when `rule` is provided.
+          type: string
         sourceAudienceId:
           description: Required for lookalike audiences
           type: string
@@ -71413,7 +71467,9 @@ components:
           minimum: 0.01
           type: number
         rule:
-          description: Pixel event rule for website audiences (optional)
+          description: "Optional raw Meta rule, forwarded verbatim: pixel event rule\
+            \ for website audiences, or the engagement rule for meta_engagement (overrides\
+            \ the built rule, e.g. for event/canvas/lead-form sources)."
           type: object
         customerFileSource:
           description: Data source declaration for GDPR compliance (customer_list

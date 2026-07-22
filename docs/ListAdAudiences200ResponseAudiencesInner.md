@@ -27,6 +27,7 @@
 | CUSTOMER_LIST | &quot;customer_list&quot; |
 | COMPANY_LIST | &quot;company_list&quot; |
 | ENGAGEMENT | &quot;engagement&quot; |
+| META_ENGAGEMENT | &quot;meta_engagement&quot; |
 | WEBSITE | &quot;website&quot; |
 | WEBSITE_RETARGETING | &quot;website_retargeting&quot; |
 | LOOKALIKE | &quot;lookalike&quot; |

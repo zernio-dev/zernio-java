@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   YouTubeDailyViewsResponse.JSON_PROPERTY_LAST_SYNCED_AT,
   YouTubeDailyViewsResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:48:38.668918864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T11:59:21.037552865Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

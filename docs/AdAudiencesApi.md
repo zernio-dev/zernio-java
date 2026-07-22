@@ -682,7 +682,7 @@ public class Example {
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
-| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, website, website_retargeting, lookalike, saved_targeting] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
 
 ### Return type
 
@@ -763,7 +763,7 @@ public class Example {
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
-| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, website, website_retargeting, lookalike, saved_targeting] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
 
 ### Return type
 
