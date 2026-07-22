@@ -222,7 +222,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -258,6 +258,13 @@ tags:
     via the per-number sub-resources (`/v1/phone-numbers/{id}/voice`, `/sms`,
     `/whatsapp/...`). Requires a paid plan.
   name: Phone Numbers
+- description: |
+    Managed one-time passcodes (OTP) for phone verification. Two calls
+    handle the whole lifecycle: create a verification (we generate the
+    code, deliver it by SMS from a phone number on your account, and store
+    only its hash) and check the code the user typed. Usage-based billing
+    only.
+  name: Verify
 - description: |
     Deprecated namespace: phone numbers moved to `/v1/phone-numbers` (a number is
     platform-independent; WhatsApp is one feature on it). These aliases keep
@@ -29678,6 +29685,148 @@ paths:
       - Tracking Tags
       x-accepts:
       - application/json
+  /v1/verify/verifications:
+    post:
+      description: |
+        Generate a one-time code, deliver it to the recipient, and store only
+        its hash. Check the user-typed code with
+        POST /v1/verify/verifications/{verificationId}/check.
+
+        Re-POSTing for the same (channel, to) while a verification is active
+        RESENDS a fresh code on the existing verification (200 with
+        `resend: true`) instead of creating a new one; resends are limited to
+        one per 60 seconds (429 with `retryAfterSeconds` inside the cooldown).
+        The stored brandName/codeLength/ttlMinutes win on a resend.
+
+        Codes deliver by SMS from a phone number on your account (`from`
+        optional when you own exactly one SMS-enabled number) and the message
+        uses a fixed template. Each accepted send bills one verification fee
+        plus the standard message rate.
+      operationId: createVerification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createVerification_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Verification"
+          description: Verification created and the code sent.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Verification"
+          description: "Active verification found: a fresh code was resent (`resend:\
+            \ true`)."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Verifications require usage-based billing.
+        "404":
+          description: The 'from' number is not an SMS-enabled number on this account.
+        "409":
+          description: The recipient has opted out of messages from your number.
+        "422":
+          description: Verifications need an SMS-enabled number on your account; add
+            one first.
+        "429":
+          description: Resend cooldown or a send cap was hit; `retryAfterSeconds`
+            says when to retry.
+      security:
+      - bearerAuth: []
+      summary: Send a verification code
+      tags:
+      - Verify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/verify/verifications/{verificationId}:
+    get:
+      description: |
+        Current state of a verification. `status` is effective (a pending code
+        past its expiry reads as `expired`). Verification records are deleted
+        24 hours after creation, after which this returns 404.
+      operationId: getVerification
+      parameters:
+      - explode: false
+        in: path
+        name: verificationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Verification"
+          description: The verification.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Verification not found (or already reaped).
+      security:
+      - bearerAuth: []
+      summary: Get a verification
+      tags:
+      - Verify
+      x-accepts:
+      - application/json
+  /v1/verify/verifications/{verificationId}/check:
+    post:
+      description: |
+        Verify the code the user typed. Wrong, expired, and exhausted codes
+        answer 200 with `valid: false` and the settled `status` — only an
+        unknown id is a 404. A correct code consumes the verification
+        (single-use, `status: approved`) and fires the `verification.approved`
+        webhook; the 5th wrong attempt settles it as `max_attempts_reached`
+        and fires `verification.failed`.
+      operationId: checkVerification
+      parameters:
+      - explode: false
+        in: path
+        name: verificationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/checkVerification_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/checkVerification_200_response"
+          description: "Check result: the verification plus `valid`."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Verification not found (or already reaped).
+      security:
+      - bearerAuth: []
+      summary: Check a verification code
+      tags:
+      - Verify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
 components:
   parameters:
     PageParam:
@@ -29795,6 +29944,61 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) to adjust the contract's limit.
   schemas:
+    Verification:
+      description: A managed OTP verification. The code itself is never returned or
+        stored (hash only).
+      example:
+        maxAttempts: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        resend: true
+        channel: sms
+        lastSentAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        to: to
+        sendCount: 1
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+        status: pending
+        attempts: 0
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - pending
+          - approved
+          - expired
+          - max_attempts_reached
+          - canceled
+          - delivery_failed
+          type: string
+        channel:
+          enum:
+          - sms
+          type: string
+        to:
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+        attempts:
+          type: integer
+        maxAttempts:
+          type: integer
+        sendCount:
+          description: Accepted deliveries (initial send + resends); each bills one
+            verification fee.
+          type: integer
+        lastSentAt:
+          format: date-time
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        resend:
+          description: "Present on create responses: true when an active verification\
+            \ was resent instead of created."
+          type: boolean
     RfPrediction:
       description: A Meta Reach & Frequency prediction. Money values in whole units
         of the ad account currency.
@@ -31954,6 +32158,8 @@ components:
             - whatsapp.number.reactivated
             - whatsapp.number.released
             - whatsapp.number.kyc_submitted
+            - verification.approved
+            - verification.failed
             type: string
           type: array
         isActive:
@@ -50514,6 +50720,8 @@ components:
             - whatsapp.number.reactivated
             - whatsapp.number.released
             - whatsapp.number.kyc_submitted
+            - verification.approved
+            - verification.failed
             type: string
           minItems: 1
           type: array
@@ -50608,6 +50816,8 @@ components:
             - whatsapp.number.reactivated
             - whatsapp.number.released
             - whatsapp.number.kyc_submitted
+            - verification.approved
+            - verification.failed
             type: string
           minItems: 1
           type: array
@@ -72045,6 +72255,64 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
+    createVerification_request:
+      properties:
+        channel:
+          description: SMS-only for now.
+          enum:
+          - sms
+          type: string
+        to:
+          description: E.164 phone number.
+          type: string
+        from:
+          description: The SMS-enabled number on your account to send from. Defaults
+            to your only SMS number.
+          type: string
+        brandName:
+          description: "Your app or business name, rendered in the message. Defaults\
+            \ to your account name. Letters, numbers, and basic punctuation only."
+          maxLength: 30
+          type: string
+        codeLength:
+          default: 6
+          maximum: 8
+          minimum: 4
+          type: integer
+        ttlMinutes:
+          default: 10
+          maximum: 15
+          minimum: 1
+          type: integer
+      required:
+      - channel
+      - to
+    checkVerification_request:
+      properties:
+        code:
+          pattern: "^\\d{4,8}$"
+          type: string
+      required:
+      - code
+    checkVerification_200_response:
+      allOf:
+      - $ref: "#/components/schemas/Verification"
+      - properties:
+          valid:
+            type: boolean
+      example:
+        valid: true
+        maxAttempts: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        resend: true
+        channel: sms
+        lastSentAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        to: to
+        sendCount: 1
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+        status: pending
+        attempts: 0
     onWhatsAppAutomaticEvent_request_customData:
       description: Purchase events may carry the detected amount.
       properties:
@@ -72198,11 +72466,56 @@ components:
         event:
           enum:
           - whatsapp.number.kyc_submitted
+          - verification.approved
+          - verification.failed
         timestamp:
           format: date-time
           type: string
         number:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+    onVerificationApproved_request_verification:
+      properties:
+        verificationId:
+          type: string
+        channel:
+          enum:
+          - sms
+        to:
+          type: string
+    onVerificationApproved_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - verification.approved
+        timestamp:
+          format: date-time
+          type: string
+        verification:
+          $ref: "#/components/schemas/onVerificationApproved_request_verification"
+    onVerificationFailed_request_verification:
+      properties:
+        verificationId: {}
+        channel:
+          enum:
+          - sms
+        to: {}
+    onVerificationFailed_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - verification.failed
+        timestamp:
+          format: date-time
+          type: string
+        verification:
+          $ref: "#/components/schemas/onVerificationFailed_request_verification"
+        reason:
+          enum:
+          - max_attempts_reached
     CtwaAdRequestBody_video:
       description: |
         Video creative for single-creative shape. Mutually
@@ -76791,6 +77104,8 @@ x-documentation:
     - `whatsapp.number.suspended` - An active number was suspended (e.g. failed payment); carries a `reason`
     - `whatsapp.number.reactivated` - A suspended number is usable again
     - `whatsapp.number.released` - A number was released and is no longer usable (terminal); carries a `reason`
+    - `verification.approved` - A managed-OTP verification was approved (the user submitted the correct code)
+    - `verification.failed` - A managed-OTP verification was exhausted after too many wrong code attempts
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Webhook payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header.

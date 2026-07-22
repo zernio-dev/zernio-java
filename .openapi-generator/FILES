@@ -123,6 +123,8 @@ docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberPortability200Response.md
 docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
+docs/CheckVerification200Response.md
+docs/CheckVerificationRequest.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteGoogleBusinessVerificationRequest.md
@@ -276,6 +278,7 @@ docs/CreateTestLeadRequest.md
 docs/CreateTestLeadRequestFieldDataInner.md
 docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
+docs/CreateVerificationRequest.md
 docs/CreateVoiceCall200Response.md
 docs/CreateVoiceCallRequest.md
 docs/CreateVoiceWebSession200Response.md
@@ -949,6 +952,10 @@ docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
+docs/OnVerificationApprovedRequest.md
+docs/OnVerificationApprovedRequestVerification.md
+docs/OnVerificationFailedRequest.md
+docs/OnVerificationFailedRequestVerification.md
 docs/OnWhatsAppAutomaticEventRequest.md
 docs/OnWhatsAppAutomaticEventRequestCustomData.md
 docs/OnWhatsAppNumberActionRequiredRequest.md
@@ -1419,6 +1426,8 @@ docs/ValidateSubreddit200Response.md
 docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
 docs/ValidateSubreddit200ResponseOneOfSubreddit.md
+docs/Verification.md
+docs/VerifyApi.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VoiceApi.md
@@ -1597,6 +1606,7 @@ src/main/java/dev/zernio/api/TwitterEngagementApi.java
 src/main/java/dev/zernio/api/UsageApi.java
 src/main/java/dev/zernio/api/UsersApi.java
 src/main/java/dev/zernio/api/ValidateApi.java
+src/main/java/dev/zernio/api/VerifyApi.java
 src/main/java/dev/zernio/api/VoiceApi.java
 src/main/java/dev/zernio/api/WebhookEventsApi.java
 src/main/java/dev/zernio/api/WebhooksApi.java
@@ -1716,6 +1726,8 @@ src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200ResponseResultsInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortabilityRequest.java
+src/main/java/dev/zernio/model/CheckVerification200Response.java
+src/main/java/dev/zernio/model/CheckVerificationRequest.java
 src/main/java/dev/zernio/model/CompleteGoogleBusinessVerificationRequest.java
 src/main/java/dev/zernio/model/CompleteTelegramConnect200Response.java
 src/main/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200Response.java
@@ -1865,6 +1877,7 @@ src/main/java/dev/zernio/model/CreateTestLeadRequest.java
 src/main/java/dev/zernio/model/CreateTestLeadRequestFieldDataInner.java
 src/main/java/dev/zernio/model/CreateTrackingTag201Response.java
 src/main/java/dev/zernio/model/CreateTrackingTagRequest.java
+src/main/java/dev/zernio/model/CreateVerificationRequest.java
 src/main/java/dev/zernio/model/CreateVoiceCall200Response.java
 src/main/java/dev/zernio/model/CreateVoiceCallRequest.java
 src/main/java/dev/zernio/model/CreateVoiceWebSession200Response.java
@@ -2520,6 +2533,10 @@ src/main/java/dev/zernio/model/Money.java
 src/main/java/dev/zernio/model/MoneyAmount.java
 src/main/java/dev/zernio/model/MoveAccountToProfile200Response.java
 src/main/java/dev/zernio/model/MoveAccountToProfileRequest.java
+src/main/java/dev/zernio/model/OnVerificationApprovedRequest.java
+src/main/java/dev/zernio/model/OnVerificationApprovedRequestVerification.java
+src/main/java/dev/zernio/model/OnVerificationFailedRequest.java
+src/main/java/dev/zernio/model/OnVerificationFailedRequestVerification.java
 src/main/java/dev/zernio/model/OnWhatsAppAutomaticEventRequest.java
 src/main/java/dev/zernio/model/OnWhatsAppAutomaticEventRequestCustomData.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberActionRequiredRequest.java
@@ -2977,6 +2994,7 @@ src/main/java/dev/zernio/model/ValidateSubreddit200Response.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOf.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOf1.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOfSubreddit.java
+src/main/java/dev/zernio/model/Verification.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtp200Response.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtpRequest.java
 src/main/java/dev/zernio/model/VoteRedditThingRequest.java
@@ -3081,3 +3099,12 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/VerifyApiTest.java
+src/test/java/dev/zernio/model/CheckVerification200ResponseTest.java
+src/test/java/dev/zernio/model/CheckVerificationRequestTest.java
+src/test/java/dev/zernio/model/CreateVerificationRequestTest.java
+src/test/java/dev/zernio/model/OnVerificationApprovedRequestTest.java
+src/test/java/dev/zernio/model/OnVerificationApprovedRequestVerificationTest.java
+src/test/java/dev/zernio/model/OnVerificationFailedRequestTest.java
+src/test/java/dev/zernio/model/OnVerificationFailedRequestVerificationTest.java
+src/test/java/dev/zernio/model/VerificationTest.java

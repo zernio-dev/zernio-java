@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppNumberKycSubmittedRequest.JSON_PROPERTY_TIMESTAMP,
   OnWhatsAppNumberKycSubmittedRequest.JSON_PROPERTY_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:26:26.855891996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:29:42.281507024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppNumberKycSubmittedRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -50,7 +50,11 @@ public class OnWhatsAppNumberKycSubmittedRequest {
    * Gets or Sets event
    */
   public enum EventEnum {
-    WHATSAPP_NUMBER_KYC_SUBMITTED(String.valueOf("whatsapp.number.kyc_submitted"));
+    WHATSAPP_NUMBER_KYC_SUBMITTED(String.valueOf("whatsapp.number.kyc_submitted")),
+    
+    VERIFICATION_APPROVED(String.valueOf("verification.approved")),
+    
+    VERIFICATION_FAILED(String.valueOf("verification.failed"));
 
     private String value;
 

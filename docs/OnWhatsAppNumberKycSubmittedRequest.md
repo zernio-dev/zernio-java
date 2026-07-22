@@ -19,6 +19,8 @@
 | Name | Value |
 |---- | -----|
 | WHATSAPP_NUMBER_KYC_SUBMITTED | &quot;whatsapp.number.kyc_submitted&quot; |
+| VERIFICATION_APPROVED | &quot;verification.approved&quot; |
+| VERIFICATION_FAILED | &quot;verification.failed&quot; |
 
 
 

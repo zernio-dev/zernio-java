@@ -64,6 +64,8 @@
 | WHATSAPP_NUMBER_REACTIVATED | &quot;whatsapp.number.reactivated&quot; |
 | WHATSAPP_NUMBER_RELEASED | &quot;whatsapp.number.released&quot; |
 | WHATSAPP_NUMBER_KYC_SUBMITTED | &quot;whatsapp.number.kyc_submitted&quot; |
+| VERIFICATION_APPROVED | &quot;verification.approved&quot; |
+| VERIFICATION_FAILED | &quot;verification.failed&quot; |
 
 
 

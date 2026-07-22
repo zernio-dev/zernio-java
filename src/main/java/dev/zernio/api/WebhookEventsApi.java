@@ -18,6 +18,8 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.OnVerificationApprovedRequest;
+import dev.zernio.model.OnVerificationFailedRequest;
 import dev.zernio.model.OnWhatsAppAutomaticEventRequest;
 import dev.zernio.model.OnWhatsAppNumberActionRequiredRequest;
 import dev.zernio.model.OnWhatsAppNumberActivatedRequest;
@@ -83,7 +85,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:26:26.855891996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:29:42.281507024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3782,6 +3784,224 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadReviewUpdated);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Verification approved event
+   * Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+   * @param onVerificationApprovedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onVerificationApproved(@javax.annotation.Nonnull OnVerificationApprovedRequest onVerificationApprovedRequest) throws ApiException {
+    onVerificationApproved(onVerificationApprovedRequest, null);
+  }
+
+  /**
+   * Verification approved event
+   * Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+   * @param onVerificationApprovedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onVerificationApproved(@javax.annotation.Nonnull OnVerificationApprovedRequest onVerificationApprovedRequest, Map<String, String> headers) throws ApiException {
+    onVerificationApprovedWithHttpInfo(onVerificationApprovedRequest, headers);
+  }
+
+  /**
+   * Verification approved event
+   * Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+   * @param onVerificationApprovedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onVerificationApprovedWithHttpInfo(@javax.annotation.Nonnull OnVerificationApprovedRequest onVerificationApprovedRequest) throws ApiException {
+    return onVerificationApprovedWithHttpInfo(onVerificationApprovedRequest, null);
+  }
+
+  /**
+   * Verification approved event
+   * Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+   * @param onVerificationApprovedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onVerificationApprovedWithHttpInfo(@javax.annotation.Nonnull OnVerificationApprovedRequest onVerificationApprovedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onVerificationApprovedRequestBuilder(onVerificationApprovedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onVerificationApproved", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onVerificationApprovedRequestBuilder(@javax.annotation.Nonnull OnVerificationApprovedRequest onVerificationApprovedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onVerificationApprovedRequest' is set
+    if (onVerificationApprovedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onVerificationApprovedRequest' when calling onVerificationApproved");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/verification.approved";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onVerificationApprovedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Verification failed event
+   * Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+   * @param onVerificationFailedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onVerificationFailed(@javax.annotation.Nonnull OnVerificationFailedRequest onVerificationFailedRequest) throws ApiException {
+    onVerificationFailed(onVerificationFailedRequest, null);
+  }
+
+  /**
+   * Verification failed event
+   * Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+   * @param onVerificationFailedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onVerificationFailed(@javax.annotation.Nonnull OnVerificationFailedRequest onVerificationFailedRequest, Map<String, String> headers) throws ApiException {
+    onVerificationFailedWithHttpInfo(onVerificationFailedRequest, headers);
+  }
+
+  /**
+   * Verification failed event
+   * Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+   * @param onVerificationFailedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onVerificationFailedWithHttpInfo(@javax.annotation.Nonnull OnVerificationFailedRequest onVerificationFailedRequest) throws ApiException {
+    return onVerificationFailedWithHttpInfo(onVerificationFailedRequest, null);
+  }
+
+  /**
+   * Verification failed event
+   * Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+   * @param onVerificationFailedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onVerificationFailedWithHttpInfo(@javax.annotation.Nonnull OnVerificationFailedRequest onVerificationFailedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onVerificationFailedRequestBuilder(onVerificationFailedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onVerificationFailed", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onVerificationFailedRequestBuilder(@javax.annotation.Nonnull OnVerificationFailedRequest onVerificationFailedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onVerificationFailedRequest' is set
+    if (onVerificationFailedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onVerificationFailedRequest' when calling onVerificationFailed");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/verification.failed";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onVerificationFailedRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

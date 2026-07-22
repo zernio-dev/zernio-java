@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-22T08:26:26.855891996Z[Etc/UTC]
+- Build date: 2026-07-22T08:29:42.281507024Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -912,6 +912,12 @@ Class | Method | HTTP request | Description
 *ValidateApi* | [**validatePostLengthWithHttpInfo**](docs/ValidateApi.md#validatePostLengthWithHttpInfo) | **POST** /v1/tools/validate/post-length | Validate character count
 *ValidateApi* | [**validateSubreddit**](docs/ValidateApi.md#validateSubreddit) | **GET** /v1/tools/validate/subreddit | Check subreddit existence
 *ValidateApi* | [**validateSubredditWithHttpInfo**](docs/ValidateApi.md#validateSubredditWithHttpInfo) | **GET** /v1/tools/validate/subreddit | Check subreddit existence
+*VerifyApi* | [**checkVerification**](docs/VerifyApi.md#checkVerification) | **POST** /v1/verify/verifications/{verificationId}/check | Check a verification code
+*VerifyApi* | [**checkVerificationWithHttpInfo**](docs/VerifyApi.md#checkVerificationWithHttpInfo) | **POST** /v1/verify/verifications/{verificationId}/check | Check a verification code
+*VerifyApi* | [**createVerification**](docs/VerifyApi.md#createVerification) | **POST** /v1/verify/verifications | Send a verification code
+*VerifyApi* | [**createVerificationWithHttpInfo**](docs/VerifyApi.md#createVerificationWithHttpInfo) | **POST** /v1/verify/verifications | Send a verification code
+*VerifyApi* | [**getVerification**](docs/VerifyApi.md#getVerification) | **GET** /v1/verify/verifications/{verificationId} | Get a verification
+*VerifyApi* | [**getVerificationWithHttpInfo**](docs/VerifyApi.md#getVerificationWithHttpInfo) | **GET** /v1/verify/verifications/{verificationId} | Get a verification
 *VoiceApi* | [**createVoiceCall**](docs/VoiceApi.md#createVoiceCall) | **POST** /v1/voice/calls | Place an outbound phone call
 *VoiceApi* | [**createVoiceCallWithHttpInfo**](docs/VoiceApi.md#createVoiceCallWithHttpInfo) | **POST** /v1/voice/calls | Place an outbound phone call
 *VoiceApi* | [**createVoiceWebSession**](docs/VoiceApi.md#createVoiceWebSession) | **POST** /v1/voice/calls/web | Mint a browser softphone session
@@ -1244,6 +1250,8 @@ Class | Method | HTTP request | Description
  - [CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
  - [CheckPhoneNumberPortability200ResponseResultsInner](docs/CheckPhoneNumberPortability200ResponseResultsInner.md)
  - [CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)
+ - [CheckVerification200Response](docs/CheckVerification200Response.md)
+ - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
  - [CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)
@@ -1393,6 +1401,7 @@ Class | Method | HTTP request | Description
  - [CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
+ - [CreateVerificationRequest](docs/CreateVerificationRequest.md)
  - [CreateVoiceCall200Response](docs/CreateVoiceCall200Response.md)
  - [CreateVoiceCallRequest](docs/CreateVoiceCallRequest.md)
  - [CreateVoiceWebSession200Response](docs/CreateVoiceWebSession200Response.md)
@@ -2048,6 +2057,10 @@ Class | Method | HTTP request | Description
  - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [OnVerificationApprovedRequest](docs/OnVerificationApprovedRequest.md)
+ - [OnVerificationApprovedRequestVerification](docs/OnVerificationApprovedRequestVerification.md)
+ - [OnVerificationFailedRequest](docs/OnVerificationFailedRequest.md)
+ - [OnVerificationFailedRequestVerification](docs/OnVerificationFailedRequestVerification.md)
  - [OnWhatsAppAutomaticEventRequest](docs/OnWhatsAppAutomaticEventRequest.md)
  - [OnWhatsAppAutomaticEventRequestCustomData](docs/OnWhatsAppAutomaticEventRequestCustomData.md)
  - [OnWhatsAppNumberActionRequiredRequest](docs/OnWhatsAppNumberActionRequiredRequest.md)
@@ -2505,6 +2518,7 @@ Class | Method | HTTP request | Description
  - [ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
+ - [Verification](docs/Verification.md)
  - [VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
  - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)

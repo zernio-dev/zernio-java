@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateAdCampaignRequestPlatformSpecificData.JSON_PROPERTY_SPEND_CAP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:26:26.855891996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T08:29:42.281507024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequestPlatformSpecificData {
   public static final String JSON_PROPERTY_SPEND_CAP = "spendCap";
   private JsonNullable<BigDecimal> spendCap = JsonNullable.<BigDecimal>undefined();
