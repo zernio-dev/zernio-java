@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateSmsSenderId200Response.JSON_PROPERTY_SENDER_ID,
   CreateSmsSenderId200Response.JSON_PROPERTY_IS_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateSmsSenderId200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

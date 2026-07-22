@@ -31185,12 +31185,16 @@ components:
           body: "#/components/schemas/WhatsAppBodyComponent"
           footer: "#/components/schemas/WhatsAppFooterComponent"
           buttons: "#/components/schemas/WhatsAppButtonsComponent"
+          carousel: "#/components/schemas/WhatsAppCarouselComponent"
+          limited_time_offer: "#/components/schemas/WhatsAppLimitedTimeOfferComponent"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/WhatsAppHeaderComponent"
       - $ref: "#/components/schemas/WhatsAppBodyComponent"
       - $ref: "#/components/schemas/WhatsAppFooterComponent"
       - $ref: "#/components/schemas/WhatsAppButtonsComponent"
+      - $ref: "#/components/schemas/WhatsAppCarouselComponent"
+      - $ref: "#/components/schemas/WhatsAppLimitedTimeOfferComponent"
     WhatsAppHeaderComponent:
       properties:
         type:
@@ -31261,6 +31265,46 @@ components:
           type: array
       required:
       - buttons
+      - type
+    WhatsAppCarouselComponent:
+      properties:
+        type:
+          enum:
+          - carousel
+          type: string
+        cards:
+          description: 2-10 cards. Meta requires all cards to share the same component
+            structure; a mismatch surfaces as a rejected_reason. MARKETING category
+            only.
+          items:
+            $ref: "#/components/schemas/WhatsAppCarouselComponent_cards_inner"
+          maxItems: 10
+          minItems: 2
+          type: array
+      required:
+      - cards
+      - type
+    WhatsAppCarouselCardComponent:
+      discriminator:
+        mapping:
+          header: "#/components/schemas/WhatsAppHeaderComponent"
+          body: "#/components/schemas/WhatsAppBodyComponent"
+          buttons: "#/components/schemas/WhatsAppButtonsComponent"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/WhatsAppHeaderComponent"
+      - $ref: "#/components/schemas/WhatsAppBodyComponent"
+      - $ref: "#/components/schemas/WhatsAppButtonsComponent"
+    WhatsAppLimitedTimeOfferComponent:
+      properties:
+        type:
+          enum:
+          - limited_time_offer
+          type: string
+        limited_time_offer:
+          $ref: "#/components/schemas/WhatsAppLimitedTimeOfferComponent_limited_time_offer"
+      required:
+      - limited_time_offer
       - type
     WhatsAppSandboxSession:
       description: |
@@ -54987,8 +55031,9 @@ components:
           description: "Template language code (e.g., en_US)"
           type: string
         components:
-          description: "Template components (header, body, footer, buttons). Required\
-            \ for custom templates, omit when using library_template_name."
+          description: "Template components (header, body, footer, buttons, carousel,\
+            \ limited_time_offer). Required for custom templates, omit when using\
+            \ library_template_name."
           items:
             $ref: "#/components/schemas/WhatsAppTemplateComponent"
           minItems: 1
@@ -57992,6 +58037,11 @@ components:
           default: false
           description: |
             SMS capability is per-number, not per-country. Pass true to provision from the SMS-capable inventory pool so the number can actually text (see also GET /v1/phone-numbers/available with sms=true, and smsAvailable on GET /v1/phone-numbers/countries).
+          type: boolean
+        wantsWhatsapp:
+          default: false
+          description: |
+            Declare WhatsApp intent on a STANDALONE purchase (connectWhatsapp:false). The number still activates and bills immediately, but if WhatsApp's buy-time check rejects the assigned number, it is automatically swapped for a WhatsApp-eligible one during the purchase instead of being delivered with WhatsApp unavailable. Ignored on the WhatsApp provisioning path (connectWhatsapp omitted or true), which always delivers a WhatsApp-verified number.
           type: boolean
         purchaseIntentId:
           description: |
@@ -73315,6 +73365,31 @@ components:
               type: string
             type: array
           type: array
+    WhatsAppCarouselComponent_cards_inner:
+      properties:
+        components:
+          description: Per-card components. Each card carries its own media header
+            + optional body + up to 2 buttons. Footer and nested carousel are not
+            allowed inside cards.
+          items:
+            $ref: "#/components/schemas/WhatsAppCarouselCardComponent"
+          minItems: 1
+          type: array
+      required:
+      - components
+    WhatsAppLimitedTimeOfferComponent_limited_time_offer:
+      properties:
+        text:
+          description: Short offer label (<=16 chars). MARKETING only.
+          maxLength: 16
+          minLength: 1
+          type: string
+        has_expiration:
+          description: "Toggles the countdown timer. The actual coupon code + expiry\
+            \ are bound at SEND time, not here."
+          type: boolean
+      required:
+      - text
     FoodMenuItem_options_inner:
       example:
         attributes:

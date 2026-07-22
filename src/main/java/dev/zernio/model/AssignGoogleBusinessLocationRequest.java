@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AssignGoogleBusinessLocationRequest.JSON_PROPERTY_SELECTED_LOCATION_ID,
   AssignGoogleBusinessLocationRequest.JSON_PROPERTY_GOOGLE_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AssignGoogleBusinessLocationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

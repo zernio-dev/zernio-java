@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BODY_INPUTS,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BUTTON_INPUTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -230,7 +230,7 @@ public class CreateWhatsAppTemplateRequest {
   }
 
   /**
-   * Template components (header, body, footer, buttons). Required for custom templates, omit when using library_template_name.
+   * Template components (header, body, footer, buttons, carousel, limited_time_offer). Required for custom templates, omit when using library_template_name.
    * @return components
    */
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppGroupChatRequest.JSON_PROPERTY_DESCRIPTION,
   UpdateWhatsAppGroupChatRequest.JSON_PROPERTY_JOIN_APPROVAL_MODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppGroupChatRequest {
   public static final String JSON_PROPERTY_SUBJECT = "subject";
   @javax.annotation.Nullable

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppButtonsComponent.JSON_PROPERTY_TYPE,
   WhatsAppButtonsComponent.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppButtonsComponent {
   /**
    * Gets or Sets type

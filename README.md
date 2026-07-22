@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-22T12:22:59.742712677Z[Etc/UTC]
+- Build date: 2026-07-22T14:58:16.940462168Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2612,9 +2612,14 @@ Class | Method | HTTP request | Description
  - [WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)
  - [WhatsAppButtonsComponent](docs/WhatsAppButtonsComponent.md)
+ - [WhatsAppCarouselCardComponent](docs/WhatsAppCarouselCardComponent.md)
+ - [WhatsAppCarouselComponent](docs/WhatsAppCarouselComponent.md)
+ - [WhatsAppCarouselComponentCardsInner](docs/WhatsAppCarouselComponentCardsInner.md)
  - [WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
+ - [WhatsAppLimitedTimeOfferComponent](docs/WhatsAppLimitedTimeOfferComponent.md)
+ - [WhatsAppLimitedTimeOfferComponentLimitedTimeOffer](docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md)
  - [WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
  - [WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)

@@ -30,8 +30,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.WhatsAppBodyComponent;
 import dev.zernio.model.WhatsAppBodyComponentExample;
 import dev.zernio.model.WhatsAppButtonsComponent;
+import dev.zernio.model.WhatsAppCarouselComponent;
+import dev.zernio.model.WhatsAppCarouselComponentCardsInner;
 import dev.zernio.model.WhatsAppFooterComponent;
 import dev.zernio.model.WhatsAppHeaderComponent;
+import dev.zernio.model.WhatsAppLimitedTimeOfferComponent;
+import dev.zernio.model.WhatsAppLimitedTimeOfferComponentLimitedTimeOffer;
 import dev.zernio.model.WhatsAppTemplateButton;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +67,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = WhatsAppTemplateComponent.WhatsAppTemplateComponentDeserializer.class)
 @JsonSerialize(using = WhatsAppTemplateComponent.WhatsAppTemplateComponentSerializer.class)
 public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
@@ -152,6 +156,32 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
                 log.log(Level.FINER, "Input data does not match schema 'WhatsAppButtonsComponent'", e);
             }
 
+            // deserialize WhatsAppCarouselComponent
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (WhatsAppCarouselComponent.class.equals(Integer.class) || WhatsAppCarouselComponent.class.equals(Long.class) || WhatsAppCarouselComponent.class.equals(Float.class) || WhatsAppCarouselComponent.class.equals(Double.class) || WhatsAppCarouselComponent.class.equals(Boolean.class) || WhatsAppCarouselComponent.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((WhatsAppCarouselComponent.class.equals(Integer.class) || WhatsAppCarouselComponent.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((WhatsAppCarouselComponent.class.equals(Float.class) || WhatsAppCarouselComponent.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (WhatsAppCarouselComponent.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (WhatsAppCarouselComponent.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(WhatsAppCarouselComponent.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'WhatsAppCarouselComponent'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'WhatsAppCarouselComponent'", e);
+            }
+
             // deserialize WhatsAppFooterComponent
             try {
                 boolean attemptParsing = true;
@@ -204,6 +234,32 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
                 log.log(Level.FINER, "Input data does not match schema 'WhatsAppHeaderComponent'", e);
             }
 
+            // deserialize WhatsAppLimitedTimeOfferComponent
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (WhatsAppLimitedTimeOfferComponent.class.equals(Integer.class) || WhatsAppLimitedTimeOfferComponent.class.equals(Long.class) || WhatsAppLimitedTimeOfferComponent.class.equals(Float.class) || WhatsAppLimitedTimeOfferComponent.class.equals(Double.class) || WhatsAppLimitedTimeOfferComponent.class.equals(Boolean.class) || WhatsAppLimitedTimeOfferComponent.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((WhatsAppLimitedTimeOfferComponent.class.equals(Integer.class) || WhatsAppLimitedTimeOfferComponent.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((WhatsAppLimitedTimeOfferComponent.class.equals(Float.class) || WhatsAppLimitedTimeOfferComponent.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (WhatsAppLimitedTimeOfferComponent.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (WhatsAppLimitedTimeOfferComponent.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(WhatsAppLimitedTimeOfferComponent.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'WhatsAppLimitedTimeOfferComponent'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'WhatsAppLimitedTimeOfferComponent'", e);
+            }
+
             if (match == 1) {
                 WhatsAppTemplateComponent ret = new WhatsAppTemplateComponent();
                 ret.setActualInstance(deserialized);
@@ -238,6 +294,11 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
+    public WhatsAppTemplateComponent(WhatsAppCarouselComponent o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public WhatsAppTemplateComponent(WhatsAppFooterComponent o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -248,18 +309,27 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
+    public WhatsAppTemplateComponent(WhatsAppLimitedTimeOfferComponent o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     static {
         schemas.put("WhatsAppBodyComponent", WhatsAppBodyComponent.class);
         schemas.put("WhatsAppButtonsComponent", WhatsAppButtonsComponent.class);
+        schemas.put("WhatsAppCarouselComponent", WhatsAppCarouselComponent.class);
         schemas.put("WhatsAppFooterComponent", WhatsAppFooterComponent.class);
         schemas.put("WhatsAppHeaderComponent", WhatsAppHeaderComponent.class);
+        schemas.put("WhatsAppLimitedTimeOfferComponent", WhatsAppLimitedTimeOfferComponent.class);
         JSON.registerDescendants(WhatsAppTemplateComponent.class, Collections.unmodifiableMap(schemas));
         // Initialize and register the discriminator mappings.
         Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
         mappings.put("body", WhatsAppBodyComponent.class);
         mappings.put("buttons", WhatsAppButtonsComponent.class);
+        mappings.put("carousel", WhatsAppCarouselComponent.class);
         mappings.put("footer", WhatsAppFooterComponent.class);
         mappings.put("header", WhatsAppHeaderComponent.class);
+        mappings.put("limited_time_offer", WhatsAppLimitedTimeOfferComponent.class);
         mappings.put("WhatsAppTemplateComponent", WhatsAppTemplateComponent.class);
         JSON.registerDiscriminator(WhatsAppTemplateComponent.class, "type", mappings);
     }
@@ -272,7 +342,7 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent
+     * WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppCarouselComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent, WhatsAppLimitedTimeOfferComponent
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -289,6 +359,11 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
             return;
         }
 
+        if (JSON.isInstanceOf(WhatsAppCarouselComponent.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (JSON.isInstanceOf(WhatsAppFooterComponent.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
@@ -299,14 +374,19 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent");
+        if (JSON.isInstanceOf(WhatsAppLimitedTimeOfferComponent.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppCarouselComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent, WhatsAppLimitedTimeOfferComponent");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent
+     * WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppCarouselComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent, WhatsAppLimitedTimeOfferComponent
      *
-     * @return The actual instance (WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent)
+     * @return The actual instance (WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppCarouselComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent, WhatsAppLimitedTimeOfferComponent)
      */
     @Override
     public Object getActualInstance() {
@@ -336,6 +416,17 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
     }
 
     /**
+     * Get the actual instance of `WhatsAppCarouselComponent`. If the actual instance is not `WhatsAppCarouselComponent`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `WhatsAppCarouselComponent`
+     * @throws ClassCastException if the instance is not `WhatsAppCarouselComponent`
+     */
+    public WhatsAppCarouselComponent getWhatsAppCarouselComponent() throws ClassCastException {
+        return (WhatsAppCarouselComponent)super.getActualInstance();
+    }
+
+    /**
      * Get the actual instance of `WhatsAppFooterComponent`. If the actual instance is not `WhatsAppFooterComponent`,
      * the ClassCastException will be thrown.
      *
@@ -355,6 +446,17 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
      */
     public WhatsAppHeaderComponent getWhatsAppHeaderComponent() throws ClassCastException {
         return (WhatsAppHeaderComponent)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `WhatsAppLimitedTimeOfferComponent`. If the actual instance is not `WhatsAppLimitedTimeOfferComponent`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `WhatsAppLimitedTimeOfferComponent`
+     * @throws ClassCastException if the instance is not `WhatsAppLimitedTimeOfferComponent`
+     */
+    public WhatsAppLimitedTimeOfferComponent getWhatsAppLimitedTimeOfferComponent() throws ClassCastException {
+        return (WhatsAppLimitedTimeOfferComponent)super.getActualInstance();
     }
 
 
@@ -412,6 +514,18 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
     if (getActualInstance() instanceof WhatsAppButtonsComponent) {
         if (getActualInstance() != null) {
           joiner.add(((WhatsAppButtonsComponent)getActualInstance()).toUrlQueryString(prefix + "one_of_3" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof WhatsAppCarouselComponent) {
+        if (getActualInstance() != null) {
+          joiner.add(((WhatsAppCarouselComponent)getActualInstance()).toUrlQueryString(prefix + "one_of_4" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof WhatsAppLimitedTimeOfferComponent) {
+        if (getActualInstance() != null) {
+          joiner.add(((WhatsAppLimitedTimeOfferComponent)getActualInstance()).toUrlQueryString(prefix + "one_of_5" + suffix));
         }
         return joiner.toString();
     }

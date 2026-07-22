@@ -38,10 +38,11 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumberRequest.JSON_PROPERTY_NUMBER_TYPE,
   PurchasePhoneNumberRequest.JSON_PROPERTY_CONNECT_WHATSAPP,
   PurchasePhoneNumberRequest.JSON_PROPERTY_WANTS_SMS,
+  PurchasePhoneNumberRequest.JSON_PROPERTY_WANTS_WHATSAPP,
   PurchasePhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T12:22:59.742712677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T14:58:16.940462168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -101,6 +102,10 @@ public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_WANTS_SMS = "wantsSms";
   @javax.annotation.Nullable
   private Boolean wantsSms = false;
+
+  public static final String JSON_PROPERTY_WANTS_WHATSAPP = "wantsWhatsapp";
+  @javax.annotation.Nullable
+  private Boolean wantsWhatsapp = false;
 
   public static final String JSON_PROPERTY_PURCHASE_INTENT_ID = "purchaseIntentId";
   @javax.annotation.Nullable
@@ -233,6 +238,30 @@ public class PurchasePhoneNumberRequest {
   }
 
 
+  public PurchasePhoneNumberRequest wantsWhatsapp(@javax.annotation.Nullable Boolean wantsWhatsapp) {
+    this.wantsWhatsapp = wantsWhatsapp;
+    return this;
+  }
+
+  /**
+   * Declare WhatsApp intent on a STANDALONE purchase (connectWhatsapp:false). The number still activates and bills immediately, but if WhatsApp&#39;s buy-time check rejects the assigned number, it is automatically swapped for a WhatsApp-eligible one during the purchase instead of being delivered with WhatsApp unavailable. Ignored on the WhatsApp provisioning path (connectWhatsapp omitted or true), which always delivers a WhatsApp-verified number. 
+   * @return wantsWhatsapp
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WANTS_WHATSAPP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getWantsWhatsapp() {
+    return wantsWhatsapp;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WANTS_WHATSAPP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWantsWhatsapp(@javax.annotation.Nullable Boolean wantsWhatsapp) {
+    this.wantsWhatsapp = wantsWhatsapp;
+  }
+
+
   public PurchasePhoneNumberRequest purchaseIntentId(@javax.annotation.Nullable String purchaseIntentId) {
     this.purchaseIntentId = purchaseIntentId;
     return this;
@@ -298,13 +327,14 @@ public class PurchasePhoneNumberRequest {
         Objects.equals(this.numberType, purchasePhoneNumberRequest.numberType) &&
         Objects.equals(this.connectWhatsapp, purchasePhoneNumberRequest.connectWhatsapp) &&
         Objects.equals(this.wantsSms, purchasePhoneNumberRequest.wantsSms) &&
+        Objects.equals(this.wantsWhatsapp, purchasePhoneNumberRequest.wantsWhatsapp) &&
         Objects.equals(this.purchaseIntentId, purchasePhoneNumberRequest.purchaseIntentId) &&
         Objects.equals(this.allowMultiple, purchasePhoneNumberRequest.allowMultiple);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, numberType, connectWhatsapp, wantsSms, purchaseIntentId, allowMultiple);
+    return Objects.hash(profileId, country, numberType, connectWhatsapp, wantsSms, wantsWhatsapp, purchaseIntentId, allowMultiple);
   }
 
   @Override
@@ -316,6 +346,7 @@ public class PurchasePhoneNumberRequest {
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    connectWhatsapp: ").append(toIndentedString(connectWhatsapp)).append("\n");
     sb.append("    wantsSms: ").append(toIndentedString(wantsSms)).append("\n");
+    sb.append("    wantsWhatsapp: ").append(toIndentedString(wantsWhatsapp)).append("\n");
     sb.append("    purchaseIntentId: ").append(toIndentedString(purchaseIntentId)).append("\n");
     sb.append("    allowMultiple: ").append(toIndentedString(allowMultiple)).append("\n");
     sb.append("}");
@@ -388,6 +419,11 @@ public class PurchasePhoneNumberRequest {
     // add `wantsSms` to the URL query string
     if (getWantsSms() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swantsSms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWantsSms()))));
+    }
+
+    // add `wantsWhatsapp` to the URL query string
+    if (getWantsWhatsapp() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swantsWhatsapp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWantsWhatsapp()))));
     }
 
     // add `purchaseIntentId` to the URL query string
