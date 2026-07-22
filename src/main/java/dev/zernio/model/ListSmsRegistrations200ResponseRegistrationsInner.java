@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.ListSmsRegistrations200ResponseRegistrationsInnerThroughput;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,12 +51,13 @@ import dev.zernio.ApiClient;
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_BRAND_ID,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_CAMPAIGN_ID,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_DECLINE_REASON,
+  ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_TF_ACTION_REQUIRED_AT,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_PHONE_NUMBERS,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_AWAITING_OTP,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_TRUST_SCORE,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_THROUGHPUT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T09:39:55.847838733Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T10:35:29.133499426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSmsRegistrations200ResponseRegistrationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -168,6 +170,9 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
 
   public static final String JSON_PROPERTY_DECLINE_REASON = "declineReason";
   private JsonNullable<String> declineReason = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_TF_ACTION_REQUIRED_AT = "tfActionRequiredAt";
+  private JsonNullable<OffsetDateTime> tfActionRequiredAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_PHONE_NUMBERS = "phoneNumbers";
   @javax.annotation.Nullable
@@ -435,6 +440,38 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
   }
 
 
+  public ListSmsRegistrations200ResponseRegistrationsInner tfActionRequiredAt(@javax.annotation.Nullable OffsetDateTime tfActionRequiredAt) {
+    this.tfActionRequiredAt = JsonNullable.<OffsetDateTime>of(tfActionRequiredAt);
+    return this;
+  }
+
+  /**
+   * Toll-free only: when the carrier requested changes (\&quot;Waiting For Customer\&quot;). The request must be resubmitted within 7 days of this timestamp or it expires.
+   * @return tfActionRequiredAt
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getTfActionRequiredAt() {
+        return tfActionRequiredAt.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TF_ACTION_REQUIRED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getTfActionRequiredAt_JsonNullable() {
+    return tfActionRequiredAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TF_ACTION_REQUIRED_AT)
+  public void setTfActionRequiredAt_JsonNullable(JsonNullable<OffsetDateTime> tfActionRequiredAt) {
+    this.tfActionRequiredAt = tfActionRequiredAt;
+  }
+
+  public void setTfActionRequiredAt(@javax.annotation.Nullable OffsetDateTime tfActionRequiredAt) {
+    this.tfActionRequiredAt = JsonNullable.<OffsetDateTime>of(tfActionRequiredAt);
+  }
+
+
   public ListSmsRegistrations200ResponseRegistrationsInner phoneNumbers(@javax.annotation.Nullable List<String> phoneNumbers) {
     this.phoneNumbers = phoneNumbers;
     return this;
@@ -568,6 +605,7 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
         equalsNullable(this.brandId, listSmsRegistrations200ResponseRegistrationsInner.brandId) &&
         equalsNullable(this.campaignId, listSmsRegistrations200ResponseRegistrationsInner.campaignId) &&
         equalsNullable(this.declineReason, listSmsRegistrations200ResponseRegistrationsInner.declineReason) &&
+        equalsNullable(this.tfActionRequiredAt, listSmsRegistrations200ResponseRegistrationsInner.tfActionRequiredAt) &&
         Objects.equals(this.phoneNumbers, listSmsRegistrations200ResponseRegistrationsInner.phoneNumbers) &&
         Objects.equals(this.awaitingOtp, listSmsRegistrations200ResponseRegistrationsInner.awaitingOtp) &&
         equalsNullable(this.trustScore, listSmsRegistrations200ResponseRegistrationsInner.trustScore) &&
@@ -580,7 +618,7 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, registrationType, hashCodeNullable(displayName), status, brandStatus, campaignStatus, hashCodeNullable(brandId), hashCodeNullable(campaignId), hashCodeNullable(declineReason), phoneNumbers, awaitingOtp, hashCodeNullable(trustScore), throughput);
+    return Objects.hash(id, registrationType, hashCodeNullable(displayName), status, brandStatus, campaignStatus, hashCodeNullable(brandId), hashCodeNullable(campaignId), hashCodeNullable(declineReason), hashCodeNullable(tfActionRequiredAt), phoneNumbers, awaitingOtp, hashCodeNullable(trustScore), throughput);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -603,6 +641,7 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
     sb.append("    brandId: ").append(toIndentedString(brandId)).append("\n");
     sb.append("    campaignId: ").append(toIndentedString(campaignId)).append("\n");
     sb.append("    declineReason: ").append(toIndentedString(declineReason)).append("\n");
+    sb.append("    tfActionRequiredAt: ").append(toIndentedString(tfActionRequiredAt)).append("\n");
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
     sb.append("    awaitingOtp: ").append(toIndentedString(awaitingOtp)).append("\n");
     sb.append("    trustScore: ").append(toIndentedString(trustScore)).append("\n");
@@ -697,6 +736,11 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
     // add `declineReason` to the URL query string
     if (getDeclineReason() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdeclineReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeclineReason()))));
+    }
+
+    // add `tfActionRequiredAt` to the URL query string
+    if (getTfActionRequiredAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stfActionRequiredAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTfActionRequiredAt()))));
     }
 
     // add `phoneNumbers` to the URL query string

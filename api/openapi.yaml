@@ -3724,11 +3724,21 @@ paths:
                 $ref: "#/components/schemas/searchReddit_200_response"
           description: Search results
         "400":
-          description: Missing params
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: |
+            No active Reddit account with this ID is available to the API key.
+            It may have been disconnected or deleted, or it belongs to a profile
+            the key cannot access. Re-connecting an account issues a NEW account
+            ID, so an ID stored from before a reconnect will not resolve.
+        "429":
+          $ref: "#/components/responses/RateLimited"
       summary: Search posts
       tags:
       - Reddit Search
@@ -3840,11 +3850,21 @@ paths:
                 $ref: "#/components/schemas/searchReddit_200_response"
           description: Feed items
         "400":
-          description: Missing params
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: |
+            No active Reddit account with this ID is available to the API key.
+            It may have been disconnected or deleted, or it belongs to a profile
+            the key cannot access. Re-connecting an account issues a NEW account
+            ID, so an ID stored from before a reconnect will not resolve.
+        "429":
+          $ref: "#/components/responses/RateLimited"
       summary: Get subreddit feed
       tags:
       - Reddit Search
@@ -29180,6 +29200,26 @@ components:
           schema:
             $ref: "#/components/schemas/inline_object_1"
       description: Resource not found
+    RateLimited:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: |
+        The connected account's upstream platform quota is exhausted.
+
+        Reddit rate-limits per connected Reddit user (1000 requests per
+        10-minute window), and that budget is shared by every operation using
+        that account. Retry after the window resets rather than retrying
+        immediately; repeated calls while exhausted do not succeed and keep the
+        budget spent.
+      headers:
+        Retry-After:
+          description: Seconds remaining until the upstream quota resets.
+          explode: false
+          schema:
+            type: integer
+          style: simple
     PaymentRequired:
       content:
         application/json:
@@ -55340,6 +55380,7 @@ components:
           type: number
     listSmsRegistrations_200_response_registrations_inner:
       example:
+        tfActionRequiredAt: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
         campaignId: campaignId
         brandStatus: brandStatus
@@ -55398,6 +55439,13 @@ components:
         declineReason:
           nullable: true
           type: string
+        tfActionRequiredAt:
+          description: "Toll-free only: when the carrier requested changes (\"Waiting\
+            \ For Customer\"). The request must be resubmitted within 7 days of this\
+            \ timestamp or it expires."
+          format: date-time
+          nullable: true
+          type: string
         phoneNumbers:
           items:
             type: string
@@ -55414,7 +55462,8 @@ components:
     listSmsRegistrations_200_response:
       example:
         registrations:
-        - displayName: displayName
+        - tfActionRequiredAt: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
           campaignId: campaignId
           brandStatus: brandStatus
           awaitingOtp: true
@@ -55432,7 +55481,8 @@ components:
             label: label
           declineReason: declineReason
           status: pending
-        - displayName: displayName
+        - tfActionRequiredAt: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
           campaignId: campaignId
           brandStatus: brandStatus
           awaitingOtp: true
