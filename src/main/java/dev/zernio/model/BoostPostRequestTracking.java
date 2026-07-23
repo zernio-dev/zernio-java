@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.BoostPostRequestTrackingUrlTagsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,7 +39,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestTracking.JSON_PROPERTY_PIXEL_ID,
   BoostPostRequestTracking.JSON_PROPERTY_URL_TAGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:31:26.225422756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestTracking {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -44,7 +47,7 @@ public class BoostPostRequestTracking {
 
   public static final String JSON_PROPERTY_URL_TAGS = "urlTags";
   @javax.annotation.Nullable
-  private String urlTags;
+  private List<BoostPostRequestTrackingUrlTagsInner> urlTags = new ArrayList<>();
 
   public BoostPostRequestTracking() { 
   }
@@ -73,26 +76,34 @@ public class BoostPostRequestTracking {
   }
 
 
-  public BoostPostRequestTracking urlTags(@javax.annotation.Nullable String urlTags) {
+  public BoostPostRequestTracking urlTags(@javax.annotation.Nullable List<BoostPostRequestTrackingUrlTagsInner> urlTags) {
     this.urlTags = urlTags;
     return this;
   }
 
+  public BoostPostRequestTracking addUrlTagsItem(BoostPostRequestTrackingUrlTagsInner urlTagsItem) {
+    if (this.urlTags == null) {
+      this.urlTags = new ArrayList<>();
+    }
+    this.urlTags.add(urlTagsItem);
+    return this;
+  }
+
   /**
-   * Get urlTags
+   * URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;.
    * @return urlTags
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_URL_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUrlTags() {
+  public List<BoostPostRequestTrackingUrlTagsInner> getUrlTags() {
     return urlTags;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_URL_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrlTags(@javax.annotation.Nullable String urlTags) {
+  public void setUrlTags(@javax.annotation.Nullable List<BoostPostRequestTrackingUrlTagsInner> urlTags) {
     this.urlTags = urlTags;
   }
 
@@ -178,7 +189,12 @@ public class BoostPostRequestTracking {
 
     // add `urlTags` to the URL query string
     if (getUrlTags() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%surlTags%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrlTags()))));
+      for (int i = 0; i < getUrlTags().size(); i++) {
+        if (getUrlTags().get(i) != null) {
+          joiner.add(getUrlTags().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%surlTags%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

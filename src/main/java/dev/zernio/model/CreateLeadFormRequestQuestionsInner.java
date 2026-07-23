@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.CreateLeadFormRequestQuestionsInnerOptionsInner;
+import dev.zernio.model.BoostPostRequestTrackingUrlTagsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CreateLeadFormRequestQuestionsInner.JSON_PROPERTY_OPTIONS,
   CreateLeadFormRequestQuestionsInner.JSON_PROPERTY_INLINE_CONTEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:31:26.225422756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateLeadFormRequestQuestionsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
@@ -58,7 +58,7 @@ public class CreateLeadFormRequestQuestionsInner {
 
   public static final String JSON_PROPERTY_OPTIONS = "options";
   @javax.annotation.Nullable
-  private List<CreateLeadFormRequestQuestionsInnerOptionsInner> options = new ArrayList<>();
+  private List<BoostPostRequestTrackingUrlTagsInner> options = new ArrayList<>();
 
   public static final String JSON_PROPERTY_INLINE_CONTEXT = "inline_context";
   @javax.annotation.Nullable
@@ -139,12 +139,12 @@ public class CreateLeadFormRequestQuestionsInner {
   }
 
 
-  public CreateLeadFormRequestQuestionsInner options(@javax.annotation.Nullable List<CreateLeadFormRequestQuestionsInnerOptionsInner> options) {
+  public CreateLeadFormRequestQuestionsInner options(@javax.annotation.Nullable List<BoostPostRequestTrackingUrlTagsInner> options) {
     this.options = options;
     return this;
   }
 
-  public CreateLeadFormRequestQuestionsInner addOptionsItem(CreateLeadFormRequestQuestionsInnerOptionsInner optionsItem) {
+  public CreateLeadFormRequestQuestionsInner addOptionsItem(BoostPostRequestTrackingUrlTagsInner optionsItem) {
     if (this.options == null) {
       this.options = new ArrayList<>();
     }
@@ -159,14 +159,14 @@ public class CreateLeadFormRequestQuestionsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateLeadFormRequestQuestionsInnerOptionsInner> getOptions() {
+  public List<BoostPostRequestTrackingUrlTagsInner> getOptions() {
     return options;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptions(@javax.annotation.Nullable List<CreateLeadFormRequestQuestionsInnerOptionsInner> options) {
+  public void setOptions(@javax.annotation.Nullable List<BoostPostRequestTrackingUrlTagsInner> options) {
     this.options = options;
   }
 

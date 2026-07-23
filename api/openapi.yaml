@@ -69191,13 +69191,23 @@ components:
           - 0
           - 1
           type: integer
+    boostPost_request_tracking_urlTags_inner:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     boostPost_request_tracking:
       description: "Meta only. Tracking specs (pixel, URL tags)."
       properties:
         pixelId:
           type: string
         urlTags:
-          type: string
+          description: "URL parameters appended to the ad link, rendered as `key=value`\
+            \ pairs joined with `&`."
+          items:
+            $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
+          type: array
     boostPost_request:
       properties:
         postId:
@@ -70900,12 +70910,6 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
-    createLeadForm_request_questions_inner_options_inner:
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     createLeadForm_request_questions_inner:
       properties:
         type:
@@ -70919,7 +70923,7 @@ components:
           type: string
         options:
           items:
-            $ref: "#/components/schemas/createLeadForm_request_questions_inner_options_inner"
+            $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
           type: array
         inline_context:
           type: string

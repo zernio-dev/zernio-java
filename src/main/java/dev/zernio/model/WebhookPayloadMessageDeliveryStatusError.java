@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_MESSAGE,
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_EXPLANATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:31:26.225422756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeliveryStatusError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-23T08:31:26.225422756Z[Etc/UTC]
+- Build date: 2026-07-23T08:55:35.839368632Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1231,6 +1231,7 @@ Class | Method | HTTP request | Description
  - [BoostPostRequestTargetingCustomLocationsInner](docs/BoostPostRequestTargetingCustomLocationsInner.md)
  - [BoostPostRequestTargetingRegionsInner](docs/BoostPostRequestTargetingRegionsInner.md)
  - [BoostPostRequestTracking](docs/BoostPostRequestTracking.md)
+ - [BoostPostRequestTrackingUrlTagsInner](docs/BoostPostRequestTrackingUrlTagsInner.md)
  - [BulkCreateContacts200Response](docs/BulkCreateContacts200Response.md)
  - [BulkCreateContactsRequest](docs/BulkCreateContactsRequest.md)
  - [BulkCreateContactsRequestContactsInner](docs/BulkCreateContactsRequestContactsInner.md)
@@ -1344,7 +1345,6 @@ Class | Method | HTTP request | Description
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
- - [CreateLeadFormRequestQuestionsInnerOptionsInner](docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md)
  - [CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
