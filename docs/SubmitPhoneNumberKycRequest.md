@@ -12,7 +12,8 @@
 |**submissionId** | **String** | Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number. |  [optional] |
 |**quantity** | **Integer** | Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). |  [optional] |
 |**reuse** | **Boolean** | Reuse a prior approved verification for this country (skips document/field collection; places the order immediately). |  [optional] |
-|**reuseFrom** | **String** | Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409. |  [optional] |
+|**reuseOptionId** | **String** | Which reusable verification to use (GET reusable.options[].id). The unambiguous selection key. Omitted &#x3D; the approved default. No match &#x3D; 409. |  [optional] |
+|**reuseFrom** | **String** | Legacy fallback for &#x60;reuseOptionId&#x60;: the source phone number (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels two verifications — prefer &#x60;reuseOptionId&#x60;. Omitted &#x3D; the approved default. No match &#x3D; 409. |  [optional] |
 |**endUserFirstName** | **String** | End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement. |  [optional] |
 |**endUserLastName** | **String** | End user&#39;s legal last name. Same condition as endUserFirstName. |  [optional] |
 |**values** | **Map&lt;String, String&gt;** | requirementId → textual value |  [optional] |

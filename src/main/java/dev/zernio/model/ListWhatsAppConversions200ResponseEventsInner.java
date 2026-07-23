@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppConversions200ResponseEventsInner.JSON_PROPERTY_TRACE_ID,
   ListWhatsAppConversions200ResponseEventsInner.JSON_PROPERTY_DURATION_MS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:08:36.575144095Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppConversions200ResponseEventsInner {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nullable

@@ -36,14 +36,24 @@ import dev.zernio.ApiClient;
  * GetPhoneNumberKycForm200ResponseReusableOptionsInner
  */
 @JsonPropertyOrder({
+  GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_ID,
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_FROM_PHONE_NUMBER,
+  GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_INSTANT,
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:08:36.575144095Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nullable
+  private String id;
+
   public static final String JSON_PROPERTY_FROM_PHONE_NUMBER = "fromPhoneNumber";
   @javax.annotation.Nullable
   private String fromPhoneNumber;
+
+  public static final String JSON_PROPERTY_INSTANT = "instant";
+  @javax.annotation.Nullable
+  private Boolean instant;
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
@@ -52,13 +62,37 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   public GetPhoneNumberKycForm200ResponseReusableOptionsInner() { 
   }
 
+  public GetPhoneNumberKycForm200ResponseReusableOptionsInner id(@javax.annotation.Nullable String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).
+   * @return id
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = id;
+  }
+
+
   public GetPhoneNumberKycForm200ResponseReusableOptionsInner fromPhoneNumber(@javax.annotation.Nullable String fromPhoneNumber) {
     this.fromPhoneNumber = fromPhoneNumber;
     return this;
   }
 
   /**
-   * Get fromPhoneNumber
+   * Display only — the number this verification was submitted for. Not a selection key.
    * @return fromPhoneNumber
    */
   @javax.annotation.Nullable
@@ -73,6 +107,30 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFromPhoneNumber(@javax.annotation.Nullable String fromPhoneNumber) {
     this.fromPhoneNumber = fromPhoneNumber;
+  }
+
+
+  public GetPhoneNumberKycForm200ResponseReusableOptionsInner instant(@javax.annotation.Nullable Boolean instant) {
+    this.instant = instant;
+    return this;
+  }
+
+  /**
+   * true &#x3D; group-approved, a new order activates in minutes; false &#x3D; documents are reused but the order still queues for carrier review (1-3 days).
+   * @return instant
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTANT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getInstant() {
+    return instant;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTANT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstant(@javax.annotation.Nullable Boolean instant) {
+    this.instant = instant;
   }
 
 
@@ -120,20 +178,24 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
       return false;
     }
     GetPhoneNumberKycForm200ResponseReusableOptionsInner getPhoneNumberKycForm200ResponseReusableOptionsInner = (GetPhoneNumberKycForm200ResponseReusableOptionsInner) o;
-    return Objects.equals(this.fromPhoneNumber, getPhoneNumberKycForm200ResponseReusableOptionsInner.fromPhoneNumber) &&
+    return Objects.equals(this.id, getPhoneNumberKycForm200ResponseReusableOptionsInner.id) &&
+        Objects.equals(this.fromPhoneNumber, getPhoneNumberKycForm200ResponseReusableOptionsInner.fromPhoneNumber) &&
+        Objects.equals(this.instant, getPhoneNumberKycForm200ResponseReusableOptionsInner.instant) &&
         Objects.equals(this.details, getPhoneNumberKycForm200ResponseReusableOptionsInner.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fromPhoneNumber, details);
+    return Objects.hash(id, fromPhoneNumber, instant, details);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetPhoneNumberKycForm200ResponseReusableOptionsInner {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    fromPhoneNumber: ").append(toIndentedString(fromPhoneNumber)).append("\n");
+    sb.append("    instant: ").append(toIndentedString(instant)).append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -182,9 +244,19 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `fromPhoneNumber` to the URL query string
     if (getFromPhoneNumber() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfromPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFromPhoneNumber()))));
+    }
+
+    // add `instant` to the URL query string
+    if (getInstant() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstant%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstant()))));
     }
 
     // add `details` to the URL query string

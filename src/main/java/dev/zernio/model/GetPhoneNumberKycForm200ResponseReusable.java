@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Present when this account already has an approved verification for the country that can be reused (skip the form). &#x60;fromPhoneNumber&#x60;/&#x60;details&#x60; mirror the newest option; &#x60;options&#x60; lists ALL approved verifications (agencies hold one per end client) — pass the chosen option&#39;s &#x60;fromPhoneNumber&#x60; as &#x60;reuseFrom&#x60; on POST.
+ * Present when this account already has a reusable verification for the country (skip the form). &#x60;fromPhoneNumber&#x60;/&#x60;details&#x60; mirror the first option; &#x60;options&#x60; lists ALL reusable verifications (agencies hold one per end client), approved-first. Pass the chosen option&#39;s &#x60;id&#x60; as &#x60;reuseOptionId&#x60; on POST. Each option&#39;s &#x60;instant&#x60; says whether it activates in minutes (group-approved) or still queues for carrier review (1-3 days).
  */
 @JsonPropertyOrder({
   GetPhoneNumberKycForm200ResponseReusable.JSON_PROPERTY_AVAILABLE,
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberKycForm200ResponseReusable.JSON_PROPERTY_DETAILS,
   GetPhoneNumberKycForm200ResponseReusable.JSON_PROPERTY_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:08:36.575144095Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable

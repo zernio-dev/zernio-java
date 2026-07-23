@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.JSON_PROPERTY_SENT,
   GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.JSON_PROPERTY_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:08:36.575144095Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

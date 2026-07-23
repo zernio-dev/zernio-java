@@ -44,6 +44,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_SUBMISSION_ID,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_QUANTITY,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE,
+  SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE_OPTION_ID,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE_FROM,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_FIRST_NAME,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_LAST_NAME,
@@ -51,7 +52,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_DOCUMENTS,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:08:36.575144095Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -72,6 +73,10 @@ public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_REUSE = "reuse";
   @javax.annotation.Nullable
   private Boolean reuse;
+
+  public static final String JSON_PROPERTY_REUSE_OPTION_ID = "reuseOptionId";
+  @javax.annotation.Nullable
+  private String reuseOptionId;
 
   public static final String JSON_PROPERTY_REUSE_FROM = "reuseFrom";
   @javax.annotation.Nullable
@@ -222,13 +227,37 @@ public class SubmitWhatsAppNumberKycRequest {
   }
 
 
+  public SubmitWhatsAppNumberKycRequest reuseOptionId(@javax.annotation.Nullable String reuseOptionId) {
+    this.reuseOptionId = reuseOptionId;
+    return this;
+  }
+
+  /**
+   * Which reusable verification to use (GET reusable.options[].id). The unambiguous selection key. Omitted &#x3D; the approved default. No match &#x3D; 409.
+   * @return reuseOptionId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REUSE_OPTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getReuseOptionId() {
+    return reuseOptionId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REUSE_OPTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReuseOptionId(@javax.annotation.Nullable String reuseOptionId) {
+    this.reuseOptionId = reuseOptionId;
+  }
+
+
   public SubmitWhatsAppNumberKycRequest reuseFrom(@javax.annotation.Nullable String reuseFrom) {
     this.reuseFrom = reuseFrom;
     return this;
   }
 
   /**
-   * Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409.
+   * Legacy fallback for &#x60;reuseOptionId&#x60;: the source phone number (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels two verifications — prefer &#x60;reuseOptionId&#x60;. Omitted &#x3D; the approved default. No match &#x3D; 409.
    * @return reuseFrom
    */
   @javax.annotation.Nullable
@@ -399,6 +428,7 @@ public class SubmitWhatsAppNumberKycRequest {
         Objects.equals(this.submissionId, submitWhatsAppNumberKycRequest.submissionId) &&
         Objects.equals(this.quantity, submitWhatsAppNumberKycRequest.quantity) &&
         Objects.equals(this.reuse, submitWhatsAppNumberKycRequest.reuse) &&
+        Objects.equals(this.reuseOptionId, submitWhatsAppNumberKycRequest.reuseOptionId) &&
         Objects.equals(this.reuseFrom, submitWhatsAppNumberKycRequest.reuseFrom) &&
         Objects.equals(this.endUserFirstName, submitWhatsAppNumberKycRequest.endUserFirstName) &&
         Objects.equals(this.endUserLastName, submitWhatsAppNumberKycRequest.endUserLastName) &&
@@ -409,7 +439,7 @@ public class SubmitWhatsAppNumberKycRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseFrom, endUserFirstName, endUserLastName, values, documents, address);
+    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseOptionId, reuseFrom, endUserFirstName, endUserLastName, values, documents, address);
   }
 
   @Override
@@ -421,6 +451,7 @@ public class SubmitWhatsAppNumberKycRequest {
     sb.append("    submissionId: ").append(toIndentedString(submissionId)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    reuse: ").append(toIndentedString(reuse)).append("\n");
+    sb.append("    reuseOptionId: ").append(toIndentedString(reuseOptionId)).append("\n");
     sb.append("    reuseFrom: ").append(toIndentedString(reuseFrom)).append("\n");
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
@@ -497,6 +528,11 @@ public class SubmitWhatsAppNumberKycRequest {
     // add `reuse` to the URL query string
     if (getReuse() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreuse%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReuse()))));
+    }
+
+    // add `reuseOptionId` to the URL query string
+    if (getReuseOptionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreuseOptionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReuseOptionId()))));
     }
 
     // add `reuseFrom` to the URL query string
