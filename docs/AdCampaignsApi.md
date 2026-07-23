@@ -3032,7 +3032,8 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **404** | Ad set not found |  -  |
 | **409** | Campaign is CBO — route to /v1/ads/campaigns/{campaignId} instead |  -  |
-| **501** | bidStrategy not supported on the platform (Meta + TikTok only) |  -  |
+| **422** | bidStrategy is LOWEST_COST_WITH_MIN_ROAS on OpenAI (unsupported: no ROAS-based bidding) |  -  |
+| **501** | bidStrategy not supported on the platform (Meta, TikTok, and OpenAI only) |  -  |
 
 ## updateAdSetWithHttpInfo
 
@@ -3112,7 +3113,8 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Ad set not found |  -  |
 | **409** | Campaign is CBO — route to /v1/ads/campaigns/{campaignId} instead |  -  |
-| **501** | bidStrategy not supported on the platform (Meta + TikTok only) |  -  |
+| **422** | bidStrategy is LOWEST_COST_WITH_MIN_ROAS on OpenAI (unsupported: no ROAS-based bidding) |  -  |
+| **501** | bidStrategy not supported on the platform (Meta, TikTok, and OpenAI only) |  -  |
 
 
 ## updateAdSetStatus
