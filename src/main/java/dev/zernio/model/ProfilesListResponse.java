@@ -36,13 +36,28 @@ import dev.zernio.ApiClient;
  * ProfilesListResponse
  */
 @JsonPropertyOrder({
-  ProfilesListResponse.JSON_PROPERTY_PROFILES
+  ProfilesListResponse.JSON_PROPERTY_PROFILES,
+  ProfilesListResponse.JSON_PROPERTY_TOTAL,
+  ProfilesListResponse.JSON_PROPERTY_SKIP,
+  ProfilesListResponse.JSON_PROPERTY_LIMIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:55:53.102599684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T13:22:48.981118087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesListResponse {
   public static final String JSON_PROPERTY_PROFILES = "profiles";
   @javax.annotation.Nullable
   private List<Profile> profiles = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TOTAL = "total";
+  @javax.annotation.Nullable
+  private Integer total;
+
+  public static final String JSON_PROPERTY_SKIP = "skip";
+  @javax.annotation.Nullable
+  private Integer skip;
+
+  public static final String JSON_PROPERTY_LIMIT = "limit";
+  @javax.annotation.Nullable
+  private Integer limit;
 
   public ProfilesListResponse() { 
   }
@@ -79,6 +94,78 @@ public class ProfilesListResponse {
   }
 
 
+  public ProfilesListResponse total(@javax.annotation.Nullable Integer total) {
+    this.total = total;
+    return this;
+  }
+
+  /**
+   * Total matching profiles across all pages. Present only when limit or skip was passed.
+   * @return total
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getTotal() {
+    return total;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTotal(@javax.annotation.Nullable Integer total) {
+    this.total = total;
+  }
+
+
+  public ProfilesListResponse skip(@javax.annotation.Nullable Integer skip) {
+    this.skip = skip;
+    return this;
+  }
+
+  /**
+   * Offset applied. Present only when limit or skip was passed.
+   * @return skip
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SKIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getSkip() {
+    return skip;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SKIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSkip(@javax.annotation.Nullable Integer skip) {
+    this.skip = skip;
+  }
+
+
+  public ProfilesListResponse limit(@javax.annotation.Nullable Integer limit) {
+    this.limit = limit;
+    return this;
+  }
+
+  /**
+   * Echo of the limit query param. Present only when it was passed.
+   * @return limit
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIMIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getLimit() {
+    return limit;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIMIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLimit(@javax.annotation.Nullable Integer limit) {
+    this.limit = limit;
+  }
+
+
   /**
    * Return true if this ProfilesListResponse object is equal to o.
    */
@@ -91,12 +178,15 @@ public class ProfilesListResponse {
       return false;
     }
     ProfilesListResponse profilesListResponse = (ProfilesListResponse) o;
-    return Objects.equals(this.profiles, profilesListResponse.profiles);
+    return Objects.equals(this.profiles, profilesListResponse.profiles) &&
+        Objects.equals(this.total, profilesListResponse.total) &&
+        Objects.equals(this.skip, profilesListResponse.skip) &&
+        Objects.equals(this.limit, profilesListResponse.limit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profiles);
+    return Objects.hash(profiles, total, skip, limit);
   }
 
   @Override
@@ -104,6 +194,9 @@ public class ProfilesListResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProfilesListResponse {\n");
     sb.append("    profiles: ").append(toIndentedString(profiles)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
+    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -159,6 +252,21 @@ public class ProfilesListResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `total` to the URL query string
+    if (getTotal() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+    }
+
+    // add `skip` to the URL query string
+    if (getSkip() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sskip%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkip()))));
+    }
+
+    // add `limit` to the URL query string
+    if (getLimit() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slimit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLimit()))));
     }
 
     return joiner.toString();

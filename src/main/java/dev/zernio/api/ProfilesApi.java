@@ -19,6 +19,7 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.CreateProfileRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
@@ -60,7 +61,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:55:53.102599684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T13:22:48.981118087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -179,49 +180,53 @@ public class ProfilesApi {
 
   /**
    * Create profile
-   * Creates a new profile with a name, optional description, and color.
+   * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ProfileCreateResponse
    * @throws ApiException if fails to make API call
    */
-  public ProfileCreateResponse createProfile(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest) throws ApiException {
-    return createProfile(createProfileRequest, null);
+  public ProfileCreateResponse createProfile(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return createProfile(createProfileRequest, idempotencyKey, null);
   }
 
   /**
    * Create profile
-   * Creates a new profile with a name, optional description, and color.
+   * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ProfileCreateResponse
    * @throws ApiException if fails to make API call
    */
-  public ProfileCreateResponse createProfile(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ProfileCreateResponse> localVarResponse = createProfileWithHttpInfo(createProfileRequest, headers);
+  public ProfileCreateResponse createProfile(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<ProfileCreateResponse> localVarResponse = createProfileWithHttpInfo(createProfileRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create profile
-   * Creates a new profile with a name, optional description, and color.
+   * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;ProfileCreateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ProfileCreateResponse> createProfileWithHttpInfo(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest) throws ApiException {
-    return createProfileWithHttpInfo(createProfileRequest, null);
+  public ApiResponse<ProfileCreateResponse> createProfileWithHttpInfo(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return createProfileWithHttpInfo(createProfileRequest, idempotencyKey, null);
   }
 
   /**
    * Create profile
-   * Creates a new profile with a name, optional description, and color.
+   * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ProfileCreateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ProfileCreateResponse> createProfileWithHttpInfo(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createProfileRequestBuilder(createProfileRequest, headers);
+  public ApiResponse<ProfileCreateResponse> createProfileWithHttpInfo(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createProfileRequestBuilder(createProfileRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -268,7 +273,7 @@ public class ProfilesApi {
     }
   }
 
-  private HttpRequest.Builder createProfileRequestBuilder(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createProfileRequestBuilder(@javax.annotation.Nonnull CreateProfileRequest createProfileRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createProfileRequest' is set
     if (createProfileRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createProfileRequest' when calling createProfile");
@@ -280,6 +285,9 @@ public class ProfilesApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -538,49 +546,61 @@ public class ProfilesApi {
 
   /**
    * List profiles
-   * Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+   * Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
    * @param includeOverLimit When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)
+   * @param name Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)
+   * @param limit Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)
+   * @param skip Number of profiles to skip, applied after sorting and filtering. (optional)
    * @return ProfilesListResponse
    * @throws ApiException if fails to make API call
    */
-  public ProfilesListResponse listProfiles(@javax.annotation.Nullable Boolean includeOverLimit) throws ApiException {
-    return listProfiles(includeOverLimit, null);
+  public ProfilesListResponse listProfiles(@javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable String name, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listProfiles(includeOverLimit, name, limit, skip, null);
   }
 
   /**
    * List profiles
-   * Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+   * Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
    * @param includeOverLimit When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)
+   * @param name Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)
+   * @param limit Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)
+   * @param skip Number of profiles to skip, applied after sorting and filtering. (optional)
    * @param headers Optional headers to include in the request
    * @return ProfilesListResponse
    * @throws ApiException if fails to make API call
    */
-  public ProfilesListResponse listProfiles(@javax.annotation.Nullable Boolean includeOverLimit, Map<String, String> headers) throws ApiException {
-    ApiResponse<ProfilesListResponse> localVarResponse = listProfilesWithHttpInfo(includeOverLimit, headers);
+  public ProfilesListResponse listProfiles(@javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable String name, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ProfilesListResponse> localVarResponse = listProfilesWithHttpInfo(includeOverLimit, name, limit, skip, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List profiles
-   * Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+   * Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
    * @param includeOverLimit When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)
+   * @param name Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)
+   * @param limit Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)
+   * @param skip Number of profiles to skip, applied after sorting and filtering. (optional)
    * @return ApiResponse&lt;ProfilesListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ProfilesListResponse> listProfilesWithHttpInfo(@javax.annotation.Nullable Boolean includeOverLimit) throws ApiException {
-    return listProfilesWithHttpInfo(includeOverLimit, null);
+  public ApiResponse<ProfilesListResponse> listProfilesWithHttpInfo(@javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable String name, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listProfilesWithHttpInfo(includeOverLimit, name, limit, skip, null);
   }
 
   /**
    * List profiles
-   * Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+   * Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
    * @param includeOverLimit When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)
+   * @param name Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)
+   * @param limit Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)
+   * @param skip Number of profiles to skip, applied after sorting and filtering. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ProfilesListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ProfilesListResponse> listProfilesWithHttpInfo(@javax.annotation.Nullable Boolean includeOverLimit, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listProfilesRequestBuilder(includeOverLimit, headers);
+  public ApiResponse<ProfilesListResponse> listProfilesWithHttpInfo(@javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable String name, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listProfilesRequestBuilder(includeOverLimit, name, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -627,7 +647,7 @@ public class ProfilesApi {
     }
   }
 
-  private HttpRequest.Builder listProfilesRequestBuilder(@javax.annotation.Nullable Boolean includeOverLimit, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listProfilesRequestBuilder(@javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable String name, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -638,6 +658,12 @@ public class ProfilesApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "includeOverLimit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("includeOverLimit", includeOverLimit));
+    localVarQueryParameterBaseName = "name";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("name", name));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "skip";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

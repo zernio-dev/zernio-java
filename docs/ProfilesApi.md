@@ -19,11 +19,11 @@ All URIs are relative to *https://zernio.com/api*
 
 ## createProfile
 
-> ProfileCreateResponse createProfile(createProfileRequest)
+> ProfileCreateResponse createProfile(createProfileRequest, idempotencyKey)
 
 Create profile
 
-Creates a new profile with a name, optional description, and color.
+Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
 
 ### Example
 
@@ -47,8 +47,9 @@ public class Example {
 
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         CreateProfileRequest createProfileRequest = new CreateProfileRequest(); // CreateProfileRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ProfileCreateResponse result = apiInstance.createProfile(createProfileRequest);
+            ProfileCreateResponse result = apiInstance.createProfile(createProfileRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ProfilesApi#createProfile");
@@ -67,6 +68,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createProfileRequest** | [**CreateProfileRequest**](CreateProfileRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -90,15 +92,16 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X (Twitter) account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not just the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connection cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60; to add a payment method via Zernio&#39;s hosted Stripe Setup Checkout. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | Profile limit exceeded |  -  |
-| **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
+| **409** | A profile with this name already exists (code: profile_name_conflict); details.existingProfileId carries the id of the existing profile. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different body |  -  |
 
 ## createProfileWithHttpInfo
 
-> ApiResponse<ProfileCreateResponse> createProfile createProfileWithHttpInfo(createProfileRequest)
+> ApiResponse<ProfileCreateResponse> createProfile createProfileWithHttpInfo(createProfileRequest, idempotencyKey)
 
 Create profile
 
-Creates a new profile with a name, optional description, and color.
+Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
 
 ### Example
 
@@ -123,8 +126,9 @@ public class Example {
 
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         CreateProfileRequest createProfileRequest = new CreateProfileRequest(); // CreateProfileRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<ProfileCreateResponse> response = apiInstance.createProfileWithHttpInfo(createProfileRequest);
+            ApiResponse<ProfileCreateResponse> response = apiInstance.createProfileWithHttpInfo(createProfileRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -145,6 +149,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createProfileRequest** | [**CreateProfileRequest**](CreateProfileRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -168,7 +173,8 @@ ApiResponse<[**ProfileCreateResponse**](ProfileCreateResponse.md)>
 | **401** | Unauthorized |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X (Twitter) account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not just the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connection cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60; to add a payment method via Zernio&#39;s hosted Stripe Setup Checkout. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | Profile limit exceeded |  -  |
-| **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
+| **409** | A profile with this name already exists (code: profile_name_conflict); details.existingProfileId carries the id of the existing profile. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different body |  -  |
 
 
 ## deleteProfile
@@ -473,11 +479,11 @@ ApiResponse<[**ProfileGetResponse**](ProfileGetResponse.md)>
 
 ## listProfiles
 
-> ProfilesListResponse listProfiles(includeOverLimit)
+> ProfilesListResponse listProfiles(includeOverLimit, name, limit, skip)
 
 List profiles
 
-Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
 
 ### Example
 
@@ -501,8 +507,11 @@ public class Example {
 
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         Boolean includeOverLimit = false; // Boolean | When true, includes over-limit profiles (marked with isOverLimit: true).
+        String name = "name_example"; // String | Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry).
+        Integer limit = 56; // Integer | Page size. When limit or skip is present, the response includes total and skip (and echoes limit).
+        Integer skip = 56; // Integer | Number of profiles to skip, applied after sorting and filtering.
         try {
-            ProfilesListResponse result = apiInstance.listProfiles(includeOverLimit);
+            ProfilesListResponse result = apiInstance.listProfiles(includeOverLimit, name, limit, skip);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ProfilesApi#listProfiles");
@@ -521,6 +530,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **includeOverLimit** | **Boolean**| When true, includes over-limit profiles (marked with isOverLimit: true). | [optional] [default to false] |
+| **name** | **String**| Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). | [optional] |
+| **limit** | **Integer**| Page size. When limit or skip is present, the response includes total and skip (and echoes limit). | [optional] |
+| **skip** | **Integer**| Number of profiles to skip, applied after sorting and filtering. | [optional] |
 
 ### Return type
 
@@ -540,15 +552,16 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profiles |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listProfilesWithHttpInfo
 
-> ApiResponse<ProfilesListResponse> listProfiles listProfilesWithHttpInfo(includeOverLimit)
+> ApiResponse<ProfilesListResponse> listProfiles listProfilesWithHttpInfo(includeOverLimit, name, limit, skip)
 
 List profiles
 
-Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
 
 ### Example
 
@@ -573,8 +586,11 @@ public class Example {
 
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         Boolean includeOverLimit = false; // Boolean | When true, includes over-limit profiles (marked with isOverLimit: true).
+        String name = "name_example"; // String | Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry).
+        Integer limit = 56; // Integer | Page size. When limit or skip is present, the response includes total and skip (and echoes limit).
+        Integer skip = 56; // Integer | Number of profiles to skip, applied after sorting and filtering.
         try {
-            ApiResponse<ProfilesListResponse> response = apiInstance.listProfilesWithHttpInfo(includeOverLimit);
+            ApiResponse<ProfilesListResponse> response = apiInstance.listProfilesWithHttpInfo(includeOverLimit, name, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -595,6 +611,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **includeOverLimit** | **Boolean**| When true, includes over-limit profiles (marked with isOverLimit: true). | [optional] [default to false] |
+| **name** | **String**| Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). | [optional] |
+| **limit** | **Integer**| Page size. When limit or skip is present, the response includes total and skip (and echoes limit). | [optional] |
+| **skip** | **Integer**| Number of profiles to skip, applied after sorting and filtering. | [optional] |
 
 ### Return type
 
@@ -614,6 +633,7 @@ ApiResponse<[**ProfilesListResponse**](ProfilesListResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profiles |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

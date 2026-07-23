@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_PROFILE_ID,
   ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_CONNECTED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:55:53.102599684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T13:22:48.981118087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseConnectedInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

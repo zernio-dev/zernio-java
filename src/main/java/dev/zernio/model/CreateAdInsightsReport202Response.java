@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateAdInsightsReport202Response.JSON_PROPERTY_REPORT_RUN_ID,
   CreateAdInsightsReport202Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:55:53.102599684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T13:22:48.981118087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdInsightsReport202Response {
   public static final String JSON_PROPERTY_REPORT_RUN_ID = "reportRunId";
   @javax.annotation.Nullable
