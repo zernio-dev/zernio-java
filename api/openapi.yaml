@@ -71030,8 +71030,7 @@ components:
           status: validated
       properties:
         validateOnly:
-          enum:
-          - true
+          description: Always true in a validate-only response.
           type: boolean
         results:
           items:

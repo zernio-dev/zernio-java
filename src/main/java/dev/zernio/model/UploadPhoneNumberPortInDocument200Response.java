@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UploadPhoneNumberPortInDocument200Response.JSON_PROPERTY_DOCUMENT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:24:10.471440542Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:53:03.439384580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadPhoneNumberPortInDocument200Response {
   public static final String JSON_PROPERTY_DOCUMENT_ID = "documentId";
   @javax.annotation.Nullable

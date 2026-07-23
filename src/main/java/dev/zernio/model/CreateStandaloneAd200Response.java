@@ -40,44 +40,11 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd200Response.JSON_PROPERTY_RESULTS,
   CreateStandaloneAd200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:24:10.471440542Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:53:03.439384580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd200Response {
-  /**
-   * Gets or Sets validateOnly
-   */
-  public enum ValidateOnlyEnum {
-    TRUE(Boolean.valueOf("true"));
-
-    private Boolean value;
-
-    ValidateOnlyEnum(Boolean value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Boolean getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ValidateOnlyEnum fromValue(Boolean value) {
-      for (ValidateOnlyEnum b : ValidateOnlyEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable
-  private ValidateOnlyEnum validateOnly;
+  private Boolean validateOnly;
 
   public static final String JSON_PROPERTY_RESULTS = "results";
   @javax.annotation.Nullable
@@ -90,26 +57,26 @@ public class CreateStandaloneAd200Response {
   public CreateStandaloneAd200Response() { 
   }
 
-  public CreateStandaloneAd200Response validateOnly(@javax.annotation.Nullable ValidateOnlyEnum validateOnly) {
+  public CreateStandaloneAd200Response validateOnly(@javax.annotation.Nullable Boolean validateOnly) {
     this.validateOnly = validateOnly;
     return this;
   }
 
   /**
-   * Get validateOnly
+   * Always true in a validate-only response.
    * @return validateOnly
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_VALIDATE_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public ValidateOnlyEnum getValidateOnly() {
+  public Boolean getValidateOnly() {
     return validateOnly;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_VALIDATE_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setValidateOnly(@javax.annotation.Nullable ValidateOnlyEnum validateOnly) {
+  public void setValidateOnly(@javax.annotation.Nullable Boolean validateOnly) {
     this.validateOnly = validateOnly;
   }
 

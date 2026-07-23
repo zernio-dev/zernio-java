@@ -7,17 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**validateOnly** | [**ValidateOnlyEnum**](#ValidateOnlyEnum) |  |  [optional] |
+|**validateOnly** | **Boolean** | Always true in a validate-only response. |  [optional] |
 |**results** | [**List&lt;CreateStandaloneAd200ResponseResultsInner&gt;**](CreateStandaloneAd200ResponseResultsInner.md) |  |  [optional] |
 |**message** | **String** |  |  [optional] |
-
-
-
-## Enum: ValidateOnlyEnum
-
-| Name | Value |
-|---- | -----|
-| TRUE | &quot;true&quot; |
 
 
 
