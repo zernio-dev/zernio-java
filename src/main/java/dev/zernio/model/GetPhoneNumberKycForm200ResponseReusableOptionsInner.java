@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetPhoneNumberKycForm200ResponseReusableDetailsInner;
+import dev.zernio.model.GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_INSTANT,
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:52:50.430351292Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -57,7 +57,7 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
-  private List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> details = new ArrayList<>();
+  private List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> details = new ArrayList<>();
 
   public GetPhoneNumberKycForm200ResponseReusableOptionsInner() { 
   }
@@ -134,12 +134,12 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   }
 
 
-  public GetPhoneNumberKycForm200ResponseReusableOptionsInner details(@javax.annotation.Nullable List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> details) {
+  public GetPhoneNumberKycForm200ResponseReusableOptionsInner details(@javax.annotation.Nullable List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> details) {
     this.details = details;
     return this;
   }
 
-  public GetPhoneNumberKycForm200ResponseReusableOptionsInner addDetailsItem(GetPhoneNumberKycForm200ResponseReusableDetailsInner detailsItem) {
+  public GetPhoneNumberKycForm200ResponseReusableOptionsInner addDetailsItem(GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner detailsItem) {
     if (this.details == null) {
       this.details = new ArrayList<>();
     }
@@ -154,14 +154,14 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> getDetails() {
+  public List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> getDetails() {
     return details;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(@javax.annotation.Nullable List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> details) {
+  public void setDetails(@javax.annotation.Nullable List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> details) {
     this.details = details;
   }
 

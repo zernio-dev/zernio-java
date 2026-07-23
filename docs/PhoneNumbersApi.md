@@ -48,6 +48,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**uploadPhoneNumberPortInDocumentWithHttpInfo**](PhoneNumbersApi.md#uploadPhoneNumberPortInDocumentWithHttpInfo) | **POST** /v1/phone-numbers/port-in/documents | Upload a porting document |
 | [**validatePhoneNumberKycAddress**](PhoneNumbersApi.md#validatePhoneNumberKycAddress) | **POST** /v1/phone-numbers/kyc/validate-address | Pre-validate KYC address |
 | [**validatePhoneNumberKycAddressWithHttpInfo**](PhoneNumbersApi.md#validatePhoneNumberKycAddressWithHttpInfo) | **POST** /v1/phone-numbers/kyc/validate-address | Pre-validate KYC address |
+| [**viewPhoneNumberKycDocument**](PhoneNumbersApi.md#viewPhoneNumberKycDocument) | **GET** /v1/phone-numbers/kyc/document/{documentId} | View a KYC document on file |
+| [**viewPhoneNumberKycDocumentWithHttpInfo**](PhoneNumbersApi.md#viewPhoneNumberKycDocumentWithHttpInfo) | **GET** /v1/phone-numbers/kyc/document/{documentId} | View a KYC document on file |
 
 
 
@@ -3359,4 +3361,154 @@ ApiResponse<[**ValidatePhoneNumberKycAddress200Response**](ValidatePhoneNumberKy
 | **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
 | **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## viewPhoneNumberKycDocument
+
+> File viewPhoneNumberKycDocument(documentId)
+
+View a KYC document on file
+
+Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String documentId = "documentId_example"; // String | The Telnyx document id (from `reusable.options[].details[].documentId`).
+        try {
+            File result = apiInstance.viewPhoneNumberKycDocument(documentId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#viewPhoneNumberKycDocument");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). | |
+
+### Return type
+
+[**File**](File.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/pdf, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The document, streamed inline. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | No such document for this account. |  -  |
+
+## viewPhoneNumberKycDocumentWithHttpInfo
+
+> ApiResponse<File> viewPhoneNumberKycDocument viewPhoneNumberKycDocumentWithHttpInfo(documentId)
+
+View a KYC document on file
+
+Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String documentId = "documentId_example"; // String | The Telnyx document id (from `reusable.options[].details[].documentId`).
+        try {
+            ApiResponse<File> response = apiInstance.viewPhoneNumberKycDocumentWithHttpInfo(documentId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#viewPhoneNumberKycDocument");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **documentId** | **String**| The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). | |
+
+### Return type
+
+ApiResponse<[**File**](File.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/pdf, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The document, streamed inline. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | No such document for this account. |  -  |
 

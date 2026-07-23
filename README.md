@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-23T10:29:08.819877803Z[Etc/UTC]
+- Build date: 2026-07-23T10:52:50.430351292Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -740,6 +740,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**uploadPhoneNumberPortInDocumentWithHttpInfo**](docs/PhoneNumbersApi.md#uploadPhoneNumberPortInDocumentWithHttpInfo) | **POST** /v1/phone-numbers/port-in/documents | Upload a porting document
 *PhoneNumbersApi* | [**validatePhoneNumberKycAddress**](docs/PhoneNumbersApi.md#validatePhoneNumberKycAddress) | **POST** /v1/phone-numbers/kyc/validate-address | Pre-validate KYC address
 *PhoneNumbersApi* | [**validatePhoneNumberKycAddressWithHttpInfo**](docs/PhoneNumbersApi.md#validatePhoneNumberKycAddressWithHttpInfo) | **POST** /v1/phone-numbers/kyc/validate-address | Pre-validate KYC address
+*PhoneNumbersApi* | [**viewPhoneNumberKycDocument**](docs/PhoneNumbersApi.md#viewPhoneNumberKycDocument) | **GET** /v1/phone-numbers/kyc/document/{documentId} | View a KYC document on file
+*PhoneNumbersApi* | [**viewPhoneNumberKycDocumentWithHttpInfo**](docs/PhoneNumbersApi.md#viewPhoneNumberKycDocumentWithHttpInfo) | **GET** /v1/phone-numbers/kyc/document/{documentId} | View a KYC document on file
 *PostsApi* | [**bulkUploadPosts**](docs/PostsApi.md#bulkUploadPosts) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**bulkUploadPostsWithHttpInfo**](docs/PostsApi.md#bulkUploadPostsWithHttpInfo) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**createPost**](docs/PostsApi.md#createPost) | **POST** /v1/posts | Create post
@@ -1743,6 +1745,7 @@ Class | Method | HTTP request | Description
  - [GetPhoneNumberKycForm200ResponseReusable](docs/GetPhoneNumberKycForm200ResponseReusable.md)
  - [GetPhoneNumberKycForm200ResponseReusableDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableDetailsInner.md)
  - [GetPhoneNumberKycForm200ResponseReusableOptionsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInner.md)
+ - [GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner.md)
  - [GetPhoneNumberPortInOrderRequirements200Response](docs/GetPhoneNumberPortInOrderRequirements200Response.md)
  - [GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner](docs/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.md)
  - [GetPhoneNumberPortInRequirements200Response](docs/GetPhoneNumberPortInRequirements200Response.md)

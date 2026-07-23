@@ -87,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:29:08.819877803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:52:50.430351292Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2998,6 +2998,123 @@ public class PhoneNumbersApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * View a KYC document on file
+   * Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+   * @param documentId The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). (required)
+   * @return File
+   * @throws ApiException if fails to make API call
+   */
+  public File viewPhoneNumberKycDocument(@javax.annotation.Nonnull String documentId) throws ApiException {
+    return viewPhoneNumberKycDocument(documentId, null);
+  }
+
+  /**
+   * View a KYC document on file
+   * Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+   * @param documentId The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return File
+   * @throws ApiException if fails to make API call
+   */
+  public File viewPhoneNumberKycDocument(@javax.annotation.Nonnull String documentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<File> localVarResponse = viewPhoneNumberKycDocumentWithHttpInfo(documentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * View a KYC document on file
+   * Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+   * @param documentId The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). (required)
+   * @return ApiResponse&lt;File&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<File> viewPhoneNumberKycDocumentWithHttpInfo(@javax.annotation.Nonnull String documentId) throws ApiException {
+    return viewPhoneNumberKycDocumentWithHttpInfo(documentId, null);
+  }
+
+  /**
+   * View a KYC document on file
+   * Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+   * @param documentId The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;File&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<File> viewPhoneNumberKycDocumentWithHttpInfo(@javax.annotation.Nonnull String documentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = viewPhoneNumberKycDocumentRequestBuilder(documentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("viewPhoneNumberKycDocument", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<File>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        // Handle file downloading.
+        File responseValue = downloadFileFromResponse(localVarResponse, localVarResponseBody);
+        
+
+        return new ApiResponse<File>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder viewPhoneNumberKycDocumentRequestBuilder(@javax.annotation.Nonnull String documentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'documentId' is set
+    if (documentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'documentId' when calling viewPhoneNumberKycDocument");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/kyc/document/{documentId}"
+        .replace("{documentId}", ApiClient.urlEncode(documentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/pdf, application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

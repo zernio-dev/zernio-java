@@ -19807,6 +19807,45 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/phone-numbers/kyc/document/{documentId}:
+    get:
+      description: |
+        Stream a document backing a reusable verification (the `documentId`
+        values from GET /v1/phone-numbers/kyc `reusable.options[].details[]`), so
+        the account holder can see what's on file before reusing it. Returned
+        inline as `application/pdf` (uploads are normalized to PDF). Auth-scoped:
+        a document is viewable only when its id is referenced by one of the
+        caller's own numbers — otherwise `404`.
+      operationId: viewPhoneNumberKycDocument
+      parameters:
+      - description: "The Telnyx document id (from `reusable.options[].details[].documentId`)."
+        explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: "The document, streamed inline."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: No such document for this account.
+      summary: View a KYC document on file
+      tags:
+      - Phone Numbers
+      x-accepts:
+      - application/json
+      - application/pdf
   /v1/phone-numbers/kyc/upload-document:
     post:
       description: |
@@ -59045,12 +59084,28 @@ components:
           type: string
         value:
           type: string
+    getPhoneNumberKycForm_200_response_reusable_options_inner_details_inner:
+      example:
+        documentId: documentId
+        label: label
+        value: value
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        documentId:
+          description: "Present on document rows — the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId}\
+            \ streams it (auth-scoped, inline PDF)."
+          type: string
     getPhoneNumberKycForm_200_response_reusable_options_inner:
       example:
         details:
-        - label: label
+        - documentId: documentId
+          label: label
           value: value
-        - label: label
+        - documentId: documentId
+          label: label
           value: value
         id: id
         fromPhoneNumber: fromPhoneNumber
@@ -59071,7 +59126,7 @@ components:
           type: boolean
         details:
           items:
-            $ref: "#/components/schemas/getPhoneNumberKycForm_200_response_reusable_details_inner"
+            $ref: "#/components/schemas/getPhoneNumberKycForm_200_response_reusable_options_inner_details_inner"
           type: array
     getPhoneNumberKycForm_200_response_reusable:
       description: "Present when this account already has a reusable verification\
@@ -59084,17 +59139,21 @@ components:
         available: true
         options:
         - details:
-          - label: label
+          - documentId: documentId
+            label: label
             value: value
-          - label: label
+          - documentId: documentId
+            label: label
             value: value
           id: id
           fromPhoneNumber: fromPhoneNumber
           instant: true
         - details:
-          - label: label
+          - documentId: documentId
+            label: label
             value: value
-          - label: label
+          - documentId: documentId
+            label: label
             value: value
           id: id
           fromPhoneNumber: fromPhoneNumber
@@ -59143,17 +59202,21 @@ components:
           available: true
           options:
           - details:
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
             id: id
             fromPhoneNumber: fromPhoneNumber
             instant: true
           - details:
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
             id: id
             fromPhoneNumber: fromPhoneNumber
@@ -60224,17 +60287,21 @@ components:
           available: true
           options:
           - details:
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
             id: id
             fromPhoneNumber: fromPhoneNumber
             instant: true
           - details:
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
-            - label: label
+            - documentId: documentId
+              label: label
               value: value
             id: id
             fromPhoneNumber: fromPhoneNumber
