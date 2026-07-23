@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**addTrackingTagSharedAccountWithHttpInfo**](TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
 | [**createTrackingTag**](TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
 | [**createTrackingTagWithHttpInfo**](TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
+| [**getAdTrackingTags**](TrackingTagsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
+| [**getAdTrackingTagsWithHttpInfo**](TrackingTagsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getTrackingTag**](TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**getTrackingTagWithHttpInfo**](TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**getTrackingTagStats**](TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
@@ -18,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listTrackingTagsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**removeTrackingTagSharedAccount**](TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
 | [**removeTrackingTagSharedAccountWithHttpInfo**](TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
+| [**updateAdTrackingTags**](TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
+| [**updateAdTrackingTagsWithHttpInfo**](TrackingTagsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateTrackingTag**](TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
 | [**updateTrackingTagWithHttpInfo**](TrackingTagsApi.md#updateTrackingTagWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
 
@@ -341,6 +345,156 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support creating tracking tags. |  -  |
+
+
+## getAdTrackingTags
+
+> GetAdTrackingTags200Response getAdTrackingTags(adId)
+
+Get ad tracking tags
+
+Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String adId = "adId_example"; // String | Ad id (hex _id, platformAdId, or effective story/media id).
+        try {
+            GetAdTrackingTags200Response result = apiInstance.getAdTrackingTags(adId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#getAdTrackingTags");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Ad id (hex _id, platformAdId, or effective story/media id). | |
+
+### Return type
+
+[**GetAdTrackingTags200Response**](GetAdTrackingTags200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking tags for the ad&#39;s platform (shape varies by platform). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
+
+## getAdTrackingTagsWithHttpInfo
+
+> ApiResponse<GetAdTrackingTags200Response> getAdTrackingTags getAdTrackingTagsWithHttpInfo(adId)
+
+Get ad tracking tags
+
+Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String adId = "adId_example"; // String | Ad id (hex _id, platformAdId, or effective story/media id).
+        try {
+            ApiResponse<GetAdTrackingTags200Response> response = apiInstance.getAdTrackingTagsWithHttpInfo(adId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#getAdTrackingTags");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Ad id (hex _id, platformAdId, or effective story/media id). | |
+
+### Return type
+
+ApiResponse<[**GetAdTrackingTags200Response**](GetAdTrackingTags200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking tags for the ad&#39;s platform (shape varies by platform). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
 
 
 ## getTrackingTag
@@ -1141,6 +1295,160 @@ ApiResponse<Void>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+
+
+## updateAdTrackingTags
+
+> void updateAdTrackingTags(adId, updateAdTrackingTagsRequest)
+
+Set ad tracking tags
+
+Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String adId = "adId_example"; // String | 
+        UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = new UpdateAdTrackingTagsRequest(); // UpdateAdTrackingTagsRequest | 
+        try {
+            apiInstance.updateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#updateAdTrackingTags");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**|  | |
+| **updateAdTrackingTagsRequest** | [**UpdateAdTrackingTagsRequest**](UpdateAdTrackingTagsRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
+| **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
+
+## updateAdTrackingTagsWithHttpInfo
+
+> ApiResponse<Void> updateAdTrackingTags updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest)
+
+Set ad tracking tags
+
+Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String adId = "adId_example"; // String | 
+        UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = new UpdateAdTrackingTagsRequest(); // UpdateAdTrackingTagsRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#updateAdTrackingTags");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**|  | |
+| **updateAdTrackingTagsRequest** | [**UpdateAdTrackingTagsRequest**](UpdateAdTrackingTagsRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
+| **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
 
 
 ## updateTrackingTag

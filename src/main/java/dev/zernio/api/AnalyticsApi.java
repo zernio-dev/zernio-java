@@ -91,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T15:24:00.536456973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:31:26.225422756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3272,11 +3272,11 @@ public class AnalyticsApi {
 
   /**
    * Get YouTube daily views
-   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)
    * @return YouTubeDailyViewsResponse
    * @throws ApiException if fails to make API call
    */
@@ -3286,11 +3286,11 @@ public class AnalyticsApi {
 
   /**
    * Get YouTube daily views
-   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)
    * @param headers Optional headers to include in the request
    * @return YouTubeDailyViewsResponse
    * @throws ApiException if fails to make API call
@@ -3302,11 +3302,11 @@ public class AnalyticsApi {
 
   /**
    * Get YouTube daily views
-   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)
    * @return ApiResponse&lt;YouTubeDailyViewsResponse&gt;
    * @throws ApiException if fails to make API call
    */
@@ -3316,11 +3316,11 @@ public class AnalyticsApi {
 
   /**
    * Get YouTube daily views
-   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+   * Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;YouTubeDailyViewsResponse&gt;
    * @throws ApiException if fails to make API call
@@ -3431,7 +3431,7 @@ public class AnalyticsApi {
    * @param videoId YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)
    * @param breakdown Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)
    * @param startDate Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)
-   * @param endDate End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @return YouTubeDemographicsResponse
    * @throws ApiException if fails to make API call
    */
@@ -3446,7 +3446,7 @@ public class AnalyticsApi {
    * @param videoId YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)
    * @param breakdown Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)
    * @param startDate Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)
-   * @param endDate End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @param headers Optional headers to include in the request
    * @return YouTubeDemographicsResponse
    * @throws ApiException if fails to make API call
@@ -3463,7 +3463,7 @@ public class AnalyticsApi {
    * @param videoId YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)
    * @param breakdown Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)
    * @param startDate Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)
-   * @param endDate End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @return ApiResponse&lt;YouTubeDemographicsResponse&gt;
    * @throws ApiException if fails to make API call
    */
@@ -3478,7 +3478,7 @@ public class AnalyticsApi {
    * @param videoId YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)
    * @param breakdown Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)
    * @param startDate Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)
-   * @param endDate End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;YouTubeDemographicsResponse&gt;
    * @throws ApiException if fails to make API call
@@ -3586,7 +3586,7 @@ public class AnalyticsApi {
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @return YouTubeVideoRetentionResponse
    * @throws ApiException if fails to make API call
    */
@@ -3600,7 +3600,7 @@ public class AnalyticsApi {
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @param headers Optional headers to include in the request
    * @return YouTubeVideoRetentionResponse
    * @throws ApiException if fails to make API call
@@ -3616,7 +3616,7 @@ public class AnalyticsApi {
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @return ApiResponse&lt;YouTubeVideoRetentionResponse&gt;
    * @throws ApiException if fails to make API call
    */
@@ -3630,7 +3630,7 @@ public class AnalyticsApi {
    * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
    * @param accountId The Zernio account ID for the YouTube account (required)
    * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
-   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;YouTubeVideoRetentionResponse&gt;
    * @throws ApiException if fails to make API call

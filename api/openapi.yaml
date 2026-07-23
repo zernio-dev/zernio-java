@@ -197,21 +197,59 @@ tags:
     auto-creates contacts.
   name: Comment Automations
 - description: |
-    Paid advertising management across Meta (Facebook/Instagram), Google, TikTok, LinkedIn, Pinterest, and X/Twitter.
-    Create, boost, pause/resume ads and campaigns, view metrics, and manage audiences.
-    Requires the Ads add-on.
-  name: Ads
-- description: |
-    Campaign-level operations. Campaigns are virtual aggregations of ads grouped by their platform campaign ID.
-    List campaigns with aggregate metrics, or pause/resume all ads in a campaign at once.
-    Requires the Ads add-on.
+    The advertising structure: campaigns, ad sets, and ads. Create standalone campaigns/ads, boost an
+    organic post, duplicate at any level, pause/resume, and read the full tree and timeline. Campaigns
+    are virtual aggregations of ads grouped by their platform campaign ID.
+    Per-operation platform support is shown by the platform badges. Requires the Ads add-on.
   name: Ad Campaigns
 - description: |
-    Custom audience management for ad targeting. Create customer lists, website retargeting audiences,
-    and lookalike audiences. Upload user data (hashed server-side). Currently Meta-only for creation,
-    read-only for other platforms.
+    Creative assets: the standalone creative library (create/reuse/rename), the ad-account image library
+    (list + base64 upload), rendered ad previews, and product catalogs for Advantage+/dynamic ads. Meta only.
+    Requires the Ads add-on.
+  name: Ad Creatives
+- description: |
+    Custom audiences for targeting: customer lists (hashed upload), website + engagement + lookalike
+    audiences, and reusable saved-targeting presets. Creation support varies by platform (badges show which);
+    LinkedIn adds company-list and engagement segments.
     Requires the Ads add-on.
   name: Ad Audiences
+- description: |
+    Targeting discovery: search interests/behaviors/geo/demographics, estimate reach, and (LinkedIn)
+    bid pricing and supply forecasts. Feeds the targeting fields on create.
+    Requires the Ads add-on.
+  name: Ad Targeting
+- description: |
+    Measurement: cached aggregate analytics per ad/campaign, plus live Meta Graph insight queries
+    (arbitrary fields, breakdowns, filtering, attribution windows) and async report runs.
+    Requires the Ads add-on.
+  name: Ad Insights
+- description: |
+    Server-side Conversions API: send + adjust conversion events (with hashed matching and consent/LDU
+    forwarding), read Event Match Quality, and manage conversion destinations (pixels/datasets) and their
+    ad-account associations. Supported on Meta, Google, TikTok and LinkedIn (badges show per operation).
+    Requires the Ads add-on.
+  name: Conversions
+- description: |
+    Click-to-message and click-to-call destination ads: WhatsApp (CTWA), Messenger, Instagram Direct,
+    and Call ads. Meta only.
+    Requires the Ads add-on.
+  name: Messaging Ads
+- description: |
+    Fixed-price reserved (Reach & Frequency) buying: quote a prediction, reserve price + inventory, and
+    buy via a RESERVED campaign. Meta only.
+    Requires the Ads add-on.
+  name: Reach and Frequency
+- description: |
+    Instant lead forms on Facebook Pages: create/list/archive forms and retrieve (or test) their leads.
+    Meta only.
+    Requires the Ads add-on.
+  name: Lead Gen
+- description: |
+    Ad accounts and operational/diagnostic reads: list accounts, account finances, change/audit log,
+    A/B studies, high-demand periods, ad labels, DSA defaults + recommendations, and Business Managers
+    (Meta) / Business Centers (TikTok).
+    Requires the Ads add-on.
+  name: Ad Accounts
 - description: |
     Manage the platform measurement tag — the thing you create, install on a website, send events to,
     and target ads against. On Meta this is a Pixel; the surface is platform-neutral so other platforms
@@ -1103,7 +1141,9 @@ paths:
     get:
       description: |
         Returns daily view counts for a YouTube video including views, watch time, and subscriber changes.
-        Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days.
+        Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics
+        with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach
+        into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days.
       operationId: getYouTubeDailyViews
       parameters:
       - description: "The YouTube video ID (e.g., \"dQw4w9WgXcQ\")"
@@ -1131,7 +1171,12 @@ paths:
           format: date
           type: string
         style: form
-      - description: End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
+      - description: |
+          End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day
+          (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored
+          up to today: days inside the delay window are provisional and may still be revised
+          by YouTube (see provisionalSince in the response), and days YouTube has not
+          processed yet are omitted from dailyViews.
         explode: true
         in: query
         name: endDate
@@ -1282,7 +1327,11 @@ paths:
           format: date
           type: string
         style: form
-      - description: End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
+      - description: |
+          End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day
+          (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored
+          up to today: days inside the delay window are provisional and may still be revised
+          by YouTube (see provisionalSince in the response).
         explode: true
         in: query
         name: endDate
@@ -1976,7 +2025,10 @@ paths:
           type: string
         style: form
       - description: |
-          End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).
+          End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day
+          (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored
+          up to today: days inside the delay window are provisional and may still be revised
+          by YouTube (see provisionalSince in the response).
         explode: true
         in: query
         name: endDate
@@ -24310,7 +24362,14 @@ paths:
       - bearerAuth: []
       summary: List ads
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
   /v1/ads/campaigns:
@@ -24431,6 +24490,13 @@ paths:
       summary: List campaigns
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     post:
@@ -24439,7 +24505,7 @@ paths:
         later via `existingCampaignId` on the create endpoints. A budget here is campaign-level
         (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created
         `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the
-        next sync discovery pass. Meta only.
+        next sync discovery pass.
       operationId: createAdCampaign
       requestBody:
         content:
@@ -24462,9 +24528,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Create a standalone campaign (Meta)
+      summary: Create a standalone campaign
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24507,6 +24575,13 @@ paths:
       summary: Pause or resume a campaign
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24553,6 +24628,13 @@ paths:
       summary: Delete a campaign
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24607,6 +24689,13 @@ paths:
       summary: Update a campaign
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24639,6 +24728,13 @@ paths:
       summary: Pause or resume many campaigns
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24710,6 +24806,10 @@ paths:
       summary: Duplicate a campaign
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - tiktok
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24720,7 +24820,7 @@ paths:
         via Meta's native `POST /{adset-id}/copies`. The copy is created paused so callers can
         review before launching. `campaignId` retargets the copy into another campaign; omitted
         = the source's own campaign. The new hierarchy materializes asynchronously — sync
-        discovery is triggered automatically (`syncAfter: false` to skip). Meta only.
+        discovery is triggered automatically (`syncAfter: false` to skip).
       operationId: duplicateAdSet
       parameters:
       - description: Source platform ad set ID
@@ -24754,9 +24854,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Duplicate an ad set (Meta)
+      summary: Duplicate an ad set
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24766,7 +24868,7 @@ paths:
         Duplicates a single ad via Meta's native `POST /{ad-id}/copies`. The copy is created
         paused. `adSetId` retargets the copy into another ad set; omitted = the source's own ad
         set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered
-        automatically (`syncAfter: false` to skip). Meta only.
+        automatically (`syncAfter: false` to skip).
       operationId: duplicateAd
       parameters:
       - description: Zernio ad ID or platform ad ID
@@ -24800,9 +24902,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Duplicate an ad (Meta)
+      summary: Duplicate an ad
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24813,7 +24917,7 @@ paths:
         `learning_stage_info` (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta
         omits its `status` key on paused ad sets), delivery settings, budgets, schedule and
         targeting. `fields` is a raw-passthrough override; unknown fields return Meta's 400
-        verbatim. Meta only.
+        verbatim.
       operationId: getAdSetDetails
       parameters:
       - description: Meta ad set id (platformAdSetId).
@@ -24857,9 +24961,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Live ad-set details incl. learning phase (Meta)
+      summary: Live ad-set details incl. learning phase
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     put:
@@ -24920,6 +25026,9 @@ paths:
       summary: Update an ad set
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24964,6 +25073,9 @@ paths:
       summary: Pause or resume a single ad set
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -25166,6 +25278,13 @@ paths:
       summary: Get campaign tree
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
   /v1/ads/timeline:
@@ -25269,6 +25388,13 @@ paths:
       summary: Get daily account metrics
       tags:
       - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
   /v1/ads/{adId}:
@@ -25299,7 +25425,14 @@ paths:
       - bearerAuth: []
       summary: Cancel an ad
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     get:
@@ -25339,7 +25472,14 @@ paths:
       - bearerAuth: []
       summary: Get ad details
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     put:
@@ -25388,7 +25528,14 @@ paths:
       - bearerAuth: []
       summary: Update ad
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -25439,7 +25586,14 @@ paths:
       - bearerAuth: []
       summary: Pause or resume a single ad
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -25541,7 +25695,14 @@ paths:
       - bearerAuth: []
       summary: Get campaign analytics
       tags:
-      - Ads
+      - Ad Insights
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
   /v1/ads/preview:
@@ -25550,7 +25711,7 @@ paths:
         Renders how a creative would look per placement BEFORE any ad exists, via Meta's
         `/generatepreviews`. Provide exactly one creative source: `existingCreativeId` or `creativeSpec`.
         Each preview is an HTML `<iframe>` snippet embeddable directly. Unknown `formats` values
-        return Meta's 400 verbatim. Meta only.
+        return Meta's 400 verbatim.
       operationId: generateAdPreviews
       requestBody:
         content:
@@ -25576,9 +25737,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Render pre-create ad previews (Meta)
+      summary: Render pre-create ad previews
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -25587,7 +25750,6 @@ paths:
       description: |
         Renders an EXISTING ad per placement via Meta's `/{ad_id}/previews`. Each preview is an HTML
         `<iframe>` snippet embeddable directly. Unknown `formats` values return Meta's 400 verbatim.
-        Meta only.
       operationId: getAdPreviews
       parameters:
       - description: Zernio ad id (24-char hex).
@@ -25627,9 +25789,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Render previews of an existing ad (Meta)
+      summary: Render previews of an existing ad
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/insights:
@@ -25644,7 +25808,7 @@ paths:
 
         Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400
         carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant
-        (POST /v1/ads/insights/reports). Meta only.
+        (POST /v1/ads/insights/reports).
       operationId: queryAdInsights
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -25809,9 +25973,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Flexible live insights query (Meta)
+      summary: Flexible live insights query
       tags:
-      - Ads
+      - Ad Insights
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/insights/reports:
@@ -25820,7 +25986,7 @@ paths:
         Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but
         in the JSON body; Meta processes the report server-side, which is the right choice for long
         ranges or large accounts where the sync query is slow or rate-limited. Returns a `reportRunId`
-        to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only.
+        to poll via GET /v1/ads/insights/reports/{reportRunId}.
       operationId: createAdInsightsReport
       requestBody:
         content:
@@ -25845,9 +26011,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Submit an async insights report run (Meta)
+      summary: Submit an async insights report run
       tags:
-      - Ads
+      - Ad Insights
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -25910,9 +26078,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Poll an async insights report run (Meta)
+      summary: Poll an async insights report run
       tags:
-      - Ads
+      - Ad Insights
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/{adId}/analytics:
@@ -26000,7 +26170,14 @@ paths:
       - bearerAuth: []
       summary: Get ad analytics
       tags:
-      - Ads
+      - Ad Insights
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
   /v1/ads/{adId}/tracking-tags:
@@ -26039,7 +26216,9 @@ paths:
       - bearerAuth: []
       summary: Get ad tracking tags
       tags:
-      - Ads
+      - Tracking Tags
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     patch:
@@ -26085,7 +26264,9 @@ paths:
       - bearerAuth: []
       summary: Set ad tracking tags
       tags:
-      - Ads
+      - Tracking Tags
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26186,7 +26367,9 @@ paths:
       - bearerAuth: []
       summary: List comments on an ad
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/business-centers:
@@ -26224,7 +26407,9 @@ paths:
       - bearerAuth: []
       summary: List TikTok Business Centers
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - tiktok
       x-accepts:
       - application/json
   /v1/ads/activity:
@@ -26234,7 +26419,7 @@ paths:
         (creates, edits, status flips, budget changes...) with Meta's translated event names and
         the structured before/after in `extra_data`. Rows are returned verbatim. Meta has no
         server-side per-object filter on this edge, so `objectId` filters the returned page
-        client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        client-side (combine with paging to walk history for one campaign/ad set/ad).
       operationId: getAdsActivityLog
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -26315,9 +26500,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Ad account change / audit log (Meta)
+      summary: Ad account change / audit log
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/rf-predictions:
@@ -26332,7 +26519,7 @@ paths:
 
         Reservation campaigns reject automatic placements, so omitted `placements` default to
         Facebook feed (+ Instagram stream when a linked IG professional account resolves);
-        Instagram placements require that IG account. Meta only.
+        Instagram placements require that IG account.
       operationId: createRfPrediction
       requestBody:
         content:
@@ -26358,9 +26545,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Create a Reach & Frequency prediction (Meta)
+      summary: Create a Reach & Frequency prediction
       tags:
-      - Ads
+      - Reach and Frequency
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26402,9 +26591,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Cancel a Reach & Frequency reservation (Meta)
+      summary: Cancel a Reach & Frequency reservation
       tags:
-      - Ads
+      - Reach and Frequency
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     get:
@@ -26446,9 +26637,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Read a Reach & Frequency prediction (Meta)
+      summary: Read a Reach & Frequency prediction
       tags:
-      - Ads
+      - Reach and Frequency
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/rf-predictions/{predictionId}/reserve:
@@ -26456,7 +26649,7 @@ paths:
       description: |-
         Locks the quoted price + inventory until the returned `expiresAt` and mints a NEW
         prediction id — pass that RESERVED id (not the original) as `rfPredictionId` on
-        POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        POST /v1/ads/create. Release an unused reservation via DELETE.
       operationId: reserveRfPrediction
       parameters:
       - explode: false
@@ -26487,9 +26680,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Reserve a Reach & Frequency prediction (Meta)
+      summary: Reserve a Reach & Frequency prediction
       tags:
-      - Ads
+      - Reach and Frequency
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26498,7 +26693,7 @@ paths:
       description: |-
         Lists the ad account's A/B tests and lift studies (Meta's `/act_X/ad_studies`), rows
         returned verbatim. The default projection covers id, name, type, timing and cells with
-        split percentages; `fields` is a raw-passthrough override. Meta only.
+        split percentages; `fields` is a raw-passthrough override.
       operationId: listAdStudies
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -26560,9 +26755,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: A/B tests and lift studies (Meta)
+      summary: A/B tests and lift studies
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/businesses:
@@ -26570,7 +26767,7 @@ paths:
       description: |-
         Business Manager portfolios the connected Meta user belongs to (Meta's `/me/businesses`),
         rows returned verbatim (id, name, verification_status, created_time). Token-scoped, so no
-        `adAccountId` is needed. Meta only; for TikTok Business Centers use
+        `adAccountId` is needed. For TikTok Business Centers use
         `GET /v1/ads/business-centers`.
       operationId: listMetaBusinesses
       parameters:
@@ -26617,16 +26814,18 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Businesses list (Meta)
+      summary: Businesses list
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/labels:
     get:
       description: |-
         Lists the ad account's organizational labels (Meta's `/act_X/adlabels`), rows returned
-        verbatim (id, name, created/updated time). Meta only.
+        verbatim (id, name, created/updated time).
       operationId: listAdLabels
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -26680,9 +26879,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Ad labels (Meta)
+      summary: Ad labels
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/high-demand-periods:
@@ -26691,7 +26892,7 @@ paths:
         Scheduled budget increases (Meta's budget-scheduling API). The Graph edge lives on the
         campaign and ad-set nodes only, so exactly one of `campaignId` / `adSetId` (platform
         ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window,
-        recurrence). Meta only.
+        recurrence).
       operationId: listHighDemandPeriods
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -26753,9 +26954,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: High demand periods / budget schedules (Meta)
+      summary: High demand periods / budget schedules
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/creatives:
@@ -26765,7 +26968,7 @@ paths:
         verbatim. The default projection covers id, name, status, object type, thumbnail,
         object_story_spec / asset_feed_spec and url_tags; `fields` is a raw-passthrough
         override. Any creative id here is reusable on the create endpoints via
-        `existingCreativeId`. Meta only.
+        `existingCreativeId`.
       operationId: listAdCreatives
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -26827,9 +27030,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Creative library (Meta)
+      summary: Creative library
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     post:
@@ -26838,7 +27043,7 @@ paths:
         `existingCreativeId`. Provide exactly one of `imageUrl` (uploaded server-side),
         `imageHash` (from POST /v1/ads/images or the library list), or `carouselCards` (2-10
         hand-built cards). The Page (and linked Instagram account, when present) is resolved
-        from `accountId` as the story actor. Meta only.
+        from `accountId` as the story actor.
       operationId: createAdCreative
       requestBody:
         content:
@@ -26863,9 +27068,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Create a standalone creative (Meta)
+      summary: Create a standalone creative
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26909,15 +27116,17 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Delete a creative (Meta)
+      summary: Delete a creative
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     get:
       description: |-
         One creative's details, verbatim from Meta. `fields` is a raw-passthrough override of
-        the default projection. Meta only.
+        the default projection.
       operationId: getAdCreative
       parameters:
       - description: Platform creative id
@@ -26960,16 +27169,18 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Creative details (Meta)
+      summary: Creative details
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     put:
       description: |-
         Renames a creative. Creatives are immutable on Meta beyond `name` — for content changes
         create a new creative (POST /v1/ads/creatives) and swap it onto the ad
-        (PUT /v1/ads/{adId} with `creative`). Meta only.
+        (PUT /v1/ads/{adId} with `creative`).
       operationId: updateAdCreative
       parameters:
       - description: Platform creative id
@@ -27001,9 +27212,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Rename a creative (Meta)
+      summary: Rename a creative
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27012,7 +27225,7 @@ paths:
       description: |-
         Finances of one Meta ad account: prepaid `balance`, lifetime `amountSpent`, account
         `spendCap` (null = no cap) and the `fundingSource`. Money values are converted from
-        Meta's minor units to whole units of `currency`. Meta only.
+        Meta's minor units to whole units of `currency`.
       operationId: getAdAccountFinance
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -27047,9 +27260,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Ad account finances (Meta)
+      summary: Ad account finances
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/accounts:
@@ -27109,7 +27324,14 @@ paths:
       - bearerAuth: []
       summary: List ad accounts
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     patch:
@@ -27154,7 +27376,9 @@ paths:
       - bearerAuth: []
       summary: Update ad account settings
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27200,7 +27424,9 @@ paths:
       - bearerAuth: []
       summary: Get ad account DSA defaults
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/dsa-recommendations:
@@ -27250,7 +27476,9 @@ paths:
       - bearerAuth: []
       summary: List DSA beneficiary/payor suggestions
       tags:
-      - Ads
+      - Ad Accounts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/boost:
@@ -27289,7 +27517,9 @@ paths:
       - bearerAuth: []
       summary: Boost post as ad
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27347,7 +27577,14 @@ paths:
       - bearerAuth: []
       summary: Create standalone ad
       tags:
-      - Ads
+      - Ad Campaigns
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27412,7 +27649,9 @@ paths:
           description: Ads add-on required.
       summary: List submitted leads
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/lead-forms:
@@ -27459,7 +27698,9 @@ paths:
           description: Ads add-on required.
       summary: List lead forms
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     post:
@@ -27485,7 +27726,9 @@ paths:
           description: Ads add-on required.
       summary: Create a lead form
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27519,7 +27762,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       summary: Archive a lead form
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     get:
@@ -27550,7 +27795,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       summary: Get a lead form
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/lead-forms/{formId}/leads:
@@ -27609,7 +27856,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       summary: List leads for a single form
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/lead-forms/{formId}/test-leads:
@@ -27642,7 +27891,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       summary: Create a test lead
       tags:
-      - Ads
+      - Lead Gen
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27652,7 +27903,7 @@ paths:
         Lists the ad account's image library (Meta's `/act_X/adimages`), rows returned verbatim.
         The default projection covers hash, url, name, dimensions and status; `fields` is a
         raw-passthrough override. Any `hash` here is reusable wherever Meta accepts
-        `image_hash` (e.g. `imageHash` on POST /v1/ads/creatives). Meta only.
+        `image_hash` (e.g. `imageHash` on POST /v1/ads/creatives).
       operationId: listAdImages
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -27714,9 +27965,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Ad image library (Meta)
+      summary: Ad image library
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     post:
@@ -27724,7 +27977,7 @@ paths:
         Uploads raw image bytes to the Meta ad account's image library — for callers whose
         creatives aren't hosted at a public URL. Returns the image `hash` (Meta's identifier for
         the asset) and the Meta-hosted `url`, which can be used directly as `imageUrl` on the
-        create endpoints. Max 30 MB decoded. Meta only.
+        create endpoints. Max 30 MB decoded.
       operationId: uploadAdImage
       requestBody:
         content:
@@ -27747,9 +28000,11 @@ paths:
           description: Only supported on Meta (facebook/instagram)
       security:
       - bearerAuth: []
-      summary: Upload an ad image from base64 (Meta)
+      summary: Upload an ad image from base64
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27795,7 +28050,9 @@ paths:
       - bearerAuth: []
       summary: Search targeting interests
       tags:
-      - Ads
+      - Ad Targeting
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/targeting/search:
@@ -27914,7 +28171,13 @@ paths:
       - bearerAuth: []
       summary: Search targeting options
       tags:
-      - Ads
+      - Ad Targeting
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
       x-accepts:
       - application/json
   /v1/ads/targeting/reach-estimate:
@@ -27956,7 +28219,9 @@ paths:
       - bearerAuth: []
       summary: Estimate audience reach
       tags:
-      - Ads
+      - Ad Targeting
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27996,9 +28261,11 @@ paths:
           $ref: "#/components/responses/NotFound"
       security:
       - bearerAuth: []
-      summary: Suggested bid and budget bounds (LinkedIn)
+      summary: Suggested bid and budget bounds
       tags:
-      - Ads
+      - Ad Targeting
+      x-platforms:
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28041,9 +28308,11 @@ paths:
           $ref: "#/components/responses/NotFound"
       security:
       - bearerAuth: []
-      summary: "Impressions, clicks and spend forecast (LinkedIn)"
+      summary: "Impressions, clicks and spend forecast"
       tags:
-      - Ads
+      - Ad Targeting
+      x-platforms:
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28091,7 +28360,9 @@ paths:
       - bearerAuth: []
       summary: List Meta product catalogs
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/catalogs/{catalogId}/product-sets:
@@ -28135,7 +28406,9 @@ paths:
       - bearerAuth: []
       summary: List a catalog's product sets
       tags:
-      - Ads
+      - Ad Creatives
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/audiences:
@@ -28213,6 +28486,13 @@ paths:
       summary: List custom audiences
       tags:
       - Ad Audiences
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     post:
@@ -28249,6 +28529,13 @@ paths:
       summary: Create custom audience
       tags:
       - Ad Audiences
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28285,6 +28572,13 @@ paths:
       summary: Delete custom audience
       tags:
       - Ad Audiences
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     get:
@@ -28318,6 +28612,13 @@ paths:
       summary: Get audience details
       tags:
       - Ad Audiences
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-accepts:
       - application/json
     put:
@@ -28370,6 +28671,13 @@ paths:
       summary: Update an audience
       tags:
       - Ad Audiences
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28419,6 +28727,13 @@ paths:
       summary: Add users to audience
       tags:
       - Ad Audiences
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28463,7 +28778,9 @@ paths:
       - bearerAuth: []
       summary: Get Event Match Quality
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/conversions:
@@ -28551,7 +28868,12 @@ paths:
       - bearerAuth: []
       summary: Send conversion events
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28619,7 +28941,9 @@ paths:
       - bearerAuth: []
       summary: Adjust uploaded conversions
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28673,7 +28997,12 @@ paths:
       - bearerAuth: []
       summary: List conversion destinations
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-accepts:
       - application/json
     post:
@@ -28757,7 +29086,12 @@ paths:
       - bearerAuth: []
       summary: Create a conversion destination
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28815,7 +29149,12 @@ paths:
       - bearerAuth: []
       summary: Delete a conversion destination
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-accepts:
       - application/json
     get:
@@ -28870,7 +29209,12 @@ paths:
       - bearerAuth: []
       summary: Get a conversion destination
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-accepts:
       - application/json
     patch:
@@ -28925,7 +29269,12 @@ paths:
       - bearerAuth: []
       summary: Update a conversion destination
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -28997,7 +29346,12 @@ paths:
       - bearerAuth: []
       summary: Remove associated campaigns
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-accepts:
       - application/json
     get:
@@ -29052,7 +29406,12 @@ paths:
       - bearerAuth: []
       summary: List associated campaigns
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-accepts:
       - application/json
     post:
@@ -29109,7 +29468,12 @@ paths:
       - bearerAuth: []
       summary: Associate campaigns
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29204,7 +29568,12 @@ paths:
       - bearerAuth: []
       summary: Get attribution metrics
       tags:
-      - Ads
+      - Conversions
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
       x-accepts:
       - application/json
   /v1/whatsapp/conversions:
@@ -29258,7 +29627,6 @@ paths:
       summary: List conversion events
       tags:
       - WhatsApp
-      - Ads
       x-accepts:
       - application/json
     post:
@@ -29325,7 +29693,6 @@ paths:
       summary: Send WhatsApp conversion event
       tags:
       - WhatsApp
-      - Ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29360,7 +29727,9 @@ paths:
       - bearerAuth: []
       summary: Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
       tags:
-      - Ads
+      - Messaging Ads
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29393,7 +29762,9 @@ paths:
       - bearerAuth: []
       summary: Create Click-to-Call ad
       tags:
-      - Ads
+      - Messaging Ads
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29457,7 +29828,9 @@ paths:
       - bearerAuth: []
       summary: Create Click-to-WhatsApp ad (deprecated)
       tags:
-      - Ads
+      - Messaging Ads
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29517,6 +29890,8 @@ paths:
       summary: List tracking tags
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     post:
@@ -29575,6 +29950,8 @@ paths:
       summary: Create a tracking tag
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29623,6 +30000,8 @@ paths:
       summary: Get a tracking tag
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     patch:
@@ -29684,6 +30063,8 @@ paths:
       summary: Update a tracking tag
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29740,6 +30121,8 @@ paths:
       summary: Stop sharing with an account
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     get:
@@ -29783,6 +30166,8 @@ paths:
       summary: List accounts it is shared with
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
     post:
@@ -29840,6 +30225,8 @@ paths:
       summary: Share with an ad account
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -29933,6 +30320,8 @@ paths:
       summary: Get aggregated event stats
       tags:
       - Tracking Tags
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/verify/verifications:
@@ -32119,6 +32508,7 @@ components:
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         videoId: videoId
         totalViews: 6
+        provisionalSince: 2000-01-23
         scopeStatus:
           hasAnalyticsScope: true
       properties:
@@ -32134,6 +32524,12 @@ components:
           type: integer
         dateRange:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
+        provisionalSince:
+          description: "Present only when the range reaches into YouTube's ~3-day\
+            \ processing window: the first date whose numbers are provisional and\
+            \ may still be revised by YouTube."
+          format: date
+          type: string
         totalViews:
           description: Sum of views across all days in the range
           type: integer
@@ -32173,6 +32569,7 @@ components:
           relativeRetentionPerformance: 5.962133916683182
           audienceWatchRatio: 1.4658129805029452
         title: title
+        provisionalSince: 2000-01-23
         scopeStatus:
           hasAnalyticsScope: true
       properties:
@@ -32200,6 +32597,12 @@ components:
           type: integer
         dateRange:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
+        provisionalSince:
+          description: "Present only when the range reaches into YouTube's ~3-day\
+            \ processing window: the first date whose numbers are provisional and\
+            \ may still be revised by YouTube."
+          format: date
+          type: string
         retentionCurve:
           description: "Up to 100 points covering the video timeline, aggregated over\
             \ the date range. Empty for videos with very few views."
@@ -32354,6 +32757,7 @@ components:
         success: true
         videoId: videoId
         title: title
+        provisionalSince: 2000-01-23
         platform: youtube
         demographics:
           key:
@@ -32390,6 +32794,12 @@ components:
           description: "Object keyed by breakdown dimension (age, gender, country)"
         dateRange:
           $ref: "#/components/schemas/YouTubeDemographicsResponse_dateRange"
+        provisionalSince:
+          description: "Present only when the range reaches into YouTube's ~3-day\
+            \ processing window: the first date whose numbers are provisional and\
+            \ may still be revised by YouTube."
+          format: date
+          type: string
         note:
           example: "Age/gender values are viewer percentages (0-100). Country values\
             \ are view counts. Data based on signed-in viewers only, with 2-3 day\

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-22T15:24:00.536456973Z[Etc/UTC]
+- Build date: 2026-07-23T08:31:26.225422756Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -154,6 +154,30 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
+*AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
+*AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
+*AdAccountsApi* | [**getAdComments**](docs/AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
+*AdAccountsApi* | [**getAdCommentsWithHttpInfo**](docs/AdAccountsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
+*AdAccountsApi* | [**getAdsActivityLog**](docs/AdAccountsApi.md#getAdsActivityLog) | **GET** /v1/ads/activity | Ad account change / audit log
+*AdAccountsApi* | [**getAdsActivityLogWithHttpInfo**](docs/AdAccountsApi.md#getAdsActivityLogWithHttpInfo) | **GET** /v1/ads/activity | Ad account change / audit log
+*AdAccountsApi* | [**getDsaDefaults**](docs/AdAccountsApi.md#getDsaDefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
+*AdAccountsApi* | [**getDsaDefaultsWithHttpInfo**](docs/AdAccountsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
+*AdAccountsApi* | [**getDsaRecommendations**](docs/AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdAccountsApi* | [**getDsaRecommendationsWithHttpInfo**](docs/AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdAccountsApi* | [**listAdAccounts**](docs/AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
+*AdAccountsApi* | [**listAdAccountsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
+*AdAccountsApi* | [**listAdLabels**](docs/AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels
+*AdAccountsApi* | [**listAdLabelsWithHttpInfo**](docs/AdAccountsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | Ad labels
+*AdAccountsApi* | [**listAdStudies**](docs/AdAccountsApi.md#listAdStudies) | **GET** /v1/ads/studies | A/B tests and lift studies
+*AdAccountsApi* | [**listAdStudiesWithHttpInfo**](docs/AdAccountsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies
+*AdAccountsApi* | [**listAdsBusinessCenters**](docs/AdAccountsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
+*AdAccountsApi* | [**listAdsBusinessCentersWithHttpInfo**](docs/AdAccountsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers
+*AdAccountsApi* | [**listHighDemandPeriods**](docs/AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
+*AdAccountsApi* | [**listHighDemandPeriodsWithHttpInfo**](docs/AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
+*AdAccountsApi* | [**listMetaBusinesses**](docs/AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list
+*AdAccountsApi* | [**listMetaBusinessesWithHttpInfo**](docs/AdAccountsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list
+*AdAccountsApi* | [**updateAdAccount**](docs/AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdAccountsApi* | [**updateAdAccountWithHttpInfo**](docs/AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAudiencesApi* | [**addUsersToAdAudience**](docs/AdAudiencesApi.md#addUsersToAdAudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**addUsersToAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#addUsersToAdAudienceWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**createAdAudience**](docs/AdAudiencesApi.md#createAdAudience) | **POST** /v1/ads/audiences | Create custom audience
@@ -166,24 +190,38 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**listAdAudiencesWithHttpInfo**](docs/AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignsApi* | [**boostPost**](docs/AdCampaignsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
+*AdCampaignsApi* | [**boostPostWithHttpInfo**](docs/AdCampaignsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
 *AdCampaignsApi* | [**bulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkUpdateAdCampaignStatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
 *AdCampaignsApi* | [**bulkUpdateAdCampaignStatusWithHttpInfo**](docs/AdCampaignsApi.md#bulkUpdateAdCampaignStatusWithHttpInfo) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
-*AdCampaignsApi* | [**createAdCampaign**](docs/AdCampaignsApi.md#createAdCampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign (Meta)
-*AdCampaignsApi* | [**createAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#createAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns | Create a standalone campaign (Meta)
+*AdCampaignsApi* | [**createAdCampaign**](docs/AdCampaignsApi.md#createAdCampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign
+*AdCampaignsApi* | [**createAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#createAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns | Create a standalone campaign
+*AdCampaignsApi* | [**createStandaloneAd**](docs/AdCampaignsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad
+*AdCampaignsApi* | [**createStandaloneAdWithHttpInfo**](docs/AdCampaignsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad
+*AdCampaignsApi* | [**deleteAd**](docs/AdCampaignsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad
+*AdCampaignsApi* | [**deleteAdWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdCampaignsApi* | [**deleteAdCampaign**](docs/AdCampaignsApi.md#deleteAdCampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**deleteAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
+*AdCampaignsApi* | [**duplicateAd**](docs/AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
+*AdCampaignsApi* | [**duplicateAdWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateAdCampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**duplicateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
-*AdCampaignsApi* | [**duplicateAdSet**](docs/AdCampaignsApi.md#duplicateAdSet) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set (Meta)
-*AdCampaignsApi* | [**duplicateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set (Meta)
-*AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta)
-*AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta)
+*AdCampaignsApi* | [**duplicateAdSet**](docs/AdCampaignsApi.md#duplicateAdSet) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
+*AdCampaignsApi* | [**duplicateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
+*AdCampaignsApi* | [**getAd**](docs/AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
+*AdCampaignsApi* | [**getAdWithHttpInfo**](docs/AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details
+*AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase
+*AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdTreeWithHttpInfo**](docs/AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**getAdsTimelineWithHttpInfo**](docs/AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdCampaignsWithHttpInfo**](docs/AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns
+*AdCampaignsApi* | [**listAds**](docs/AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads
+*AdCampaignsApi* | [**listAdsWithHttpInfo**](docs/AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
+*AdCampaignsApi* | [**updateAd**](docs/AdCampaignsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
+*AdCampaignsApi* | [**updateAdWithHttpInfo**](docs/AdCampaignsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
 *AdCampaignsApi* | [**updateAdCampaign**](docs/AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
 *AdCampaignsApi* | [**updateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
 *AdCampaignsApi* | [**updateAdCampaignStatus**](docs/AdCampaignsApi.md#updateAdCampaignStatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
@@ -192,148 +230,50 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**updateAdSetStatus**](docs/AdCampaignsApi.md#updateAdSetStatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdCampaignsApi* | [**updateAdSetStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetStatusWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
-*AdsApi* | [**addConversionAssociations**](docs/AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
-*AdsApi* | [**addConversionAssociationsWithHttpInfo**](docs/AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
-*AdsApi* | [**adjustConversions**](docs/AdsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
-*AdsApi* | [**adjustConversionsWithHttpInfo**](docs/AdsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
-*AdsApi* | [**archiveLeadForm**](docs/AdsApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
-*AdsApi* | [**archiveLeadFormWithHttpInfo**](docs/AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
-*AdsApi* | [**boostPost**](docs/AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
-*AdsApi* | [**boostPostWithHttpInfo**](docs/AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
-*AdsApi* | [**cancelRfReservation**](docs/AdsApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta)
-*AdsApi* | [**cancelRfReservationWithHttpInfo**](docs/AdsApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta)
-*AdsApi* | [**createAdCreative**](docs/AdsApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative (Meta)
-*AdsApi* | [**createAdCreativeWithHttpInfo**](docs/AdsApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative (Meta)
-*AdsApi* | [**createAdInsightsReport**](docs/AdsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
-*AdsApi* | [**createAdInsightsReportWithHttpInfo**](docs/AdsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
-*AdsApi* | [**createCallAd**](docs/AdsApi.md#createCallAd) | **POST** /v1/ads/call | Create Click-to-Call ad
-*AdsApi* | [**createCallAdWithHttpInfo**](docs/AdsApi.md#createCallAdWithHttpInfo) | **POST** /v1/ads/call | Create Click-to-Call ad
-*AdsApi* | [**createConversionDestination**](docs/AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
-*AdsApi* | [**createConversionDestinationWithHttpInfo**](docs/AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
-*AdsApi* | [**createCtwaAd**](docs/AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
-*AdsApi* | [**createCtwaAdWithHttpInfo**](docs/AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
-*AdsApi* | [**createLeadForm**](docs/AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form
-*AdsApi* | [**createLeadFormWithHttpInfo**](docs/AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
-*AdsApi* | [**createMessagingAd**](docs/AdsApi.md#createMessagingAd) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
-*AdsApi* | [**createMessagingAdWithHttpInfo**](docs/AdsApi.md#createMessagingAdWithHttpInfo) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
-*AdsApi* | [**createRfPrediction**](docs/AdsApi.md#createRfPrediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta)
-*AdsApi* | [**createRfPredictionWithHttpInfo**](docs/AdsApi.md#createRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta)
-*AdsApi* | [**createStandaloneAd**](docs/AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad
-*AdsApi* | [**createStandaloneAdWithHttpInfo**](docs/AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad
-*AdsApi* | [**createTestLead**](docs/AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
-*AdsApi* | [**createTestLeadWithHttpInfo**](docs/AdsApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
-*AdsApi* | [**deleteAd**](docs/AdsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad
-*AdsApi* | [**deleteAdWithHttpInfo**](docs/AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad
-*AdsApi* | [**deleteAdCreative**](docs/AdsApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative (Meta)
-*AdsApi* | [**deleteAdCreativeWithHttpInfo**](docs/AdsApi.md#deleteAdCreativeWithHttpInfo) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative (Meta)
-*AdsApi* | [**deleteConversionDestination**](docs/AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
-*AdsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
-*AdsApi* | [**duplicateAd**](docs/AdsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad (Meta)
-*AdsApi* | [**duplicateAdWithHttpInfo**](docs/AdsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad (Meta)
-*AdsApi* | [**estimateAdReach**](docs/AdsApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
-*AdsApi* | [**estimateAdReachWithHttpInfo**](docs/AdsApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
-*AdsApi* | [**generateAdPreviews**](docs/AdsApi.md#generateAdPreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta)
-*AdsApi* | [**generateAdPreviewsWithHttpInfo**](docs/AdsApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta)
-*AdsApi* | [**getAd**](docs/AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
-*AdsApi* | [**getAdWithHttpInfo**](docs/AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details
-*AdsApi* | [**getAdAccountFinance**](docs/AdsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta)
-*AdsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta)
-*AdsApi* | [**getAdAnalytics**](docs/AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
-*AdsApi* | [**getAdAnalyticsWithHttpInfo**](docs/AdsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
-*AdsApi* | [**getAdComments**](docs/AdsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
-*AdsApi* | [**getAdCommentsWithHttpInfo**](docs/AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
-*AdsApi* | [**getAdCreative**](docs/AdsApi.md#getAdCreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details (Meta)
-*AdsApi* | [**getAdCreativeWithHttpInfo**](docs/AdsApi.md#getAdCreativeWithHttpInfo) | **GET** /v1/ads/creatives/{creativeId} | Creative details (Meta)
-*AdsApi* | [**getAdInsightsReport**](docs/AdsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
-*AdsApi* | [**getAdInsightsReportWithHttpInfo**](docs/AdsApi.md#getAdInsightsReportWithHttpInfo) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
-*AdsApi* | [**getAdPreviews**](docs/AdsApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta)
-*AdsApi* | [**getAdPreviewsWithHttpInfo**](docs/AdsApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta)
-*AdsApi* | [**getAdTrackingTags**](docs/AdsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
-*AdsApi* | [**getAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
-*AdsApi* | [**getAdsActivityLog**](docs/AdsApi.md#getAdsActivityLog) | **GET** /v1/ads/activity | Ad account change / audit log (Meta)
-*AdsApi* | [**getAdsActivityLogWithHttpInfo**](docs/AdsApi.md#getAdsActivityLogWithHttpInfo) | **GET** /v1/ads/activity | Ad account change / audit log (Meta)
-*AdsApi* | [**getCampaignAnalytics**](docs/AdsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
-*AdsApi* | [**getCampaignAnalyticsWithHttpInfo**](docs/AdsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
-*AdsApi* | [**getConversionDestination**](docs/AdsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
-*AdsApi* | [**getConversionDestinationWithHttpInfo**](docs/AdsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
-*AdsApi* | [**getConversionMetrics**](docs/AdsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
-*AdsApi* | [**getConversionMetricsWithHttpInfo**](docs/AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
-*AdsApi* | [**getConversionsQuality**](docs/AdsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
-*AdsApi* | [**getConversionsQualityWithHttpInfo**](docs/AdsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
-*AdsApi* | [**getDsaDefaults**](docs/AdsApi.md#getDsaDefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
-*AdsApi* | [**getDsaDefaultsWithHttpInfo**](docs/AdsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
-*AdsApi* | [**getDsaRecommendations**](docs/AdsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
-*AdsApi* | [**getDsaRecommendationsWithHttpInfo**](docs/AdsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
-*AdsApi* | [**getLeadForm**](docs/AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
-*AdsApi* | [**getLeadFormWithHttpInfo**](docs/AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
-*AdsApi* | [**getLinkedInBidPricing**](docs/AdsApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
-*AdsApi* | [**getLinkedInBidPricingWithHttpInfo**](docs/AdsApi.md#getLinkedInBidPricingWithHttpInfo) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
-*AdsApi* | [**getLinkedInSupplyForecast**](docs/AdsApi.md#getLinkedInSupplyForecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
-*AdsApi* | [**getLinkedInSupplyForecastWithHttpInfo**](docs/AdsApi.md#getLinkedInSupplyForecastWithHttpInfo) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
-*AdsApi* | [**getRfPrediction**](docs/AdsApi.md#getRfPrediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta)
-*AdsApi* | [**getRfPredictionWithHttpInfo**](docs/AdsApi.md#getRfPredictionWithHttpInfo) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta)
-*AdsApi* | [**listAdAccounts**](docs/AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
-*AdsApi* | [**listAdAccountsWithHttpInfo**](docs/AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
-*AdsApi* | [**listAdCatalogProductSets**](docs/AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
-*AdsApi* | [**listAdCatalogProductSetsWithHttpInfo**](docs/AdsApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
-*AdsApi* | [**listAdCatalogs**](docs/AdsApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
-*AdsApi* | [**listAdCatalogsWithHttpInfo**](docs/AdsApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs
-*AdsApi* | [**listAdCreatives**](docs/AdsApi.md#listAdCreatives) | **GET** /v1/ads/creatives | Creative library (Meta)
-*AdsApi* | [**listAdCreativesWithHttpInfo**](docs/AdsApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library (Meta)
-*AdsApi* | [**listAdImages**](docs/AdsApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library (Meta)
-*AdsApi* | [**listAdImagesWithHttpInfo**](docs/AdsApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library (Meta)
-*AdsApi* | [**listAdLabels**](docs/AdsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels (Meta)
-*AdsApi* | [**listAdLabelsWithHttpInfo**](docs/AdsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | Ad labels (Meta)
-*AdsApi* | [**listAdStudies**](docs/AdsApi.md#listAdStudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta)
-*AdsApi* | [**listAdStudiesWithHttpInfo**](docs/AdsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta)
-*AdsApi* | [**listAds**](docs/AdsApi.md#listAds) | **GET** /v1/ads | List ads
-*AdsApi* | [**listAdsWithHttpInfo**](docs/AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
-*AdsApi* | [**listAdsBusinessCenters**](docs/AdsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
-*AdsApi* | [**listAdsBusinessCentersWithHttpInfo**](docs/AdsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers
-*AdsApi* | [**listConversionAssociations**](docs/AdsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
-*AdsApi* | [**listConversionAssociationsWithHttpInfo**](docs/AdsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
-*AdsApi* | [**listConversionDestinations**](docs/AdsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
-*AdsApi* | [**listConversionDestinationsWithHttpInfo**](docs/AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
-*AdsApi* | [**listFormLeads**](docs/AdsApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
-*AdsApi* | [**listFormLeadsWithHttpInfo**](docs/AdsApi.md#listFormLeadsWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
-*AdsApi* | [**listHighDemandPeriods**](docs/AdsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules (Meta)
-*AdsApi* | [**listHighDemandPeriodsWithHttpInfo**](docs/AdsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules (Meta)
-*AdsApi* | [**listLeadForms**](docs/AdsApi.md#listLeadForms) | **GET** /v1/ads/lead-forms | List lead forms
-*AdsApi* | [**listLeadFormsWithHttpInfo**](docs/AdsApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List lead forms
-*AdsApi* | [**listLeads**](docs/AdsApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads
-*AdsApi* | [**listLeadsWithHttpInfo**](docs/AdsApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads
-*AdsApi* | [**listMetaBusinesses**](docs/AdsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list (Meta)
-*AdsApi* | [**listMetaBusinessesWithHttpInfo**](docs/AdsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list (Meta)
-*AdsApi* | [**listWhatsAppConversions**](docs/AdsApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
-*AdsApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/AdsApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
-*AdsApi* | [**queryAdInsights**](docs/AdsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
-*AdsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
-*AdsApi* | [**removeConversionAssociations**](docs/AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
-*AdsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
-*AdsApi* | [**reserveRfPrediction**](docs/AdsApi.md#reserveRfPrediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta)
-*AdsApi* | [**reserveRfPredictionWithHttpInfo**](docs/AdsApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta)
-*AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**searchAdTargeting**](docs/AdsApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options
-*AdsApi* | [**searchAdTargetingWithHttpInfo**](docs/AdsApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
-*AdsApi* | [**sendConversions**](docs/AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
-*AdsApi* | [**sendConversionsWithHttpInfo**](docs/AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
-*AdsApi* | [**sendWhatsAppConversion**](docs/AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
-*AdsApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
-*AdsApi* | [**updateAd**](docs/AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
-*AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
-*AdsApi* | [**updateAdAccount**](docs/AdsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
-*AdsApi* | [**updateAdAccountWithHttpInfo**](docs/AdsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
-*AdsApi* | [**updateAdCreative**](docs/AdsApi.md#updateAdCreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative (Meta)
-*AdsApi* | [**updateAdCreativeWithHttpInfo**](docs/AdsApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative (Meta)
-*AdsApi* | [**updateAdStatus**](docs/AdsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
-*AdsApi* | [**updateAdStatusWithHttpInfo**](docs/AdsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
-*AdsApi* | [**updateAdTrackingTags**](docs/AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
-*AdsApi* | [**updateAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
-*AdsApi* | [**updateConversionDestination**](docs/AdsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
-*AdsApi* | [**updateConversionDestinationWithHttpInfo**](docs/AdsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
-*AdsApi* | [**uploadAdImage**](docs/AdsApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta)
-*AdsApi* | [**uploadAdImageWithHttpInfo**](docs/AdsApi.md#uploadAdImageWithHttpInfo) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta)
+*AdCampaignsApi* | [**updateAdStatus**](docs/AdCampaignsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
+*AdCampaignsApi* | [**updateAdStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
+*AdCreativesApi* | [**createAdCreative**](docs/AdCreativesApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative
+*AdCreativesApi* | [**createAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative
+*AdCreativesApi* | [**deleteAdCreative**](docs/AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
+*AdCreativesApi* | [**deleteAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#deleteAdCreativeWithHttpInfo) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
+*AdCreativesApi* | [**generateAdPreviews**](docs/AdCreativesApi.md#generateAdPreviews) | **POST** /v1/ads/preview | Render pre-create ad previews
+*AdCreativesApi* | [**generateAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews
+*AdCreativesApi* | [**getAdCreative**](docs/AdCreativesApi.md#getAdCreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details
+*AdCreativesApi* | [**getAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#getAdCreativeWithHttpInfo) | **GET** /v1/ads/creatives/{creativeId} | Creative details
+*AdCreativesApi* | [**getAdPreviews**](docs/AdCreativesApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
+*AdCreativesApi* | [**getAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
+*AdCreativesApi* | [**listAdCatalogProductSets**](docs/AdCreativesApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
+*AdCreativesApi* | [**listAdCatalogProductSetsWithHttpInfo**](docs/AdCreativesApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
+*AdCreativesApi* | [**listAdCatalogs**](docs/AdCreativesApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*AdCreativesApi* | [**listAdCatalogsWithHttpInfo**](docs/AdCreativesApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*AdCreativesApi* | [**listAdCreatives**](docs/AdCreativesApi.md#listAdCreatives) | **GET** /v1/ads/creatives | Creative library
+*AdCreativesApi* | [**listAdCreativesWithHttpInfo**](docs/AdCreativesApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library
+*AdCreativesApi* | [**listAdImages**](docs/AdCreativesApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library
+*AdCreativesApi* | [**listAdImagesWithHttpInfo**](docs/AdCreativesApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library
+*AdCreativesApi* | [**updateAdCreative**](docs/AdCreativesApi.md#updateAdCreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
+*AdCreativesApi* | [**updateAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
+*AdCreativesApi* | [**uploadAdImage**](docs/AdCreativesApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64
+*AdCreativesApi* | [**uploadAdImageWithHttpInfo**](docs/AdCreativesApi.md#uploadAdImageWithHttpInfo) | **POST** /v1/ads/images | Upload an ad image from base64
+*AdInsightsApi* | [**createAdInsightsReport**](docs/AdInsightsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run
+*AdInsightsApi* | [**createAdInsightsReportWithHttpInfo**](docs/AdInsightsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run
+*AdInsightsApi* | [**getAdAnalytics**](docs/AdInsightsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
+*AdInsightsApi* | [**getAdAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
+*AdInsightsApi* | [**getAdInsightsReport**](docs/AdInsightsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
+*AdInsightsApi* | [**getAdInsightsReportWithHttpInfo**](docs/AdInsightsApi.md#getAdInsightsReportWithHttpInfo) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
+*AdInsightsApi* | [**getCampaignAnalytics**](docs/AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
+*AdInsightsApi* | [**getCampaignAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
+*AdInsightsApi* | [**queryAdInsights**](docs/AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query
+*AdInsightsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdInsightsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query
+*AdTargetingApi* | [**estimateAdReach**](docs/AdTargetingApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
+*AdTargetingApi* | [**estimateAdReachWithHttpInfo**](docs/AdTargetingApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
+*AdTargetingApi* | [**getLinkedInBidPricing**](docs/AdTargetingApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds
+*AdTargetingApi* | [**getLinkedInBidPricingWithHttpInfo**](docs/AdTargetingApi.md#getLinkedInBidPricingWithHttpInfo) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds
+*AdTargetingApi* | [**getLinkedInSupplyForecast**](docs/AdTargetingApi.md#getLinkedInSupplyForecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast
+*AdTargetingApi* | [**getLinkedInSupplyForecastWithHttpInfo**](docs/AdTargetingApi.md#getLinkedInSupplyForecastWithHttpInfo) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast
+*AdTargetingApi* | [**searchAdInterests**](docs/AdTargetingApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
+*AdTargetingApi* | [**searchAdInterestsWithHttpInfo**](docs/AdTargetingApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
+*AdTargetingApi* | [**searchAdTargeting**](docs/AdTargetingApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options
+*AdTargetingApi* | [**searchAdTargetingWithHttpInfo**](docs/AdTargetingApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**getAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsWithHttpInfo) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**getBestTimeToPost**](docs/AnalyticsApi.md#getBestTimeToPost) | **GET** /v1/analytics/best-time | Get best times to post
@@ -542,6 +482,30 @@ Class | Method | HTTP request | Description
 *ContactsApi* | [**listContactsWithHttpInfo**](docs/ContactsApi.md#listContactsWithHttpInfo) | **GET** /v1/contacts | List contacts
 *ContactsApi* | [**updateContact**](docs/ContactsApi.md#updateContact) | **PATCH** /v1/contacts/{contactId} | Update contact
 *ContactsApi* | [**updateContactWithHttpInfo**](docs/ContactsApi.md#updateContactWithHttpInfo) | **PATCH** /v1/contacts/{contactId} | Update contact
+*ConversionsApi* | [**addConversionAssociations**](docs/ConversionsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
+*ConversionsApi* | [**addConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
+*ConversionsApi* | [**adjustConversions**](docs/ConversionsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
+*ConversionsApi* | [**adjustConversionsWithHttpInfo**](docs/ConversionsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
+*ConversionsApi* | [**createConversionDestination**](docs/ConversionsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
+*ConversionsApi* | [**createConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
+*ConversionsApi* | [**deleteConversionDestination**](docs/ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
+*ConversionsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
+*ConversionsApi* | [**getConversionDestination**](docs/ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
+*ConversionsApi* | [**getConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
+*ConversionsApi* | [**getConversionMetrics**](docs/ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
+*ConversionsApi* | [**getConversionMetricsWithHttpInfo**](docs/ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
+*ConversionsApi* | [**getConversionsQuality**](docs/ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*ConversionsApi* | [**getConversionsQualityWithHttpInfo**](docs/ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*ConversionsApi* | [**listConversionAssociations**](docs/ConversionsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
+*ConversionsApi* | [**listConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
+*ConversionsApi* | [**listConversionDestinations**](docs/ConversionsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
+*ConversionsApi* | [**listConversionDestinationsWithHttpInfo**](docs/ConversionsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
+*ConversionsApi* | [**removeConversionAssociations**](docs/ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*ConversionsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*ConversionsApi* | [**sendConversions**](docs/ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
+*ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
+*ConversionsApi* | [**updateConversionDestination**](docs/ConversionsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
+*ConversionsApi* | [**updateConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *CustomFieldsApi* | [**clearContactFieldValue**](docs/CustomFieldsApi.md#clearContactFieldValue) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**clearContactFieldValueWithHttpInfo**](docs/CustomFieldsApi.md#clearContactFieldValueWithHttpInfo) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**createCustomField**](docs/CustomFieldsApi.md#createCustomField) | **POST** /v1/custom-fields | Create custom field
@@ -672,6 +636,20 @@ Class | Method | HTTP request | Description
 *InstagramApi* | [**listInstagramStoriesWithHttpInfo**](docs/InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InvitesApi* | [**createInviteToken**](docs/InvitesApi.md#createInviteToken) | **POST** /v1/invite/tokens | Create invite token
 *InvitesApi* | [**createInviteTokenWithHttpInfo**](docs/InvitesApi.md#createInviteTokenWithHttpInfo) | **POST** /v1/invite/tokens | Create invite token
+*LeadGenApi* | [**archiveLeadForm**](docs/LeadGenApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
+*LeadGenApi* | [**archiveLeadFormWithHttpInfo**](docs/LeadGenApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
+*LeadGenApi* | [**createLeadForm**](docs/LeadGenApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form
+*LeadGenApi* | [**createLeadFormWithHttpInfo**](docs/LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
+*LeadGenApi* | [**createTestLead**](docs/LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
+*LeadGenApi* | [**createTestLeadWithHttpInfo**](docs/LeadGenApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
+*LeadGenApi* | [**getLeadForm**](docs/LeadGenApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
+*LeadGenApi* | [**getLeadFormWithHttpInfo**](docs/LeadGenApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
+*LeadGenApi* | [**listFormLeads**](docs/LeadGenApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
+*LeadGenApi* | [**listFormLeadsWithHttpInfo**](docs/LeadGenApi.md#listFormLeadsWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
+*LeadGenApi* | [**listLeadForms**](docs/LeadGenApi.md#listLeadForms) | **GET** /v1/ads/lead-forms | List lead forms
+*LeadGenApi* | [**listLeadFormsWithHttpInfo**](docs/LeadGenApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List lead forms
+*LeadGenApi* | [**listLeads**](docs/LeadGenApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads
+*LeadGenApi* | [**listLeadsWithHttpInfo**](docs/LeadGenApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads
 *LinkedInMentionsApi* | [**getLinkedInMentions**](docs/LinkedInMentionsApi.md#getLinkedInMentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LinkedInMentionsApi* | [**getLinkedInMentionsWithHttpInfo**](docs/LinkedInMentionsApi.md#getLinkedInMentionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**listLogs**](docs/LogsApi.md#listLogs) | **GET** /v1/logs | List activity logs
@@ -710,6 +688,12 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**updateInboxConversationWithHttpInfo**](docs/MessagesApi.md#updateInboxConversationWithHttpInfo) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
 *MessagesApi* | [**uploadMediaDirect**](docs/MessagesApi.md#uploadMediaDirect) | **POST** /v1/media/upload-direct | Upload media file
 *MessagesApi* | [**uploadMediaDirectWithHttpInfo**](docs/MessagesApi.md#uploadMediaDirectWithHttpInfo) | **POST** /v1/media/upload-direct | Upload media file
+*MessagingAdsApi* | [**createCallAd**](docs/MessagingAdsApi.md#createCallAd) | **POST** /v1/ads/call | Create Click-to-Call ad
+*MessagingAdsApi* | [**createCallAdWithHttpInfo**](docs/MessagingAdsApi.md#createCallAdWithHttpInfo) | **POST** /v1/ads/call | Create Click-to-Call ad
+*MessagingAdsApi* | [**createCtwaAd**](docs/MessagingAdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
+*MessagingAdsApi* | [**createCtwaAdWithHttpInfo**](docs/MessagingAdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
+*MessagingAdsApi* | [**createMessagingAd**](docs/MessagingAdsApi.md#createMessagingAd) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+*MessagingAdsApi* | [**createMessagingAdWithHttpInfo**](docs/MessagingAdsApi.md#createMessagingAdWithHttpInfo) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 *PhoneNumbersApi* | [**cancelPhoneNumberPortIn**](docs/PhoneNumbersApi.md#cancelPhoneNumberPortIn) | **DELETE** /v1/phone-numbers/port-in/{id} | Cancel a port-in
 *PhoneNumbersApi* | [**cancelPhoneNumberPortInWithHttpInfo**](docs/PhoneNumbersApi.md#cancelPhoneNumberPortInWithHttpInfo) | **DELETE** /v1/phone-numbers/port-in/{id} | Cancel a port-in
 *PhoneNumbersApi* | [**checkPhoneNumberAvailability**](docs/PhoneNumbersApi.md#checkPhoneNumberAvailability) | **GET** /v1/phone-numbers/availability | Check country availability
@@ -796,6 +780,14 @@ Class | Method | HTTP request | Description
 *QueueApi* | [**previewQueueWithHttpInfo**](docs/QueueApi.md#previewQueueWithHttpInfo) | **GET** /v1/queue/preview | Preview upcoming slots
 *QueueApi* | [**updateQueueSlot**](docs/QueueApi.md#updateQueueSlot) | **PUT** /v1/queue/slots | Update schedule
 *QueueApi* | [**updateQueueSlotWithHttpInfo**](docs/QueueApi.md#updateQueueSlotWithHttpInfo) | **PUT** /v1/queue/slots | Update schedule
+*ReachAndFrequencyApi* | [**cancelRfReservation**](docs/ReachAndFrequencyApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation
+*ReachAndFrequencyApi* | [**cancelRfReservationWithHttpInfo**](docs/ReachAndFrequencyApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation
+*ReachAndFrequencyApi* | [**createRfPrediction**](docs/ReachAndFrequencyApi.md#createRfPrediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction
+*ReachAndFrequencyApi* | [**createRfPredictionWithHttpInfo**](docs/ReachAndFrequencyApi.md#createRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction
+*ReachAndFrequencyApi* | [**getRfPrediction**](docs/ReachAndFrequencyApi.md#getRfPrediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction
+*ReachAndFrequencyApi* | [**getRfPredictionWithHttpInfo**](docs/ReachAndFrequencyApi.md#getRfPredictionWithHttpInfo) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction
+*ReachAndFrequencyApi* | [**reserveRfPrediction**](docs/ReachAndFrequencyApi.md#reserveRfPrediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction
+*ReachAndFrequencyApi* | [**reserveRfPredictionWithHttpInfo**](docs/ReachAndFrequencyApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction
 *RedditSearchApi* | [**getRedditFeed**](docs/RedditSearchApi.md#getRedditFeed) | **GET** /v1/reddit/feed | Get subreddit feed
 *RedditSearchApi* | [**getRedditFeedWithHttpInfo**](docs/RedditSearchApi.md#getRedditFeedWithHttpInfo) | **GET** /v1/reddit/feed | Get subreddit feed
 *RedditSearchApi* | [**searchReddit**](docs/RedditSearchApi.md#searchReddit) | **GET** /v1/reddit/search | Search posts
@@ -870,6 +862,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**createTrackingTag**](docs/TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
 *TrackingTagsApi* | [**createTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
+*TrackingTagsApi* | [**getAdTrackingTags**](docs/TrackingTagsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
+*TrackingTagsApi* | [**getAdTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
 *TrackingTagsApi* | [**getTrackingTag**](docs/TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
 *TrackingTagsApi* | [**getTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
 *TrackingTagsApi* | [**getTrackingTagStats**](docs/TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
@@ -880,6 +874,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
+*TrackingTagsApi* | [**updateAdTrackingTags**](docs/TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
+*TrackingTagsApi* | [**updateAdTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *TrackingTagsApi* | [**updateTrackingTag**](docs/TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
 *TrackingTagsApi* | [**updateTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#updateTrackingTagWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
 *TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet

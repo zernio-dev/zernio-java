@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.YouTubeDailyViewsResponseDailyViewsInner;
 import dev.zernio.model.YouTubeDailyViewsResponseDateRange;
 import dev.zernio.model.YouTubeDailyViewsResponseScopeStatus;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,12 +48,13 @@ import dev.zernio.ApiClient;
   YouTubeDailyViewsResponse.JSON_PROPERTY_VIDEO_ID,
   YouTubeDailyViewsResponse.JSON_PROPERTY_DURATION_SECONDS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_DATE_RANGE,
+  YouTubeDailyViewsResponse.JSON_PROPERTY_PROVISIONAL_SINCE,
   YouTubeDailyViewsResponse.JSON_PROPERTY_TOTAL_VIEWS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_DAILY_VIEWS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_LAST_SYNCED_AT,
   YouTubeDailyViewsResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-22T15:24:00.536456973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:31:26.225422756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -68,6 +70,10 @@ public class YouTubeDailyViewsResponse {
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nullable
   private YouTubeDailyViewsResponseDateRange dateRange;
+
+  public static final String JSON_PROPERTY_PROVISIONAL_SINCE = "provisionalSince";
+  @javax.annotation.Nullable
+  private LocalDate provisionalSince;
 
   public static final String JSON_PROPERTY_TOTAL_VIEWS = "totalViews";
   @javax.annotation.Nullable
@@ -188,6 +194,30 @@ public class YouTubeDailyViewsResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDateRange(@javax.annotation.Nullable YouTubeDailyViewsResponseDateRange dateRange) {
     this.dateRange = dateRange;
+  }
+
+
+  public YouTubeDailyViewsResponse provisionalSince(@javax.annotation.Nullable LocalDate provisionalSince) {
+    this.provisionalSince = provisionalSince;
+    return this;
+  }
+
+  /**
+   * Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.
+   * @return provisionalSince
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROVISIONAL_SINCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LocalDate getProvisionalSince() {
+    return provisionalSince;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROVISIONAL_SINCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProvisionalSince(@javax.annotation.Nullable LocalDate provisionalSince) {
+    this.provisionalSince = provisionalSince;
   }
 
 
@@ -319,6 +349,7 @@ public class YouTubeDailyViewsResponse {
         Objects.equals(this.videoId, youTubeDailyViewsResponse.videoId) &&
         equalsNullable(this.durationSeconds, youTubeDailyViewsResponse.durationSeconds) &&
         Objects.equals(this.dateRange, youTubeDailyViewsResponse.dateRange) &&
+        Objects.equals(this.provisionalSince, youTubeDailyViewsResponse.provisionalSince) &&
         Objects.equals(this.totalViews, youTubeDailyViewsResponse.totalViews) &&
         Objects.equals(this.dailyViews, youTubeDailyViewsResponse.dailyViews) &&
         equalsNullable(this.lastSyncedAt, youTubeDailyViewsResponse.lastSyncedAt) &&
@@ -331,7 +362,7 @@ public class YouTubeDailyViewsResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, videoId, hashCodeNullable(durationSeconds), dateRange, totalViews, dailyViews, hashCodeNullable(lastSyncedAt), scopeStatus);
+    return Objects.hash(success, videoId, hashCodeNullable(durationSeconds), dateRange, provisionalSince, totalViews, dailyViews, hashCodeNullable(lastSyncedAt), scopeStatus);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -349,6 +380,7 @@ public class YouTubeDailyViewsResponse {
     sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
     sb.append("    durationSeconds: ").append(toIndentedString(durationSeconds)).append("\n");
     sb.append("    dateRange: ").append(toIndentedString(dateRange)).append("\n");
+    sb.append("    provisionalSince: ").append(toIndentedString(provisionalSince)).append("\n");
     sb.append("    totalViews: ").append(toIndentedString(totalViews)).append("\n");
     sb.append("    dailyViews: ").append(toIndentedString(dailyViews)).append("\n");
     sb.append("    lastSyncedAt: ").append(toIndentedString(lastSyncedAt)).append("\n");
@@ -418,6 +450,11 @@ public class YouTubeDailyViewsResponse {
     // add `dateRange` to the URL query string
     if (getDateRange() != null) {
       joiner.add(getDateRange().toUrlQueryString(prefix + "dateRange" + suffix));
+    }
+
+    // add `provisionalSince` to the URL query string
+    if (getProvisionalSince() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprovisionalSince%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProvisionalSince()))));
     }
 
     // add `totalViews` to the URL query string
