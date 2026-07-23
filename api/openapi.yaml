@@ -24611,6 +24611,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listAdCampaigns_200_response"
           description: Paginated campaigns
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
