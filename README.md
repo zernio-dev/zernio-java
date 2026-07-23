@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-23T14:58:15.574069346Z[Etc/UTC]
+- Build date: 2026-07-23T17:21:17.986456541Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -730,6 +730,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**remediatePhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#remediatePhoneNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number
 *PhoneNumbersApi* | [**replyToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#replyToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
 *PhoneNumbersApi* | [**replyToPhoneNumberReviewerWithHttpInfo**](docs/PhoneNumbersApi.md#replyToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
+*PhoneNumbersApi* | [**respondToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#respondToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections)
+*PhoneNumbersApi* | [**respondToPhoneNumberReviewerWithHttpInfo**](docs/PhoneNumbersApi.md#respondToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections)
 *PhoneNumbersApi* | [**reviewPhoneNumberKycPacket**](docs/PhoneNumbersApi.md#reviewPhoneNumberKycPacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
 *PhoneNumbersApi* | [**reviewPhoneNumberKycPacketWithHttpInfo**](docs/PhoneNumbersApi.md#reviewPhoneNumberKycPacketWithHttpInfo) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
 *PhoneNumbersApi* | [**searchAvailablePhoneNumbers**](docs/PhoneNumbersApi.md#searchAvailablePhoneNumbers) | **GET** /v1/phone-numbers/available | Search available numbers
@@ -2166,6 +2168,9 @@ Class | Method | HTTP request | Description
  - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
  - [ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
+ - [RespondToPhoneNumberReviewer200Response](docs/RespondToPhoneNumberReviewer200Response.md)
+ - [RespondToPhoneNumberReviewerRequest](docs/RespondToPhoneNumberReviewerRequest.md)
+ - [RespondToPhoneNumberReviewerRequestDocumentsInner](docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)

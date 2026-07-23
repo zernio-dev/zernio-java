@@ -38,6 +38,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**remediatePhoneNumberWithHttpInfo**](PhoneNumbersApi.md#remediatePhoneNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
 | [**replyToPhoneNumberReviewer**](PhoneNumbersApi.md#replyToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
 | [**replyToPhoneNumberReviewerWithHttpInfo**](PhoneNumbersApi.md#replyToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
+| [**respondToPhoneNumberReviewer**](PhoneNumbersApi.md#respondToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections) |
+| [**respondToPhoneNumberReviewerWithHttpInfo**](PhoneNumbersApi.md#respondToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections) |
 | [**reviewPhoneNumberKycPacket**](PhoneNumbersApi.md#reviewPhoneNumberKycPacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**reviewPhoneNumberKycPacketWithHttpInfo**](PhoneNumbersApi.md#reviewPhoneNumberKycPacketWithHttpInfo) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**searchAvailablePhoneNumbers**](PhoneNumbersApi.md#searchAvailablePhoneNumbers) | **GET** /v1/phone-numbers/available | Search available numbers |
@@ -2599,6 +2601,164 @@ ApiResponse<[**ReplyToPhoneNumberReviewer200Response**](ReplyToPhoneNumberReview
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 | **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
+
+
+## respondToPhoneNumberReviewer
+
+> RespondToPhoneNumberReviewer200Response respondToPhoneNumberReviewer(id, respondToPhoneNumberReviewerRequest)
+
+Respond to the regulatory reviewer (message + corrections)
+
+Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest = new RespondToPhoneNumberReviewerRequest(); // RespondToPhoneNumberReviewerRequest | 
+        try {
+            RespondToPhoneNumberReviewer200Response result = apiInstance.respondToPhoneNumberReviewer(id, respondToPhoneNumberReviewerRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#respondToPhoneNumberReviewer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **respondToPhoneNumberReviewerRequest** | [**RespondToPhoneNumberReviewerRequest**](RespondToPhoneNumberReviewerRequest.md)|  | |
+
+### Return type
+
+[**RespondToPhoneNumberReviewer200Response**](RespondToPhoneNumberReviewer200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Response sent. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **409** | Number&#39;s registration is held under our own carrier registration; nothing for you to correct. |  -  |
+| **502** | Couldn&#39;t deliver your response to the reviewer; retry. |  -  |
+
+## respondToPhoneNumberReviewerWithHttpInfo
+
+> ApiResponse<RespondToPhoneNumberReviewer200Response> respondToPhoneNumberReviewer respondToPhoneNumberReviewerWithHttpInfo(id, respondToPhoneNumberReviewerRequest)
+
+Respond to the regulatory reviewer (message + corrections)
+
+Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest = new RespondToPhoneNumberReviewerRequest(); // RespondToPhoneNumberReviewerRequest | 
+        try {
+            ApiResponse<RespondToPhoneNumberReviewer200Response> response = apiInstance.respondToPhoneNumberReviewerWithHttpInfo(id, respondToPhoneNumberReviewerRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#respondToPhoneNumberReviewer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **respondToPhoneNumberReviewerRequest** | [**RespondToPhoneNumberReviewerRequest**](RespondToPhoneNumberReviewerRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RespondToPhoneNumberReviewer200Response**](RespondToPhoneNumberReviewer200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Response sent. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **409** | Number&#39;s registration is held under our own carrier registration; nothing for you to correct. |  -  |
+| **502** | Couldn&#39;t deliver your response to the reviewer; retry. |  -  |
 
 
 ## reviewPhoneNumberKycPacket

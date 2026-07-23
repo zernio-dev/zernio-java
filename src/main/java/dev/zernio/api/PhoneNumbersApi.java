@@ -47,6 +47,8 @@ import dev.zernio.model.RemediatePhoneNumber200Response;
 import dev.zernio.model.RemediatePhoneNumberRequest;
 import dev.zernio.model.ReplyToPhoneNumberReviewer200Response;
 import dev.zernio.model.ReplyToPhoneNumberReviewerRequest;
+import dev.zernio.model.RespondToPhoneNumberReviewer200Response;
+import dev.zernio.model.RespondToPhoneNumberReviewerRequest;
 import dev.zernio.model.ReviewPhoneNumberKycPacket200Response;
 import dev.zernio.model.ReviewPhoneNumberKycPacketRequest;
 import dev.zernio.model.SearchAvailablePhoneNumbers200Response;
@@ -89,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T14:58:15.574069346Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T17:21:17.986456541Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2303,6 +2305,138 @@ public class PhoneNumbersApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replyToPhoneNumberReviewerRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Respond to the regulatory reviewer (message + corrections)
+   * Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+   * @param id  (required)
+   * @param respondToPhoneNumberReviewerRequest  (required)
+   * @return RespondToPhoneNumberReviewer200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RespondToPhoneNumberReviewer200Response respondToPhoneNumberReviewer(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest) throws ApiException {
+    return respondToPhoneNumberReviewer(id, respondToPhoneNumberReviewerRequest, null);
+  }
+
+  /**
+   * Respond to the regulatory reviewer (message + corrections)
+   * Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+   * @param id  (required)
+   * @param respondToPhoneNumberReviewerRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RespondToPhoneNumberReviewer200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RespondToPhoneNumberReviewer200Response respondToPhoneNumberReviewer(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RespondToPhoneNumberReviewer200Response> localVarResponse = respondToPhoneNumberReviewerWithHttpInfo(id, respondToPhoneNumberReviewerRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Respond to the regulatory reviewer (message + corrections)
+   * Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+   * @param id  (required)
+   * @param respondToPhoneNumberReviewerRequest  (required)
+   * @return ApiResponse&lt;RespondToPhoneNumberReviewer200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RespondToPhoneNumberReviewer200Response> respondToPhoneNumberReviewerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest) throws ApiException {
+    return respondToPhoneNumberReviewerWithHttpInfo(id, respondToPhoneNumberReviewerRequest, null);
+  }
+
+  /**
+   * Respond to the regulatory reviewer (message + corrections)
+   * Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+   * @param id  (required)
+   * @param respondToPhoneNumberReviewerRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RespondToPhoneNumberReviewer200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RespondToPhoneNumberReviewer200Response> respondToPhoneNumberReviewerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = respondToPhoneNumberReviewerRequestBuilder(id, respondToPhoneNumberReviewerRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("respondToPhoneNumberReviewer", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RespondToPhoneNumberReviewer200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RespondToPhoneNumberReviewer200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RespondToPhoneNumberReviewer200Response>() {});
+        
+
+        return new ApiResponse<RespondToPhoneNumberReviewer200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder respondToPhoneNumberReviewerRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling respondToPhoneNumberReviewer");
+    }
+    // verify the required parameter 'respondToPhoneNumberReviewerRequest' is set
+    if (respondToPhoneNumberReviewerRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'respondToPhoneNumberReviewerRequest' when calling respondToPhoneNumberReviewer");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/remediate/respond"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(respondToPhoneNumberReviewerRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -20477,6 +20477,57 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/phone-numbers/{id}/remediate/respond:
+    post:
+      description: |
+        Send a single response to the reviewer on a number awaiting remediation:
+        a free-text message and/or corrected requirement documents, in one call.
+        If corrections are present they are PATCHed onto the requirement group and
+        re-submitted (the number goes back to "in review"); if a message or file
+        attachments are present they are posted to the reviewer's comment thread.
+        When both are present, your message is the thread comment and the resubmit
+        drives the state change. At least one of message, corrections, or
+        attachments is required. `documents` correct requirement slots; `attachments`
+        are loose files (their links are added to your message).
+      operationId: respondToPhoneNumberReviewer
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/respondToPhoneNumberReviewer_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/respondToPhoneNumberReviewer_200_response"
+          description: Response sent.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Number not found
+        "409":
+          description: Number's registration is held under our own carrier registration;
+            nothing for you to correct.
+        "502":
+          description: Couldn't deliver your response to the reviewer; retry.
+      summary: Respond to the regulatory reviewer (message + corrections)
+      tags:
+      - Phone Numbers
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/phone-numbers/kyc:
     get:
       deprecated: true
@@ -60364,6 +60415,73 @@ components:
           type: boolean
         attachments:
           description: Number of attachments uploaded.
+          type: integer
+    respondToPhoneNumberReviewer_request_documents_inner:
+      properties:
+        requirementId:
+          type: string
+        filename:
+          type: string
+        base64:
+          description: Base64-encoded file bytes (or supply documentId instead).
+          type: string
+        documentId:
+          description: Id of a document already uploaded out-of-band.
+          type: string
+      required:
+      - requirementId
+    respondToPhoneNumberReviewer_request:
+      properties:
+        message:
+          description: Your message to the reviewer.
+          maxLength: 2000
+          type: string
+        documents:
+          description: "Corrected requirement documents, each keyed to its requirement."
+          items:
+            $ref: "#/components/schemas/respondToPhoneNumberReviewer_request_documents_inner"
+          type: array
+        address:
+          description: "A corrected address record, keyed to its requirement."
+          type: object
+        entityType:
+          enum:
+          - individual
+          - business
+          - null
+          nullable: true
+          type: string
+        attachments:
+          description: "Loose files (PDF/JPG/PNG/WEBP, max 10 MB each) whose links\
+            \ are added to your message."
+          items:
+            $ref: "#/components/schemas/replyToPhoneNumberReviewer_request_attachments_inner"
+          maxItems: 5
+          type: array
+    respondToPhoneNumberReviewer_200_response:
+      example:
+        phoneNumber:
+          id: id
+          status: status
+        siblingsResubmitted: 0
+        status: resubmitted
+        posted: true
+      properties:
+        status:
+          description: "`resubmitted` when corrections were submitted, `replied` when\
+            \ it was message-only."
+          enum:
+          - resubmitted
+          - replied
+          type: string
+        posted:
+          description: Whether a message/attachments were posted to the reviewer.
+          type: boolean
+        phoneNumber:
+          $ref: "#/components/schemas/remediatePhoneNumber_200_response_phoneNumber"
+        siblingsResubmitted:
+          description: Other numbers on the same registration the correction fanned
+            out to.
           type: integer
     getWhatsAppNumberKycForm_200_response_fields_inner:
       example:
