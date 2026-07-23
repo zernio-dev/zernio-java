@@ -18622,10 +18622,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/getWhatsAppDisplayName_200_response"
           description: Display name info retrieved
+        "400":
+          description: accountId is required
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: WhatsApp account not found
+          description: WhatsApp account not found or accountId is not a valid ObjectId
       security:
       - bearerAuth: []
       summary: Get display name status

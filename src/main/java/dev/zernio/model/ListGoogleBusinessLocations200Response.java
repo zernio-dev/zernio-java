@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListGoogleBusinessLocations200Response.JSON_PROPERTY_LOCATIONS,
   ListGoogleBusinessLocations200Response.JSON_PROPERTY_HAS_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T13:22:48.981118087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T14:58:15.574069346Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessLocations200Response {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable

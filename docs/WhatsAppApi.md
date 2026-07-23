@@ -2258,8 +2258,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Display name info retrieved |  -  |
+| **400** | accountId is required |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | WhatsApp account not found |  -  |
+| **404** | WhatsApp account not found or accountId is not a valid ObjectId |  -  |
 
 ## getWhatsAppDisplayNameWithHttpInfo
 
@@ -2333,8 +2334,9 @@ ApiResponse<[**GetWhatsAppDisplayName200Response**](GetWhatsAppDisplayName200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Display name info retrieved |  -  |
+| **400** | accountId is required |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | WhatsApp account not found |  -  |
+| **404** | WhatsApp account not found or accountId is not a valid ObjectId |  -  |
 
 
 ## getWhatsAppGroupChat

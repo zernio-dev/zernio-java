@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T13:22:48.981118087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T14:58:15.574069346Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable
