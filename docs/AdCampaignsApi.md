@@ -505,7 +505,7 @@ ApiResponse<[**CreateAdCampaign201Response**](CreateAdCampaign201Response.md)>
 
 Create standalone ad
 
-Creates a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X/Twitter, and LinkedIn. Supports three mutually-exclusive request shapes selected by the body, a legacy single-creative shape (all platforms, default), a Meta-only multi-creative shape via the creatives array (one ad set with N ads sharing budget and targeting), and a Meta-only attach shape via adSetId (adds one new ad to an existing ad set). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;); supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
+Creates a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X/Twitter, LinkedIn, and OpenAI Ads (ChatGPT Ads). Supports three mutually-exclusive request shapes selected by the body, a legacy single-creative shape (all platforms, default), a Meta-only multi-creative shape via the creatives array (one ad set with N ads sharing budget and targeting), and a Meta-only attach shape via adSetId (adds one new ad to an existing ad set). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;); supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -582,7 +582,7 @@ public class Example {
 
 Create standalone ad
 
-Creates a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X/Twitter, and LinkedIn. Supports three mutually-exclusive request shapes selected by the body, a legacy single-creative shape (all platforms, default), a Meta-only multi-creative shape via the creatives array (one ad set with N ads sharing budget and targeting), and a Meta-only attach shape via adSetId (adds one new ad to an existing ad set). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;); supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
+Creates a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X/Twitter, LinkedIn, and OpenAI Ads (ChatGPT Ads). Supports three mutually-exclusive request shapes selected by the body, a legacy single-creative shape (all platforms, default), a Meta-only multi-creative shape via the creatives array (one ad set with N ads sharing budget and targeting), and a Meta-only attach shape via adSetId (adds one new ad to an existing ad set). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;); supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -663,7 +663,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 
 Cancel an ad
 
-Cancels the ad on the platform and marks it as cancelled in the database. The ad is preserved for history.
+Cancels the ad on the platform and marks it as cancelled in the database. The ad is preserved for history. OpenAI Ads has no delete API; the ad is archived instead (a terminal state, the closest equivalent).
 
 ### Example
 
@@ -735,7 +735,7 @@ public class Example {
 
 Cancel an ad
 
-Cancels the ad on the platform and marks it as cancelled in the database. The ad is preserved for history.
+Cancels the ad on the platform and marks it as cancelled in the database. The ad is preserved for history. OpenAI Ads has no delete API; the ad is archived instead (a terminal state, the closest equivalent).
 
 ### Example
 
@@ -1798,7 +1798,7 @@ public class Example {
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**| Campaigns per page | [optional] [default to 20] |
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **status** | [**AdStatus**](.md)| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
 | **adAccountId** | **String**| Platform ad account ID | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
@@ -1900,7 +1900,7 @@ public class Example {
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**| Campaigns per page | [optional] [default to 20] |
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **status** | [**AdStatus**](.md)| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
 | **adAccountId** | **String**| Platform ad account ID | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
@@ -1992,7 +1992,7 @@ public class Example {
 | **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. | [optional] |
 | **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
-| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
 ### Return type
 
@@ -2076,7 +2076,7 @@ public class Example {
 | **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. | [optional] |
 | **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
-| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
 ### Return type
 
@@ -2162,7 +2162,7 @@ public class Example {
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **status** | [**AdStatus**](.md)| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta) | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
@@ -2255,7 +2255,7 @@ public class Example {
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **status** | [**AdStatus**](.md)| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta) | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
@@ -2351,7 +2351,7 @@ public class Example {
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **source** | **String**| all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. | [optional] [default to all] [enum: zernio, all] |
 | **status** | [**AdStatus**](.md)|  | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
@@ -2454,7 +2454,7 @@ public class Example {
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **source** | **String**| all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. | [optional] [default to all] [enum: zernio, all] |
 | **status** | [**AdStatus**](.md)|  | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
@@ -2495,7 +2495,7 @@ ApiResponse<[**ListAds200Response**](ListAds200Response.md)>
 
 Update ad
 
-Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Pinterest / X / LinkedIn / Google**: status + budget only. Sending &#x60;targeting&#x60;   or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;. 
+Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Pinterest / X / LinkedIn / Google / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
 
 ### Example
 
@@ -2571,7 +2571,7 @@ public class Example {
 
 Update ad
 
-Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Pinterest / X / LinkedIn / Google**: status + budget only. Sending &#x60;targeting&#x60;   or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;. 
+Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Pinterest / X / LinkedIn / Google / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
 
 ### Example
 

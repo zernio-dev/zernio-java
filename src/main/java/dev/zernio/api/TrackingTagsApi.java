@@ -23,6 +23,7 @@ import dev.zernio.model.AddTrackingTagSharedAccountRequest;
 import dev.zernio.model.CreateTrackingTag201Response;
 import dev.zernio.model.CreateTrackingTagRequest;
 import dev.zernio.model.GetAdTrackingTags200Response;
+import dev.zernio.model.GetTrackingTag200Response;
 import dev.zernio.model.GetTrackingTagStats200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListTrackingTagSharedAccounts200Response;
@@ -61,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingTagsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -321,8 +322,8 @@ public class TrackingTagsApi {
 
   /**
    * Create a tracking tag
-   * Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
+   * Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
    * @param createTrackingTagRequest  (required)
    * @return CreateTrackingTag201Response
    * @throws ApiException if fails to make API call
@@ -333,8 +334,8 @@ public class TrackingTagsApi {
 
   /**
    * Create a tracking tag
-   * Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
+   * Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
    * @param createTrackingTagRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateTrackingTag201Response
@@ -347,8 +348,8 @@ public class TrackingTagsApi {
 
   /**
    * Create a tracking tag
-   * Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
+   * Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
    * @param createTrackingTagRequest  (required)
    * @return ApiResponse&lt;CreateTrackingTag201Response&gt;
    * @throws ApiException if fails to make API call
@@ -359,8 +360,8 @@ public class TrackingTagsApi {
 
   /**
    * Create a tracking tag
-   * Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
+   * Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
    * @param createTrackingTagRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateTrackingTag201Response&gt;
@@ -571,52 +572,52 @@ public class TrackingTagsApi {
 
   /**
    * Get a tracking tag
-   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
    * @param accountId  (required)
    * @param tagId Pixel id. (required)
-   * @return CreateTrackingTag201Response
+   * @return GetTrackingTag200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateTrackingTag201Response getTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
+  public GetTrackingTag200Response getTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
     return getTrackingTag(accountId, tagId, null);
   }
 
   /**
    * Get a tracking tag
-   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
    * @param accountId  (required)
    * @param tagId Pixel id. (required)
    * @param headers Optional headers to include in the request
-   * @return CreateTrackingTag201Response
+   * @return GetTrackingTag200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateTrackingTag201Response getTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateTrackingTag201Response> localVarResponse = getTrackingTagWithHttpInfo(accountId, tagId, headers);
+  public GetTrackingTag200Response getTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetTrackingTag200Response> localVarResponse = getTrackingTagWithHttpInfo(accountId, tagId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get a tracking tag
-   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
    * @param accountId  (required)
    * @param tagId Pixel id. (required)
-   * @return ApiResponse&lt;CreateTrackingTag201Response&gt;
+   * @return ApiResponse&lt;GetTrackingTag200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateTrackingTag201Response> getTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
+  public ApiResponse<GetTrackingTag200Response> getTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
     return getTrackingTagWithHttpInfo(accountId, tagId, null);
   }
 
   /**
    * Get a tracking tag
-   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+   * Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
    * @param accountId  (required)
    * @param tagId Pixel id. (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateTrackingTag201Response&gt;
+   * @return ApiResponse&lt;GetTrackingTag200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateTrackingTag201Response> getTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetTrackingTag200Response> getTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getTrackingTagRequestBuilder(accountId, tagId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -632,7 +633,7 @@ public class TrackingTagsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CreateTrackingTag201Response>(
+          return new ApiResponse<GetTrackingTag200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -642,10 +643,10 @@ public class TrackingTagsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateTrackingTag201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateTrackingTag201Response>() {});
+        GetTrackingTag200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTrackingTag200Response>() {});
         
 
-        return new ApiResponse<CreateTrackingTag201Response>(
+        return new ApiResponse<GetTrackingTag200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -983,9 +984,9 @@ public class TrackingTagsApi {
 
   /**
    * List tracking tags
-   * Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
-   * @param adAccountId Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)
+   * Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
+   * @param adAccountId Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)
    * @return ListTrackingTags200Response
    * @throws ApiException if fails to make API call
    */
@@ -995,9 +996,9 @@ public class TrackingTagsApi {
 
   /**
    * List tracking tags
-   * Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
-   * @param adAccountId Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)
+   * Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
+   * @param adAccountId Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)
    * @param headers Optional headers to include in the request
    * @return ListTrackingTags200Response
    * @throws ApiException if fails to make API call
@@ -1009,9 +1010,9 @@ public class TrackingTagsApi {
 
   /**
    * List tracking tags
-   * Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
-   * @param adAccountId Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)
+   * Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
+   * @param adAccountId Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)
    * @return ApiResponse&lt;ListTrackingTags200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1021,9 +1022,9 @@ public class TrackingTagsApi {
 
   /**
    * List tracking tags
-   * Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
-   * @param accountId Meta ads SocialAccount id (platform &#x60;metaads&#x60;). (required)
-   * @param adAccountId Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)
+   * Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
+   * @param accountId Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). (required)
+   * @param adAccountId Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListTrackingTags200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1374,10 +1375,10 @@ public class TrackingTagsApi {
    * @param accountId  (required)
    * @param tagId Pixel id. (required)
    * @param updateTrackingTagRequest  (required)
-   * @return CreateTrackingTag201Response
+   * @return GetTrackingTag200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateTrackingTag201Response updateTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest) throws ApiException {
+  public GetTrackingTag200Response updateTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest) throws ApiException {
     return updateTrackingTag(accountId, tagId, updateTrackingTagRequest, null);
   }
 
@@ -1388,11 +1389,11 @@ public class TrackingTagsApi {
    * @param tagId Pixel id. (required)
    * @param updateTrackingTagRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return CreateTrackingTag201Response
+   * @return GetTrackingTag200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateTrackingTag201Response updateTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateTrackingTag201Response> localVarResponse = updateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest, headers);
+  public GetTrackingTag200Response updateTrackingTag(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetTrackingTag200Response> localVarResponse = updateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1402,10 +1403,10 @@ public class TrackingTagsApi {
    * @param accountId  (required)
    * @param tagId Pixel id. (required)
    * @param updateTrackingTagRequest  (required)
-   * @return ApiResponse&lt;CreateTrackingTag201Response&gt;
+   * @return ApiResponse&lt;GetTrackingTag200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateTrackingTag201Response> updateTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest) throws ApiException {
+  public ApiResponse<GetTrackingTag200Response> updateTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest) throws ApiException {
     return updateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest, null);
   }
 
@@ -1416,10 +1417,10 @@ public class TrackingTagsApi {
    * @param tagId Pixel id. (required)
    * @param updateTrackingTagRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateTrackingTag201Response&gt;
+   * @return ApiResponse&lt;GetTrackingTag200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateTrackingTag201Response> updateTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetTrackingTag200Response> updateTrackingTagWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull UpdateTrackingTagRequest updateTrackingTagRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateTrackingTagRequestBuilder(accountId, tagId, updateTrackingTagRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1435,7 +1436,7 @@ public class TrackingTagsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CreateTrackingTag201Response>(
+          return new ApiResponse<GetTrackingTag200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1445,10 +1446,10 @@ public class TrackingTagsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateTrackingTag201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateTrackingTag201Response>() {});
+        GetTrackingTag200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTrackingTag200Response>() {});
         
 
-        return new ApiResponse<CreateTrackingTag201Response>(
+        return new ApiResponse<GetTrackingTag200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

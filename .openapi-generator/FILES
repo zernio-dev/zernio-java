@@ -144,6 +144,8 @@ docs/ConnectAds200ResponseOneOf1.md
 docs/ConnectApi.md
 docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
+docs/ConnectOpenAIAdsCredentials200Response.md
+docs/ConnectOpenAIAdsCredentialsRequest.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
@@ -655,6 +657,7 @@ docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md
 docs/GetTikTokCreatorInfo200ResponseCreator.md
 docs/GetTikTokCreatorInfo200ResponsePostingLimits.md
 docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
+docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
 docs/GetUsage200Response.md
@@ -1767,6 +1770,8 @@ src/main/java/dev/zernio/model/ConnectAds200ResponseOneOf.java
 src/main/java/dev/zernio/model/ConnectAds200ResponseOneOf1.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentialsRequest.java
+src/main/java/dev/zernio/model/ConnectOpenAIAdsCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectOpenAIAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
@@ -2274,6 +2279,7 @@ src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCommercialContentT
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCreator.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimits.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.java
+src/main/java/dev/zernio/model/GetTrackingTag200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200ResponseStats.java
 src/main/java/dev/zernio/model/GetUsage200Response.java
@@ -3137,4 +3143,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/BoostPostRequestTrackingUrlTagsInnerTest.java
+src/test/java/dev/zernio/model/ConnectOpenAIAdsCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectOpenAIAdsCredentialsRequestTest.java
+src/test/java/dev/zernio/model/GetTrackingTag200ResponseTest.java

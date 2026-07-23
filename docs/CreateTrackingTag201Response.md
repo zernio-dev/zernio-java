@@ -17,6 +17,7 @@
 | Name | Value |
 |---- | -----|
 | METAADS | &quot;metaads&quot; |
+| OPENAIADS | &quot;openaiads&quot; |
 
 
 

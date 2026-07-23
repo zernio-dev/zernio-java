@@ -138,7 +138,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -169,7 +169,7 @@ public class CreateStandaloneAdRequest {
   private CreateStandaloneAdRequestTracking tracking;
 
   /**
-   * Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.  **Meta** - &#x60;conversions&#x60;: OUTCOME_SALES. Requires &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60; with a commerce event such as PURCHASE or START_TRIAL. - &#x60;lead_conversion&#x60;: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT. Meta gates conversion events by objective, so leads-class events are rejected under &#x60;conversions&#x60;. - &#x60;lead_generation&#x60;: OUTCOME_LEADS with instant forms. Requires &#x60;leadGenFormId&#x60;. &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. - &#x60;app_promotion&#x60;: requires &#x60;promotedObject.applicationId&#x60; and &#x60;promotedObject.objectStoreUrl&#x60;. - &#x60;catalog_sales&#x60;: Advantage+ catalog ads, for example vehicle inventory. Requires &#x60;promotedObject.productSetId&#x60;, &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60;. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets.  **TikTok** - &#x60;conversions&#x60;: website-conversion ad group. Requires &#x60;promotedObject.pixelId&#x60;, your TikTok Pixel ID. Accepts an optional &#x60;promotedObject.customEventType&#x60; with a TikTok optimization_event code your pixel tracks (newer pixels use e.g. SHOPPING for purchase events; legacy pixels use ON_WEB_ORDER, INITIATE_ORDER, ON_WEB_REGISTER or FORM). To inherit pixel and event from an existing ad group, pass &#x60;adSetId&#x60; instead.  **LinkedIn** - &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60; and &#x60;video_views&#x60; create standalone Direct Sponsored Content ads. &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires &#x60;video&#x60;. - &#x60;job_applicants&#x60; requires a &#x60;platformSpecificData.jobs&#x60; creative. - For &#x60;lead_generation&#x60; or &#x60;conversions&#x60; on LinkedIn, or to promote an existing post, use POST /v1/ads/boost. 
+   * Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.  **Meta** - &#x60;conversions&#x60;: OUTCOME_SALES. Requires &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60; with a commerce event such as PURCHASE or START_TRIAL. - &#x60;lead_conversion&#x60;: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT. Meta gates conversion events by objective, so leads-class events are rejected under &#x60;conversions&#x60;. - &#x60;lead_generation&#x60;: OUTCOME_LEADS with instant forms. Requires &#x60;leadGenFormId&#x60;. &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. - &#x60;app_promotion&#x60;: requires &#x60;promotedObject.applicationId&#x60; and &#x60;promotedObject.objectStoreUrl&#x60;. - &#x60;catalog_sales&#x60;: Advantage+ catalog ads, for example vehicle inventory. Requires &#x60;promotedObject.productSetId&#x60;, &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60;. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets.  **TikTok** - &#x60;conversions&#x60;: website-conversion ad group. Requires &#x60;promotedObject.pixelId&#x60;, your TikTok Pixel ID. Accepts an optional &#x60;promotedObject.customEventType&#x60; with a TikTok optimization_event code your pixel tracks (newer pixels use e.g. SHOPPING for purchase events; legacy pixels use ON_WEB_ORDER, INITIATE_ORDER, ON_WEB_REGISTER or FORM). To inherit pixel and event from an existing ad group, pass &#x60;adSetId&#x60; instead.  **LinkedIn** - &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60; and &#x60;video_views&#x60; create standalone Direct Sponsored Content ads. &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires &#x60;video&#x60;. - &#x60;job_applicants&#x60; requires a &#x60;platformSpecificData.jobs&#x60; creative. - For &#x60;lead_generation&#x60; or &#x60;conversions&#x60; on LinkedIn, or to promote an existing post, use POST /v1/ads/boost.  **OpenAI Ads** - Only &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;conversions&#x60; are supported (other goals return 400). Maps to OpenAI&#39;s &#x60;bidding_type&#x60; (clicks, impressions, conversions respectively). &#x60;conversions&#x60; requires an active conversion event setting on the account; create a tracking tag with &#x60;defaultEventType&#x60; via the tracking-tags API (&#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60;), or configure a conversion event in OpenAI Ads Manager, or the request returns 422. 
    */
   public enum GoalEnum {
     ENGAGEMENT(String.valueOf("engagement")),
@@ -322,7 +322,7 @@ public class CreateStandaloneAdRequest {
   private BigDecimal budgetAmount;
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited on attach.
+   * Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window.
    */
   public enum BudgetTypeEnum {
     DAILY(String.valueOf("daily")),
@@ -1174,7 +1174,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.  **Meta** - &#x60;conversions&#x60;: OUTCOME_SALES. Requires &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60; with a commerce event such as PURCHASE or START_TRIAL. - &#x60;lead_conversion&#x60;: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT. Meta gates conversion events by objective, so leads-class events are rejected under &#x60;conversions&#x60;. - &#x60;lead_generation&#x60;: OUTCOME_LEADS with instant forms. Requires &#x60;leadGenFormId&#x60;. &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. - &#x60;app_promotion&#x60;: requires &#x60;promotedObject.applicationId&#x60; and &#x60;promotedObject.objectStoreUrl&#x60;. - &#x60;catalog_sales&#x60;: Advantage+ catalog ads, for example vehicle inventory. Requires &#x60;promotedObject.productSetId&#x60;, &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60;. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets.  **TikTok** - &#x60;conversions&#x60;: website-conversion ad group. Requires &#x60;promotedObject.pixelId&#x60;, your TikTok Pixel ID. Accepts an optional &#x60;promotedObject.customEventType&#x60; with a TikTok optimization_event code your pixel tracks (newer pixels use e.g. SHOPPING for purchase events; legacy pixels use ON_WEB_ORDER, INITIATE_ORDER, ON_WEB_REGISTER or FORM). To inherit pixel and event from an existing ad group, pass &#x60;adSetId&#x60; instead.  **LinkedIn** - &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60; and &#x60;video_views&#x60; create standalone Direct Sponsored Content ads. &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires &#x60;video&#x60;. - &#x60;job_applicants&#x60; requires a &#x60;platformSpecificData.jobs&#x60; creative. - For &#x60;lead_generation&#x60; or &#x60;conversions&#x60; on LinkedIn, or to promote an existing post, use POST /v1/ads/boost. 
+   * Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.  **Meta** - &#x60;conversions&#x60;: OUTCOME_SALES. Requires &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60; with a commerce event such as PURCHASE or START_TRIAL. - &#x60;lead_conversion&#x60;: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT. Meta gates conversion events by objective, so leads-class events are rejected under &#x60;conversions&#x60;. - &#x60;lead_generation&#x60;: OUTCOME_LEADS with instant forms. Requires &#x60;leadGenFormId&#x60;. &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. - &#x60;app_promotion&#x60;: requires &#x60;promotedObject.applicationId&#x60; and &#x60;promotedObject.objectStoreUrl&#x60;. - &#x60;catalog_sales&#x60;: Advantage+ catalog ads, for example vehicle inventory. Requires &#x60;promotedObject.productSetId&#x60;, &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60;. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets.  **TikTok** - &#x60;conversions&#x60;: website-conversion ad group. Requires &#x60;promotedObject.pixelId&#x60;, your TikTok Pixel ID. Accepts an optional &#x60;promotedObject.customEventType&#x60; with a TikTok optimization_event code your pixel tracks (newer pixels use e.g. SHOPPING for purchase events; legacy pixels use ON_WEB_ORDER, INITIATE_ORDER, ON_WEB_REGISTER or FORM). To inherit pixel and event from an existing ad group, pass &#x60;adSetId&#x60; instead.  **LinkedIn** - &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60; and &#x60;video_views&#x60; create standalone Direct Sponsored Content ads. &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires &#x60;video&#x60;. - &#x60;job_applicants&#x60; requires a &#x60;platformSpecificData.jobs&#x60; creative. - For &#x60;lead_generation&#x60; or &#x60;conversions&#x60; on LinkedIn, or to promote an existing post, use POST /v1/ads/boost.  **OpenAI Ads** - Only &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;conversions&#x60; are supported (other goals return 400). Maps to OpenAI&#39;s &#x60;bidding_type&#x60; (clicks, impressions, conversions respectively). &#x60;conversions&#x60; requires an active conversion event setting on the account; create a tracking tag with &#x60;defaultEventType&#x60; via the tracking-tags API (&#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60;), or configure a conversion event in OpenAI Ads Manager, or the request returns 422. 
    * @return goal
    */
   @javax.annotation.Nullable
@@ -1350,7 +1350,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited on attach.
+   * Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
    * @return budgetAmount
    */
   @javax.annotation.Nullable
@@ -1374,7 +1374,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited on attach.
+   * Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window.
    * @return budgetType
    */
   @javax.annotation.Nullable
@@ -1470,7 +1470,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title.
+   * Required for Meta, Google, Pinterest, LinkedIn, and OpenAI Ads on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400, OpenAI&#x3D;50 (min 3). On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title. On OpenAI Ads this is the chat card&#39;s title.
    * @return headline
    */
   @javax.annotation.Nullable
@@ -1518,7 +1518,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). Max: Google&#x3D;90, Pinterest&#x3D;500.
+   * Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). On OpenAI Ads this is the chat card&#39;s body text. Max: Google&#x3D;90, Pinterest&#x3D;500, OpenAI&#x3D;100.
    * @return body
    */
   @javax.annotation.Nullable
@@ -1590,7 +1590,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;. NOT required when &#x60;goal&#x60; is &#x60;lead_generation&#x60; (the ad opens a Lead Gen form instead of a destination). On LinkedIn, &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; publishes an ARTICLE-content creative; this is LinkedIn&#39;s article ad format, with the image as thumbnail and &#x60;longHeadline&#x60; as description.
+   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;. NOT required when &#x60;goal&#x60; is &#x60;lead_generation&#x60; (the ad opens a Lead Gen form instead of a destination). On LinkedIn, &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; publishes an ARTICLE-content creative; this is LinkedIn&#39;s article ad format, with the image as thumbnail and &#x60;longHeadline&#x60; as description. Required for OpenAI Ads (the chat card&#39;s target_url).
    * @return linkUrl
    */
   @javax.annotation.Nullable
@@ -1638,7 +1638,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads unless &#x60;video&#x60; is set. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627).
+   * Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads unless &#x60;video&#x60; is set. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627). Required for OpenAI Ads (uploaded as the chat card&#39;s image; OpenAI has no video ad format).
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -1918,7 +1918,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn currently honours country-level targeting only.)
+   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn and OpenAI Ads currently honour country-level targeting only; any other targeting field returns 400 for OpenAI Ads.)
    * @return countries
    */
   @javax.annotation.Nullable

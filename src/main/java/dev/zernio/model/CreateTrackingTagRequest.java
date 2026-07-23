@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateTrackingTagRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   CreateTrackingTagRequest.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTrackingTagRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull
@@ -55,7 +55,7 @@ public class CreateTrackingTagRequest {
   }
 
   /**
-   * Meta ad account id, e.g. &#x60;act_123456789&#x60;.
+   * Meta ad account id, e.g. &#x60;act_123456789&#x60;. Required by this endpoint but ignored for OpenAI Ads.
    * @return adAccountId
    */
   @javax.annotation.Nonnull

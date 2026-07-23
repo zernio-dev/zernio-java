@@ -49,6 +49,7 @@
 | TIKTOKADS | &quot;tiktokads&quot; |
 | XADS | &quot;xads&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
+| OPENAIADS | &quot;openaiads&quot; |
 
 
 

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInnerReply.JSON_PROPERTY_TEXT,
   ListInboxReviews200ResponseDataInnerReply.JSON_PROPERTY_CREATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInnerReply {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

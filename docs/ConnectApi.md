@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectAdsWithHttpInfo**](ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**connectBlueskyCredentials**](ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**connectBlueskyCredentialsWithHttpInfo**](ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
+| [**connectOpenAIAdsCredentials**](ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
+| [**connectOpenAIAdsCredentialsWithHttpInfo**](ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**connectWhatsAppCredentials**](ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**connectWhatsAppCredentialsWithHttpInfo**](ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**createPinterestBoard**](ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
@@ -1033,6 +1035,156 @@ ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials
 | **400** | Invalid request - missing fields or invalid state format |  -  |
 | **401** | Unauthorized |  -  |
 | **500** | Internal error |  -  |
+
+
+## connectOpenAIAdsCredentials
+
+> ConnectOpenAIAdsCredentials200Response connectOpenAIAdsCredentials(connectOpenAIAdsCredentialsRequest)
+
+Connect an OpenAI Ads account
+
+Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest = new ConnectOpenAIAdsCredentialsRequest(); // ConnectOpenAIAdsCredentialsRequest | 
+        try {
+            ConnectOpenAIAdsCredentials200Response result = apiInstance.connectOpenAIAdsCredentials(connectOpenAIAdsCredentialsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectOpenAIAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectOpenAIAdsCredentialsRequest** | [**ConnectOpenAIAdsCredentialsRequest**](ConnectOpenAIAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+[**ConnectOpenAIAdsCredentials200Response**](ConnectOpenAIAdsCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OpenAI Ads connected successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or the API key could not read an OpenAI ad account (code invalid_credentials). |  -  |
+| **403** | Ads add-on required. |  -  |
+
+## connectOpenAIAdsCredentialsWithHttpInfo
+
+> ApiResponse<ConnectOpenAIAdsCredentials200Response> connectOpenAIAdsCredentials connectOpenAIAdsCredentialsWithHttpInfo(connectOpenAIAdsCredentialsRequest)
+
+Connect an OpenAI Ads account
+
+Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest = new ConnectOpenAIAdsCredentialsRequest(); // ConnectOpenAIAdsCredentialsRequest | 
+        try {
+            ApiResponse<ConnectOpenAIAdsCredentials200Response> response = apiInstance.connectOpenAIAdsCredentialsWithHttpInfo(connectOpenAIAdsCredentialsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectOpenAIAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectOpenAIAdsCredentialsRequest** | [**ConnectOpenAIAdsCredentialsRequest**](ConnectOpenAIAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectOpenAIAdsCredentials200Response**](ConnectOpenAIAdsCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OpenAI Ads connected successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or the API key could not read an OpenAI ad account (code invalid_credentials). |  -  |
+| **403** | Ads add-on required. |  -  |
 
 
 ## connectWhatsAppCredentials

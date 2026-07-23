@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UsageMeteringTotals.JSON_PROPERTY_OTHER,
   UsageMeteringTotals.JSON_PROPERTY_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMeteringTotals {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   @javax.annotation.Nullable

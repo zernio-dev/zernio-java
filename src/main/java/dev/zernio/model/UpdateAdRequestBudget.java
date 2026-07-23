@@ -37,14 +37,14 @@ import dev.zernio.ApiClient;
   UpdateAdRequestBudget.JSON_PROPERTY_AMOUNT,
   UpdateAdRequestBudget.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestBudget {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   @javax.annotation.Nullable
   private BigDecimal amount;
 
   /**
-   * Gets or Sets type
+   * OpenAI Ads accepts lifetime only; sending daily returns 422.
    */
   public enum TypeEnum {
     DAILY(String.valueOf("daily")),
@@ -115,7 +115,7 @@ public class UpdateAdRequestBudget {
   }
 
   /**
-   * Get type
+   * OpenAI Ads accepts lifetime only; sending daily returns 422.
    * @return type
    */
   @javax.annotation.Nullable

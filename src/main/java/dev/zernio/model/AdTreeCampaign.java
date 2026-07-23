@@ -77,7 +77,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_AD_SETS,
   AdTreeCampaign.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -99,7 +99,9 @@ public class AdTreeCampaign {
     
     GOOGLE(String.valueOf("google")),
     
-    TWITTER(String.valueOf("twitter"));
+    TWITTER(String.valueOf("twitter")),
+    
+    OPENAI(String.valueOf("openai"));
 
     private String value;
 

@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   AdCampaign.JSON_PROPERTY_EARLIEST_AD,
   AdCampaign.JSON_PROPERTY_LATEST_AD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -97,7 +97,9 @@ public class AdCampaign {
     
     GOOGLE(String.valueOf("google")),
     
-    TWITTER(String.valueOf("twitter"));
+    TWITTER(String.valueOf("twitter")),
+    
+    OPENAI(String.valueOf("openai"));
 
     private String value;
 

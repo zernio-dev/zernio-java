@@ -20,6 +20,7 @@
 | GOOGLEADS | &quot;googleads&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
 | TIKTOKADS | &quot;tiktokads&quot; |
+| OPENAIADS | &quot;openaiads&quot; |
 
 
 

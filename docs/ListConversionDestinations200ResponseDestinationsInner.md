@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID.  |  [optional] |
+|**id** | **String** | Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. OpenAI Ads: pixel wire id.  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**type** | **String** | Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules).  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |

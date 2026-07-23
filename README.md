@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-23T08:55:35.839368632Z[Etc/UTC]
+- Build date: 2026-07-23T09:11:36.649491688Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -400,6 +400,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectBlueskyCredentials**](docs/ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
+*ConnectApi* | [**connectOpenAIAdsCredentials**](docs/ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
+*ConnectApi* | [**connectOpenAIAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
@@ -1269,6 +1271,8 @@ Class | Method | HTTP request | Description
  - [ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
+ - [ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
+ - [ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)
  - [ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)
@@ -1776,6 +1780,7 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponseCreator](docs/GetTikTokCreatorInfo200ResponseCreator.md)
  - [GetTikTokCreatorInfo200ResponsePostingLimits](docs/GetTikTokCreatorInfo200ResponsePostingLimits.md)
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
+ - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [GetUsage200Response](docs/GetUsage200Response.md)

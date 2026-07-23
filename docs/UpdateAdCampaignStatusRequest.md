@@ -32,6 +32,7 @@
 | PINTEREST | &quot;pinterest&quot; |
 | GOOGLE | &quot;google&quot; |
 | TWITTER | &quot;twitter&quot; |
+| OPENAI | &quot;openai&quot; |
 
 
 

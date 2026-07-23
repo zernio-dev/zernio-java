@@ -28,6 +28,8 @@ import dev.zernio.model.ConfigureTikTokAdsBrandIdentityRequest;
 import dev.zernio.model.ConnectAds200Response;
 import dev.zernio.model.ConnectBlueskyCredentials200Response;
 import dev.zernio.model.ConnectBlueskyCredentialsRequest;
+import dev.zernio.model.ConnectOpenAIAdsCredentials200Response;
+import dev.zernio.model.ConnectOpenAIAdsCredentialsRequest;
 import dev.zernio.model.ConnectWhatsAppCredentials200Response;
 import dev.zernio.model.ConnectWhatsAppCredentialsRequest;
 import dev.zernio.model.CreatePinterestBoard201Response;
@@ -106,7 +108,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1025,6 +1027,129 @@ public class ConnectApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectBlueskyCredentialsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Connect an OpenAI Ads account
+   * Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+   * @param connectOpenAIAdsCredentialsRequest  (required)
+   * @return ConnectOpenAIAdsCredentials200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ConnectOpenAIAdsCredentials200Response connectOpenAIAdsCredentials(@javax.annotation.Nonnull ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest) throws ApiException {
+    return connectOpenAIAdsCredentials(connectOpenAIAdsCredentialsRequest, null);
+  }
+
+  /**
+   * Connect an OpenAI Ads account
+   * Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+   * @param connectOpenAIAdsCredentialsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ConnectOpenAIAdsCredentials200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ConnectOpenAIAdsCredentials200Response connectOpenAIAdsCredentials(@javax.annotation.Nonnull ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ConnectOpenAIAdsCredentials200Response> localVarResponse = connectOpenAIAdsCredentialsWithHttpInfo(connectOpenAIAdsCredentialsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Connect an OpenAI Ads account
+   * Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+   * @param connectOpenAIAdsCredentialsRequest  (required)
+   * @return ApiResponse&lt;ConnectOpenAIAdsCredentials200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ConnectOpenAIAdsCredentials200Response> connectOpenAIAdsCredentialsWithHttpInfo(@javax.annotation.Nonnull ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest) throws ApiException {
+    return connectOpenAIAdsCredentialsWithHttpInfo(connectOpenAIAdsCredentialsRequest, null);
+  }
+
+  /**
+   * Connect an OpenAI Ads account
+   * Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+   * @param connectOpenAIAdsCredentialsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ConnectOpenAIAdsCredentials200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ConnectOpenAIAdsCredentials200Response> connectOpenAIAdsCredentialsWithHttpInfo(@javax.annotation.Nonnull ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectOpenAIAdsCredentialsRequestBuilder(connectOpenAIAdsCredentialsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("connectOpenAIAdsCredentials", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ConnectOpenAIAdsCredentials200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ConnectOpenAIAdsCredentials200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ConnectOpenAIAdsCredentials200Response>() {});
+        
+
+        return new ApiResponse<ConnectOpenAIAdsCredentials200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder connectOpenAIAdsCredentialsRequestBuilder(@javax.annotation.Nonnull ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'connectOpenAIAdsCredentialsRequest' is set
+    if (connectOpenAIAdsCredentialsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectOpenAIAdsCredentialsRequest' when calling connectOpenAIAdsCredentials");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/openai-ads/credentials";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectOpenAIAdsCredentialsRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   UpdateAdSetRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T08:55:35.839368632Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T09:11:36.649491688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequest {
   /**
    * Gets or Sets platform
@@ -64,7 +64,9 @@ public class UpdateAdSetRequest {
     
     GOOGLE(String.valueOf("google")),
     
-    TWITTER(String.valueOf("twitter"));
+    TWITTER(String.valueOf("twitter")),
+    
+    OPENAI(String.valueOf("openai"));
 
     private String value;
 
