@@ -1055,6 +1055,9 @@ docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
+docs/ReplyToPhoneNumberReviewer200Response.md
+docs/ReplyToPhoneNumberReviewerRequest.md
+docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md
 docs/RequestSmsSenderIdLimitIncrease200Response.md
 docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
@@ -2654,6 +2657,9 @@ src/main/java/dev/zernio/model/ReplyToInboxReview200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToMention200Response.java
 src/main/java/dev/zernio/model/ReplyToMentionRequest.java
+src/main/java/dev/zernio/model/ReplyToPhoneNumberReviewer200Response.java
+src/main/java/dev/zernio/model/ReplyToPhoneNumberReviewerRequest.java
+src/main/java/dev/zernio/model/ReplyToPhoneNumberReviewerRequestAttachmentsInner.java
 src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncrease200Response.java
 src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncreaseRequest.java
 src/main/java/dev/zernio/model/ResendSmsRegistrationOtp200Response.java
@@ -3145,4 +3151,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInnerTest.java
+src/test/java/dev/zernio/model/ReplyToPhoneNumberReviewer200ResponseTest.java
+src/test/java/dev/zernio/model/ReplyToPhoneNumberReviewerRequestAttachmentsInnerTest.java
+src/test/java/dev/zernio/model/ReplyToPhoneNumberReviewerRequestTest.java

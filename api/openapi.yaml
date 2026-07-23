@@ -20375,6 +20375,53 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/phone-numbers/{id}/remediate/reply:
+    post:
+      description: |
+        Post a free-text reply (with optional file attachments) to the reviewer
+        on a number awaiting remediation — for asks the structured form can't
+        express (e.g. "is this personal or business?"). Attachments are stored by
+        us and their links are added to the reviewer's comment thread (the
+        carrier's number order takes no loose files). A reply to a comment-style
+        ask moves the number back to "in review"; a reply on a formal decline is
+        supplementary and you must still resubmit the fix. Requires text or at
+        least one attachment.
+      operationId: replyToPhoneNumberReviewer
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/replyToPhoneNumberReviewer_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/replyToPhoneNumberReviewer_200_response"
+          description: Reply posted.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Number not found
+        "502":
+          description: Couldn't deliver the reply to the reviewer; retry.
+      summary: Reply to the regulatory reviewer
+      tags:
+      - Phone Numbers
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/phone-numbers/kyc:
     get:
       deprecated: true
@@ -60215,6 +60262,39 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/remediatePhoneNumber_200_response_phoneNumber"
+    replyToPhoneNumberReviewer_request_attachments_inner:
+      properties:
+        filename:
+          type: string
+        base64:
+          description: Base64-encoded file bytes.
+          type: string
+      required:
+      - base64
+      - filename
+    replyToPhoneNumberReviewer_request:
+      properties:
+        text:
+          description: The reply message to the reviewer.
+          maxLength: 2000
+          type: string
+        attachments:
+          description: "Files (PDF/JPG/PNG/WEBP, max 10 MB each) whose links are added\
+            \ to the reply."
+          items:
+            $ref: "#/components/schemas/replyToPhoneNumberReviewer_request_attachments_inner"
+          maxItems: 5
+          type: array
+    replyToPhoneNumberReviewer_200_response:
+      example:
+        attachments: 0
+        posted: true
+      properties:
+        posted:
+          type: boolean
+        attachments:
+          description: Number of attachments uploaded.
+          type: integer
     getWhatsAppNumberKycForm_200_response_fields_inner:
       example:
         audience: business

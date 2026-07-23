@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-23T10:52:50.430351292Z[Etc/UTC]
+- Build date: 2026-07-23T11:24:10.471440542Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -728,6 +728,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**releasePhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#releasePhoneNumberWithHttpInfo) | **DELETE** /v1/phone-numbers/{id} | Release phone number
 *PhoneNumbersApi* | [**remediatePhoneNumber**](docs/PhoneNumbersApi.md#remediatePhoneNumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number
 *PhoneNumbersApi* | [**remediatePhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#remediatePhoneNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number
+*PhoneNumbersApi* | [**replyToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#replyToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
+*PhoneNumbersApi* | [**replyToPhoneNumberReviewerWithHttpInfo**](docs/PhoneNumbersApi.md#replyToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
 *PhoneNumbersApi* | [**reviewPhoneNumberKycPacket**](docs/PhoneNumbersApi.md#reviewPhoneNumberKycPacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
 *PhoneNumbersApi* | [**reviewPhoneNumberKycPacketWithHttpInfo**](docs/PhoneNumbersApi.md#reviewPhoneNumberKycPacketWithHttpInfo) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
 *PhoneNumbersApi* | [**searchAvailablePhoneNumbers**](docs/PhoneNumbersApi.md#searchAvailablePhoneNumbers) | **GET** /v1/phone-numbers/available | Search available numbers
@@ -2156,6 +2158,9 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
+ - [ReplyToPhoneNumberReviewer200Response](docs/ReplyToPhoneNumberReviewer200Response.md)
+ - [ReplyToPhoneNumberReviewerRequest](docs/ReplyToPhoneNumberReviewerRequest.md)
+ - [ReplyToPhoneNumberReviewerRequestAttachmentsInner](docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md)
  - [RequestSmsSenderIdLimitIncrease200Response](docs/RequestSmsSenderIdLimitIncrease200Response.md)
  - [RequestSmsSenderIdLimitIncreaseRequest](docs/RequestSmsSenderIdLimitIncreaseRequest.md)
  - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)

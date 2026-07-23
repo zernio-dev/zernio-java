@@ -36,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**releasePhoneNumberWithHttpInfo**](PhoneNumbersApi.md#releasePhoneNumberWithHttpInfo) | **DELETE** /v1/phone-numbers/{id} | Release phone number |
 | [**remediatePhoneNumber**](PhoneNumbersApi.md#remediatePhoneNumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
 | [**remediatePhoneNumberWithHttpInfo**](PhoneNumbersApi.md#remediatePhoneNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
+| [**replyToPhoneNumberReviewer**](PhoneNumbersApi.md#replyToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
+| [**replyToPhoneNumberReviewerWithHttpInfo**](PhoneNumbersApi.md#replyToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
 | [**reviewPhoneNumberKycPacket**](PhoneNumbersApi.md#reviewPhoneNumberKycPacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**reviewPhoneNumberKycPacketWithHttpInfo**](PhoneNumbersApi.md#reviewPhoneNumberKycPacketWithHttpInfo) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**searchAvailablePhoneNumbers**](PhoneNumbersApi.md#searchAvailablePhoneNumbers) | **GET** /v1/phone-numbers/available | Search available numbers |
@@ -2441,6 +2443,162 @@ ApiResponse<[**RemediatePhoneNumber200Response**](RemediatePhoneNumber200Respons
 | **400** | Number is not awaiting remediation / nothing to remediate |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
+
+
+## replyToPhoneNumberReviewer
+
+> ReplyToPhoneNumberReviewer200Response replyToPhoneNumberReviewer(id, replyToPhoneNumberReviewerRequest)
+
+Reply to the regulatory reviewer
+
+Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest = new ReplyToPhoneNumberReviewerRequest(); // ReplyToPhoneNumberReviewerRequest | 
+        try {
+            ReplyToPhoneNumberReviewer200Response result = apiInstance.replyToPhoneNumberReviewer(id, replyToPhoneNumberReviewerRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#replyToPhoneNumberReviewer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **replyToPhoneNumberReviewerRequest** | [**ReplyToPhoneNumberReviewerRequest**](ReplyToPhoneNumberReviewerRequest.md)|  | |
+
+### Return type
+
+[**ReplyToPhoneNumberReviewer200Response**](ReplyToPhoneNumberReviewer200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply posted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
+
+## replyToPhoneNumberReviewerWithHttpInfo
+
+> ApiResponse<ReplyToPhoneNumberReviewer200Response> replyToPhoneNumberReviewer replyToPhoneNumberReviewerWithHttpInfo(id, replyToPhoneNumberReviewerRequest)
+
+Reply to the regulatory reviewer
+
+Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest = new ReplyToPhoneNumberReviewerRequest(); // ReplyToPhoneNumberReviewerRequest | 
+        try {
+            ApiResponse<ReplyToPhoneNumberReviewer200Response> response = apiInstance.replyToPhoneNumberReviewerWithHttpInfo(id, replyToPhoneNumberReviewerRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#replyToPhoneNumberReviewer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **replyToPhoneNumberReviewerRequest** | [**ReplyToPhoneNumberReviewerRequest**](ReplyToPhoneNumberReviewerRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ReplyToPhoneNumberReviewer200Response**](ReplyToPhoneNumberReviewer200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply posted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
 
 
 ## reviewPhoneNumberKycPacket

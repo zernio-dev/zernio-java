@@ -45,6 +45,8 @@ import dev.zernio.model.PurchasePhoneNumberRequest;
 import dev.zernio.model.ReleasePhoneNumber200Response;
 import dev.zernio.model.RemediatePhoneNumber200Response;
 import dev.zernio.model.RemediatePhoneNumberRequest;
+import dev.zernio.model.ReplyToPhoneNumberReviewer200Response;
+import dev.zernio.model.ReplyToPhoneNumberReviewerRequest;
 import dev.zernio.model.ReviewPhoneNumberKycPacket200Response;
 import dev.zernio.model.ReviewPhoneNumberKycPacketRequest;
 import dev.zernio.model.SearchAvailablePhoneNumbers200Response;
@@ -87,7 +89,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:52:50.430351292Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:24:10.471440542Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2169,6 +2171,138 @@ public class PhoneNumbersApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(remediatePhoneNumberRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reply to the regulatory reviewer
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+   * @param id  (required)
+   * @param replyToPhoneNumberReviewerRequest  (required)
+   * @return ReplyToPhoneNumberReviewer200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToPhoneNumberReviewer200Response replyToPhoneNumberReviewer(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest) throws ApiException {
+    return replyToPhoneNumberReviewer(id, replyToPhoneNumberReviewerRequest, null);
+  }
+
+  /**
+   * Reply to the regulatory reviewer
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+   * @param id  (required)
+   * @param replyToPhoneNumberReviewerRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReplyToPhoneNumberReviewer200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToPhoneNumberReviewer200Response replyToPhoneNumberReviewer(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToPhoneNumberReviewer200Response> localVarResponse = replyToPhoneNumberReviewerWithHttpInfo(id, replyToPhoneNumberReviewerRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Reply to the regulatory reviewer
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+   * @param id  (required)
+   * @param replyToPhoneNumberReviewerRequest  (required)
+   * @return ApiResponse&lt;ReplyToPhoneNumberReviewer200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToPhoneNumberReviewer200Response> replyToPhoneNumberReviewerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest) throws ApiException {
+    return replyToPhoneNumberReviewerWithHttpInfo(id, replyToPhoneNumberReviewerRequest, null);
+  }
+
+  /**
+   * Reply to the regulatory reviewer
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+   * @param id  (required)
+   * @param replyToPhoneNumberReviewerRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplyToPhoneNumberReviewer200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToPhoneNumberReviewer200Response> replyToPhoneNumberReviewerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replyToPhoneNumberReviewerRequestBuilder(id, replyToPhoneNumberReviewerRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("replyToPhoneNumberReviewer", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplyToPhoneNumberReviewer200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplyToPhoneNumberReviewer200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplyToPhoneNumberReviewer200Response>() {});
+        
+
+        return new ApiResponse<ReplyToPhoneNumberReviewer200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder replyToPhoneNumberReviewerRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling replyToPhoneNumberReviewer");
+    }
+    // verify the required parameter 'replyToPhoneNumberReviewerRequest' is set
+    if (replyToPhoneNumberReviewerRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'replyToPhoneNumberReviewerRequest' when calling replyToPhoneNumberReviewer");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/remediate/reply"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replyToPhoneNumberReviewerRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

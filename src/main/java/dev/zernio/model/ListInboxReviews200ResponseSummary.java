@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseSummary.JSON_PROPERTY_TOTAL_REVIEWS,
   ListInboxReviews200ResponseSummary.JSON_PROPERTY_AVERAGE_RATING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T10:52:50.430351292Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T11:24:10.471440542Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseSummary {
   public static final String JSON_PROPERTY_TOTAL_REVIEWS = "totalReviews";
   @javax.annotation.Nullable
