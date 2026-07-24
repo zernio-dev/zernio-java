@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SearchAdInterests200ResponseInterestsInner.JSON_PROPERTY_NAME,
   SearchAdInterests200ResponseInterestsInner.JSON_PROPERTY_CATEGORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:36:39.774951380Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdInterests200ResponseInterestsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

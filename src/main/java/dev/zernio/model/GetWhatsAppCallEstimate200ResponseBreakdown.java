@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallEstimate200ResponseBreakdown.JSON_PROPERTY_BILLABLE_COST_U_S_D,
   GetWhatsAppCallEstimate200ResponseBreakdown.JSON_PROPERTY_TOTAL_COST_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:36:39.774951380Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallEstimate200ResponseBreakdown {
   public static final String JSON_PROPERTY_META_MINUTES = "metaMinutes";
   @javax.annotation.Nullable

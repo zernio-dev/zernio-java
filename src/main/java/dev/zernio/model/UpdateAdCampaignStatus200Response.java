@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignStatus200Response.JSON_PROPERTY_SKIPPED_REASONS,
   UpdateAdCampaignStatus200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:36:39.774951380Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignStatus200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable

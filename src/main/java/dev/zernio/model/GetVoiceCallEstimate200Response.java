@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetVoiceCallEstimate200Response.JSON_PROPERTY_PER_MINUTE_USD,
   GetVoiceCallEstimate200Response.JSON_PROPERTY_BREAKDOWN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:36:39.774951380Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetVoiceCallEstimate200Response {
   public static final String JSON_PROPERTY_DESTINATION_COUNTRY = "destinationCountry";
   private JsonNullable<String> destinationCountry = JsonNullable.<String>undefined();
