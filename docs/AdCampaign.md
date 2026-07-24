@@ -11,7 +11,7 @@
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**campaignName** | **String** |  |  [optional] |
 |**status** | **AdStatus** | Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;. |  [optional] |
-|**reviewStatus** | [**ReviewStatusEnum**](#ReviewStatusEnum) | Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description. |  [optional] |
+|**reviewStatus** | **AdReviewStatus** |  |  [optional] |
 |**platformCampaignStatus** | **String** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;). |  [optional] |
 |**campaignIssuesInfo** | **List&lt;Object&gt;** | Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). |  [optional] |
 |**adCount** | **Integer** |  |  [optional] |
@@ -49,17 +49,6 @@
 | GOOGLE | &quot;google&quot; |
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
-
-
-
-## Enum: ReviewStatusEnum
-
-| Name | Value |
-|---- | -----|
-| IN_REVIEW | &quot;in_review&quot; |
-| APPROVED | &quot;approved&quot; |
-| REJECTED | &quot;rejected&quot; |
-| WITH_ISSUES | &quot;with_issues&quot; |
 
 
 

@@ -28,6 +28,7 @@ import dev.zernio.model.AdBudget;
 import dev.zernio.model.AdCreative;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdPromotedObject;
+import dev.zernio.model.AdReviewStatus;
 import dev.zernio.model.AdSchedule;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.BidStrategy;
@@ -50,6 +51,8 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_NAME,
   Ad.JSON_PROPERTY_PLATFORM,
   Ad.JSON_PROPERTY_STATUS,
+  Ad.JSON_PROPERTY_CONFIGURED_STATUS,
+  Ad.JSON_PROPERTY_REVIEW_STATUS,
   Ad.JSON_PROPERTY_AD_TYPE,
   Ad.JSON_PROPERTY_GOAL,
   Ad.JSON_PROPERTY_IS_EXTERNAL,
@@ -76,7 +79,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T14:22:12.290545658Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -140,6 +143,13 @@ public class Ad {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private AdStatus status;
+
+  public static final String JSON_PROPERTY_CONFIGURED_STATUS = "configuredStatus";
+  private JsonNullable<String> configuredStatus = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_REVIEW_STATUS = "reviewStatus";
+  @javax.annotation.Nullable
+  private AdReviewStatus reviewStatus;
 
   /**
    * Gets or Sets adType
@@ -400,7 +410,7 @@ public class Ad {
   }
 
   /**
-   * Get status
+   * Delivery status. Derived from the platform &#x60;effective_status&#x60;, so it inherits ancestor pauses (an ACTIVE ad under a PAUSED campaign reads &#x60;paused&#x60;). For the ad&#39;s own on/off toggle use &#x60;configuredStatus&#x60;; for the review state use &#x60;reviewStatus&#x60;.
    * @return status
    */
   @javax.annotation.Nullable
@@ -415,6 +425,62 @@ public class Ad {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable AdStatus status) {
     this.status = status;
+  }
+
+
+  public Ad configuredStatus(@javax.annotation.Nullable String configuredStatus) {
+    this.configuredStatus = JsonNullable.<String>of(configuredStatus);
+    return this;
+  }
+
+  /**
+   * The ad&#39;s own on/off toggle as configured on the platform (Meta &#x60;configured_status&#x60;: ACTIVE / PAUSED), unaffected by ancestor (ad set / campaign) pauses. Distinct from &#x60;status&#x60;, which is the ancestor-cascaded delivery status. Only present for Meta ads synced after this field was added.
+   * @return configuredStatus
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getConfiguredStatus() {
+        return configuredStatus.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CONFIGURED_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getConfiguredStatus_JsonNullable() {
+    return configuredStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONFIGURED_STATUS)
+  public void setConfiguredStatus_JsonNullable(JsonNullable<String> configuredStatus) {
+    this.configuredStatus = configuredStatus;
+  }
+
+  public void setConfiguredStatus(@javax.annotation.Nullable String configuredStatus) {
+    this.configuredStatus = JsonNullable.<String>of(configuredStatus);
+  }
+
+
+  public Ad reviewStatus(@javax.annotation.Nullable AdReviewStatus reviewStatus) {
+    this.reviewStatus = reviewStatus;
+    return this;
+  }
+
+  /**
+   * Platform review state of this ad, independent of delivery &#x60;status&#x60; / &#x60;configuredStatus&#x60;. Absent when the platform reports no review signal.
+   * @return reviewStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REVIEW_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdReviewStatus getReviewStatus() {
+    return reviewStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REVIEW_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReviewStatus(@javax.annotation.Nullable AdReviewStatus reviewStatus) {
+    this.reviewStatus = reviewStatus;
   }
 
 
@@ -1098,6 +1164,8 @@ public class Ad {
         Objects.equals(this.name, ad.name) &&
         Objects.equals(this.platform, ad.platform) &&
         Objects.equals(this.status, ad.status) &&
+        equalsNullable(this.configuredStatus, ad.configuredStatus) &&
+        Objects.equals(this.reviewStatus, ad.reviewStatus) &&
         Objects.equals(this.adType, ad.adType) &&
         Objects.equals(this.goal, ad.goal) &&
         Objects.equals(this.isExternal, ad.isExternal) &&
@@ -1131,7 +1199,7 @@ public class Ad {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, status, adType, goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
+    return Objects.hash(id, name, platform, status, hashCodeNullable(configuredStatus), reviewStatus, adType, goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1149,6 +1217,8 @@ public class Ad {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    configuredStatus: ").append(toIndentedString(configuredStatus)).append("\n");
+    sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
     sb.append("    adType: ").append(toIndentedString(adType)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    isExternal: ").append(toIndentedString(isExternal)).append("\n");
@@ -1239,6 +1309,16 @@ public class Ad {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `configuredStatus` to the URL query string
+    if (getConfiguredStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconfiguredStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConfiguredStatus()))));
+    }
+
+    // add `reviewStatus` to the URL query string
+    if (getReviewStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreviewStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReviewStatus()))));
     }
 
     // add `adType` to the URL query string

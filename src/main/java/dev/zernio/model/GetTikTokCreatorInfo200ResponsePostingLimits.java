@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetTikTokCreatorInfo200ResponsePostingLimits.JSON_PROPERTY_MAX_VIDEO_DURATION_SEC,
   GetTikTokCreatorInfo200ResponsePostingLimits.JSON_PROPERTY_INTERACTION_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T14:22:12.290545658Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokCreatorInfo200ResponsePostingLimits {
   public static final String JSON_PROPERTY_MAX_VIDEO_DURATION_SEC = "maxVideoDurationSec";
   @javax.annotation.Nullable

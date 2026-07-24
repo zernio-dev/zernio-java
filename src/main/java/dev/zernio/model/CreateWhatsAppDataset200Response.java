@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateWhatsAppDataset200Response.JSON_PROPERTY_DATASET_ID,
   CreateWhatsAppDataset200Response.JSON_PROPERTY_CREATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T14:22:12.290545658Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppDataset200Response {
   public static final String JSON_PROPERTY_DATASET_ID = "datasetId";
   @javax.annotation.Nullable

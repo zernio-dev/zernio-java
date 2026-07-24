@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdCampaignBudget;
 import dev.zernio.model.AdCampaignCampaignBudget;
 import dev.zernio.model.AdMetrics;
+import dev.zernio.model.AdReviewStatus;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeCampaignPromotedObject;
 import dev.zernio.model.BidStrategy;
@@ -75,7 +76,7 @@ import dev.zernio.ApiClient;
   AdCampaign.JSON_PROPERTY_EARLIEST_AD,
   AdCampaign.JSON_PROPERTY_LATEST_AD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T14:22:12.290545658Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -140,47 +141,8 @@ public class AdCampaign {
   @javax.annotation.Nullable
   private AdStatus status;
 
-  /**
-   * Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.
-   */
-  public enum ReviewStatusEnum {
-    IN_REVIEW(String.valueOf("in_review")),
-    
-    APPROVED(String.valueOf("approved")),
-    
-    REJECTED(String.valueOf("rejected")),
-    
-    WITH_ISSUES(String.valueOf("with_issues"));
-
-    private String value;
-
-    ReviewStatusEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ReviewStatusEnum fromValue(String value) {
-      for (ReviewStatusEnum b : ReviewStatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
-
   public static final String JSON_PROPERTY_REVIEW_STATUS = "reviewStatus";
-  private JsonNullable<ReviewStatusEnum> reviewStatus = JsonNullable.<ReviewStatusEnum>undefined();
+  private JsonNullable<AdReviewStatus> reviewStatus = JsonNullable.<AdReviewStatus>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_STATUS = "platformCampaignStatus";
   private JsonNullable<String> platformCampaignStatus = JsonNullable.<String>undefined();
@@ -393,35 +355,35 @@ public class AdCampaign {
   }
 
 
-  public AdCampaign reviewStatus(@javax.annotation.Nullable ReviewStatusEnum reviewStatus) {
-    this.reviewStatus = JsonNullable.<ReviewStatusEnum>of(reviewStatus);
+  public AdCampaign reviewStatus(@javax.annotation.Nullable AdReviewStatus reviewStatus) {
+    this.reviewStatus = JsonNullable.<AdReviewStatus>of(reviewStatus);
     return this;
   }
 
   /**
-   * Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.
+   * Get reviewStatus
    * @return reviewStatus
    */
   @javax.annotation.Nullable
   @JsonIgnore
-  public ReviewStatusEnum getReviewStatus() {
+  public AdReviewStatus getReviewStatus() {
         return reviewStatus.orElse(null);
   }
 
   @JsonProperty(value = JSON_PROPERTY_REVIEW_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<ReviewStatusEnum> getReviewStatus_JsonNullable() {
+  public JsonNullable<AdReviewStatus> getReviewStatus_JsonNullable() {
     return reviewStatus;
   }
   
   @JsonProperty(JSON_PROPERTY_REVIEW_STATUS)
-  public void setReviewStatus_JsonNullable(JsonNullable<ReviewStatusEnum> reviewStatus) {
+  public void setReviewStatus_JsonNullable(JsonNullable<AdReviewStatus> reviewStatus) {
     this.reviewStatus = reviewStatus;
   }
 
-  public void setReviewStatus(@javax.annotation.Nullable ReviewStatusEnum reviewStatus) {
-    this.reviewStatus = JsonNullable.<ReviewStatusEnum>of(reviewStatus);
+  public void setReviewStatus(@javax.annotation.Nullable AdReviewStatus reviewStatus) {
+    this.reviewStatus = JsonNullable.<AdReviewStatus>of(reviewStatus);
   }
 
 

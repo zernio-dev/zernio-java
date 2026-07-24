@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   InlineObject2Details.JSON_PROPERTY_HAS_PAYMENT_METHOD,
   InlineObject2Details.JSON_PROPERTY_EFFECTIVE_ACCOUNT_LIMIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T14:22:12.290545658Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject2Details {
   public static final String JSON_PROPERTY_FREE_TIER_ACCOUNT_LIMIT = "free_tier_account_limit";
   @javax.annotation.Nullable

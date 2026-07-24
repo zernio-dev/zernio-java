@@ -1365,6 +1365,7 @@ public class Example {
 | **400** | accountId or template name is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the delete or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## deleteWhatsAppTemplateWithHttpInfo
 
@@ -1443,6 +1444,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **400** | accountId or template name is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the delete or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## deleteWhatsappBusinessUsername
@@ -2733,6 +2735,7 @@ public class Example {
 | **400** | accountId is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## getWhatsAppTemplateWithHttpInfo
 
@@ -2811,6 +2814,7 @@ ApiResponse<[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.
 | **400** | accountId is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## getWhatsAppTemplates
@@ -5013,6 +5017,7 @@ public class Example {
 | **400** | Validation error (missing fields) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## updateWhatsAppTemplateWithHttpInfo
 
@@ -5091,6 +5096,7 @@ ApiResponse<[**UpdateWhatsAppTemplate200Response**](UpdateWhatsAppTemplate200Res
 | **400** | Validation error (missing fields) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## uploadWhatsAppProfilePhoto
