@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   StartGoogleBusinessVerification200Response.JSON_PROPERTY_LOCATION_ID,
   StartGoogleBusinessVerification200Response.JSON_PROPERTY_VERIFICATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T17:21:17.986456541Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartGoogleBusinessVerification200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

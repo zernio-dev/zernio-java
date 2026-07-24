@@ -148,6 +148,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Participants added |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## addWhatsAppGroupParticipantsWithHttpInfo
@@ -226,6 +227,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Participants added |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -302,6 +304,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Requests approved |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## approveWhatsAppGroupJoinRequestsWithHttpInfo
@@ -380,6 +383,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Requests approved |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -752,6 +756,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Group created |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createWhatsAppGroupChatWithHttpInfo
@@ -826,6 +831,7 @@ ApiResponse<[**CreateWhatsAppGroupChat201Response**](CreateWhatsAppGroupChat201R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Group created |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -900,6 +906,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Invite link created |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createWhatsAppGroupInviteLinkWithHttpInfo
@@ -976,6 +983,7 @@ ApiResponse<[**CreateWhatsAppGroupInviteLink200Response**](CreateWhatsAppGroupIn
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Invite link created |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -1200,6 +1208,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Group deleted |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1277,6 +1286,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Group deleted |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2410,6 +2420,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Group info |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2487,6 +2498,7 @@ ApiResponse<[**GetWhatsAppGroupChat200Response**](GetWhatsAppGroupChat200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Group info |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -3472,6 +3484,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of active groups |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listWhatsAppGroupChatsWithHttpInfo
@@ -3550,6 +3563,7 @@ ApiResponse<[**ListWhatsAppGroupChats200Response**](ListWhatsAppGroupChats200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of active groups |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -3624,6 +3638,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Join requests |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listWhatsAppGroupJoinRequestsWithHttpInfo
@@ -3700,6 +3715,7 @@ ApiResponse<[**ListWhatsAppGroupJoinRequests200Response**](ListWhatsAppGroupJoin
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Join requests |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -3776,6 +3792,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Requests rejected |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## rejectWhatsAppGroupJoinRequestsWithHttpInfo
@@ -3854,6 +3871,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Requests rejected |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -3930,6 +3948,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Participants removed |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## removeWhatsAppGroupParticipantsWithHttpInfo
@@ -4008,6 +4027,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Participants removed |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -4834,6 +4854,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Group updated |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -4913,6 +4934,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Group updated |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

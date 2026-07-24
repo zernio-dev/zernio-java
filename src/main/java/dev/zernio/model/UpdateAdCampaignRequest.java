@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T17:21:17.986456541Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Gets or Sets platform

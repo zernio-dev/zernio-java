@@ -56,7 +56,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T17:21:17.986456541Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = SendPrivateReplyToCommentRequestButtonsInner.SendPrivateReplyToCommentRequestButtonsInnerDeserializer.class)
 @JsonSerialize(using = SendPrivateReplyToCommentRequestButtonsInner.SendPrivateReplyToCommentRequestButtonsInnerSerializer.class)
 public class SendPrivateReplyToCommentRequestButtonsInner extends AbstractOpenApiSchema {

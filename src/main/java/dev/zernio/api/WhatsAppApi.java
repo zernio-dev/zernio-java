@@ -29,6 +29,7 @@ import dev.zernio.model.CreateWhatsAppGroupInviteLink200Response;
 import dev.zernio.model.CreateWhatsAppTemplate200Response;
 import dev.zernio.model.CreateWhatsAppTemplateRequest;
 import dev.zernio.model.DeleteWhatsappBusinessUsernameRequest;
+import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetWhatsAppBlockStatus200Response;
 import dev.zernio.model.GetWhatsAppBlockedUsers200Response;
@@ -93,7 +94,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-23T17:21:17.986456541Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
