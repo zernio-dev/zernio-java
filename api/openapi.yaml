@@ -63318,6 +63318,7 @@ components:
             manual entry
           items:
             type: string
+          maxItems: 20000
           type: array
         useSegment:
           description: Auto-populate from broadcast segment filters

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AnalyticsOverview.JSON_PROPERTY_LAST_SYNC,
   AnalyticsOverview.JSON_PROPERTY_DATA_STALENESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:51:54.196724231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T13:28:47.989663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsOverview {
   public static final String JSON_PROPERTY_TOTAL_POSTS = "totalPosts";
   @javax.annotation.Nullable

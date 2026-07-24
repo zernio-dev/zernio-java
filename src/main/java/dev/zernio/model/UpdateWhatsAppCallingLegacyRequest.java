@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppCallingLegacyRequest.JSON_PROPERTY_RECORDING_ENABLED,
   UpdateWhatsAppCallingLegacyRequest.JSON_PROPERTY_CALL_ICON_COUNTRIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:51:54.196724231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T13:28:47.989663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppCallingLegacyRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
