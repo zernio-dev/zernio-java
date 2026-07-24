@@ -548,6 +548,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Workflow duplicated |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -623,6 +624,7 @@ ApiResponse<[**DuplicateWorkflow201Response**](DuplicateWorkflow201Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Workflow duplicated |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -846,6 +848,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version snapshot |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -923,6 +926,7 @@ ApiResponse<[**GetWorkflowVersion200Response**](GetWorkflowVersion200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version snapshot |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -998,6 +1002,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Timeline events for the execution |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1075,6 +1080,7 @@ ApiResponse<[**ListWorkflowExecutionEvents200Response**](ListWorkflowExecutionEv
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Timeline events for the execution |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1310,6 +1316,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Versions list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1385,6 +1392,7 @@ ApiResponse<[**ListWorkflowVersions200Response**](ListWorkflowVersions200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Versions list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1616,6 +1624,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow paused |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1691,6 +1700,7 @@ ApiResponse<[**PauseWorkflow200Response**](PauseWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow paused |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

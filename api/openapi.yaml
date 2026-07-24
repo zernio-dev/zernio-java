@@ -23574,6 +23574,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/pauseWorkflow_200_response"
           description: Workflow paused
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23708,6 +23710,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listWorkflowExecutionEvents_200_response"
           description: Timeline events for the execution
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23737,6 +23741,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/duplicateWorkflow_201_response"
           description: Workflow duplicated
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23766,6 +23772,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listWorkflowVersions_200_response"
           description: Versions list
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23802,6 +23810,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getWorkflowVersion_200_response"
           description: Version snapshot
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
