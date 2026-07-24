@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UnblockWhatsAppUsers200Response.JSON_PROPERTY_UNBLOCKED,
   UnblockWhatsAppUsers200Response.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:36:39.774951380Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:51:54.196724231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UnblockWhatsAppUsers200Response {
   public static final String JSON_PROPERTY_UNBLOCKED = "unblocked";
   @javax.annotation.Nullable

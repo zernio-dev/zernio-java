@@ -1008,6 +1008,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone numbers retrieved successfully |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## getWhatsAppPhoneNumbersWithHttpInfo
@@ -1084,6 +1085,7 @@ ApiResponse<[**ListPhoneNumbers200Response**](ListPhoneNumbers200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone numbers retrieved successfully |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

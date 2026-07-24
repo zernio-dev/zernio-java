@@ -19527,6 +19527,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listPhoneNumbers_200_response"
           description: Phone numbers retrieved successfully
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -25646,6 +25648,8 @@ paths:
             \ poll interval in seconds. Allow the job a short time to run (typically\
             \ 1-3 minutes) and submit the request again; once ingestion completes\
             \ the same request returns 200 with the full range."
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
