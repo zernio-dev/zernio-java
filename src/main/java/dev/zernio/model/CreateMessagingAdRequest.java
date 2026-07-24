@@ -78,7 +78,7 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_DSA_PAYOR,
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

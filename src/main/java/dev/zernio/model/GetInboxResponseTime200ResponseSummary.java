@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetInboxResponseTime200ResponseSummary.JSON_PROPERTY_FASTEST_SECONDS,
   GetInboxResponseTime200ResponseSummary.JSON_PROPERTY_SLOWEST_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxResponseTime200ResponseSummary {
   public static final String JSON_PROPERTY_SAMPLE_SIZE = "sampleSize";
   @javax.annotation.Nullable

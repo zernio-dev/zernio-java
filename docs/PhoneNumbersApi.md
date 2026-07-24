@@ -209,7 +209,7 @@ ApiResponse<[**CancelPhoneNumberPortIn200Response**](CancelPhoneNumberPortIn200R
 
 ## checkPhoneNumberAvailability
 
-> CheckPhoneNumberAvailability200Response checkPhoneNumberAvailability(country, numberType)
+> CheckPhoneNumberAvailability200Response checkPhoneNumberAvailability(country, numberType, sms)
 
 Check country availability
 
@@ -238,8 +238,9 @@ public class Example {
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | ISO-2 country code.
         String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
+        Boolean sms = true; // Boolean | Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool.
         try {
-            CheckPhoneNumberAvailability200Response result = apiInstance.checkPhoneNumberAvailability(country, numberType);
+            CheckPhoneNumberAvailability200Response result = apiInstance.checkPhoneNumberAvailability(country, numberType, sms);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneNumbersApi#checkPhoneNumberAvailability");
@@ -259,6 +260,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**| ISO-2 country code. | |
 | **numberType** | **String**| Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional] [enum: local, mobile, national, toll_free] |
+| **sms** | **Boolean**| Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. | [optional] |
 
 ### Return type
 
@@ -283,7 +285,7 @@ public class Example {
 
 ## checkPhoneNumberAvailabilityWithHttpInfo
 
-> ApiResponse<CheckPhoneNumberAvailability200Response> checkPhoneNumberAvailability checkPhoneNumberAvailabilityWithHttpInfo(country, numberType)
+> ApiResponse<CheckPhoneNumberAvailability200Response> checkPhoneNumberAvailability checkPhoneNumberAvailabilityWithHttpInfo(country, numberType, sms)
 
 Check country availability
 
@@ -313,8 +315,9 @@ public class Example {
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | ISO-2 country code.
         String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
+        Boolean sms = true; // Boolean | Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool.
         try {
-            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkPhoneNumberAvailabilityWithHttpInfo(country, numberType);
+            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkPhoneNumberAvailabilityWithHttpInfo(country, numberType, sms);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -336,6 +339,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**| ISO-2 country code. | |
 | **numberType** | **String**| Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional] [enum: local, mobile, national, toll_free] |
+| **sms** | **Boolean**| Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. | [optional] |
 
 ### Return type
 
@@ -2057,7 +2061,7 @@ public class Example {
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (Metronome user with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -2137,7 +2141,7 @@ ApiResponse<[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (Metronome user with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -3149,7 +3153,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **409** | reuse requested but no prior approved verification exists for this country |  -  |
+| **409** | Either reuse was requested but no prior approved verification exists for this country, or the requested areaCode has no deliverable inventory right now (code: area_code_unavailable; pick another area and resubmit). |  -  |
 | **401** | Unauthorized |  -  |
 
 ## submitPhoneNumberKycWithHttpInfo
@@ -3225,7 +3229,7 @@ ApiResponse<[**SubmitPhoneNumberKyc200Response**](SubmitPhoneNumberKyc200Respons
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **409** | reuse requested but no prior approved verification exists for this country |  -  |
+| **409** | Either reuse was requested but no prior approved verification exists for this country, or the requested areaCode has no deliverable inventory right now (code: area_code_unavailable; pick another area and resubmit). |  -  |
 | **401** | Unauthorized |  -  |
 
 

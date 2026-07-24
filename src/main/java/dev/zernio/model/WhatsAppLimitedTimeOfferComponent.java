@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WhatsAppLimitedTimeOfferComponent.JSON_PROPERTY_TYPE,
   WhatsAppLimitedTimeOfferComponent.JSON_PROPERTY_LIMITED_TIME_OFFER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppLimitedTimeOfferComponent {
   /**
    * Gets or Sets type

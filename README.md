@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-24T16:38:37.050736998Z[Etc/UTC]
+- Build date: 2026-07-24T18:21:15.002390109Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1261,6 +1261,7 @@ Class | Method | HTTP request | Description
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
  - [CheckPhoneNumberAvailability200Response](docs/CheckPhoneNumberAvailability200Response.md)
+ - [CheckPhoneNumberAvailability200ResponseAreaOptionsInner](docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md)
  - [CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
  - [CheckPhoneNumberPortability200ResponseResultsInner](docs/CheckPhoneNumberPortability200ResponseResultsInner.md)
  - [CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)

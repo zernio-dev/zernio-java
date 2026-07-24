@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumber409Response.JSON_PROPERTY_ERROR,
   PurchasePhoneNumber409Response.JSON_PROPERTY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumber409Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -46,7 +46,9 @@ public class PurchasePhoneNumber409Response {
    * Gets or Sets code
    */
   public enum CodeEnum {
-    PURCHASE_VELOCITY(String.valueOf("PURCHASE_VELOCITY"));
+    PURCHASE_VELOCITY(String.valueOf("PURCHASE_VELOCITY")),
+    
+    AREA_CODE_UNAVAILABLE(String.valueOf("AREA_CODE_UNAVAILABLE"));
 
     private String value;
 

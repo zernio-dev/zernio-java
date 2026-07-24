@@ -125,6 +125,7 @@ docs/CallsApi.md
 docs/CancelBroadcast200Response.md
 docs/CancelPhoneNumberPortIn200Response.md
 docs/CheckPhoneNumberAvailability200Response.md
+docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
 docs/CheckPhoneNumberPortability200Response.md
 docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
@@ -1762,6 +1763,7 @@ src/main/java/dev/zernio/model/CallRecordTranscriptInner.java
 src/main/java/dev/zernio/model/CancelBroadcast200Response.java
 src/main/java/dev/zernio/model/CancelPhoneNumberPortIn200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200Response.java
+src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200ResponseResultsInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortabilityRequest.java
@@ -3159,4 +3161,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdReviewStatusTest.java
+src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaOptionsInnerTest.java

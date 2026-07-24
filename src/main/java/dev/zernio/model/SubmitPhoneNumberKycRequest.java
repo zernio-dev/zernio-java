@@ -46,13 +46,14 @@ import dev.zernio.ApiClient;
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_REUSE,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_REUSE_OPTION_ID,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_REUSE_FROM,
+  SubmitPhoneNumberKycRequest.JSON_PROPERTY_AREA_CODE,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_END_USER_FIRST_NAME,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_END_USER_LAST_NAME,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_VALUES,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_DOCUMENTS,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKycRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -81,6 +82,10 @@ public class SubmitPhoneNumberKycRequest {
   public static final String JSON_PROPERTY_REUSE_FROM = "reuseFrom";
   @javax.annotation.Nullable
   private String reuseFrom;
+
+  public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
+  @javax.annotation.Nullable
+  private String areaCode;
 
   public static final String JSON_PROPERTY_END_USER_FIRST_NAME = "endUserFirstName";
   @javax.annotation.Nullable
@@ -275,6 +280,30 @@ public class SubmitPhoneNumberKycRequest {
   }
 
 
+  public SubmitPhoneNumberKycRequest areaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+    return this;
+  }
+
+  /**
+   * Area code (NDC) the number must be in. Hard constraint: an empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of ordering from another area. Omit for any area. Options come from GET /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here.
+   * @return areaCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAreaCode() {
+    return areaCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAreaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+  }
+
+
   public SubmitPhoneNumberKycRequest endUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
     this.endUserFirstName = endUserFirstName;
     return this;
@@ -430,6 +459,7 @@ public class SubmitPhoneNumberKycRequest {
         Objects.equals(this.reuse, submitPhoneNumberKycRequest.reuse) &&
         Objects.equals(this.reuseOptionId, submitPhoneNumberKycRequest.reuseOptionId) &&
         Objects.equals(this.reuseFrom, submitPhoneNumberKycRequest.reuseFrom) &&
+        Objects.equals(this.areaCode, submitPhoneNumberKycRequest.areaCode) &&
         Objects.equals(this.endUserFirstName, submitPhoneNumberKycRequest.endUserFirstName) &&
         Objects.equals(this.endUserLastName, submitPhoneNumberKycRequest.endUserLastName) &&
         Objects.equals(this.values, submitPhoneNumberKycRequest.values) &&
@@ -439,7 +469,7 @@ public class SubmitPhoneNumberKycRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseOptionId, reuseFrom, endUserFirstName, endUserLastName, values, documents, address);
+    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseOptionId, reuseFrom, areaCode, endUserFirstName, endUserLastName, values, documents, address);
   }
 
   @Override
@@ -453,6 +483,7 @@ public class SubmitPhoneNumberKycRequest {
     sb.append("    reuse: ").append(toIndentedString(reuse)).append("\n");
     sb.append("    reuseOptionId: ").append(toIndentedString(reuseOptionId)).append("\n");
     sb.append("    reuseFrom: ").append(toIndentedString(reuseFrom)).append("\n");
+    sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
@@ -538,6 +569,11 @@ public class SubmitPhoneNumberKycRequest {
     // add `reuseFrom` to the URL query string
     if (getReuseFrom() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreuseFrom%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReuseFrom()))));
+    }
+
+    // add `areaCode` to the URL query string
+    if (getAreaCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
     }
 
     // add `endUserFirstName` to the URL query string

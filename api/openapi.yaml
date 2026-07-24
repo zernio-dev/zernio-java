@@ -19295,7 +19295,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/purchasePhoneNumber_409_response"
           description: |
-            Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.
+            Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).
         "202":
           content:
             application/json:
@@ -19463,6 +19463,16 @@ paths:
           - toll_free
           type: string
         style: form
+      - description: "Pass true when the buyer wants SMS: availability, areas, and\
+          \ areaOptions then describe the SMS-capable pool (an SMS purchase orders\
+          \ from it), not the wider voice-only pool."
+        explode: true
+        in: query
+        name: sms
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -19592,7 +19602,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/purchasePhoneNumber_409_response"
           description: |
-            Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.
+            Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).
         "202":
           content:
             application/json:
@@ -19760,6 +19770,16 @@ paths:
           - toll_free
           type: string
         style: form
+      - description: "Pass true when the buyer wants SMS: availability, areas, and\
+          \ areaOptions then describe the SMS-capable pool (an SMS purchase orders\
+          \ from it), not the wider voice-only pool."
+        explode: true
+        in: query
+        name: sms
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -19861,8 +19881,10 @@ paths:
         "400":
           description: "Validation error (e.g. address not in-country, file too large)"
         "409":
-          description: reuse requested but no prior approved verification exists for
-            this country
+          description: "Either reuse was requested but no prior approved verification\
+            \ exists for this country, or the requested areaCode has no deliverable\
+            \ inventory right now (code: area_code_unavailable; pick another area\
+            \ and resubmit)."
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -20623,8 +20645,10 @@ paths:
         "400":
           description: "Validation error (e.g. address not in-country, file too large)"
         "409":
-          description: reuse requested but no prior approved verification exists for
-            this country
+          description: "Either reuse was requested but no prior approved verification\
+            \ exists for this country, or the requested areaCode has no deliverable\
+            \ inventory right now (code: area_code_unavailable; pick another area\
+            \ and resubmit)."
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -58850,6 +58874,11 @@ components:
           - national
           - toll_free
           type: string
+        areaCode:
+          description: |
+            Area code (national destination code, e.g. 11 for Sao Paulo) the number must be in. Hard constraint: when the area has no deliverable inventory the purchase fails with 409 code AREA_CODE_UNAVAILABLE instead of assigning a number from another area, and later replacements stay in this area too. Omit for any area. Get live options from GET /v1/phone-numbers/availability (areaOptions).
+          pattern: "^\\d{1,4}$"
+          type: string
         connectWhatsapp:
           default: true
           description: |
@@ -58939,6 +58968,7 @@ components:
         code:
           enum:
           - PURCHASE_VELOCITY
+          - AREA_CODE_UNAVAILABLE
           type: string
     purchasePhoneNumber_202_response:
       example:
@@ -59167,6 +59197,22 @@ components:
           items:
             $ref: "#/components/schemas/searchAvailablePhoneNumbers_200_response_numbers_inner"
           type: array
+    checkPhoneNumberAvailability_200_response_areaOptions_inner:
+      example:
+        name: name
+        count: 0
+        ndc: ndc
+      properties:
+        ndc:
+          description: "Area code (national destination code), e.g. \"11\"."
+          type: string
+        name:
+          description: "Human-readable area name, e.g. \"Sao Paulo\"."
+          type: string
+        count:
+          description: Deliverable numbers seen in this area on the latest inventory
+            page.
+          type: integer
     checkPhoneNumberAvailability_200_response:
       example:
         country: country
@@ -59176,6 +59222,13 @@ components:
         areas:
         - areas
         - areas
+        areaOptions:
+        - name: name
+          count: 0
+          ndc: ndc
+        - name: name
+          count: 0
+          ndc: ndc
       properties:
         country:
           type: string
@@ -59195,6 +59248,12 @@ components:
             in.
           items:
             type: string
+          type: array
+        areaOptions:
+          description: |
+            Live inventory grouped by area code, largest stock first. Empty when out of stock (or the area lookup failed). Pass a chosen `ndc` as `areaCode` on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area.
+          items:
+            $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaOptions_inner"
           type: array
     purchaseWhatsAppPhoneNumber_request:
       properties:
@@ -59560,6 +59619,14 @@ components:
             \ two verifications — prefer `reuseOptionId`. Omitted = the approved default.\
             \ No match = 409."
           type: string
+        areaCode:
+          description: "Area code (NDC) the number must be in. Hard constraint: an\
+            \ empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of\
+            \ ordering from another area. Omit for any area. Options come from GET\
+            \ /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl\
+            \ echoes the areaCode picked at purchase time so it can be passed here."
+          pattern: "^\\d{1,4}$"
+          type: string
         endUserFirstName:
           description: End user's legal first name. Required when the country has
             an action/ID-verification (Onfido) requirement.
@@ -59767,6 +59834,12 @@ components:
           description: ISO 3166-1 alpha-2 country code (must be a regulated/KYC country).
           maxLength: 2
           minLength: 2
+          type: string
+        areaCode:
+          description: Area code (NDC) the eventual number must be in. Hard constraint
+            carried by the link; the end customer filling the form makes no area choice.
+            Options come from GET /v1/phone-numbers/availability (areaOptions).
+          pattern: "^\\d{1,4}$"
           type: string
         branding:
           $ref: "#/components/schemas/createPhoneNumberKycLink_request_branding"
@@ -60712,6 +60785,14 @@ components:
             \ (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels\
             \ two verifications — prefer `reuseOptionId`. Omitted = the approved default.\
             \ No match = 409."
+          type: string
+        areaCode:
+          description: "Area code (NDC) the number must be in. Hard constraint: an\
+            \ empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of\
+            \ ordering from another area. Omit for any area. Options come from GET\
+            \ /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl\
+            \ echoes the areaCode picked at purchase time so it can be passed here."
+          pattern: "^\\d{1,4}$"
           type: string
         endUserFirstName:
           description: End user's legal first name. Required when the country has

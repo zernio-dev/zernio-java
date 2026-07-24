@@ -17,6 +17,7 @@
 | Name | Value |
 |---- | -----|
 | PURCHASE_VELOCITY | &quot;PURCHASE_VELOCITY&quot; |
+| AREA_CODE_UNAVAILABLE | &quot;AREA_CODE_UNAVAILABLE&quot; |
 
 
 

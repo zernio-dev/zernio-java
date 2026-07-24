@@ -37,10 +37,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_PROFILE_ID,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_COUNTRY,
+  CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_AREA_CODE,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_BRANDING,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T16:38:37.050736998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberKycLinkRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -49,6 +50,10 @@ public class CreatePhoneNumberKycLinkRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
   private String country;
+
+  public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
+  @javax.annotation.Nullable
+  private String areaCode;
 
   public static final String JSON_PROPERTY_BRANDING = "branding";
   @javax.annotation.Nullable
@@ -106,6 +111,30 @@ public class CreatePhoneNumberKycLinkRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCountry(@javax.annotation.Nonnull String country) {
     this.country = country;
+  }
+
+
+  public CreatePhoneNumberKycLinkRequest areaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+    return this;
+  }
+
+  /**
+   * Area code (NDC) the eventual number must be in. Hard constraint carried by the link; the end customer filling the form makes no area choice. Options come from GET /v1/phone-numbers/availability (areaOptions).
+   * @return areaCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAreaCode() {
+    return areaCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAreaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
   }
 
 
@@ -171,13 +200,14 @@ public class CreatePhoneNumberKycLinkRequest {
     CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest = (CreatePhoneNumberKycLinkRequest) o;
     return Objects.equals(this.profileId, createPhoneNumberKycLinkRequest.profileId) &&
         Objects.equals(this.country, createPhoneNumberKycLinkRequest.country) &&
+        Objects.equals(this.areaCode, createPhoneNumberKycLinkRequest.areaCode) &&
         Objects.equals(this.branding, createPhoneNumberKycLinkRequest.branding) &&
         Objects.equals(this.redirectUrl, createPhoneNumberKycLinkRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, branding, redirectUrl);
+    return Objects.hash(profileId, country, areaCode, branding, redirectUrl);
   }
 
   @Override
@@ -186,6 +216,7 @@ public class CreatePhoneNumberKycLinkRequest {
     sb.append("class CreatePhoneNumberKycLinkRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
     sb.append("    branding: ").append(toIndentedString(branding)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
@@ -243,6 +274,11 @@ public class CreatePhoneNumberKycLinkRequest {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `areaCode` to the URL query string
+    if (getAreaCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
     }
 
     // add `branding` to the URL query string
