@@ -34251,8 +34251,8 @@ components:
       - message
       - timestamp
     WebhookPayloadMessageSent:
-      description: Webhook payload for message sent events (fired when a message is
-        sent via the API)
+      description: "Webhook payload for message sent events (fired when a message\
+        \ is sent via the API, or from the WhatsApp Business app on Coexistence numbers)"
       example:
         id: id
         event: message.sent
@@ -34275,6 +34275,7 @@ components:
           id: id
           text: text
           sentAt: 2000-01-23T04:56:07.000+00:00
+          source: whatsapp_business_app
           platformMessageId: platformMessageId
           platform: instagram
           direction: incoming
@@ -76073,6 +76074,7 @@ components:
         id: id
         text: text
         sentAt: 2000-01-23T04:56:07.000+00:00
+        source: whatsapp_business_app
         platformMessageId: platformMessageId
         platform: instagram
         direction: incoming
@@ -76113,6 +76115,15 @@ components:
           type: string
         isRead:
           type: boolean
+        source:
+          description: "WhatsApp send origin. whatsapp_business_app when sent from\
+            \ the WhatsApp Business phone app on a Coexistence number; cloud_api when\
+            \ sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp\
+            \ platforms. This is not the inbox metadata.source lineage field."
+          enum:
+          - whatsapp_business_app
+          - cloud_api
+          type: string
       required:
       - attachments
       - conversationId

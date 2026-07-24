@@ -85,7 +85,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2057,7 +2057,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
    * @param webhookPayloadMessageSent  (required)
    * @throws ApiException if fails to make API call
    */
@@ -2067,7 +2067,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
    * @param webhookPayloadMessageSent  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -2078,7 +2078,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
    * @param webhookPayloadMessageSent  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -2089,7 +2089,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
    * @param webhookPayloadMessageSent  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

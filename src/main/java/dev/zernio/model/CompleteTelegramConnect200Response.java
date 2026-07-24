@@ -57,7 +57,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CompleteTelegramConnect200Response.CompleteTelegramConnect200ResponseDeserializer.class)
 @JsonSerialize(using = CompleteTelegramConnect200Response.CompleteTelegramConnect200ResponseSerializer.class)
 public class CompleteTelegramConnect200Response extends AbstractOpenApiSchema {

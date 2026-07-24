@@ -47,9 +47,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_ATTACHMENTS,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SENDER,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SENT_AT,
-  WebhookPayloadMessageSentMessage.JSON_PROPERTY_IS_READ
+  WebhookPayloadMessageSentMessage.JSON_PROPERTY_IS_READ,
+  WebhookPayloadMessageSentMessage.JSON_PROPERTY_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T09:27:41.589703989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T10:08:27.415179539Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -164,6 +165,45 @@ public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_IS_READ = "isRead";
   @javax.annotation.Nonnull
   private Boolean isRead;
+
+  /**
+   * WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+   */
+  public enum SourceEnum {
+    WHATSAPP_BUSINESS_APP(String.valueOf("whatsapp_business_app")),
+    
+    CLOUD_API(String.valueOf("cloud_api"));
+
+    private String value;
+
+    SourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  @javax.annotation.Nullable
+  private SourceEnum source;
 
   public WebhookPayloadMessageSentMessage() { 
   }
@@ -416,6 +456,30 @@ public class WebhookPayloadMessageSentMessage {
   }
 
 
+  public WebhookPayloadMessageSentMessage source(@javax.annotation.Nullable SourceEnum source) {
+    this.source = source;
+    return this;
+  }
+
+  /**
+   * WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+   * @return source
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SourceEnum getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSource(@javax.annotation.Nullable SourceEnum source) {
+    this.source = source;
+  }
+
+
   /**
    * Return true if this WebhookPayloadMessageSent_message object is equal to o.
    */
@@ -437,12 +501,13 @@ public class WebhookPayloadMessageSentMessage {
         Objects.equals(this.attachments, webhookPayloadMessageSentMessage.attachments) &&
         Objects.equals(this.sender, webhookPayloadMessageSentMessage.sender) &&
         Objects.equals(this.sentAt, webhookPayloadMessageSentMessage.sentAt) &&
-        Objects.equals(this.isRead, webhookPayloadMessageSentMessage.isRead);
+        Objects.equals(this.isRead, webhookPayloadMessageSentMessage.isRead) &&
+        Objects.equals(this.source, webhookPayloadMessageSentMessage.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, platform, platformMessageId, direction, text, attachments, sender, sentAt, isRead);
+    return Objects.hash(id, conversationId, platform, platformMessageId, direction, text, attachments, sender, sentAt, isRead, source);
   }
 
   @Override
@@ -459,6 +524,7 @@ public class WebhookPayloadMessageSentMessage {
     sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    isRead: ").append(toIndentedString(isRead)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -559,6 +625,11 @@ public class WebhookPayloadMessageSentMessage {
     // add `isRead` to the URL query string
     if (getIsRead() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisRead%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsRead()))));
+    }
+
+    // add `source` to the URL query string
+    if (getSource() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSource()))));
     }
 
     return joiner.toString();

@@ -17,6 +17,7 @@
 |**sender** | [**WebhookPayloadMessageSentMessageSender**](WebhookPayloadMessageSentMessageSender.md) |  |  |
 |**sentAt** | **OffsetDateTime** |  |  |
 |**isRead** | **Boolean** |  |  |
+|**source** | [**SourceEnum**](#SourceEnum) | WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field. |  [optional] |
 
 
 
@@ -37,6 +38,15 @@
 |---- | -----|
 | INCOMING | &quot;incoming&quot; |
 | OUTGOING | &quot;outgoing&quot; |
+
+
+
+## Enum: SourceEnum
+
+| Name | Value |
+|---- | -----|
+| WHATSAPP_BUSINESS_APP | &quot;whatsapp_business_app&quot; |
+| CLOUD_API | &quot;cloud_api&quot; |
 
 
 
