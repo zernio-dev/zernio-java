@@ -24675,6 +24675,132 @@ paths:
       - x
       x-accepts:
       - application/json
+  /v1/ads/keywords:
+    get:
+      description: |
+        Returns the Google Search keyword criteria (positive and negative) synced from
+        connected Google Ads accounts, one row per ad-group keyword. Populated by the
+        periodic ads discovery sweep (roughly every 3 hours per account), so keywords
+        added on Google appear with that delay. Campaign-level negative keywords are
+        not included; only ad-group-level criteria are.
+      operationId: listAdKeywords
+      parameters:
+      - $ref: "#/components/parameters/PageParam"
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - description: Social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Platform ad account ID (Google customer ID). Mirrors the same
+          filter on /v1/ads.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Profile ID
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Platform campaign ID
+        explode: true
+        in: query
+        name: campaignId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Platform ad group ID (Google ad group)
+        explode: true
+        in: query
+        name: adSetId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Keyword criterion status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - active
+          - paused
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: matchType
+        required: false
+        schema:
+          enum:
+          - exact
+          - phrase
+          - broad
+          - unknown
+          type: string
+        style: form
+      - description: "true = negative keywords only, false = positive only. Omit for\
+          \ both."
+        explode: true
+        in: query
+        name: negative
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Case-insensitive substring match on the keyword text
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          maxLength: 200
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdKeywords_200_response"
+          description: Paginated keywords
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+      security:
+      - bearerAuth: []
+      summary: List Search keywords
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
   /v1/ads/campaigns:
     get:
       description: |
@@ -66012,6 +66138,123 @@ components:
             \ Retry the same request shortly; it returns 200 once the range is fully\
             \ ingested."
           type: boolean
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+    listAdKeywords_200_response_keywords_inner:
+      example:
+        adSetName: adSetName
+        adAccountId: adAccountId
+        campaignId: campaignId
+        matchType: exact
+        platform: google
+        accountId: accountId
+        negative: true
+        adSetStatus: adSetStatus
+        profileId: profileId
+        campaignStatus: campaignStatus
+        adSetId: adSetId
+        id: id
+        keyword: keyword
+        campaignName: campaignName
+        syncedAt: 2000-01-23T04:56:07.000+00:00
+        status: active
+      properties:
+        id:
+          type: string
+        accountId:
+          description: Social account ID owning the sync
+          type: string
+        profileId:
+          type: string
+        platform:
+          enum:
+          - google
+          type: string
+        adAccountId:
+          description: Google customer ID
+          type: string
+        campaignId:
+          type: string
+        campaignName:
+          nullable: true
+          type: string
+        campaignStatus:
+          nullable: true
+          type: string
+        adSetId:
+          description: Google ad group ID
+          type: string
+        adSetName:
+          nullable: true
+          type: string
+        adSetStatus:
+          nullable: true
+          type: string
+        keyword:
+          type: string
+        matchType:
+          enum:
+          - exact
+          - phrase
+          - broad
+          - unknown
+          type: string
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        negative:
+          type: boolean
+        syncedAt:
+          format: date-time
+          nullable: true
+          type: string
+    listAdKeywords_200_response:
+      example:
+        pagination:
+          total: 3
+          pages: 2
+          limit: 9
+          page: 7
+        keywords:
+        - adSetName: adSetName
+          adAccountId: adAccountId
+          campaignId: campaignId
+          matchType: exact
+          platform: google
+          accountId: accountId
+          negative: true
+          adSetStatus: adSetStatus
+          profileId: profileId
+          campaignStatus: campaignStatus
+          adSetId: adSetId
+          id: id
+          keyword: keyword
+          campaignName: campaignName
+          syncedAt: 2000-01-23T04:56:07.000+00:00
+          status: active
+        - adSetName: adSetName
+          adAccountId: adAccountId
+          campaignId: campaignId
+          matchType: exact
+          platform: google
+          accountId: accountId
+          negative: true
+          adSetStatus: adSetStatus
+          profileId: profileId
+          campaignStatus: campaignStatus
+          adSetId: adSetId
+          id: id
+          keyword: keyword
+          campaignName: campaignName
+          syncedAt: 2000-01-23T04:56:07.000+00:00
+          status: active
+      properties:
+        keywords:
+          items:
+            $ref: "#/components/schemas/listAdKeywords_200_response_keywords_inner"
+          type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
     listAdCampaigns_200_response:

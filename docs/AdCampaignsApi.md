@@ -32,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdsTimelineWithHttpInfo**](AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns |
+| [**listAdKeywords**](AdCampaignsApi.md#listAdKeywords) | **GET** /v1/ads/keywords | List Search keywords |
+| [**listAdKeywordsWithHttpInfo**](AdCampaignsApi.md#listAdKeywordsWithHttpInfo) | **GET** /v1/ads/keywords | List Search keywords |
 | [**listAds**](AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads |
 | [**listAdsWithHttpInfo**](AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
 | [**updateAd**](AdCampaignsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad |
@@ -2284,6 +2286,196 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated campaigns |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## listAdKeywords
+
+> ListAdKeywords200Response listAdKeywords(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search)
+
+List Search keywords
+
+Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        Integer page = 1; // Integer | Page number (1-based)
+        Integer limit = 50; // Integer | 
+        String accountId = "accountId_example"; // String | Social account ID
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads.
+        String profileId = "profileId_example"; // String | Profile ID
+        String campaignId = "campaignId_example"; // String | Platform campaign ID
+        String adSetId = "adSetId_example"; // String | Platform ad group ID (Google ad group)
+        String status = "active"; // String | Keyword criterion status
+        String matchType = "exact"; // String | 
+        Boolean negative = true; // Boolean | true = negative keywords only, false = positive only. Omit for both.
+        String search = "search_example"; // String | Case-insensitive substring match on the keyword text
+        try {
+            ListAdKeywords200Response result = apiInstance.listAdKeywords(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **accountId** | **String**| Social account ID | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. | [optional] |
+| **profileId** | **String**| Profile ID | [optional] |
+| **campaignId** | **String**| Platform campaign ID | [optional] |
+| **adSetId** | **String**| Platform ad group ID (Google ad group) | [optional] |
+| **status** | **String**| Keyword criterion status | [optional] [enum: active, paused] |
+| **matchType** | **String**|  | [optional] [enum: exact, phrase, broad, unknown] |
+| **negative** | **Boolean**| true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. | [optional] |
+| **search** | **String**| Case-insensitive substring match on the keyword text | [optional] |
+
+### Return type
+
+[**ListAdKeywords200Response**](ListAdKeywords200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Paginated keywords |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+## listAdKeywordsWithHttpInfo
+
+> ApiResponse<ListAdKeywords200Response> listAdKeywords listAdKeywordsWithHttpInfo(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search)
+
+List Search keywords
+
+Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        Integer page = 1; // Integer | Page number (1-based)
+        Integer limit = 50; // Integer | 
+        String accountId = "accountId_example"; // String | Social account ID
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads.
+        String profileId = "profileId_example"; // String | Profile ID
+        String campaignId = "campaignId_example"; // String | Platform campaign ID
+        String adSetId = "adSetId_example"; // String | Platform ad group ID (Google ad group)
+        String status = "active"; // String | Keyword criterion status
+        String matchType = "exact"; // String | 
+        Boolean negative = true; // Boolean | true = negative keywords only, false = positive only. Omit for both.
+        String search = "search_example"; // String | Case-insensitive substring match on the keyword text
+        try {
+            ApiResponse<ListAdKeywords200Response> response = apiInstance.listAdKeywordsWithHttpInfo(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **accountId** | **String**| Social account ID | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. | [optional] |
+| **profileId** | **String**| Profile ID | [optional] |
+| **campaignId** | **String**| Platform campaign ID | [optional] |
+| **adSetId** | **String**| Platform ad group ID (Google ad group) | [optional] |
+| **status** | **String**| Keyword criterion status | [optional] [enum: active, paused] |
+| **matchType** | **String**|  | [optional] [enum: exact, phrase, broad, unknown] |
+| **negative** | **Boolean**| true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. | [optional] |
+| **search** | **String**| Case-insensitive substring match on the keyword text | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdKeywords200Response**](ListAdKeywords200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Paginated keywords |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |

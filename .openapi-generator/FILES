@@ -816,6 +816,8 @@ docs/ListAdCatalogs200Response.md
 docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAdCreatives200Response.md
 docs/ListAdImages200Response.md
+docs/ListAdKeywords200Response.md
+docs/ListAdKeywords200ResponseKeywordsInner.md
 docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
 docs/ListAds200Response.md
@@ -2434,6 +2436,8 @@ src/main/java/dev/zernio/model/ListAdCatalogs200Response.java
 src/main/java/dev/zernio/model/ListAdCatalogs200ResponseCatalogsInner.java
 src/main/java/dev/zernio/model/ListAdCreatives200Response.java
 src/main/java/dev/zernio/model/ListAdImages200Response.java
+src/main/java/dev/zernio/model/ListAdKeywords200Response.java
+src/main/java/dev/zernio/model/ListAdKeywords200ResponseKeywordsInner.java
 src/main/java/dev/zernio/model/ListAdLabels200Response.java
 src/main/java/dev/zernio/model/ListAdStudies200Response.java
 src/main/java/dev/zernio/model/ListAds200Response.java
@@ -3161,4 +3165,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaOptionsInnerTest.java
+src/test/java/dev/zernio/model/ListAdKeywords200ResponseKeywordsInnerTest.java
+src/test/java/dev/zernio/model/ListAdKeywords200ResponseTest.java

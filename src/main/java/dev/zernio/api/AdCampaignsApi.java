@@ -44,6 +44,7 @@ import dev.zernio.model.GetAdsTimeline200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdCampaigns200Response;
+import dev.zernio.model.ListAdKeywords200Response;
 import dev.zernio.model.ListAds200Response;
 import java.time.LocalDate;
 import dev.zernio.model.UpdateAd200Response;
@@ -83,7 +84,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-24T18:21:15.002390109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T09:32:02.557346044Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2124,6 +2125,194 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List Search keywords
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit  (optional, default to 50)
+   * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)
+   * @param profileId Profile ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param adSetId Platform ad group ID (Google ad group) (optional)
+   * @param status Keyword criterion status (optional)
+   * @param matchType  (optional)
+   * @param negative true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)
+   * @param search Case-insensitive substring match on the keyword text (optional)
+   * @return ListAdKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdKeywords200Response listAdKeywords(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adSetId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String matchType, @javax.annotation.Nullable Boolean negative, @javax.annotation.Nullable String search) throws ApiException {
+    return listAdKeywords(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search, null);
+  }
+
+  /**
+   * List Search keywords
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit  (optional, default to 50)
+   * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)
+   * @param profileId Profile ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param adSetId Platform ad group ID (Google ad group) (optional)
+   * @param status Keyword criterion status (optional)
+   * @param matchType  (optional)
+   * @param negative true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)
+   * @param search Case-insensitive substring match on the keyword text (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAdKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdKeywords200Response listAdKeywords(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adSetId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String matchType, @javax.annotation.Nullable Boolean negative, @javax.annotation.Nullable String search, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdKeywords200Response> localVarResponse = listAdKeywordsWithHttpInfo(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Search keywords
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit  (optional, default to 50)
+   * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)
+   * @param profileId Profile ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param adSetId Platform ad group ID (Google ad group) (optional)
+   * @param status Keyword criterion status (optional)
+   * @param matchType  (optional)
+   * @param negative true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)
+   * @param search Case-insensitive substring match on the keyword text (optional)
+   * @return ApiResponse&lt;ListAdKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdKeywords200Response> listAdKeywordsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adSetId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String matchType, @javax.annotation.Nullable Boolean negative, @javax.annotation.Nullable String search) throws ApiException {
+    return listAdKeywordsWithHttpInfo(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search, null);
+  }
+
+  /**
+   * List Search keywords
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit  (optional, default to 50)
+   * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)
+   * @param profileId Profile ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param adSetId Platform ad group ID (Google ad group) (optional)
+   * @param status Keyword criterion status (optional)
+   * @param matchType  (optional)
+   * @param negative true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)
+   * @param search Case-insensitive substring match on the keyword text (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdKeywords200Response> listAdKeywordsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adSetId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String matchType, @javax.annotation.Nullable Boolean negative, @javax.annotation.Nullable String search, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdKeywordsRequestBuilder(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdKeywords", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdKeywords200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdKeywords200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdKeywords200Response>() {});
+        
+
+        return new ApiResponse<ListAdKeywords200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdKeywordsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adSetId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String matchType, @javax.annotation.Nullable Boolean negative, @javax.annotation.Nullable String search, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/keywords";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "page";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "campaignId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignId", campaignId));
+    localVarQueryParameterBaseName = "adSetId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adSetId", adSetId));
+    localVarQueryParameterBaseName = "status";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
+    localVarQueryParameterBaseName = "matchType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("matchType", matchType));
+    localVarQueryParameterBaseName = "negative";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("negative", negative));
+    localVarQueryParameterBaseName = "search";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

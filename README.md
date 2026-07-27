@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-24T18:21:15.002390109Z[Etc/UTC]
+- Build date: 2026-07-27T09:32:02.557346044Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -218,6 +218,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getAdsTimelineWithHttpInfo**](docs/AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdCampaignsWithHttpInfo**](docs/AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns
+*AdCampaignsApi* | [**listAdKeywords**](docs/AdCampaignsApi.md#listAdKeywords) | **GET** /v1/ads/keywords | List Search keywords
+*AdCampaignsApi* | [**listAdKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#listAdKeywordsWithHttpInfo) | **GET** /v1/ads/keywords | List Search keywords
 *AdCampaignsApi* | [**listAds**](docs/AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads
 *AdCampaignsApi* | [**listAdsWithHttpInfo**](docs/AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
 *AdCampaignsApi* | [**updateAd**](docs/AdCampaignsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
@@ -1932,6 +1934,8 @@ Class | Method | HTTP request | Description
  - [ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
  - [ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
  - [ListAdImages200Response](docs/ListAdImages200Response.md)
+ - [ListAdKeywords200Response](docs/ListAdKeywords200Response.md)
+ - [ListAdKeywords200ResponseKeywordsInner](docs/ListAdKeywords200ResponseKeywordsInner.md)
  - [ListAdLabels200Response](docs/ListAdLabels200Response.md)
  - [ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [ListAds200Response](docs/ListAds200Response.md)
