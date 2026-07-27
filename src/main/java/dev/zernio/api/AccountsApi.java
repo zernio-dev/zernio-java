@@ -60,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T17:00:29.658567792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:03:13.934450341Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -844,13 +844,13 @@ public class AccountsApi {
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
-   * @param profileId Filter accounts by profile ID (optional)
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+   * @param profileId Filter accounts by profile ID. Must be a valid ObjectId. (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param status Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
-   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
-   * @param limit Page size. Required alongside page for pagination. (optional)
+   * @param page Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)
+   * @param limit Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)
    * @return AccountsListResponse
    * @throws ApiException if fails to make API call
    */
@@ -860,13 +860,13 @@ public class AccountsApi {
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
-   * @param profileId Filter accounts by profile ID (optional)
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+   * @param profileId Filter accounts by profile ID. Must be a valid ObjectId. (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param status Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
-   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
-   * @param limit Page size. Required alongside page for pagination. (optional)
+   * @param page Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)
+   * @param limit Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)
    * @param headers Optional headers to include in the request
    * @return AccountsListResponse
    * @throws ApiException if fails to make API call
@@ -878,13 +878,13 @@ public class AccountsApi {
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
-   * @param profileId Filter accounts by profile ID (optional)
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+   * @param profileId Filter accounts by profile ID. Must be a valid ObjectId. (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param status Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
-   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
-   * @param limit Page size. Required alongside page for pagination. (optional)
+   * @param page Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)
+   * @param limit Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)
    * @return ApiResponse&lt;AccountsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
@@ -894,13 +894,13 @@ public class AccountsApi {
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
-   * @param profileId Filter accounts by profile ID (optional)
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+   * @param profileId Filter accounts by profile ID. Must be a valid ObjectId. (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param status Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
-   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
-   * @param limit Page size. Required alongside page for pagination. (optional)
+   * @param page Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)
+   * @param limit Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;AccountsListResponse&gt;
    * @throws ApiException if fails to make API call

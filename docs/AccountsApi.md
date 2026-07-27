@@ -801,7 +801,7 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 
 List accounts
 
-Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
 
 ### Example
 
@@ -824,12 +824,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String profileId = "profileId_example"; // String | Filter accounts by profile ID
+        String profileId = "profileId_example"; // String | Filter accounts by profile ID. Must be a valid ObjectId.
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
-        Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
-        Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
+        Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
+        Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
         try {
             AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit);
             System.out.println(result);
@@ -849,12 +849,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Filter accounts by profile ID | [optional] |
+| **profileId** | **String**| Filter accounts by profile ID. Must be a valid ObjectId. | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
-| **page** | **Integer**| Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional] |
-| **limit** | **Integer**| Page size. Required alongside page for pagination. | [optional] |
+| **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
+| **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
 
 ### Return type
 
@@ -874,6 +874,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Accounts (with optional pagination) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listAccountsWithHttpInfo
@@ -882,7 +883,7 @@ public class Example {
 
 List accounts
 
-Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
 
 ### Example
 
@@ -906,12 +907,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
-        String profileId = "profileId_example"; // String | Filter accounts by profile ID
+        String profileId = "profileId_example"; // String | Filter accounts by profile ID. Must be a valid ObjectId.
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
-        Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
-        Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
+        Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
+        Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
         try {
             ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
             System.out.println("Status code: " + response.getStatusCode());
@@ -933,12 +934,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Filter accounts by profile ID | [optional] |
+| **profileId** | **String**| Filter accounts by profile ID. Must be a valid ObjectId. | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
-| **page** | **Integer**| Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional] |
-| **limit** | **Integer**| Page size. Required alongside page for pagination. | [optional] |
+| **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
+| **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
 
 ### Return type
 
@@ -958,6 +959,7 @@ ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Accounts (with optional pagination) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

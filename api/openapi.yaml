@@ -5917,9 +5917,10 @@ paths:
       description: |
         Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
         Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible).
+        page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped.
       operationId: listAccounts
       parameters:
-      - description: Filter accounts by profile ID
+      - description: Filter accounts by profile ID. Must be a valid ObjectId.
         explode: true
         in: query
         name: profileId
@@ -5957,8 +5958,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: "Page number (1-based). When provided with limit, enables server-side\
-          \ pagination. Omit for all accounts."
+      - description: |
+          Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.
         explode: true
         in: query
         name: page
@@ -5967,7 +5968,8 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Page size. Required alongside page for pagination.
+      - description: |
+          Page size. Must be provided together with page; sending only one of the two returns 400.
         explode: true
         in: query
         name: limit
@@ -5999,6 +6001,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/AccountsListResponse"
           description: Accounts (with optional pagination)
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List accounts
