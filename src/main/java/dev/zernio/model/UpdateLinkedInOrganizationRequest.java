@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateLinkedInOrganizationRequest.JSON_PROPERTY_ACCOUNT_TYPE,
   UpdateLinkedInOrganizationRequest.JSON_PROPERTY_SELECTED_ORGANIZATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:03:13.934450341Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:42:22.543363114Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateLinkedInOrganizationRequest {
   /**
    * Gets or Sets accountType

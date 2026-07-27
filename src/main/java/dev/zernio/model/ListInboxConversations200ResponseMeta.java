@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_FAILED_ACCOUNTS,
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:03:13.934450341Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:42:22.543363114Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseMeta {
   public static final String JSON_PROPERTY_ACCOUNTS_QUERIED = "accountsQueried";
   @javax.annotation.Nullable
