@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RequestSmsSenderIdLimitIncreaseRequest.JSON_PROPERTY_REQUESTED_CAP,
   RequestSmsSenderIdLimitIncreaseRequest.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T09:32:02.557346044Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:06:51.778962505Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RequestSmsSenderIdLimitIncreaseRequest {
   public static final String JSON_PROPERTY_REQUESTED_CAP = "requestedCap";
   @javax.annotation.Nonnull

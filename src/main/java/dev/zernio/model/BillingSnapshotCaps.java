@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   BillingSnapshotCaps.JSON_PROPERTY_X_SPEND_USED_CENTS,
   BillingSnapshotCaps.JSON_PROPERTY_X_SPEND_LIMIT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T09:32:02.557346044Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:06:51.778962505Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotCaps {
   public static final String JSON_PROPERTY_X_SPEND_USED_CENTS = "xSpendUsedCents";
   @javax.annotation.Nullable
