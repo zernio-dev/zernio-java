@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:17:25.169865061Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -300,7 +300,7 @@ public class ValidateApi {
 
   /**
    * Validate post content
-   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. This is content-only validation.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
+   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. Account lookups are limit-only: a twitter accountId is resolved, scoped to the caller, only to pick the 280 vs 25000 character limit. Missing, foreign, or invalid ids fall back to 280 and never error.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
    * @param validatePostRequest  (required)
    * @return ValidatePost200Response
    * @throws ApiException if fails to make API call
@@ -311,7 +311,7 @@ public class ValidateApi {
 
   /**
    * Validate post content
-   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. This is content-only validation.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
+   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. Account lookups are limit-only: a twitter accountId is resolved, scoped to the caller, only to pick the 280 vs 25000 character limit. Missing, foreign, or invalid ids fall back to 280 and never error.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
    * @param validatePostRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ValidatePost200Response
@@ -324,7 +324,7 @@ public class ValidateApi {
 
   /**
    * Validate post content
-   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. This is content-only validation.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
+   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. Account lookups are limit-only: a twitter accountId is resolved, scoped to the caller, only to pick the 280 vs 25000 character limit. Missing, foreign, or invalid ids fall back to 280 and never error.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
    * @param validatePostRequest  (required)
    * @return ApiResponse&lt;ValidatePost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -335,7 +335,7 @@ public class ValidateApi {
 
   /**
    * Validate post content
-   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. This is content-only validation.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
+   * Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.  Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. Account lookups are limit-only: a twitter accountId is resolved, scoped to the caller, only to pick the 280 vs 25000 character limit. Missing, foreign, or invalid ids fall back to 280 and never error.  Returns errors for failures and warnings for near-limit content (&gt;90% of character limit). 
    * @param validatePostRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ValidatePost200Response&gt;

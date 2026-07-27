@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UsageStatsUsage.JSON_PROPERTY_X_API_CALLS,
   UsageStatsUsage.JSON_PROPERTY_X_API_CALLS_BY_OPERATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:17:25.169865061Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsUsage {
   public static final String JSON_PROPERTY_UPLOADS = "uploads";
   @javax.annotation.Nullable

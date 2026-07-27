@@ -37,11 +37,12 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM,
+  ValidatePostRequestPlatformsInner.JSON_PROPERTY_ACCOUNT_ID,
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_CUSTOM_CONTENT,
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_CUSTOM_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:17:25.169865061Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePostRequestPlatformsInner {
   /**
    * Gets or Sets platform
@@ -106,6 +107,10 @@ public class ValidatePostRequestPlatformsInner {
   @javax.annotation.Nonnull
   private PlatformEnum platform;
 
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
+
   public static final String JSON_PROPERTY_CUSTOM_CONTENT = "customContent";
   @javax.annotation.Nullable
   private String customContent;
@@ -142,6 +147,30 @@ public class ValidatePostRequestPlatformsInner {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPlatform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
+  }
+
+
+  public ValidatePostRequestPlatformsInner accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Account to validate against. For twitter, resolves X Premium status to apply the 25000 character limit instead of 280.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
   }
 
 
@@ -238,6 +267,7 @@ public class ValidatePostRequestPlatformsInner {
     }
     ValidatePostRequestPlatformsInner validatePostRequestPlatformsInner = (ValidatePostRequestPlatformsInner) o;
     return Objects.equals(this.platform, validatePostRequestPlatformsInner.platform) &&
+        Objects.equals(this.accountId, validatePostRequestPlatformsInner.accountId) &&
         Objects.equals(this.customContent, validatePostRequestPlatformsInner.customContent) &&
         Objects.equals(this.platformSpecificData, validatePostRequestPlatformsInner.platformSpecificData) &&
         Objects.equals(this.customMedia, validatePostRequestPlatformsInner.customMedia);
@@ -245,7 +275,7 @@ public class ValidatePostRequestPlatformsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, customContent, platformSpecificData, customMedia);
+    return Objects.hash(platform, accountId, customContent, platformSpecificData, customMedia);
   }
 
   @Override
@@ -253,6 +283,7 @@ public class ValidatePostRequestPlatformsInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class ValidatePostRequestPlatformsInner {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    customContent: ").append(toIndentedString(customContent)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("    customMedia: ").append(toIndentedString(customMedia)).append("\n");
@@ -306,6 +337,11 @@ public class ValidatePostRequestPlatformsInner {
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `customContent` to the URL query string

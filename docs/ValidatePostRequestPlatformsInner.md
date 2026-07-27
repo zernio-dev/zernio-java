@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
+|**accountId** | **String** | Account to validate against. For twitter, resolves X Premium status to apply the 25000 character limit instead of 280. |  [optional] |
 |**customContent** | **String** |  |  [optional] |
 |**platformSpecificData** | **Object** |  |  [optional] |
 |**customMedia** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  |  [optional] |

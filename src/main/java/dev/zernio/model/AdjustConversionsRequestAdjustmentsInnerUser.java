@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AdjustConversionsRequestAdjustmentsInnerUser.JSON_PROPERTY_EMAIL,
   AdjustConversionsRequestAdjustmentsInnerUser.JSON_PROPERTY_PHONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:17:25.169865061Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdjustConversionsRequestAdjustmentsInnerUser {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
