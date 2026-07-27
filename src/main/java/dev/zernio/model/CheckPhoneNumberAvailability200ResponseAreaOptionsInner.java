@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberAvailability200ResponseAreaOptionsInner.JSON_PROPERTY_NAME,
   CheckPhoneNumberAvailability200ResponseAreaOptionsInner.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:50:09.305474207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberAvailability200ResponseAreaOptionsInner {
   public static final String JSON_PROPERTY_NDC = "ndc";
   @javax.annotation.Nullable
@@ -84,7 +84,7 @@ public class CheckPhoneNumberAvailability200ResponseAreaOptionsInner {
   }
 
   /**
-   * Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).
+   * Area name: \&quot;City, ST\&quot; for US/CA (e.g. \&quot;Miami, FL\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).
    * @return name
    */
   @javax.annotation.Nullable

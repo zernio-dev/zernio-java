@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   UsageStats.JSON_PROPERTY_USAGE,
   UsageStats.JSON_PROPERTY_SPEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:50:09.305474207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStats {
   /**
    * Which billing system the account is on. Shape of &#x60;usage&#x60;/&#x60;spend&#x60; differs.

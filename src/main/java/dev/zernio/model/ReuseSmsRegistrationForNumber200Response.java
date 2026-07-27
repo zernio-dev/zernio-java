@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ReuseSmsRegistrationForNumber200Response.JSON_PROPERTY_REGISTRATION_ID,
   ReuseSmsRegistrationForNumber200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:20:18.658175038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T14:50:09.305474207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReuseSmsRegistrationForNumber200Response {
   public static final String JSON_PROPERTY_REGISTRATION_ID = "registrationId";
   @javax.annotation.Nullable
