@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListCustomFields200ResponseFieldsInner.JSON_PROPERTY_OPTIONS,
   ListCustomFields200ResponseFieldsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:12:12.916506335Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:17:25.169865061Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCustomFields200ResponseFieldsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

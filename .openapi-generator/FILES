@@ -3185,13 +3185,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateLeadFormRequestPlatformSpecificDataTest.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataConsentsInnerTest.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataLocaleTest.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInnerTest.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1Test.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOfTest.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerTest.java
-src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataTest.java
-src/test/java/dev/zernio/model/MetaLeadFormPlatformDataContextCardTest.java
-src/test/java/dev/zernio/model/MetaLeadFormPlatformDataTest.java
