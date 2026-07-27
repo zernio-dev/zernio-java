@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-27T12:06:51.778962505Z[Etc/UTC]
+- Build date: 2026-07-27T12:12:12.916506335Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1358,6 +1358,7 @@ Class | Method | HTTP request | Description
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
+ - [CreateLeadFormRequestPlatformSpecificData](docs/CreateLeadFormRequestPlatformSpecificData.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
  - [CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
@@ -1920,6 +1921,13 @@ Class | Method | HTTP request | Description
  - [LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner](docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md)
  - [LinkedInAggregateAnalyticsTotalResponse](docs/LinkedInAggregateAnalyticsTotalResponse.md)
  - [LinkedInAggregateAnalyticsTotalResponseAnalytics](docs/LinkedInAggregateAnalyticsTotalResponseAnalytics.md)
+ - [LinkedInLeadFormPlatformData](docs/LinkedInLeadFormPlatformData.md)
+ - [LinkedInLeadFormPlatformDataConsentsInner](docs/LinkedInLeadFormPlatformDataConsentsInner.md)
+ - [LinkedInLeadFormPlatformDataLocale](docs/LinkedInLeadFormPlatformDataLocale.md)
+ - [LinkedInLeadFormPlatformDataQuestionsInner](docs/LinkedInLeadFormPlatformDataQuestionsInner.md)
+ - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.md)
+ - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md)
+ - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md)
  - [LinkedInPlatformData](docs/LinkedInPlatformData.md)
  - [ListAccountGroups200Response](docs/ListAccountGroups200Response.md)
  - [ListAccountGroups200ResponseGroupsInner](docs/ListAccountGroups200ResponseGroupsInner.md)
@@ -2079,6 +2087,8 @@ Class | Method | HTTP request | Description
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
+ - [MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
+ - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
  - [Money](docs/Money.md)
  - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)

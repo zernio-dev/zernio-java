@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateLeadFormRequestPlatformSpecificData;
 import dev.zernio.model.CreateLeadFormRequestQuestionsInner;
 import java.net.URI;
 import java.util.ArrayList;
@@ -49,9 +50,10 @@ import dev.zernio.ApiClient;
   CreateLeadFormRequest.JSON_PROPERTY_THANK_YOU_BUTTON_TEXT,
   CreateLeadFormRequest.JSON_PROPERTY_THANK_YOU_BUTTON_TYPE,
   CreateLeadFormRequest.JSON_PROPERTY_THANK_YOU_WEBSITE_URL,
-  CreateLeadFormRequest.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY
+  CreateLeadFormRequest.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY,
+  CreateLeadFormRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:06:51.778962505Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:12:12.916506335Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateLeadFormRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -62,7 +64,7 @@ public class CreateLeadFormRequest {
   private String name;
 
   public static final String JSON_PROPERTY_QUESTIONS = "questions";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<CreateLeadFormRequestQuestionsInner> questions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PRIVACY_POLICY_URL = "privacyPolicyUrl";
@@ -104,6 +106,10 @@ public class CreateLeadFormRequest {
   public static final String JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY = "isOptimizedForQuality";
   @javax.annotation.Nullable
   private Boolean isOptimizedForQuality;
+
+  public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
+  @javax.annotation.Nullable
+  private CreateLeadFormRequestPlatformSpecificData platformSpecificData;
 
   public CreateLeadFormRequest() { 
   }
@@ -156,7 +162,7 @@ public class CreateLeadFormRequest {
   }
 
 
-  public CreateLeadFormRequest questions(@javax.annotation.Nonnull List<CreateLeadFormRequestQuestionsInner> questions) {
+  public CreateLeadFormRequest questions(@javax.annotation.Nullable List<CreateLeadFormRequestQuestionsInner> questions) {
     this.questions = questions;
     return this;
   }
@@ -170,20 +176,20 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get questions
+   * Deprecated (Meta legacy shape): use platformSpecificData.questions.
    * @return questions
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_QUESTIONS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUESTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<CreateLeadFormRequestQuestionsInner> getQuestions() {
     return questions;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_QUESTIONS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setQuestions(@javax.annotation.Nonnull List<CreateLeadFormRequestQuestionsInner> questions) {
+  @JsonProperty(value = JSON_PROPERTY_QUESTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuestions(@javax.annotation.Nullable List<CreateLeadFormRequestQuestionsInner> questions) {
     this.questions = questions;
   }
 
@@ -218,9 +224,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get privacyPolicyLinkText
+   * Deprecated: use platformSpecificData.privacyPolicyLinkText.
    * @return privacyPolicyLinkText
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PRIVACY_POLICY_LINK_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -242,9 +250,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get followUpActionUrl
+   * Deprecated: use platformSpecificData.followUpActionUrl.
    * @return followUpActionUrl
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_FOLLOW_UP_ACTION_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -266,9 +276,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get locale
+   * Deprecated: use platformSpecificData.locale.
    * @return locale
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_LOCALE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -290,9 +302,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get thankYouTitle
+   * Deprecated: use platformSpecificData.thankYouTitle.
    * @return thankYouTitle
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_THANK_YOU_TITLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -314,9 +328,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get thankYouBody
+   * Deprecated: use platformSpecificData.thankYouBody.
    * @return thankYouBody
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_THANK_YOU_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -338,9 +354,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get thankYouButtonText
+   * Deprecated: use platformSpecificData.thankYouButtonText.
    * @return thankYouButtonText
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_THANK_YOU_BUTTON_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -362,9 +380,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get thankYouButtonType
+   * Deprecated: use platformSpecificData.thankYouButtonType.
    * @return thankYouButtonType
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_THANK_YOU_BUTTON_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -386,9 +406,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get thankYouWebsiteUrl
+   * Deprecated: use platformSpecificData.thankYouWebsiteUrl.
    * @return thankYouWebsiteUrl
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_THANK_YOU_WEBSITE_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -410,9 +432,11 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get isOptimizedForQuality
+   * Deprecated: use platformSpecificData.isOptimizedForQuality.
    * @return isOptimizedForQuality
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -425,6 +449,30 @@ public class CreateLeadFormRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsOptimizedForQuality(@javax.annotation.Nullable Boolean isOptimizedForQuality) {
     this.isOptimizedForQuality = isOptimizedForQuality;
+  }
+
+
+  public CreateLeadFormRequest platformSpecificData(@javax.annotation.Nullable CreateLeadFormRequestPlatformSpecificData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+    return this;
+  }
+
+  /**
+   * Get platformSpecificData
+   * @return platformSpecificData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateLeadFormRequestPlatformSpecificData getPlatformSpecificData() {
+    return platformSpecificData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable CreateLeadFormRequestPlatformSpecificData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
   }
 
 
@@ -452,12 +500,13 @@ public class CreateLeadFormRequest {
         Objects.equals(this.thankYouButtonText, createLeadFormRequest.thankYouButtonText) &&
         Objects.equals(this.thankYouButtonType, createLeadFormRequest.thankYouButtonType) &&
         Objects.equals(this.thankYouWebsiteUrl, createLeadFormRequest.thankYouWebsiteUrl) &&
-        Objects.equals(this.isOptimizedForQuality, createLeadFormRequest.isOptimizedForQuality);
+        Objects.equals(this.isOptimizedForQuality, createLeadFormRequest.isOptimizedForQuality) &&
+        Objects.equals(this.platformSpecificData, createLeadFormRequest.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, name, questions, privacyPolicyUrl, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, isOptimizedForQuality);
+    return Objects.hash(accountId, name, questions, privacyPolicyUrl, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, isOptimizedForQuality, platformSpecificData);
   }
 
   @Override
@@ -477,6 +526,7 @@ public class CreateLeadFormRequest {
     sb.append("    thankYouButtonType: ").append(toIndentedString(thankYouButtonType)).append("\n");
     sb.append("    thankYouWebsiteUrl: ").append(toIndentedString(thankYouWebsiteUrl)).append("\n");
     sb.append("    isOptimizedForQuality: ").append(toIndentedString(isOptimizedForQuality)).append("\n");
+    sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -592,6 +642,11 @@ public class CreateLeadFormRequest {
     // add `isOptimizedForQuality` to the URL query string
     if (getIsOptimizedForQuality() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisOptimizedForQuality%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsOptimizedForQuality()))));
+    }
+
+    // add `platformSpecificData` to the URL query string
+    if (getPlatformSpecificData() != null) {
+      joiner.add(getPlatformSpecificData().toUrlQueryString(prefix + "platformSpecificData" + suffix));
     }
 
     return joiner.toString();

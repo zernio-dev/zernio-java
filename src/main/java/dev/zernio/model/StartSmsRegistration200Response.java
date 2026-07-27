@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistration200Response.JSON_PROPERTY_STATUS,
   StartSmsRegistration200Response.JSON_PROPERTY_AWAITING_OTP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:06:51.778962505Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:12:12.916506335Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistration200Response {
   public static final String JSON_PROPERTY_REGISTRATION_ID = "registrationId";
   @javax.annotation.Nullable

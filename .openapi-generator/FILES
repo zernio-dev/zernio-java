@@ -225,6 +225,7 @@ docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
 docs/CreateLeadFormRequest.md
+docs/CreateLeadFormRequestPlatformSpecificData.md
 docs/CreateLeadFormRequestQuestionsInner.md
 docs/CreateMessagingAdRequest.md
 docs/CreatePhoneNumberKycLink200Response.md
@@ -801,6 +802,13 @@ docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md
 docs/LinkedInAggregateAnalyticsTotalResponse.md
 docs/LinkedInAggregateAnalyticsTotalResponseAnalytics.md
+docs/LinkedInLeadFormPlatformData.md
+docs/LinkedInLeadFormPlatformDataConsentsInner.md
+docs/LinkedInLeadFormPlatformDataLocale.md
+docs/LinkedInLeadFormPlatformDataQuestionsInner.md
+docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.md
+docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md
+docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
 docs/ListAccountGroups200Response.md
@@ -966,6 +974,8 @@ docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
+docs/MetaLeadFormPlatformData.md
+docs/MetaLeadFormPlatformDataContextCard.md
 docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
@@ -1860,6 +1870,7 @@ src/main/java/dev/zernio/model/CreateInviteToken201Response.java
 src/main/java/dev/zernio/model/CreateInviteTokenRequest.java
 src/main/java/dev/zernio/model/CreateLeadForm200Response.java
 src/main/java/dev/zernio/model/CreateLeadFormRequest.java
+src/main/java/dev/zernio/model/CreateLeadFormRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/CreateLeadFormRequestQuestionsInner.java
 src/main/java/dev/zernio/model/CreateMessagingAdRequest.java
 src/main/java/dev/zernio/model/CreatePhoneNumberKycLink200Response.java
@@ -2422,6 +2433,13 @@ src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponseAnalytics.
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsTotalResponse.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsTotalResponseAnalytics.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformData.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataConsentsInner.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataLocale.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInner.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.java
+src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.java
 src/main/java/dev/zernio/model/LinkedInPlatformData.java
 src/main/java/dev/zernio/model/ListAccountGroups200Response.java
 src/main/java/dev/zernio/model/ListAccountGroups200ResponseGroupsInner.java
@@ -2581,6 +2599,8 @@ src/main/java/dev/zernio/model/LookupSmsNumber200Response.java
 src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
+src/main/java/dev/zernio/model/MetaLeadFormPlatformData.java
+src/main/java/dev/zernio/model/MetaLeadFormPlatformDataContextCard.java
 src/main/java/dev/zernio/model/Money.java
 src/main/java/dev/zernio/model/MoneyAmount.java
 src/main/java/dev/zernio/model/MoveAccountToProfile200Response.java
@@ -3165,3 +3185,13 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateLeadFormRequestPlatformSpecificDataTest.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataConsentsInnerTest.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataLocaleTest.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInnerTest.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1Test.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOfTest.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerTest.java
+src/test/java/dev/zernio/model/LinkedInLeadFormPlatformDataTest.java
+src/test/java/dev/zernio/model/MetaLeadFormPlatformDataContextCardTest.java
+src/test/java/dev/zernio/model/MetaLeadFormPlatformDataTest.java

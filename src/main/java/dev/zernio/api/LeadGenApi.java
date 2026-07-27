@@ -54,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:06:51.778962505Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T12:12:12.916506335Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LeadGenApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -173,9 +173,9 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
-   * @param formId  (required)
-   * @param accountId  (required)
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @return ArchiveLeadForm200Response
    * @throws ApiException if fails to make API call
    */
@@ -185,9 +185,9 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
-   * @param formId  (required)
-   * @param accountId  (required)
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @param headers Optional headers to include in the request
    * @return ArchiveLeadForm200Response
    * @throws ApiException if fails to make API call
@@ -199,9 +199,9 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
-   * @param formId  (required)
-   * @param accountId  (required)
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @return ApiResponse&lt;ArchiveLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -211,9 +211,9 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
-   * @param formId  (required)
-   * @param accountId  (required)
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ArchiveLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
@@ -314,7 +314,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @return CreateLeadForm200Response
    * @throws ApiException if fails to make API call
@@ -325,7 +325,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateLeadForm200Response
@@ -338,7 +338,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @return ApiResponse&lt;CreateLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
@@ -349,7 +349,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateLeadForm200Response&gt;
@@ -570,8 +570,8 @@ public class LeadGenApi {
   /**
    * Get a lead form
    * 
-   * @param formId  (required)
-   * @param accountId  (required)
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @return GetLeadForm200Response
    * @throws ApiException if fails to make API call
    */
@@ -582,8 +582,8 @@ public class LeadGenApi {
   /**
    * Get a lead form
    * 
-   * @param formId  (required)
-   * @param accountId  (required)
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @param headers Optional headers to include in the request
    * @return GetLeadForm200Response
    * @throws ApiException if fails to make API call
@@ -596,8 +596,8 @@ public class LeadGenApi {
   /**
    * Get a lead form
    * 
-   * @param formId  (required)
-   * @param accountId  (required)
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @return ApiResponse&lt;GetLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -608,8 +608,8 @@ public class LeadGenApi {
   /**
    * Get a lead form
    * 
-   * @param formId  (required)
-   * @param accountId  (required)
+   * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
+   * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
@@ -869,57 +869,61 @@ public class LeadGenApi {
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
-   * @param accountId Connected facebook account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
    * @return ListLeadForms200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLeadForms200Response listLeadForms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
-    return listLeadForms(accountId, limit, cursor, null);
+  public ListLeadForms200Response listLeadForms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeadForms(accountId, adAccountId, limit, cursor, null);
   }
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
-   * @param accountId Connected facebook account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
    * @param headers Optional headers to include in the request
    * @return ListLeadForms200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLeadForms200Response listLeadForms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListLeadForms200Response> localVarResponse = listLeadFormsWithHttpInfo(accountId, limit, cursor, headers);
+  public ListLeadForms200Response listLeadForms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLeadForms200Response> localVarResponse = listLeadFormsWithHttpInfo(accountId, adAccountId, limit, cursor, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
-   * @param accountId Connected facebook account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
    * @return ApiResponse&lt;ListLeadForms200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLeadForms200Response> listLeadFormsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
-    return listLeadFormsWithHttpInfo(accountId, limit, cursor, null);
+  public ApiResponse<ListLeadForms200Response> listLeadFormsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeadFormsWithHttpInfo(accountId, adAccountId, limit, cursor, null);
   }
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
-   * @param accountId Connected facebook account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListLeadForms200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLeadForms200Response> listLeadFormsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listLeadFormsRequestBuilder(accountId, limit, cursor, headers);
+  public ApiResponse<ListLeadForms200Response> listLeadFormsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLeadFormsRequestBuilder(accountId, adAccountId, limit, cursor, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -966,7 +970,7 @@ public class LeadGenApi {
     }
   }
 
-  private HttpRequest.Builder listLeadFormsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listLeadFormsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling listLeadForms");
@@ -981,6 +985,8 @@ public class LeadGenApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "cursor";
@@ -1013,65 +1019,69 @@ public class LeadGenApi {
 
   /**
    * List submitted leads
-   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
    * @param formId Filter to a single lead form. (optional)
-   * @param accountId Filter to a single connected account. (optional)
+   * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
-   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @return ListLeads200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLeads200Response listLeads(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor) throws ApiException {
-    return listLeads(formId, accountId, limit, since, cursor, null);
+  public ListLeads200Response listLeads(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeads(formId, accountId, adAccountId, limit, since, cursor, null);
   }
 
   /**
    * List submitted leads
-   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
    * @param formId Filter to a single lead form. (optional)
-   * @param accountId Filter to a single connected account. (optional)
+   * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
-   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @param headers Optional headers to include in the request
    * @return ListLeads200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLeads200Response listLeads(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListLeads200Response> localVarResponse = listLeadsWithHttpInfo(formId, accountId, limit, since, cursor, headers);
+  public ListLeads200Response listLeads(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLeads200Response> localVarResponse = listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List submitted leads
-   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
    * @param formId Filter to a single lead form. (optional)
-   * @param accountId Filter to a single connected account. (optional)
+   * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
-   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @return ApiResponse&lt;ListLeads200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLeads200Response> listLeadsWithHttpInfo(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor) throws ApiException {
-    return listLeadsWithHttpInfo(formId, accountId, limit, since, cursor, null);
+  public ApiResponse<ListLeads200Response> listLeadsWithHttpInfo(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor, null);
   }
 
   /**
    * List submitted leads
-   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
    * @param formId Filter to a single lead form. (optional)
-   * @param accountId Filter to a single connected account. (optional)
+   * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
+   * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
-   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListLeads200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLeads200Response> listLeadsWithHttpInfo(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listLeadsRequestBuilder(formId, accountId, limit, since, cursor, headers);
+  public ApiResponse<ListLeads200Response> listLeadsWithHttpInfo(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLeadsRequestBuilder(formId, accountId, adAccountId, limit, since, cursor, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1118,7 +1128,7 @@ public class LeadGenApi {
     }
   }
 
-  private HttpRequest.Builder listLeadsRequestBuilder(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listLeadsRequestBuilder(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1131,6 +1141,8 @@ public class LeadGenApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("formId", formId));
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "since";

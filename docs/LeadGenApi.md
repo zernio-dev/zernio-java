@@ -27,7 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Archive a lead form
 
-Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
 
 ### Example
 
@@ -50,8 +50,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String formId = "formId_example"; // String | 
-        String accountId = "accountId_example"; // String | 
+        String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
+        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id (selects the platform).
         try {
             ArchiveLeadForm200Response result = apiInstance.archiveLeadForm(formId, accountId);
             System.out.println(result);
@@ -71,8 +71,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **formId** | **String**|  | |
-| **accountId** | **String**|  | |
+| **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
+| **accountId** | **String**| Connected facebook or linkedin ads account id (selects the platform). | |
 
 ### Return type
 
@@ -100,7 +100,7 @@ public class Example {
 
 Archive a lead form
 
-Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
 
 ### Example
 
@@ -124,8 +124,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String formId = "formId_example"; // String | 
-        String accountId = "accountId_example"; // String | 
+        String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
+        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id (selects the platform).
         try {
             ApiResponse<ArchiveLeadForm200Response> response = apiInstance.archiveLeadFormWithHttpInfo(formId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -147,8 +147,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **formId** | **String**|  | |
-| **accountId** | **String**|  | |
+| **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
+| **accountId** | **String**| Connected facebook or linkedin ads account id (selects the platform). | |
 
 ### Return type
 
@@ -177,7 +177,7 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 
 Create a lead form
 
-Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 
@@ -249,7 +249,7 @@ public class Example {
 
 Create a lead form
 
-Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 
@@ -496,8 +496,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String formId = "formId_example"; // String | 
-        String accountId = "accountId_example"; // String | 
+        String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
+        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id (selects the platform).
         try {
             GetLeadForm200Response result = apiInstance.getLeadForm(formId, accountId);
             System.out.println(result);
@@ -517,8 +517,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **formId** | **String**|  | |
-| **accountId** | **String**|  | |
+| **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
+| **accountId** | **String**| Connected facebook or linkedin ads account id (selects the platform). | |
 
 ### Return type
 
@@ -568,8 +568,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String formId = "formId_example"; // String | 
-        String accountId = "accountId_example"; // String | 
+        String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
+        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id (selects the platform).
         try {
             ApiResponse<GetLeadForm200Response> response = apiInstance.getLeadFormWithHttpInfo(formId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -591,8 +591,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **formId** | **String**|  | |
-| **accountId** | **String**|  | |
+| **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
+| **accountId** | **String**| Connected facebook or linkedin ads account id (selects the platform). | |
 
 ### Return type
 
@@ -779,11 +779,11 @@ ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
 
 ## listLeadForms
 
-> ListLeadForms200Response listLeadForms(accountId, limit, cursor)
+> ListLeadForms200Response listLeadForms(accountId, adAccountId, limit, cursor)
 
 List lead forms
 
-Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 
@@ -806,11 +806,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected facebook account id.
+        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id.
+        String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
         try {
-            ListLeadForms200Response result = apiInstance.listLeadForms(accountId, limit, cursor);
+            ListLeadForms200Response result = apiInstance.listLeadForms(accountId, adAccountId, limit, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LeadGenApi#listLeadForms");
@@ -828,7 +829,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected facebook account id. | |
+| **accountId** | **String**| Connected facebook or linkedin ads account id. | |
+| **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
 
@@ -855,11 +857,11 @@ public class Example {
 
 ## listLeadFormsWithHttpInfo
 
-> ApiResponse<ListLeadForms200Response> listLeadForms listLeadFormsWithHttpInfo(accountId, limit, cursor)
+> ApiResponse<ListLeadForms200Response> listLeadForms listLeadFormsWithHttpInfo(accountId, adAccountId, limit, cursor)
 
 List lead forms
 
-Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 
@@ -883,11 +885,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected facebook account id.
+        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id.
+        String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
         try {
-            ApiResponse<ListLeadForms200Response> response = apiInstance.listLeadFormsWithHttpInfo(accountId, limit, cursor);
+            ApiResponse<ListLeadForms200Response> response = apiInstance.listLeadFormsWithHttpInfo(accountId, adAccountId, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -907,7 +910,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected facebook account id. | |
+| **accountId** | **String**| Connected facebook or linkedin ads account id. | |
+| **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
 
@@ -935,11 +939,11 @@ ApiResponse<[**ListLeadForms200Response**](ListLeadForms200Response.md)>
 
 ## listLeads
 
-> ListLeads200Response listLeads(formId, accountId, limit, since, cursor)
+> ListLeads200Response listLeads(formId, accountId, adAccountId, limit, since, cursor)
 
 List submitted leads
 
-Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
 
 ### Example
 
@@ -963,12 +967,13 @@ public class Example {
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Filter to a single lead form.
-        String accountId = "accountId_example"; // String | Filter to a single connected account.
+        String accountId = "accountId_example"; // String | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch.
+        String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
-        Integer since = 56; // Integer | Unix seconds; only leads created at/after this Meta timestamp.
-        String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor.
+        Integer since = 56; // Integer | Unix seconds; only leads created at/after this timestamp.
+        String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset).
         try {
-            ListLeads200Response result = apiInstance.listLeads(formId, accountId, limit, since, cursor);
+            ListLeads200Response result = apiInstance.listLeads(formId, accountId, adAccountId, limit, since, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LeadGenApi#listLeads");
@@ -987,10 +992,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Filter to a single lead form. | [optional] |
-| **accountId** | **String**| Filter to a single connected account. | [optional] |
+| **accountId** | **String**| Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional] |
+| **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **since** | **Integer**| Unix seconds; only leads created at/after this Meta timestamp. | [optional] |
-| **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor. | [optional] |
+| **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. | [optional] |
+| **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). | [optional] |
 
 ### Return type
 
@@ -1015,11 +1021,11 @@ public class Example {
 
 ## listLeadsWithHttpInfo
 
-> ApiResponse<ListLeads200Response> listLeads listLeadsWithHttpInfo(formId, accountId, limit, since, cursor)
+> ApiResponse<ListLeads200Response> listLeads listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor)
 
 List submitted leads
 
-Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
 
 ### Example
 
@@ -1044,12 +1050,13 @@ public class Example {
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Filter to a single lead form.
-        String accountId = "accountId_example"; // String | Filter to a single connected account.
+        String accountId = "accountId_example"; // String | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch.
+        String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
-        Integer since = 56; // Integer | Unix seconds; only leads created at/after this Meta timestamp.
-        String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor.
+        Integer since = 56; // Integer | Unix seconds; only leads created at/after this timestamp.
+        String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset).
         try {
-            ApiResponse<ListLeads200Response> response = apiInstance.listLeadsWithHttpInfo(formId, accountId, limit, since, cursor);
+            ApiResponse<ListLeads200Response> response = apiInstance.listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1070,10 +1077,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Filter to a single lead form. | [optional] |
-| **accountId** | **String**| Filter to a single connected account. | [optional] |
+| **accountId** | **String**| Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional] |
+| **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **since** | **Integer**| Unix seconds; only leads created at/after this Meta timestamp. | [optional] |
-| **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor. | [optional] |
+| **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. | [optional] |
+| **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). | [optional] |
 
 ### Return type
 
