@@ -118,7 +118,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Appeal submitted; the registration is pending again. |  -  |
-| **400** | Registration has no campaign to appeal; fix the brand and re-verify instead |  -  |
+| **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -196,7 +196,7 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Appeal submitted; the registration is pending again. |  -  |
-| **400** | Registration has no campaign to appeal; fix the brand and re-verify instead |  -  |
+| **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -424,6 +424,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration deactivated. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -499,6 +500,7 @@ ApiResponse<[**DeactivateSmsRegistration200Response**](DeactivateSmsRegistration
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration deactivated. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -1020,6 +1022,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -1095,6 +1098,7 @@ ApiResponse<[**GetSmsRegistration200Response**](GetSmsRegistration200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -1316,6 +1320,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registrations, newest first |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listSmsRegistrationsWithHttpInfo
@@ -1388,6 +1393,7 @@ ApiResponse<[**ListSmsRegistrations200Response**](ListSmsRegistrations200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registrations, newest first |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -1894,7 +1900,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A new code was sent |  -  |
-| **400** | The registration is not awaiting a verification code |  -  |
+| **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was just sent — wait a minute before requesting another |  -  |
@@ -1971,7 +1977,7 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A new code was sent |  -  |
-| **400** | The registration is not awaiting a verification code |  -  |
+| **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was just sent — wait a minute before requesting another |  -  |
@@ -2354,6 +2360,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Share link created. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 
@@ -2429,6 +2436,7 @@ ApiResponse<[**ShareSmsRegistration200Response**](ShareSmsRegistration200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Share link created. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 
@@ -2502,6 +2510,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration submitted. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 
@@ -2577,6 +2586,7 @@ ApiResponse<[**StartSmsRegistration200Response**](StartSmsRegistration200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration submitted. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 
@@ -2954,6 +2964,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OTP result |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -3031,6 +3042,7 @@ ApiResponse<[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OTP result |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 

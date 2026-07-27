@@ -18084,6 +18084,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listSmsRegistrations_200_response"
           description: "Registrations, newest first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -18123,6 +18125,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/startSmsRegistration_200_response"
           description: Registration submitted.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "422":
@@ -18161,6 +18165,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/deactivateSmsRegistration_200_response"
           description: Registration deactivated.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18190,6 +18196,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getSmsRegistration_200_response"
           description: Registration
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18229,6 +18237,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/verifySmsRegistrationOtp_200_response"
           description: OTP result
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18265,7 +18275,8 @@ paths:
                 $ref: "#/components/schemas/resendSmsRegistrationOtp_200_response"
           description: A new code was sent
         "400":
-          description: The registration is not awaiting a verification code
+          description: "Malformed `id`, or the registration is not awaiting a verification\
+            \ code."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18316,8 +18327,8 @@ paths:
                 $ref: "#/components/schemas/appealSmsRegistration_200_response"
           description: Appeal submitted; the registration is pending again.
         "400":
-          description: Registration has no campaign to appeal; fix the brand and re-verify
-            instead
+          description: "Malformed `id`, or the registration has no campaign to appeal\
+            \ (fix the brand and re-verify instead)."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18431,6 +18442,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/shareSmsRegistration_200_response"
           description: Share link created.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
