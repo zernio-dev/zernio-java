@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:36:49.949620797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T15:33:23.573924029Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -178,7 +178,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @return UpdateWebhookSettings200Response
    * @throws ApiException if fails to make API call
@@ -189,7 +189,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateWebhookSettings200Response
@@ -202,7 +202,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @return ApiResponse&lt;UpdateWebhookSettings200Response&gt;
    * @throws ApiException if fails to make API call
@@ -213,7 +213,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateWebhookSettings200Response&gt;
@@ -591,7 +591,7 @@ public class WebhooksApi {
 
   /**
    * List webhooks
-   * Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+   * Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
    * @return GetWebhookSettings200Response
    * @throws ApiException if fails to make API call
    */
@@ -601,7 +601,7 @@ public class WebhooksApi {
 
   /**
    * List webhooks
-   * Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+   * Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
    * @param headers Optional headers to include in the request
    * @return GetWebhookSettings200Response
    * @throws ApiException if fails to make API call
@@ -613,7 +613,7 @@ public class WebhooksApi {
 
   /**
    * List webhooks
-   * Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+   * Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
    * @return ApiResponse&lt;GetWebhookSettings200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -623,7 +623,7 @@ public class WebhooksApi {
 
   /**
    * List webhooks
-   * Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+   * Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWebhookSettings200Response&gt;
    * @throws ApiException if fails to make API call

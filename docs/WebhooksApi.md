@@ -25,7 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create webhook
 
-Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
 
 ### Example
 
@@ -97,7 +97,7 @@ public class Example {
 
 Create webhook
 
-Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
 
 ### Example
 
@@ -489,7 +489,7 @@ ApiResponse<[**GetWebhookLogs200Response**](GetWebhookLogs200Response.md)>
 
 List webhooks
 
-Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
 
 ### Example
 
@@ -556,7 +556,7 @@ This endpoint does not need any parameter.
 
 List webhooks
 
-Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
 
 ### Example
 
