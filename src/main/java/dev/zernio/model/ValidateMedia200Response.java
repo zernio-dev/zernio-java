@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   ValidateMedia200Response.JSON_PROPERTY_TYPE,
   ValidateMedia200Response.JSON_PROPERTY_PLATFORM_LIMITS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T15:45:35.043585967Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:27:11.764328432Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateMedia200Response {
   public static final String JSON_PROPERTY_VALID = "valid";
   @javax.annotation.Nullable
