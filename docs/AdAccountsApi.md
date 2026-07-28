@@ -1388,6 +1388,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Business centers |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | TikTok account not found |  -  |
 | **422** | TikTok Ads not connected |  -  |
@@ -1464,6 +1465,7 @@ ApiResponse<[**ListAdsBusinessCenters200Response**](ListAdsBusinessCenters200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Business centers |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | TikTok account not found |  -  |
 | **422** | TikTok Ads not connected |  -  |

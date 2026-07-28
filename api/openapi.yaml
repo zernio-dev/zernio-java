@@ -26871,6 +26871,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listAdsBusinessCenters_200_response"
           description: Business centers
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -28133,6 +28135,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listLeads_200_response"
           description: Lead list.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28192,6 +28196,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listLeadForms_200_response"
           description: Forms list.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28221,6 +28227,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createLeadForm_200_response"
           description: Created form.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28263,6 +28271,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/archiveLeadForm_200_response"
           description: Archived.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Archive a lead form
@@ -28299,6 +28309,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getLeadForm_200_response"
           description: Form metadata.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Get a lead form
@@ -28361,6 +28373,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listFormLeads_200_response"
           description: Leads for the form.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List leads for a single form
@@ -28396,6 +28410,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createTestLead_200_response"
           description: Test lead created.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create a test lead

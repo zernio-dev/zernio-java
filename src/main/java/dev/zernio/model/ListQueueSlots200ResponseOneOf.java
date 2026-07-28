@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListQueueSlots200ResponseOneOf.JSON_PROPERTY_QUEUES,
   ListQueueSlots200ResponseOneOf.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T12:34:17.210300650Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:06:58.720058093Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListQueueSlots200ResponseOneOf {
   public static final String JSON_PROPERTY_QUEUES = "queues";
   @javax.annotation.Nullable

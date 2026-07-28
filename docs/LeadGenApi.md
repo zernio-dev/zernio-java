@@ -92,6 +92,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Archived. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## archiveLeadFormWithHttpInfo
@@ -168,6 +169,7 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Archived. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -240,6 +242,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Created form. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
 
@@ -315,6 +318,7 @@ ApiResponse<[**CreateLeadForm200Response**](CreateLeadForm200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Created form. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
 
@@ -390,6 +394,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Test lead created. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createTestLeadWithHttpInfo
@@ -466,6 +471,7 @@ ApiResponse<[**CreateTestLead200Response**](CreateTestLead200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Test lead created. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -538,6 +544,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Form metadata. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## getLeadFormWithHttpInfo
@@ -612,6 +619,7 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Form metadata. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -692,6 +700,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Leads for the form. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listFormLeadsWithHttpInfo
@@ -774,6 +783,7 @@ ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Leads for the form. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -852,6 +862,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Forms list. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
 
@@ -933,6 +944,7 @@ ApiResponse<[**ListLeadForms200Response**](ListLeadForms200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Forms list. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
 
@@ -1016,6 +1028,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Lead list. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
 
@@ -1101,6 +1114,7 @@ ApiResponse<[**ListLeads200Response**](ListLeads200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Lead list. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
 
