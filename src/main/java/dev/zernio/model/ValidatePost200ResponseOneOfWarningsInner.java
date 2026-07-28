@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ValidatePost200ResponseOneOfWarningsInner.JSON_PROPERTY_PLATFORM,
   ValidatePost200ResponseOneOfWarningsInner.JSON_PROPERTY_WARNING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:42:22.543363114Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T10:08:16.105862198Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePost200ResponseOneOfWarningsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

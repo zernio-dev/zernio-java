@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ConnectAds200ResponseOneOf1.JSON_PROPERTY_AUTH_URL,
   ConnectAds200ResponseOneOf1.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:42:22.543363114Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T10:08:16.105862198Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectAds200ResponseOneOf1 {
   public static final String JSON_PROPERTY_AUTH_URL = "authUrl";
   @javax.annotation.Nullable

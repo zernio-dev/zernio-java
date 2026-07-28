@@ -84,7 +84,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-27T18:42:22.543363114Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T10:08:16.105862198Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2153,7 +2153,7 @@ public class AdCampaignsApi {
 
   /**
    * List Search keywords
-   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a week per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot, to stay inside Google&#39;s shared daily API quota), so keywords added on Google can take several days to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its weekly slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param accountId Social account ID (optional)
@@ -2174,7 +2174,7 @@ public class AdCampaignsApi {
 
   /**
    * List Search keywords
-   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a week per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot, to stay inside Google&#39;s shared daily API quota), so keywords added on Google can take several days to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its weekly slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param accountId Social account ID (optional)
@@ -2197,7 +2197,7 @@ public class AdCampaignsApi {
 
   /**
    * List Search keywords
-   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a week per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot, to stay inside Google&#39;s shared daily API quota), so keywords added on Google can take several days to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its weekly slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param accountId Social account ID (optional)
@@ -2218,7 +2218,7 @@ public class AdCampaignsApi {
 
   /**
    * List Search keywords
-   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+   * Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a week per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot, to stay inside Google&#39;s shared daily API quota), so keywords added on Google can take several days to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its weekly slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param accountId Social account ID (optional)
