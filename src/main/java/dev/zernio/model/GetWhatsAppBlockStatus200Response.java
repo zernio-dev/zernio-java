@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetWhatsAppBlockStatus200Response.JSON_PROPERTY_BLOCKED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:37:25.138205177Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T12:34:17.210300650Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppBlockStatus200Response {
   public static final String JSON_PROPERTY_BLOCKED = "blocked";
   @javax.annotation.Nullable

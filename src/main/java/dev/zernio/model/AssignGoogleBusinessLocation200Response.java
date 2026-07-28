@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AssignGoogleBusinessLocation200Response.JSON_PROPERTY_MESSAGE,
   AssignGoogleBusinessLocation200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:37:25.138205177Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T12:34:17.210300650Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AssignGoogleBusinessLocation200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

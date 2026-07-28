@@ -50059,9 +50059,7 @@ components:
           description: Clicks on the post (organization accounts only)
           type: integer
         views:
-          description: Video views (video posts only). Organization accounts require
-            the connected LinkedIn user to be an ADMINISTRATOR of the page; CONTENT_ADMINISTRATOR
-            returns 0.
+          description: Video views (video posts only)
           type: integer
         engagementRate:
           description: Engagement rate as percentage
