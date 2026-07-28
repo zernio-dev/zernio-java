@@ -16057,6 +16057,135 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/twitter/search:
+    get:
+      description: |
+        Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to.
+        The query string is passed through to X unchanged and supports X's search operators
+        (`from:user`, `-is:retweet`, `is:reply`, `lang:en`, `"exact phrase"`, `conversation_id:123`, boolean `OR`, ...).
+        Note that standalone operators like `is:` / `has:` / `lang:` must be combined with a keyword or `from:` clause.
+
+        To reply to a found tweet, pass its `id` as the twitter platform entry's `platformSpecificData.replyToTweetId` when creating a post.
+
+        Rate limit: 300 requests per 15-min window per connected account.
+      operationId: searchTweets
+      parameters:
+      - description: The social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "X search query, max 512 characters. Operators are passed through\
+          \ unchanged; X rejects malformed queries with a 400."
+        explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          maxLength: 512
+          minLength: 1
+          type: string
+        style: form
+      - description: Results per page. X requires a minimum of 10; values below 10
+          are rejected.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 10
+          type: integer
+        style: form
+      - description: Only return tweets with an ID greater than (more recent than)
+          this numeric tweet ID. Non-numeric values are rejected with 400.
+        explode: true
+        in: query
+        name: sinceId
+        required: false
+        schema:
+          pattern: "^[0-9]{1,19}$"
+          type: string
+        style: form
+      - description: Only return tweets with an ID less than (older than) this numeric
+          tweet ID. Non-numeric values are rejected with 400.
+        explode: true
+        in: query
+        name: untilId
+        required: false
+        schema:
+          pattern: "^[0-9]{1,19}$"
+          type: string
+        style: form
+      - description: "Oldest UTC timestamp (ISO 8601, inclusive), within the last\
+          \ 7 days"
+        explode: true
+        in: query
+        name: startTime
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Newest UTC timestamp (ISO 8601, exclusive), within the last\
+          \ 7 days"
+        explode: true
+        in: query
+        name: endTime
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Pagination cursor from a previous response
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: sortOrder
+        required: false
+        schema:
+          default: recency
+          enum:
+          - recency
+          - relevancy
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchTweets_200_response"
+          description: Matching tweets
+        "400":
+          description: "Bad request (invalid params, or X rejected the query as malformed)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          description: X API spend cap reached for this billing period
+        "403":
+          description: X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED)
+        "404":
+          description: Account not found
+        "429":
+          description: X search rate limit exceeded (300 requests per 15 minutes)
+      security:
+      - bearerAuth: []
+      summary: Search recent tweets
+      tags:
+      - Twitter Engagement
+      x-accepts:
+      - application/json
   /v1/inbox/mentions:
     get:
       description: |
@@ -55602,6 +55731,148 @@ components:
         platform:
           example: twitter
           type: string
+    searchTweets_200_response_tweets_inner_author:
+      example:
+        displayName: displayName
+        verifiedType: verifiedType
+        id: id
+        avatar: avatar
+        username: username
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+        avatar:
+          type: string
+        verifiedType:
+          type: string
+    searchTweets_200_response_tweets_inner:
+      example:
+        replyCount: 6
+        created: 2000-01-23T04:56:07.000+00:00
+        conversationId: conversationId
+        author:
+          displayName: displayName
+          verifiedType: verifiedType
+          id: id
+          avatar: avatar
+          username: username
+        quoteCount: 5
+        likeCount: 0
+        id: id
+        text: text
+        lang: lang
+        retweetCount: 1
+        platform: twitter
+        inReplyToTweetId: inReplyToTweetId
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        created:
+          format: date-time
+          type: string
+        conversationId:
+          type: string
+        inReplyToTweetId:
+          description: Parent tweet ID when the result is itself a reply
+          nullable: true
+          type: string
+        lang:
+          type: string
+        author:
+          $ref: "#/components/schemas/searchTweets_200_response_tweets_inner_author"
+        likeCount:
+          type: integer
+        replyCount:
+          type: integer
+        retweetCount:
+          type: integer
+        quoteCount:
+          type: integer
+        platform:
+          example: twitter
+          type: string
+    searchTweets_200_response_meta:
+      example:
+        resultCount: 5
+        oldestId: oldestId
+        newestId: newestId
+        platform: twitter
+      properties:
+        resultCount:
+          type: integer
+        newestId:
+          nullable: true
+          type: string
+        oldestId:
+          nullable: true
+          type: string
+        platform:
+          example: twitter
+          type: string
+    searchTweets_200_response:
+      example:
+        pagination:
+          cursor: cursor
+          hasMore: true
+        meta:
+          resultCount: 5
+          oldestId: oldestId
+          newestId: newestId
+          platform: twitter
+        tweets:
+        - replyCount: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          conversationId: conversationId
+          author:
+            displayName: displayName
+            verifiedType: verifiedType
+            id: id
+            avatar: avatar
+            username: username
+          quoteCount: 5
+          likeCount: 0
+          id: id
+          text: text
+          lang: lang
+          retweetCount: 1
+          platform: twitter
+          inReplyToTweetId: inReplyToTweetId
+        - replyCount: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          conversationId: conversationId
+          author:
+            displayName: displayName
+            verifiedType: verifiedType
+            id: id
+            avatar: avatar
+            username: username
+          quoteCount: 5
+          likeCount: 0
+          id: id
+          text: text
+          lang: lang
+          retweetCount: 1
+          platform: twitter
+          inReplyToTweetId: inReplyToTweetId
+        status: success
+      properties:
+        status:
+          example: success
+          type: string
+        tweets:
+          items:
+            $ref: "#/components/schemas/searchTweets_200_response_tweets_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/searchTweets_200_response_meta"
     listInboxMentions_200_response_data_inner:
       example:
         publishedAt: 2000-01-23T04:56:07.000+00:00

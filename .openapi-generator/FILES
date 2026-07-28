@@ -1114,6 +1114,10 @@ docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchReddit200Response.md
+docs/SearchTweets200Response.md
+docs/SearchTweets200ResponseMeta.md
+docs/SearchTweets200ResponseTweetsInner.md
+docs/SearchTweets200ResponseTweetsInnerAuthor.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
 docs/SelectFacebookPage409Response.md
@@ -2732,6 +2736,10 @@ src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMeta.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaAccountsSkippedInner.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/SearchReddit200Response.java
+src/main/java/dev/zernio/model/SearchTweets200Response.java
+src/main/java/dev/zernio/model/SearchTweets200ResponseMeta.java
+src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInner.java
+src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerAuthor.java
 src/main/java/dev/zernio/model/SelectFacebookPage200Response.java
 src/main/java/dev/zernio/model/SelectFacebookPage200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectFacebookPage409Response.java
@@ -3185,3 +3193,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SearchTweets200ResponseMetaTest.java
+src/test/java/dev/zernio/model/SearchTweets200ResponseTest.java
+src/test/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerAuthorTest.java
+src/test/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerTest.java

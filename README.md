@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-28T14:16:39.782198362Z[Etc/UTC]
+- Build date: 2026-07-28T14:36:49.949620797Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -896,6 +896,8 @@ Class | Method | HTTP request | Description
 *TwitterEngagementApi* | [**removeBookmarkWithHttpInfo**](docs/TwitterEngagementApi.md#removeBookmarkWithHttpInfo) | **DELETE** /v1/twitter/bookmark | Remove bookmark
 *TwitterEngagementApi* | [**retweetPost**](docs/TwitterEngagementApi.md#retweetPost) | **POST** /v1/twitter/retweet | Retweet a post
 *TwitterEngagementApi* | [**retweetPostWithHttpInfo**](docs/TwitterEngagementApi.md#retweetPostWithHttpInfo) | **POST** /v1/twitter/retweet | Retweet a post
+*TwitterEngagementApi* | [**searchTweets**](docs/TwitterEngagementApi.md#searchTweets) | **GET** /v1/twitter/search | Search recent tweets
+*TwitterEngagementApi* | [**searchTweetsWithHttpInfo**](docs/TwitterEngagementApi.md#searchTweetsWithHttpInfo) | **GET** /v1/twitter/search | Search recent tweets
 *TwitterEngagementApi* | [**undoRetweet**](docs/TwitterEngagementApi.md#undoRetweet) | **DELETE** /v1/twitter/retweet | Undo retweet
 *TwitterEngagementApi* | [**undoRetweetWithHttpInfo**](docs/TwitterEngagementApi.md#undoRetweetWithHttpInfo) | **DELETE** /v1/twitter/retweet | Undo retweet
 *TwitterEngagementApi* | [**unfollowUser**](docs/TwitterEngagementApi.md#unfollowUser) | **DELETE** /v1/twitter/follow | Unfollow a user
@@ -2220,6 +2222,10 @@ Class | Method | HTTP request | Description
  - [SearchInboxConversations200ResponseMetaAccountsSkippedInner](docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
+ - [SearchTweets200Response](docs/SearchTweets200Response.md)
+ - [SearchTweets200ResponseMeta](docs/SearchTweets200ResponseMeta.md)
+ - [SearchTweets200ResponseTweetsInner](docs/SearchTweets200ResponseTweetsInner.md)
+ - [SearchTweets200ResponseTweetsInnerAuthor](docs/SearchTweets200ResponseTweetsInnerAuthor.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
  - [SelectFacebookPage409Response](docs/SelectFacebookPage409Response.md)

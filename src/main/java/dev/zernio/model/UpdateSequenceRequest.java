@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateSequenceRequest.JSON_PROPERTY_EXIT_ON_REPLY,
   UpdateSequenceRequest.JSON_PROPERTY_EXIT_ON_UNSUBSCRIBE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:16:39.782198362Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:36:49.949620797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateSequenceRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

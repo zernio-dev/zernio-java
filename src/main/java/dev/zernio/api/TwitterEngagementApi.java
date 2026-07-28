@@ -23,9 +23,11 @@ import dev.zernio.model.BookmarkPostRequest;
 import dev.zernio.model.FollowUser200Response;
 import dev.zernio.model.FollowUserRequest;
 import dev.zernio.model.InlineObject;
+import java.time.OffsetDateTime;
 import dev.zernio.model.RemoveBookmark200Response;
 import dev.zernio.model.RetweetPost200Response;
 import dev.zernio.model.RetweetPostRequest;
+import dev.zernio.model.SearchTweets200Response;
 import dev.zernio.model.UndoRetweet200Response;
 import dev.zernio.model.UnfollowUser200Response;
 
@@ -60,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:16:39.782198362Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:36:49.949620797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterEngagementApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -677,6 +679,190 @@ public class TwitterEngagementApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search recent tweets
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The social account ID (required)
+   * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
+   * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
+   * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param untilId Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param startTime Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)
+   * @param endTime Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)
+   * @param cursor Pagination cursor from a previous response (optional)
+   * @param sortOrder  (optional, default to recency)
+   * @return SearchTweets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchTweets200Response searchTweets(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String sinceId, @javax.annotation.Nullable String untilId, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable String sortOrder) throws ApiException {
+    return searchTweets(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder, null);
+  }
+
+  /**
+   * Search recent tweets
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The social account ID (required)
+   * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
+   * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
+   * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param untilId Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param startTime Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)
+   * @param endTime Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)
+   * @param cursor Pagination cursor from a previous response (optional)
+   * @param sortOrder  (optional, default to recency)
+   * @param headers Optional headers to include in the request
+   * @return SearchTweets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchTweets200Response searchTweets(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String sinceId, @javax.annotation.Nullable String untilId, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable String sortOrder, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchTweets200Response> localVarResponse = searchTweetsWithHttpInfo(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search recent tweets
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The social account ID (required)
+   * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
+   * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
+   * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param untilId Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param startTime Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)
+   * @param endTime Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)
+   * @param cursor Pagination cursor from a previous response (optional)
+   * @param sortOrder  (optional, default to recency)
+   * @return ApiResponse&lt;SearchTweets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchTweets200Response> searchTweetsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String sinceId, @javax.annotation.Nullable String untilId, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable String sortOrder) throws ApiException {
+    return searchTweetsWithHttpInfo(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder, null);
+  }
+
+  /**
+   * Search recent tweets
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The social account ID (required)
+   * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
+   * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
+   * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param untilId Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
+   * @param startTime Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)
+   * @param endTime Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)
+   * @param cursor Pagination cursor from a previous response (optional)
+   * @param sortOrder  (optional, default to recency)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchTweets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchTweets200Response> searchTweetsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String sinceId, @javax.annotation.Nullable String untilId, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable String sortOrder, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchTweetsRequestBuilder(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchTweets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchTweets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchTweets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchTweets200Response>() {});
+        
+
+        return new ApiResponse<SearchTweets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchTweetsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String sinceId, @javax.annotation.Nullable String untilId, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable String sortOrder, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchTweets");
+    }
+    // verify the required parameter 'query' is set
+    if (query == null) {
+      throw new ApiException(400, "Missing the required parameter 'query' when calling searchTweets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/twitter/search";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "query";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("query", query));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "sinceId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("sinceId", sinceId));
+    localVarQueryParameterBaseName = "untilId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("untilId", untilId));
+    localVarQueryParameterBaseName = "startTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("startTime", startTime));
+    localVarQueryParameterBaseName = "endTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("endTime", endTime));
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+    localVarQueryParameterBaseName = "sortOrder";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("sortOrder", sortOrder));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
