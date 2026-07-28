@@ -583,7 +583,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Soft-deleted. |  -  |
-| **400** | adAccountId missing. |  -  |
+| **400** | adAccountId missing, or accountId is not a valid id. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on or LinkedIn reconnect required. |  -  |
 | **404** | Account or destination not found. |  -  |
@@ -665,7 +665,7 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Soft-deleted. |  -  |
-| **400** | adAccountId missing. |  -  |
+| **400** | adAccountId missing, or accountId is not a valid id. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on or LinkedIn reconnect required. |  -  |
 | **404** | Account or destination not found. |  -  |
@@ -1560,7 +1560,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-campaign batch result. Status is 200 even when some rows failed — inspect &#x60;failed[]&#x60; for details.  |  -  |
-| **400** | Validation error: missing &#x60;adAccountId&#x60; or &#x60;campaignIds&#x60;, or campaignIds exceeds 100 entries per request.  |  -  |
+| **400** | Validation error: missing &#x60;adAccountId&#x60; or &#x60;campaignIds&#x60;, campaignIds exceeds 100 entries per request, or &#x60;accountId&#x60; is not a valid id.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on or LinkedIn reconnect required. |  -  |
 | **404** | Account or destination not found. |  -  |
@@ -1645,7 +1645,7 @@ ApiResponse<[**RemoveConversionAssociations200Response**](RemoveConversionAssoci
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-campaign batch result. Status is 200 even when some rows failed — inspect &#x60;failed[]&#x60; for details.  |  -  |
-| **400** | Validation error: missing &#x60;adAccountId&#x60; or &#x60;campaignIds&#x60;, or campaignIds exceeds 100 entries per request.  |  -  |
+| **400** | Validation error: missing &#x60;adAccountId&#x60; or &#x60;campaignIds&#x60;, campaignIds exceeds 100 entries per request, or &#x60;accountId&#x60; is not a valid id.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on or LinkedIn reconnect required. |  -  |
 | **404** | Account or destination not found. |  -  |

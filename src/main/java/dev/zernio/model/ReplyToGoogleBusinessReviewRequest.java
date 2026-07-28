@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ReplyToGoogleBusinessReviewRequest.JSON_PROPERTY_COMMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:06:58.720058093Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T14:16:39.782198362Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToGoogleBusinessReviewRequest {
   public static final String JSON_PROPERTY_COMMENT = "comment";
   @javax.annotation.Nonnull
