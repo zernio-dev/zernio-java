@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateSequenceRequestStepsInnerTemplateVariableMappingValue.JSON_PROPERTY_FIELD,
   CreateSequenceRequestStepsInnerTemplateVariableMappingValue.JSON_PROPERTY_CUSTOM_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:03:17.863548242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:37:25.138205177Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateSequenceRequestStepsInnerTemplateVariableMappingValue {
   /**
    * Gets or Sets field

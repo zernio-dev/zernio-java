@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberPortInRequirements200Response.JSON_PROPERTY_SUPPORTED,
   GetPhoneNumberPortInRequirements200Response.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:03:17.863548242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:37:25.138205177Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberPortInRequirements200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
