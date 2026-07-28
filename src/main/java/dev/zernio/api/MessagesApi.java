@@ -26,6 +26,7 @@ import dev.zernio.model.CreateInboxConversationRequest;
 import dev.zernio.model.CreateInboxConversationRequest1;
 import dev.zernio.model.EditInboxMessage200Response;
 import dev.zernio.model.EditInboxMessageRequest;
+import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetInboxConversation200Response;
 import dev.zernio.model.GetInboxConversationMessages200Response;
@@ -74,7 +75,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:59:42.351818295Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T17:37:20.267421500Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1794,7 +1795,7 @@ public class MessagesApi {
 
   /**
    * Send typing indicator
-   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
    * @return UpdateYoutubeDefaultPlaylist200Response
@@ -1806,7 +1807,7 @@ public class MessagesApi {
 
   /**
    * Send typing indicator
-   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1820,7 +1821,7 @@ public class MessagesApi {
 
   /**
    * Send typing indicator
-   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
@@ -1832,7 +1833,7 @@ public class MessagesApi {
 
   /**
    * Send typing indicator
-   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
    * @param headers Optional headers to include in the request

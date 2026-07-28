@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestReplyMarkup.JSON_PROPERTY_KEYBOARD,
   SendInboxMessageRequestReplyMarkup.JSON_PROPERTY_ONE_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:59:42.351818295Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T17:37:20.267421500Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestReplyMarkup {
   /**
    * Keyboard type
