@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadataOrder.JSON_PROPERTY_TEXT,
   WebhookPayloadMessageMetadataOrder.JSON_PROPERTY_PRODUCT_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T10:08:16.105862198Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T11:03:17.863548242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadataOrder {
   public static final String JSON_PROPERTY_CATALOG_ID = "catalog_id";
   @javax.annotation.Nullable

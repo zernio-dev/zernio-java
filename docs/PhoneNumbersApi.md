@@ -280,8 +280,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
-| **400** | Country not offerable |  -  |
+| **400** | Country not offerable, or the inventory provider rejected the lookup (its 4xx status is forwarded as-is). |  -  |
 | **401** | Unauthorized |  -  |
+| **502** | The inventory provider was unreachable or returned an unclassified error. |  -  |
 
 ## checkPhoneNumberAvailabilityWithHttpInfo
 
@@ -359,8 +360,9 @@ ApiResponse<[**CheckPhoneNumberAvailability200Response**](CheckPhoneNumberAvaila
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
-| **400** | Country not offerable |  -  |
+| **400** | Country not offerable, or the inventory provider rejected the lookup (its 4xx status is forwarded as-is). |  -  |
 | **401** | Unauthorized |  -  |
+| **502** | The inventory provider was unreachable or returned an unclassified error. |  -  |
 
 
 ## checkPhoneNumberPortability

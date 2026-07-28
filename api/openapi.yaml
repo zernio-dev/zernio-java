@@ -19499,9 +19499,13 @@ paths:
                 $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response"
           description: Availability + address constraint.
         "400":
-          description: Country not offerable
+          description: "Country not offerable, or the inventory provider rejected\
+            \ the lookup (its 4xx status is forwarded as-is)."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "502":
+          description: The inventory provider was unreachable or returned an unclassified
+            error.
       security:
       - bearerAuth: []
       summary: Check country availability
@@ -19806,9 +19810,13 @@ paths:
                 $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response"
           description: Availability + address constraint.
         "400":
-          description: Country not offerable
+          description: "Country not offerable, or the inventory provider rejected\
+            \ the lookup (its 4xx status is forwarded as-is)."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "502":
+          description: The inventory provider was unreachable or returned an unclassified
+            error.
       security:
       - bearerAuth: []
       summary: Check country availability
