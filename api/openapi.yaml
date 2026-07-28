@@ -18272,6 +18272,41 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/sms/registrations/preflight:
+    post:
+      description: |
+        Dry-run of `POST /v1/sms/registrations` for 10DLC: validates and
+        composes the exact brand/campaign payloads a submission would store
+        (branding, disclosures, auto-replies), runs deterministic compliance
+        lints plus an AI reviewer over them, and returns the findings WITHOUT
+        creating anything. Use it to fix issues before submitting; `block`
+        severity findings indicate a near-certain carrier rejection.
+      operationId: preflightSmsRegistration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/preflightSmsRegistration_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/preflightSmsRegistration_200_response"
+          description: Composed payloads + findings.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Pre-check a carrier registration
+      tags:
+      - SMS
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/sms/registrations/{id}:
     delete:
       description: |
@@ -18469,6 +18504,54 @@ paths:
       security:
       - bearerAuth: []
       summary: Appeal a rejected campaign
+      tags:
+      - SMS
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/sms/registrations/{id}/respond:
+    post:
+      description: |
+        Replies to a reviewer change request on a registration in
+        `changes_requested` state: a note, hosted document URLs (from
+        `POST /v1/sms/opt-in-proof`), or both, sent together. The registration
+        returns to `requested` (back in review) — no need to resubmit the
+        whole registration. To change the submitted brand/campaign fields
+        themselves, resubmit via `POST /v1/sms/registrations` with
+        `resubmitRequestId` instead.
+      operationId: respondToSmsRegistrationReview
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/respondToSmsRegistrationReview_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/respondToSmsRegistrationReview_200_response"
+          description: Reply recorded; the registration is back in review.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Registration not found
+        "409":
+          description: Registration is not waiting on changes
+      security:
+      - bearerAuth: []
+      summary: Reply to a change request
       tags:
       - SMS
       x-content-type: application/json
@@ -58270,6 +58353,14 @@ components:
           $ref: "#/components/schemas/startSmsRegistration_request_brand"
         campaign:
           $ref: "#/components/schemas/startSmsRegistration_request_campaign"
+        messagingBrandName:
+          description: "DBA / trade name used to brand message content (samples and\
+            \ auto-replies) when it differs from the legal name, e.g. a sole proprietor\
+            \ texting under a business name. The legal `brand.displayName` is still\
+            \ what the carrier vets."
+          maxLength: 60
+          minLength: 2
+          type: string
         wizardValues:
           additionalProperties:
             type: string
@@ -58299,6 +58390,98 @@ components:
         awaitingOtp:
           description: "True for sole-prop 10DLC: an OTP was texted to the brand's\
             \ mobile; submit it via /verify-otp."
+          type: boolean
+    preflightSmsRegistration_request:
+      properties:
+        registrationType:
+          enum:
+          - standard_10dlc
+          - sole_prop_10dlc
+          type: string
+        phoneNumbers:
+          items:
+            type: string
+          type: array
+        brand:
+          description: Same shape as the registration `brand`.
+          type: object
+        campaign:
+          description: Same shape as the registration `campaign`.
+          type: object
+        messagingBrandName:
+          maxLength: 60
+          minLength: 2
+          type: string
+      required:
+      - brand
+      - campaign
+      - registrationType
+    preflightSmsRegistration_200_response_composed:
+      description: "The exact payloads a submission would store (post-branding, disclosures\
+        \ appended, auto-replies generated)."
+      example:
+        campaign: "{}"
+        brand: "{}"
+      properties:
+        brand:
+          type: object
+        campaign:
+          type: object
+    preflightSmsRegistration_200_response_advisories_inner:
+      example:
+        severity: block
+        code: code
+        field: field
+        concern: concern
+      properties:
+        field:
+          description: "The payload field the finding is about, when attributable."
+          nullable: true
+          type: string
+        code:
+          description: Stable rule id for deterministic findings; absent on AI findings.
+          nullable: true
+          type: string
+        concern:
+          type: string
+        severity:
+          enum:
+          - block
+          - warn
+          type: string
+    preflightSmsRegistration_200_response:
+      example:
+        advisories:
+        - severity: block
+          code: code
+          field: field
+          concern: concern
+        - severity: block
+          code: code
+          field: field
+          concern: concern
+        composed:
+          campaign: "{}"
+          brand: "{}"
+        verdict: pass
+        aiUnavailable: true
+      properties:
+        composed:
+          $ref: "#/components/schemas/preflightSmsRegistration_200_response_composed"
+        advisories:
+          items:
+            $ref: "#/components/schemas/preflightSmsRegistration_200_response_advisories_inner"
+          type: array
+        verdict:
+          enum:
+          - pass
+          - warn
+          - fail
+          - unreviewed
+          type: string
+        aiUnavailable:
+          description: True when the AI portion of the check could not run; advisories
+            then contain only deterministic findings.
           type: boolean
     getSmsRegistration_200_response_campaignContent:
       description: |
@@ -58423,6 +58606,26 @@ components:
         status:
           enum:
           - pending
+          type: string
+    respondToSmsRegistrationReview_request:
+      properties:
+        note:
+          description: Answer for the reviewer. Required when no files are sent.
+          maxLength: 2000
+          type: string
+        files:
+          description: Hosted document URLs returned by POST /v1/sms/opt-in-proof.
+          items:
+            type: string
+          maxItems: 5
+          type: array
+    respondToSmsRegistrationReview_200_response:
+      example:
+        status: requested
+      properties:
+        status:
+          enum:
+          - requested
           type: string
     uploadSmsOptInProofFile_request:
       properties:

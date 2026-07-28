@@ -26,10 +26,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**listSmsSenderIdsWithHttpInfo**](SmsApi.md#listSmsSenderIdsWithHttpInfo) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs |
 | [**lookupSmsNumber**](SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
 | [**lookupSmsNumberWithHttpInfo**](SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type |
+| [**preflightSmsRegistration**](SmsApi.md#preflightSmsRegistration) | **POST** /v1/sms/registrations/preflight | Pre-check a carrier registration |
+| [**preflightSmsRegistrationWithHttpInfo**](SmsApi.md#preflightSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/preflight | Pre-check a carrier registration |
 | [**requestSmsSenderIdLimitIncrease**](SmsApi.md#requestSmsSenderIdLimitIncrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit |
 | [**requestSmsSenderIdLimitIncreaseWithHttpInfo**](SmsApi.md#requestSmsSenderIdLimitIncreaseWithHttpInfo) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit |
 | [**resendSmsRegistrationOtp**](SmsApi.md#resendSmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
 | [**resendSmsRegistrationOtpWithHttpInfo**](SmsApi.md#resendSmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
+| [**respondToSmsRegistrationReview**](SmsApi.md#respondToSmsRegistrationReview) | **POST** /v1/sms/registrations/{id}/respond | Reply to a change request |
+| [**respondToSmsRegistrationReviewWithHttpInfo**](SmsApi.md#respondToSmsRegistrationReviewWithHttpInfo) | **POST** /v1/sms/registrations/{id}/respond | Reply to a change request |
 | [**reuseSmsRegistrationForNumber**](SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**reuseSmsRegistrationForNumberWithHttpInfo**](SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**sendSms**](SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS/MMS |
@@ -1679,6 +1683,154 @@ ApiResponse<[**LookupSmsNumber200Response**](LookupSmsNumber200Response.md)>
 | **502** | Lookup provider failed |  -  |
 
 
+## preflightSmsRegistration
+
+> PreflightSmsRegistration200Response preflightSmsRegistration(preflightSmsRegistrationRequest)
+
+Pre-check a carrier registration
+
+Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        PreflightSmsRegistrationRequest preflightSmsRegistrationRequest = new PreflightSmsRegistrationRequest(); // PreflightSmsRegistrationRequest | 
+        try {
+            PreflightSmsRegistration200Response result = apiInstance.preflightSmsRegistration(preflightSmsRegistrationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#preflightSmsRegistration");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **preflightSmsRegistrationRequest** | [**PreflightSmsRegistrationRequest**](PreflightSmsRegistrationRequest.md)|  | |
+
+### Return type
+
+[**PreflightSmsRegistration200Response**](PreflightSmsRegistration200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Composed payloads + findings. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+
+## preflightSmsRegistrationWithHttpInfo
+
+> ApiResponse<PreflightSmsRegistration200Response> preflightSmsRegistration preflightSmsRegistrationWithHttpInfo(preflightSmsRegistrationRequest)
+
+Pre-check a carrier registration
+
+Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        PreflightSmsRegistrationRequest preflightSmsRegistrationRequest = new PreflightSmsRegistrationRequest(); // PreflightSmsRegistrationRequest | 
+        try {
+            ApiResponse<PreflightSmsRegistration200Response> response = apiInstance.preflightSmsRegistrationWithHttpInfo(preflightSmsRegistrationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#preflightSmsRegistration");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **preflightSmsRegistrationRequest** | [**PreflightSmsRegistrationRequest**](PreflightSmsRegistrationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PreflightSmsRegistration200Response**](PreflightSmsRegistration200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Composed payloads + findings. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+
+
 ## requestSmsSenderIdLimitIncrease
 
 > RequestSmsSenderIdLimitIncrease200Response requestSmsSenderIdLimitIncrease(requestSmsSenderIdLimitIncreaseRequest)
@@ -1981,6 +2133,162 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was just sent — wait a minute before requesting another |  -  |
+
+
+## respondToSmsRegistrationReview
+
+> RespondToSmsRegistrationReview200Response respondToSmsRegistrationReview(id, respondToSmsRegistrationReviewRequest)
+
+Reply to a change request
+
+Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | 
+        RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest = new RespondToSmsRegistrationReviewRequest(); // RespondToSmsRegistrationReviewRequest | 
+        try {
+            RespondToSmsRegistrationReview200Response result = apiInstance.respondToSmsRegistrationReview(id, respondToSmsRegistrationReviewRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#respondToSmsRegistrationReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **respondToSmsRegistrationReviewRequest** | [**RespondToSmsRegistrationReviewRequest**](RespondToSmsRegistrationReviewRequest.md)|  | |
+
+### Return type
+
+[**RespondToSmsRegistrationReview200Response**](RespondToSmsRegistrationReview200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply recorded; the registration is back in review. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **409** | Registration is not waiting on changes |  -  |
+
+## respondToSmsRegistrationReviewWithHttpInfo
+
+> ApiResponse<RespondToSmsRegistrationReview200Response> respondToSmsRegistrationReview respondToSmsRegistrationReviewWithHttpInfo(id, respondToSmsRegistrationReviewRequest)
+
+Reply to a change request
+
+Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | 
+        RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest = new RespondToSmsRegistrationReviewRequest(); // RespondToSmsRegistrationReviewRequest | 
+        try {
+            ApiResponse<RespondToSmsRegistrationReview200Response> response = apiInstance.respondToSmsRegistrationReviewWithHttpInfo(id, respondToSmsRegistrationReviewRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#respondToSmsRegistrationReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **respondToSmsRegistrationReviewRequest** | [**RespondToSmsRegistrationReviewRequest**](RespondToSmsRegistrationReviewRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RespondToSmsRegistrationReview200Response**](RespondToSmsRegistrationReview200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply recorded; the registration is back in review. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **409** | Registration is not waiting on changes |  -  |
 
 
 ## reuseSmsRegistrationForNumber

@@ -1016,6 +1016,10 @@ docs/PostUpdateResponse.md
 docs/PostUserId.md
 docs/PostsApi.md
 docs/PostsListResponse.md
+docs/PreflightSmsRegistration200Response.md
+docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
+docs/PreflightSmsRegistration200ResponseComposed.md
+docs/PreflightSmsRegistrationRequest.md
 docs/Profile.md
 docs/ProfileCreateResponse.md
 docs/ProfileDeleteResponse.md
@@ -1080,6 +1084,8 @@ docs/ReserveRfPredictionRequest.md
 docs/RespondToPhoneNumberReviewer200Response.md
 docs/RespondToPhoneNumberReviewerRequest.md
 docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md
+docs/RespondToSmsRegistrationReview200Response.md
+docs/RespondToSmsRegistrationReviewRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/RetweetPost200Response.md
@@ -2643,6 +2649,10 @@ src/main/java/dev/zernio/model/PostRetryResponse.java
 src/main/java/dev/zernio/model/PostUpdateResponse.java
 src/main/java/dev/zernio/model/PostUserId.java
 src/main/java/dev/zernio/model/PostsListResponse.java
+src/main/java/dev/zernio/model/PreflightSmsRegistration200Response.java
+src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseAdvisoriesInner.java
+src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseComposed.java
+src/main/java/dev/zernio/model/PreflightSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/Profile.java
 src/main/java/dev/zernio/model/ProfileCreateResponse.java
 src/main/java/dev/zernio/model/ProfileDeleteResponse.java
@@ -2703,6 +2713,8 @@ src/main/java/dev/zernio/model/ReserveRfPredictionRequest.java
 src/main/java/dev/zernio/model/RespondToPhoneNumberReviewer200Response.java
 src/main/java/dev/zernio/model/RespondToPhoneNumberReviewerRequest.java
 src/main/java/dev/zernio/model/RespondToPhoneNumberReviewerRequestDocumentsInner.java
+src/main/java/dev/zernio/model/RespondToSmsRegistrationReview200Response.java
+src/main/java/dev/zernio/model/RespondToSmsRegistrationReviewRequest.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200ResponseWorkflow.java
 src/main/java/dev/zernio/model/RetweetPost200Response.java
@@ -3193,3 +3205,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PreflightSmsRegistration200ResponseAdvisoriesInnerTest.java
+src/test/java/dev/zernio/model/PreflightSmsRegistration200ResponseComposedTest.java
+src/test/java/dev/zernio/model/PreflightSmsRegistration200ResponseTest.java
+src/test/java/dev/zernio/model/PreflightSmsRegistrationRequestTest.java
+src/test/java/dev/zernio/model/RespondToSmsRegistrationReview200ResponseTest.java
+src/test/java/dev/zernio/model/RespondToSmsRegistrationReviewRequestTest.java

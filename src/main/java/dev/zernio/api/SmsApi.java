@@ -34,9 +34,13 @@ import dev.zernio.model.ListSmsOptOuts200Response;
 import dev.zernio.model.ListSmsRegistrations200Response;
 import dev.zernio.model.ListSmsSenderIds200Response;
 import dev.zernio.model.LookupSmsNumber200Response;
+import dev.zernio.model.PreflightSmsRegistration200Response;
+import dev.zernio.model.PreflightSmsRegistrationRequest;
 import dev.zernio.model.RequestSmsSenderIdLimitIncrease200Response;
 import dev.zernio.model.RequestSmsSenderIdLimitIncreaseRequest;
 import dev.zernio.model.ResendSmsRegistrationOtp200Response;
+import dev.zernio.model.RespondToSmsRegistrationReview200Response;
+import dev.zernio.model.RespondToSmsRegistrationReviewRequest;
 import dev.zernio.model.ReuseSmsRegistrationForNumber200Response;
 import dev.zernio.model.SendSms200Response;
 import dev.zernio.model.SendSmsRequest;
@@ -79,7 +83,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T15:33:23.573924029Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T15:45:35.043585967Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1545,6 +1549,129 @@ public class SmsApi {
   }
 
   /**
+   * Pre-check a carrier registration
+   * Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+   * @param preflightSmsRegistrationRequest  (required)
+   * @return PreflightSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PreflightSmsRegistration200Response preflightSmsRegistration(@javax.annotation.Nonnull PreflightSmsRegistrationRequest preflightSmsRegistrationRequest) throws ApiException {
+    return preflightSmsRegistration(preflightSmsRegistrationRequest, null);
+  }
+
+  /**
+   * Pre-check a carrier registration
+   * Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+   * @param preflightSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PreflightSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PreflightSmsRegistration200Response preflightSmsRegistration(@javax.annotation.Nonnull PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PreflightSmsRegistration200Response> localVarResponse = preflightSmsRegistrationWithHttpInfo(preflightSmsRegistrationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pre-check a carrier registration
+   * Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+   * @param preflightSmsRegistrationRequest  (required)
+   * @return ApiResponse&lt;PreflightSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PreflightSmsRegistration200Response> preflightSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull PreflightSmsRegistrationRequest preflightSmsRegistrationRequest) throws ApiException {
+    return preflightSmsRegistrationWithHttpInfo(preflightSmsRegistrationRequest, null);
+  }
+
+  /**
+   * Pre-check a carrier registration
+   * Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+   * @param preflightSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PreflightSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PreflightSmsRegistration200Response> preflightSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = preflightSmsRegistrationRequestBuilder(preflightSmsRegistrationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("preflightSmsRegistration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PreflightSmsRegistration200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PreflightSmsRegistration200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PreflightSmsRegistration200Response>() {});
+        
+
+        return new ApiResponse<PreflightSmsRegistration200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder preflightSmsRegistrationRequestBuilder(@javax.annotation.Nonnull PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'preflightSmsRegistrationRequest' is set
+    if (preflightSmsRegistrationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'preflightSmsRegistrationRequest' when calling preflightSmsRegistration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/preflight";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(preflightSmsRegistrationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Request a higher sender ID daily limit
    * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
    * @param requestSmsSenderIdLimitIncreaseRequest  (required)
@@ -1774,6 +1901,138 @@ public class SmsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reply to a change request
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * @param id  (required)
+   * @param respondToSmsRegistrationReviewRequest  (required)
+   * @return RespondToSmsRegistrationReview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RespondToSmsRegistrationReview200Response respondToSmsRegistrationReview(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest) throws ApiException {
+    return respondToSmsRegistrationReview(id, respondToSmsRegistrationReviewRequest, null);
+  }
+
+  /**
+   * Reply to a change request
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * @param id  (required)
+   * @param respondToSmsRegistrationReviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RespondToSmsRegistrationReview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RespondToSmsRegistrationReview200Response respondToSmsRegistrationReview(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RespondToSmsRegistrationReview200Response> localVarResponse = respondToSmsRegistrationReviewWithHttpInfo(id, respondToSmsRegistrationReviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Reply to a change request
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * @param id  (required)
+   * @param respondToSmsRegistrationReviewRequest  (required)
+   * @return ApiResponse&lt;RespondToSmsRegistrationReview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RespondToSmsRegistrationReview200Response> respondToSmsRegistrationReviewWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest) throws ApiException {
+    return respondToSmsRegistrationReviewWithHttpInfo(id, respondToSmsRegistrationReviewRequest, null);
+  }
+
+  /**
+   * Reply to a change request
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * @param id  (required)
+   * @param respondToSmsRegistrationReviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RespondToSmsRegistrationReview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RespondToSmsRegistrationReview200Response> respondToSmsRegistrationReviewWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = respondToSmsRegistrationReviewRequestBuilder(id, respondToSmsRegistrationReviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("respondToSmsRegistrationReview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RespondToSmsRegistrationReview200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RespondToSmsRegistrationReview200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RespondToSmsRegistrationReview200Response>() {});
+        
+
+        return new ApiResponse<RespondToSmsRegistrationReview200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder respondToSmsRegistrationReviewRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling respondToSmsRegistrationReview");
+    }
+    // verify the required parameter 'respondToSmsRegistrationReviewRequest' is set
+    if (respondToSmsRegistrationReviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'respondToSmsRegistrationReviewRequest' when calling respondToSmsRegistrationReview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/{id}/respond"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(respondToSmsRegistrationReviewRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

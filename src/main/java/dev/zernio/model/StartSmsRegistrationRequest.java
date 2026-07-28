@@ -44,11 +44,12 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequest.JSON_PROPERTY_PHONE_NUMBERS,
   StartSmsRegistrationRequest.JSON_PROPERTY_BRAND,
   StartSmsRegistrationRequest.JSON_PROPERTY_CAMPAIGN,
+  StartSmsRegistrationRequest.JSON_PROPERTY_MESSAGING_BRAND_NAME,
   StartSmsRegistrationRequest.JSON_PROPERTY_WIZARD_VALUES,
   StartSmsRegistrationRequest.JSON_PROPERTY_RESUBMIT_REQUEST_ID,
   StartSmsRegistrationRequest.JSON_PROPERTY_TOLL_FREE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T15:33:23.573924029Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T15:45:35.043585967Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequest {
   /**
    * Gets or Sets registrationType
@@ -102,6 +103,10 @@ public class StartSmsRegistrationRequest {
   public static final String JSON_PROPERTY_CAMPAIGN = "campaign";
   @javax.annotation.Nullable
   private StartSmsRegistrationRequestCampaign campaign;
+
+  public static final String JSON_PROPERTY_MESSAGING_BRAND_NAME = "messagingBrandName";
+  @javax.annotation.Nullable
+  private String messagingBrandName;
 
   public static final String JSON_PROPERTY_WIZARD_VALUES = "wizardValues";
   @javax.annotation.Nullable
@@ -222,6 +227,30 @@ public class StartSmsRegistrationRequest {
   }
 
 
+  public StartSmsRegistrationRequest messagingBrandName(@javax.annotation.Nullable String messagingBrandName) {
+    this.messagingBrandName = messagingBrandName;
+    return this;
+  }
+
+  /**
+   * DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets.
+   * @return messagingBrandName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_BRAND_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMessagingBrandName() {
+    return messagingBrandName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_BRAND_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessagingBrandName(@javax.annotation.Nullable String messagingBrandName) {
+    this.messagingBrandName = messagingBrandName;
+  }
+
+
   public StartSmsRegistrationRequest wizardValues(@javax.annotation.Nullable Map<String, String> wizardValues) {
     this.wizardValues = wizardValues;
     return this;
@@ -318,6 +347,7 @@ public class StartSmsRegistrationRequest {
         Objects.equals(this.phoneNumbers, startSmsRegistrationRequest.phoneNumbers) &&
         Objects.equals(this.brand, startSmsRegistrationRequest.brand) &&
         Objects.equals(this.campaign, startSmsRegistrationRequest.campaign) &&
+        Objects.equals(this.messagingBrandName, startSmsRegistrationRequest.messagingBrandName) &&
         Objects.equals(this.wizardValues, startSmsRegistrationRequest.wizardValues) &&
         Objects.equals(this.resubmitRequestId, startSmsRegistrationRequest.resubmitRequestId) &&
         Objects.equals(this.tollFree, startSmsRegistrationRequest.tollFree);
@@ -325,7 +355,7 @@ public class StartSmsRegistrationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(registrationType, phoneNumbers, brand, campaign, wizardValues, resubmitRequestId, tollFree);
+    return Objects.hash(registrationType, phoneNumbers, brand, campaign, messagingBrandName, wizardValues, resubmitRequestId, tollFree);
   }
 
   @Override
@@ -336,6 +366,7 @@ public class StartSmsRegistrationRequest {
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
     sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
     sb.append("    campaign: ").append(toIndentedString(campaign)).append("\n");
+    sb.append("    messagingBrandName: ").append(toIndentedString(messagingBrandName)).append("\n");
     sb.append("    wizardValues: ").append(toIndentedString(wizardValues)).append("\n");
     sb.append("    resubmitRequestId: ").append(toIndentedString(resubmitRequestId)).append("\n");
     sb.append("    tollFree: ").append(toIndentedString(tollFree)).append("\n");
@@ -408,6 +439,11 @@ public class StartSmsRegistrationRequest {
     // add `campaign` to the URL query string
     if (getCampaign() != null) {
       joiner.add(getCampaign().toUrlQueryString(prefix + "campaign" + suffix));
+    }
+
+    // add `messagingBrandName` to the URL query string
+    if (getMessagingBrandName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessagingBrandName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessagingBrandName()))));
     }
 
     // add `wizardValues` to the URL query string

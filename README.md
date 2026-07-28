@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-28T15:33:23.573924029Z[Etc/UTC]
+- Build date: 2026-07-28T15:45:35.043585967Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -850,10 +850,14 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**listSmsSenderIdsWithHttpInfo**](docs/SmsApi.md#listSmsSenderIdsWithHttpInfo) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs
 *SmsApi* | [**lookupSmsNumber**](docs/SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type
 *SmsApi* | [**lookupSmsNumberWithHttpInfo**](docs/SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type
+*SmsApi* | [**preflightSmsRegistration**](docs/SmsApi.md#preflightSmsRegistration) | **POST** /v1/sms/registrations/preflight | Pre-check a carrier registration
+*SmsApi* | [**preflightSmsRegistrationWithHttpInfo**](docs/SmsApi.md#preflightSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/preflight | Pre-check a carrier registration
 *SmsApi* | [**requestSmsSenderIdLimitIncrease**](docs/SmsApi.md#requestSmsSenderIdLimitIncrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit
 *SmsApi* | [**requestSmsSenderIdLimitIncreaseWithHttpInfo**](docs/SmsApi.md#requestSmsSenderIdLimitIncreaseWithHttpInfo) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit
 *SmsApi* | [**resendSmsRegistrationOtp**](docs/SmsApi.md#resendSmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
 *SmsApi* | [**resendSmsRegistrationOtpWithHttpInfo**](docs/SmsApi.md#resendSmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
+*SmsApi* | [**respondToSmsRegistrationReview**](docs/SmsApi.md#respondToSmsRegistrationReview) | **POST** /v1/sms/registrations/{id}/respond | Reply to a change request
+*SmsApi* | [**respondToSmsRegistrationReviewWithHttpInfo**](docs/SmsApi.md#respondToSmsRegistrationReviewWithHttpInfo) | **POST** /v1/sms/registrations/{id}/respond | Reply to a change request
 *SmsApi* | [**reuseSmsRegistrationForNumber**](docs/SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
 *SmsApi* | [**reuseSmsRegistrationForNumberWithHttpInfo**](docs/SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
 *SmsApi* | [**sendSms**](docs/SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS/MMS
@@ -2129,6 +2133,10 @@ Class | Method | HTTP request | Description
  - [PostUpdateResponse](docs/PostUpdateResponse.md)
  - [PostUserId](docs/PostUserId.md)
  - [PostsListResponse](docs/PostsListResponse.md)
+ - [PreflightSmsRegistration200Response](docs/PreflightSmsRegistration200Response.md)
+ - [PreflightSmsRegistration200ResponseAdvisoriesInner](docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md)
+ - [PreflightSmsRegistration200ResponseComposed](docs/PreflightSmsRegistration200ResponseComposed.md)
+ - [PreflightSmsRegistrationRequest](docs/PreflightSmsRegistrationRequest.md)
  - [Profile](docs/Profile.md)
  - [ProfileCreateResponse](docs/ProfileCreateResponse.md)
  - [ProfileDeleteResponse](docs/ProfileDeleteResponse.md)
@@ -2189,6 +2197,8 @@ Class | Method | HTTP request | Description
  - [RespondToPhoneNumberReviewer200Response](docs/RespondToPhoneNumberReviewer200Response.md)
  - [RespondToPhoneNumberReviewerRequest](docs/RespondToPhoneNumberReviewerRequest.md)
  - [RespondToPhoneNumberReviewerRequestDocumentsInner](docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md)
+ - [RespondToSmsRegistrationReview200Response](docs/RespondToSmsRegistrationReview200Response.md)
+ - [RespondToSmsRegistrationReviewRequest](docs/RespondToSmsRegistrationReviewRequest.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)
