@@ -62,7 +62,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:27:11.764328432Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:59:42.351818295Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = WhatsAppCarouselCardComponent.WhatsAppCarouselCardComponentDeserializer.class)
 @JsonSerialize(using = WhatsAppCarouselCardComponent.WhatsAppCarouselCardComponentSerializer.class)
 public class WhatsAppCarouselCardComponent extends AbstractOpenApiSchema {

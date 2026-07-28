@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppCalls200Response.JSON_PROPERTY_CALLS,
   ListWhatsAppCalls200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:27:11.764328432Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T16:59:42.351818295Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppCalls200Response {
   public static final String JSON_PROPERTY_CALLS = "calls";
   @javax.annotation.Nullable
