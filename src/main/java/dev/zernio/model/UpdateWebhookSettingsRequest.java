@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T17:37:20.267421500Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T07:58:55.292559816Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -83,6 +83,8 @@ public class UpdateWebhookSettingsRequest {
     POST_PLATFORM_PUBLISHED(String.valueOf("post.platform.published")),
     
     POST_PLATFORM_FAILED(String.valueOf("post.platform.failed")),
+    
+    POST_PLATFORM_DELETED(String.valueOf("post.platform.deleted")),
     
     POST_TIKTOK_URL_RESOLVED(String.valueOf("post.tiktok.url_resolved")),
     

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,9 +38,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_STATUS,
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_PLATFORM_POST_ID,
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_PUBLISHED_URL,
-  WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_ERROR
+  WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_ERROR,
+  WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_DELETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-28T17:37:20.267421500Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T07:58:55.292559816Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPlatformPlatform {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -51,7 +53,9 @@ public class WebhookPayloadPostPlatformPlatform {
   public enum StatusEnum {
     PUBLISHED(String.valueOf("published")),
     
-    FAILED(String.valueOf("failed"));
+    FAILED(String.valueOf("failed")),
+    
+    DELETED(String.valueOf("deleted"));
 
     private String value;
 
@@ -95,6 +99,10 @@ public class WebhookPayloadPostPlatformPlatform {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
+
+  public static final String JSON_PROPERTY_DELETED_AT = "deletedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime deletedAt;
 
   public WebhookPayloadPostPlatformPlatform() { 
   }
@@ -153,7 +161,7 @@ public class WebhookPayloadPostPlatformPlatform {
   }
 
   /**
-   * Platform-native post id. Present on &#x60;published&#x60;, absent on &#x60;failed&#x60;.
+   * Platform-native post id. Present on &#x60;published&#x60; and &#x60;deleted&#x60;, absent on &#x60;failed&#x60;.
    * @return platformPostId
    */
   @javax.annotation.Nullable
@@ -177,7 +185,7 @@ public class WebhookPayloadPostPlatformPlatform {
   }
 
   /**
-   * Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft).
+   * Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft) and on &#x60;deleted&#x60; (when one was recorded at publish time).
    * @return publishedUrl
    */
   @javax.annotation.Nullable
@@ -201,7 +209,7 @@ public class WebhookPayloadPostPlatformPlatform {
   }
 
   /**
-   * Error message from the platform. Present on &#x60;failed&#x60;, absent on &#x60;published&#x60;.
+   * Error message from the platform. Present on &#x60;failed&#x60; only.
    * @return error
    */
   @javax.annotation.Nullable
@@ -216,6 +224,30 @@ public class WebhookPayloadPostPlatformPlatform {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setError(@javax.annotation.Nullable String error) {
     this.error = error;
+  }
+
+
+  public WebhookPayloadPostPlatformPlatform deletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
+    this.deletedAt = deletedAt;
+    return this;
+  }
+
+  /**
+   * When the platform-side deletion was detected by Zernio sync (ISO 8601). Present only on &#x60;post.platform.deleted&#x60;.
+   * @return deletedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DELETED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getDeletedAt() {
+    return deletedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DELETED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
+    this.deletedAt = deletedAt;
   }
 
 
@@ -235,12 +267,13 @@ public class WebhookPayloadPostPlatformPlatform {
         Objects.equals(this.status, webhookPayloadPostPlatformPlatform.status) &&
         Objects.equals(this.platformPostId, webhookPayloadPostPlatformPlatform.platformPostId) &&
         Objects.equals(this.publishedUrl, webhookPayloadPostPlatformPlatform.publishedUrl) &&
-        Objects.equals(this.error, webhookPayloadPostPlatformPlatform.error);
+        Objects.equals(this.error, webhookPayloadPostPlatformPlatform.error) &&
+        Objects.equals(this.deletedAt, webhookPayloadPostPlatformPlatform.deletedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, platformPostId, publishedUrl, error);
+    return Objects.hash(name, status, platformPostId, publishedUrl, error, deletedAt);
   }
 
   @Override
@@ -252,6 +285,7 @@ public class WebhookPayloadPostPlatformPlatform {
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    publishedUrl: ").append(toIndentedString(publishedUrl)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    deletedAt: ").append(toIndentedString(deletedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -322,6 +356,11 @@ public class WebhookPayloadPostPlatformPlatform {
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+    }
+
+    // add `deletedAt` to the URL query string
+    if (getDeletedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdeletedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeletedAt()))));
     }
 
     return joiner.toString();
