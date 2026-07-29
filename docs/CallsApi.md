@@ -82,6 +82,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Not enrolled in the calling beta |  -  |
 | **404** | Call not found |  -  |
@@ -158,6 +159,7 @@ ApiResponse<[**GetCall200Response**](GetCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Not enrolled in the calling beta |  -  |
 | **404** | Call not found |  -  |
@@ -235,6 +237,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Not enrolled in the calling beta |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |
@@ -315,6 +318,7 @@ ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording20
 |-------------|-------------|------------------|
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Not enrolled in the calling beta |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |

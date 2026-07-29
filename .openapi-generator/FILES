@@ -652,6 +652,8 @@ docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
 docs/GetSequence200ResponseSequenceStepsInnerTemplate.md
+docs/GetSlackSettings200Response.md
+docs/GetSlackSettings200ResponseAccount.md
 docs/GetSmsRegistration200Response.md
 docs/GetSmsRegistration200ResponseCampaignContent.md
 docs/GetSmsUsage200Response.md
@@ -1399,6 +1401,7 @@ docs/UpdateSequence200ResponseSequence.md
 docs/UpdateSequenceRequest.md
 docs/UpdateSequenceRequestStepsInner.md
 docs/UpdateSequenceRequestStepsInnerTemplate.md
+docs/UpdateSlackSettingsRequest.md
 docs/UpdateTrackingTagRequest.md
 docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
@@ -2314,6 +2317,8 @@ src/main/java/dev/zernio/model/GetSequence200Response.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequence.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequenceStepsInner.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequenceStepsInnerTemplate.java
+src/main/java/dev/zernio/model/GetSlackSettings200Response.java
+src/main/java/dev/zernio/model/GetSlackSettings200ResponseAccount.java
 src/main/java/dev/zernio/model/GetSmsRegistration200Response.java
 src/main/java/dev/zernio/model/GetSmsRegistration200ResponseCampaignContent.java
 src/main/java/dev/zernio/model/GetSmsUsage200Response.java
@@ -3032,6 +3037,7 @@ src/main/java/dev/zernio/model/UpdateSequence200ResponseSequence.java
 src/main/java/dev/zernio/model/UpdateSequenceRequest.java
 src/main/java/dev/zernio/model/UpdateSequenceRequestStepsInner.java
 src/main/java/dev/zernio/model/UpdateSequenceRequestStepsInnerTemplate.java
+src/main/java/dev/zernio/model/UpdateSlackSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateTrackingTagRequest.java
 src/main/java/dev/zernio/model/UpdateWebhookSettings200Response.java
 src/main/java/dev/zernio/model/UpdateWebhookSettingsRequest.java
@@ -3223,5 +3229,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SendInboxMessage400ResponsePlatformErrorTest.java
-src/test/java/dev/zernio/model/SendPrivateReplyToComment400ResponseTest.java
+src/test/java/dev/zernio/model/GetSlackSettings200ResponseAccountTest.java
+src/test/java/dev/zernio/model/GetSlackSettings200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateSlackSettingsRequestTest.java

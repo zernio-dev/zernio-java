@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-29T10:22:38.284674864Z[Etc/UTC]
+- Build date: 2026-07-29T10:36:46.644341122Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -146,6 +146,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getAllAccountsHealthWithHttpInfo**](docs/AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getFollowerStats**](docs/AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**getFollowerStatsWithHttpInfo**](docs/AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AccountsApi* | [**getSlackSettings**](docs/AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
+*AccountsApi* | [**getSlackSettingsWithHttpInfo**](docs/AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getTikTokCreatorInfo**](docs/AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**getTikTokCreatorInfoWithHttpInfo**](docs/AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**listAccounts**](docs/AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts
@@ -154,6 +156,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
+*AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdComments**](docs/AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
@@ -1793,6 +1797,8 @@ Class | Method | HTTP request | Description
  - [GetSequence200ResponseSequence](docs/GetSequence200ResponseSequence.md)
  - [GetSequence200ResponseSequenceStepsInner](docs/GetSequence200ResponseSequenceStepsInner.md)
  - [GetSequence200ResponseSequenceStepsInnerTemplate](docs/GetSequence200ResponseSequenceStepsInnerTemplate.md)
+ - [GetSlackSettings200Response](docs/GetSlackSettings200Response.md)
+ - [GetSlackSettings200ResponseAccount](docs/GetSlackSettings200ResponseAccount.md)
  - [GetSmsRegistration200Response](docs/GetSmsRegistration200Response.md)
  - [GetSmsRegistration200ResponseCampaignContent](docs/GetSmsRegistration200ResponseCampaignContent.md)
  - [GetSmsUsage200Response](docs/GetSmsUsage200Response.md)
@@ -2511,6 +2517,7 @@ Class | Method | HTTP request | Description
  - [UpdateSequenceRequest](docs/UpdateSequenceRequest.md)
  - [UpdateSequenceRequestStepsInner](docs/UpdateSequenceRequestStepsInner.md)
  - [UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
+ - [UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
  - [UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)

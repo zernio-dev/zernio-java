@@ -11671,6 +11671,73 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/slack-settings:
+    get:
+      description: "Returns the connected Slack channel details and the default message\
+        \ identity (name and avatar shown as the author on every post, with Slack's\
+        \ APP badge). The identity applies to messages only; the app's own Slack profile\
+        \ is global and cannot be changed per workspace."
+      operationId: getSlackSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSlackSettings_200_response"
+          description: Slack account settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get Slack account settings
+      tags:
+      - Accounts
+      x-accepts:
+      - application/json
+    patch:
+      description: Set or clear the default message identity for this channel. Empty
+        string clears a field; per-post platformSpecificData.username/iconUrl still
+        override these defaults.
+      operationId: updateSlackSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateSlackSettings_request"
+        required: true
+      responses:
+        "200":
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update Slack account settings
+      tags:
+      - Accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/discord-settings:
     get:
       description: "Returns the current Discord account settings including webhook\
@@ -17437,6 +17504,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getCall_200_response"
           description: Call
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -17486,6 +17555,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getWhatsAppCallRecording_200_response"
           description: Recording URL (`as=json` only).
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -51449,6 +51520,74 @@ components:
       - flairTemplateId
       - postId
       - subreddit
+    getSlackSettings_200_response_account:
+      example:
+        teamName: teamName
+        defaultIconUrl: defaultIconUrl
+        displayName: displayName
+        defaultUsername: defaultUsername
+        teamId: teamId
+        channelName: channelName
+        channelType: channelType
+        _id: _id
+        platform: slack
+        channelId: channelId
+      properties:
+        _id:
+          type: string
+        platform:
+          example: slack
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        channelId:
+          nullable: true
+          type: string
+        channelName:
+          nullable: true
+          type: string
+        channelType:
+          description: public or private
+          nullable: true
+          type: string
+        teamId:
+          nullable: true
+          type: string
+        teamName:
+          nullable: true
+          type: string
+        defaultUsername:
+          nullable: true
+          type: string
+        defaultIconUrl:
+          nullable: true
+          type: string
+    getSlackSettings_200_response:
+      example:
+        account:
+          teamName: teamName
+          defaultIconUrl: defaultIconUrl
+          displayName: displayName
+          defaultUsername: defaultUsername
+          teamId: teamId
+          channelName: channelName
+          channelType: channelType
+          _id: _id
+          platform: slack
+          channelId: channelId
+      properties:
+        account:
+          $ref: "#/components/schemas/getSlackSettings_200_response_account"
+    updateSlackSettings_request:
+      properties:
+        defaultUsername:
+          description: Author name shown on posts. Empty string clears it.
+          maxLength: 80
+          type: string
+        defaultIconUrl:
+          description: Author avatar image URL. Empty string clears it.
+          type: string
     getDiscordSettings_200_response_account:
       example:
         profilePicture: profilePicture

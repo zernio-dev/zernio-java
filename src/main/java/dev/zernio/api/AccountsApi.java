@@ -25,6 +25,7 @@ import dev.zernio.model.FollowerStatsResponse;
 import dev.zernio.model.GetAccountHealth200Response;
 import dev.zernio.model.GetAllAccountsHealth200Response;
 import dev.zernio.model.GetFollowerStats403Response;
+import dev.zernio.model.GetSlackSettings200Response;
 import dev.zernio.model.GetTikTokCreatorInfo200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject;
@@ -34,6 +35,7 @@ import dev.zernio.model.MoveAccountToProfile200Response;
 import dev.zernio.model.MoveAccountToProfileRequest;
 import dev.zernio.model.UpdateAccount200Response;
 import dev.zernio.model.UpdateAccountRequest;
+import dev.zernio.model.UpdateSlackSettingsRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:22:38.284674864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:36:46.644341122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -706,6 +708,124 @@ public class AccountsApi {
   }
 
   /**
+   * Get Slack account settings
+   * Returns the connected Slack channel details and the default message identity (name and avatar shown as the author on every post, with Slack&#39;s APP badge). The identity applies to messages only; the app&#39;s own Slack profile is global and cannot be changed per workspace.
+   * @param accountId  (required)
+   * @return GetSlackSettings200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSlackSettings200Response getSlackSettings(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getSlackSettings(accountId, null);
+  }
+
+  /**
+   * Get Slack account settings
+   * Returns the connected Slack channel details and the default message identity (name and avatar shown as the author on every post, with Slack&#39;s APP badge). The identity applies to messages only; the app&#39;s own Slack profile is global and cannot be changed per workspace.
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetSlackSettings200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSlackSettings200Response getSlackSettings(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetSlackSettings200Response> localVarResponse = getSlackSettingsWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Slack account settings
+   * Returns the connected Slack channel details and the default message identity (name and avatar shown as the author on every post, with Slack&#39;s APP badge). The identity applies to messages only; the app&#39;s own Slack profile is global and cannot be changed per workspace.
+   * @param accountId  (required)
+   * @return ApiResponse&lt;GetSlackSettings200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSlackSettings200Response> getSlackSettingsWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getSlackSettingsWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * Get Slack account settings
+   * Returns the connected Slack channel details and the default message identity (name and avatar shown as the author on every post, with Slack&#39;s APP badge). The identity applies to messages only; the app&#39;s own Slack profile is global and cannot be changed per workspace.
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetSlackSettings200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSlackSettings200Response> getSlackSettingsWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSlackSettingsRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getSlackSettings", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetSlackSettings200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetSlackSettings200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetSlackSettings200Response>() {});
+        
+
+        return new ApiResponse<GetSlackSettings200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getSlackSettingsRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getSlackSettings");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/slack-settings"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get TikTok creator info
    * Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
    * @param accountId The TikTok account ID (required)
@@ -1250,6 +1370,124 @@ public class AccountsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAccountRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update Slack account settings
+   * Set or clear the default message identity for this channel. Empty string clears a field; per-post platformSpecificData.username/iconUrl still override these defaults.
+   * @param accountId  (required)
+   * @param updateSlackSettingsRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void updateSlackSettings(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateSlackSettingsRequest updateSlackSettingsRequest) throws ApiException {
+    updateSlackSettings(accountId, updateSlackSettingsRequest, null);
+  }
+
+  /**
+   * Update Slack account settings
+   * Set or clear the default message identity for this channel. Empty string clears a field; per-post platformSpecificData.username/iconUrl still override these defaults.
+   * @param accountId  (required)
+   * @param updateSlackSettingsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateSlackSettings(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateSlackSettingsRequest updateSlackSettingsRequest, Map<String, String> headers) throws ApiException {
+    updateSlackSettingsWithHttpInfo(accountId, updateSlackSettingsRequest, headers);
+  }
+
+  /**
+   * Update Slack account settings
+   * Set or clear the default message identity for this channel. Empty string clears a field; per-post platformSpecificData.username/iconUrl still override these defaults.
+   * @param accountId  (required)
+   * @param updateSlackSettingsRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateSlackSettingsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateSlackSettingsRequest updateSlackSettingsRequest) throws ApiException {
+    return updateSlackSettingsWithHttpInfo(accountId, updateSlackSettingsRequest, null);
+  }
+
+  /**
+   * Update Slack account settings
+   * Set or clear the default message identity for this channel. Empty string clears a field; per-post platformSpecificData.username/iconUrl still override these defaults.
+   * @param accountId  (required)
+   * @param updateSlackSettingsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateSlackSettingsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateSlackSettingsRequest updateSlackSettingsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateSlackSettingsRequestBuilder(accountId, updateSlackSettingsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateSlackSettings", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateSlackSettingsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateSlackSettingsRequest updateSlackSettingsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateSlackSettings");
+    }
+    // verify the required parameter 'updateSlackSettingsRequest' is set
+    if (updateSlackSettingsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateSlackSettingsRequest' when calling updateSlackSettings");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/slack-settings"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateSlackSettingsRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAllAccountsHealthWithHttpInfo**](AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health |
 | [**getFollowerStats**](AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**getSlackSettings**](AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
+| [**getSlackSettingsWithHttpInfo**](AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**getTikTokCreatorInfo**](AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**getTikTokCreatorInfoWithHttpInfo**](AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**listAccounts**](AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts |
@@ -20,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateAccountWithHttpInfo**](AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account |
+| [**updateSlackSettings**](AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
+| [**updateSlackSettingsWithHttpInfo**](AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 
 
 
@@ -637,6 +641,156 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+
+
+## getSlackSettings
+
+> GetSlackSettings200Response getSlackSettings(accountId)
+
+Get Slack account settings
+
+Returns the connected Slack channel details and the default message identity (name and avatar shown as the author on every post, with Slack&#39;s APP badge). The identity applies to messages only; the app&#39;s own Slack profile is global and cannot be changed per workspace.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetSlackSettings200Response result = apiInstance.getSlackSettings(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getSlackSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetSlackSettings200Response**](GetSlackSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Slack account settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+
+## getSlackSettingsWithHttpInfo
+
+> ApiResponse<GetSlackSettings200Response> getSlackSettings getSlackSettingsWithHttpInfo(accountId)
+
+Get Slack account settings
+
+Returns the connected Slack channel details and the default message identity (name and avatar shown as the author on every post, with Slack&#39;s APP badge). The identity applies to messages only; the app&#39;s own Slack profile is global and cannot be changed per workspace.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetSlackSettings200Response> response = apiInstance.getSlackSettingsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getSlackSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetSlackSettings200Response**](GetSlackSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Slack account settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
 
 
 ## getTikTokCreatorInfo
@@ -1271,4 +1425,156 @@ ApiResponse<[**UpdateAccount200Response**](UpdateAccount200Response.md)>
 | **400** | Invalid request (e.g. xCapabilities on a non-X account) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+
+
+## updateSlackSettings
+
+> void updateSlackSettings(accountId, updateSlackSettingsRequest)
+
+Update Slack account settings
+
+Set or clear the default message identity for this channel. Empty string clears a field; per-post platformSpecificData.username/iconUrl still override these defaults.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateSlackSettingsRequest updateSlackSettingsRequest = new UpdateSlackSettingsRequest(); // UpdateSlackSettingsRequest | 
+        try {
+            apiInstance.updateSlackSettings(accountId, updateSlackSettingsRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#updateSlackSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateSlackSettingsRequest** | [**UpdateSlackSettingsRequest**](UpdateSlackSettingsRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+
+## updateSlackSettingsWithHttpInfo
+
+> ApiResponse<Void> updateSlackSettings updateSlackSettingsWithHttpInfo(accountId, updateSlackSettingsRequest)
+
+Update Slack account settings
+
+Set or clear the default message identity for this channel. Empty string clears a field; per-post platformSpecificData.username/iconUrl still override these defaults.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateSlackSettingsRequest updateSlackSettingsRequest = new UpdateSlackSettingsRequest(); // UpdateSlackSettingsRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.updateSlackSettingsWithHttpInfo(accountId, updateSlackSettingsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#updateSlackSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateSlackSettingsRequest** | [**UpdateSlackSettingsRequest**](UpdateSlackSettingsRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
 
