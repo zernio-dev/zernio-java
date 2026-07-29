@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd200Response.JSON_PROPERTY_RESULTS,
   CreateStandaloneAd200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:18:14.128749080Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd200Response {
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable

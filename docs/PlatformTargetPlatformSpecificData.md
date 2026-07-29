@@ -13,6 +13,7 @@ Platform-specific overrides and options.
 * [LinkedInPlatformData](LinkedInPlatformData.md)
 * [PinterestPlatformData](PinterestPlatformData.md)
 * [RedditPlatformData](RedditPlatformData.md)
+* [SlackPlatformData](SlackPlatformData.md)
 * [SnapchatPlatformData](SnapchatPlatformData.md)
 * [TelegramPlatformData](TelegramPlatformData.md)
 * [ThreadsPlatformData](ThreadsPlatformData.md)
@@ -32,6 +33,7 @@ import dev.zernio.model.InstagramPlatformData;
 import dev.zernio.model.LinkedInPlatformData;
 import dev.zernio.model.PinterestPlatformData;
 import dev.zernio.model.RedditPlatformData;
+import dev.zernio.model.SlackPlatformData;
 import dev.zernio.model.SnapchatPlatformData;
 import dev.zernio.model.TelegramPlatformData;
 import dev.zernio.model.ThreadsPlatformData;
@@ -98,6 +100,13 @@ public class Example {
         examplePlatformTargetPlatformSpecificData.setActualInstance(exampleRedditPlatformData);
         // to get back the RedditPlatformData set earlier
         RedditPlatformData testRedditPlatformData = (RedditPlatformData) examplePlatformTargetPlatformSpecificData.getActualInstance();
+
+        // create a new SlackPlatformData
+        SlackPlatformData exampleSlackPlatformData = new SlackPlatformData();
+        // set PlatformTargetPlatformSpecificData to SlackPlatformData
+        examplePlatformTargetPlatformSpecificData.setActualInstance(exampleSlackPlatformData);
+        // to get back the SlackPlatformData set earlier
+        SlackPlatformData testSlackPlatformData = (SlackPlatformData) examplePlatformTargetPlatformSpecificData.getActualInstance();
 
         // create a new SnapchatPlatformData
         SnapchatPlatformData exampleSnapchatPlatformData = new SnapchatPlatformData();

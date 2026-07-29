@@ -6279,6 +6279,7 @@ paths:
           - telegram
           - snapchat
           - discord
+          - slack
           - whatsapp
           type: string
         style: form
@@ -6676,6 +6677,7 @@ paths:
           - telegram
           - snapchat
           - discord
+          - slack
           - whatsapp
           type: string
         style: simple
@@ -37412,6 +37414,28 @@ components:
           type: string
       required:
       - channelId
+    SlackPlatformData:
+      description: |
+        Slack message settings. Posts mrkdwn text (up to 40,000 chars; Slack truncates beyond that) to the channel fixed by the connected account, with up to 10 media files per post uploaded via Slack's file API (the text becomes the caption). The target channel is chosen at connect time — one connected account per channel — so channelId is NOT accepted here (a 400 is returned); connect the desired channel via /v1/connect/slack and target its accountId. Messages over 4,000 characters cannot be edited later (Slack's edit limit is stricter than its post limit).
+      properties:
+        threadTs:
+          description: Parent message ts to post this message as a thread reply (e.g.
+            "1503435956.000247").
+          type: string
+        unfurlLinks:
+          description: Expand links in the message into preview cards. Default true.
+          type: boolean
+        unfurlMedia:
+          description: Expand media links into inline previews. Default true.
+          type: boolean
+        username:
+          description: Override the bot display name for this message only (requires
+            no setup; shown with an APP badge). Does not change the app identity in
+            the sidebar.
+          type: string
+        iconUrl:
+          description: Override the bot avatar image URL for this message only.
+          type: string
     DiscordScheduledEvent:
       description: |
         Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints.
@@ -37632,6 +37656,7 @@ components:
           - telegram
           - snapchat
           - discord
+          - slack
           - whatsapp
           - linkedinads
           - metaads
@@ -42689,6 +42714,7 @@ components:
           - snapchat
           - googlebusiness
           - discord
+          - slack
           type: string
         accountId:
           description: "Account to validate against. For twitter, resolves X Premium\
@@ -44623,6 +44649,7 @@ components:
       - $ref: "#/components/schemas/RedditPlatformData"
       - $ref: "#/components/schemas/BlueskyPlatformData"
       - $ref: "#/components/schemas/DiscordPlatformData"
+      - $ref: "#/components/schemas/SlackPlatformData"
     createPost_request_platforms_inner:
       properties:
         platform:
@@ -78181,6 +78208,7 @@ components:
       - $ref: "#/components/schemas/RedditPlatformData"
       - $ref: "#/components/schemas/BlueskyPlatformData"
       - $ref: "#/components/schemas/DiscordPlatformData"
+      - $ref: "#/components/schemas/SlackPlatformData"
     Post_userId:
       oneOf:
       - type: string

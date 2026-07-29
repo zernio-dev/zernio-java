@@ -1233,6 +1233,7 @@ docs/SetWhatsappBusinessUsernameRequest.md
 docs/ShareSmsRegistration200Response.md
 docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
+docs/SlackPlatformData.md
 docs/SmsApi.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
@@ -2866,6 +2867,7 @@ src/main/java/dev/zernio/model/SetWhatsappBusinessUsernameRequest.java
 src/main/java/dev/zernio/model/ShareSmsRegistration200Response.java
 src/main/java/dev/zernio/model/ShareSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/SharedAdAccount.java
+src/main/java/dev/zernio/model/SlackPlatformData.java
 src/main/java/dev/zernio/model/SnapchatPlatformData.java
 src/main/java/dev/zernio/model/SocialAccount.java
 src/main/java/dev/zernio/model/SocialAccountProfileId.java
@@ -3217,9 +3219,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GenerateKeywordHistoricalMetrics200ResponseTest.java
-src/test/java/dev/zernio/model/GenerateKeywordHistoricalMetricsRequestTest.java
-src/test/java/dev/zernio/model/GenerateKeywordIdeas200ResponsePagingTest.java
-src/test/java/dev/zernio/model/GenerateKeywordIdeas200ResponseTest.java
-src/test/java/dev/zernio/model/GenerateKeywordIdeasRequestTest.java
-src/test/java/dev/zernio/model/GetAdsActivityLog200ResponsePagingTest.java
+src/test/java/dev/zernio/model/SlackPlatformDataTest.java

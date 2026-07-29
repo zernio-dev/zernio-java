@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-29T09:59:23.872387109Z[Etc/UTC]
+- Build date: 2026-07-29T10:18:14.128749080Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2348,6 +2348,7 @@ Class | Method | HTTP request | Description
  - [ShareSmsRegistration200Response](docs/ShareSmsRegistration200Response.md)
  - [ShareSmsRegistrationRequest](docs/ShareSmsRegistrationRequest.md)
  - [SharedAdAccount](docs/SharedAdAccount.md)
+ - [SlackPlatformData](docs/SlackPlatformData.md)
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [SocialAccount](docs/SocialAccount.md)
  - [SocialAccountProfileId](docs/SocialAccountProfileId.md)

@@ -11,6 +11,7 @@
 * [LinkedInPlatformData](LinkedInPlatformData.md)
 * [PinterestPlatformData](PinterestPlatformData.md)
 * [RedditPlatformData](RedditPlatformData.md)
+* [SlackPlatformData](SlackPlatformData.md)
 * [SnapchatPlatformData](SnapchatPlatformData.md)
 * [TelegramPlatformData](TelegramPlatformData.md)
 * [ThreadsPlatformData](ThreadsPlatformData.md)
@@ -30,6 +31,7 @@ import dev.zernio.model.InstagramPlatformData;
 import dev.zernio.model.LinkedInPlatformData;
 import dev.zernio.model.PinterestPlatformData;
 import dev.zernio.model.RedditPlatformData;
+import dev.zernio.model.SlackPlatformData;
 import dev.zernio.model.SnapchatPlatformData;
 import dev.zernio.model.TelegramPlatformData;
 import dev.zernio.model.ThreadsPlatformData;
@@ -96,6 +98,13 @@ public class Example {
         exampleCreatePostRequestPlatformsInnerPlatformSpecificData.setActualInstance(exampleRedditPlatformData);
         // to get back the RedditPlatformData set earlier
         RedditPlatformData testRedditPlatformData = (RedditPlatformData) exampleCreatePostRequestPlatformsInnerPlatformSpecificData.getActualInstance();
+
+        // create a new SlackPlatformData
+        SlackPlatformData exampleSlackPlatformData = new SlackPlatformData();
+        // set CreatePostRequestPlatformsInnerPlatformSpecificData to SlackPlatformData
+        exampleCreatePostRequestPlatformsInnerPlatformSpecificData.setActualInstance(exampleSlackPlatformData);
+        // to get back the SlackPlatformData set earlier
+        SlackPlatformData testSlackPlatformData = (SlackPlatformData) exampleCreatePostRequestPlatformsInnerPlatformSpecificData.getActualInstance();
 
         // create a new SnapchatPlatformData
         SnapchatPlatformData exampleSnapchatPlatformData = new SnapchatPlatformData();

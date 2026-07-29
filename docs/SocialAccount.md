@@ -42,6 +42,7 @@
 | TELEGRAM | &quot;telegram&quot; |
 | SNAPCHAT | &quot;snapchat&quot; |
 | DISCORD | &quot;discord&quot; |
+| SLACK | &quot;slack&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
 | METAADS | &quot;metaads&quot; |

@@ -371,7 +371,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, linkedin, twitter, tiktok, youtube, threads, pinterest, reddit, bluesky, googlebusiness, telegram, snapchat, discord, whatsapp] |
+| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, linkedin, twitter, tiktok, youtube, threads, pinterest, reddit, bluesky, googlebusiness, telegram, snapchat, discord, slack, whatsapp] |
 | **status** | **String**| Filter by health status | [optional] [enum: healthy, warning, error] |
 
 ### Return type
@@ -450,7 +450,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, linkedin, twitter, tiktok, youtube, threads, pinterest, reddit, bluesky, googlebusiness, telegram, snapchat, discord, whatsapp] |
+| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, linkedin, twitter, tiktok, youtube, threads, pinterest, reddit, bluesky, googlebusiness, telegram, snapchat, discord, slack, whatsapp] |
 | **status** | **String**| Filter by health status | [optional] [enum: healthy, warning, error] |
 
 ### Return type

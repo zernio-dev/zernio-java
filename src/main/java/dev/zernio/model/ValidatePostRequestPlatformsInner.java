@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_CUSTOM_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:18:14.128749080Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePostRequestPlatformsInner {
   /**
    * Gets or Sets platform
@@ -74,7 +74,9 @@ public class ValidatePostRequestPlatformsInner {
     
     GOOGLEBUSINESS(String.valueOf("googlebusiness")),
     
-    DISCORD(String.valueOf("discord"));
+    DISCORD(String.valueOf("discord")),
+    
+    SLACK(String.valueOf("slack"));
 
     private String value;
 

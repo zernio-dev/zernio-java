@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   SocialAccount.JSON_PROPERTY_ENABLED,
   SocialAccount.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:18:14.128749080Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SocialAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -92,6 +92,8 @@ public class SocialAccount {
     SNAPCHAT(String.valueOf("snapchat")),
     
     DISCORD(String.valueOf("discord")),
+    
+    SLACK(String.valueOf("slack")),
     
     WHATSAPP(String.valueOf("whatsapp")),
     

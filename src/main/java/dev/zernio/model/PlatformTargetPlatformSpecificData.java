@@ -46,6 +46,7 @@ import dev.zernio.model.InstagramPlatformDataUserTagsInner;
 import dev.zernio.model.LinkedInPlatformData;
 import dev.zernio.model.PinterestPlatformData;
 import dev.zernio.model.RedditPlatformData;
+import dev.zernio.model.SlackPlatformData;
 import dev.zernio.model.SnapchatPlatformData;
 import dev.zernio.model.TelegramPlatformData;
 import dev.zernio.model.ThreadsPlatformData;
@@ -85,7 +86,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:18:14.128749080Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = PlatformTargetPlatformSpecificData.PlatformTargetPlatformSpecificDataDeserializer.class)
 @JsonSerialize(using = PlatformTargetPlatformSpecificData.PlatformTargetPlatformSpecificDataSerializer.class)
 public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
@@ -328,6 +329,32 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
             } catch (Exception e) {
                 // deserialization failed, continue
                 log.log(Level.FINER, "Input data does not match schema 'RedditPlatformData'", e);
+            }
+
+            // deserialize SlackPlatformData
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SlackPlatformData.class.equals(Integer.class) || SlackPlatformData.class.equals(Long.class) || SlackPlatformData.class.equals(Float.class) || SlackPlatformData.class.equals(Double.class) || SlackPlatformData.class.equals(Boolean.class) || SlackPlatformData.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SlackPlatformData.class.equals(Integer.class) || SlackPlatformData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SlackPlatformData.class.equals(Float.class) || SlackPlatformData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SlackPlatformData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SlackPlatformData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SlackPlatformData.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SlackPlatformData'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SlackPlatformData'", e);
             }
 
             // deserialize SnapchatPlatformData
@@ -605,6 +632,11 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
+    public PlatformTargetPlatformSpecificData(SlackPlatformData o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public PlatformTargetPlatformSpecificData(SnapchatPlatformData o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -644,6 +676,7 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
         schemas.put("LinkedInPlatformData", LinkedInPlatformData.class);
         schemas.put("PinterestPlatformData", PinterestPlatformData.class);
         schemas.put("RedditPlatformData", RedditPlatformData.class);
+        schemas.put("SlackPlatformData", SlackPlatformData.class);
         schemas.put("SnapchatPlatformData", SnapchatPlatformData.class);
         schemas.put("TelegramPlatformData", TelegramPlatformData.class);
         schemas.put("ThreadsPlatformData", ThreadsPlatformData.class);
@@ -661,7 +694,7 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
+     * BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SlackPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -708,6 +741,11 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
             return;
         }
 
+        if (JSON.isInstanceOf(SlackPlatformData.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (JSON.isInstanceOf(SnapchatPlatformData.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
@@ -738,14 +776,14 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData");
+        throw new RuntimeException("Invalid instance type. Must be BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SlackPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
+     * BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SlackPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
      *
-     * @return The actual instance (BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData)
+     * @return The actual instance (BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SlackPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData)
      */
     @Override
     public Object getActualInstance() {
@@ -838,6 +876,17 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
      */
     public RedditPlatformData getRedditPlatformData() throws ClassCastException {
         return (RedditPlatformData)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `SlackPlatformData`. If the actual instance is not `SlackPlatformData`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SlackPlatformData`
+     * @throws ClassCastException if the instance is not `SlackPlatformData`
+     */
+    public SlackPlatformData getSlackPlatformData() throws ClassCastException {
+        return (SlackPlatformData)super.getActualInstance();
     }
 
     /**
@@ -1021,6 +1070,12 @@ public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {
     if (getActualInstance() instanceof DiscordPlatformData) {
         if (getActualInstance() != null) {
           joiner.add(((DiscordPlatformData)getActualInstance()).toUrlQueryString(prefix + "one_of_13" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof SlackPlatformData) {
+        if (getActualInstance() != null) {
+          joiner.add(((SlackPlatformData)getActualInstance()).toUrlQueryString(prefix + "one_of_14" + suffix));
         }
         return joiner.toString();
     }
