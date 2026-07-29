@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**after** | **String** | Cursor for the next page; null when exhausted. |  [optional] |
+|**after** | **String** | Meta cursor for the next page; null when exhausted. |  [optional] |
+|**nextPageToken** | **String** | Google cursor for the next page; null when exhausted. |  [optional] |
 
 
 

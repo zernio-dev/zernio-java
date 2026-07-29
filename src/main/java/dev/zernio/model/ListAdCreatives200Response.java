@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.QueryAdInsights200ResponsePaging;
+import dev.zernio.model.GetAdsActivityLog200ResponsePaging;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListAdCreatives200Response.JSON_PROPERTY_DATA,
   ListAdCreatives200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:43:49.274266775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdCreatives200Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable
@@ -52,7 +52,7 @@ public class ListAdCreatives200Response {
 
   public static final String JSON_PROPERTY_PAGING = "paging";
   @javax.annotation.Nullable
-  private QueryAdInsights200ResponsePaging paging;
+  private GetAdsActivityLog200ResponsePaging paging;
 
   public ListAdCreatives200Response() { 
   }
@@ -113,7 +113,7 @@ public class ListAdCreatives200Response {
   }
 
 
-  public ListAdCreatives200Response paging(@javax.annotation.Nullable QueryAdInsights200ResponsePaging paging) {
+  public ListAdCreatives200Response paging(@javax.annotation.Nullable GetAdsActivityLog200ResponsePaging paging) {
     this.paging = paging;
     return this;
   }
@@ -125,14 +125,14 @@ public class ListAdCreatives200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PAGING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public QueryAdInsights200ResponsePaging getPaging() {
+  public GetAdsActivityLog200ResponsePaging getPaging() {
     return paging;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PAGING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaging(@javax.annotation.Nullable QueryAdInsights200ResponsePaging paging) {
+  public void setPaging(@javax.annotation.Nullable GetAdsActivityLog200ResponsePaging paging) {
     this.paging = paging;
   }
 

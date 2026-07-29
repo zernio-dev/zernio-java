@@ -21,6 +21,10 @@ import dev.zernio.Pair;
 import dev.zernio.model.CreateAdInsightsReport202Response;
 import dev.zernio.model.CreateAdInsightsReportRequest;
 import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.GenerateKeywordHistoricalMetrics200Response;
+import dev.zernio.model.GenerateKeywordHistoricalMetricsRequest;
+import dev.zernio.model.GenerateKeywordIdeas200Response;
+import dev.zernio.model.GenerateKeywordIdeasRequest;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdInsightsReport200Response;
 import dev.zernio.model.GetCampaignAnalytics200Response;
@@ -54,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:43:49.274266775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdInsightsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -279,6 +283,252 @@ public class AdInsightsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdInsightsReportRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Historical keyword metrics (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+   * @param generateKeywordHistoricalMetricsRequest  (required)
+   * @return GenerateKeywordHistoricalMetrics200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GenerateKeywordHistoricalMetrics200Response generateKeywordHistoricalMetrics(@javax.annotation.Nonnull GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest) throws ApiException {
+    return generateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest, null);
+  }
+
+  /**
+   * Historical keyword metrics (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+   * @param generateKeywordHistoricalMetricsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return GenerateKeywordHistoricalMetrics200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GenerateKeywordHistoricalMetrics200Response generateKeywordHistoricalMetrics(@javax.annotation.Nonnull GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GenerateKeywordHistoricalMetrics200Response> localVarResponse = generateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Historical keyword metrics (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+   * @param generateKeywordHistoricalMetricsRequest  (required)
+   * @return ApiResponse&lt;GenerateKeywordHistoricalMetrics200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GenerateKeywordHistoricalMetrics200Response> generateKeywordHistoricalMetricsWithHttpInfo(@javax.annotation.Nonnull GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest) throws ApiException {
+    return generateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest, null);
+  }
+
+  /**
+   * Historical keyword metrics (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+   * @param generateKeywordHistoricalMetricsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GenerateKeywordHistoricalMetrics200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GenerateKeywordHistoricalMetrics200Response> generateKeywordHistoricalMetricsWithHttpInfo(@javax.annotation.Nonnull GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = generateKeywordHistoricalMetricsRequestBuilder(generateKeywordHistoricalMetricsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("generateKeywordHistoricalMetrics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GenerateKeywordHistoricalMetrics200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GenerateKeywordHistoricalMetrics200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GenerateKeywordHistoricalMetrics200Response>() {});
+        
+
+        return new ApiResponse<GenerateKeywordHistoricalMetrics200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder generateKeywordHistoricalMetricsRequestBuilder(@javax.annotation.Nonnull GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'generateKeywordHistoricalMetricsRequest' is set
+    if (generateKeywordHistoricalMetricsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'generateKeywordHistoricalMetricsRequest' when calling generateKeywordHistoricalMetrics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/keywords/historical-metrics";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(generateKeywordHistoricalMetricsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Generate keyword ideas (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+   * @param generateKeywordIdeasRequest  (required)
+   * @return GenerateKeywordIdeas200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GenerateKeywordIdeas200Response generateKeywordIdeas(@javax.annotation.Nonnull GenerateKeywordIdeasRequest generateKeywordIdeasRequest) throws ApiException {
+    return generateKeywordIdeas(generateKeywordIdeasRequest, null);
+  }
+
+  /**
+   * Generate keyword ideas (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+   * @param generateKeywordIdeasRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return GenerateKeywordIdeas200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GenerateKeywordIdeas200Response generateKeywordIdeas(@javax.annotation.Nonnull GenerateKeywordIdeasRequest generateKeywordIdeasRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GenerateKeywordIdeas200Response> localVarResponse = generateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Generate keyword ideas (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+   * @param generateKeywordIdeasRequest  (required)
+   * @return ApiResponse&lt;GenerateKeywordIdeas200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GenerateKeywordIdeas200Response> generateKeywordIdeasWithHttpInfo(@javax.annotation.Nonnull GenerateKeywordIdeasRequest generateKeywordIdeasRequest) throws ApiException {
+    return generateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest, null);
+  }
+
+  /**
+   * Generate keyword ideas (Google Keyword Planner)
+   * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+   * @param generateKeywordIdeasRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GenerateKeywordIdeas200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GenerateKeywordIdeas200Response> generateKeywordIdeasWithHttpInfo(@javax.annotation.Nonnull GenerateKeywordIdeasRequest generateKeywordIdeasRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = generateKeywordIdeasRequestBuilder(generateKeywordIdeasRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("generateKeywordIdeas", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GenerateKeywordIdeas200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GenerateKeywordIdeas200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GenerateKeywordIdeas200Response>() {});
+        
+
+        return new ApiResponse<GenerateKeywordIdeas200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder generateKeywordIdeasRequestBuilder(@javax.annotation.Nonnull GenerateKeywordIdeasRequest generateKeywordIdeasRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'generateKeywordIdeasRequest' is set
+    if (generateKeywordIdeasRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'generateKeywordIdeasRequest' when calling generateKeywordIdeas");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/keywords/ideas";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(generateKeywordIdeasRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -753,9 +1003,12 @@ public class AdInsightsApi {
 
   /**
    * Flexible live insights query
-   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
-   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+   * @param accountId Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. (required)
+   * @param objectId Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)
+   * @param query Google only (required there): the GAQL SELECT statement to run. (optional)
+   * @param customerId Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)
+   * @param pageToken Google only: cursor from paging.nextPageToken of the previous page. (optional)
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
@@ -773,15 +1026,18 @@ public class AdInsightsApi {
    * @return QueryAdInsights200Response
    * @throws ApiException if fails to make API call
    */
-  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
-    return queryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
+  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable String query, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return queryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
   }
 
   /**
    * Flexible live insights query
-   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
-   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+   * @param accountId Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. (required)
+   * @param objectId Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)
+   * @param query Google only (required there): the GAQL SELECT statement to run. (optional)
+   * @param customerId Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)
+   * @param pageToken Google only: cursor from paging.nextPageToken of the previous page. (optional)
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
@@ -800,16 +1056,19 @@ public class AdInsightsApi {
    * @return QueryAdInsights200Response
    * @throws ApiException if fails to make API call
    */
-  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
-    ApiResponse<QueryAdInsights200Response> localVarResponse = queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
+  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable String query, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueryAdInsights200Response> localVarResponse = queryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Flexible live insights query
-   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
-   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+   * @param accountId Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. (required)
+   * @param objectId Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)
+   * @param query Google only (required there): the GAQL SELECT statement to run. (optional)
+   * @param customerId Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)
+   * @param pageToken Google only: cursor from paging.nextPageToken of the previous page. (optional)
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
@@ -827,15 +1086,18 @@ public class AdInsightsApi {
    * @return ApiResponse&lt;QueryAdInsights200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
-    return queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
+  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable String query, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return queryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
   }
 
   /**
    * Flexible live insights query
-   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
-   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+   * @param accountId Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. (required)
+   * @param objectId Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)
+   * @param query Google only (required there): the GAQL SELECT statement to run. (optional)
+   * @param customerId Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)
+   * @param pageToken Google only: cursor from paging.nextPageToken of the previous page. (optional)
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
@@ -854,8 +1116,8 @@ public class AdInsightsApi {
    * @return ApiResponse&lt;QueryAdInsights200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = queryAdInsightsRequestBuilder(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
+  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable String query, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = queryAdInsightsRequestBuilder(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -902,14 +1164,10 @@ public class AdInsightsApi {
     }
   }
 
-  private HttpRequest.Builder queryAdInsightsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder queryAdInsightsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable String query, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling queryAdInsights");
-    }
-    // verify the required parameter 'objectId' is set
-    if (objectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'objectId' when calling queryAdInsights");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -923,6 +1181,12 @@ public class AdInsightsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "objectId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("objectId", objectId));
+    localVarQueryParameterBaseName = "query";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("query", query));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "pageToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageToken", pageToken));
     localVarQueryParameterBaseName = "level";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("level", level));
     localVarQueryParameterBaseName = "fields";

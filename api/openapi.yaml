@@ -26494,23 +26494,110 @@ paths:
       - meta
       x-accepts:
       - application/json
+  /v1/ads/keywords/ideas:
+    post:
+      description: |
+        Google Ads only. Runs Keyword Planner's generateKeywordIdeas from seed keywords, a seed URL,
+        or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex,
+        top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid
+        values are micros of the account currency. Omitting `countries` targets worldwide.
+      operationId: generateKeywordIdeas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/generateKeywordIdeas_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generateKeywordIdeas_200_response"
+          description: Keyword idea rows (raw Keyword Planner shape)
+        "400":
+          description: "Invalid input, or Google rejected the request — message carries\
+            \ Google's error"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Per-user Google Ads operations budget or the shared Google
+            quota reached; the message says which and when it resets.
+        "501":
+          description: Only supported on Google Ads
+      security:
+      - bearerAuth: []
+      summary: Generate keyword ideas (Google Keyword Planner)
+      tags:
+      - Ad Insights
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/keywords/historical-metrics:
+    post:
+      description: |
+        Google Ads only. Runs Keyword Planner's generateKeywordHistoricalMetrics for up to 1,000
+        exact keywords: historical search volume, competition and top-of-page bid ranges, plus
+        averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s
+        encoded as strings, bid/CPC values are micros of the account currency.
+      operationId: generateKeywordHistoricalMetrics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/generateKeywordHistoricalMetrics_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generateKeywordHistoricalMetrics_200_response"
+          description: Historical metric rows (raw Keyword Planner shape)
+        "400":
+          description: "Invalid input, or Google rejected the request — message carries\
+            \ Google's error"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Per-user Google Ads operations budget or the shared Google
+            quota reached; the message says which and when it resets.
+        "501":
+          description: Only supported on Google Ads
+      security:
+      - bearerAuth: []
+      summary: Historical keyword metrics (Google Keyword Planner)
+      tags:
+      - Ad Insights
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/insights:
     get:
       description: |
-        Live, flexible insights query against Meta's Graph API. Unlike GET /v1/ads/{adId}/analytics
-        (fixed metric set, cached), this forwards caller-chosen `fields`, `breakdowns` and `filtering`
-        to any Meta insights node and returns Meta's rows verbatim.
+        Live, flexible insights query. The account's platform picks the contract:
 
-        `objectId` selects the node: an ad account, campaign, ad set or ad platform id.
-        `level` sets row granularity independently of the node.
+        **Meta (facebook/instagram)**: forwards caller-chosen `fields`, `breakdowns` and `filtering`
+        to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the
+        node; `level` sets row granularity. Semantic validation is Meta's: an unknown field or invalid
+        breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale
+        accounts prefer the async variant (POST /v1/ads/insights/reports).
 
-        Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400
-        carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant
-        (POST /v1/ads/insights/reports).
+        **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via `query`
+        (campaign/keyword/search-term/geo/demographic/asset/shopping resources, `change_event`, any
+        `segments.*`) and rows come back verbatim (camelCase, counters as strings). Results are paged
+        at a fixed 10,000 rows; follow `paging.nextPageToken` with `pageToken`. `customerId` is only
+        needed when the connection has several Google Ads accounts. Semantic validation is Google's:
+        an invalid query returns a 400 carrying Google's message (note: selecting `segments.date`
+        requires a finite date filter).
       operationId: queryAdInsights
       parameters:
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
+      - description: Zernio SocialAccount id (posting or ads variant); its platform
+          selects the Meta or Google contract.
         explode: true
         in: query
         name: accountId
@@ -26518,11 +26605,39 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Meta insights node: act_<n>, campaign id, ad set id or ad id."
+      - description: "Meta only (required there): insights node — act_<n>, campaign\
+          \ id, ad set id or ad id."
         explode: true
         in: query
         name: objectId
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Google only (required there): the GAQL SELECT statement to run."
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          maxLength: 10000
+          type: string
+        style: form
+      - description: "Google only: numeric customer id (no dashes) when the connection\
+          \ has several Google Ads accounts."
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Google only: cursor from paging.nextPageToken of the previous\
+          \ page."
+        explode: true
+        in: query
+        name: pageToken
+        required: false
         schema:
           type: string
         style: form
@@ -26659,16 +26774,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/queryAdInsights_200_response"
-          description: Insight rows (raw Meta shape)
+          description: Insight rows (raw platform shape)
         "400":
-          description: "Invalid input, or Meta rejected the query (unknown field,\
-            \ invalid breakdown combo) — message carries Meta's error"
+          description: "Invalid input, or the platform rejected the query (unknown\
+            \ field, invalid breakdown combo, malformed GAQL) — message carries the\
+            \ platform's error"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Meta rate limit reached
+          description: Platform rate limit reached. For Google this is the per-user
+            operations budget or the shared quota; the message says which and when
+            it resets.
         "501":
-          description: Only supported on Meta (facebook/instagram)
+          description: Only supported on Meta (facebook/instagram) and Google Ads
       security:
       - bearerAuth: []
       summary: Flexible live insights query
@@ -26676,6 +26794,7 @@ paths:
       - Ad Insights
       x-platforms:
       - meta
+      - google
       x-accepts:
       - application/json
   /v1/ads/insights/reports:
@@ -36636,7 +36755,9 @@ components:
         replyToTweetId:
           description: "ID of an existing tweet to reply to. The published tweet will\
             \ appear as a reply in that tweet's thread. For threads, only the first\
-            \ tweet replies to the target; subsequent tweets chain normally."
+            \ tweet replies to the target; subsequent tweets chain normally. X only\
+            \ permits replying to your own posts or posts you are mentioned in; replying\
+            \ to an arbitrary other account's post is rejected by X."
           type: string
         quoteTweetId:
           description: "ID (or full status URL) of an existing tweet to quote-repost.\
@@ -69539,29 +69660,192 @@ components:
           items:
             $ref: "#/components/schemas/generateAdPreviews_200_response_previews_inner"
           type: array
+    generateKeywordIdeas_request:
+      properties:
+        accountId:
+          description: Zernio googleads SocialAccount id.
+          type: string
+        customerId:
+          description: Numeric Google Ads customer id (no dashes); only needed when
+            the connection has several accounts.
+          type: string
+        seedKeywords:
+          description: "Seed terms. Provide these, seedUrl, or both."
+          items:
+            maxLength: 80
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        seedUrl:
+          description: "Landing page to mine for ideas. Provide this, seedKeywords,\
+            \ or both."
+          format: uri
+          type: string
+        countries:
+          description: ISO 3166-1 alpha-2 country codes. Omitted = worldwide.
+          items:
+            maxLength: 2
+            minLength: 2
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        languageConstantId:
+          default: "1000"
+          description: Google languageConstant id (1000 = English).
+          type: string
+        network:
+          default: GOOGLE_SEARCH
+          enum:
+          - GOOGLE_SEARCH
+          - GOOGLE_SEARCH_AND_PARTNERS
+          type: string
+        includeAdultKeywords:
+          type: boolean
+        pageSize:
+          maximum: 10000
+          minimum: 1
+          type: integer
+        pageToken:
+          description: Cursor from paging.nextPageToken of the previous page.
+          type: string
+      required:
+      - accountId
+    generateKeywordIdeas_200_response_paging:
+      example:
+        nextPageToken: nextPageToken
+      properties:
+        nextPageToken:
+          description: Cursor for the next page; null when exhausted.
+          nullable: true
+          type: string
+    generateKeywordIdeas_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        customerId: customerId
+        paging:
+          nextPageToken: nextPageToken
+        aggregateMetricResults: "{}"
+      properties:
+        customerId:
+          description: The customer the request ran against.
+          type: string
+        data:
+          items:
+            description: "Raw GenerateKeywordIdeaResult: text + keywordIdeaMetrics."
+            type: object
+          type: array
+        aggregateMetricResults:
+          nullable: true
+          type: object
+        paging:
+          $ref: "#/components/schemas/generateKeywordIdeas_200_response_paging"
+    generateKeywordHistoricalMetrics_request:
+      properties:
+        accountId:
+          description: Zernio googleads SocialAccount id.
+          type: string
+        customerId:
+          description: Numeric Google Ads customer id (no dashes); only needed when
+            the connection has several accounts.
+          type: string
+        keywords:
+          items:
+            maxLength: 80
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+        countries:
+          description: ISO 3166-1 alpha-2 country codes. Omitted = worldwide.
+          items:
+            maxLength: 2
+            minLength: 2
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        languageConstantId:
+          default: "1000"
+          description: Google languageConstant id (1000 = English).
+          type: string
+        network:
+          default: GOOGLE_SEARCH
+          enum:
+          - GOOGLE_SEARCH
+          - GOOGLE_SEARCH_AND_PARTNERS
+          type: string
+        includeAdultKeywords:
+          type: boolean
+        includeAverageCpc:
+          description: Adds averageCpcMicros to each row's keywordMetrics.
+          type: boolean
+      required:
+      - accountId
+      - keywords
+    generateKeywordHistoricalMetrics_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        customerId: customerId
+        aggregateMetricResults: "{}"
+      properties:
+        customerId:
+          description: The customer the request ran against.
+          type: string
+        data:
+          items:
+            description: "Raw KeywordHistoricalMetricsResult: text, closeVariants,\
+              \ keywordMetrics."
+            type: object
+          type: array
+        aggregateMetricResults:
+          nullable: true
+          type: object
     queryAdInsights_200_response_paging:
       example:
+        nextPageToken: nextPageToken
         after: after
       properties:
         after:
-          description: Cursor for the next page; null when exhausted.
+          description: Meta cursor for the next page; null when exhausted.
+          nullable: true
+          type: string
+        nextPageToken:
+          description: Google cursor for the next page; null when exhausted.
           nullable: true
           type: string
     queryAdInsights_200_response:
       example:
+        fieldMask: fieldMask
         data:
         - "{}"
         - "{}"
+        customerId: customerId
         paging:
+          nextPageToken: nextPageToken
           after: after
         objectId: objectId
       properties:
         objectId:
+          description: Meta responses only.
+          type: string
+        customerId:
+          description: "Google responses only: the customer the query ran against."
+          type: string
+        fieldMask:
+          description: "Google responses only: the selected fields echoed by Google."
+          nullable: true
           type: string
         data:
           items:
-            description: Raw Meta insights row; keys are the requested Graph fields
-              plus date_start/date_stop.
+            description: "Raw platform row. Meta: keys are the requested Graph fields\
+              \ plus date_start/date_stop. Google: nested GAQL resources in camelCase,\
+              \ int64 counters as strings."
             type: object
           type: array
         paging:
@@ -70071,6 +70355,14 @@ components:
           items:
             $ref: "#/components/schemas/BusinessCenter"
           type: array
+    getAdsActivityLog_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          description: Cursor for the next page; null when exhausted.
+          nullable: true
+          type: string
     getAdsActivityLog_200_response:
       example:
         data:
@@ -70090,7 +70382,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     createRfPrediction_request:
       properties:
         accountId:
@@ -70202,7 +70494,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     listMetaBusinesses_200_response:
       example:
         data:
@@ -70217,7 +70509,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     listAdLabels_200_response:
       example:
         data:
@@ -70235,7 +70527,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     listHighDemandPeriods_200_response:
       example:
         data:
@@ -70254,7 +70546,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     listAdCreatives_200_response:
       example:
         data:
@@ -70272,7 +70564,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     createAdCreative_request_carouselCards_inner:
       properties:
         imageUrl:
@@ -72861,7 +73153,7 @@ components:
             type: object
           type: array
         paging:
-          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
     uploadAdImage_request:
       properties:
         accountId:

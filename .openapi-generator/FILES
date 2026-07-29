@@ -418,6 +418,11 @@ docs/FoodMenuSection.md
 docs/GenerateAdPreviews200Response.md
 docs/GenerateAdPreviews200ResponsePreviewsInner.md
 docs/GenerateAdPreviewsRequest.md
+docs/GenerateKeywordHistoricalMetrics200Response.md
+docs/GenerateKeywordHistoricalMetricsRequest.md
+docs/GenerateKeywordIdeas200Response.md
+docs/GenerateKeywordIdeas200ResponsePaging.md
+docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccountHealth200Response.md
 docs/GetAccountHealth200ResponsePermissions.md
@@ -440,6 +445,7 @@ docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsActivityLog200Response.md
+docs/GetAdsActivityLog200ResponsePaging.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
 docs/GetAllAccountsHealth200Response.md
@@ -2071,6 +2077,11 @@ src/main/java/dev/zernio/model/FoodMenuSection.java
 src/main/java/dev/zernio/model/GenerateAdPreviews200Response.java
 src/main/java/dev/zernio/model/GenerateAdPreviews200ResponsePreviewsInner.java
 src/main/java/dev/zernio/model/GenerateAdPreviewsRequest.java
+src/main/java/dev/zernio/model/GenerateKeywordHistoricalMetrics200Response.java
+src/main/java/dev/zernio/model/GenerateKeywordHistoricalMetricsRequest.java
+src/main/java/dev/zernio/model/GenerateKeywordIdeas200Response.java
+src/main/java/dev/zernio/model/GenerateKeywordIdeas200ResponsePaging.java
+src/main/java/dev/zernio/model/GenerateKeywordIdeasRequest.java
 src/main/java/dev/zernio/model/GeoRestriction.java
 src/main/java/dev/zernio/model/GetAccountHealth200Response.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePermissions.java
@@ -2093,6 +2104,7 @@ src/main/java/dev/zernio/model/GetAdSetDetails200Response.java
 src/main/java/dev/zernio/model/GetAdTrackingTags200Response.java
 src/main/java/dev/zernio/model/GetAdTree200Response.java
 src/main/java/dev/zernio/model/GetAdsActivityLog200Response.java
+src/main/java/dev/zernio/model/GetAdsActivityLog200ResponsePaging.java
 src/main/java/dev/zernio/model/GetAdsTimeline200Response.java
 src/main/java/dev/zernio/model/GetAdsTimeline200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200Response.java
@@ -3205,3 +3217,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GenerateKeywordHistoricalMetrics200ResponseTest.java
+src/test/java/dev/zernio/model/GenerateKeywordHistoricalMetricsRequestTest.java
+src/test/java/dev/zernio/model/GenerateKeywordIdeas200ResponsePagingTest.java
+src/test/java/dev/zernio/model/GenerateKeywordIdeas200ResponseTest.java
+src/test/java/dev/zernio/model/GenerateKeywordIdeasRequestTest.java
+src/test/java/dev/zernio/model/GetAdsActivityLog200ResponsePagingTest.java

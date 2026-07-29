@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**objectId** | **String** | The campaign / ad set id the schedules belong to. |  [optional] |
 |**data** | **List&lt;Object&gt;** |  |  [optional] |
-|**paging** | [**QueryAdInsights200ResponsePaging**](QueryAdInsights200ResponsePaging.md) |  |  [optional] |
+|**paging** | [**GetAdsActivityLog200ResponsePaging**](GetAdsActivityLog200ResponsePaging.md) |  |  [optional] |
 
 
 

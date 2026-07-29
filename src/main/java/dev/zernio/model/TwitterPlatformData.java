@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_MADE_WITH_AI,
   TwitterPlatformData.JSON_PROPERTY_SENSITIVE_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:43:49.274266775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_REPLY_TO_TWEET_ID = "replyToTweetId";
   @javax.annotation.Nullable
@@ -140,7 +140,7 @@ public class TwitterPlatformData {
   }
 
   /**
-   * ID of an existing tweet to reply to. The published tweet will appear as a reply in that tweet&#39;s thread. For threads, only the first tweet replies to the target; subsequent tweets chain normally.
+   * ID of an existing tweet to reply to. The published tweet will appear as a reply in that tweet&#39;s thread. For threads, only the first tweet replies to the target; subsequent tweets chain normally. X only permits replying to your own posts or posts you are mentioned in; replying to an arbitrary other account&#39;s post is rejected by X.
    * @return replyToTweetId
    */
   @javax.annotation.Nullable

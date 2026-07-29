@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**data** | **List&lt;Object&gt;** |  |  [optional] |
-|**paging** | [**QueryAdInsights200ResponsePaging**](QueryAdInsights200ResponsePaging.md) |  |  [optional] |
+|**paging** | [**GetAdsActivityLog200ResponsePaging**](GetAdsActivityLog200ResponsePaging.md) |  |  [optional] |
 
 
 

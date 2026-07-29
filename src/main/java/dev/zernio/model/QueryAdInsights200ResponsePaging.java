@@ -37,12 +37,16 @@ import dev.zernio.ApiClient;
  * QueryAdInsights200ResponsePaging
  */
 @JsonPropertyOrder({
-  QueryAdInsights200ResponsePaging.JSON_PROPERTY_AFTER
+  QueryAdInsights200ResponsePaging.JSON_PROPERTY_AFTER,
+  QueryAdInsights200ResponsePaging.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:43:49.274266775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueryAdInsights200ResponsePaging {
   public static final String JSON_PROPERTY_AFTER = "after";
   private JsonNullable<String> after = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_NEXT_PAGE_TOKEN = "nextPageToken";
+  private JsonNullable<String> nextPageToken = JsonNullable.<String>undefined();
 
   public QueryAdInsights200ResponsePaging() { 
   }
@@ -53,7 +57,7 @@ public class QueryAdInsights200ResponsePaging {
   }
 
   /**
-   * Cursor for the next page; null when exhausted.
+   * Meta cursor for the next page; null when exhausted.
    * @return after
    */
   @javax.annotation.Nullable
@@ -79,6 +83,38 @@ public class QueryAdInsights200ResponsePaging {
   }
 
 
+  public QueryAdInsights200ResponsePaging nextPageToken(@javax.annotation.Nullable String nextPageToken) {
+    this.nextPageToken = JsonNullable.<String>of(nextPageToken);
+    return this;
+  }
+
+  /**
+   * Google cursor for the next page; null when exhausted.
+   * @return nextPageToken
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getNextPageToken() {
+        return nextPageToken.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NEXT_PAGE_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getNextPageToken_JsonNullable() {
+    return nextPageToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_PAGE_TOKEN)
+  public void setNextPageToken_JsonNullable(JsonNullable<String> nextPageToken) {
+    this.nextPageToken = nextPageToken;
+  }
+
+  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
+    this.nextPageToken = JsonNullable.<String>of(nextPageToken);
+  }
+
+
   /**
    * Return true if this queryAdInsights_200_response_paging object is equal to o.
    */
@@ -91,7 +127,8 @@ public class QueryAdInsights200ResponsePaging {
       return false;
     }
     QueryAdInsights200ResponsePaging queryAdInsights200ResponsePaging = (QueryAdInsights200ResponsePaging) o;
-    return equalsNullable(this.after, queryAdInsights200ResponsePaging.after);
+    return equalsNullable(this.after, queryAdInsights200ResponsePaging.after) &&
+        equalsNullable(this.nextPageToken, queryAdInsights200ResponsePaging.nextPageToken);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -100,7 +137,7 @@ public class QueryAdInsights200ResponsePaging {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(after));
+    return Objects.hash(hashCodeNullable(after), hashCodeNullable(nextPageToken));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -115,6 +152,7 @@ public class QueryAdInsights200ResponsePaging {
     StringBuilder sb = new StringBuilder();
     sb.append("class QueryAdInsights200ResponsePaging {\n");
     sb.append("    after: ").append(toIndentedString(after)).append("\n");
+    sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -165,6 +203,11 @@ public class QueryAdInsights200ResponsePaging {
     // add `after` to the URL query string
     if (getAfter() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%safter%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAfter()))));
+    }
+
+    // add `nextPageToken` to the URL query string
+    if (getNextPageToken() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snextPageToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNextPageToken()))));
     }
 
     return joiner.toString();

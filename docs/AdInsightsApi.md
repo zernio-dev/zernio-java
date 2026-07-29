@@ -6,6 +6,10 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**createAdInsightsReport**](AdInsightsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run |
 | [**createAdInsightsReportWithHttpInfo**](AdInsightsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run |
+| [**generateKeywordHistoricalMetrics**](AdInsightsApi.md#generateKeywordHistoricalMetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner) |
+| [**generateKeywordHistoricalMetricsWithHttpInfo**](AdInsightsApi.md#generateKeywordHistoricalMetricsWithHttpInfo) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner) |
+| [**generateKeywordIdeas**](AdInsightsApi.md#generateKeywordIdeas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
+| [**generateKeywordIdeasWithHttpInfo**](AdInsightsApi.md#generateKeywordIdeasWithHttpInfo) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
 | [**getAdAnalytics**](AdInsightsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdAnalyticsWithHttpInfo**](AdInsightsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdInsightsReport**](AdInsightsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
@@ -167,6 +171,310 @@ ApiResponse<[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Res
 | **401** | Unauthorized |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## generateKeywordHistoricalMetrics
+
+> GenerateKeywordHistoricalMetrics200Response generateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest)
+
+Historical keyword metrics (Google Keyword Planner)
+
+Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest = new GenerateKeywordHistoricalMetricsRequest(); // GenerateKeywordHistoricalMetricsRequest | 
+        try {
+            GenerateKeywordHistoricalMetrics200Response result = apiInstance.generateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#generateKeywordHistoricalMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **generateKeywordHistoricalMetricsRequest** | [**GenerateKeywordHistoricalMetricsRequest**](GenerateKeywordHistoricalMetricsRequest.md)|  | |
+
+### Return type
+
+[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHistoricalMetrics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
+| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **501** | Only supported on Google Ads |  -  |
+
+## generateKeywordHistoricalMetricsWithHttpInfo
+
+> ApiResponse<GenerateKeywordHistoricalMetrics200Response> generateKeywordHistoricalMetrics generateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest)
+
+Historical keyword metrics (Google Keyword Planner)
+
+Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest = new GenerateKeywordHistoricalMetricsRequest(); // GenerateKeywordHistoricalMetricsRequest | 
+        try {
+            ApiResponse<GenerateKeywordHistoricalMetrics200Response> response = apiInstance.generateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#generateKeywordHistoricalMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **generateKeywordHistoricalMetricsRequest** | [**GenerateKeywordHistoricalMetricsRequest**](GenerateKeywordHistoricalMetricsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHistoricalMetrics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
+| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **501** | Only supported on Google Ads |  -  |
+
+
+## generateKeywordIdeas
+
+> GenerateKeywordIdeas200Response generateKeywordIdeas(generateKeywordIdeasRequest)
+
+Generate keyword ideas (Google Keyword Planner)
+
+Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        GenerateKeywordIdeasRequest generateKeywordIdeasRequest = new GenerateKeywordIdeasRequest(); // GenerateKeywordIdeasRequest | 
+        try {
+            GenerateKeywordIdeas200Response result = apiInstance.generateKeywordIdeas(generateKeywordIdeasRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#generateKeywordIdeas");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **generateKeywordIdeasRequest** | [**GenerateKeywordIdeasRequest**](GenerateKeywordIdeasRequest.md)|  | |
+
+### Return type
+
+[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
+| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **501** | Only supported on Google Ads |  -  |
+
+## generateKeywordIdeasWithHttpInfo
+
+> ApiResponse<GenerateKeywordIdeas200Response> generateKeywordIdeas generateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest)
+
+Generate keyword ideas (Google Keyword Planner)
+
+Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        GenerateKeywordIdeasRequest generateKeywordIdeasRequest = new GenerateKeywordIdeasRequest(); // GenerateKeywordIdeasRequest | 
+        try {
+            ApiResponse<GenerateKeywordIdeas200Response> response = apiInstance.generateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#generateKeywordIdeas");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **generateKeywordIdeasRequest** | [**GenerateKeywordIdeasRequest**](GenerateKeywordIdeasRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
+| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **501** | Only supported on Google Ads |  -  |
 
 
 ## getAdAnalytics
@@ -671,11 +979,11 @@ ApiResponse<[**GetCampaignAnalytics200Response**](GetCampaignAnalytics200Respons
 
 ## queryAdInsights
 
-> QueryAdInsights200Response queryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
+> QueryAdInsights200Response queryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
 
 Flexible live insights query
 
-Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
 
 ### Example
 
@@ -698,8 +1006,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String objectId = "objectId_example"; // String | Meta insights node: act_<n>, campaign id, ad set id or ad id.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
+        String objectId = "objectId_example"; // String | Meta only (required there): insights node — act_<n>, campaign id, ad set id or ad id.
+        String query = "query_example"; // String | Google only (required there): the GAQL SELECT statement to run.
+        String customerId = "customerId_example"; // String | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts.
+        String pageToken = "pageToken_example"; // String | Google only: cursor from paging.nextPageToken of the previous page.
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
         String breakdowns = "breakdowns_example"; // String | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform).
@@ -715,7 +1026,7 @@ public class Example {
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
-            QueryAdInsights200Response result = apiInstance.queryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            QueryAdInsights200Response result = apiInstance.queryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#queryAdInsights");
@@ -733,8 +1044,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **objectId** | **String**| Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. | |
+| **objectId** | **String**| Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. | [optional] |
+| **query** | **String**| Google only (required there): the GAQL SELECT statement to run. | [optional] |
+| **customerId** | **String**| Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional] |
+| **pageToken** | **String**| Google only: cursor from paging.nextPageToken of the previous page. | [optional] |
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
 | **breakdowns** | **String**| Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional] |
@@ -767,19 +1081,19 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Insight rows (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query (unknown field, invalid breakdown combo) — message carries Meta&#39;s error |  -  |
+| **200** | Insight rows (raw platform shape) |  -  |
+| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL) — message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Meta rate limit reached |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |
 
 ## queryAdInsightsWithHttpInfo
 
-> ApiResponse<QueryAdInsights200Response> queryAdInsights queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
+> ApiResponse<QueryAdInsights200Response> queryAdInsights queryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
 
 Flexible live insights query
 
-Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
 
 ### Example
 
@@ -803,8 +1117,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String objectId = "objectId_example"; // String | Meta insights node: act_<n>, campaign id, ad set id or ad id.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
+        String objectId = "objectId_example"; // String | Meta only (required there): insights node — act_<n>, campaign id, ad set id or ad id.
+        String query = "query_example"; // String | Google only (required there): the GAQL SELECT statement to run.
+        String customerId = "customerId_example"; // String | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts.
+        String pageToken = "pageToken_example"; // String | Google only: cursor from paging.nextPageToken of the previous page.
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
         String breakdowns = "breakdowns_example"; // String | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform).
@@ -820,7 +1137,7 @@ public class Example {
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
-            ApiResponse<QueryAdInsights200Response> response = apiInstance.queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            ApiResponse<QueryAdInsights200Response> response = apiInstance.queryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -840,8 +1157,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **objectId** | **String**| Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. | |
+| **objectId** | **String**| Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. | [optional] |
+| **query** | **String**| Google only (required there): the GAQL SELECT statement to run. | [optional] |
+| **customerId** | **String**| Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional] |
+| **pageToken** | **String**| Google only: cursor from paging.nextPageToken of the previous page. | [optional] |
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
 | **breakdowns** | **String**| Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional] |
@@ -874,9 +1194,9 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Insight rows (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query (unknown field, invalid breakdown combo) — message carries Meta&#39;s error |  -  |
+| **200** | Insight rows (raw platform shape) |  -  |
+| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL) — message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Meta rate limit reached |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |
 

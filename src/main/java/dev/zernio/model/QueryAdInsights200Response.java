@@ -28,6 +28,10 @@ import dev.zernio.model.QueryAdInsights200ResponsePaging;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,14 +41,23 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   QueryAdInsights200Response.JSON_PROPERTY_OBJECT_ID,
+  QueryAdInsights200Response.JSON_PROPERTY_CUSTOMER_ID,
+  QueryAdInsights200Response.JSON_PROPERTY_FIELD_MASK,
   QueryAdInsights200Response.JSON_PROPERTY_DATA,
   QueryAdInsights200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:43:49.274266775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T09:59:23.872387109Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueryAdInsights200Response {
   public static final String JSON_PROPERTY_OBJECT_ID = "objectId";
   @javax.annotation.Nullable
   private String objectId;
+
+  public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
+  @javax.annotation.Nullable
+  private String customerId;
+
+  public static final String JSON_PROPERTY_FIELD_MASK = "fieldMask";
+  private JsonNullable<String> fieldMask = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
@@ -63,7 +76,7 @@ public class QueryAdInsights200Response {
   }
 
   /**
-   * Get objectId
+   * Meta responses only.
    * @return objectId
    */
   @javax.annotation.Nullable
@@ -78,6 +91,62 @@ public class QueryAdInsights200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectId(@javax.annotation.Nullable String objectId) {
     this.objectId = objectId;
+  }
+
+
+  public QueryAdInsights200Response customerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+  /**
+   * Google responses only: the customer the query ran against.
+   * @return customerId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = customerId;
+  }
+
+
+  public QueryAdInsights200Response fieldMask(@javax.annotation.Nullable String fieldMask) {
+    this.fieldMask = JsonNullable.<String>of(fieldMask);
+    return this;
+  }
+
+  /**
+   * Google responses only: the selected fields echoed by Google.
+   * @return fieldMask
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getFieldMask() {
+        return fieldMask.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_FIELD_MASK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getFieldMask_JsonNullable() {
+    return fieldMask;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FIELD_MASK)
+  public void setFieldMask_JsonNullable(JsonNullable<String> fieldMask) {
+    this.fieldMask = fieldMask;
+  }
+
+  public void setFieldMask(@javax.annotation.Nullable String fieldMask) {
+    this.fieldMask = JsonNullable.<String>of(fieldMask);
   }
 
 
@@ -150,13 +219,26 @@ public class QueryAdInsights200Response {
     }
     QueryAdInsights200Response queryAdInsights200Response = (QueryAdInsights200Response) o;
     return Objects.equals(this.objectId, queryAdInsights200Response.objectId) &&
+        Objects.equals(this.customerId, queryAdInsights200Response.customerId) &&
+        equalsNullable(this.fieldMask, queryAdInsights200Response.fieldMask) &&
         Objects.equals(this.data, queryAdInsights200Response.data) &&
         Objects.equals(this.paging, queryAdInsights200Response.paging);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(objectId, data, paging);
+    return Objects.hash(objectId, customerId, hashCodeNullable(fieldMask), data, paging);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -164,6 +246,8 @@ public class QueryAdInsights200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class QueryAdInsights200Response {\n");
     sb.append("    objectId: ").append(toIndentedString(objectId)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    fieldMask: ").append(toIndentedString(fieldMask)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    paging: ").append(toIndentedString(paging)).append("\n");
     sb.append("}");
@@ -216,6 +300,16 @@ public class QueryAdInsights200Response {
     // add `objectId` to the URL query string
     if (getObjectId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjectId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectId()))));
+    }
+
+    // add `customerId` to the URL query string
+    if (getCustomerId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scustomerId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomerId()))));
+    }
+
+    // add `fieldMask` to the URL query string
+    if (getFieldMask() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfieldMask%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFieldMask()))));
     }
 
     // add `data` to the URL query string

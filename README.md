@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-29T09:43:49.274266775Z[Etc/UTC]
+- Build date: 2026-07-29T09:59:23.872387109Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -258,6 +258,10 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**uploadAdImageWithHttpInfo**](docs/AdCreativesApi.md#uploadAdImageWithHttpInfo) | **POST** /v1/ads/images | Upload an ad image from base64
 *AdInsightsApi* | [**createAdInsightsReport**](docs/AdInsightsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run
 *AdInsightsApi* | [**createAdInsightsReportWithHttpInfo**](docs/AdInsightsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run
+*AdInsightsApi* | [**generateKeywordHistoricalMetrics**](docs/AdInsightsApi.md#generateKeywordHistoricalMetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner)
+*AdInsightsApi* | [**generateKeywordHistoricalMetricsWithHttpInfo**](docs/AdInsightsApi.md#generateKeywordHistoricalMetricsWithHttpInfo) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner)
+*AdInsightsApi* | [**generateKeywordIdeas**](docs/AdInsightsApi.md#generateKeywordIdeas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner)
+*AdInsightsApi* | [**generateKeywordIdeasWithHttpInfo**](docs/AdInsightsApi.md#generateKeywordIdeasWithHttpInfo) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner)
 *AdInsightsApi* | [**getAdAnalytics**](docs/AdInsightsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdInsightsApi* | [**getAdAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdInsightsApi* | [**getAdInsightsReport**](docs/AdInsightsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
@@ -1555,6 +1559,11 @@ Class | Method | HTTP request | Description
  - [GenerateAdPreviews200Response](docs/GenerateAdPreviews200Response.md)
  - [GenerateAdPreviews200ResponsePreviewsInner](docs/GenerateAdPreviews200ResponsePreviewsInner.md)
  - [GenerateAdPreviewsRequest](docs/GenerateAdPreviewsRequest.md)
+ - [GenerateKeywordHistoricalMetrics200Response](docs/GenerateKeywordHistoricalMetrics200Response.md)
+ - [GenerateKeywordHistoricalMetricsRequest](docs/GenerateKeywordHistoricalMetricsRequest.md)
+ - [GenerateKeywordIdeas200Response](docs/GenerateKeywordIdeas200Response.md)
+ - [GenerateKeywordIdeas200ResponsePaging](docs/GenerateKeywordIdeas200ResponsePaging.md)
+ - [GenerateKeywordIdeasRequest](docs/GenerateKeywordIdeasRequest.md)
  - [GeoRestriction](docs/GeoRestriction.md)
  - [GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
  - [GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
@@ -1577,6 +1586,7 @@ Class | Method | HTTP request | Description
  - [GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [GetAdTree200Response](docs/GetAdTree200Response.md)
  - [GetAdsActivityLog200Response](docs/GetAdsActivityLog200Response.md)
+ - [GetAdsActivityLog200ResponsePaging](docs/GetAdsActivityLog200ResponsePaging.md)
  - [GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
  - [GetAdsTimeline200ResponseRowsInner](docs/GetAdsTimeline200ResponseRowsInner.md)
  - [GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
