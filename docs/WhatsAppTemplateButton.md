@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
-|**text** | **String** | Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp). |  [optional] |
+|**text** | **String** | Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp) and otp (omit it and WhatsApp supplies its own label, localized to the template language; an English label on a non-English template is rejected). |  [optional] |
 |**url** | **URI** | Required when type is URL |  [optional] |
 |**example** | **Object** |  |  [optional] |
 |**phoneNumber** | **String** | Required when type is phone_number |  [optional] |
