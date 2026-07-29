@@ -31,6 +31,7 @@
 | REDDIT | &quot;reddit&quot; |
 | BLUESKY | &quot;bluesky&quot; |
 | SMS | &quot;sms&quot; |
+| SLACK | &quot;slack&quot; |
 
 
 

@@ -14180,6 +14180,7 @@ paths:
           - telegram
           - whatsapp
           - sms
+          - slack
           type: string
         style: form
       - description: Filter by specific social account ID
@@ -77899,6 +77900,7 @@ components:
           - reddit
           - bluesky
           - sms
+          - slack
           type: string
         platformConversationId:
           type: string
