@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**status** | **String** |  |  [optional] |
 |**leads** | [**List&lt;ListLeads200ResponseLeadsInner&gt;**](ListLeads200ResponseLeadsInner.md) |  |  [optional] |
-|**pagination** | [**GetInboxPostComments200ResponsePagination**](GetInboxPostComments200ResponsePagination.md) |  |  [optional] |
+|**pagination** | [**SearchTweets200ResponsePagination**](SearchTweets200ResponsePagination.md) |  |  [optional] |
 
 
 

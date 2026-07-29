@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetInboxPostComments200ResponsePagination;
 import dev.zernio.model.ListInboxMentions200ResponseDataInner;
 import dev.zernio.model.ListInboxMentions200ResponseMeta;
+import dev.zernio.model.SearchTweets200ResponsePagination;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListInboxMentions200Response.JSON_PROPERTY_PAGINATION,
   ListInboxMentions200Response.JSON_PROPERTY_META
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:32:31.159132450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:47:42.927391460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxMentions200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
@@ -50,7 +50,7 @@ public class ListInboxMentions200Response {
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
-  private GetInboxPostComments200ResponsePagination pagination;
+  private SearchTweets200ResponsePagination pagination;
 
   public static final String JSON_PROPERTY_META = "meta";
   @javax.annotation.Nullable
@@ -91,7 +91,7 @@ public class ListInboxMentions200Response {
   }
 
 
-  public ListInboxMentions200Response pagination(@javax.annotation.Nullable GetInboxPostComments200ResponsePagination pagination) {
+  public ListInboxMentions200Response pagination(@javax.annotation.Nullable SearchTweets200ResponsePagination pagination) {
     this.pagination = pagination;
     return this;
   }
@@ -103,14 +103,14 @@ public class ListInboxMentions200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetInboxPostComments200ResponsePagination getPagination() {
+  public SearchTweets200ResponsePagination getPagination() {
     return pagination;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPagination(@javax.annotation.Nullable GetInboxPostComments200ResponsePagination pagination) {
+  public void setPagination(@javax.annotation.Nullable SearchTweets200ResponsePagination pagination) {
     this.pagination = pagination;
   }
 

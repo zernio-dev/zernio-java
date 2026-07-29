@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-29T11:32:31.159132450Z[Etc/UTC]
+- Build date: 2026-07-29T11:47:42.927391460Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2250,6 +2250,7 @@ Class | Method | HTTP request | Description
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SearchTweets200Response](docs/SearchTweets200Response.md)
  - [SearchTweets200ResponseMeta](docs/SearchTweets200ResponseMeta.md)
+ - [SearchTweets200ResponsePagination](docs/SearchTweets200ResponsePagination.md)
  - [SearchTweets200ResponseTweetsInner](docs/SearchTweets200ResponseTweetsInner.md)
  - [SearchTweets200ResponseTweetsInnerAuthor](docs/SearchTweets200ResponseTweetsInnerAuthor.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)

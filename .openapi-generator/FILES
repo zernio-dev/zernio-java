@@ -1130,6 +1130,7 @@ docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchReddit200Response.md
 docs/SearchTweets200Response.md
 docs/SearchTweets200ResponseMeta.md
+docs/SearchTweets200ResponsePagination.md
 docs/SearchTweets200ResponseTweetsInner.md
 docs/SearchTweets200ResponseTweetsInnerAuthor.md
 docs/SelectFacebookPage200Response.md
@@ -2770,6 +2771,7 @@ src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAcco
 src/main/java/dev/zernio/model/SearchReddit200Response.java
 src/main/java/dev/zernio/model/SearchTweets200Response.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseMeta.java
+src/main/java/dev/zernio/model/SearchTweets200ResponsePagination.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInner.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerAuthor.java
 src/main/java/dev/zernio/model/SelectFacebookPage200Response.java
@@ -3229,3 +3231,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SearchTweets200ResponsePaginationTest.java

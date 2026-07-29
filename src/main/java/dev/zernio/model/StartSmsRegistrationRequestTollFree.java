@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestTollFree.JSON_PROPERTY_BUSINESS_REGISTRATION_TYPE,
   StartSmsRegistrationRequestTollFree.JSON_PROPERTY_BUSINESS_REGISTRATION_COUNTRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:32:31.159132450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:47:42.927391460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestTollFree {
   public static final String JSON_PROPERTY_BUSINESS_NAME = "businessName";
   @javax.annotation.Nonnull

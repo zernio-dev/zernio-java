@@ -15187,6 +15187,10 @@ paths:
         from GET /v1/ads/{adId}/comments?placement={placement}. Ad comment counts are read with
         the Marketing API token (Facebook side) or the connected Instagram account's token
         (Instagram side); a row whose count can't be read is omitted.
+
+        Pagination walks each account's platform listing. Following `nextCursor` reaches past
+        the first page on Facebook and Instagram only, since they are the platforms that
+        support a server-side date window; on the others the listing stops at its first page.
       operationId: listInboxComments
       parameters:
       - description: Filter by profile ID
@@ -55559,6 +55563,8 @@ components:
         hasMore:
           type: boolean
         cursor:
+          description: "Only present when hasMore is true. Absent on the last page,\
+            \ so treat its absence as the end of the thread."
           nullable: true
           type: string
     getInboxPostComments_200_response_meta_adComments:
@@ -56236,6 +56242,16 @@ components:
         platform:
           example: twitter
           type: string
+    searchTweets_200_response_pagination:
+      example:
+        cursor: cursor
+        hasMore: true
+      properties:
+        hasMore:
+          type: boolean
+        cursor:
+          nullable: true
+          type: string
     searchTweets_200_response_meta:
       example:
         resultCount: 5
@@ -56309,7 +56325,7 @@ components:
             $ref: "#/components/schemas/searchTweets_200_response_tweets_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
+          $ref: "#/components/schemas/searchTweets_200_response_pagination"
         meta:
           $ref: "#/components/schemas/searchTweets_200_response_meta"
     listInboxMentions_200_response_data_inner:
@@ -56427,7 +56443,7 @@ components:
             $ref: "#/components/schemas/listInboxMentions_200_response_data_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
+          $ref: "#/components/schemas/searchTweets_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxMentions_200_response_meta"
     replyToMention_request:
@@ -72931,7 +72947,7 @@ components:
             $ref: "#/components/schemas/listLeads_200_response_leads_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
+          $ref: "#/components/schemas/searchTweets_200_response_pagination"
     listLeadForms_200_response:
       example:
         pagination:
@@ -72950,7 +72966,7 @@ components:
             type: object
           type: array
         pagination:
-          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
+          $ref: "#/components/schemas/searchTweets_200_response_pagination"
     createLeadForm_request_questions_inner:
       properties:
         type:
@@ -73308,7 +73324,7 @@ components:
             $ref: "#/components/schemas/listFormLeads_200_response_leads_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
+          $ref: "#/components/schemas/searchTweets_200_response_pagination"
     createTestLead_request_fieldData_inner:
       properties:
         name:
