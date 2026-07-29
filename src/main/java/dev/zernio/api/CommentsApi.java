@@ -32,8 +32,8 @@ import dev.zernio.model.ListInboxComments200Response;
 import java.time.OffsetDateTime;
 import dev.zernio.model.ReplyToInboxPost200Response;
 import dev.zernio.model.ReplyToInboxPostRequest;
-import dev.zernio.model.SendInboxMessage400Response;
 import dev.zernio.model.SendPrivateReplyToComment200Response;
+import dev.zernio.model.SendPrivateReplyToComment400Response;
 import dev.zernio.model.SendPrivateReplyToCommentRequest;
 import dev.zernio.model.SetCommentModerationRequest;
 import dev.zernio.model.UnlikeInboxComment200Response;
@@ -64,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:18:14.128749080Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:22:38.284674864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

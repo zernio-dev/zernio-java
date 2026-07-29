@@ -1164,6 +1164,7 @@ docs/SendDiscordDirectMessageRequestAttachmentsInner.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage400Response.md
+docs/SendInboxMessage400ResponsePlatformError.md
 docs/SendInboxMessageRequest.md
 docs/SendInboxMessageRequest1.md
 docs/SendInboxMessageRequestButtonsInner.md
@@ -1204,6 +1205,7 @@ docs/SendInboxMessageRequestTemplate.md
 docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
+docs/SendPrivateReplyToComment400Response.md
 docs/SendPrivateReplyToCommentRequest.md
 docs/SendPrivateReplyToCommentRequestButtonsInner.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
@@ -2799,6 +2801,7 @@ src/main/java/dev/zernio/model/SendDiscordDirectMessageRequestAttachmentsInner.j
 src/main/java/dev/zernio/model/SendInboxMessage200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseData.java
 src/main/java/dev/zernio/model/SendInboxMessage400Response.java
+src/main/java/dev/zernio/model/SendInboxMessage400ResponsePlatformError.java
 src/main/java/dev/zernio/model/SendInboxMessageRequest.java
 src/main/java/dev/zernio/model/SendInboxMessageRequest1.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestButtonsInner.java
@@ -2839,6 +2842,7 @@ src/main/java/dev/zernio/model/SendInboxMessageRequestTemplate.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInner.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.java
 src/main/java/dev/zernio/model/SendPrivateReplyToComment200Response.java
+src/main/java/dev/zernio/model/SendPrivateReplyToComment400Response.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequest.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInner.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf.java
@@ -3219,4 +3223,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SlackPlatformDataTest.java
+src/test/java/dev/zernio/model/SendInboxMessage400ResponsePlatformErrorTest.java
+src/test/java/dev/zernio/model/SendPrivateReplyToComment400ResponseTest.java

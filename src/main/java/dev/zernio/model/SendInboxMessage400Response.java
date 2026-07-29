@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SendInboxMessage400ResponsePlatformError;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -34,19 +35,22 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SendInboxMessage400Response.JSON_PROPERTY_ERROR,
-  SendInboxMessage400Response.JSON_PROPERTY_CODE
+  SendInboxMessage400Response.JSON_PROPERTY_CODE,
+  SendInboxMessage400Response.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:18:14.128749080Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:22:38.284674864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
 
   /**
-   * Gets or Sets code
+   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
    */
   public enum CodeEnum {
-    PLATFORM_LIMITATION(String.valueOf("PLATFORM_LIMITATION"));
+    PLATFORM_LIMITATION(String.valueOf("PLATFORM_LIMITATION")),
+    
+    MISSING_PARTICIPANT(String.valueOf("MISSING_PARTICIPANT"));
 
     private String value;
 
@@ -78,6 +82,10 @@ public class SendInboxMessage400Response {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
   private CodeEnum code;
+
+  public static final String JSON_PROPERTY_PLATFORM_ERROR = "platformError";
+  @javax.annotation.Nullable
+  private SendInboxMessage400ResponsePlatformError platformError;
 
   public SendInboxMessage400Response() { 
   }
@@ -112,7 +120,7 @@ public class SendInboxMessage400Response {
   }
 
   /**
-   * Get code
+   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
    * @return code
    */
   @javax.annotation.Nullable
@@ -130,6 +138,30 @@ public class SendInboxMessage400Response {
   }
 
 
+  public SendInboxMessage400Response platformError(@javax.annotation.Nullable SendInboxMessage400ResponsePlatformError platformError) {
+    this.platformError = platformError;
+    return this;
+  }
+
+  /**
+   * Get platformError
+   * @return platformError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SendInboxMessage400ResponsePlatformError getPlatformError() {
+    return platformError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformError(@javax.annotation.Nullable SendInboxMessage400ResponsePlatformError platformError) {
+    this.platformError = platformError;
+  }
+
+
   /**
    * Return true if this sendInboxMessage_400_response object is equal to o.
    */
@@ -143,12 +175,13 @@ public class SendInboxMessage400Response {
     }
     SendInboxMessage400Response sendInboxMessage400Response = (SendInboxMessage400Response) o;
     return Objects.equals(this.error, sendInboxMessage400Response.error) &&
-        Objects.equals(this.code, sendInboxMessage400Response.code);
+        Objects.equals(this.code, sendInboxMessage400Response.code) &&
+        Objects.equals(this.platformError, sendInboxMessage400Response.platformError);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, code);
+    return Objects.hash(error, code, platformError);
   }
 
   @Override
@@ -157,6 +190,7 @@ public class SendInboxMessage400Response {
     sb.append("class SendInboxMessage400Response {\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    platformError: ").append(toIndentedString(platformError)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,6 +246,11 @@ public class SendInboxMessage400Response {
     // add `code` to the URL query string
     if (getCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCode()))));
+    }
+
+    // add `platformError` to the URL query string
+    if (getPlatformError() != null) {
+      joiner.add(getPlatformError().toUrlQueryString(prefix + "platformError" + suffix));
     }
 
     return joiner.toString();

@@ -15834,7 +15834,7 @@ paths:
                   value:
                     error: message is required and must be a non-empty string
               schema:
-                $ref: "#/components/schemas/sendInboxMessage_400_response"
+                $ref: "#/components/schemas/sendPrivateReplyToComment_400_response"
           description: Bad request
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -54843,17 +54843,51 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/sendInboxMessage_200_response_data"
+    sendInboxMessage_400_response_platformError:
+      description: "Instagram/Facebook only. Meta's own diagnostic fields for the\
+        \ rejected send, passed through verbatim so you can tell failure classes apart\
+        \ and quote them to Meta. Absent when the failure did not come from Meta."
+      example:
+        code: 0
+        subcode: 6
+        fbtraceId: fbtraceId
+        type: type
+      properties:
+        code:
+          description: Meta error code
+          type: integer
+        subcode:
+          description: Meta error_subcode
+          type: integer
+        fbtraceId:
+          description: "Meta fbtrace_id, quote this in a Meta bug report"
+          type: string
+        type:
+          description: Meta error type (e.g. OAuthException)
+          type: string
     sendInboxMessage_400_response:
       example:
         code: PLATFORM_LIMITATION
+        platformError:
+          code: 0
+          subcode: 6
+          fbtraceId: fbtraceId
+          type: type
         error: error
       properties:
         error:
           type: string
         code:
+          description: Stable machine-readable reason. PLATFORM_LIMITATION covers
+            a capability the platform does not offer (e.g. Bluesky and Reddit DMs
+            reject media); MISSING_PARTICIPANT means the stored conversation has no
+            recipient to send to.
           enum:
           - PLATFORM_LIMITATION
+          - MISSING_PARTICIPANT
           type: string
+        platformError:
+          $ref: "#/components/schemas/sendInboxMessage_400_response_platformError"
     editInboxMessage_request_replyMarkup_keyboard_inner_inner:
       properties:
         text:
@@ -55840,6 +55874,17 @@ components:
           - instagram
           - facebook
           example: instagram
+          type: string
+    sendPrivateReplyToComment_400_response:
+      example:
+        code: PLATFORM_LIMITATION
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - PLATFORM_LIMITATION
           type: string
     retweetPost_request:
       properties:

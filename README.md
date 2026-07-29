@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-29T10:18:14.128749080Z[Etc/UTC]
+- Build date: 2026-07-29T10:22:38.284674864Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2280,6 +2280,7 @@ Class | Method | HTTP request | Description
  - [SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
  - [SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
+ - [SendInboxMessage400ResponsePlatformError](docs/SendInboxMessage400ResponsePlatformError.md)
  - [SendInboxMessageRequest](docs/SendInboxMessageRequest.md)
  - [SendInboxMessageRequest1](docs/SendInboxMessageRequest1.md)
  - [SendInboxMessageRequestButtonsInner](docs/SendInboxMessageRequestButtonsInner.md)
@@ -2320,6 +2321,7 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestTemplateElementsInner](docs/SendInboxMessageRequestTemplateElementsInner.md)
  - [SendInboxMessageRequestTemplateElementsInnerButtonsInner](docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md)
  - [SendPrivateReplyToComment200Response](docs/SendPrivateReplyToComment200Response.md)
+ - [SendPrivateReplyToComment400Response](docs/SendPrivateReplyToComment400Response.md)
  - [SendPrivateReplyToCommentRequest](docs/SendPrivateReplyToCommentRequest.md)
  - [SendPrivateReplyToCommentRequestButtonsInner](docs/SendPrivateReplyToCommentRequestButtonsInner.md)
  - [SendPrivateReplyToCommentRequestButtonsInnerOneOf](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md)
