@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   UsageMeteringDaysInner.JSON_PROPERTY_CREDITS,
   UsageMeteringDaysInner.JSON_PROPERTY_OTHER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T10:36:46.644341122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:32:31.159132450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMeteringDaysInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
