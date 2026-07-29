@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreatePost409Response.JSON_PROPERTY_ERROR,
   CreatePost409Response.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T18:48:27.017595872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePost409Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable

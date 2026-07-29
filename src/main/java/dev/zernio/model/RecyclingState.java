@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   RecyclingState.JSON_PROPERTY_NEXT_RECYCLE_AT,
   RecyclingState.JSON_PROPERTY_LAST_RECYCLED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T18:48:27.017595872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RecyclingState {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable

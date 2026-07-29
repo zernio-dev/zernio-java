@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetMediaPresignedUrlRequest.JSON_PROPERTY_CONTENT_TYPE,
   GetMediaPresignedUrlRequest.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T18:48:27.017595872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrlRequest {
   public static final String JSON_PROPERTY_FILENAME = "filename";
   @javax.annotation.Nonnull
@@ -71,7 +71,21 @@ public class GetMediaPresignedUrlRequest {
     
     VIDEO_X_M4V(String.valueOf("video/x-m4v")),
     
-    APPLICATION_PDF(String.valueOf("application/pdf"));
+    APPLICATION_PDF(String.valueOf("application/pdf")),
+    
+    AUDIO_MPEG(String.valueOf("audio/mpeg")),
+    
+    AUDIO_MP4(String.valueOf("audio/mp4")),
+    
+    AUDIO_AAC(String.valueOf("audio/aac")),
+    
+    AUDIO_OGG(String.valueOf("audio/ogg")),
+    
+    AUDIO_WAV(String.valueOf("audio/wav")),
+    
+    AUDIO_WEBM(String.valueOf("audio/webm")),
+    
+    AUDIO_X_M4A(String.valueOf("audio/x-m4a"));
 
     private String value;
 

@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseLocation.JSON_PROPERTY_MAPS_URI,
   GetGoogleBusinessLocationDetails200ResponseLocation.JSON_PROPERTY_IS_VERIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T18:48:27.017595872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseLocation {
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();

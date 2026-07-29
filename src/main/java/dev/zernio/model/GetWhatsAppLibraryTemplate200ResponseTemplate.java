@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_BODY_PARAMS,
   GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T18:48:27.017595872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppLibraryTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

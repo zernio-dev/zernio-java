@@ -30,6 +30,13 @@
 | VIDEO_WEBM | &quot;video/webm&quot; |
 | VIDEO_X_M4V | &quot;video/x-m4v&quot; |
 | APPLICATION_PDF | &quot;application/pdf&quot; |
+| AUDIO_MPEG | &quot;audio/mpeg&quot; |
+| AUDIO_MP4 | &quot;audio/mp4&quot; |
+| AUDIO_AAC | &quot;audio/aac&quot; |
+| AUDIO_OGG | &quot;audio/ogg&quot; |
+| AUDIO_WAV | &quot;audio/wav&quot; |
+| AUDIO_WEBM | &quot;audio/webm&quot; |
+| AUDIO_X_M4A | &quot;audio/x-m4a&quot; |
 
 
 

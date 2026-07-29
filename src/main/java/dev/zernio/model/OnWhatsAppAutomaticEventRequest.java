@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppAutomaticEventRequest.JSON_PROPERTY_CUSTOM_DATA,
   OnWhatsAppAutomaticEventRequest.JSON_PROPERTY_DETECTED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T18:48:27.017595872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppAutomaticEventRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
