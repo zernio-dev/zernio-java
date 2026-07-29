@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**registrationType** | [**RegistrationTypeEnum**](#RegistrationTypeEnum) |  |  |
-|**phoneNumbers** | **List&lt;String&gt;** | Your numbers this registration covers. |  |
+|**phoneNumbers** | **List&lt;String&gt;** | Your numbers this registration covers. When omitted or empty on a 10DLC registration, defaults to your active SMS-enabled US local numbers not already covered by another registration. |  [optional] |
 |**brand** | [**StartSmsRegistrationRequestBrand**](StartSmsRegistrationRequestBrand.md) |  |  [optional] |
 |**campaign** | [**StartSmsRegistrationRequestCampaign**](StartSmsRegistrationRequestCampaign.md) |  |  [optional] |
 |**messagingBrandName** | **String** | DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets. |  [optional] |

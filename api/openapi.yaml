@@ -58357,10 +58357,11 @@ components:
           - toll_free
           type: string
         phoneNumbers:
-          description: Your numbers this registration covers.
+          description: "Your numbers this registration covers. When omitted or empty\
+            \ on a 10DLC registration, defaults to your active SMS-enabled US local\
+            \ numbers not already covered by another registration."
           items:
             type: string
-          minItems: 1
           type: array
         brand:
           $ref: "#/components/schemas/startSmsRegistration_request_brand"
@@ -58386,7 +58387,6 @@ components:
         tollFree:
           $ref: "#/components/schemas/startSmsRegistration_request_tollFree"
       required:
-      - phoneNumbers
       - registrationType
     startSmsRegistration_200_response:
       example:

@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequest.JSON_PROPERTY_RESUBMIT_REQUEST_ID,
   StartSmsRegistrationRequest.JSON_PROPERTY_TOLL_FREE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T07:58:55.292559816Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T08:49:54.643093043Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequest {
   /**
    * Gets or Sets registrationType
@@ -93,7 +93,7 @@ public class StartSmsRegistrationRequest {
   private RegistrationTypeEnum registrationType;
 
   public static final String JSON_PROPERTY_PHONE_NUMBERS = "phoneNumbers";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<String> phoneNumbers = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BRAND = "brand";
@@ -147,7 +147,7 @@ public class StartSmsRegistrationRequest {
   }
 
 
-  public StartSmsRegistrationRequest phoneNumbers(@javax.annotation.Nonnull List<String> phoneNumbers) {
+  public StartSmsRegistrationRequest phoneNumbers(@javax.annotation.Nullable List<String> phoneNumbers) {
     this.phoneNumbers = phoneNumbers;
     return this;
   }
@@ -161,20 +161,20 @@ public class StartSmsRegistrationRequest {
   }
 
   /**
-   * Your numbers this registration covers.
+   * Your numbers this registration covers. When omitted or empty on a 10DLC registration, defaults to your active SMS-enabled US local numbers not already covered by another registration.
    * @return phoneNumbers
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBERS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getPhoneNumbers() {
     return phoneNumbers;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBERS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPhoneNumbers(@javax.annotation.Nonnull List<String> phoneNumbers) {
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneNumbers(@javax.annotation.Nullable List<String> phoneNumbers) {
     this.phoneNumbers = phoneNumbers;
   }
 
