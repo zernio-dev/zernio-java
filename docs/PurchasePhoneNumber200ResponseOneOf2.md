@@ -11,6 +11,7 @@ A number was already purchased under the supplied purchaseIntentId; no new numbe
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**numberId** | **String** |  |  [optional] |
 |**phoneNumber** | **String** |  |  [optional] |
+|**profileId** | **String** | The profile the number was actually assigned to. |  [optional] |
 
 
 

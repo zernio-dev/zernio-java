@@ -14,6 +14,7 @@
 |**provisionedAt** | **OffsetDateTime** |  |  [optional] |
 |**metaPreverifiedId** | **String** |  |  [optional] |
 |**metaVerificationStatus** | **String** |  |  [optional] |
+|**profileId** | **String** | The profile the number was actually assigned to. |  [optional] |
 
 
 

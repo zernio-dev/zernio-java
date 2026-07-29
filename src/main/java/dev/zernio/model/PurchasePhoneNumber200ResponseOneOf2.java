@@ -35,9 +35,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_STATUS,
   PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_NUMBER_ID,
-  PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_PHONE_NUMBER
+  PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_PHONE_NUMBER,
+  PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_PROFILE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumber200ResponseOneOf2 {
   /**
    * Gets or Sets status
@@ -83,6 +84,10 @@ public class PurchasePhoneNumber200ResponseOneOf2 {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
   private String phoneNumber;
+
+  public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
+  @javax.annotation.Nullable
+  private String profileId;
 
   public PurchasePhoneNumber200ResponseOneOf2() { 
   }
@@ -159,6 +164,30 @@ public class PurchasePhoneNumber200ResponseOneOf2 {
   }
 
 
+  public PurchasePhoneNumber200ResponseOneOf2 profileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = profileId;
+    return this;
+  }
+
+  /**
+   * The profile the number was actually assigned to.
+   * @return profileId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getProfileId() {
+    return profileId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = profileId;
+  }
+
+
   /**
    * Return true if this purchasePhoneNumber_200_response_oneOf_2 object is equal to o.
    */
@@ -173,12 +202,13 @@ public class PurchasePhoneNumber200ResponseOneOf2 {
     PurchasePhoneNumber200ResponseOneOf2 purchasePhoneNumber200ResponseOneOf2 = (PurchasePhoneNumber200ResponseOneOf2) o;
     return Objects.equals(this.status, purchasePhoneNumber200ResponseOneOf2.status) &&
         Objects.equals(this.numberId, purchasePhoneNumber200ResponseOneOf2.numberId) &&
-        Objects.equals(this.phoneNumber, purchasePhoneNumber200ResponseOneOf2.phoneNumber);
+        Objects.equals(this.phoneNumber, purchasePhoneNumber200ResponseOneOf2.phoneNumber) &&
+        Objects.equals(this.profileId, purchasePhoneNumber200ResponseOneOf2.profileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, numberId, phoneNumber);
+    return Objects.hash(status, numberId, phoneNumber, profileId);
   }
 
   @Override
@@ -188,6 +218,7 @@ public class PurchasePhoneNumber200ResponseOneOf2 {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    numberId: ").append(toIndentedString(numberId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -248,6 +279,11 @@ public class PurchasePhoneNumber200ResponseOneOf2 {
     // add `phoneNumber` to the URL query string
     if (getPhoneNumber() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
+    }
+
+    // add `profileId` to the URL query string
+    if (getProfileId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
     }
 
     return joiner.toString();

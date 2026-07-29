@@ -19913,7 +19913,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/purchasePhoneNumber_200_response"
+                $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response"
           description: |
             Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).
         "400":
@@ -59925,7 +59925,8 @@ components:
     purchasePhoneNumber_request:
       properties:
         profileId:
-          description: Profile to associate the number with
+          description: |
+            Preferred profile for the number. One number = one profile, so when the requested profile already holds a number the API assigns the next free profile instead (or creates one) and returns the actual assignment in `profileId` on the response.
           type: string
         country:
           default: US
@@ -59963,7 +59964,7 @@ components:
           type: boolean
         purchaseIntentId:
           description: |
-            Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: "already_purchased", numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase.
+            Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: "already_purchased", numberId, phoneNumber, profileId } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase.
           maxLength: 100
           type: string
         allowMultiple:
@@ -60001,6 +60002,9 @@ components:
           type: string
         metaVerificationStatus:
           type: string
+        profileId:
+          description: The profile the number was actually assigned to.
+          type: string
     purchasePhoneNumber_200_response_oneOf_1:
       description: Phone number provisioned inline (subsequent numbers)
       properties:
@@ -60019,6 +60023,9 @@ components:
         numberId:
           type: string
         phoneNumber:
+          type: string
+        profileId:
+          description: The profile the number was actually assigned to.
           type: string
     purchasePhoneNumber_200_response:
       oneOf:
@@ -60345,6 +60352,47 @@ components:
           type: boolean
       required:
       - profileId
+    purchaseWhatsAppPhoneNumber_200_response_oneOf_phoneNumber:
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+        status:
+          type: string
+        country:
+          type: string
+        provisionedAt:
+          format: date-time
+          type: string
+        metaPreverifiedId:
+          type: string
+        metaVerificationStatus:
+          type: string
+    purchaseWhatsAppPhoneNumber_200_response_oneOf:
+      description: Phone number provisioned inline (subsequent numbers)
+      properties:
+        message:
+          type: string
+        phoneNumber:
+          $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf_phoneNumber"
+    purchaseWhatsAppPhoneNumber_200_response_oneOf_1:
+      description: |
+        A number was already purchased under the supplied purchaseIntentId; no new number was provisioned.
+      properties:
+        status:
+          enum:
+          - already_purchased
+          type: string
+        numberId:
+          type: string
+        phoneNumber:
+          type: string
+    purchaseWhatsAppPhoneNumber_200_response:
+      oneOf:
+      - $ref: "#/components/schemas/purchasePhoneNumber_200_response_oneOf"
+      - $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf"
+      - $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf_1"
     listWhatsAppNumberCountries_200_response_countries_inner:
       example:
         code: code

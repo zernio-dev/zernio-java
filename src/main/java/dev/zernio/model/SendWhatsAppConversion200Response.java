@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppConversion200Response.JSON_PROPERTY_FAILURES,
   SendWhatsAppConversion200Response.JSON_PROPERTY_TRACE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppConversion200Response {
   /**
    * Gets or Sets platform

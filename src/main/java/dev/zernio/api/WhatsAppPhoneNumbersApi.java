@@ -31,9 +31,9 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListPhoneNumbers200Response;
 import dev.zernio.model.ListWhatsAppNumberCountries200Response;
-import dev.zernio.model.PurchasePhoneNumber200Response;
 import dev.zernio.model.PurchasePhoneNumber202Response;
 import dev.zernio.model.PurchasePhoneNumber409Response;
+import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumberRequest;
 import dev.zernio.model.ReleasePhoneNumber200Response;
 import dev.zernio.model.RemediatePhoneNumber200Response;
@@ -77,7 +77,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1274,12 +1274,12 @@ public class WhatsAppPhoneNumbersApi {
    * Purchase phone number
    * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
-   * @return PurchasePhoneNumber200Response
+   * @return PurchaseWhatsAppPhoneNumber200Response
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public PurchasePhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
+  public PurchaseWhatsAppPhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
     return purchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest, null);
   }
 
@@ -1288,13 +1288,13 @@ public class WhatsAppPhoneNumbersApi {
    * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return PurchasePhoneNumber200Response
+   * @return PurchaseWhatsAppPhoneNumber200Response
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public PurchasePhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PurchasePhoneNumber200Response> localVarResponse = purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest, headers);
+  public PurchaseWhatsAppPhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PurchaseWhatsAppPhoneNumber200Response> localVarResponse = purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1302,12 +1302,12 @@ public class WhatsAppPhoneNumbersApi {
    * Purchase phone number
    * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
-   * @return ApiResponse&lt;PurchasePhoneNumber200Response&gt;
+   * @return ApiResponse&lt;PurchaseWhatsAppPhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public ApiResponse<PurchasePhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
+  public ApiResponse<PurchaseWhatsAppPhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
     return purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest, null);
   }
 
@@ -1316,12 +1316,12 @@ public class WhatsAppPhoneNumbersApi {
    * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;PurchasePhoneNumber200Response&gt;
+   * @return ApiResponse&lt;PurchaseWhatsAppPhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public ApiResponse<PurchasePhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<PurchaseWhatsAppPhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = purchaseWhatsAppPhoneNumberRequestBuilder(purchaseWhatsAppPhoneNumberRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1337,7 +1337,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<PurchasePhoneNumber200Response>(
+          return new ApiResponse<PurchaseWhatsAppPhoneNumber200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1347,10 +1347,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        PurchasePhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PurchasePhoneNumber200Response>() {});
+        PurchaseWhatsAppPhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PurchaseWhatsAppPhoneNumber200Response>() {});
         
 
-        return new ApiResponse<PurchasePhoneNumber200Response>(
+        return new ApiResponse<PurchaseWhatsAppPhoneNumber200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

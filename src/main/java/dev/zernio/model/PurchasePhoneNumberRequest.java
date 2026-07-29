@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -129,7 +129,7 @@ public class PurchasePhoneNumberRequest {
   }
 
   /**
-   * Profile to associate the number with
+   * Preferred profile for the number. One number &#x3D; one profile, so when the requested profile already holds a number the API assigns the next free profile instead (or creates one) and returns the actual assignment in &#x60;profileId&#x60; on the response. 
    * @return profileId
    */
   @javax.annotation.Nonnull
@@ -297,7 +297,7 @@ public class PurchasePhoneNumberRequest {
   }
 
   /**
-   * Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. 
+   * Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber, profileId } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. 
    * @return purchaseIntentId
    */
   @javax.annotation.Nullable

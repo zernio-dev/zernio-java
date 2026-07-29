@@ -1235,7 +1235,7 @@ ApiResponse<[**ListWhatsAppNumberCountries200Response**](ListWhatsAppNumberCount
 
 ## purchaseWhatsAppPhoneNumber
 
-> PurchasePhoneNumber200Response purchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest)
+> PurchaseWhatsAppPhoneNumber200Response purchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest)
 
 Purchase phone number
 
@@ -1264,7 +1264,7 @@ public class Example {
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = new PurchaseWhatsAppPhoneNumberRequest(); // PurchaseWhatsAppPhoneNumberRequest | 
         try {
-            PurchasePhoneNumber200Response result = apiInstance.purchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest);
+            PurchaseWhatsAppPhoneNumber200Response result = apiInstance.purchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppPhoneNumbersApi#purchaseWhatsAppPhoneNumber");
@@ -1286,7 +1286,7 @@ public class Example {
 
 ### Return type
 
-[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.md)
+[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNumber200Response.md)
 
 
 ### Authorization
@@ -1312,7 +1312,7 @@ public class Example {
 
 ## purchaseWhatsAppPhoneNumberWithHttpInfo
 
-> ApiResponse<PurchasePhoneNumber200Response> purchaseWhatsAppPhoneNumber purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest)
+> ApiResponse<PurchaseWhatsAppPhoneNumber200Response> purchaseWhatsAppPhoneNumber purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest)
 
 Purchase phone number
 
@@ -1342,7 +1342,7 @@ public class Example {
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = new PurchaseWhatsAppPhoneNumberRequest(); // PurchaseWhatsAppPhoneNumberRequest | 
         try {
-            ApiResponse<PurchasePhoneNumber200Response> response = apiInstance.purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest);
+            ApiResponse<PurchaseWhatsAppPhoneNumber200Response> response = apiInstance.purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1366,7 +1366,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.md)>
+ApiResponse<[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNumber200Response.md)>
 
 
 ### Authorization

@@ -2,14 +2,23 @@
 
 # PurchaseWhatsAppPhoneNumber200ResponseOneOf1
 
-Phone number provisioned inline (subsequent numbers)
+A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**message** | **String** |  |  [optional] |
-|**phoneNumber** | [**PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber**](PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.md) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**numberId** | **String** |  |  [optional] |
+|**phoneNumber** | **String** |  |  [optional] |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| ALREADY_PURCHASED | &quot;already_purchased&quot; |
 
 
 

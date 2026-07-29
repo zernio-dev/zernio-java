@@ -24,28 +24,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.net.URI;
+import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Checkout session created (first number)
+ * Phone number provisioned inline (subsequent numbers)
  */
 @JsonPropertyOrder({
   PurchaseWhatsAppPhoneNumber200ResponseOneOf.JSON_PROPERTY_MESSAGE,
-  PurchaseWhatsAppPhoneNumber200ResponseOneOf.JSON_PROPERTY_CHECKOUT_URL
+  PurchaseWhatsAppPhoneNumber200ResponseOneOf.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumber200ResponseOneOf {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
   private String message;
 
-  public static final String JSON_PROPERTY_CHECKOUT_URL = "checkoutUrl";
+  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
-  private URI checkoutUrl;
+  private PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber phoneNumber;
 
   public PurchaseWhatsAppPhoneNumber200ResponseOneOf() { 
   }
@@ -74,27 +74,27 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf {
   }
 
 
-  public PurchaseWhatsAppPhoneNumber200ResponseOneOf checkoutUrl(@javax.annotation.Nullable URI checkoutUrl) {
-    this.checkoutUrl = checkoutUrl;
+  public PurchaseWhatsAppPhoneNumber200ResponseOneOf phoneNumber(@javax.annotation.Nullable PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber phoneNumber) {
+    this.phoneNumber = phoneNumber;
     return this;
   }
 
   /**
-   * Get checkoutUrl
-   * @return checkoutUrl
+   * Get phoneNumber
+   * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CHECKOUT_URL, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getCheckoutUrl() {
-    return checkoutUrl;
+  public PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber getPhoneNumber() {
+    return phoneNumber;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CHECKOUT_URL, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCheckoutUrl(@javax.annotation.Nullable URI checkoutUrl) {
-    this.checkoutUrl = checkoutUrl;
+  public void setPhoneNumber(@javax.annotation.Nullable PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -111,12 +111,12 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf {
     }
     PurchaseWhatsAppPhoneNumber200ResponseOneOf purchaseWhatsAppPhoneNumber200ResponseOneOf = (PurchaseWhatsAppPhoneNumber200ResponseOneOf) o;
     return Objects.equals(this.message, purchaseWhatsAppPhoneNumber200ResponseOneOf.message) &&
-        Objects.equals(this.checkoutUrl, purchaseWhatsAppPhoneNumber200ResponseOneOf.checkoutUrl);
+        Objects.equals(this.phoneNumber, purchaseWhatsAppPhoneNumber200ResponseOneOf.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, checkoutUrl);
+    return Objects.hash(message, phoneNumber);
   }
 
   @Override
@@ -124,7 +124,7 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf {
     StringBuilder sb = new StringBuilder();
     sb.append("class PurchaseWhatsAppPhoneNumber200ResponseOneOf {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    checkoutUrl: ").append(toIndentedString(checkoutUrl)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,9 +177,9 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
-    // add `checkoutUrl` to the URL query string
-    if (getCheckoutUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scheckoutUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCheckoutUrl()))));
+    // add `phoneNumber` to the URL query string
+    if (getPhoneNumber() != null) {
+      joiner.add(getPhoneNumber().toUrlQueryString(prefix + "phoneNumber" + suffix));
     }
 
     return joiner.toString();

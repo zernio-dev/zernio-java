@@ -24,57 +24,118 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Phone number provisioned inline (subsequent numbers)
+ * A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. 
  */
 @JsonPropertyOrder({
-  PurchaseWhatsAppPhoneNumber200ResponseOneOf1.JSON_PROPERTY_MESSAGE,
+  PurchaseWhatsAppPhoneNumber200ResponseOneOf1.JSON_PROPERTY_STATUS,
+  PurchaseWhatsAppPhoneNumber200ResponseOneOf1.JSON_PROPERTY_NUMBER_ID,
   PurchaseWhatsAppPhoneNumber200ResponseOneOf1.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 {
-  public static final String JSON_PROPERTY_MESSAGE = "message";
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    ALREADY_PURCHASED(String.valueOf("already_purchased"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
-  private String message;
+  private StatusEnum status;
+
+  public static final String JSON_PROPERTY_NUMBER_ID = "numberId";
+  @javax.annotation.Nullable
+  private String numberId;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
-  private PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber phoneNumber;
+  private String phoneNumber;
 
   public PurchaseWhatsAppPhoneNumber200ResponseOneOf1() { 
   }
 
-  public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
     return this;
   }
 
   /**
-   * Get message
-   * @return message
+   * Get status
+   * @return status
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMessage() {
-    return message;
+  public StatusEnum getStatus() {
+    return status;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
   }
 
 
-  public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 phoneNumber(@javax.annotation.Nullable PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber phoneNumber) {
+  public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 numberId(@javax.annotation.Nullable String numberId) {
+    this.numberId = numberId;
+    return this;
+  }
+
+  /**
+   * Get numberId
+   * @return numberId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getNumberId() {
+    return numberId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNumberId(@javax.annotation.Nullable String numberId) {
+    this.numberId = numberId;
+  }
+
+
+  public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 phoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -86,14 +147,14 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber phoneNumber) {
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
@@ -110,20 +171,22 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 {
       return false;
     }
     PurchaseWhatsAppPhoneNumber200ResponseOneOf1 purchaseWhatsAppPhoneNumber200ResponseOneOf1 = (PurchaseWhatsAppPhoneNumber200ResponseOneOf1) o;
-    return Objects.equals(this.message, purchaseWhatsAppPhoneNumber200ResponseOneOf1.message) &&
+    return Objects.equals(this.status, purchaseWhatsAppPhoneNumber200ResponseOneOf1.status) &&
+        Objects.equals(this.numberId, purchaseWhatsAppPhoneNumber200ResponseOneOf1.numberId) &&
         Objects.equals(this.phoneNumber, purchaseWhatsAppPhoneNumber200ResponseOneOf1.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, phoneNumber);
+    return Objects.hash(status, numberId, phoneNumber);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 {\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    numberId: ").append(toIndentedString(numberId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -172,14 +235,19 @@ public class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `numberId` to the URL query string
+    if (getNumberId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumberId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberId()))));
     }
 
     // add `phoneNumber` to the URL query string
     if (getPhoneNumber() != null) {
-      joiner.add(getPhoneNumber().toUrlQueryString(prefix + "phoneNumber" + suffix));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
     }
 
     return joiner.toString();

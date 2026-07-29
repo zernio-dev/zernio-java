@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumber200ResponseOneOf1PhoneNumber.JSON_PROPERTY_COUNTRY,
   PurchasePhoneNumber200ResponseOneOf1PhoneNumber.JSON_PROPERTY_PROVISIONED_AT,
   PurchasePhoneNumber200ResponseOneOf1PhoneNumber.JSON_PROPERTY_META_PREVERIFIED_ID,
-  PurchasePhoneNumber200ResponseOneOf1PhoneNumber.JSON_PROPERTY_META_VERIFICATION_STATUS
+  PurchasePhoneNumber200ResponseOneOf1PhoneNumber.JSON_PROPERTY_META_VERIFICATION_STATUS,
+  PurchasePhoneNumber200ResponseOneOf1PhoneNumber.JSON_PROPERTY_PROFILE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:46:17.055826374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -71,6 +72,10 @@ public class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {
   public static final String JSON_PROPERTY_META_VERIFICATION_STATUS = "metaVerificationStatus";
   @javax.annotation.Nullable
   private String metaVerificationStatus;
+
+  public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
+  @javax.annotation.Nullable
+  private String profileId;
 
   public PurchasePhoneNumber200ResponseOneOf1PhoneNumber() { 
   }
@@ -243,6 +248,30 @@ public class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {
   }
 
 
+  public PurchasePhoneNumber200ResponseOneOf1PhoneNumber profileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = profileId;
+    return this;
+  }
+
+  /**
+   * The profile the number was actually assigned to.
+   * @return profileId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getProfileId() {
+    return profileId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = profileId;
+  }
+
+
   /**
    * Return true if this purchasePhoneNumber_200_response_oneOf_1_phoneNumber object is equal to o.
    */
@@ -261,12 +290,13 @@ public class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {
         Objects.equals(this.country, purchasePhoneNumber200ResponseOneOf1PhoneNumber.country) &&
         Objects.equals(this.provisionedAt, purchasePhoneNumber200ResponseOneOf1PhoneNumber.provisionedAt) &&
         Objects.equals(this.metaPreverifiedId, purchasePhoneNumber200ResponseOneOf1PhoneNumber.metaPreverifiedId) &&
-        Objects.equals(this.metaVerificationStatus, purchasePhoneNumber200ResponseOneOf1PhoneNumber.metaVerificationStatus);
+        Objects.equals(this.metaVerificationStatus, purchasePhoneNumber200ResponseOneOf1PhoneNumber.metaVerificationStatus) &&
+        Objects.equals(this.profileId, purchasePhoneNumber200ResponseOneOf1PhoneNumber.profileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, status, country, provisionedAt, metaPreverifiedId, metaVerificationStatus);
+    return Objects.hash(id, phoneNumber, status, country, provisionedAt, metaPreverifiedId, metaVerificationStatus, profileId);
   }
 
   @Override
@@ -280,6 +310,7 @@ public class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {
     sb.append("    provisionedAt: ").append(toIndentedString(provisionedAt)).append("\n");
     sb.append("    metaPreverifiedId: ").append(toIndentedString(metaPreverifiedId)).append("\n");
     sb.append("    metaVerificationStatus: ").append(toIndentedString(metaVerificationStatus)).append("\n");
+    sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -360,6 +391,11 @@ public class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {
     // add `metaVerificationStatus` to the URL query string
     if (getMetaVerificationStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smetaVerificationStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetaVerificationStatus()))));
+    }
+
+    // add `profileId` to the URL query string
+    if (getProfileId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
     }
 
     return joiner.toString();
