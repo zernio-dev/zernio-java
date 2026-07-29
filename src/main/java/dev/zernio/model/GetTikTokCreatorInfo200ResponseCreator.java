@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetTikTokCreatorInfo200ResponseCreator.JSON_PROPERTY_IS_VERIFIED,
   GetTikTokCreatorInfo200ResponseCreator.JSON_PROPERTY_CAN_POST_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:33:51.154250503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokCreatorInfo200ResponseCreator {
   public static final String JSON_PROPERTY_NICKNAME = "nickname";
   @javax.annotation.Nullable

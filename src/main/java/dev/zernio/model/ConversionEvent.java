@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ConversionEvent.JSON_PROPERTY_ACTION_SOURCE,
   ConversionEvent.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:33:51.154250503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T17:40:31.250764022Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEvent {
   public static final String JSON_PROPERTY_EVENT_NAME = "eventName";
   @javax.annotation.Nonnull
@@ -87,7 +87,7 @@ public class ConversionEvent {
   private URI sourceUrl;
 
   /**
-   * Where the conversion happened. Used by Meta; Google ignores.
+   * Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting.
    */
   public enum ActionSourceEnum {
     WEB(String.valueOf("web")),
@@ -346,7 +346,7 @@ public class ConversionEvent {
   }
 
   /**
-   * Where the conversion happened. Used by Meta; Google ignores.
+   * Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting.
    * @return actionSource
    */
   @javax.annotation.Nullable

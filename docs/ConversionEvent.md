@@ -16,7 +16,7 @@ A single conversion event to relay to the ad platform. All PII fields (email, ph
 |**user** | [**ConversionEventUser**](ConversionEventUser.md) |  |  |
 |**items** | [**List&lt;ConversionEventItemsInner&gt;**](ConversionEventItemsInner.md) | Item-level detail for ecommerce events. |  [optional] |
 |**sourceUrl** | **URI** | URL where the conversion originated (used by Meta). |  [optional] |
-|**actionSource** | [**ActionSourceEnum**](#ActionSourceEnum) | Where the conversion happened. Used by Meta; Google ignores. |  [optional] |
+|**actionSource** | [**ActionSourceEnum**](#ActionSourceEnum) | Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting. |  [optional] |
 |**platformData** | **Map&lt;String, Object&gt;** | Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is. |  [optional] |
 
 
