@@ -39,18 +39,18 @@ import dev.zernio.ApiClient;
   InstagramPlatformDataUserTagsInner.JSON_PROPERTY_Y,
   InstagramPlatformDataUserTagsInner.JSON_PROPERTY_MEDIA_INDEX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:55:03.279332048Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T11:59:17.953704880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformDataUserTagsInner {
   public static final String JSON_PROPERTY_USERNAME = "username";
   @javax.annotation.Nonnull
   private String username;
 
   public static final String JSON_PROPERTY_X = "x";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private BigDecimal x;
 
   public static final String JSON_PROPERTY_Y = "y";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private BigDecimal y;
 
   public static final String JSON_PROPERTY_MEDIA_INDEX = "mediaIndex";
@@ -84,54 +84,54 @@ public class InstagramPlatformDataUserTagsInner {
   }
 
 
-  public InstagramPlatformDataUserTagsInner x(@javax.annotation.Nonnull BigDecimal x) {
+  public InstagramPlatformDataUserTagsInner x(@javax.annotation.Nullable BigDecimal x) {
     this.x = x;
     return this;
   }
 
   /**
-   * X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right)
+   * X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right). Required for photos, ignored for Reels/videos, optional for stories.
    * minimum: 0
    * maximum: 1
    * @return x
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_X, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_X, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BigDecimal getX() {
     return x;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_X, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setX(@javax.annotation.Nonnull BigDecimal x) {
+  @JsonProperty(value = JSON_PROPERTY_X, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setX(@javax.annotation.Nullable BigDecimal x) {
     this.x = x;
   }
 
 
-  public InstagramPlatformDataUserTagsInner y(@javax.annotation.Nonnull BigDecimal y) {
+  public InstagramPlatformDataUserTagsInner y(@javax.annotation.Nullable BigDecimal y) {
     this.y = y;
     return this;
   }
 
   /**
-   * Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom)
+   * Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom). Required for photos, ignored for Reels/videos, optional for stories.
    * minimum: 0
    * maximum: 1
    * @return y
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_Y, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_Y, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BigDecimal getY() {
     return y;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_Y, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setY(@javax.annotation.Nonnull BigDecimal y) {
+  @JsonProperty(value = JSON_PROPERTY_Y, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setY(@javax.annotation.Nullable BigDecimal y) {
     this.y = y;
   }
 
@@ -142,7 +142,7 @@ public class InstagramPlatformDataUserTagsInner {
   }
 
   /**
-   * Zero-based index of the carousel item to tag. Defaults to 0. Tags on video items or out-of-range indices are ignored.
+   * Zero-based index of the carousel item to tag. Defaults to 0. Tags on out-of-range indices are ignored.
    * minimum: 0
    * @return mediaIndex
    */
