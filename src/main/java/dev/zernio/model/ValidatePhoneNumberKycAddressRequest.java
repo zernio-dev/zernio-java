@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_ADMINISTRATIVE_AREA,
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_POSTAL_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:27:51.001645062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePhoneNumberKycAddressRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull

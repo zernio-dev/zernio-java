@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SnapchatPlatformData.JSON_PROPERTY_CONTENT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:27:51.001645062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SnapchatPlatformData {
   /**
    * Content type: story (ephemeral 24h, default), saved_story (permanent on Public Profile), spotlight (video feed)
