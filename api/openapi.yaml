@@ -70836,7 +70836,10 @@ components:
     updateAdTrackingTags_request:
       properties:
         urlTags:
-          description: Meta only. Click-URL params appended to a freshly-rebuilt creative.
+          description: "Meta only. Click-URL params appended to a freshly-rebuilt\
+            \ creative. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}},\
+            \ ...) are sent through unescaped so Meta expands them; every other character\
+            \ is percent-encoded."
           items:
             $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
           type: array
@@ -71656,7 +71659,9 @@ components:
           type: string
         urlTags:
           description: "URL parameters appended to the ad link, rendered as `key=value`\
-            \ pairs joined with `&`."
+            \ pairs joined with `&`. Meta dynamic macros ({{ad.id}}, {{campaign.id}},\
+            \ {{placement}}, ...) are sent through unescaped so Meta expands them;\
+            \ every other character is percent-encoded."
           items:
             $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
           type: array
@@ -71811,8 +71816,10 @@ components:
           description: Meta Pixel ID to attach for offsite-conversion measurement.
           type: string
         urlTags:
-          description: Click-URL params appended to the ad's destination as `url_tags`
-            (e.g. utm_source).
+          description: "Click-URL params appended to the ad's destination as `url_tags`\
+            \ (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}},\
+            \ {{placement}}, ...) are sent through unescaped so Meta expands them;\
+            \ every other character is percent-encoded."
           items:
             $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
           type: array

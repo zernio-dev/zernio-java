@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestTracking.JSON_PROPERTY_PIXEL_ID,
   CreateStandaloneAdRequestTracking.JSON_PROPERTY_URL_TAGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:35:06.362386383Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T09:59:10.022448146Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestTracking {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -90,7 +90,7 @@ public class CreateStandaloneAdRequestTracking {
   }
 
   /**
-   * Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source).
+   * Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.
    * @return urlTags
    */
   @javax.annotation.Nullable

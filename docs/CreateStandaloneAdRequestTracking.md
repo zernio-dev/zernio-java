@@ -9,7 +9,7 @@ Meta only. Attaches pixel measurement to the ad regardless of the optimization g
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**pixelId** | **String** | Meta Pixel ID to attach for offsite-conversion measurement. |  [optional] |
-|**urlTags** | [**List&lt;UpdateAdTrackingTagsRequestUrlTagsInner&gt;**](UpdateAdTrackingTagsRequestUrlTagsInner.md) | Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). |  [optional] |
+|**urlTags** | [**List&lt;UpdateAdTrackingTagsRequestUrlTagsInner&gt;**](UpdateAdTrackingTagsRequestUrlTagsInner.md) | Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded. |  [optional] |
 
 
 
