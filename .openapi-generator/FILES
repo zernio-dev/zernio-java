@@ -401,6 +401,9 @@ docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
+docs/FacebookPostEarningsResponse.md
+docs/FacebookPostEarningsResponseMetricsValue.md
+docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
 docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
@@ -778,6 +781,7 @@ docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
 docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md
 docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md
+docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md
 docs/InstagramApi.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
@@ -2071,6 +2075,9 @@ src/main/java/dev/zernio/model/ExternalPostSummaryAnalytics.java
 src/main/java/dev/zernio/model/ExternalPostWebhookPost.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
 src/main/java/dev/zernio/model/FacebookPlatformDataCarouselCardsInner.java
+src/main/java/dev/zernio/model/FacebookPostEarningsResponse.java
+src/main/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValue.java
+src/main/java/dev/zernio/model/FacebookPostEarningsResponseUnavailableMetricsInner.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200Response.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.java
@@ -2439,6 +2446,7 @@ src/main/java/dev/zernio/model/InstagramAccountInsightsResponseDateRange.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValue.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValueValuesInner.java
+src/main/java/dev/zernio/model/InstagramAccountInsightsResponseUnavailableMetricsInner.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponse.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponseDemographicsValueInner.java
 src/main/java/dev/zernio/model/InstagramPlatformData.java
@@ -3239,3 +3247,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValueTest.java
+src/test/java/dev/zernio/model/FacebookPostEarningsResponseTest.java
+src/test/java/dev/zernio/model/FacebookPostEarningsResponseUnavailableMetricsInnerTest.java
+src/test/java/dev/zernio/model/InstagramAccountInsightsResponseUnavailableMetricsInnerTest.java

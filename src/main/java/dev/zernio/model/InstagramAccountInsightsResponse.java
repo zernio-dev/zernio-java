@@ -26,8 +26,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.InstagramAccountInsightsResponseDateRange;
 import dev.zernio.model.InstagramAccountInsightsResponseMetricsValue;
+import dev.zernio.model.InstagramAccountInsightsResponseUnavailableMetricsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -44,9 +47,10 @@ import dev.zernio.ApiClient;
   InstagramAccountInsightsResponse.JSON_PROPERTY_METRIC_TYPE,
   InstagramAccountInsightsResponse.JSON_PROPERTY_BREAKDOWN,
   InstagramAccountInsightsResponse.JSON_PROPERTY_METRICS,
+  InstagramAccountInsightsResponse.JSON_PROPERTY_UNAVAILABLE_METRICS,
   InstagramAccountInsightsResponse.JSON_PROPERTY_DATA_DELAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramAccountInsightsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -151,6 +155,10 @@ public class InstagramAccountInsightsResponse {
   public static final String JSON_PROPERTY_METRICS = "metrics";
   @javax.annotation.Nullable
   private Map<String, InstagramAccountInsightsResponseMetricsValue> metrics = new HashMap<>();
+
+  public static final String JSON_PROPERTY_UNAVAILABLE_METRICS = "unavailableMetrics";
+  @javax.annotation.Nullable
+  private List<InstagramAccountInsightsResponseUnavailableMetricsInner> unavailableMetrics = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DATA_DELAY = "dataDelay";
   @javax.annotation.Nullable
@@ -317,7 +325,7 @@ public class InstagramAccountInsightsResponse {
   }
 
   /**
-   * Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}). 
+   * Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}).  Monetary metrics additionally carry \&quot;unit\&quot; and \&quot;currency\&quot;. Zernio never rescales money: \&quot;total\&quot; and every \&quot;values[].value\&quot; are the platform&#39;s raw numbers in the stated unit. Monetary metrics also keep \&quot;values\&quot; on metricType&#x3D;total_value, because their \&quot;total\&quot; is the sum of the daily buckets the platform returned over the range: keep the series so you can reconcile that sum against the platform&#39;s own reporting before invoicing on it. A metric that could not be served is absent from this object and listed in \&quot;unavailableMetrics\&quot; instead, so an unavailable metric is never reported as a zero. 
    * @return metrics
    */
   @javax.annotation.Nullable
@@ -332,6 +340,38 @@ public class InstagramAccountInsightsResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetrics(@javax.annotation.Nullable Map<String, InstagramAccountInsightsResponseMetricsValue> metrics) {
     this.metrics = metrics;
+  }
+
+
+  public InstagramAccountInsightsResponse unavailableMetrics(@javax.annotation.Nullable List<InstagramAccountInsightsResponseUnavailableMetricsInner> unavailableMetrics) {
+    this.unavailableMetrics = unavailableMetrics;
+    return this;
+  }
+
+  public InstagramAccountInsightsResponse addUnavailableMetricsItem(InstagramAccountInsightsResponseUnavailableMetricsInner unavailableMetricsItem) {
+    if (this.unavailableMetrics == null) {
+      this.unavailableMetrics = new ArrayList<>();
+    }
+    this.unavailableMetrics.add(unavailableMetricsItem);
+    return this;
+  }
+
+  /**
+   * Requested metrics that could not be served. Present only when at least one metric is unavailable, and absent otherwise. Each listed metric is OMITTED from \&quot;metrics\&quot; rather than reported as 0, which is how an unavailable metric is distinguished from a genuine zero. The request itself still succeeds with HTTP 200. 
+   * @return unavailableMetrics
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNAVAILABLE_METRICS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<InstagramAccountInsightsResponseUnavailableMetricsInner> getUnavailableMetrics() {
+    return unavailableMetrics;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNAVAILABLE_METRICS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnavailableMetrics(@javax.annotation.Nullable List<InstagramAccountInsightsResponseUnavailableMetricsInner> unavailableMetrics) {
+    this.unavailableMetrics = unavailableMetrics;
   }
 
 
@@ -378,12 +418,13 @@ public class InstagramAccountInsightsResponse {
         Objects.equals(this.metricType, instagramAccountInsightsResponse.metricType) &&
         Objects.equals(this.breakdown, instagramAccountInsightsResponse.breakdown) &&
         Objects.equals(this.metrics, instagramAccountInsightsResponse.metrics) &&
+        Objects.equals(this.unavailableMetrics, instagramAccountInsightsResponse.unavailableMetrics) &&
         Objects.equals(this.dataDelay, instagramAccountInsightsResponse.dataDelay);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, accountId, platform, dateRange, metricType, breakdown, metrics, dataDelay);
+    return Objects.hash(success, accountId, platform, dateRange, metricType, breakdown, metrics, unavailableMetrics, dataDelay);
   }
 
   @Override
@@ -397,6 +438,7 @@ public class InstagramAccountInsightsResponse {
     sb.append("    metricType: ").append(toIndentedString(metricType)).append("\n");
     sb.append("    breakdown: ").append(toIndentedString(breakdown)).append("\n");
     sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
+    sb.append("    unavailableMetrics: ").append(toIndentedString(unavailableMetrics)).append("\n");
     sb.append("    dataDelay: ").append(toIndentedString(dataDelay)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -481,6 +523,16 @@ public class InstagramAccountInsightsResponse {
         if (getMetrics().get(_key) != null) {
           joiner.add(getMetrics().get(_key).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smetrics%s%s", prefix, suffix,
               "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `unavailableMetrics` to the URL query string
+    if (getUnavailableMetrics() != null) {
+      for (int i = 0; i < getUnavailableMetrics().size(); i++) {
+        if (getUnavailableMetrics().get(i) != null) {
+          joiner.add(getUnavailableMetrics().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sunavailableMetrics%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

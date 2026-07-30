@@ -30,6 +30,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,9 +44,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   InstagramAccountInsightsResponseMetricsValue.JSON_PROPERTY_TOTAL,
   InstagramAccountInsightsResponseMetricsValue.JSON_PROPERTY_VALUES,
-  InstagramAccountInsightsResponseMetricsValue.JSON_PROPERTY_BREAKDOWNS
+  InstagramAccountInsightsResponseMetricsValue.JSON_PROPERTY_BREAKDOWNS,
+  InstagramAccountInsightsResponseMetricsValue.JSON_PROPERTY_UNIT,
+  InstagramAccountInsightsResponseMetricsValue.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramAccountInsightsResponseMetricsValue {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable
@@ -55,6 +61,48 @@ public class InstagramAccountInsightsResponseMetricsValue {
   public static final String JSON_PROPERTY_BREAKDOWNS = "breakdowns";
   @javax.annotation.Nullable
   private List<InstagramAccountInsightsResponseMetricsValueBreakdownsInner> breakdowns = new ArrayList<>();
+
+  /**
+   * Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. 
+   */
+  public enum UnitEnum {
+    MICRO_AMOUNT(String.valueOf("micro_amount")),
+    
+    UNSPECIFIED(String.valueOf("unspecified"));
+
+    private String value;
+
+    UnitEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static UnitEnum fromValue(String value) {
+      for (UnitEnum b : UnitEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_UNIT = "unit";
+  @javax.annotation.Nullable
+  private UnitEnum unit;
+
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
+  private JsonNullable<String> currency = JsonNullable.<String>undefined();
 
   public InstagramAccountInsightsResponseMetricsValue() { 
   }
@@ -97,7 +145,7 @@ public class InstagramAccountInsightsResponseMetricsValue {
   }
 
   /**
-   * Daily values (only for time_series)
+   * Daily values (for time_series, and always on monetary metrics)
    * @return values
    */
   @javax.annotation.Nullable
@@ -147,6 +195,62 @@ public class InstagramAccountInsightsResponseMetricsValue {
   }
 
 
+  public InstagramAccountInsightsResponseMetricsValue unit(@javax.annotation.Nullable UnitEnum unit) {
+    this.unit = unit;
+    return this;
+  }
+
+  /**
+   * Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. 
+   * @return unit
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UnitEnum getUnit() {
+    return unit;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnit(@javax.annotation.Nullable UnitEnum unit) {
+    this.unit = unit;
+  }
+
+
+  public InstagramAccountInsightsResponseMetricsValue currency(@javax.annotation.Nullable String currency) {
+    this.currency = JsonNullable.<String>of(currency);
+    return this;
+  }
+
+  /**
+   * ISO 4217 currency of a monetary metric, or null when the platform omitted it. Always null on monetization_approximate_earnings, which Meta returns as a bare number with no currency; always present on content_monetization_earnings. 
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCurrency() {
+        return currency.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCurrency_JsonNullable() {
+    return currency;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  public void setCurrency_JsonNullable(JsonNullable<String> currency) {
+    this.currency = currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = JsonNullable.<String>of(currency);
+  }
+
+
   /**
    * Return true if this InstagramAccountInsightsResponse_metrics_value object is equal to o.
    */
@@ -161,12 +265,25 @@ public class InstagramAccountInsightsResponseMetricsValue {
     InstagramAccountInsightsResponseMetricsValue instagramAccountInsightsResponseMetricsValue = (InstagramAccountInsightsResponseMetricsValue) o;
     return Objects.equals(this.total, instagramAccountInsightsResponseMetricsValue.total) &&
         Objects.equals(this.values, instagramAccountInsightsResponseMetricsValue.values) &&
-        Objects.equals(this.breakdowns, instagramAccountInsightsResponseMetricsValue.breakdowns);
+        Objects.equals(this.breakdowns, instagramAccountInsightsResponseMetricsValue.breakdowns) &&
+        Objects.equals(this.unit, instagramAccountInsightsResponseMetricsValue.unit) &&
+        equalsNullable(this.currency, instagramAccountInsightsResponseMetricsValue.currency);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(total, values, breakdowns);
+    return Objects.hash(total, values, breakdowns, unit, hashCodeNullable(currency));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -176,6 +293,8 @@ public class InstagramAccountInsightsResponseMetricsValue {
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("    breakdowns: ").append(toIndentedString(breakdowns)).append("\n");
+    sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,6 +365,16 @@ public class InstagramAccountInsightsResponseMetricsValue {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `unit` to the URL query string
+    if (getUnit() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnit()))));
+    }
+
+    // add `currency` to the URL query string
+    if (getCurrency() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrency()))));
     }
 
     return joiner.toString();

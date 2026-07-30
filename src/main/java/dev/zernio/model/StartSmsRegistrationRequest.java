@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequest.JSON_PROPERTY_RESUBMIT_REQUEST_ID,
   StartSmsRegistrationRequest.JSON_PROPERTY_TOLL_FREE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequest {
   /**
    * Gets or Sets registrationType

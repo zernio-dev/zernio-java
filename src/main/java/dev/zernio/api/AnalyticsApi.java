@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AnalyticsSinglePostResponse;
 import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.FacebookPostEarningsResponse;
 import dev.zernio.model.FollowerStatsResponse;
 import dev.zernio.model.GetAnalytics200Response;
 import dev.zernio.model.GetAnalytics400Response;
@@ -91,7 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -856,7 +857,7 @@ public class AnalyticsApi {
    * Get Facebook Page insights
    * Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
    * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
-   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  (optional)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  (optional)
    * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
    * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
    * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  (optional, default to total_value)
@@ -871,7 +872,7 @@ public class AnalyticsApi {
    * Get Facebook Page insights
    * Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
    * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
-   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  (optional)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  (optional)
    * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
    * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
    * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  (optional, default to total_value)
@@ -888,7 +889,7 @@ public class AnalyticsApi {
    * Get Facebook Page insights
    * Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
    * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
-   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  (optional)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  (optional)
    * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
    * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
    * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  (optional, default to total_value)
@@ -903,7 +904,7 @@ public class AnalyticsApi {
    * Get Facebook Page insights
    * Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
    * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
-   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  (optional)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  (optional)
    * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
    * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
    * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  (optional, default to total_value)
@@ -982,6 +983,154 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
     localVarQueryParameterBaseName = "metricType";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("metricType", metricType));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Facebook post monetization earnings
+   * Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request. Requires the Analytics add-on.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
+   * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
+   * @param postId The platform post ID, exactly as returned in platformAnalytics[].platformPostId by /v1/analytics: \&quot;{pageId}_{postId}\&quot;, or the bare video ID for Reels.  (required)
+   * @param metrics Comma-separated list of monetization metrics. Defaults to both:   - content_monetization_earnings   - monetization_approximate_earnings  content_monetization_earnings always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings is always a bare number, so its unit is \&quot;unspecified\&quot; and its \&quot;currency\&quot; is null. The two are on different scales and are not comparable to each other. Any other metric name is rejected with 400.  (optional)
+   * @return FacebookPostEarningsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public FacebookPostEarningsResponse getFacebookPostEarnings(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, @javax.annotation.Nullable String metrics) throws ApiException {
+    return getFacebookPostEarnings(accountId, postId, metrics, null);
+  }
+
+  /**
+   * Get Facebook post monetization earnings
+   * Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request. Requires the Analytics add-on.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
+   * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
+   * @param postId The platform post ID, exactly as returned in platformAnalytics[].platformPostId by /v1/analytics: \&quot;{pageId}_{postId}\&quot;, or the bare video ID for Reels.  (required)
+   * @param metrics Comma-separated list of monetization metrics. Defaults to both:   - content_monetization_earnings   - monetization_approximate_earnings  content_monetization_earnings always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings is always a bare number, so its unit is \&quot;unspecified\&quot; and its \&quot;currency\&quot; is null. The two are on different scales and are not comparable to each other. Any other metric name is rejected with 400.  (optional)
+   * @param headers Optional headers to include in the request
+   * @return FacebookPostEarningsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public FacebookPostEarningsResponse getFacebookPostEarnings(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, @javax.annotation.Nullable String metrics, Map<String, String> headers) throws ApiException {
+    ApiResponse<FacebookPostEarningsResponse> localVarResponse = getFacebookPostEarningsWithHttpInfo(accountId, postId, metrics, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Facebook post monetization earnings
+   * Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request. Requires the Analytics add-on.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
+   * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
+   * @param postId The platform post ID, exactly as returned in platformAnalytics[].platformPostId by /v1/analytics: \&quot;{pageId}_{postId}\&quot;, or the bare video ID for Reels.  (required)
+   * @param metrics Comma-separated list of monetization metrics. Defaults to both:   - content_monetization_earnings   - monetization_approximate_earnings  content_monetization_earnings always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings is always a bare number, so its unit is \&quot;unspecified\&quot; and its \&quot;currency\&quot; is null. The two are on different scales and are not comparable to each other. Any other metric name is rejected with 400.  (optional)
+   * @return ApiResponse&lt;FacebookPostEarningsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<FacebookPostEarningsResponse> getFacebookPostEarningsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, @javax.annotation.Nullable String metrics) throws ApiException {
+    return getFacebookPostEarningsWithHttpInfo(accountId, postId, metrics, null);
+  }
+
+  /**
+   * Get Facebook post monetization earnings
+   * Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request. Requires the Analytics add-on.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
+   * @param accountId The Zernio SocialAccount ID for the connected Facebook Page. (required)
+   * @param postId The platform post ID, exactly as returned in platformAnalytics[].platformPostId by /v1/analytics: \&quot;{pageId}_{postId}\&quot;, or the bare video ID for Reels.  (required)
+   * @param metrics Comma-separated list of monetization metrics. Defaults to both:   - content_monetization_earnings   - monetization_approximate_earnings  content_monetization_earnings always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings is always a bare number, so its unit is \&quot;unspecified\&quot; and its \&quot;currency\&quot; is null. The two are on different scales and are not comparable to each other. Any other metric name is rejected with 400.  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;FacebookPostEarningsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<FacebookPostEarningsResponse> getFacebookPostEarningsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, @javax.annotation.Nullable String metrics, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getFacebookPostEarningsRequestBuilder(accountId, postId, metrics, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getFacebookPostEarnings", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<FacebookPostEarningsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        FacebookPostEarningsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<FacebookPostEarningsResponse>() {});
+        
+
+        return new ApiResponse<FacebookPostEarningsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getFacebookPostEarningsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, @javax.annotation.Nullable String metrics, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getFacebookPostEarnings");
+    }
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling getFacebookPostEarnings");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/facebook/post-earnings";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "postId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("postId", postId));
+    localVarQueryParameterBaseName = "metrics";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metrics", metrics));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

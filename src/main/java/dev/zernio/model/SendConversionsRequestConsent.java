@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SendConversionsRequestConsent.JSON_PROPERTY_AD_USER_DATA,
   SendConversionsRequestConsent.JSON_PROPERTY_AD_PERSONALIZATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversionsRequestConsent {
   /**
    * Gets or Sets adUserData

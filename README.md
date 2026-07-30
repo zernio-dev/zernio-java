@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-30T07:58:52.822044083Z[Etc/UTC]
+- Build date: 2026-07-30T08:21:14.043927008Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -294,6 +294,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getDailyMetricsWithHttpInfo**](docs/AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics
 *AnalyticsApi* | [**getFacebookPageInsights**](docs/AnalyticsApi.md#getFacebookPageInsights) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights
 *AnalyticsApi* | [**getFacebookPageInsightsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPageInsightsWithHttpInfo) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights
+*AnalyticsApi* | [**getFacebookPostEarnings**](docs/AnalyticsApi.md#getFacebookPostEarnings) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings
+*AnalyticsApi* | [**getFacebookPostEarningsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPostEarningsWithHttpInfo) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings
 *AnalyticsApi* | [**getFacebookPostReactions**](docs/AnalyticsApi.md#getFacebookPostReactions) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions
 *AnalyticsApi* | [**getFacebookPostReactionsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions
 *AnalyticsApi* | [**getFollowerStats**](docs/AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
@@ -1546,6 +1548,9 @@ Class | Method | HTTP request | Description
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
+ - [FacebookPostEarningsResponse](docs/FacebookPostEarningsResponse.md)
+ - [FacebookPostEarningsResponseMetricsValue](docs/FacebookPostEarningsResponseMetricsValue.md)
+ - [FacebookPostEarningsResponseUnavailableMetricsInner](docs/FacebookPostEarningsResponseUnavailableMetricsInner.md)
  - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
  - [FetchGoogleBusinessVerificationOptions200ResponseOptionsInner](docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md)
  - [FetchGoogleBusinessVerificationOptionsRequest](docs/FetchGoogleBusinessVerificationOptionsRequest.md)
@@ -1914,6 +1919,7 @@ Class | Method | HTTP request | Description
  - [InstagramAccountInsightsResponseMetricsValue](docs/InstagramAccountInsightsResponseMetricsValue.md)
  - [InstagramAccountInsightsResponseMetricsValueBreakdownsInner](docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md)
  - [InstagramAccountInsightsResponseMetricsValueValuesInner](docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md)
+ - [InstagramAccountInsightsResponseUnavailableMetricsInner](docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md)
  - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
