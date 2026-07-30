@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   ListLeads200ResponseLeadsInner.JSON_PROPERTY_FIELDS,
   ListLeads200ResponseLeadsInner.JSON_PROPERTY_FIELD_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLeads200ResponseLeadsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

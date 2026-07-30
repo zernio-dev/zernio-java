@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListHighDemandPeriods200Response.JSON_PROPERTY_DATA,
   ListHighDemandPeriods200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-29T19:14:27.388760254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T07:58:52.822044083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListHighDemandPeriods200Response {
   public static final String JSON_PROPERTY_OBJECT_ID = "objectId";
   @javax.annotation.Nullable
