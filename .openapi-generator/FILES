@@ -3247,7 +3247,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValueTest.java
-src/test/java/dev/zernio/model/FacebookPostEarningsResponseTest.java
-src/test/java/dev/zernio/model/FacebookPostEarningsResponseUnavailableMetricsInnerTest.java
-src/test/java/dev/zernio/model/InstagramAccountInsightsResponseUnavailableMetricsInnerTest.java

@@ -84,7 +84,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:35:06.362386383Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1616,6 +1616,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
+   * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
@@ -1627,8 +1628,8 @@ public class AdCampaignsApi {
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
-    return getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
+    return getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
   }
 
   /**
@@ -1640,6 +1641,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
+   * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
@@ -1652,8 +1654,8 @@ public class AdCampaignsApi {
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
     return localVarResponse.getData();
   }
 
@@ -1666,6 +1668,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
+   * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
@@ -1677,8 +1680,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
-    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
+    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
   }
 
   /**
@@ -1690,6 +1693,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
+   * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
@@ -1702,8 +1706,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1750,7 +1754,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1771,6 +1775,8 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
     localVarQueryParameterBaseName = "adAccountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "pageId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageId", pageId));
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "profileId";
@@ -1978,6 +1984,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
+   * @param pageId Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
@@ -1985,8 +1992,8 @@ public class AdCampaignsApi {
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, null);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
@@ -1998,6 +2005,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
+   * @param pageId Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
@@ -2006,8 +2014,8 @@ public class AdCampaignsApi {
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, headers);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
@@ -2020,6 +2028,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
+   * @param pageId Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
@@ -2027,8 +2036,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, null);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
@@ -2040,6 +2049,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
+   * @param pageId Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
@@ -2048,8 +2058,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, headers);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2096,7 +2106,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2117,6 +2127,8 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
     localVarQueryParameterBaseName = "adAccountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "pageId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageId", pageId));
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "profileId";
@@ -2349,6 +2361,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
+   * @param pageId Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
@@ -2359,8 +2372,8 @@ public class AdCampaignsApi {
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
   }
 
   /**
@@ -2373,6 +2386,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
+   * @param pageId Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
@@ -2384,8 +2398,8 @@ public class AdCampaignsApi {
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
@@ -2399,6 +2413,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
+   * @param pageId Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
@@ -2409,8 +2424,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
   }
 
   /**
@@ -2423,6 +2438,7 @@ public class AdCampaignsApi {
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
+   * @param pageId Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
@@ -2434,8 +2450,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2482,7 +2498,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2505,6 +2521,8 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "adAccountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "pageId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageId", pageId));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
     localVarQueryParameterBaseName = "campaignId";

@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_OBJECT_TYPE,
   AdCreative.JSON_PROPERTY_OBJECT_STORY_ID,
   AdCreative.JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID,
+  AdCreative.JSON_PROPERTY_PAGE_ID,
   AdCreative.JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID,
   AdCreative.JSON_PROPERTY_INSTAGRAM_USER_ID,
   AdCreative.JSON_PROPERTY_INSTAGRAM_PERMALINK_URL,
@@ -58,7 +59,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:21:14.043927008Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T08:35:06.362386383Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -83,6 +84,9 @@ public class AdCreative {
 
   public static final String JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID = "effectiveObjectStoryId";
   private JsonNullable<String> effectiveObjectStoryId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_PAGE_ID = "pageId";
+  private JsonNullable<String> pageId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID = "effectiveInstagramMediaId";
   private JsonNullable<String> effectiveInstagramMediaId = JsonNullable.<String>undefined();
@@ -325,6 +329,38 @@ public class AdCreative {
 
   public void setEffectiveObjectStoryId(@javax.annotation.Nullable String effectiveObjectStoryId) {
     this.effectiveObjectStoryId = JsonNullable.<String>of(effectiveObjectStoryId);
+  }
+
+
+  public AdCreative pageId(@javax.annotation.Nullable String pageId) {
+    this.pageId = JsonNullable.<String>of(pageId);
+    return this;
+  }
+
+  /**
+   * Facebook Page backing the creative (Meta only). What the &#x60;pageId&#x60; filter on /v1/ads, /v1/ads/campaigns and /v1/ads/tree matches against. Absent for non-Meta ads and rare Meta creatives with no page signal.
+   * @return pageId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getPageId() {
+        return pageId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_PAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getPageId_JsonNullable() {
+    return pageId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAGE_ID)
+  public void setPageId_JsonNullable(JsonNullable<String> pageId) {
+    this.pageId = pageId;
+  }
+
+  public void setPageId(@javax.annotation.Nullable String pageId) {
+    this.pageId = JsonNullable.<String>of(pageId);
   }
 
 
@@ -643,6 +679,7 @@ public class AdCreative {
         Objects.equals(this.objectType, adCreative.objectType) &&
         equalsNullable(this.objectStoryId, adCreative.objectStoryId) &&
         equalsNullable(this.effectiveObjectStoryId, adCreative.effectiveObjectStoryId) &&
+        equalsNullable(this.pageId, adCreative.pageId) &&
         equalsNullable(this.effectiveInstagramMediaId, adCreative.effectiveInstagramMediaId) &&
         equalsNullable(this.instagramUserId, adCreative.instagramUserId) &&
         equalsNullable(this.instagramPermalinkUrl, adCreative.instagramPermalinkUrl) &&
@@ -662,7 +699,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(thumbnailUrl, imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(thumbnailUrl, imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -683,6 +720,7 @@ public class AdCreative {
     sb.append("    objectType: ").append(toIndentedString(objectType)).append("\n");
     sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
     sb.append("    effectiveObjectStoryId: ").append(toIndentedString(effectiveObjectStoryId)).append("\n");
+    sb.append("    pageId: ").append(toIndentedString(pageId)).append("\n");
     sb.append("    effectiveInstagramMediaId: ").append(toIndentedString(effectiveInstagramMediaId)).append("\n");
     sb.append("    instagramUserId: ").append(toIndentedString(instagramUserId)).append("\n");
     sb.append("    instagramPermalinkUrl: ").append(toIndentedString(instagramPermalinkUrl)).append("\n");
@@ -774,6 +812,11 @@ public class AdCreative {
     // add `effectiveObjectStoryId` to the URL query string
     if (getEffectiveObjectStoryId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%seffectiveObjectStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffectiveObjectStoryId()))));
+    }
+
+    // add `pageId` to the URL query string
+    if (getPageId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spageId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPageId()))));
     }
 
     // add `effectiveInstagramMediaId` to the URL query string
