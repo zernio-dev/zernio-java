@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequest.JSON_PROPERTY_CREATIVE,
   UpdateAdRequest.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequest {
   /**
    * Gets or Sets status

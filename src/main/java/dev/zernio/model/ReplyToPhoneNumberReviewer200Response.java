@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ReplyToPhoneNumberReviewer200Response.JSON_PROPERTY_POSTED,
   ReplyToPhoneNumberReviewer200Response.JSON_PROPERTY_ATTACHMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToPhoneNumberReviewer200Response {
   public static final String JSON_PROPERTY_POSTED = "posted";
   @javax.annotation.Nullable

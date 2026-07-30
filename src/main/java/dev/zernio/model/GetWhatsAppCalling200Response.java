@@ -47,9 +47,11 @@ import dev.zernio.ApiClient;
   GetWhatsAppCalling200Response.JSON_PROPERTY_SIP_AUTH_USERNAME,
   GetWhatsAppCalling200Response.JSON_PROPERTY_SIP_AUTH_PASSWORD_CONFIGURED,
   GetWhatsAppCalling200Response.JSON_PROPERTY_CALL_ICON_COUNTRIES,
-  GetWhatsAppCalling200Response.JSON_PROPERTY_OUTBOUND_DISABLED
+  GetWhatsAppCalling200Response.JSON_PROPERTY_OUTBOUND_DISABLED,
+  GetWhatsAppCalling200Response.JSON_PROPERTY_CALLER_ID_MODE,
+  GetWhatsAppCalling200Response.JSON_PROPERTY_CALLER_ID_VERIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCalling200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -82,6 +84,49 @@ public class GetWhatsAppCalling200Response {
   public static final String JSON_PROPERTY_OUTBOUND_DISABLED = "outboundDisabled";
   @javax.annotation.Nullable
   private Boolean outboundDisabled;
+
+  /**
+   * Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination).
+   */
+  public enum CallerIdModeEnum {
+    BUSINESS(String.valueOf("business")),
+    
+    PLATFORM(String.valueOf("platform"));
+
+    private String value;
+
+    CallerIdModeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CallerIdModeEnum fromValue(String value) {
+      for (CallerIdModeEnum b : CallerIdModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CALLER_ID_MODE = "callerIdMode";
+  @javax.annotation.Nullable
+  private CallerIdModeEnum callerIdMode;
+
+  public static final String JSON_PROPERTY_CALLER_ID_VERIFIED = "callerIdVerified";
+  @javax.annotation.Nullable
+  private Boolean callerIdVerified;
 
   public GetWhatsAppCalling200Response() { 
   }
@@ -346,6 +391,54 @@ public class GetWhatsAppCalling200Response {
   }
 
 
+  public GetWhatsAppCalling200Response callerIdMode(@javax.annotation.Nullable CallerIdModeEnum callerIdMode) {
+    this.callerIdMode = callerIdMode;
+    return this;
+  }
+
+  /**
+   * Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination).
+   * @return callerIdMode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALLER_ID_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CallerIdModeEnum getCallerIdMode() {
+    return callerIdMode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALLER_ID_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallerIdMode(@javax.annotation.Nullable CallerIdModeEnum callerIdMode) {
+    this.callerIdMode = callerIdMode;
+  }
+
+
+  public GetWhatsAppCalling200Response callerIdVerified(@javax.annotation.Nullable Boolean callerIdVerified) {
+    this.callerIdVerified = callerIdVerified;
+    return this;
+  }
+
+  /**
+   * True once the number completed caller-ID verification, making tel: forwards display the business number itself.
+   * @return callerIdVerified
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALLER_ID_VERIFIED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCallerIdVerified() {
+    return callerIdVerified;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALLER_ID_VERIFIED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallerIdVerified(@javax.annotation.Nullable Boolean callerIdVerified) {
+    this.callerIdVerified = callerIdVerified;
+  }
+
+
   /**
    * Return true if this getWhatsAppCalling_200_response object is equal to o.
    */
@@ -366,7 +459,9 @@ public class GetWhatsAppCalling200Response {
         equalsNullable(this.sipAuthUsername, getWhatsAppCalling200Response.sipAuthUsername) &&
         Objects.equals(this.sipAuthPasswordConfigured, getWhatsAppCalling200Response.sipAuthPasswordConfigured) &&
         equalsNullable(this.callIconCountries, getWhatsAppCalling200Response.callIconCountries) &&
-        Objects.equals(this.outboundDisabled, getWhatsAppCalling200Response.outboundDisabled);
+        Objects.equals(this.outboundDisabled, getWhatsAppCalling200Response.outboundDisabled) &&
+        Objects.equals(this.callerIdMode, getWhatsAppCalling200Response.callerIdMode) &&
+        Objects.equals(this.callerIdVerified, getWhatsAppCalling200Response.callerIdVerified);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -375,7 +470,7 @@ public class GetWhatsAppCalling200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, callingEnabled, hashCodeNullable(callDeepLink), hashCodeNullable(forwardTo), recordingEnabled, hashCodeNullable(sipAuthUsername), sipAuthPasswordConfigured, hashCodeNullable(callIconCountries), outboundDisabled);
+    return Objects.hash(phoneNumber, callingEnabled, hashCodeNullable(callDeepLink), hashCodeNullable(forwardTo), recordingEnabled, hashCodeNullable(sipAuthUsername), sipAuthPasswordConfigured, hashCodeNullable(callIconCountries), outboundDisabled, callerIdMode, callerIdVerified);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -398,6 +493,8 @@ public class GetWhatsAppCalling200Response {
     sb.append("    sipAuthPasswordConfigured: ").append(toIndentedString(sipAuthPasswordConfigured)).append("\n");
     sb.append("    callIconCountries: ").append(toIndentedString(callIconCountries)).append("\n");
     sb.append("    outboundDisabled: ").append(toIndentedString(outboundDisabled)).append("\n");
+    sb.append("    callerIdMode: ").append(toIndentedString(callerIdMode)).append("\n");
+    sb.append("    callerIdVerified: ").append(toIndentedString(callerIdVerified)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -492,6 +589,16 @@ public class GetWhatsAppCalling200Response {
     // add `outboundDisabled` to the URL query string
     if (getOutboundDisabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%soutboundDisabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOutboundDisabled()))));
+    }
+
+    // add `callerIdMode` to the URL query string
+    if (getCallerIdMode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scallerIdMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallerIdMode()))));
+    }
+
+    // add `callerIdVerified` to the URL query string
+    if (getCallerIdVerified() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scallerIdVerified%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallerIdVerified()))));
     }
 
     return joiner.toString();

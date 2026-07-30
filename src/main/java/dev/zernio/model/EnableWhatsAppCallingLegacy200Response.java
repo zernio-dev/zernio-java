@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
   EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_SUCCESS,
   EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_CALLING_ENABLED,
   EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_SIP_HOSTNAME,
-  EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_FORWARD_TO
+  EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_FORWARD_TO,
+  EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_CALLER_ID_MODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableWhatsAppCallingLegacy200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -55,6 +56,45 @@ public class EnableWhatsAppCallingLegacy200Response {
   public static final String JSON_PROPERTY_FORWARD_TO = "forwardTo";
   @javax.annotation.Nullable
   private String forwardTo;
+
+  /**
+   * Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID).
+   */
+  public enum CallerIdModeEnum {
+    BUSINESS(String.valueOf("business")),
+    
+    PLATFORM(String.valueOf("platform"));
+
+    private String value;
+
+    CallerIdModeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CallerIdModeEnum fromValue(String value) {
+      for (CallerIdModeEnum b : CallerIdModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CALLER_ID_MODE = "callerIdMode";
+  @javax.annotation.Nullable
+  private CallerIdModeEnum callerIdMode;
 
   public EnableWhatsAppCallingLegacy200Response() { 
   }
@@ -155,6 +195,30 @@ public class EnableWhatsAppCallingLegacy200Response {
   }
 
 
+  public EnableWhatsAppCallingLegacy200Response callerIdMode(@javax.annotation.Nullable CallerIdModeEnum callerIdMode) {
+    this.callerIdMode = callerIdMode;
+    return this;
+  }
+
+  /**
+   * Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID).
+   * @return callerIdMode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALLER_ID_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CallerIdModeEnum getCallerIdMode() {
+    return callerIdMode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALLER_ID_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallerIdMode(@javax.annotation.Nullable CallerIdModeEnum callerIdMode) {
+    this.callerIdMode = callerIdMode;
+  }
+
+
   /**
    * Return true if this enableWhatsAppCallingLegacy_200_response object is equal to o.
    */
@@ -170,12 +234,13 @@ public class EnableWhatsAppCallingLegacy200Response {
     return Objects.equals(this.success, enableWhatsAppCallingLegacy200Response.success) &&
         Objects.equals(this.callingEnabled, enableWhatsAppCallingLegacy200Response.callingEnabled) &&
         Objects.equals(this.sipHostname, enableWhatsAppCallingLegacy200Response.sipHostname) &&
-        Objects.equals(this.forwardTo, enableWhatsAppCallingLegacy200Response.forwardTo);
+        Objects.equals(this.forwardTo, enableWhatsAppCallingLegacy200Response.forwardTo) &&
+        Objects.equals(this.callerIdMode, enableWhatsAppCallingLegacy200Response.callerIdMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, callingEnabled, sipHostname, forwardTo);
+    return Objects.hash(success, callingEnabled, sipHostname, forwardTo, callerIdMode);
   }
 
   @Override
@@ -186,6 +251,7 @@ public class EnableWhatsAppCallingLegacy200Response {
     sb.append("    callingEnabled: ").append(toIndentedString(callingEnabled)).append("\n");
     sb.append("    sipHostname: ").append(toIndentedString(sipHostname)).append("\n");
     sb.append("    forwardTo: ").append(toIndentedString(forwardTo)).append("\n");
+    sb.append("    callerIdMode: ").append(toIndentedString(callerIdMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +317,11 @@ public class EnableWhatsAppCallingLegacy200Response {
     // add `forwardTo` to the URL query string
     if (getForwardTo() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sforwardTo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForwardTo()))));
+    }
+
+    // add `callerIdMode` to the URL query string
+    if (getCallerIdMode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scallerIdMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallerIdMode()))));
     }
 
     return joiner.toString();

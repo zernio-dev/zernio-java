@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SearchTweets200Response.JSON_PROPERTY_PAGINATION,
   SearchTweets200Response.JSON_PROPERTY_META
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchTweets200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

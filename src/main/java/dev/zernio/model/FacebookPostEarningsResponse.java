@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   FacebookPostEarningsResponse.JSON_PROPERTY_UNAVAILABLE_METRICS,
   FacebookPostEarningsResponse.JSON_PROPERTY_DATA_DELAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPostEarningsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
