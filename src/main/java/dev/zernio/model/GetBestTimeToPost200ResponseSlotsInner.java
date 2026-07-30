@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetBestTimeToPost200ResponseSlotsInner.JSON_PROPERTY_AVG_ENGAGEMENT,
   GetBestTimeToPost200ResponseSlotsInner.JSON_PROPERTY_POST_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBestTimeToPost200ResponseSlotsInner {
   public static final String JSON_PROPERTY_DAY_OF_WEEK = "day_of_week";
   @javax.annotation.Nullable

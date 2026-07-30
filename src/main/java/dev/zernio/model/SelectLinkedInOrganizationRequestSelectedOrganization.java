@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SelectLinkedInOrganizationRequestSelectedOrganization.JSON_PROPERTY_LOGO_URL,
   SelectLinkedInOrganizationRequestSelectedOrganization.JSON_PROPERTY_VANITY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectLinkedInOrganizationRequestSelectedOrganization {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

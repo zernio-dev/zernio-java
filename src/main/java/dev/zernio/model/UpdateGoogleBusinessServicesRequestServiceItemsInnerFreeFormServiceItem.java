@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.JSON_PROPERTY_CATEGORY,
   UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.JSON_PROPERTY_LABEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nonnull

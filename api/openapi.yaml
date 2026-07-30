@@ -57491,17 +57491,19 @@ components:
       example:
         callerIdMode: business
         callingEnabled: true
-        phoneNumber: phoneNumber
-        sipAuthPasswordConfigured: true
         recordingEnabled: true
         callDeepLink: callDeepLink
-        callerIdVerified: true
         forwardTo: forwardTo
-        phoneNumberDocId: phoneNumberDocId
         sipAuthUsername: sipAuthUsername
         callIconCountries:
         - callIconCountries
         - callIconCountries
+        phoneNumber: phoneNumber
+        sipAuthPasswordConfigured: true
+        callerIdVerified: true
+        forwardCallerId: business
+        phoneNumberDocId: phoneNumberDocId
+        maxCallDurationSeconds: 0
       properties:
         phoneNumberDocId:
           description: "Phone number record ID (use on /v1/phone-numbers/{id}/whatsapp/calling)"
@@ -57548,6 +57550,15 @@ components:
         callerIdVerified:
           description: True once the number completed caller-ID verification.
           type: boolean
+        maxCallDurationSeconds:
+          description: Hard cap (seconds) on forwarded calls; null = no cap.
+          nullable: true
+          type: integer
+        forwardCallerId:
+          enum:
+          - business
+          - caller
+          type: string
     enableWhatsAppCallingLegacy_request:
       properties:
         accountId:
@@ -57569,6 +57580,22 @@ components:
             minLength: 2
             type: string
           type: array
+        maxCallDurationSeconds:
+          description: Hard cap (seconds) on a forwarded call; the carrier hangs up
+            both legs when it fires. Safety valve against dead-air billing when a
+            destination hangs up but the signal is lost.
+          maximum: 14400
+          minimum: 30
+          type: integer
+        forwardCallerId:
+          default: business
+          description: "Caller ID presented to the forward destination. caller = the\
+            \ WhatsApp user's number (sip: destinations only; ignored on tel: forwards).\
+            \ Fixes AI-agent trunks that reject seeing the business number call itself."
+          enum:
+          - business
+          - caller
+          type: string
       required:
       - accountId
       - forwardTo
@@ -57617,6 +57644,19 @@ components:
             type: string
           nullable: true
           type: array
+        maxCallDurationSeconds:
+          description: Hard cap (seconds) on forwarded calls; null clears the cap.
+          maximum: 14400
+          minimum: 30
+          nullable: true
+          type: integer
+        forwardCallerId:
+          description: "caller = present the WhatsApp user's number to the forward\
+            \ destination (sip: only)."
+          enum:
+          - business
+          - caller
+          type: string
       required:
       - accountId
     getWhatsAppCallPermissions_200_response_permission:
@@ -62819,17 +62859,19 @@ components:
       example:
         callerIdMode: business
         callingEnabled: true
-        phoneNumber: phoneNumber
-        sipAuthPasswordConfigured: true
         recordingEnabled: true
         callDeepLink: callDeepLink
-        callerIdVerified: true
         outboundDisabled: true
         forwardTo: forwardTo
         sipAuthUsername: sipAuthUsername
         callIconCountries:
         - callIconCountries
         - callIconCountries
+        phoneNumber: phoneNumber
+        sipAuthPasswordConfigured: true
+        callerIdVerified: true
+        forwardCallerId: business
+        maxCallDurationSeconds: 0
       properties:
         phoneNumber:
           type: string
@@ -62877,6 +62919,15 @@ components:
           description: "True once the number completed caller-ID verification, making\
             \ tel: forwards display the business number itself."
           type: boolean
+        maxCallDurationSeconds:
+          description: Hard cap (seconds) on forwarded calls; null = no cap.
+          nullable: true
+          type: integer
+        forwardCallerId:
+          enum:
+          - business
+          - caller
+          type: string
     startWhatsAppCallerIdVerification_request:
       properties:
         method:

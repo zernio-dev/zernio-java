@@ -49,9 +49,11 @@ import dev.zernio.ApiClient;
   GetWhatsAppCalling200Response.JSON_PROPERTY_CALL_ICON_COUNTRIES,
   GetWhatsAppCalling200Response.JSON_PROPERTY_OUTBOUND_DISABLED,
   GetWhatsAppCalling200Response.JSON_PROPERTY_CALLER_ID_MODE,
-  GetWhatsAppCalling200Response.JSON_PROPERTY_CALLER_ID_VERIFIED
+  GetWhatsAppCalling200Response.JSON_PROPERTY_CALLER_ID_VERIFIED,
+  GetWhatsAppCalling200Response.JSON_PROPERTY_MAX_CALL_DURATION_SECONDS,
+  GetWhatsAppCalling200Response.JSON_PROPERTY_FORWARD_CALLER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCalling200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -127,6 +129,48 @@ public class GetWhatsAppCalling200Response {
   public static final String JSON_PROPERTY_CALLER_ID_VERIFIED = "callerIdVerified";
   @javax.annotation.Nullable
   private Boolean callerIdVerified;
+
+  public static final String JSON_PROPERTY_MAX_CALL_DURATION_SECONDS = "maxCallDurationSeconds";
+  private JsonNullable<Integer> maxCallDurationSeconds = JsonNullable.<Integer>undefined();
+
+  /**
+   * Gets or Sets forwardCallerId
+   */
+  public enum ForwardCallerIdEnum {
+    BUSINESS(String.valueOf("business")),
+    
+    CALLER(String.valueOf("caller"));
+
+    private String value;
+
+    ForwardCallerIdEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ForwardCallerIdEnum fromValue(String value) {
+      for (ForwardCallerIdEnum b : ForwardCallerIdEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_FORWARD_CALLER_ID = "forwardCallerId";
+  @javax.annotation.Nullable
+  private ForwardCallerIdEnum forwardCallerId;
 
   public GetWhatsAppCalling200Response() { 
   }
@@ -439,6 +483,62 @@ public class GetWhatsAppCalling200Response {
   }
 
 
+  public GetWhatsAppCalling200Response maxCallDurationSeconds(@javax.annotation.Nullable Integer maxCallDurationSeconds) {
+    this.maxCallDurationSeconds = JsonNullable.<Integer>of(maxCallDurationSeconds);
+    return this;
+  }
+
+  /**
+   * Hard cap (seconds) on forwarded calls; null &#x3D; no cap.
+   * @return maxCallDurationSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getMaxCallDurationSeconds() {
+        return maxCallDurationSeconds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_MAX_CALL_DURATION_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getMaxCallDurationSeconds_JsonNullable() {
+    return maxCallDurationSeconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_CALL_DURATION_SECONDS)
+  public void setMaxCallDurationSeconds_JsonNullable(JsonNullable<Integer> maxCallDurationSeconds) {
+    this.maxCallDurationSeconds = maxCallDurationSeconds;
+  }
+
+  public void setMaxCallDurationSeconds(@javax.annotation.Nullable Integer maxCallDurationSeconds) {
+    this.maxCallDurationSeconds = JsonNullable.<Integer>of(maxCallDurationSeconds);
+  }
+
+
+  public GetWhatsAppCalling200Response forwardCallerId(@javax.annotation.Nullable ForwardCallerIdEnum forwardCallerId) {
+    this.forwardCallerId = forwardCallerId;
+    return this;
+  }
+
+  /**
+   * Get forwardCallerId
+   * @return forwardCallerId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FORWARD_CALLER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ForwardCallerIdEnum getForwardCallerId() {
+    return forwardCallerId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FORWARD_CALLER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForwardCallerId(@javax.annotation.Nullable ForwardCallerIdEnum forwardCallerId) {
+    this.forwardCallerId = forwardCallerId;
+  }
+
+
   /**
    * Return true if this getWhatsAppCalling_200_response object is equal to o.
    */
@@ -461,7 +561,9 @@ public class GetWhatsAppCalling200Response {
         equalsNullable(this.callIconCountries, getWhatsAppCalling200Response.callIconCountries) &&
         Objects.equals(this.outboundDisabled, getWhatsAppCalling200Response.outboundDisabled) &&
         Objects.equals(this.callerIdMode, getWhatsAppCalling200Response.callerIdMode) &&
-        Objects.equals(this.callerIdVerified, getWhatsAppCalling200Response.callerIdVerified);
+        Objects.equals(this.callerIdVerified, getWhatsAppCalling200Response.callerIdVerified) &&
+        equalsNullable(this.maxCallDurationSeconds, getWhatsAppCalling200Response.maxCallDurationSeconds) &&
+        Objects.equals(this.forwardCallerId, getWhatsAppCalling200Response.forwardCallerId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -470,7 +572,7 @@ public class GetWhatsAppCalling200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, callingEnabled, hashCodeNullable(callDeepLink), hashCodeNullable(forwardTo), recordingEnabled, hashCodeNullable(sipAuthUsername), sipAuthPasswordConfigured, hashCodeNullable(callIconCountries), outboundDisabled, callerIdMode, callerIdVerified);
+    return Objects.hash(phoneNumber, callingEnabled, hashCodeNullable(callDeepLink), hashCodeNullable(forwardTo), recordingEnabled, hashCodeNullable(sipAuthUsername), sipAuthPasswordConfigured, hashCodeNullable(callIconCountries), outboundDisabled, callerIdMode, callerIdVerified, hashCodeNullable(maxCallDurationSeconds), forwardCallerId);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -495,6 +597,8 @@ public class GetWhatsAppCalling200Response {
     sb.append("    outboundDisabled: ").append(toIndentedString(outboundDisabled)).append("\n");
     sb.append("    callerIdMode: ").append(toIndentedString(callerIdMode)).append("\n");
     sb.append("    callerIdVerified: ").append(toIndentedString(callerIdVerified)).append("\n");
+    sb.append("    maxCallDurationSeconds: ").append(toIndentedString(maxCallDurationSeconds)).append("\n");
+    sb.append("    forwardCallerId: ").append(toIndentedString(forwardCallerId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -599,6 +703,16 @@ public class GetWhatsAppCalling200Response {
     // add `callerIdVerified` to the URL query string
     if (getCallerIdVerified() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scallerIdVerified%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallerIdVerified()))));
+    }
+
+    // add `maxCallDurationSeconds` to the URL query string
+    if (getMaxCallDurationSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smaxCallDurationSeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxCallDurationSeconds()))));
+    }
+
+    // add `forwardCallerId` to the URL query string
+    if (getForwardCallerId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sforwardCallerId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForwardCallerId()))));
     }
 
     return joiner.toString();

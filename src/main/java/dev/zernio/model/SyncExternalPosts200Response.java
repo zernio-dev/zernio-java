@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SyncExternalPosts200Response.JSON_PROPERTY_POST,
   SyncExternalPosts200Response.JSON_PROPERTY_POSTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T12:07:16.119007579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SyncExternalPosts200Response {
   public static final String JSON_PROPERTY_SYNCED = "synced";
   @javax.annotation.Nullable
