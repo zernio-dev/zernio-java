@@ -45,9 +45,10 @@ import dev.zernio.ApiClient;
   FacebookPlatformData.JSON_PROPERTY_PAGE_ID,
   FacebookPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
   FacebookPlatformData.JSON_PROPERTY_CAROUSEL_CARDS,
-  FacebookPlatformData.JSON_PROPERTY_CAROUSEL_LINK
+  FacebookPlatformData.JSON_PROPERTY_CAROUSEL_LINK,
+  FacebookPlatformData.JSON_PROPERTY_TEXT_FORMAT_PRESET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:02:37.483715533Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:10:21.918596480Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -115,6 +116,10 @@ public class FacebookPlatformData {
   public static final String JSON_PROPERTY_CAROUSEL_LINK = "carouselLink";
   @javax.annotation.Nullable
   private URI carouselLink;
+
+  public static final String JSON_PROPERTY_TEXT_FORMAT_PRESET_ID = "textFormatPresetId";
+  @javax.annotation.Nullable
+  private String textFormatPresetId;
 
   public FacebookPlatformData() { 
   }
@@ -319,6 +324,30 @@ public class FacebookPlatformData {
   }
 
 
+  public FacebookPlatformData textFormatPresetId(@javax.annotation.Nullable String textFormatPresetId) {
+    this.textFormatPresetId = textFormatPresetId;
+    return this;
+  }
+
+  /**
+   * Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, when content is empty, or when content exceeds 130 characters. Those are Facebook limits, and above them Facebook silently drops the background and publishes a plain text post instead of returning an error, so we reject up front rather than let the background disappear. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. 
+   * @return textFormatPresetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEXT_FORMAT_PRESET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTextFormatPresetId() {
+    return textFormatPresetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEXT_FORMAT_PRESET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTextFormatPresetId(@javax.annotation.Nullable String textFormatPresetId) {
+    this.textFormatPresetId = textFormatPresetId;
+  }
+
+
   /**
    * Return true if this FacebookPlatformData object is equal to o.
    */
@@ -338,12 +367,13 @@ public class FacebookPlatformData {
         Objects.equals(this.pageId, facebookPlatformData.pageId) &&
         Objects.equals(this.geoRestriction, facebookPlatformData.geoRestriction) &&
         Objects.equals(this.carouselCards, facebookPlatformData.carouselCards) &&
-        Objects.equals(this.carouselLink, facebookPlatformData.carouselLink);
+        Objects.equals(this.carouselLink, facebookPlatformData.carouselLink) &&
+        Objects.equals(this.textFormatPresetId, facebookPlatformData.textFormatPresetId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(draft, contentType, title, firstComment, pageId, geoRestriction, carouselCards, carouselLink);
+    return Objects.hash(draft, contentType, title, firstComment, pageId, geoRestriction, carouselCards, carouselLink, textFormatPresetId);
   }
 
   @Override
@@ -358,6 +388,7 @@ public class FacebookPlatformData {
     sb.append("    geoRestriction: ").append(toIndentedString(geoRestriction)).append("\n");
     sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
     sb.append("    carouselLink: ").append(toIndentedString(carouselLink)).append("\n");
+    sb.append("    textFormatPresetId: ").append(toIndentedString(textFormatPresetId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -448,6 +479,11 @@ public class FacebookPlatformData {
     // add `carouselLink` to the URL query string
     if (getCarouselLink() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scarouselLink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarouselLink()))));
+    }
+
+    // add `textFormatPresetId` to the URL query string
+    if (getTextFormatPresetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stextFormatPresetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTextFormatPresetId()))));
     }
 
     return joiner.toString();

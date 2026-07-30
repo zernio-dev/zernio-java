@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateTestLeadRequest.JSON_PROPERTY_ACCOUNT_ID,
   CreateTestLeadRequest.JSON_PROPERTY_FIELD_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:02:37.483715533Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:10:21.918596480Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTestLeadRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
