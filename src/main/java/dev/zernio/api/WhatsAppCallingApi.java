@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.EnableWhatsAppCallingLegacy200Response;
 import dev.zernio.model.EnableWhatsAppCallingLegacyRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetWhatsAppCall200Response;
 import dev.zernio.model.GetWhatsAppCallEstimate200Response;
 import dev.zernio.model.GetWhatsAppCallPermissions200Response;
@@ -31,7 +32,11 @@ import dev.zernio.model.InitiateWhatsAppCallRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListWhatsAppCalls200Response;
 import java.time.OffsetDateTime;
+import dev.zernio.model.StartWhatsAppCallerIdVerification200Response;
+import dev.zernio.model.StartWhatsAppCallerIdVerificationRequest;
 import dev.zernio.model.UpdateWhatsAppCallingLegacyRequest;
+import dev.zernio.model.VerifySmsRegistrationOtp200Response;
+import dev.zernio.model.VerifyWhatsAppCallerIdRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1848,6 +1853,134 @@ public class WhatsAppCallingApi {
   }
 
   /**
+   * Start caller-ID verification for a customer-brought number
+   * Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param startWhatsAppCallerIdVerificationRequest  (optional)
+   * @return StartWhatsAppCallerIdVerification200Response
+   * @throws ApiException if fails to make API call
+   */
+  public StartWhatsAppCallerIdVerification200Response startWhatsAppCallerIdVerification(@javax.annotation.Nonnull String id, @javax.annotation.Nullable StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest) throws ApiException {
+    return startWhatsAppCallerIdVerification(id, startWhatsAppCallerIdVerificationRequest, null);
+  }
+
+  /**
+   * Start caller-ID verification for a customer-brought number
+   * Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param startWhatsAppCallerIdVerificationRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return StartWhatsAppCallerIdVerification200Response
+   * @throws ApiException if fails to make API call
+   */
+  public StartWhatsAppCallerIdVerification200Response startWhatsAppCallerIdVerification(@javax.annotation.Nonnull String id, @javax.annotation.Nullable StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<StartWhatsAppCallerIdVerification200Response> localVarResponse = startWhatsAppCallerIdVerificationWithHttpInfo(id, startWhatsAppCallerIdVerificationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Start caller-ID verification for a customer-brought number
+   * Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param startWhatsAppCallerIdVerificationRequest  (optional)
+   * @return ApiResponse&lt;StartWhatsAppCallerIdVerification200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<StartWhatsAppCallerIdVerification200Response> startWhatsAppCallerIdVerificationWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest) throws ApiException {
+    return startWhatsAppCallerIdVerificationWithHttpInfo(id, startWhatsAppCallerIdVerificationRequest, null);
+  }
+
+  /**
+   * Start caller-ID verification for a customer-brought number
+   * Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param startWhatsAppCallerIdVerificationRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;StartWhatsAppCallerIdVerification200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<StartWhatsAppCallerIdVerification200Response> startWhatsAppCallerIdVerificationWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = startWhatsAppCallerIdVerificationRequestBuilder(id, startWhatsAppCallerIdVerificationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("startWhatsAppCallerIdVerification", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<StartWhatsAppCallerIdVerification200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        StartWhatsAppCallerIdVerification200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<StartWhatsAppCallerIdVerification200Response>() {});
+        
+
+        return new ApiResponse<StartWhatsAppCallerIdVerification200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder startWhatsAppCallerIdVerificationRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling startWhatsAppCallerIdVerification");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/whatsapp/caller-id-verification"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(startWhatsAppCallerIdVerificationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Update calling config
    * Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
    * @param id  (required)
@@ -2077,6 +2210,138 @@ public class WhatsAppCallingApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWhatsAppCallingLegacyRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Confirm the caller-ID verification code
+   * Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param verifyWhatsAppCallerIdRequest  (required)
+   * @return VerifySmsRegistrationOtp200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifySmsRegistrationOtp200Response verifyWhatsAppCallerId(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest) throws ApiException {
+    return verifyWhatsAppCallerId(id, verifyWhatsAppCallerIdRequest, null);
+  }
+
+  /**
+   * Confirm the caller-ID verification code
+   * Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param verifyWhatsAppCallerIdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return VerifySmsRegistrationOtp200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifySmsRegistrationOtp200Response verifyWhatsAppCallerId(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<VerifySmsRegistrationOtp200Response> localVarResponse = verifyWhatsAppCallerIdWithHttpInfo(id, verifyWhatsAppCallerIdRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Confirm the caller-ID verification code
+   * Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param verifyWhatsAppCallerIdRequest  (required)
+   * @return ApiResponse&lt;VerifySmsRegistrationOtp200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifySmsRegistrationOtp200Response> verifyWhatsAppCallerIdWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest) throws ApiException {
+    return verifyWhatsAppCallerIdWithHttpInfo(id, verifyWhatsAppCallerIdRequest, null);
+  }
+
+  /**
+   * Confirm the caller-ID verification code
+   * Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param verifyWhatsAppCallerIdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;VerifySmsRegistrationOtp200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifySmsRegistrationOtp200Response> verifyWhatsAppCallerIdWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = verifyWhatsAppCallerIdRequestBuilder(id, verifyWhatsAppCallerIdRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("verifyWhatsAppCallerId", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<VerifySmsRegistrationOtp200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        VerifySmsRegistrationOtp200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<VerifySmsRegistrationOtp200Response>() {});
+        
+
+        return new ApiResponse<VerifySmsRegistrationOtp200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder verifyWhatsAppCallerIdRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling verifyWhatsAppCallerId");
+    }
+    // verify the required parameter 'verifyWhatsAppCallerIdRequest' is set
+    if (verifyWhatsAppCallerIdRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'verifyWhatsAppCallerIdRequest' when calling verifyWhatsAppCallerId");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(verifyWhatsAppCallerIdRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

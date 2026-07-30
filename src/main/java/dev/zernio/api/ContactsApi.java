@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContactsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -174,7 +174,7 @@ public class ContactsApi {
 
   /**
    * Bulk create contacts
-   * Import up to 1000 contacts at a time. Skips duplicates.
+   * Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
    * @param bulkCreateContactsRequest  (required)
    * @return BulkCreateContacts200Response
    * @throws ApiException if fails to make API call
@@ -185,7 +185,7 @@ public class ContactsApi {
 
   /**
    * Bulk create contacts
-   * Import up to 1000 contacts at a time. Skips duplicates.
+   * Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
    * @param bulkCreateContactsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return BulkCreateContacts200Response
@@ -198,7 +198,7 @@ public class ContactsApi {
 
   /**
    * Bulk create contacts
-   * Import up to 1000 contacts at a time. Skips duplicates.
+   * Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
    * @param bulkCreateContactsRequest  (required)
    * @return ApiResponse&lt;BulkCreateContacts200Response&gt;
    * @throws ApiException if fails to make API call
@@ -209,7 +209,7 @@ public class ContactsApi {
 
   /**
    * Bulk create contacts
-   * Import up to 1000 contacts at a time. Skips duplicates.
+   * Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
    * @param bulkCreateContactsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;BulkCreateContacts200Response&gt;

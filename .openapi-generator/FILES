@@ -1259,6 +1259,8 @@ docs/StartSmsRegistrationRequest.md
 docs/StartSmsRegistrationRequestBrand.md
 docs/StartSmsRegistrationRequestCampaign.md
 docs/StartSmsRegistrationRequestTollFree.md
+docs/StartWhatsAppCallerIdVerification200Response.md
+docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/SubmitPhoneNumberKyc200Response.md
 docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md
 docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md
@@ -1497,6 +1499,7 @@ docs/Verification.md
 docs/VerifyApi.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
+docs/VerifyWhatsAppCallerIdRequest.md
 docs/VoiceApi.md
 docs/VoteRedditThingRequest.md
 docs/Webhook.md
@@ -2906,6 +2909,8 @@ src/main/java/dev/zernio/model/StartSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/StartSmsRegistrationRequestBrand.java
 src/main/java/dev/zernio/model/StartSmsRegistrationRequestCampaign.java
 src/main/java/dev/zernio/model/StartSmsRegistrationRequestTollFree.java
+src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerification200Response.java
+src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerificationRequest.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200Response.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200ResponseNumbersInner.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200ResponsePhoneNumber.java
@@ -3138,6 +3143,7 @@ src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOfSubreddit.java
 src/main/java/dev/zernio/model/Verification.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtp200Response.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtpRequest.java
+src/main/java/dev/zernio/model/VerifyWhatsAppCallerIdRequest.java
 src/main/java/dev/zernio/model/VoteRedditThingRequest.java
 src/main/java/dev/zernio/model/Webhook.java
 src/main/java/dev/zernio/model/WebhookLog.java
@@ -3247,3 +3253,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/StartWhatsAppCallerIdVerification200ResponseTest.java
+src/test/java/dev/zernio/model/StartWhatsAppCallerIdVerificationRequestTest.java
+src/test/java/dev/zernio/model/VerifyWhatsAppCallerIdRequestTest.java

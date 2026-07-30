@@ -28,10 +28,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**initiateWhatsAppCallWithHttpInfo**](WhatsAppCallingApi.md#initiateWhatsAppCallWithHttpInfo) | **POST** /v1/whatsapp/calls | Initiate outbound call |
 | [**listWhatsAppCalls**](WhatsAppCallingApi.md#listWhatsAppCalls) | **GET** /v1/whatsapp/calls | List call history for an account |
 | [**listWhatsAppCallsWithHttpInfo**](WhatsAppCallingApi.md#listWhatsAppCallsWithHttpInfo) | **GET** /v1/whatsapp/calls | List call history for an account |
+| [**startWhatsAppCallerIdVerification**](WhatsAppCallingApi.md#startWhatsAppCallerIdVerification) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification | Start caller-ID verification for a customer-brought number |
+| [**startWhatsAppCallerIdVerificationWithHttpInfo**](WhatsAppCallingApi.md#startWhatsAppCallerIdVerificationWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification | Start caller-ID verification for a customer-brought number |
 | [**updateWhatsAppCalling**](WhatsAppCallingApi.md#updateWhatsAppCalling) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config |
 | [**updateWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#updateWhatsAppCallingWithHttpInfo) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config |
 | [**updateWhatsAppCallingLegacy**](WhatsAppCallingApi.md#updateWhatsAppCallingLegacy) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
 | [**updateWhatsAppCallingLegacyWithHttpInfo**](WhatsAppCallingApi.md#updateWhatsAppCallingLegacyWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
+| [**verifyWhatsAppCallerId**](WhatsAppCallingApi.md#verifyWhatsAppCallerId) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify | Confirm the caller-ID verification code |
+| [**verifyWhatsAppCallerIdWithHttpInfo**](WhatsAppCallingApi.md#verifyWhatsAppCallerIdWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify | Confirm the caller-ID verification code |
 
 
 
@@ -1893,6 +1897,162 @@ ApiResponse<[**ListWhatsAppCalls200Response**](ListWhatsAppCalls200Response.md)>
 | **401** | Unauthorized |  -  |
 
 
+## startWhatsAppCallerIdVerification
+
+> StartWhatsAppCallerIdVerification200Response startWhatsAppCallerIdVerification(id, startWhatsAppCallerIdVerificationRequest)
+
+Start caller-ID verification for a customer-brought number
+
+Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest = new StartWhatsAppCallerIdVerificationRequest(); // StartWhatsAppCallerIdVerificationRequest | 
+        try {
+            StartWhatsAppCallerIdVerification200Response result = apiInstance.startWhatsAppCallerIdVerification(id, startWhatsAppCallerIdVerificationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#startWhatsAppCallerIdVerification");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **startWhatsAppCallerIdVerificationRequest** | [**StartWhatsAppCallerIdVerificationRequest**](StartWhatsAppCallerIdVerificationRequest.md)|  | [optional] |
+
+### Return type
+
+[**StartWhatsAppCallerIdVerification200Response**](StartWhatsAppCallerIdVerification200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code sent (or the number was already verified) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **429** | Too many verification attempts for this number; wait before retrying |  -  |
+
+## startWhatsAppCallerIdVerificationWithHttpInfo
+
+> ApiResponse<StartWhatsAppCallerIdVerification200Response> startWhatsAppCallerIdVerification startWhatsAppCallerIdVerificationWithHttpInfo(id, startWhatsAppCallerIdVerificationRequest)
+
+Start caller-ID verification for a customer-brought number
+
+Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        StartWhatsAppCallerIdVerificationRequest startWhatsAppCallerIdVerificationRequest = new StartWhatsAppCallerIdVerificationRequest(); // StartWhatsAppCallerIdVerificationRequest | 
+        try {
+            ApiResponse<StartWhatsAppCallerIdVerification200Response> response = apiInstance.startWhatsAppCallerIdVerificationWithHttpInfo(id, startWhatsAppCallerIdVerificationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#startWhatsAppCallerIdVerification");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **startWhatsAppCallerIdVerificationRequest** | [**StartWhatsAppCallerIdVerificationRequest**](StartWhatsAppCallerIdVerificationRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**StartWhatsAppCallerIdVerification200Response**](StartWhatsAppCallerIdVerification200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code sent (or the number was already verified) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **429** | Too many verification attempts for this number; wait before retrying |  -  |
+
+
 ## updateWhatsAppCalling
 
 > void updateWhatsAppCalling(id, updateWhatsAppCallingLegacyRequest)
@@ -2199,4 +2359,160 @@ ApiResponse<Void>
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |
+
+
+## verifyWhatsAppCallerId
+
+> VerifySmsRegistrationOtp200Response verifyWhatsAppCallerId(id, verifyWhatsAppCallerIdRequest)
+
+Confirm the caller-ID verification code
+
+Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest = new VerifyWhatsAppCallerIdRequest(); // VerifyWhatsAppCallerIdRequest | 
+        try {
+            VerifySmsRegistrationOtp200Response result = apiInstance.verifyWhatsAppCallerId(id, verifyWhatsAppCallerIdRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#verifyWhatsAppCallerId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **verifyWhatsAppCallerIdRequest** | [**VerifyWhatsAppCallerIdRequest**](VerifyWhatsAppCallerIdRequest.md)|  | |
+
+### Return type
+
+[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Verified |  -  |
+| **400** | Invalid or expired code, or malformed request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **429** | Attempt lockout from the carrier; wait a few minutes, then request a fresh code |  -  |
+
+## verifyWhatsAppCallerIdWithHttpInfo
+
+> ApiResponse<VerifySmsRegistrationOtp200Response> verifyWhatsAppCallerId verifyWhatsAppCallerIdWithHttpInfo(id, verifyWhatsAppCallerIdRequest)
+
+Confirm the caller-ID verification code
+
+Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest = new VerifyWhatsAppCallerIdRequest(); // VerifyWhatsAppCallerIdRequest | 
+        try {
+            ApiResponse<VerifySmsRegistrationOtp200Response> response = apiInstance.verifyWhatsAppCallerIdWithHttpInfo(id, verifyWhatsAppCallerIdRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#verifyWhatsAppCallerId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **verifyWhatsAppCallerIdRequest** | [**VerifyWhatsAppCallerIdRequest**](VerifyWhatsAppCallerIdRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Verified |  -  |
+| **400** | Invalid or expired code, or malformed request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **429** | Attempt lockout from the carrier; wait a few minutes, then request a fresh code |  -  |
 

@@ -16,6 +16,17 @@
 |**sipAuthUsername** | **String** |  |  [optional] |
 |**sipAuthPasswordConfigured** | **Boolean** | True when a SIP digest password is stored. The plaintext is never returned. |  [optional] |
 |**callIconCountries** | **List&lt;String&gt;** |  |  [optional] |
+|**callerIdMode** | [**CallerIdModeEnum**](#CallerIdModeEnum) | Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification). |  [optional] |
+|**callerIdVerified** | **Boolean** | True once the number completed caller-ID verification. |  [optional] |
+
+
+
+## Enum: CallerIdModeEnum
+
+| Name | Value |
+|---- | -----|
+| BUSINESS | &quot;business&quot; |
+| PLATFORM | &quot;platform&quot; |
 
 
 

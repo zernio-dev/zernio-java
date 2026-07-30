@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   BulkCreateContacts200Response.JSON_PROPERTY_ERRORS,
   BulkCreateContacts200Response.JSON_PROPERTY_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:26:39.747598786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T11:47:55.447945133Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkCreateContacts200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -57,7 +57,7 @@ public class BulkCreateContacts200Response {
 
   public static final String JSON_PROPERTY_ERRORS = "errors";
   @javax.annotation.Nullable
-  private List<Object> errors = new ArrayList<>();
+  private List<String> errors = new ArrayList<>();
 
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable
@@ -138,12 +138,12 @@ public class BulkCreateContacts200Response {
   }
 
 
-  public BulkCreateContacts200Response errors(@javax.annotation.Nullable List<Object> errors) {
+  public BulkCreateContacts200Response errors(@javax.annotation.Nullable List<String> errors) {
     this.errors = errors;
     return this;
   }
 
-  public BulkCreateContacts200Response addErrorsItem(Object errorsItem) {
+  public BulkCreateContacts200Response addErrorsItem(String errorsItem) {
     if (this.errors == null) {
       this.errors = new ArrayList<>();
     }
@@ -152,20 +152,20 @@ public class BulkCreateContacts200Response {
   }
 
   /**
-   * Get errors
+   * Per-contact failures, e.g. an identifier that is not a valid phone number
    * @return errors
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ERRORS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<Object> getErrors() {
+  public List<String> getErrors() {
     return errors;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ERRORS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrors(@javax.annotation.Nullable List<Object> errors) {
+  public void setErrors(@javax.annotation.Nullable List<String> errors) {
     this.errors = errors;
   }
 

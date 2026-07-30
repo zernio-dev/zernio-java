@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-30T11:26:39.747598786Z[Etc/UTC]
+- Build date: 2026-07-30T11:47:55.447945133Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1072,10 +1072,14 @@ Class | Method | HTTP request | Description
 *WhatsAppCallingApi* | [**initiateWhatsAppCallWithHttpInfo**](docs/WhatsAppCallingApi.md#initiateWhatsAppCallWithHttpInfo) | **POST** /v1/whatsapp/calls | Initiate outbound call
 *WhatsAppCallingApi* | [**listWhatsAppCalls**](docs/WhatsAppCallingApi.md#listWhatsAppCalls) | **GET** /v1/whatsapp/calls | List call history for an account
 *WhatsAppCallingApi* | [**listWhatsAppCallsWithHttpInfo**](docs/WhatsAppCallingApi.md#listWhatsAppCallsWithHttpInfo) | **GET** /v1/whatsapp/calls | List call history for an account
+*WhatsAppCallingApi* | [**startWhatsAppCallerIdVerification**](docs/WhatsAppCallingApi.md#startWhatsAppCallerIdVerification) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification | Start caller-ID verification for a customer-brought number
+*WhatsAppCallingApi* | [**startWhatsAppCallerIdVerificationWithHttpInfo**](docs/WhatsAppCallingApi.md#startWhatsAppCallerIdVerificationWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification | Start caller-ID verification for a customer-brought number
 *WhatsAppCallingApi* | [**updateWhatsAppCalling**](docs/WhatsAppCallingApi.md#updateWhatsAppCalling) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config
 *WhatsAppCallingApi* | [**updateWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#updateWhatsAppCallingWithHttpInfo) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config
 *WhatsAppCallingApi* | [**updateWhatsAppCallingLegacy**](docs/WhatsAppCallingApi.md#updateWhatsAppCallingLegacy) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config
 *WhatsAppCallingApi* | [**updateWhatsAppCallingLegacyWithHttpInfo**](docs/WhatsAppCallingApi.md#updateWhatsAppCallingLegacyWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config
+*WhatsAppCallingApi* | [**verifyWhatsAppCallerId**](docs/WhatsAppCallingApi.md#verifyWhatsAppCallerId) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify | Confirm the caller-ID verification code
+*WhatsAppCallingApi* | [**verifyWhatsAppCallerIdWithHttpInfo**](docs/WhatsAppCallingApi.md#verifyWhatsAppCallerIdWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify | Confirm the caller-ID verification code
 *WhatsAppFlowsApi* | [**createWhatsAppFlow**](docs/WhatsAppFlowsApi.md#createWhatsAppFlow) | **POST** /v1/whatsapp/flows | Create flow
 *WhatsAppFlowsApi* | [**createWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#createWhatsAppFlowWithHttpInfo) | **POST** /v1/whatsapp/flows | Create flow
 *WhatsAppFlowsApi* | [**deleteWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deleteWhatsAppFlow) | **DELETE** /v1/whatsapp/flows/{flowId} | Delete flow
@@ -2379,6 +2383,8 @@ Class | Method | HTTP request | Description
  - [StartSmsRegistrationRequestBrand](docs/StartSmsRegistrationRequestBrand.md)
  - [StartSmsRegistrationRequestCampaign](docs/StartSmsRegistrationRequestCampaign.md)
  - [StartSmsRegistrationRequestTollFree](docs/StartSmsRegistrationRequestTollFree.md)
+ - [StartWhatsAppCallerIdVerification200Response](docs/StartWhatsAppCallerIdVerification200Response.md)
+ - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
  - [SubmitPhoneNumberKyc200Response](docs/SubmitPhoneNumberKyc200Response.md)
  - [SubmitPhoneNumberKyc200ResponseNumbersInner](docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md)
  - [SubmitPhoneNumberKyc200ResponsePhoneNumber](docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md)
@@ -2611,6 +2617,7 @@ Class | Method | HTTP request | Description
  - [Verification](docs/Verification.md)
  - [VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
+ - [VerifyWhatsAppCallerIdRequest](docs/VerifyWhatsAppCallerIdRequest.md)
  - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookLog](docs/WebhookLog.md)

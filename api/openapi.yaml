@@ -21886,6 +21886,101 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/phone-numbers/{id}/whatsapp/caller-id-verification:
+    post:
+      description: |
+        Customer-brought (BYO) WhatsApp numbers cannot present themselves as
+        caller ID on `tel:` call forwards until verified (carrier
+        anti-spoofing); until then forwarded calls show a Zernio number
+        (`callerIdMode: platform` on the calling config). This sends a
+        one-time code to the number by SMS or voice call. Re-POST to resend.
+        Zernio-purchased numbers never need this and get a 400.
+      operationId: startWhatsAppCallerIdVerification
+      parameters:
+      - description: Phone number record ID (from GET /v1/phone-numbers).
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/startWhatsAppCallerIdVerification_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startWhatsAppCallerIdVerification_200_response"
+          description: Code sent (or the number was already verified)
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Number not found
+        "429":
+          description: Too many verification attempts for this number; wait before
+            retrying
+      security:
+      - bearerAuth: []
+      summary: Start caller-ID verification for a customer-brought number
+      tags:
+      - WhatsApp Calling
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify:
+    post:
+      description: |
+        Submits the one-time code the number received. On success, `tel:`
+        call forwards present the business number itself as caller ID
+        (`callerIdMode: business`).
+      operationId: verifyWhatsAppCallerId
+      parameters:
+      - description: Phone number record ID (from GET /v1/phone-numbers).
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/verifyWhatsAppCallerId_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/verifySmsRegistrationOtp_200_response"
+          description: Verified
+        "400":
+          description: "Invalid or expired code, or malformed request"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Number not found
+        "429":
+          description: "Attempt lockout from the carrier; wait a few minutes, then\
+            \ request a fresh code"
+      security:
+      - bearerAuth: []
+      summary: Confirm the caller-ID verification code
+      tags:
+      - WhatsApp Calling
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/phone-numbers/{phoneNumberId}:
     delete:
       deprecated: true
@@ -23418,7 +23513,10 @@ paths:
       - application/json
   /v1/contacts/bulk:
     post:
-      description: Import up to 1000 contacts at a time. Skips duplicates.
+      description: "Import up to 1000 contacts at a time. Skips duplicates. On phone\
+        \ platforms (whatsapp, sms) the platformIdentifier is normalized to digits\
+        \ and a value that is not phone-shaped is rejected per contact and reported\
+        \ in errors[], not imported."
       operationId: bulkCreateContacts
       requestBody:
         content:
@@ -57391,11 +57489,13 @@ components:
           $ref: "#/components/schemas/updateWhatsAppTemplate_200_response_template"
     getWhatsAppCallingConfig_200_response:
       example:
+        callerIdMode: business
         callingEnabled: true
         phoneNumber: phoneNumber
         sipAuthPasswordConfigured: true
         recordingEnabled: true
         callDeepLink: callDeepLink
+        callerIdVerified: true
         forwardTo: forwardTo
         phoneNumberDocId: phoneNumberDocId
         sipAuthUsername: sipAuthUsername
@@ -57437,6 +57537,17 @@ components:
             type: string
           nullable: true
           type: array
+        callerIdMode:
+          description: "Caller ID the forward-leg callee sees on tel: forwards. business\
+            \ = this WhatsApp number; platform = a Zernio number (customer-brought\
+            \ number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification)."
+          enum:
+          - business
+          - platform
+          type: string
+        callerIdVerified:
+          description: True once the number completed caller-ID verification.
+          type: boolean
     enableWhatsAppCallingLegacy_request:
       properties:
         accountId:
@@ -62766,6 +62877,37 @@ components:
           description: "True once the number completed caller-ID verification, making\
             \ tel: forwards display the business number itself."
           type: boolean
+    startWhatsAppCallerIdVerification_request:
+      properties:
+        method:
+          default: sms
+          enum:
+          - sms
+          - call
+          type: string
+    startWhatsAppCallerIdVerification_200_response:
+      example:
+        method: sms
+        codeSent: true
+        verified: true
+      properties:
+        verified:
+          type: boolean
+        codeSent:
+          type: boolean
+        method:
+          enum:
+          - sms
+          - call
+          type: string
+    verifyWhatsAppCallerId_request:
+      properties:
+        code:
+          maxLength: 10
+          minLength: 4
+          type: string
+      required:
+      - code
     listWhatsAppSandboxSessions_200_response:
       example:
         sessions:
@@ -64211,8 +64353,8 @@ components:
         success: true
         created: 0
         errors:
-        - "{}"
-        - "{}"
+        - errors
+        - errors
         skipped: 6
       properties:
         success:
@@ -64222,8 +64364,10 @@ components:
         skipped:
           type: integer
         errors:
+          description: "Per-contact failures, e.g. an identifier that is not a valid\
+            \ phone number"
           items:
-            type: object
+            type: string
           type: array
         total:
           type: integer
