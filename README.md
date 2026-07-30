@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-30T16:27:51.001645062Z[Etc/UTC]
+- Build date: 2026-07-30T16:30:38.821360322Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1028,6 +1028,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**listWhatsAppGroupChatsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppGroupChatsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups | List active groups
 *WhatsAppApi* | [**listWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#listWhatsAppGroupJoinRequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests
 *WhatsAppApi* | [**listWhatsAppGroupJoinRequestsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppGroupJoinRequestsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests
+*WhatsAppApi* | [**registerWhatsAppNumber**](docs/WhatsAppApi.md#registerWhatsAppNumber) | **POST** /v1/accounts/{accountId}/whatsapp/register | Register a connected WhatsApp number on the Cloud API
+*WhatsAppApi* | [**registerWhatsAppNumberWithHttpInfo**](docs/WhatsAppApi.md#registerWhatsAppNumberWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/register | Register a connected WhatsApp number on the Cloud API
 *WhatsAppApi* | [**rejectWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#rejectWhatsAppGroupJoinRequests) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests
 *WhatsAppApi* | [**rejectWhatsAppGroupJoinRequestsWithHttpInfo**](docs/WhatsAppApi.md#rejectWhatsAppGroupJoinRequestsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests
 *WhatsAppApi* | [**removeWhatsAppGroupParticipants**](docs/WhatsAppApi.md#removeWhatsAppGroupParticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants
@@ -2195,6 +2197,8 @@ Class | Method | HTTP request | Description
  - [RecyclingState](docs/RecyclingState.md)
  - [RedditPlatformData](docs/RedditPlatformData.md)
  - [RedditPost](docs/RedditPost.md)
+ - [RegisterWhatsAppNumber200Response](docs/RegisterWhatsAppNumber200Response.md)
+ - [RegisterWhatsAppNumberRequest](docs/RegisterWhatsAppNumberRequest.md)
  - [RejectWhatsAppGroupJoinRequestsRequest](docs/RejectWhatsAppGroupJoinRequestsRequest.md)
  - [ReleasePhoneNumber200Response](docs/ReleasePhoneNumber200Response.md)
  - [ReleasePhoneNumber200ResponsePhoneNumber](docs/ReleasePhoneNumber200ResponsePhoneNumber.md)

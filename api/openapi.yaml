@@ -6634,6 +6634,54 @@ paths:
       - Accounts
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/whatsapp/register:
+    post:
+      description: |
+        Re-runs Meta's Cloud API registration for a WhatsApp account that is already connected.
+        Use it when the number has its own two-step verification PIN: the connect flows register
+        with a default PIN, Meta rejects that with error 133005, and the number then fails every
+        send with the misleading '(#200) You do not have the necessary permission to send messages'
+        while the account still shows as connected. The PIN is used for this call only and is not stored.
+      operationId: registerWhatsAppNumber
+      parameters:
+      - description: The WhatsApp account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              pin: "481902"
+            schema:
+              $ref: "#/components/schemas/registerWhatsAppNumber_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/registerWhatsAppNumber_200_response"
+          description: Number registered on the WhatsApp Cloud API
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: Invalid or expired credentials
+        "404":
+          description: WhatsApp account not found
+        "422":
+          description: "Meta rejected the registration (e.g. PIN mismatch), or the\
+            \ number cannot be registered through the API."
+      summary: Register a connected WhatsApp number on the Cloud API
+      tags:
+      - WhatsApp
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/health:
     get:
       description: "Returns detailed health info for a specific account including\
@@ -9977,6 +10025,7 @@ paths:
               accessToken: EAABsbCS...your-system-user-token
               wabaId: "123456789012345"
               phoneNumberId: "987654321098765"
+              pin: "481902"
             schema:
               $ref: "#/components/schemas/connectWhatsAppCredentials_request"
         required: true
@@ -9998,9 +10047,10 @@ paths:
           description: WhatsApp connected successfully
         "400":
           description: |
-            Invalid request. Either missing fields or the phoneNumberId was not found
-            in the specified WABA. If the phone was not found, the response includes
-            availablePhoneNumbers to help identify the correct ID.
+            Invalid request. Missing fields, a `pin` that is not 6 digits, or the
+            phoneNumberId was not found in the specified WABA. If the phone was not
+            found, the response includes availablePhoneNumbers to help identify the
+            correct ID.
         "401":
           description: Invalid or expired access token
         "403":
@@ -46094,6 +46144,25 @@ components:
           items:
             $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner"
           type: array
+    registerWhatsAppNumber_request:
+      properties:
+        pin:
+          description: The 6-digit two-step verification PIN set on the number. Omit
+            it only if the number has no PIN of its own.
+          pattern: "^\\d{6}$"
+          type: string
+    registerWhatsAppNumber_200_response:
+      example:
+        accountId: accountId
+        registered: true
+        phoneNumberId: phoneNumberId
+      properties:
+        registered:
+          type: boolean
+        accountId:
+          type: string
+        phoneNumberId:
+          type: string
     getAccountHealth_200_response_tokenStatus:
       example:
         valid: true
@@ -50552,6 +50621,13 @@ components:
         phoneNumberId:
           description: Phone Number ID from Meta WhatsApp Manager
           type: string
+        pin:
+          description: "The 6-digit two-step verification PIN set on the number. Required\
+            \ if you enabled two-step verification for it, otherwise Meta rejects\
+            \ the Cloud API registration with error 133005 and the number cannot send\
+            \ messages."
+          pattern: "^\\d{6}$"
+          type: string
       required:
       - accessToken
       - phoneNumberId
@@ -50586,6 +50662,7 @@ components:
     connectWhatsAppCredentials_200_response:
       example:
         message: message
+        registrationWarning: registrationWarning
         account:
           selectedPhoneNumber: selectedPhoneNumber
           accountId: accountId
@@ -50595,6 +50672,11 @@ components:
           username: username
       properties:
         message:
+          type: string
+        registrationWarning:
+          description: Present when the account was created but Meta rejected the
+            Cloud API registration. The number cannot send messages until this is
+            resolved.
           type: string
         account:
           $ref: "#/components/schemas/connectWhatsAppCredentials_200_response_account"

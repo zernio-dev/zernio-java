@@ -1068,6 +1068,8 @@ docs/RecyclingState.md
 docs/RedditPlatformData.md
 docs/RedditPost.md
 docs/RedditSearchApi.md
+docs/RegisterWhatsAppNumber200Response.md
+docs/RegisterWhatsAppNumberRequest.md
 docs/RejectWhatsAppGroupJoinRequestsRequest.md
 docs/ReleasePhoneNumber200Response.md
 docs/ReleasePhoneNumber200ResponsePhoneNumber.md
@@ -2721,6 +2723,8 @@ src/main/java/dev/zernio/model/RecyclingConfig.java
 src/main/java/dev/zernio/model/RecyclingState.java
 src/main/java/dev/zernio/model/RedditPlatformData.java
 src/main/java/dev/zernio/model/RedditPost.java
+src/main/java/dev/zernio/model/RegisterWhatsAppNumber200Response.java
+src/main/java/dev/zernio/model/RegisterWhatsAppNumberRequest.java
 src/main/java/dev/zernio/model/RejectWhatsAppGroupJoinRequestsRequest.java
 src/main/java/dev/zernio/model/ReleasePhoneNumber200Response.java
 src/main/java/dev/zernio/model/ReleasePhoneNumber200ResponsePhoneNumber.java
@@ -3253,3 +3257,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/RegisterWhatsAppNumber200ResponseTest.java
+src/test/java/dev/zernio/model/RegisterWhatsAppNumberRequestTest.java

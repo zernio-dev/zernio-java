@@ -46,6 +46,8 @@ import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListWhatsAppConversions200Response;
 import dev.zernio.model.ListWhatsAppGroupChats200Response;
 import dev.zernio.model.ListWhatsAppGroupJoinRequests200Response;
+import dev.zernio.model.RegisterWhatsAppNumber200Response;
+import dev.zernio.model.RegisterWhatsAppNumberRequest;
 import dev.zernio.model.RejectWhatsAppGroupJoinRequestsRequest;
 import dev.zernio.model.RemoveWhatsAppGroupParticipantsRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
@@ -94,7 +96,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:27:51.001645062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:30:38.821360322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3471,6 +3473,134 @@ public class WhatsAppApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Register a connected WhatsApp number on the Cloud API
+   * Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param registerWhatsAppNumberRequest  (optional)
+   * @return RegisterWhatsAppNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RegisterWhatsAppNumber200Response registerWhatsAppNumber(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest) throws ApiException {
+    return registerWhatsAppNumber(accountId, registerWhatsAppNumberRequest, null);
+  }
+
+  /**
+   * Register a connected WhatsApp number on the Cloud API
+   * Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param registerWhatsAppNumberRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return RegisterWhatsAppNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RegisterWhatsAppNumber200Response registerWhatsAppNumber(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RegisterWhatsAppNumber200Response> localVarResponse = registerWhatsAppNumberWithHttpInfo(accountId, registerWhatsAppNumberRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Register a connected WhatsApp number on the Cloud API
+   * Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param registerWhatsAppNumberRequest  (optional)
+   * @return ApiResponse&lt;RegisterWhatsAppNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisterWhatsAppNumber200Response> registerWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest) throws ApiException {
+    return registerWhatsAppNumberWithHttpInfo(accountId, registerWhatsAppNumberRequest, null);
+  }
+
+  /**
+   * Register a connected WhatsApp number on the Cloud API
+   * Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param registerWhatsAppNumberRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RegisterWhatsAppNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisterWhatsAppNumber200Response> registerWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = registerWhatsAppNumberRequestBuilder(accountId, registerWhatsAppNumberRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("registerWhatsAppNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RegisterWhatsAppNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RegisterWhatsAppNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RegisterWhatsAppNumber200Response>() {});
+        
+
+        return new ApiResponse<RegisterWhatsAppNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder registerWhatsAppNumberRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling registerWhatsAppNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/whatsapp/register"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(registerWhatsAppNumberRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

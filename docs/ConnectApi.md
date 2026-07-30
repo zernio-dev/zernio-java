@@ -1256,7 +1256,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | WhatsApp connected successfully |  -  |
-| **400** | Invalid request. Either missing fields or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
+| **400** | Invalid request. Missing fields, a &#x60;pin&#x60; that is not 6 digits, or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
 | **401** | Invalid or expired access token |  -  |
 | **403** | Profile limit exceeded for this plan |  -  |
 
@@ -1332,7 +1332,7 @@ ApiResponse<[**ConnectWhatsAppCredentials200Response**](ConnectWhatsAppCredentia
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | WhatsApp connected successfully |  -  |
-| **400** | Invalid request. Either missing fields or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
+| **400** | Invalid request. Missing fields, a &#x60;pin&#x60; that is not 6 digits, or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
 | **401** | Invalid or expired access token |  -  |
 | **403** | Profile limit exceeded for this plan |  -  |
 

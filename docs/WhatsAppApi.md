@@ -52,6 +52,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listWhatsAppGroupChatsWithHttpInfo**](WhatsAppApi.md#listWhatsAppGroupChatsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**listWhatsAppGroupJoinRequests**](WhatsAppApi.md#listWhatsAppGroupJoinRequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
 | [**listWhatsAppGroupJoinRequestsWithHttpInfo**](WhatsAppApi.md#listWhatsAppGroupJoinRequestsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
+| [**registerWhatsAppNumber**](WhatsAppApi.md#registerWhatsAppNumber) | **POST** /v1/accounts/{accountId}/whatsapp/register | Register a connected WhatsApp number on the Cloud API |
+| [**registerWhatsAppNumberWithHttpInfo**](WhatsAppApi.md#registerWhatsAppNumberWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/register | Register a connected WhatsApp number on the Cloud API |
 | [**rejectWhatsAppGroupJoinRequests**](WhatsAppApi.md#rejectWhatsAppGroupJoinRequests) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests |
 | [**rejectWhatsAppGroupJoinRequestsWithHttpInfo**](WhatsAppApi.md#rejectWhatsAppGroupJoinRequestsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests |
 | [**removeWhatsAppGroupParticipants**](WhatsAppApi.md#removeWhatsAppGroupParticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
@@ -3721,6 +3723,162 @@ ApiResponse<[**ListWhatsAppGroupJoinRequests200Response**](ListWhatsAppGroupJoin
 | **200** | Join requests |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## registerWhatsAppNumber
+
+> RegisterWhatsAppNumber200Response registerWhatsAppNumber(accountId, registerWhatsAppNumberRequest)
+
+Register a connected WhatsApp number on the Cloud API
+
+Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | The WhatsApp account ID
+        RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest = new RegisterWhatsAppNumberRequest(); // RegisterWhatsAppNumberRequest | 
+        try {
+            RegisterWhatsAppNumber200Response result = apiInstance.registerWhatsAppNumber(accountId, registerWhatsAppNumberRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#registerWhatsAppNumber");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The WhatsApp account ID | |
+| **registerWhatsAppNumberRequest** | [**RegisterWhatsAppNumberRequest**](RegisterWhatsAppNumberRequest.md)|  | [optional] |
+
+### Return type
+
+[**RegisterWhatsAppNumber200Response**](RegisterWhatsAppNumber200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number registered on the WhatsApp Cloud API |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Invalid or expired credentials |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **422** | Meta rejected the registration (e.g. PIN mismatch), or the number cannot be registered through the API. |  -  |
+
+## registerWhatsAppNumberWithHttpInfo
+
+> ApiResponse<RegisterWhatsAppNumber200Response> registerWhatsAppNumber registerWhatsAppNumberWithHttpInfo(accountId, registerWhatsAppNumberRequest)
+
+Register a connected WhatsApp number on the Cloud API
+
+Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | The WhatsApp account ID
+        RegisterWhatsAppNumberRequest registerWhatsAppNumberRequest = new RegisterWhatsAppNumberRequest(); // RegisterWhatsAppNumberRequest | 
+        try {
+            ApiResponse<RegisterWhatsAppNumber200Response> response = apiInstance.registerWhatsAppNumberWithHttpInfo(accountId, registerWhatsAppNumberRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#registerWhatsAppNumber");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The WhatsApp account ID | |
+| **registerWhatsAppNumberRequest** | [**RegisterWhatsAppNumberRequest**](RegisterWhatsAppNumberRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**RegisterWhatsAppNumber200Response**](RegisterWhatsAppNumber200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number registered on the WhatsApp Cloud API |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Invalid or expired credentials |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **422** | Meta rejected the registration (e.g. PIN mismatch), or the number cannot be registered through the API. |  -  |
 
 
 ## rejectWhatsAppGroupJoinRequests

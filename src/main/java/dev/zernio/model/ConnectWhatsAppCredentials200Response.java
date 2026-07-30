@@ -35,13 +35,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_MESSAGE,
+  ConnectWhatsAppCredentials200Response.JSON_PROPERTY_REGISTRATION_WARNING,
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:27:51.001645062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:30:38.821360322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppCredentials200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
   private String message;
+
+  public static final String JSON_PROPERTY_REGISTRATION_WARNING = "registrationWarning";
+  @javax.annotation.Nullable
+  private String registrationWarning;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   @javax.annotation.Nullable
@@ -71,6 +76,30 @@ public class ConnectWhatsAppCredentials200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMessage(@javax.annotation.Nullable String message) {
     this.message = message;
+  }
+
+
+  public ConnectWhatsAppCredentials200Response registrationWarning(@javax.annotation.Nullable String registrationWarning) {
+    this.registrationWarning = registrationWarning;
+    return this;
+  }
+
+  /**
+   * Present when the account was created but Meta rejected the Cloud API registration. The number cannot send messages until this is resolved.
+   * @return registrationWarning
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGISTRATION_WARNING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRegistrationWarning() {
+    return registrationWarning;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGISTRATION_WARNING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationWarning(@javax.annotation.Nullable String registrationWarning) {
+    this.registrationWarning = registrationWarning;
   }
 
 
@@ -111,12 +140,13 @@ public class ConnectWhatsAppCredentials200Response {
     }
     ConnectWhatsAppCredentials200Response connectWhatsAppCredentials200Response = (ConnectWhatsAppCredentials200Response) o;
     return Objects.equals(this.message, connectWhatsAppCredentials200Response.message) &&
+        Objects.equals(this.registrationWarning, connectWhatsAppCredentials200Response.registrationWarning) &&
         Objects.equals(this.account, connectWhatsAppCredentials200Response.account);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, account);
+    return Objects.hash(message, registrationWarning, account);
   }
 
   @Override
@@ -124,6 +154,7 @@ public class ConnectWhatsAppCredentials200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectWhatsAppCredentials200Response {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    registrationWarning: ").append(toIndentedString(registrationWarning)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -175,6 +206,11 @@ public class ConnectWhatsAppCredentials200Response {
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `registrationWarning` to the URL query string
+    if (getRegistrationWarning() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sregistrationWarning%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRegistrationWarning()))));
     }
 
     // add `account` to the URL query string

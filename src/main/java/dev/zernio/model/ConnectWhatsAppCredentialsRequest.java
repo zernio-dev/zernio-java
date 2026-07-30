@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppCredentialsRequest.JSON_PROPERTY_PROFILE_ID,
   ConnectWhatsAppCredentialsRequest.JSON_PROPERTY_ACCESS_TOKEN,
   ConnectWhatsAppCredentialsRequest.JSON_PROPERTY_WABA_ID,
-  ConnectWhatsAppCredentialsRequest.JSON_PROPERTY_PHONE_NUMBER_ID
+  ConnectWhatsAppCredentialsRequest.JSON_PROPERTY_PHONE_NUMBER_ID,
+  ConnectWhatsAppCredentialsRequest.JSON_PROPERTY_PIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:27:51.001645062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:30:38.821360322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppCredentialsRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -55,6 +56,10 @@ public class ConnectWhatsAppCredentialsRequest {
   public static final String JSON_PROPERTY_PHONE_NUMBER_ID = "phoneNumberId";
   @javax.annotation.Nonnull
   private String phoneNumberId;
+
+  public static final String JSON_PROPERTY_PIN = "pin";
+  @javax.annotation.Nullable
+  private String pin;
 
   public ConnectWhatsAppCredentialsRequest() { 
   }
@@ -155,6 +160,30 @@ public class ConnectWhatsAppCredentialsRequest {
   }
 
 
+  public ConnectWhatsAppCredentialsRequest pin(@javax.annotation.Nullable String pin) {
+    this.pin = pin;
+    return this;
+  }
+
+  /**
+   * The 6-digit two-step verification PIN set on the number. Required if you enabled two-step verification for it, otherwise Meta rejects the Cloud API registration with error 133005 and the number cannot send messages.
+   * @return pin
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPin() {
+    return pin;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPin(@javax.annotation.Nullable String pin) {
+    this.pin = pin;
+  }
+
+
   /**
    * Return true if this connectWhatsAppCredentials_request object is equal to o.
    */
@@ -170,12 +199,13 @@ public class ConnectWhatsAppCredentialsRequest {
     return Objects.equals(this.profileId, connectWhatsAppCredentialsRequest.profileId) &&
         Objects.equals(this.accessToken, connectWhatsAppCredentialsRequest.accessToken) &&
         Objects.equals(this.wabaId, connectWhatsAppCredentialsRequest.wabaId) &&
-        Objects.equals(this.phoneNumberId, connectWhatsAppCredentialsRequest.phoneNumberId);
+        Objects.equals(this.phoneNumberId, connectWhatsAppCredentialsRequest.phoneNumberId) &&
+        Objects.equals(this.pin, connectWhatsAppCredentialsRequest.pin);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, accessToken, wabaId, phoneNumberId);
+    return Objects.hash(profileId, accessToken, wabaId, phoneNumberId, pin);
   }
 
   @Override
@@ -186,6 +216,7 @@ public class ConnectWhatsAppCredentialsRequest {
     sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
     sb.append("    wabaId: ").append(toIndentedString(wabaId)).append("\n");
     sb.append("    phoneNumberId: ").append(toIndentedString(phoneNumberId)).append("\n");
+    sb.append("    pin: ").append(toIndentedString(pin)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +282,11 @@ public class ConnectWhatsAppCredentialsRequest {
     // add `phoneNumberId` to the URL query string
     if (getPhoneNumberId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumberId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumberId()))));
+    }
+
+    // add `pin` to the URL query string
+    if (getPin() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPin()))));
     }
 
     return joiner.toString();
