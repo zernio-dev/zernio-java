@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateLinkedInOrganization200Response.JSON_PROPERTY_ACCOUNT_TYPE,
   UpdateLinkedInOrganization200Response.JSON_PROPERTY_ACCOUNT_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T09:59:10.022448146Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:02:37.483715533Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateLinkedInOrganization200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

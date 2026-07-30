@@ -258,7 +258,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_DISCONNECTED&#x60; — a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (accounts report their connection state via &#x60;isActive&#x60;). The disconnect itself is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;PROFILE_OVER_LIMIT&#x60; — a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60; — a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
 | **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry of an in-flight call. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post — see operation description for the idempotency contract).  Body fields: - &#x60;error&#x60; — human-readable message - &#x60;details.accountId&#x60; — the account that already has this content - &#x60;details.platform&#x60; — the platform that already has this content - &#x60;details.existingPostId&#x60; — Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request — see &#x60;parameters.x-request-id&#x60; above.  |  -  |
-| **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (15 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up in the sliding window <br>  |
+| **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (25 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up in the sliding window <br>  |
 
 ## createPostWithHttpInfo
 
@@ -338,7 +338,7 @@ ApiResponse<[**PostCreateResponse**](PostCreateResponse.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_DISCONNECTED&#x60; — a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (accounts report their connection state via &#x60;isActive&#x60;). The disconnect itself is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;PROFILE_OVER_LIMIT&#x60; — a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60; — a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
 | **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry of an in-flight call. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post — see operation description for the idempotency contract).  Body fields: - &#x60;error&#x60; — human-readable message - &#x60;details.accountId&#x60; — the account that already has this content - &#x60;details.platform&#x60; — the platform that already has this content - &#x60;details.existingPostId&#x60; — Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request — see &#x60;parameters.x-request-id&#x60; above.  |  -  |
-| **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (15 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up in the sliding window <br>  |
+| **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (25 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up in the sliding window <br>  |
 
 
 ## deletePost
@@ -1070,7 +1070,7 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Post is currently publishing |  -  |
-| **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute), velocity limit (15 posts/hour per account), or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
+| **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute), velocity limit (25 posts/hour per account), or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
 
 ## retryPostWithHttpInfo
 
@@ -1150,7 +1150,7 @@ ApiResponse<[**PostRetryResponse**](PostRetryResponse.md)>
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Post is currently publishing |  -  |
-| **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute), velocity limit (15 posts/hour per account), or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
+| **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute), velocity limit (25 posts/hour per account), or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
 
 
 ## unpublishPost
