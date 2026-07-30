@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetLinkedInSupplyForecastRequestCompetingBid.JSON_PROPERTY_BID_TYPE,
   GetLinkedInSupplyForecastRequestCompetingBid.JSON_PROPERTY_AMOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:10:21.918596480Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInSupplyForecastRequestCompetingBid {
   /**
    * Gets or Sets bidType

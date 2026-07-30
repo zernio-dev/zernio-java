@@ -25,6 +25,7 @@ import dev.zernio.model.CreatePost429Response;
 import dev.zernio.model.CreatePostRequest;
 import dev.zernio.model.EditPost200Response;
 import dev.zernio.model.EditPostRequest;
+import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetInboxVolume400Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
@@ -75,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:10:21.918596480Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T10:32:38.162910549Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -860,12 +861,12 @@ public class PostsApi {
    * List posts
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
-   * @param limit Page size (optional, default to 10)
+   * @param limit Page size. Values above the maximum return 400 rather than being clamped. (optional, default to 10)
    * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
-   * @param createdBy  (optional)
+   * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
    * @param dateFrom  (optional)
    * @param dateTo  (optional)
    * @param includeHidden  (optional, default to false)
@@ -883,12 +884,12 @@ public class PostsApi {
    * List posts
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
-   * @param limit Page size (optional, default to 10)
+   * @param limit Page size. Values above the maximum return 400 rather than being clamped. (optional, default to 10)
    * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
-   * @param createdBy  (optional)
+   * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
    * @param dateFrom  (optional)
    * @param dateTo  (optional)
    * @param includeHidden  (optional, default to false)
@@ -908,12 +909,12 @@ public class PostsApi {
    * List posts
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
-   * @param limit Page size (optional, default to 10)
+   * @param limit Page size. Values above the maximum return 400 rather than being clamped. (optional, default to 10)
    * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
-   * @param createdBy  (optional)
+   * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
    * @param dateFrom  (optional)
    * @param dateTo  (optional)
    * @param includeHidden  (optional, default to false)
@@ -931,12 +932,12 @@ public class PostsApi {
    * List posts
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
-   * @param limit Page size (optional, default to 10)
+   * @param limit Page size. Values above the maximum return 400 rather than being clamped. (optional, default to 10)
    * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
-   * @param createdBy  (optional)
+   * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
    * @param dateFrom  (optional)
    * @param dateTo  (optional)
    * @param includeHidden  (optional, default to false)

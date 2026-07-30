@@ -101,6 +101,8 @@ public class Example {
 | **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment required: the account owner has a failed payment. Not returned on dry-run. |  -  |
+| **404** | Authenticated user not found |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |
 
 ## bulkUploadPostsWithHttpInfo
@@ -180,6 +182,8 @@ ApiResponse<[**BulkUploadResult**](BulkUploadResult.md)>
 | **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment required: the account owner has a failed payment. Not returned on dry-run. |  -  |
+| **404** | Authenticated user not found |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |
 
 
@@ -720,6 +724,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -796,6 +801,7 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -831,12 +837,12 @@ public class Example {
 
         PostsApi apiInstance = new PostsApi(defaultClient);
         Integer page = 1; // Integer | Page number (1-based)
-        Integer limit = 10; // Integer | Page size
+        Integer limit = 10; // Integer | Page size. Values above the maximum return 400 rather than being clamped.
         String source = "zernio"; // String | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account).
         String status = "draft"; // String | 
         String platform = "twitter"; // String | 
         String profileId = "profileId_example"; // String | 
-        String createdBy = "createdBy_example"; // String | 
+        String createdBy = "createdBy_example"; // String | Filter posts to those created by a specific team user (24-char hex ObjectId).
         LocalDate dateFrom = LocalDate.now(); // LocalDate | 
         LocalDate dateTo = LocalDate.now(); // LocalDate | 
         Boolean includeHidden = false; // Boolean | 
@@ -863,12 +869,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
-| **limit** | **Integer**| Page size | [optional] [default to 10] |
+| **limit** | **Integer**| Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 10] |
 | **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
 | **status** | **String**|  | [optional] [enum: draft, scheduled, published, failed] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**|  | [optional] |
-| **createdBy** | **String**|  | [optional] |
+| **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
 | **dateFrom** | **LocalDate**|  | [optional] |
 | **dateTo** | **LocalDate**|  | [optional] |
 | **includeHidden** | **Boolean**|  | [optional] [default to false] |
@@ -894,6 +900,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated posts |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listPostsWithHttpInfo
@@ -927,12 +934,12 @@ public class Example {
 
         PostsApi apiInstance = new PostsApi(defaultClient);
         Integer page = 1; // Integer | Page number (1-based)
-        Integer limit = 10; // Integer | Page size
+        Integer limit = 10; // Integer | Page size. Values above the maximum return 400 rather than being clamped.
         String source = "zernio"; // String | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account).
         String status = "draft"; // String | 
         String platform = "twitter"; // String | 
         String profileId = "profileId_example"; // String | 
-        String createdBy = "createdBy_example"; // String | 
+        String createdBy = "createdBy_example"; // String | Filter posts to those created by a specific team user (24-char hex ObjectId).
         LocalDate dateFrom = LocalDate.now(); // LocalDate | 
         LocalDate dateTo = LocalDate.now(); // LocalDate | 
         Boolean includeHidden = false; // Boolean | 
@@ -961,12 +968,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
-| **limit** | **Integer**| Page size | [optional] [default to 10] |
+| **limit** | **Integer**| Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 10] |
 | **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
 | **status** | **String**|  | [optional] [enum: draft, scheduled, published, failed] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**|  | [optional] |
-| **createdBy** | **String**|  | [optional] |
+| **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
 | **dateFrom** | **LocalDate**|  | [optional] |
 | **dateTo** | **LocalDate**|  | [optional] |
 | **includeHidden** | **Boolean**|  | [optional] [default to false] |
@@ -992,6 +999,7 @@ ApiResponse<[**PostsListResponse**](PostsListResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated posts |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -1067,6 +1075,7 @@ public class Example {
 | **207** | Partial success |  -  |
 | **400** | Invalid state |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment required: the account owner has a failed payment. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Post is currently publishing |  -  |
@@ -1147,6 +1156,7 @@ ApiResponse<[**PostRetryResponse**](PostRetryResponse.md)>
 | **207** | Partial success |  -  |
 | **400** | Invalid state |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment required: the account owner has a failed payment. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Post is currently publishing |  -  |

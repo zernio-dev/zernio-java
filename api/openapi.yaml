@@ -4606,7 +4606,18 @@ paths:
       operationId: listPosts
       parameters:
       - $ref: "#/components/parameters/PageParam"
-      - $ref: "#/components/parameters/LimitParam"
+      - description: Page size. Values above the maximum return 400 rather than being
+          clamped.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
       - description: Which collection to read. `zernio` (default) returns posts authored
           through Zernio. `external` returns posts synced from the platform (existing/historical
           posts that were published outside Zernio). Combine with `accountId` and
@@ -4650,7 +4661,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Filter posts to those created by a specific team user (24-char
+          hex ObjectId).
+        explode: true
         in: query
         name: createdBy
         required: false
@@ -4793,6 +4806,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/PostsListResponse"
           description: Paginated posts
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List posts
@@ -5226,10 +5241,18 @@ paths:
                 $ref: "#/components/schemas/PostDeleteResponse"
           description: Deleted
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Cannot delete published posts
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
@@ -5356,9 +5379,15 @@ paths:
               schema:
                 $ref: "#/components/schemas/PostGetResponse"
           description: Post
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
@@ -5410,10 +5439,18 @@ paths:
         "207":
           description: Partial publish success
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
@@ -5482,9 +5519,26 @@ paths:
             shape to the `200` response. Inspect each entry in `results` (`ok` plus `errors`)
             to see which rows failed and why.
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Invalid CSV or validation errors
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+          description: "Payment required: the account owner has a failed payment.\
+            \ Not returned on dry-run."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authenticated user not found
         "429":
           content:
             application/json:
@@ -5539,14 +5593,32 @@ paths:
         "207":
           description: Partial success
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Invalid state
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+          description: "Payment required: the account owner has a failed payment."
         "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Post is currently publishing
         "429":
           content:
@@ -5593,12 +5665,20 @@ paths:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Post deleted from platform
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request: platform not supported for deletion, post\
             \ not on that platform, not published, no platform post ID, or no access\
             \ token."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
@@ -5761,11 +5841,19 @@ paths:
                 $ref: "#/components/schemas/updatePostMetadata_200_response"
           description: Metadata updated successfully
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request: unsupported platform, post not published,\
             \ missing fields, or validation error."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
@@ -31705,18 +31793,6 @@ components:
       required: false
       schema:
         default: 1
-        minimum: 1
-        type: integer
-      style: form
-    LimitParam:
-      description: Page size
-      explode: true
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 10
-        maximum: 100
         minimum: 1
         type: integer
       style: form
