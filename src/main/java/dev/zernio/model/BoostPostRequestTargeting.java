@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestTargeting.JSON_PROPERTY_INTERESTS,
   BoostPostRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T08:42:51.903565581Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestTargeting {
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -63,7 +63,7 @@ public class BoostPostRequestTargeting {
   private Integer ageMax;
 
   /**
-   * Meta only.
+   * Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
    */
   public enum GenderEnum {
     ALL(String.valueOf("all")),
@@ -235,7 +235,7 @@ public class BoostPostRequestTargeting {
   }
 
   /**
-   * Meta only.
+   * Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
    * @return gender
    */
   @javax.annotation.Nullable

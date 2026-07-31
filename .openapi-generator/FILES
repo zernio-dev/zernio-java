@@ -3265,7 +3265,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/ConnectedAppsApiTest.java
-src/test/java/dev/zernio/model/ConnectedAppTest.java
-src/test/java/dev/zernio/model/ListConnectedApps200ResponseTest.java
-src/test/java/dev/zernio/model/RevokeConnectedApp200ResponseTest.java

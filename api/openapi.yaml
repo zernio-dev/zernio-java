@@ -41680,7 +41680,8 @@ components:
           minimum: 13
           type: integer
         gender:
-          description: Restrict by gender. 'all' (default) targets everyone.
+          description: "Restrict by gender. 'all' (default) targets everyone. Applied\
+            \ on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X."
           enum:
           - all
           - male
@@ -72176,7 +72177,8 @@ components:
           minimum: 13
           type: integer
         gender:
-          description: Meta only.
+          description: "Applied on Meta, TikTok and Pinterest. Ignored on Google,\
+            \ LinkedIn and X."
           enum:
           - all
           - male
@@ -73648,9 +73650,9 @@ components:
           type: array
         gender:
           default: all
-          description: "Meta only. Restrict the audience by gender. 'male' targets\
-            \ men only, 'female' targets women only, 'all' (default) targets everyone.\
-            \ Ignored by non-Meta platforms."
+          description: "Restrict the audience by gender. 'male' targets men only,\
+            \ 'female' targets women only, 'all' (default) targets everyone. Applied\
+            \ on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X."
           enum:
           - all
           - male

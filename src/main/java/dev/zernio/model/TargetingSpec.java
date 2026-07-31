@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T08:42:51.903565581Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -100,7 +100,7 @@ public class TargetingSpec {
   private Integer ageMax;
 
   /**
-   * Restrict by gender. &#39;all&#39; (default) targets everyone.
+   * Restrict by gender. &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
    */
   public enum GenderEnum {
     ALL(String.valueOf("all")),
@@ -496,7 +496,7 @@ public class TargetingSpec {
   }
 
   /**
-   * Restrict by gender. &#39;all&#39; (default) targets everyone.
+   * Restrict by gender. &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
    * @return gender
    */
   @javax.annotation.Nullable
