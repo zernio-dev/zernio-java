@@ -42,22 +42,22 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_VIDEO_URL,
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T16:11:09.993664531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestTranslationsInner {
   public static final String JSON_PROPERTY_LOCALE = "locale";
   @javax.annotation.Nonnull
   private String locale;
 
   public static final String JSON_PROPERTY_HEADLINE = "headline";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String headline;
 
   public static final String JSON_PROPERTY_BODY = "body";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String body;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String description;
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
@@ -99,74 +99,74 @@ public class CreateStandaloneAdRequestTranslationsInner {
   }
 
 
-  public CreateStandaloneAdRequestTranslationsInner headline(@javax.annotation.Nullable String headline) {
+  public CreateStandaloneAdRequestTranslationsInner headline(@javax.annotation.Nonnull String headline) {
     this.headline = headline;
     return this;
   }
 
   /**
-   * Headline for this language. Inherits the top-level &#x60;headline&#x60; when omitted.
+   * Headline for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level headline.
    * @return headline
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHeadline() {
     return headline;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHeadline(@javax.annotation.Nullable String headline) {
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setHeadline(@javax.annotation.Nonnull String headline) {
     this.headline = headline;
   }
 
 
-  public CreateStandaloneAdRequestTranslationsInner body(@javax.annotation.Nullable String body) {
+  public CreateStandaloneAdRequestTranslationsInner body(@javax.annotation.Nonnull String body) {
     this.body = body;
     return this;
   }
 
   /**
-   * Primary text for this language. Inherits the top-level &#x60;body&#x60; when omitted.
+   * Primary text for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level body.
    * @return body
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getBody() {
     return body;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBody(@javax.annotation.Nullable String body) {
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setBody(@javax.annotation.Nonnull String body) {
     this.body = body;
   }
 
 
-  public CreateStandaloneAdRequestTranslationsInner description(@javax.annotation.Nullable String description) {
+  public CreateStandaloneAdRequestTranslationsInner description(@javax.annotation.Nonnull String description) {
     this.description = description;
     return this;
   }
 
   /**
-   * Link description for this language. Inherits the top-level &#x60;description&#x60; when omitted.
+   * Link description for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level description.
    * @return description
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
   }
 

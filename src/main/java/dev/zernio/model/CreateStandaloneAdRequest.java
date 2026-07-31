@@ -141,7 +141,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T16:11:09.993664531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1361,7 +1361,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
+   * Budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents — Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
    * @return budgetAmount
    */
   @javax.annotation.Nullable
@@ -2557,7 +2557,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Language the top-level copy is written in (e.g. &#x60;en&#x60;, &#x60;pt_BR&#x60;), used by the &#x60;translations&#x60; default rule. Defaults to &#x60;en&#x60;. Meta rejects a language asset feed whose default rule carries no locales of its own.
+   * Meta only. Language the top-level copy is written in (e.g. &#x60;en&#x60;, &#x60;pt_BR&#x60;), used by the &#x60;translations&#x60; default rule. Defaults to &#x60;en&#x60;. Meta rejects a language asset feed whose default rule carries no locales of its own. Must NOT also appear as an entry in &#x60;translations&#x60;.
    * @return defaultLocale
    */
   @javax.annotation.Nullable
@@ -2589,7 +2589,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Multi-language ads (Dynamic Language Optimization): ONE ad carrying per-locale copy and, optionally, per-locale media — the \&quot;Languages\&quot; toggle in Ads Manager. Keeps social proof (likes/comments/shares) on a SINGLE post instead of splitting it across one ad per language.  The ad&#39;s top-level copy and media are the DEFAULT every unlisted locale falls back to, and a variant inherits any field it omits, so send only what differs per language. Media shared across languages is uploaded once.  Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60; and &#x60;existingCreativeId&#x60; — Meta allows one &#x60;asset_feed_spec&#x60; shape per creative. 
+   * Meta only. Multi-language ads (Dynamic Language Optimization): ONE ad carrying per-locale copy and, optionally, per-locale media — the \&quot;Languages\&quot; toggle in Ads Manager. Keeps social proof (likes/comments/shares) on a SINGLE post instead of splitting it across one ad per language.  The ad&#39;s top-level copy is the DEFAULT shown to every locale you do NOT list, and it counts as one of the language variants.  IMPORTANT, and the opposite of what you might expect: text does NOT inherit. Every entry must carry its own &#x60;headline&#x60;, &#x60;body&#x60; AND &#x60;description&#x60;, and all of them must be DISTINCT from each other and from the ad&#39;s top-level copy. Meta deduplicates identical strings inside the asset feed, so two locales sharing a string collapse into one asset and the create fails with a misleading \&quot;Too few ... texts provided in asset creation\&quot; (subcode 1885817) that names a field which is actually present. We validate this before calling Meta and return a 400 naming the offending locale and field. &#x60;description&#x60; is therefore effectively required on the ad whenever &#x60;translations&#x60; is present, even though it is optional otherwise.  Do NOT list &#x60;defaultLocale&#x60; inside &#x60;translations&#x60;: Meta rejects the duplicate with \&quot;The language asset feed includes an unsupported targeting field\&quot; (subcode 1885985).  Media DOES inherit and is uploaded once when shared. Note that Meta enforces Dynamic Creative image dimensions on language feeds, so an &#x60;imageUrl&#x60; that works on a normal ad may be rejected with \&quot;The following images have invalid dimensions for Dynamic Creative\&quot; (subcode 1885558). Video is not affected.  Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60; and &#x60;existingCreativeId&#x60; — Meta allows one &#x60;asset_feed_spec&#x60; shape per creative. 
    * @return translations
    */
   @javax.annotation.Nullable

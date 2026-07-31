@@ -84,7 +84,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T16:11:09.993664531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -827,7 +827,7 @@ public class AdCampaignsApi {
 
   /**
    * Delete a campaign
-   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
    * @param campaignId Platform campaign ID (required)
    * @param deleteAdCampaignRequest  (required)
    * @return DeleteAdCampaign200Response
@@ -839,7 +839,7 @@ public class AdCampaignsApi {
 
   /**
    * Delete a campaign
-   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
    * @param campaignId Platform campaign ID (required)
    * @param deleteAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request
@@ -853,7 +853,7 @@ public class AdCampaignsApi {
 
   /**
    * Delete a campaign
-   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
    * @param campaignId Platform campaign ID (required)
    * @param deleteAdCampaignRequest  (required)
    * @return ApiResponse&lt;DeleteAdCampaign200Response&gt;
@@ -865,7 +865,7 @@ public class AdCampaignsApi {
 
   /**
    * Delete a campaign
-   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
    * @param campaignId Platform campaign ID (required)
    * @param deleteAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request

@@ -817,7 +817,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 
 Delete a campaign
 
-Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
 
 ### Example
 
@@ -892,7 +892,7 @@ public class Example {
 
 Delete a campaign
 
-Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
 
 ### Example
 

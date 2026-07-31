@@ -33,9 +33,10 @@ import dev.zernio.ApiClient;
  * DeleteAdCampaignRequest
  */
 @JsonPropertyOrder({
-  DeleteAdCampaignRequest.JSON_PROPERTY_PLATFORM
+  DeleteAdCampaignRequest.JSON_PROPERTY_PLATFORM,
+  DeleteAdCampaignRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T16:11:09.993664531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteAdCampaignRequest {
   /**
    * Gets or Sets platform
@@ -76,6 +77,10 @@ public class DeleteAdCampaignRequest {
   @javax.annotation.Nonnull
   private PlatformEnum platform;
 
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
+
   public DeleteAdCampaignRequest() { 
   }
 
@@ -103,6 +108,30 @@ public class DeleteAdCampaignRequest {
   }
 
 
+  public DeleteAdCampaignRequest accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Zernio SocialAccount id owning the ad account. Required only to delete an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+  }
+
+
   /**
    * Return true if this deleteAdCampaign_request object is equal to o.
    */
@@ -115,12 +144,13 @@ public class DeleteAdCampaignRequest {
       return false;
     }
     DeleteAdCampaignRequest deleteAdCampaignRequest = (DeleteAdCampaignRequest) o;
-    return Objects.equals(this.platform, deleteAdCampaignRequest.platform);
+    return Objects.equals(this.platform, deleteAdCampaignRequest.platform) &&
+        Objects.equals(this.accountId, deleteAdCampaignRequest.accountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform);
+    return Objects.hash(platform, accountId);
   }
 
   @Override
@@ -128,6 +158,7 @@ public class DeleteAdCampaignRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeleteAdCampaignRequest {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -178,6 +209,11 @@ public class DeleteAdCampaignRequest {
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     return joiner.toString();

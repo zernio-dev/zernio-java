@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SearchTweets200ResponseTweetsInnerAuthor.JSON_PROPERTY_AVATAR,
   SearchTweets200ResponseTweetsInnerAuthor.JSON_PROPERTY_VERIFIED_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T16:11:09.993664531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchTweets200ResponseTweetsInnerAuthor {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
