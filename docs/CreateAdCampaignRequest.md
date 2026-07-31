@@ -15,6 +15,9 @@
 |**budgetAmount** | **BigDecimal** | Campaign-level (CBO) budget in whole currency units. Requires budgetType. |  [optional] |
 |**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**bidStrategy** | [**BidStrategyEnum**](#BidStrategyEnum) | Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;. |  [optional] |
+|**bidAmount** | **BigDecimal** | Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise. |  [optional] |
+|**roasAverageFloor** | **BigDecimal** | Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS. |  [optional] |
 
 
 
@@ -63,6 +66,17 @@
 |---- | -----|
 | ACTIVE | &quot;ACTIVE&quot; |
 | PAUSED | &quot;PAUSED&quot; |
+
+
+
+## Enum: BidStrategyEnum
+
+| Name | Value |
+|---- | -----|
+| LOWEST_COST_WITHOUT_CAP | &quot;LOWEST_COST_WITHOUT_CAP&quot; |
+| LOWEST_COST_WITH_BID_CAP | &quot;LOWEST_COST_WITH_BID_CAP&quot; |
+| COST_CAP | &quot;COST_CAP&quot; |
+| LOWEST_COST_WITH_MIN_ROAS | &quot;LOWEST_COST_WITH_MIN_ROAS&quot; |
 
 
 

@@ -353,11 +353,11 @@ ApiResponse<[**BulkUpdateAdCampaignStatus200Response**](BulkUpdateAdCampaignStat
 
 ## createAdCampaign
 
-> CreateAdCampaign201Response createAdCampaign(createAdCampaignRequest)
+> CreateAdCampaign201Response createAdCampaign(createAdCampaignRequest, idempotencyKey)
 
 Create a standalone campaign
 
-Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
 
 ### Example
 
@@ -381,8 +381,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         CreateAdCampaignRequest createAdCampaignRequest = new CreateAdCampaignRequest(); // CreateAdCampaignRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            CreateAdCampaign201Response result = apiInstance.createAdCampaign(createAdCampaignRequest);
+            CreateAdCampaign201Response result = apiInstance.createAdCampaign(createAdCampaignRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#createAdCampaign");
@@ -401,6 +402,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createAdCampaignRequest** | [**CreateAdCampaignRequest**](CreateAdCampaignRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 
 ### Return type
 
@@ -426,11 +428,11 @@ public class Example {
 
 ## createAdCampaignWithHttpInfo
 
-> ApiResponse<CreateAdCampaign201Response> createAdCampaign createAdCampaignWithHttpInfo(createAdCampaignRequest)
+> ApiResponse<CreateAdCampaign201Response> createAdCampaign createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey)
 
 Create a standalone campaign
 
-Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
 
 ### Example
 
@@ -455,8 +457,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         CreateAdCampaignRequest createAdCampaignRequest = new CreateAdCampaignRequest(); // CreateAdCampaignRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            ApiResponse<CreateAdCampaign201Response> response = apiInstance.createAdCampaignWithHttpInfo(createAdCampaignRequest);
+            ApiResponse<CreateAdCampaign201Response> response = apiInstance.createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -477,6 +480,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createAdCampaignRequest** | [**CreateAdCampaignRequest**](CreateAdCampaignRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 
 ### Return type
 
@@ -963,7 +967,7 @@ ApiResponse<[**DeleteAdCampaign200Response**](DeleteAdCampaign200Response.md)>
 
 ## duplicateAd
 
-> DuplicateAd200Response duplicateAd(adId, duplicateAdRequest)
+> DuplicateAd200Response duplicateAd(adId, idempotencyKey, duplicateAdRequest)
 
 Duplicate an ad
 
@@ -991,9 +995,10 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio ad ID or platform ad ID
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         DuplicateAdRequest duplicateAdRequest = new DuplicateAdRequest(); // DuplicateAdRequest | 
         try {
-            DuplicateAd200Response result = apiInstance.duplicateAd(adId, duplicateAdRequest);
+            DuplicateAd200Response result = apiInstance.duplicateAd(adId, idempotencyKey, duplicateAdRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#duplicateAd");
@@ -1012,6 +1017,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio ad ID or platform ad ID | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 | **duplicateAdRequest** | [**DuplicateAdRequest**](DuplicateAdRequest.md)|  | [optional] |
 
 ### Return type
@@ -1039,7 +1045,7 @@ public class Example {
 
 ## duplicateAdWithHttpInfo
 
-> ApiResponse<DuplicateAd200Response> duplicateAd duplicateAdWithHttpInfo(adId, duplicateAdRequest)
+> ApiResponse<DuplicateAd200Response> duplicateAd duplicateAdWithHttpInfo(adId, idempotencyKey, duplicateAdRequest)
 
 Duplicate an ad
 
@@ -1068,9 +1074,10 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio ad ID or platform ad ID
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         DuplicateAdRequest duplicateAdRequest = new DuplicateAdRequest(); // DuplicateAdRequest | 
         try {
-            ApiResponse<DuplicateAd200Response> response = apiInstance.duplicateAdWithHttpInfo(adId, duplicateAdRequest);
+            ApiResponse<DuplicateAd200Response> response = apiInstance.duplicateAdWithHttpInfo(adId, idempotencyKey, duplicateAdRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1091,6 +1098,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio ad ID or platform ad ID | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 | **duplicateAdRequest** | [**DuplicateAdRequest**](DuplicateAdRequest.md)|  | [optional] |
 
 ### Return type
@@ -1119,7 +1127,7 @@ ApiResponse<[**DuplicateAd200Response**](DuplicateAd200Response.md)>
 
 ## duplicateAdCampaign
 
-> DuplicateAdCampaign200Response duplicateAdCampaign(campaignId, duplicateAdCampaignRequest)
+> DuplicateAdCampaign200Response duplicateAdCampaign(campaignId, duplicateAdCampaignRequest, idempotencyKey)
 
 Duplicate a campaign
 
@@ -1148,8 +1156,9 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Source platform campaign ID
         DuplicateAdCampaignRequest duplicateAdCampaignRequest = new DuplicateAdCampaignRequest(); // DuplicateAdCampaignRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            DuplicateAdCampaign200Response result = apiInstance.duplicateAdCampaign(campaignId, duplicateAdCampaignRequest);
+            DuplicateAdCampaign200Response result = apiInstance.duplicateAdCampaign(campaignId, duplicateAdCampaignRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#duplicateAdCampaign");
@@ -1169,6 +1178,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Source platform campaign ID | |
 | **duplicateAdCampaignRequest** | [**DuplicateAdCampaignRequest**](DuplicateAdCampaignRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 
 ### Return type
 
@@ -1195,7 +1205,7 @@ public class Example {
 
 ## duplicateAdCampaignWithHttpInfo
 
-> ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaign duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest)
+> ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaign duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, idempotencyKey)
 
 Duplicate a campaign
 
@@ -1225,8 +1235,9 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Source platform campaign ID
         DuplicateAdCampaignRequest duplicateAdCampaignRequest = new DuplicateAdCampaignRequest(); // DuplicateAdCampaignRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            ApiResponse<DuplicateAdCampaign200Response> response = apiInstance.duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest);
+            ApiResponse<DuplicateAdCampaign200Response> response = apiInstance.duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1248,6 +1259,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Source platform campaign ID | |
 | **duplicateAdCampaignRequest** | [**DuplicateAdCampaignRequest**](DuplicateAdCampaignRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 
 ### Return type
 
@@ -1275,7 +1287,7 @@ ApiResponse<[**DuplicateAdCampaign200Response**](DuplicateAdCampaign200Response.
 
 ## duplicateAdSet
 
-> DuplicateAdSet200Response duplicateAdSet(adSetId, duplicateAdSetRequest)
+> DuplicateAdSet200Response duplicateAdSet(adSetId, duplicateAdSetRequest, idempotencyKey)
 
 Duplicate an ad set
 
@@ -1304,8 +1316,9 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Source platform ad set ID
         DuplicateAdSetRequest duplicateAdSetRequest = new DuplicateAdSetRequest(); // DuplicateAdSetRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            DuplicateAdSet200Response result = apiInstance.duplicateAdSet(adSetId, duplicateAdSetRequest);
+            DuplicateAdSet200Response result = apiInstance.duplicateAdSet(adSetId, duplicateAdSetRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#duplicateAdSet");
@@ -1325,6 +1338,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Source platform ad set ID | |
 | **duplicateAdSetRequest** | [**DuplicateAdSetRequest**](DuplicateAdSetRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 
 ### Return type
 
@@ -1351,7 +1365,7 @@ public class Example {
 
 ## duplicateAdSetWithHttpInfo
 
-> ApiResponse<DuplicateAdSet200Response> duplicateAdSet duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest)
+> ApiResponse<DuplicateAdSet200Response> duplicateAdSet duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, idempotencyKey)
 
 Duplicate an ad set
 
@@ -1381,8 +1395,9 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Source platform ad set ID
         DuplicateAdSetRequest duplicateAdSetRequest = new DuplicateAdSetRequest(); // DuplicateAdSetRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            ApiResponse<DuplicateAdSet200Response> response = apiInstance.duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest);
+            ApiResponse<DuplicateAdSet200Response> response = apiInstance.duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1404,6 +1419,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Source platform ad set ID | |
 | **duplicateAdSetRequest** | [**DuplicateAdSetRequest**](DuplicateAdSetRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional] |
 
 ### Return type
 

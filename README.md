@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-31T11:23:20.192168330Z[Etc/UTC]
+- Build date: 2026-07-31T11:36:52.551782067Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1442,6 +1442,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
+ - [CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
  - [CreateTestLead200Response](docs/CreateTestLead200Response.md)
  - [CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)

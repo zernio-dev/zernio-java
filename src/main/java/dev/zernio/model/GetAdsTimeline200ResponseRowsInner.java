@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetAdsTimeline200ResponseRowsInner.JSON_PROPERTY_PURCHASE_VALUE,
   GetAdsTimeline200ResponseRowsInner.JSON_PROPERTY_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdsTimeline200ResponseRowsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -93,7 +93,7 @@ public class GetAdsTimeline200ResponseRowsInner {
 
   public static final String JSON_PROPERTY_CONVERSIONS = "conversions";
   @javax.annotation.Nullable
-  private Integer conversions;
+  private BigDecimal conversions;
 
   public static final String JSON_PROPERTY_COST_PER_CONVERSION = "costPerConversion";
   @javax.annotation.Nullable
@@ -334,26 +334,26 @@ public class GetAdsTimeline200ResponseRowsInner {
   }
 
 
-  public GetAdsTimeline200ResponseRowsInner conversions(@javax.annotation.Nullable Integer conversions) {
+  public GetAdsTimeline200ResponseRowsInner conversions(@javax.annotation.Nullable BigDecimal conversions) {
     this.conversions = conversions;
     return this;
   }
 
   /**
-   * Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).
+   * Sum of conversion events over the range. Fractional values are normal (attribution splitting + Google modeled conversions). Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).
    * @return conversions
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_CONVERSIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getConversions() {
+  public BigDecimal getConversions() {
     return conversions;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CONVERSIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConversions(@javax.annotation.Nullable Integer conversions) {
+  public void setConversions(@javax.annotation.Nullable BigDecimal conversions) {
     this.conversions = conversions;
   }
 

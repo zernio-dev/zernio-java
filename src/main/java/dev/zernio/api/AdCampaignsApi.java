@@ -84,7 +84,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -449,49 +449,53 @@ public class AdCampaignsApi {
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return CreateAdCampaign201Response
    * @throws ApiException if fails to make API call
    */
-  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest) throws ApiException {
-    return createAdCampaign(createAdCampaignRequest, null);
+  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return createAdCampaign(createAdCampaignRequest, idempotencyKey, null);
   }
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
    * @return CreateAdCampaign201Response
    * @throws ApiException if fails to make API call
    */
-  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateAdCampaign201Response> localVarResponse = createAdCampaignWithHttpInfo(createAdCampaignRequest, headers);
+  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdCampaign201Response> localVarResponse = createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest) throws ApiException {
-    return createAdCampaignWithHttpInfo(createAdCampaignRequest, null);
+  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey, null);
   }
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+   * Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createAdCampaignRequestBuilder(createAdCampaignRequest, headers);
+  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAdCampaignRequestBuilder(createAdCampaignRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -538,7 +542,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder createAdCampaignRequestBuilder(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createAdCampaignRequestBuilder(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createAdCampaignRequest' is set
     if (createAdCampaignRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createAdCampaignRequest' when calling createAdCampaign");
@@ -550,6 +554,9 @@ public class AdCampaignsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -954,25 +961,27 @@ public class AdCampaignsApi {
    * Duplicate an ad
    * Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adId Zernio ad ID or platform ad ID (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param duplicateAdRequest  (optional)
    * @return DuplicateAd200Response
    * @throws ApiException if fails to make API call
    */
-  public DuplicateAd200Response duplicateAd(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest) throws ApiException {
-    return duplicateAd(adId, duplicateAdRequest, null);
+  public DuplicateAd200Response duplicateAd(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest) throws ApiException {
+    return duplicateAd(adId, idempotencyKey, duplicateAdRequest, null);
   }
 
   /**
    * Duplicate an ad
    * Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adId Zernio ad ID or platform ad ID (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param duplicateAdRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return DuplicateAd200Response
    * @throws ApiException if fails to make API call
    */
-  public DuplicateAd200Response duplicateAd(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<DuplicateAd200Response> localVarResponse = duplicateAdWithHttpInfo(adId, duplicateAdRequest, headers);
+  public DuplicateAd200Response duplicateAd(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<DuplicateAd200Response> localVarResponse = duplicateAdWithHttpInfo(adId, idempotencyKey, duplicateAdRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -980,25 +989,27 @@ public class AdCampaignsApi {
    * Duplicate an ad
    * Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adId Zernio ad ID or platform ad ID (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param duplicateAdRequest  (optional)
    * @return ApiResponse&lt;DuplicateAd200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DuplicateAd200Response> duplicateAdWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest) throws ApiException {
-    return duplicateAdWithHttpInfo(adId, duplicateAdRequest, null);
+  public ApiResponse<DuplicateAd200Response> duplicateAdWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest) throws ApiException {
+    return duplicateAdWithHttpInfo(adId, idempotencyKey, duplicateAdRequest, null);
   }
 
   /**
    * Duplicate an ad
    * Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adId Zernio ad ID or platform ad ID (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param duplicateAdRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DuplicateAd200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DuplicateAd200Response> duplicateAdWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = duplicateAdRequestBuilder(adId, duplicateAdRequest, headers);
+  public ApiResponse<DuplicateAd200Response> duplicateAdWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = duplicateAdRequestBuilder(adId, idempotencyKey, duplicateAdRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1045,7 +1056,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder duplicateAdRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder duplicateAdRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable DuplicateAdRequest duplicateAdRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adId' is set
     if (adId == null) {
       throw new ApiException(400, "Missing the required parameter 'adId' when calling duplicateAd");
@@ -1058,6 +1069,9 @@ public class AdCampaignsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -1083,11 +1097,12 @@ public class AdCampaignsApi {
    * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). The copy is created paused so callers can review before launching.  Per-platform implementation: - **Meta** uses the native &#x60;POST /{campaign-id}/copies&#x60; endpoint. - **TikTok** has no native copy primitive; Zernio walks the source   graph (&#x60;/v2/campaign/get/&#x60;, &#x60;/v2/adgroup/get/&#x60;, &#x60;/v2/ad/get/&#x60;) and   recreates each entity via the corresponding &#x60;/create/&#x60; endpoints,   carrying over budget / targeting / bid_type / bid_price /   deep_bid_type / creative fields. Spark Ad linkage (&#x60;tiktok_item_id&#x60;)   is preserved. - **LinkedIn** has no native copy primitive; Zernio walks the source   CampaignGroup → Campaigns → Creatives and recreates each entity,   carrying over &#x60;type&#x60; / &#x60;costType&#x60; / &#x60;unitCost&#x60; /   &#x60;optimizationTargetType&#x60; / &#x60;creativeSelection&#x60; / &#x60;objectiveType&#x60; /   &#x60;format&#x60; / &#x60;dailyBudget&#x60; / &#x60;totalBudget&#x60; / &#x60;targetingCriteria&#x60; /   &#x60;runSchedule&#x60; and every Creative&#39;s &#x60;content&#x60; object verbatim.   &#x60;statusOption: INHERITED_FROM_SOURCE&#x60; is evaluated **per entity**:   any Group / Campaign / Creative whose source is &#x60;ACTIVE&#x60; gets its   clone activated too. Duplicating an ACTIVE campaign with   &#x60;INHERITED_FROM_SOURCE&#x60; starts a second front of spend the moment   the clone activates — the safe default is &#x60;PAUSED&#x60;.  The new hierarchy is asynchronous to materialize in our DB — we trigger sync discovery automatically. Set &#x60;syncAfter: false&#x60; to skip and poll &#x60;/v1/ads/tree&#x60; on your own cadence.  Other platforms return 501 Not Implemented. 
    * @param campaignId Source platform campaign ID (required)
    * @param duplicateAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return DuplicateAdCampaign200Response
    * @throws ApiException if fails to make API call
    */
-  public DuplicateAdCampaign200Response duplicateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest) throws ApiException {
-    return duplicateAdCampaign(campaignId, duplicateAdCampaignRequest, null);
+  public DuplicateAdCampaign200Response duplicateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return duplicateAdCampaign(campaignId, duplicateAdCampaignRequest, idempotencyKey, null);
   }
 
   /**
@@ -1095,12 +1110,13 @@ public class AdCampaignsApi {
    * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). The copy is created paused so callers can review before launching.  Per-platform implementation: - **Meta** uses the native &#x60;POST /{campaign-id}/copies&#x60; endpoint. - **TikTok** has no native copy primitive; Zernio walks the source   graph (&#x60;/v2/campaign/get/&#x60;, &#x60;/v2/adgroup/get/&#x60;, &#x60;/v2/ad/get/&#x60;) and   recreates each entity via the corresponding &#x60;/create/&#x60; endpoints,   carrying over budget / targeting / bid_type / bid_price /   deep_bid_type / creative fields. Spark Ad linkage (&#x60;tiktok_item_id&#x60;)   is preserved. - **LinkedIn** has no native copy primitive; Zernio walks the source   CampaignGroup → Campaigns → Creatives and recreates each entity,   carrying over &#x60;type&#x60; / &#x60;costType&#x60; / &#x60;unitCost&#x60; /   &#x60;optimizationTargetType&#x60; / &#x60;creativeSelection&#x60; / &#x60;objectiveType&#x60; /   &#x60;format&#x60; / &#x60;dailyBudget&#x60; / &#x60;totalBudget&#x60; / &#x60;targetingCriteria&#x60; /   &#x60;runSchedule&#x60; and every Creative&#39;s &#x60;content&#x60; object verbatim.   &#x60;statusOption: INHERITED_FROM_SOURCE&#x60; is evaluated **per entity**:   any Group / Campaign / Creative whose source is &#x60;ACTIVE&#x60; gets its   clone activated too. Duplicating an ACTIVE campaign with   &#x60;INHERITED_FROM_SOURCE&#x60; starts a second front of spend the moment   the clone activates — the safe default is &#x60;PAUSED&#x60;.  The new hierarchy is asynchronous to materialize in our DB — we trigger sync discovery automatically. Set &#x60;syncAfter: false&#x60; to skip and poll &#x60;/v1/ads/tree&#x60; on your own cadence.  Other platforms return 501 Not Implemented. 
    * @param campaignId Source platform campaign ID (required)
    * @param duplicateAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
    * @return DuplicateAdCampaign200Response
    * @throws ApiException if fails to make API call
    */
-  public DuplicateAdCampaign200Response duplicateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<DuplicateAdCampaign200Response> localVarResponse = duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, headers);
+  public DuplicateAdCampaign200Response duplicateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<DuplicateAdCampaign200Response> localVarResponse = duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
@@ -1109,11 +1125,12 @@ public class AdCampaignsApi {
    * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). The copy is created paused so callers can review before launching.  Per-platform implementation: - **Meta** uses the native &#x60;POST /{campaign-id}/copies&#x60; endpoint. - **TikTok** has no native copy primitive; Zernio walks the source   graph (&#x60;/v2/campaign/get/&#x60;, &#x60;/v2/adgroup/get/&#x60;, &#x60;/v2/ad/get/&#x60;) and   recreates each entity via the corresponding &#x60;/create/&#x60; endpoints,   carrying over budget / targeting / bid_type / bid_price /   deep_bid_type / creative fields. Spark Ad linkage (&#x60;tiktok_item_id&#x60;)   is preserved. - **LinkedIn** has no native copy primitive; Zernio walks the source   CampaignGroup → Campaigns → Creatives and recreates each entity,   carrying over &#x60;type&#x60; / &#x60;costType&#x60; / &#x60;unitCost&#x60; /   &#x60;optimizationTargetType&#x60; / &#x60;creativeSelection&#x60; / &#x60;objectiveType&#x60; /   &#x60;format&#x60; / &#x60;dailyBudget&#x60; / &#x60;totalBudget&#x60; / &#x60;targetingCriteria&#x60; /   &#x60;runSchedule&#x60; and every Creative&#39;s &#x60;content&#x60; object verbatim.   &#x60;statusOption: INHERITED_FROM_SOURCE&#x60; is evaluated **per entity**:   any Group / Campaign / Creative whose source is &#x60;ACTIVE&#x60; gets its   clone activated too. Duplicating an ACTIVE campaign with   &#x60;INHERITED_FROM_SOURCE&#x60; starts a second front of spend the moment   the clone activates — the safe default is &#x60;PAUSED&#x60;.  The new hierarchy is asynchronous to materialize in our DB — we trigger sync discovery automatically. Set &#x60;syncAfter: false&#x60; to skip and poll &#x60;/v1/ads/tree&#x60; on your own cadence.  Other platforms return 501 Not Implemented. 
    * @param campaignId Source platform campaign ID (required)
    * @param duplicateAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return ApiResponse&lt;DuplicateAdCampaign200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest) throws ApiException {
-    return duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, null);
+  public ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, idempotencyKey, null);
   }
 
   /**
@@ -1121,12 +1138,13 @@ public class AdCampaignsApi {
    * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). The copy is created paused so callers can review before launching.  Per-platform implementation: - **Meta** uses the native &#x60;POST /{campaign-id}/copies&#x60; endpoint. - **TikTok** has no native copy primitive; Zernio walks the source   graph (&#x60;/v2/campaign/get/&#x60;, &#x60;/v2/adgroup/get/&#x60;, &#x60;/v2/ad/get/&#x60;) and   recreates each entity via the corresponding &#x60;/create/&#x60; endpoints,   carrying over budget / targeting / bid_type / bid_price /   deep_bid_type / creative fields. Spark Ad linkage (&#x60;tiktok_item_id&#x60;)   is preserved. - **LinkedIn** has no native copy primitive; Zernio walks the source   CampaignGroup → Campaigns → Creatives and recreates each entity,   carrying over &#x60;type&#x60; / &#x60;costType&#x60; / &#x60;unitCost&#x60; /   &#x60;optimizationTargetType&#x60; / &#x60;creativeSelection&#x60; / &#x60;objectiveType&#x60; /   &#x60;format&#x60; / &#x60;dailyBudget&#x60; / &#x60;totalBudget&#x60; / &#x60;targetingCriteria&#x60; /   &#x60;runSchedule&#x60; and every Creative&#39;s &#x60;content&#x60; object verbatim.   &#x60;statusOption: INHERITED_FROM_SOURCE&#x60; is evaluated **per entity**:   any Group / Campaign / Creative whose source is &#x60;ACTIVE&#x60; gets its   clone activated too. Duplicating an ACTIVE campaign with   &#x60;INHERITED_FROM_SOURCE&#x60; starts a second front of spend the moment   the clone activates — the safe default is &#x60;PAUSED&#x60;.  The new hierarchy is asynchronous to materialize in our DB — we trigger sync discovery automatically. Set &#x60;syncAfter: false&#x60; to skip and poll &#x60;/v1/ads/tree&#x60; on your own cadence.  Other platforms return 501 Not Implemented. 
    * @param campaignId Source platform campaign ID (required)
    * @param duplicateAdCampaignRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DuplicateAdCampaign200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = duplicateAdCampaignRequestBuilder(campaignId, duplicateAdCampaignRequest, headers);
+  public ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = duplicateAdCampaignRequestBuilder(campaignId, duplicateAdCampaignRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1173,7 +1191,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder duplicateAdCampaignRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder duplicateAdCampaignRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'campaignId' is set
     if (campaignId == null) {
       throw new ApiException(400, "Missing the required parameter 'campaignId' when calling duplicateAdCampaign");
@@ -1190,6 +1208,9 @@ public class AdCampaignsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -1215,11 +1236,12 @@ public class AdCampaignsApi {
    * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adSetId Source platform ad set ID (required)
    * @param duplicateAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return DuplicateAdSet200Response
    * @throws ApiException if fails to make API call
    */
-  public DuplicateAdSet200Response duplicateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest) throws ApiException {
-    return duplicateAdSet(adSetId, duplicateAdSetRequest, null);
+  public DuplicateAdSet200Response duplicateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return duplicateAdSet(adSetId, duplicateAdSetRequest, idempotencyKey, null);
   }
 
   /**
@@ -1227,12 +1249,13 @@ public class AdCampaignsApi {
    * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adSetId Source platform ad set ID (required)
    * @param duplicateAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
    * @return DuplicateAdSet200Response
    * @throws ApiException if fails to make API call
    */
-  public DuplicateAdSet200Response duplicateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<DuplicateAdSet200Response> localVarResponse = duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, headers);
+  public DuplicateAdSet200Response duplicateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<DuplicateAdSet200Response> localVarResponse = duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
@@ -1241,11 +1264,12 @@ public class AdCampaignsApi {
    * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adSetId Source platform ad set ID (required)
    * @param duplicateAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return ApiResponse&lt;DuplicateAdSet200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DuplicateAdSet200Response> duplicateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest) throws ApiException {
-    return duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, null);
+  public ApiResponse<DuplicateAdSet200Response> duplicateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return duplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, idempotencyKey, null);
   }
 
   /**
@@ -1253,12 +1277,13 @@ public class AdCampaignsApi {
    * Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
    * @param adSetId Source platform ad set ID (required)
    * @param duplicateAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DuplicateAdSet200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DuplicateAdSet200Response> duplicateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = duplicateAdSetRequestBuilder(adSetId, duplicateAdSetRequest, headers);
+  public ApiResponse<DuplicateAdSet200Response> duplicateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = duplicateAdSetRequestBuilder(adSetId, duplicateAdSetRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1305,7 +1330,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder duplicateAdSetRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder duplicateAdSetRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull DuplicateAdSetRequest duplicateAdSetRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adSetId' is set
     if (adSetId == null) {
       throw new ApiException(400, "Missing the required parameter 'adSetId' when calling duplicateAdSet");
@@ -1322,6 +1347,9 @@ public class AdCampaignsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 

@@ -40,6 +40,7 @@ import dev.zernio.model.CreateStandaloneAdRequestPlacements;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
+import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.LinkedInAdsPlatformData;
 import dev.zernio.model.TargetingSpec;
@@ -119,6 +120,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_DYNAMIC_CREATIVE,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAROUSEL_CARDS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_DEFAULT_LOCALE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_TRANSLATIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENT_ASSETS,
   CreateStandaloneAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
@@ -138,7 +141,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -782,6 +785,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_CAROUSEL_CARDS = "carouselCards";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DEFAULT_LOCALE = "defaultLocale";
+  @javax.annotation.Nullable
+  private String defaultLocale;
+
+  public static final String JSON_PROPERTY_TRANSLATIONS = "translations";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestTranslationsInner> translations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PLACEMENT_ASSETS = "placementAssets";
   @javax.annotation.Nullable
@@ -2540,6 +2551,62 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest defaultLocale(@javax.annotation.Nullable String defaultLocale) {
+    this.defaultLocale = defaultLocale;
+    return this;
+  }
+
+  /**
+   * Meta only. Language the top-level copy is written in (e.g. &#x60;en&#x60;, &#x60;pt_BR&#x60;), used by the &#x60;translations&#x60; default rule. Defaults to &#x60;en&#x60;. Meta rejects a language asset feed whose default rule carries no locales of its own.
+   * @return defaultLocale
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_LOCALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDefaultLocale() {
+    return defaultLocale;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_LOCALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDefaultLocale(@javax.annotation.Nullable String defaultLocale) {
+    this.defaultLocale = defaultLocale;
+  }
+
+
+  public CreateStandaloneAdRequest translations(@javax.annotation.Nullable List<CreateStandaloneAdRequestTranslationsInner> translations) {
+    this.translations = translations;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addTranslationsItem(CreateStandaloneAdRequestTranslationsInner translationsItem) {
+    if (this.translations == null) {
+      this.translations = new ArrayList<>();
+    }
+    this.translations.add(translationsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Multi-language ads (Dynamic Language Optimization): ONE ad carrying per-locale copy and, optionally, per-locale media — the \&quot;Languages\&quot; toggle in Ads Manager. Keeps social proof (likes/comments/shares) on a SINGLE post instead of splitting it across one ad per language.  The ad&#39;s top-level copy and media are the DEFAULT every unlisted locale falls back to, and a variant inherits any field it omits, so send only what differs per language. Media shared across languages is uploaded once.  Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60; and &#x60;existingCreativeId&#x60; — Meta allows one &#x60;asset_feed_spec&#x60; shape per creative. 
+   * @return translations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRANSLATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestTranslationsInner> getTranslations() {
+    return translations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRANSLATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTranslations(@javax.annotation.Nullable List<CreateStandaloneAdRequestTranslationsInner> translations) {
+    this.translations = translations;
+  }
+
+
   public CreateStandaloneAdRequest placementAssets(@javax.annotation.Nullable CreateStandaloneAdRequestPlacementAssets placementAssets) {
     this.placementAssets = placementAssets;
     return this;
@@ -3075,6 +3142,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.instagramAccountId, createStandaloneAdRequest.instagramAccountId) &&
         Objects.equals(this.dynamicCreative, createStandaloneAdRequest.dynamicCreative) &&
         Objects.equals(this.carouselCards, createStandaloneAdRequest.carouselCards) &&
+        Objects.equals(this.defaultLocale, createStandaloneAdRequest.defaultLocale) &&
+        Objects.equals(this.translations, createStandaloneAdRequest.translations) &&
         Objects.equals(this.placementAssets, createStandaloneAdRequest.placementAssets) &&
         Objects.equals(this.audienceId, createStandaloneAdRequest.audienceId) &&
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
@@ -3097,7 +3166,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -3163,6 +3232,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
     sb.append("    dynamicCreative: ").append(toIndentedString(dynamicCreative)).append("\n");
     sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
+    sb.append("    defaultLocale: ").append(toIndentedString(defaultLocale)).append("\n");
+    sb.append("    translations: ").append(toIndentedString(translations)).append("\n");
     sb.append("    placementAssets: ").append(toIndentedString(placementAssets)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
@@ -3587,6 +3658,21 @@ public class CreateStandaloneAdRequest {
       for (int i = 0; i < getCarouselCards().size(); i++) {
         if (getCarouselCards().get(i) != null) {
           joiner.add(getCarouselCards().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scarouselCards%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `defaultLocale` to the URL query string
+    if (getDefaultLocale() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdefaultLocale%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultLocale()))));
+    }
+
+    // add `translations` to the URL query string
+    if (getTranslations() != null) {
+      for (int i = 0; i < getTranslations().size(); i++) {
+        if (getTranslations().get(i) != null) {
+          joiner.add(getTranslations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stranslations%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

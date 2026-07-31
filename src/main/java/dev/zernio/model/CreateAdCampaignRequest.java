@@ -43,9 +43,12 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   CreateAdCampaignRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateAdCampaignRequest.JSON_PROPERTY_BUDGET_TYPE,
-  CreateAdCampaignRequest.JSON_PROPERTY_STATUS
+  CreateAdCampaignRequest.JSON_PROPERTY_STATUS,
+  CreateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
+  CreateAdCampaignRequest.JSON_PROPERTY_BID_AMOUNT,
+  CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -242,6 +245,57 @@ public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status = StatusEnum.PAUSED;
+
+  /**
+   * Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;.
+   */
+  public enum BidStrategyEnum {
+    LOWEST_COST_WITHOUT_CAP(String.valueOf("LOWEST_COST_WITHOUT_CAP")),
+    
+    LOWEST_COST_WITH_BID_CAP(String.valueOf("LOWEST_COST_WITH_BID_CAP")),
+    
+    COST_CAP(String.valueOf("COST_CAP")),
+    
+    LOWEST_COST_WITH_MIN_ROAS(String.valueOf("LOWEST_COST_WITH_MIN_ROAS"));
+
+    private String value;
+
+    BidStrategyEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BidStrategyEnum fromValue(String value) {
+      for (BidStrategyEnum b : BidStrategyEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
+  @javax.annotation.Nullable
+  private BidStrategyEnum bidStrategy;
+
+  public static final String JSON_PROPERTY_BID_AMOUNT = "bidAmount";
+  @javax.annotation.Nullable
+  private BigDecimal bidAmount;
+
+  public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
+  @javax.annotation.Nullable
+  private BigDecimal roasAverageFloor;
 
   public CreateAdCampaignRequest() { 
   }
@@ -446,6 +500,78 @@ public class CreateAdCampaignRequest {
   }
 
 
+  public CreateAdCampaignRequest bidStrategy(@javax.annotation.Nullable BidStrategyEnum bidStrategy) {
+    this.bidStrategy = bidStrategy;
+    return this;
+  }
+
+  /**
+   * Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;.
+   * @return bidStrategy
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BidStrategyEnum getBidStrategy() {
+    return bidStrategy;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBidStrategy(@javax.annotation.Nullable BidStrategyEnum bidStrategy) {
+    this.bidStrategy = bidStrategy;
+  }
+
+
+  public CreateAdCampaignRequest bidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = bidAmount;
+    return this;
+  }
+
+  /**
+   * Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise.
+   * @return bidAmount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getBidAmount() {
+    return bidAmount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = bidAmount;
+  }
+
+
+  public CreateAdCampaignRequest roasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = roasAverageFloor;
+    return this;
+  }
+
+  /**
+   * Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS.
+   * @return roasAverageFloor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getRoasAverageFloor() {
+    return roasAverageFloor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = roasAverageFloor;
+  }
+
+
   /**
    * Return true if this createAdCampaign_request object is equal to o.
    */
@@ -465,12 +591,15 @@ public class CreateAdCampaignRequest {
         Objects.equals(this.specialAdCategories, createAdCampaignRequest.specialAdCategories) &&
         Objects.equals(this.budgetAmount, createAdCampaignRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createAdCampaignRequest.budgetType) &&
-        Objects.equals(this.status, createAdCampaignRequest.status);
+        Objects.equals(this.status, createAdCampaignRequest.status) &&
+        Objects.equals(this.bidStrategy, createAdCampaignRequest.bidStrategy) &&
+        Objects.equals(this.bidAmount, createAdCampaignRequest.bidAmount) &&
+        Objects.equals(this.roasAverageFloor, createAdCampaignRequest.roasAverageFloor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, specialAdCategories, budgetAmount, budgetType, status);
+    return Objects.hash(accountId, adAccountId, name, goal, specialAdCategories, budgetAmount, budgetType, status, bidStrategy, bidAmount, roasAverageFloor);
   }
 
   @Override
@@ -485,6 +614,9 @@ public class CreateAdCampaignRequest {
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
+    sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
+    sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -574,6 +706,21 @@ public class CreateAdCampaignRequest {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `bidStrategy` to the URL query string
+    if (getBidStrategy() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbidStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidStrategy()))));
+    }
+
+    // add `bidAmount` to the URL query string
+    if (getBidAmount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbidAmount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidAmount()))));
+    }
+
+    // add `roasAverageFloor` to the URL query string
+    if (getRoasAverageFloor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
     }
 
     return joiner.toString();

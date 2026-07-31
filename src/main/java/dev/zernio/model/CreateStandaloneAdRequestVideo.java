@@ -35,13 +35,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_URL,
+  CreateStandaloneAdRequestVideo.JSON_PROPERTY_ID,
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestVideo {
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI url;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nullable
+  private String id;
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -50,27 +55,51 @@ public class CreateStandaloneAdRequestVideo {
   public CreateStandaloneAdRequestVideo() { 
   }
 
-  public CreateStandaloneAdRequestVideo url(@javax.annotation.Nonnull URI url) {
+  public CreateStandaloneAdRequestVideo url(@javax.annotation.Nullable URI url) {
     this.url = url;
     return this;
   }
 
   /**
-   * Public URL of the video. Meta: uploaded via chunked transfer on /act_X/advideos, then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. LinkedIn: uploaded via the Videos API (multipart), then the request blocks until LinkedIn finishes transcoding (status AVAILABLE) — short clips take ~10-30s.
+   * Public URL of the video. Meta: uploaded via chunked transfer on /act_X/advideos, then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. LinkedIn: uploaded via the Videos API (multipart), then the request blocks until LinkedIn finishes transcoding (status AVAILABLE) — short clips take ~10-30s. Provide either &#x60;url&#x60; or &#x60;id&#x60;.
    * @return url
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getUrl() {
     return url;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(@javax.annotation.Nonnull URI url) {
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUrl(@javax.annotation.Nullable URI url) {
     this.url = url;
+  }
+
+
+  public CreateStandaloneAdRequestVideo id(@javax.annotation.Nullable String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Meta only. Reuse a video ALREADY uploaded to this ad account instead of re-uploading the file: pass the &#x60;videoId&#x60; returned by a previous create. Wins over &#x60;url&#x60;, so N ads that differ only in copy share one upload (&#x60;existingCreativeId&#x60; only covers the identical-copy case). Provide either &#x60;url&#x60; or &#x60;id&#x60;.
+   * @return id
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = id;
   }
 
 
@@ -111,12 +140,13 @@ public class CreateStandaloneAdRequestVideo {
     }
     CreateStandaloneAdRequestVideo createStandaloneAdRequestVideo = (CreateStandaloneAdRequestVideo) o;
     return Objects.equals(this.url, createStandaloneAdRequestVideo.url) &&
+        Objects.equals(this.id, createStandaloneAdRequestVideo.id) &&
         Objects.equals(this.thumbnailUrl, createStandaloneAdRequestVideo.thumbnailUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, thumbnailUrl);
+    return Objects.hash(url, id, thumbnailUrl);
   }
 
   @Override
@@ -124,6 +154,7 @@ public class CreateStandaloneAdRequestVideo {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestVideo {\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -175,6 +206,11 @@ public class CreateStandaloneAdRequestVideo {
     // add `url` to the URL query string
     if (getUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+    }
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `thumbnailUrl` to the URL query string

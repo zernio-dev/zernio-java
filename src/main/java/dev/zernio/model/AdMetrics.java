@@ -62,7 +62,7 @@ import dev.zernio.ApiClient;
   AdMetrics.JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS,
   AdMetrics.JSON_PROPERTY_LAST_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:23:20.192168330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -98,7 +98,7 @@ public class AdMetrics {
 
   public static final String JSON_PROPERTY_CONVERSIONS = "conversions";
   @javax.annotation.Nullable
-  private Integer conversions;
+  private BigDecimal conversions;
 
   public static final String JSON_PROPERTY_COST_PER_CONVERSION = "costPerConversion";
   @javax.annotation.Nullable
@@ -355,26 +355,26 @@ public class AdMetrics {
   }
 
 
-  public AdMetrics conversions(@javax.annotation.Nullable Integer conversions) {
+  public AdMetrics conversions(@javax.annotation.Nullable BigDecimal conversions) {
     this.conversions = conversions;
     return this;
   }
 
   /**
-   * Count of conversion events over the requested date range. Meta: events matching the campaign&#39;s promoted_object.custom_event_type (PURCHASE, LEAD, etc.). Google: the account&#39;s tracked conversions. X and LinkedIn: their reported website/lead conversions (added 2026-07). 0 for non-conversion campaigns or when no events have fired.
+   * Count of conversion events over the requested date range. FRACTIONAL: attribution splits one conversion across touchpoints and Google additionally reports modeled conversions, so values like 0.347 are normal. Meta: events matching the campaign&#39;s promoted_object.custom_event_type (PURCHASE, LEAD, etc.). Google: the account&#39;s tracked conversions. X and LinkedIn: their reported website/lead conversions (added 2026-07). 0 for non-conversion campaigns or when no events have fired.
    * @return conversions
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_CONVERSIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getConversions() {
+  public BigDecimal getConversions() {
     return conversions;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CONVERSIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConversions(@javax.annotation.Nullable Integer conversions) {
+  public void setConversions(@javax.annotation.Nullable BigDecimal conversions) {
     this.conversions = conversions;
   }
 

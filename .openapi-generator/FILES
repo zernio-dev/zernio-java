@@ -284,6 +284,7 @@ docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
+docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
@@ -1969,6 +1970,7 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTracking.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestTranslationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
 src/main/java/dev/zernio/model/CreateTestLead200Response.java
 src/main/java/dev/zernio/model/CreateTestLead200ResponseTestLead.java
@@ -3265,3 +3267,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestTranslationsInnerTest.java
