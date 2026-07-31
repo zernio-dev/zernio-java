@@ -23710,7 +23710,11 @@ paths:
       - application/json
   /v1/contacts/bulk:
     post:
-      description: "Import up to 1000 contacts at a time. Skips duplicates. On phone\
+      description: "Import up to 1000 contacts at a time. Skips duplicates, merging\
+        \ any new tags onto the existing contact. accountId is required whenever contacts\
+        \ carry a platformIdentifier (or a row-level accountId); platform is always\
+        \ derived from the resolved account, never used to decide whether channels\
+        \ are created, and a mismatched platform 404s as account not found. On phone\
         \ platforms (whatsapp, sms) the platformIdentifier is normalized to digits\
         \ and a value that is not phone-shaped is rejected per contact and reported\
         \ in errors[], not imported."
@@ -23729,7 +23733,8 @@ paths:
                 $ref: "#/components/schemas/bulkCreateContacts_200_response"
           description: Bulk import results
         "400":
-          description: Invalid request
+          description: "Missing required field, or a row carries platformIdentifier/accountId\
+            \ with no top-level accountId to attach it to"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Bulk create contacts
@@ -64766,8 +64771,13 @@ components:
         profileId:
           type: string
         accountId:
+          description: Required when contacts carry channel data (platformIdentifier
+            or a row-level accountId). Omit for a plain CRM import with no channels.
           type: string
         platform:
+          description: "Ignored when accountId is set: the platform is derived from\
+            \ the resolved account. Only relevant to disambiguate accountId lookup;\
+            \ a mismatch 404s."
           type: string
         contacts:
           items:
@@ -64775,9 +64785,7 @@ components:
           maxItems: 1000
           type: array
       required:
-      - accountId
       - contacts
-      - platform
       - profileId
     bulkCreateContacts_200_response:
       example:

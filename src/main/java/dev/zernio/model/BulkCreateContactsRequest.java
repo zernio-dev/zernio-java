@@ -41,18 +41,18 @@ import dev.zernio.ApiClient;
   BulkCreateContactsRequest.JSON_PROPERTY_PLATFORM,
   BulkCreateContactsRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T14:21:45.573610607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T16:11:09.993664531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkCreateContactsRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
   private String profileId;
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String accountId;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String platform;
 
   public static final String JSON_PROPERTY_CONTACTS = "contacts";
@@ -86,50 +86,50 @@ public class BulkCreateContactsRequest {
   }
 
 
-  public BulkCreateContactsRequest accountId(@javax.annotation.Nonnull String accountId) {
+  public BulkCreateContactsRequest accountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
     return this;
   }
 
   /**
-   * Get accountId
+   * Required when contacts carry channel data (platformIdentifier or a row-level accountId). Omit for a plain CRM import with no channels.
    * @return accountId
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAccountId() {
     return accountId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAccountId(@javax.annotation.Nonnull String accountId) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
   }
 
 
-  public BulkCreateContactsRequest platform(@javax.annotation.Nonnull String platform) {
+  public BulkCreateContactsRequest platform(@javax.annotation.Nullable String platform) {
     this.platform = platform;
     return this;
   }
 
   /**
-   * Get platform
+   * Ignored when accountId is set: the platform is derived from the resolved account. Only relevant to disambiguate accountId lookup; a mismatch 404s.
    * @return platform
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPlatform(@javax.annotation.Nonnull String platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatform(@javax.annotation.Nullable String platform) {
     this.platform = platform;
   }
 
