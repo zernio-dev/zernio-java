@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   InstagramAccountInsightsResponse.JSON_PROPERTY_UNAVAILABLE_METRICS,
   InstagramAccountInsightsResponse.JSON_PROPERTY_DATA_DELAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T14:21:45.573610607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramAccountInsightsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

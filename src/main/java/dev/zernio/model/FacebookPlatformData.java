@@ -24,36 +24,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.FacebookPlatformDataCarouselCardsInner;
+import dev.zernio.model.FacebookSettings;
 import dev.zernio.model.GeoRestriction;
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Carousel posts (carouselCards) render a 2-5 card multi-link post, images only, mutually exclusive with story/reel. Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. 
+ * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. Draft, carousel, and colored-background text options live under facebookSettings, see FacebookSettings. 
  */
 @JsonPropertyOrder({
-  FacebookPlatformData.JSON_PROPERTY_DRAFT,
   FacebookPlatformData.JSON_PROPERTY_CONTENT_TYPE,
   FacebookPlatformData.JSON_PROPERTY_TITLE,
   FacebookPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   FacebookPlatformData.JSON_PROPERTY_PAGE_ID,
   FacebookPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
-  FacebookPlatformData.JSON_PROPERTY_CAROUSEL_CARDS,
-  FacebookPlatformData.JSON_PROPERTY_CAROUSEL_LINK,
-  FacebookPlatformData.JSON_PROPERTY_TEXT_FORMAT_PRESET_ID
+  FacebookPlatformData.JSON_PROPERTY_FACEBOOK_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T14:21:45.573610607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
-  public static final String JSON_PROPERTY_DRAFT = "draft";
-  @javax.annotation.Nullable
-  private Boolean draft = false;
-
   /**
    * Set to &#39;story&#39; for Page Stories (24h ephemeral) or &#39;reel&#39; for Reels (short vertical video). Defaults to feed post if omitted.
    */
@@ -109,44 +99,12 @@ public class FacebookPlatformData {
   @javax.annotation.Nullable
   private GeoRestriction geoRestriction;
 
-  public static final String JSON_PROPERTY_CAROUSEL_CARDS = "carouselCards";
+  public static final String JSON_PROPERTY_FACEBOOK_SETTINGS = "facebookSettings";
   @javax.annotation.Nullable
-  private List<FacebookPlatformDataCarouselCardsInner> carouselCards = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CAROUSEL_LINK = "carouselLink";
-  @javax.annotation.Nullable
-  private URI carouselLink;
-
-  public static final String JSON_PROPERTY_TEXT_FORMAT_PRESET_ID = "textFormatPresetId";
-  @javax.annotation.Nullable
-  private String textFormatPresetId;
+  private FacebookSettings facebookSettings;
 
   public FacebookPlatformData() { 
   }
-
-  public FacebookPlatformData draft(@javax.annotation.Nullable Boolean draft) {
-    this.draft = draft;
-    return this;
-  }
-
-  /**
-   * When true, creates the post as a draft in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days.
-   * @return draft
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DRAFT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getDraft() {
-    return draft;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DRAFT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDraft(@javax.annotation.Nullable Boolean draft) {
-    this.draft = draft;
-  }
-
 
   public FacebookPlatformData contentType(@javax.annotation.Nullable ContentTypeEnum contentType) {
     this.contentType = contentType;
@@ -202,7 +160,7 @@ public class FacebookPlatformData {
   }
 
   /**
-   * Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when draft is true.
+   * Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when facebookSettings.draft is true.
    * @return firstComment
    */
   @javax.annotation.Nullable
@@ -268,83 +226,27 @@ public class FacebookPlatformData {
   }
 
 
-  public FacebookPlatformData carouselCards(@javax.annotation.Nullable List<FacebookPlatformDataCarouselCardsInner> carouselCards) {
-    this.carouselCards = carouselCards;
-    return this;
-  }
-
-  public FacebookPlatformData addCarouselCardsItem(FacebookPlatformDataCarouselCardsInner carouselCardsItem) {
-    if (this.carouselCards == null) {
-      this.carouselCards = new ArrayList<>();
-    }
-    this.carouselCards.add(carouselCardsItem);
+  public FacebookPlatformData facebookSettings(@javax.annotation.Nullable FacebookSettings facebookSettings) {
+    this.facebookSettings = facebookSettings;
     return this;
   }
 
   /**
-   * Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType&#x3D;story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render. 
-   * @return carouselCards
+   * Get facebookSettings
+   * @return facebookSettings
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_CARDS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<FacebookPlatformDataCarouselCardsInner> getCarouselCards() {
-    return carouselCards;
+  public FacebookSettings getFacebookSettings() {
+    return facebookSettings;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_CARDS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCarouselCards(@javax.annotation.Nullable List<FacebookPlatformDataCarouselCardsInner> carouselCards) {
-    this.carouselCards = carouselCards;
-  }
-
-
-  public FacebookPlatformData carouselLink(@javax.annotation.Nullable URI carouselLink) {
-    this.carouselLink = carouselLink;
-    return this;
-  }
-
-  /**
-   * Optional top-level \&quot;See more\&quot; destination shown on the carousel end card. Defaults to the first card&#39;s link when omitted. Only used together with carouselCards. 
-   * @return carouselLink
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_LINK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getCarouselLink() {
-    return carouselLink;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_LINK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCarouselLink(@javax.annotation.Nullable URI carouselLink) {
-    this.carouselLink = carouselLink;
-  }
-
-
-  public FacebookPlatformData textFormatPresetId(@javax.annotation.Nullable String textFormatPresetId) {
-    this.textFormatPresetId = textFormatPresetId;
-    return this;
-  }
-
-  /**
-   * Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, or when content is empty. An attachment makes Facebook drop the background silently, so those are rejected up front. Length is NOT rejected: Facebook&#39;s composer stops offering a background at around 130 characters, but Meta documents no API limit, so longer content publishes and returns a warning instead. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. 
-   * @return textFormatPresetId
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEXT_FORMAT_PRESET_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getTextFormatPresetId() {
-    return textFormatPresetId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_TEXT_FORMAT_PRESET_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTextFormatPresetId(@javax.annotation.Nullable String textFormatPresetId) {
-    this.textFormatPresetId = textFormatPresetId;
+  public void setFacebookSettings(@javax.annotation.Nullable FacebookSettings facebookSettings) {
+    this.facebookSettings = facebookSettings;
   }
 
 
@@ -360,35 +262,29 @@ public class FacebookPlatformData {
       return false;
     }
     FacebookPlatformData facebookPlatformData = (FacebookPlatformData) o;
-    return Objects.equals(this.draft, facebookPlatformData.draft) &&
-        Objects.equals(this.contentType, facebookPlatformData.contentType) &&
+    return Objects.equals(this.contentType, facebookPlatformData.contentType) &&
         Objects.equals(this.title, facebookPlatformData.title) &&
         Objects.equals(this.firstComment, facebookPlatformData.firstComment) &&
         Objects.equals(this.pageId, facebookPlatformData.pageId) &&
         Objects.equals(this.geoRestriction, facebookPlatformData.geoRestriction) &&
-        Objects.equals(this.carouselCards, facebookPlatformData.carouselCards) &&
-        Objects.equals(this.carouselLink, facebookPlatformData.carouselLink) &&
-        Objects.equals(this.textFormatPresetId, facebookPlatformData.textFormatPresetId);
+        Objects.equals(this.facebookSettings, facebookPlatformData.facebookSettings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(draft, contentType, title, firstComment, pageId, geoRestriction, carouselCards, carouselLink, textFormatPresetId);
+    return Objects.hash(contentType, title, firstComment, pageId, geoRestriction, facebookSettings);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FacebookPlatformData {\n");
-    sb.append("    draft: ").append(toIndentedString(draft)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    firstComment: ").append(toIndentedString(firstComment)).append("\n");
     sb.append("    pageId: ").append(toIndentedString(pageId)).append("\n");
     sb.append("    geoRestriction: ").append(toIndentedString(geoRestriction)).append("\n");
-    sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
-    sb.append("    carouselLink: ").append(toIndentedString(carouselLink)).append("\n");
-    sb.append("    textFormatPresetId: ").append(toIndentedString(textFormatPresetId)).append("\n");
+    sb.append("    facebookSettings: ").append(toIndentedString(facebookSettings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -436,11 +332,6 @@ public class FacebookPlatformData {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `draft` to the URL query string
-    if (getDraft() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdraft%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDraft()))));
-    }
-
     // add `contentType` to the URL query string
     if (getContentType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontentType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContentType()))));
@@ -466,24 +357,9 @@ public class FacebookPlatformData {
       joiner.add(getGeoRestriction().toUrlQueryString(prefix + "geoRestriction" + suffix));
     }
 
-    // add `carouselCards` to the URL query string
-    if (getCarouselCards() != null) {
-      for (int i = 0; i < getCarouselCards().size(); i++) {
-        if (getCarouselCards().get(i) != null) {
-          joiner.add(getCarouselCards().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scarouselCards%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
-        }
-      }
-    }
-
-    // add `carouselLink` to the URL query string
-    if (getCarouselLink() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scarouselLink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarouselLink()))));
-    }
-
-    // add `textFormatPresetId` to the URL query string
-    if (getTextFormatPresetId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stextFormatPresetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTextFormatPresetId()))));
+    // add `facebookSettings` to the URL query string
+    if (getFacebookSettings() != null) {
+      joiner.add(getFacebookSettings().toUrlQueryString(prefix + "facebookSettings" + suffix));
     }
 
     return joiner.toString();

@@ -4896,6 +4896,20 @@ paths:
                     - link: https://example.com/inventory/car-3
                       name: 2024 Truck
                       description: Loaded
+              facebookTextBackground:
+                description: |
+                  Renders the post as large text on a Facebook-defined colored background.
+                  Text-only: mediaItems and carouselCards are rejected, and contentType
+                  must not be story or reel.
+                summary: Facebook colored-background text post
+                value:
+                  content: We just shipped something big.
+                  platforms:
+                  - platform: facebook
+                    accountId: 64e1f0a9e2b5af0012ab34cd
+                  publishNow: true
+                  facebookSettings:
+                    textFormatPresetId: "1881421442117417"
               recyclingPost:
                 summary: Post with weekly recycling and content variations
                 value:
@@ -37654,15 +37668,8 @@ components:
           type: array
     FacebookPlatformData:
       description: |
-        Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Carousel posts (carouselCards) render a 2-5 card multi-link post, images only, mutually exclusive with story/reel. Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories.
+        Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. Draft, carousel, and colored-background text options live under facebookSettings, see FacebookSettings.
       properties:
-        draft:
-          default: false
-          description: "When true, creates the post as a draft in Facebook Publishing\
-            \ Tools instead of publishing immediately. Supported for feed posts (text,\
-            \ link, image, video) and reels. Not supported for stories. Drafts expire\
-            \ after ~30 days."
-          type: boolean
         contentType:
           description: Set to 'story' for Page Stories (24h ephemeral) or 'reel' for
             Reels (short vertical video). Defaults to feed post if omitted.
@@ -37676,7 +37683,8 @@ components:
           type: string
         firstComment:
           description: "Optional first comment to post immediately after publishing\
-            \ (feed posts and reels, not stories). Skipped when draft is true."
+            \ (feed posts and reels, not stories). Skipped when facebookSettings.draft\
+            \ is true."
           type: string
         pageId:
           description: "Target Facebook Page ID for multi-page posting. If omitted,\
@@ -37685,11 +37693,24 @@ components:
           type: string
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+        facebookSettings:
+          $ref: "#/components/schemas/FacebookSettings"
+    FacebookSettings:
+      description: |
+        Facebook options that must be nested under platformSpecificData.facebookSettings, or sent at the request root as facebookSettings. The remaining Facebook options sit directly on platformSpecificData, see FacebookPlatformData.
+      properties:
+        draft:
+          default: false
+          description: "When true, creates the post as a draft in Facebook Publishing\
+            \ Tools instead of publishing immediately. Supported for feed posts (text,\
+            \ link, image, video) and reels. Not supported for stories. Drafts expire\
+            \ after ~30 days."
+          type: boolean
         carouselCards:
           description: |
             Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType=story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render.
           items:
-            $ref: "#/components/schemas/FacebookPlatformData_carouselCards_inner"
+            $ref: "#/components/schemas/FacebookSettings_carouselCards_inner"
           maxItems: 5
           minItems: 2
           type: array
@@ -45629,10 +45650,10 @@ components:
             \ settings taking precedence."
         facebookSettings:
           allOf:
-          - $ref: "#/components/schemas/FacebookPlatformData"
+          - $ref: "#/components/schemas/FacebookSettings"
           description: "Root-level Facebook settings applied to all Facebook platforms.\
-            \ Merged into each platform's platformSpecificData, with platform-specific\
-            \ settings taking precedence."
+            \ Merged into each platform's platformSpecificData.facebookSettings, with\
+            \ platform-specific settings taking precedence."
         recycling:
           $ref: "#/components/schemas/RecyclingConfig"
         queuedFromProfile:
@@ -45900,10 +45921,10 @@ components:
             \ settings taking precedence."
         facebookSettings:
           allOf:
-          - $ref: "#/components/schemas/FacebookPlatformData"
+          - $ref: "#/components/schemas/FacebookSettings"
           description: "Root-level Facebook settings applied to all Facebook platforms.\
-            \ Merged into each platform's platformSpecificData, with platform-specific\
-            \ settings taking precedence."
+            \ Merged into each platform's platformSpecificData.facebookSettings, with\
+            \ platform-specific settings taking precedence."
         recycling:
           $ref: "#/components/schemas/RecyclingConfig"
     bulkUploadPosts_request:
@@ -79783,7 +79804,7 @@ components:
         other:
           description: Content has other sensitive characteristics.
           type: boolean
-    FacebookPlatformData_carouselCards_inner:
+    FacebookSettings_carouselCards_inner:
       properties:
         link:
           description: Per-card click destination (required).

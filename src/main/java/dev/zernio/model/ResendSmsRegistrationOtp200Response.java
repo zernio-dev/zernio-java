@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ResendSmsRegistrationOtp200Response.JSON_PROPERTY_SENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T14:21:45.573610607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ResendSmsRegistrationOtp200Response {
   public static final String JSON_PROPERTY_SENT = "sent";
   @javax.annotation.Nullable

@@ -403,10 +403,11 @@ docs/ExternalPostSummary.md
 docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookPlatformData.md
-docs/FacebookPlatformDataCarouselCardsInner.md
 docs/FacebookPostEarningsResponse.md
 docs/FacebookPostEarningsResponseMetricsValue.md
 docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
+docs/FacebookSettings.md
+docs/FacebookSettingsCarouselCardsInner.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
 docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
@@ -2087,10 +2088,11 @@ src/main/java/dev/zernio/model/ExternalPostSummary.java
 src/main/java/dev/zernio/model/ExternalPostSummaryAnalytics.java
 src/main/java/dev/zernio/model/ExternalPostWebhookPost.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
-src/main/java/dev/zernio/model/FacebookPlatformDataCarouselCardsInner.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponse.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValue.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponseUnavailableMetricsInner.java
+src/main/java/dev/zernio/model/FacebookSettings.java
+src/main/java/dev/zernio/model/FacebookSettingsCarouselCardsInner.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200Response.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.java
@@ -3267,3 +3269,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/FacebookSettingsCarouselCardsInnerTest.java
+src/test/java/dev/zernio/model/FacebookSettingsTest.java

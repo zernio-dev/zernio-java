@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-31T13:33:00.395260058Z[Etc/UTC]
+- Build date: 2026-07-31T14:21:45.573610607Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1559,10 +1559,11 @@ Class | Method | HTTP request | Description
  - [ExternalPostSummaryAnalytics](docs/ExternalPostSummaryAnalytics.md)
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
- - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
  - [FacebookPostEarningsResponse](docs/FacebookPostEarningsResponse.md)
  - [FacebookPostEarningsResponseMetricsValue](docs/FacebookPostEarningsResponseMetricsValue.md)
  - [FacebookPostEarningsResponseUnavailableMetricsInner](docs/FacebookPostEarningsResponseUnavailableMetricsInner.md)
+ - [FacebookSettings](docs/FacebookSettings.md)
+ - [FacebookSettingsCarouselCardsInner](docs/FacebookSettingsCarouselCardsInner.md)
  - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
  - [FetchGoogleBusinessVerificationOptions200ResponseOptionsInner](docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md)
  - [FetchGoogleBusinessVerificationOptionsRequest](docs/FetchGoogleBusinessVerificationOptionsRequest.md)

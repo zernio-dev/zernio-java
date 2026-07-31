@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.FacebookPlatformData;
+import dev.zernio.model.FacebookSettings;
 import dev.zernio.model.MediaItem;
 import dev.zernio.model.RecyclingConfig;
 import dev.zernio.model.TikTokPlatformData;
@@ -67,7 +67,7 @@ import dev.zernio.ApiClient;
   UpdatePostRequest.JSON_PROPERTY_FACEBOOK_SETTINGS,
   UpdatePostRequest.JSON_PROPERTY_RECYCLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T14:21:45.573610607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -176,7 +176,7 @@ public class UpdatePostRequest {
 
   public static final String JSON_PROPERTY_FACEBOOK_SETTINGS = "facebookSettings";
   @javax.annotation.Nullable
-  private FacebookPlatformData facebookSettings;
+  private FacebookSettings facebookSettings;
 
   public static final String JSON_PROPERTY_RECYCLING = "recycling";
   @javax.annotation.Nullable
@@ -641,26 +641,26 @@ public class UpdatePostRequest {
   }
 
 
-  public UpdatePostRequest facebookSettings(@javax.annotation.Nullable FacebookPlatformData facebookSettings) {
+  public UpdatePostRequest facebookSettings(@javax.annotation.Nullable FacebookSettings facebookSettings) {
     this.facebookSettings = facebookSettings;
     return this;
   }
 
   /**
-   * Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+   * Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.
    * @return facebookSettings
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public FacebookPlatformData getFacebookSettings() {
+  public FacebookSettings getFacebookSettings() {
     return facebookSettings;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFacebookSettings(@javax.annotation.Nullable FacebookPlatformData facebookSettings) {
+  public void setFacebookSettings(@javax.annotation.Nullable FacebookSettings facebookSettings) {
     this.facebookSettings = facebookSettings;
   }
 
