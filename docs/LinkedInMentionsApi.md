@@ -84,6 +84,7 @@ public class Example {
 | **200** | URN resolved successfully |  -  |
 | **400** | Invalid request or no organization found (for person mentions) |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The account holds no organization role that can resolve person mentions |  -  |
 | **404** | Person or organization not found |  -  |
 
 ## getLinkedInMentionsWithHttpInfo
@@ -164,5 +165,6 @@ ApiResponse<[**GetLinkedInMentions200Response**](GetLinkedInMentions200Response.
 | **200** | URN resolved successfully |  -  |
 | **400** | Invalid request or no organization found (for person mentions) |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The account holds no organization role that can resolve person mentions |  -  |
 | **404** | Person or organization not found |  -  |
 

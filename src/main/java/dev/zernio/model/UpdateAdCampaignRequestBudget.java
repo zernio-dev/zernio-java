@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequestBudget.JSON_PROPERTY_AMOUNT,
   UpdateAdCampaignRequestBudget.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequestBudget {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   @javax.annotation.Nonnull

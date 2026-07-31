@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseRegularHoursPeriodsInner.JSON_PROPERTY_CLOSE_DAY,
   GetGoogleBusinessLocationDetails200ResponseRegularHoursPeriodsInner.JSON_PROPERTY_CLOSE_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseRegularHoursPeriodsInner {
   /**
    * Gets or Sets openDay

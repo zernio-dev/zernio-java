@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   MetaLeadFormPlatformData.JSON_PROPERTY_QUESTION_PAGE_CUSTOM_HEADLINE,
   MetaLeadFormPlatformData.JSON_PROPERTY_CONTEXT_CARD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T11:36:52.551782067Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T13:33:00.395260058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadFormPlatformData {
   public static final String JSON_PROPERTY_QUESTIONS = "questions";
   @javax.annotation.Nonnull

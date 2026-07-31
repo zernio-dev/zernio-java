@@ -11194,6 +11194,20 @@ paths:
           description: Invalid request or no organization found (for person mentions)
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              examples:
+                noPostingRole:
+                  value:
+                    error: "LinkedIn blocked this lookup. Your account has no company\
+                      \ page where it can create posts, which LinkedIn requires to\
+                      \ resolve a person's profile URL. Ask for an Admin or Content\
+                      \ Admin role on one of your pages, or mention a company instead."
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+          description: The account holds no organization role that can resolve person
+            mentions
         "404":
           content:
             application/json:
