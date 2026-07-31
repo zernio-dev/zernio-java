@@ -25749,6 +25749,19 @@ paths:
         Campaign status is derived from child ad statuses (active > pending_review > paused > error > completed > cancelled > rejected).
       operationId: listAdCampaigns
       parameters:
+      - description: "Meta only. Campaign reads aggregate over ad documents, so a\
+          \ campaign with ZERO ads is normally invisible here — the state the two-step\
+          \ create (campaign, then ads via `existingCampaignId`) leaves behind whenever\
+          \ Meta rejects the ad step. Set true to list those too, with `adCount: 0`\
+          \ and zeroed metrics. Requires `accountId` and `adAccountId`, since an empty\
+          \ campaign has no ad row to resolve a token or ad account from."
+        explode: true
+        in: query
+        name: includeEmpty
+        required: false
+        schema:
+          type: boolean
+        style: form
       - $ref: "#/components/parameters/PageParam"
       - explode: true
         in: query
@@ -26048,6 +26061,12 @@ paths:
     put:
       description: |
         Campaign-level edits. At least one of `budget`, `bidStrategy`, `name` or `platformSpecificData` is required.
+
+        **Empty campaigns.** A campaign with zero ads has no local Ad documents to
+        resolve, so this would 404 even though it exists on Meta. Send `accountId`
+        in the body to skip the local lookup and forward the update to Meta. The
+        response then carries `updated: 0`, since there are no local rows to mirror
+        onto. `accountId` is ignored when the campaign does have ads.
 
         - `budget` updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns
           (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint
@@ -68603,6 +68622,11 @@ components:
           type: number
     updateAdCampaign_request:
       properties:
+        accountId:
+          description: "Zernio SocialAccount id owning the ad account. Required only\
+            \ to update an EMPTY campaign (zero ads), which has no local Ad documents\
+            \ to resolve a token from."
+          type: string
         platform:
           enum:
           - facebook

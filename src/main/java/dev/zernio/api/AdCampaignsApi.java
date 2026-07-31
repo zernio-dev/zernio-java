@@ -84,7 +84,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T19:17:54.341344705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2006,6 +2006,7 @@ public class AdCampaignsApi {
   /**
    * List campaigns
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
+   * @param includeEmpty Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -2020,13 +2021,14 @@ public class AdCampaignsApi {
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
    * List campaigns
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
+   * @param includeEmpty Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -2042,14 +2044,15 @@ public class AdCampaignsApi {
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List campaigns
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
+   * @param includeEmpty Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -2064,13 +2067,14 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
    * List campaigns
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
+   * @param includeEmpty Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -2086,8 +2090,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2134,7 +2138,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2143,6 +2147,8 @@ public class AdCampaignsApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "includeEmpty";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("includeEmpty", includeEmpty));
     localVarQueryParameterBaseName = "page";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
     localVarQueryParameterBaseName = "limit";
@@ -2725,7 +2731,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @return UpdateAdCampaign200Response
@@ -2737,7 +2743,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request
@@ -2751,7 +2757,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @return ApiResponse&lt;UpdateAdCampaign200Response&gt;
@@ -2763,7 +2769,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request

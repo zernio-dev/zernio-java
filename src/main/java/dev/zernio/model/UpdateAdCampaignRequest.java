@@ -36,14 +36,19 @@ import dev.zernio.ApiClient;
  * UpdateAdCampaignRequest
  */
 @JsonPropertyOrder({
+  UpdateAdCampaignRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM,
   UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
   UpdateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T18:42:02.288930460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T19:17:54.341344705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
+
   /**
    * Gets or Sets platform
    */
@@ -101,6 +106,30 @@ public class UpdateAdCampaignRequest {
 
   public UpdateAdCampaignRequest() { 
   }
+
+  public UpdateAdCampaignRequest accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+  }
+
 
   public UpdateAdCampaignRequest platform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
@@ -234,7 +263,8 @@ public class UpdateAdCampaignRequest {
       return false;
     }
     UpdateAdCampaignRequest updateAdCampaignRequest = (UpdateAdCampaignRequest) o;
-    return Objects.equals(this.platform, updateAdCampaignRequest.platform) &&
+    return Objects.equals(this.accountId, updateAdCampaignRequest.accountId) &&
+        Objects.equals(this.platform, updateAdCampaignRequest.platform) &&
         Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
         Objects.equals(this.bidStrategy, updateAdCampaignRequest.bidStrategy) &&
         Objects.equals(this.name, updateAdCampaignRequest.name) &&
@@ -243,13 +273,14 @@ public class UpdateAdCampaignRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, budget, bidStrategy, name, platformSpecificData);
+    return Objects.hash(accountId, platform, budget, bidStrategy, name, platformSpecificData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdCampaignRequest {\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
@@ -301,6 +332,11 @@ public class UpdateAdCampaignRequest {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
 
     // add `platform` to the URL query string
     if (getPlatform() != null) {

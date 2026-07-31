@@ -2127,7 +2127,7 @@ ApiResponse<[**GetAdsTimeline200Response**](GetAdsTimeline200Response.md)>
 
 ## listAdCampaigns
 
-> ListAdCampaigns200Response listAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate)
+> ListAdCampaigns200Response listAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate)
 
 List campaigns
 
@@ -2154,6 +2154,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        Boolean includeEmpty = true; // Boolean | Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via `existingCampaignId`) leaves behind whenever Meta rejects the ad step. Set true to list those too, with `adCount: 0` and zeroed metrics. Requires `accountId` and `adAccountId`, since an empty campaign has no ad row to resolve a token or ad account from.
         Integer page = 1; // Integer | Page number (1-based)
         Integer limit = 20; // Integer | 
         String source = "zernio"; // String | `all` (default) returns both Zernio-created ads and those discovered from the platform's ad manager — matches the web UI's default view. Pass `zernio` to restrict to isExternal=false only. Status is NOT filtered by default — use the `status` param for that.
@@ -2166,7 +2167,7 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range.
         try {
-            ListAdCampaigns200Response result = apiInstance.listAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+            ListAdCampaigns200Response result = apiInstance.listAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#listAdCampaigns");
@@ -2184,6 +2185,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **includeEmpty** | **Boolean**| Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. | [optional] |
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
@@ -2220,7 +2222,7 @@ public class Example {
 
 ## listAdCampaignsWithHttpInfo
 
-> ApiResponse<ListAdCampaigns200Response> listAdCampaigns listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate)
+> ApiResponse<ListAdCampaigns200Response> listAdCampaigns listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate)
 
 List campaigns
 
@@ -2248,6 +2250,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        Boolean includeEmpty = true; // Boolean | Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via `existingCampaignId`) leaves behind whenever Meta rejects the ad step. Set true to list those too, with `adCount: 0` and zeroed metrics. Requires `accountId` and `adAccountId`, since an empty campaign has no ad row to resolve a token or ad account from.
         Integer page = 1; // Integer | Page number (1-based)
         Integer limit = 20; // Integer | 
         String source = "zernio"; // String | `all` (default) returns both Zernio-created ads and those discovered from the platform's ad manager — matches the web UI's default view. Pass `zernio` to restrict to isExternal=false only. Status is NOT filtered by default — use the `status` param for that.
@@ -2260,7 +2263,7 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range.
         try {
-            ApiResponse<ListAdCampaigns200Response> response = apiInstance.listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+            ApiResponse<ListAdCampaigns200Response> response = apiInstance.listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2280,6 +2283,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **includeEmpty** | **Boolean**| Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. | [optional] |
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
@@ -2875,7 +2879,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 
 Update a campaign
 
-Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
 
 ### Example
 
@@ -2952,7 +2956,7 @@ public class Example {
 
 Update a campaign
 
-Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
 
 ### Example
 
