@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   EditInboxMessage200ResponseData.JSON_PROPERTY_MESSAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T07:36:57.060786709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T08:42:51.903565581Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditInboxMessage200ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable

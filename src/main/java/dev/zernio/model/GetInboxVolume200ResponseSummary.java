@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetInboxVolume200ResponseSummary.JSON_PROPERTY_FAILED,
   GetInboxVolume200ResponseSummary.JSON_PROPERTY_UNIQUE_CONVERSATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T07:36:57.060786709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T08:42:51.903565581Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxVolume200ResponseSummary {
   public static final String JSON_PROPERTY_RECEIVED = "received";
   @javax.annotation.Nullable

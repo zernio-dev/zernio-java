@@ -153,6 +153,8 @@ docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
+docs/ConnectedApp.md
+docs/ConnectedAppsApi.md
 docs/ContactsApi.md
 docs/ConversionDestination.md
 docs/ConversionEvent.md
@@ -853,6 +855,7 @@ docs/ListCommentAutomationLogs200Response.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
+docs/ListConnectedApps200Response.md
 docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
@@ -1116,6 +1119,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/RevokeConnectedApp200Response.md
 docs/RfPrediction.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
@@ -1656,6 +1660,7 @@ src/main/java/dev/zernio/api/CallsApi.java
 src/main/java/dev/zernio/api/CommentAutomationsApi.java
 src/main/java/dev/zernio/api/CommentsApi.java
 src/main/java/dev/zernio/api/ConnectApi.java
+src/main/java/dev/zernio/api/ConnectedAppsApi.java
 src/main/java/dev/zernio/api/ContactsApi.java
 src/main/java/dev/zernio/api/ConversionsApi.java
 src/main/java/dev/zernio/api/CustomFieldsApi.java
@@ -1836,6 +1841,7 @@ src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
+src/main/java/dev/zernio/model/ConnectedApp.java
 src/main/java/dev/zernio/model/ConversionDestination.java
 src/main/java/dev/zernio/model/ConversionEvent.java
 src/main/java/dev/zernio/model/ConversionEventItemsInner.java
@@ -2519,6 +2525,7 @@ src/main/java/dev/zernio/model/ListCommentAutomationLogs200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomations200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomations200ResponseAutomationsInner.java
 src/main/java/dev/zernio/model/ListCommentAutomations200ResponseAutomationsInnerStats.java
+src/main/java/dev/zernio/model/ListConnectedApps200Response.java
 src/main/java/dev/zernio/model/ListContacts200Response.java
 src/main/java/dev/zernio/model/ListContacts200ResponseContactsInner.java
 src/main/java/dev/zernio/model/ListContacts200ResponseFilters.java
@@ -2770,6 +2777,7 @@ src/main/java/dev/zernio/model/ReviewPhoneNumberKycPacketRequest.java
 src/main/java/dev/zernio/model/ReviewWebhookReview.java
 src/main/java/dev/zernio/model/ReviewWebhookReviewReply.java
 src/main/java/dev/zernio/model/ReviewWebhookReviewReviewer.java
+src/main/java/dev/zernio/model/RevokeConnectedApp200Response.java
 src/main/java/dev/zernio/model/RfPrediction.java
 src/main/java/dev/zernio/model/SavedTargetingAudience.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200Response.java
@@ -3257,3 +3265,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/ConnectedAppsApiTest.java
+src/test/java/dev/zernio/model/ConnectedAppTest.java
+src/test/java/dev/zernio/model/ListConnectedApps200ResponseTest.java
+src/test/java/dev/zernio/model/RevokeConnectedApp200ResponseTest.java

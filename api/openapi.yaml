@@ -84,6 +84,10 @@ tags:
     Create, list, and revoke API keys used to authenticate requests.
   name: API Keys
 - description: |
+    List and revoke the OAuth clients (AI assistants and MCP connectors) authorized
+    on the account.
+  name: Connected Apps
+- description: |
     Generate invite tokens for adding members to a team.
   name: Invites
 - description: |
@@ -6945,6 +6949,105 @@ paths:
       summary: Delete key
       tags:
       - API Keys
+      x-accepts:
+      - application/json
+  /v1/me/connected-apps:
+    get:
+      description: |
+        Returns the OAuth clients (AI assistants and MCP connectors) the authenticated
+        user has authorized and that still hold a live token.
+
+        Requires a session or a full-scope API key. A profile-scoped API key or an
+        OAuth access token is rejected with 403: an app must not be able to enumerate
+        its sibling authorizations.
+      operationId: listConnectedApps
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                connectedApps:
+                - clientId: late_cid_3f9c1a7b2d4e6f80a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718
+                  clientName: Claude
+                  redirectHost: claude.ai
+                  scopes:
+                  - posts:read
+                  - posts:write
+                  - accounts:read
+                  authorizedAt: 2026-07-02T09:14:00Z
+                  lastUsedAt: 2026-07-30T18:02:11Z
+                  tokenCount: 2
+              schema:
+                $ref: "#/components/schemas/listConnectedApps_200_response"
+          description: Connected apps
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The calling credential may not manage OAuth authorizations\
+            \ (profile-scoped API key or OAuth access token). Error code: insufficient_permissions."
+      summary: List connected apps
+      tags:
+      - Connected Apps
+      x-accepts:
+      - application/json
+  /v1/me/connected-apps/{clientId}:
+    delete:
+      description: |
+        Ends an app's access: invalidates the client's pending authorization codes and
+        revokes every live token it holds for the authenticated user. Takes effect on
+        the app's next request.
+
+        Idempotent while the authorization is still on record: revoking an app that
+        was already revoked returns 200 with `revokedTokens: 0`.
+      operationId: revokeConnectedApp
+      parameters:
+      - description: "OAuth client id, as returned by GET /v1/me/connected-apps."
+        explode: false
+        in: path
+        name: clientId
+        required: true
+        schema:
+          maxLength: 200
+          minLength: 1
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                revoked: true
+                clientId: late_cid_3f9c1a7b2d4e6f80a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718
+                revokedTokens: 2
+                invalidatedCodes: 0
+              schema:
+                $ref: "#/components/schemas/revokeConnectedApp_200_response"
+          description: Revoked
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The calling credential may not manage OAuth authorizations\
+            \ (profile-scoped API key or OAuth access token). Error code: insufficient_permissions."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The authenticated user has never authorized this client. Error\
+            \ code: oauth_client_not_found."
+      summary: Revoke connected app
+      tags:
+      - Connected Apps
       x-accepts:
       - application/json
   /v1/invite/tokens:
@@ -38489,6 +38592,50 @@ components:
           - read-write
           - read
           type: string
+    ConnectedApp:
+      description: |
+        An OAuth client (AI assistant / MCP connector) authorized by the user and still
+        holding at least one live token.
+      example:
+        clientId: clientId
+        clientName: clientName
+        lastUsedAt: 2000-01-23T04:56:07.000+00:00
+        authorizedAt: 2000-01-23T04:56:07.000+00:00
+        tokenCount: 0
+        scopes:
+        - scopes
+        - scopes
+        redirectHost: redirectHost
+      properties:
+        clientId:
+          type: string
+        clientName:
+          description: "Name the client declared at registration. Registration is\
+            \ open, so this is self-declared and not verified."
+          type: string
+        redirectHost:
+          description: Host of the client's registered redirect URI (non-http schemes
+            are shown as scheme//host). The destination an impostor cannot fake.
+          nullable: true
+          type: string
+        scopes:
+          description: Scopes granted on the most recent token.
+          items:
+            type: string
+          type: array
+        authorizedAt:
+          format: date-time
+          nullable: true
+          type: string
+        lastUsedAt:
+          description: Last time any of the client's live tokens authenticated a request.
+          format: date-time
+          nullable: true
+          type: string
+        tokenCount:
+          description: Live tokens held by the client (an active session is typically
+            one access plus one refresh token).
+          type: integer
     BillingSnapshot:
       description: |
         Account billing state — plan, cycle, balance, spend caps, and payment /
@@ -46526,6 +46673,49 @@ components:
           type: string
         apiKey:
           $ref: "#/components/schemas/ApiKey"
+    listConnectedApps_200_response:
+      example:
+        connectedApps:
+        - clientId: clientId
+          clientName: clientName
+          lastUsedAt: 2000-01-23T04:56:07.000+00:00
+          authorizedAt: 2000-01-23T04:56:07.000+00:00
+          tokenCount: 0
+          scopes:
+          - scopes
+          - scopes
+          redirectHost: redirectHost
+        - clientId: clientId
+          clientName: clientName
+          lastUsedAt: 2000-01-23T04:56:07.000+00:00
+          authorizedAt: 2000-01-23T04:56:07.000+00:00
+          tokenCount: 0
+          scopes:
+          - scopes
+          - scopes
+          redirectHost: redirectHost
+      properties:
+        connectedApps:
+          items:
+            $ref: "#/components/schemas/ConnectedApp"
+          type: array
+    revokeConnectedApp_200_response:
+      example:
+        invalidatedCodes: 6
+        clientId: clientId
+        revoked: true
+        revokedTokens: 0
+      properties:
+        revoked:
+          type: boolean
+        clientId:
+          type: string
+        revokedTokens:
+          description: Access and refresh tokens revoked by this call.
+          type: integer
+        invalidatedCodes:
+          description: Pending authorization codes invalidated by this call.
+          type: integer
     createInviteToken_request:
       properties:
         scope:

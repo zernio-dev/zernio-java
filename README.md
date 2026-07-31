@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-31T07:36:57.060786709Z[Etc/UTC]
+- Build date: 2026-07-31T08:42:51.903565581Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -482,6 +482,10 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**updateYoutubeDefaultPlaylistWithHttpInfo**](docs/ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
 *ConnectApi* | [**voteRedditThing**](docs/ConnectApi.md#voteRedditThing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment
 *ConnectApi* | [**voteRedditThingWithHttpInfo**](docs/ConnectApi.md#voteRedditThingWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment
+*ConnectedAppsApi* | [**listConnectedApps**](docs/ConnectedAppsApi.md#listConnectedApps) | **GET** /v1/me/connected-apps | List connected apps
+*ConnectedAppsApi* | [**listConnectedAppsWithHttpInfo**](docs/ConnectedAppsApi.md#listConnectedAppsWithHttpInfo) | **GET** /v1/me/connected-apps | List connected apps
+*ConnectedAppsApi* | [**revokeConnectedApp**](docs/ConnectedAppsApi.md#revokeConnectedApp) | **DELETE** /v1/me/connected-apps/{clientId} | Revoke connected app
+*ConnectedAppsApi* | [**revokeConnectedAppWithHttpInfo**](docs/ConnectedAppsApi.md#revokeConnectedAppWithHttpInfo) | **DELETE** /v1/me/connected-apps/{clientId} | Revoke connected app
 *ContactsApi* | [**bulkCreateContacts**](docs/ContactsApi.md#bulkCreateContacts) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**bulkCreateContactsWithHttpInfo**](docs/ContactsApi.md#bulkCreateContactsWithHttpInfo) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**createContact**](docs/ContactsApi.md#createContact) | **POST** /v1/contacts | Create contact
@@ -1310,6 +1314,7 @@ Class | Method | HTTP request | Description
  - [ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
+ - [ConnectedApp](docs/ConnectedApp.md)
  - [ConversionDestination](docs/ConversionDestination.md)
  - [ConversionEvent](docs/ConversionEvent.md)
  - [ConversionEventItemsInner](docs/ConversionEventItemsInner.md)
@@ -1993,6 +1998,7 @@ Class | Method | HTTP request | Description
  - [ListCommentAutomations200Response](docs/ListCommentAutomations200Response.md)
  - [ListCommentAutomations200ResponseAutomationsInner](docs/ListCommentAutomations200ResponseAutomationsInner.md)
  - [ListCommentAutomations200ResponseAutomationsInnerStats](docs/ListCommentAutomations200ResponseAutomationsInnerStats.md)
+ - [ListConnectedApps200Response](docs/ListConnectedApps200Response.md)
  - [ListContacts200Response](docs/ListContacts200Response.md)
  - [ListContacts200ResponseContactsInner](docs/ListContacts200ResponseContactsInner.md)
  - [ListContacts200ResponseFilters](docs/ListContacts200ResponseFilters.md)
@@ -2244,6 +2250,7 @@ Class | Method | HTTP request | Description
  - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [RevokeConnectedApp200Response](docs/RevokeConnectedApp200Response.md)
  - [RfPrediction](docs/RfPrediction.md)
  - [SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
