@@ -15692,12 +15692,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
-          description: "Platform rejected the operation (e.g., comment already deleted,\
-            \ insufficient permissions on the video)"
+          description: "Platform rejected the operation (e.g., comment already deleted)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Inbox addon required
+          description: "Inbox addon required, or the connected account is not permitted\
+            \ to delete this comment on the platform (code platform_api_error, type\
+            \ platform_error)"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "502":
+          description: "Upstream platform error (code platform_api_error, type platform_error)"
       security:
       - bearerAuth: []
       summary: Delete comment
@@ -15774,7 +15779,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Inbox addon required
+          description: "Inbox addon required, or the connected account is not permitted\
+            \ to read this post on the platform (code platform_api_error, type platform_error)"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "502":
+          description: "Upstream platform error (code platform_api_error, type platform_error)"
       security:
       - bearerAuth: []
       summary: Get post comments
@@ -15815,7 +15825,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Inbox addon required
+          description: "Inbox addon required, or the connected account is not permitted\
+            \ to comment on this post on the platform (code platform_api_error, type\
+            \ platform_error)"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "502":
+          description: "Upstream platform error (code platform_api_error, type platform_error)"
       security:
       - bearerAuth: []
       summary: Reply to comment

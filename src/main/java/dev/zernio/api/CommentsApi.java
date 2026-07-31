@@ -21,6 +21,7 @@ import dev.zernio.Pair;
 import dev.zernio.model.DeleteInboxComment200Response;
 import dev.zernio.model.EditInboxComment200Response;
 import dev.zernio.model.EditInboxCommentRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetInboxPostComments200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.HideInboxComment200Response;
@@ -64,7 +65,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T16:30:38.821360322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T07:36:57.060786709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
