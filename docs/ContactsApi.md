@@ -769,7 +769,7 @@ ApiResponse<[**GetContactChannels200Response**](GetContactChannels200Response.md
 
 ## listContacts
 
-> ListContacts200Response listContacts(profileId, search, tag, platform, isSubscribed, limit, skip)
+> ListContacts200Response listContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip)
 
 List contacts
 
@@ -799,12 +799,13 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles
         String search = "search_example"; // String | 
         String tag = "tag_example"; // String | 
+        String tags = "tags_example"; // String | Comma-separated tags, matches contacts carrying any of them
         String platform = "instagram"; // String | 
         String isSubscribed = "true"; // String | 
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ListContacts200Response result = apiInstance.listContacts(profileId, search, tag, platform, isSubscribed, limit, skip);
+            ListContacts200Response result = apiInstance.listContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#listContacts");
@@ -825,6 +826,7 @@ public class Example {
 | **profileId** | **String**| Filter by profile. Omit to list across all profiles | [optional] |
 | **search** | **String**|  | [optional] |
 | **tag** | **String**|  | [optional] |
+| **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
 | **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -853,7 +855,7 @@ public class Example {
 
 ## listContactsWithHttpInfo
 
-> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip)
+> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip)
 
 List contacts
 
@@ -884,12 +886,13 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles
         String search = "search_example"; // String | 
         String tag = "tag_example"; // String | 
+        String tags = "tags_example"; // String | Comma-separated tags, matches contacts carrying any of them
         String platform = "instagram"; // String | 
         String isSubscribed = "true"; // String | 
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip);
+            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -912,6 +915,7 @@ public class Example {
 | **profileId** | **String**| Filter by profile. Omit to list across all profiles | [optional] |
 | **search** | **String**|  | [optional] |
 | **tag** | **String**|  | [optional] |
+| **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
 | **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |

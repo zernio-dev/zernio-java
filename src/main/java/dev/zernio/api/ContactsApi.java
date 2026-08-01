@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T12:05:39.055907330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContactsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -764,6 +764,7 @@ public class ContactsApi {
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
    * @param search  (optional)
    * @param tag  (optional)
+   * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
    * @param isSubscribed  (optional)
    * @param limit  (optional, default to 50)
@@ -771,8 +772,8 @@ public class ContactsApi {
    * @return ListContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    return listContacts(profileId, search, tag, platform, isSubscribed, limit, skip, null);
+  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip, null);
   }
 
   /**
@@ -781,6 +782,7 @@ public class ContactsApi {
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
    * @param search  (optional)
    * @param tag  (optional)
+   * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
    * @param isSubscribed  (optional)
    * @param limit  (optional, default to 50)
@@ -789,8 +791,8 @@ public class ContactsApi {
    * @return ListContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListContacts200Response> localVarResponse = listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip, headers);
+  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListContacts200Response> localVarResponse = listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip, headers);
     return localVarResponse.getData();
   }
 
@@ -800,6 +802,7 @@ public class ContactsApi {
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
    * @param search  (optional)
    * @param tag  (optional)
+   * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
    * @param isSubscribed  (optional)
    * @param limit  (optional, default to 50)
@@ -807,8 +810,8 @@ public class ContactsApi {
    * @return ApiResponse&lt;ListContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    return listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip, null);
+  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip, null);
   }
 
   /**
@@ -817,6 +820,7 @@ public class ContactsApi {
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
    * @param search  (optional)
    * @param tag  (optional)
+   * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
    * @param isSubscribed  (optional)
    * @param limit  (optional, default to 50)
@@ -825,8 +829,8 @@ public class ContactsApi {
    * @return ApiResponse&lt;ListContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listContactsRequestBuilder(profileId, search, tag, platform, isSubscribed, limit, skip, headers);
+  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listContactsRequestBuilder(profileId, search, tag, tags, platform, isSubscribed, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -873,7 +877,7 @@ public class ContactsApi {
     }
   }
 
-  private HttpRequest.Builder listContactsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listContactsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -888,6 +892,8 @@ public class ContactsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
     localVarQueryParameterBaseName = "tag";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("tag", tag));
+    localVarQueryParameterBaseName = "tags";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("tags", tags));
     localVarQueryParameterBaseName = "platform";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
     localVarQueryParameterBaseName = "isSubscribed";

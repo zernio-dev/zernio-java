@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetAdComments200Response.JSON_PROPERTY_PAGINATION,
   GetAdComments200Response.JSON_PROPERTY_META
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T12:05:39.055907330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200Response {
   /**
    * Gets or Sets status

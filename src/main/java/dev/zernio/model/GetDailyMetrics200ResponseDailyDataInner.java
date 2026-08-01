@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetDailyMetrics200ResponseDailyDataInner.JSON_PROPERTY_PLATFORMS,
   GetDailyMetrics200ResponseDailyDataInner.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T12:05:39.055907330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetDailyMetrics200ResponseDailyDataInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
