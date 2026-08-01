@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListDiscordGuildMembers200ResponsePagination.JSON_PROPERTY_NEXT_CURSOR,
   ListDiscordGuildMembers200ResponsePagination.JSON_PROPERTY_HAS_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T11:49:34.582412469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T12:05:39.055907330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListDiscordGuildMembers200ResponsePagination {
   public static final String JSON_PROPERTY_NEXT_CURSOR = "nextCursor";
   private JsonNullable<String> nextCursor = JsonNullable.<String>undefined();

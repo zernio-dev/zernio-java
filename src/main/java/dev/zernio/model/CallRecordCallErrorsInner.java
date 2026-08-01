@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CallRecordCallErrorsInner.JSON_PROPERTY_CODE,
   CallRecordCallErrorsInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T11:49:34.582412469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T12:05:39.055907330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CallRecordCallErrorsInner {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

@@ -72129,13 +72129,16 @@ components:
           $ref: "#/components/schemas/getAdAccountFinance_200_response_fundingSource"
     listAdAccounts_200_response_accounts_inner:
       example:
-        timezoneOffsetHoursUtc: 0.8008281904610115
+        accountStatus: ""
+        approvalStatus: approvalStatus
+        disableReason: 0
+        timezoneOffsetHoursUtc: 6.027456183070403
         selectable: true
         name: name
         timezoneName: timezoneName
         currency: currency
         id: id
-        minimumDailyBudget: 6.027456183070403
+        minimumDailyBudget: 1.4658129805029452
         unusableReason: unusableReason
         status: status
       properties:
@@ -72147,7 +72150,27 @@ components:
         currency:
           type: string
         status:
+          description: "LinkedIn only. LinkedIn's own ad account status. In practice\
+            \ always `ACTIVE`, because the LinkedIn query filters to active accounts.\
+            \ Meta, Google, TikTok and Pinterest report `accountStatus` instead; X\
+            \ reports `approvalStatus`."
           type: string
+        accountStatus: {}
+        approvalStatus:
+          description: "X only. X's own ad account approval status. Observed values\
+            \ are `ACCEPTED`, `PENDING` and `REJECTED`, but X does not publish the\
+            \ full vocabulary, so treat an unrecognised value as not usable. Other\
+            \ platforms report `accountStatus` or `status` instead."
+          type: string
+        disableReason:
+          description: "Meta only. Meta's `disable_reason` code, forwarded unchanged.\
+            \ Present when `accountStatus` is `2` (DISABLED) and Meta gives a reason,\
+            \ which is what separates a policy action from a payment problem. Meta\
+            \ does not publish a stable list of values for this field, so none are\
+            \ enumerated here: resolve the code against Meta's own ad account reference.\
+            \ Absent when Meta reports no reason, or when the connected token cannot\
+            \ read the field."
+          type: integer
         timezoneName:
           description: IANA timezone of the ad account (Meta only). Drives daily-budget
             reset and Insights day boundaries.
@@ -72173,22 +72196,28 @@ components:
     listAdAccounts_200_response:
       example:
         accounts:
-        - timezoneOffsetHoursUtc: 0.8008281904610115
+        - accountStatus: ""
+          approvalStatus: approvalStatus
+          disableReason: 0
+          timezoneOffsetHoursUtc: 6.027456183070403
           selectable: true
           name: name
           timezoneName: timezoneName
           currency: currency
           id: id
-          minimumDailyBudget: 6.027456183070403
+          minimumDailyBudget: 1.4658129805029452
           unusableReason: unusableReason
           status: status
-        - timezoneOffsetHoursUtc: 0.8008281904610115
+        - accountStatus: ""
+          approvalStatus: approvalStatus
+          disableReason: 0
+          timezoneOffsetHoursUtc: 6.027456183070403
           selectable: true
           name: name
           timezoneName: timezoneName
           currency: currency
           id: id
-          minimumDailyBudget: 6.027456183070403
+          minimumDailyBudget: 1.4658129805029452
           unusableReason: unusableReason
           status: status
       properties:

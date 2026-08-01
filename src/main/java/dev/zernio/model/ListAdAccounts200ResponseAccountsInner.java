@@ -42,13 +42,16 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_NAME,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_CURRENCY,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_STATUS,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_ACCOUNT_STATUS,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_APPROVAL_STATUS,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_DISABLE_REASON,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_NAME,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_OFFSET_HOURS_UTC,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_MINIMUM_DAILY_BUDGET,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T11:49:34.582412469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T12:05:39.055907330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -65,6 +68,17 @@ public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private String status;
+
+  public static final String JSON_PROPERTY_ACCOUNT_STATUS = "accountStatus";
+  private JsonNullable<Object> accountStatus = JsonNullable.<Object>of(null);
+
+  public static final String JSON_PROPERTY_APPROVAL_STATUS = "approvalStatus";
+  @javax.annotation.Nullable
+  private String approvalStatus;
+
+  public static final String JSON_PROPERTY_DISABLE_REASON = "disableReason";
+  @javax.annotation.Nullable
+  private Integer disableReason;
 
   public static final String JSON_PROPERTY_TIMEZONE_NAME = "timezoneName";
   @javax.annotation.Nullable
@@ -166,7 +180,7 @@ public class ListAdAccounts200ResponseAccountsInner {
   }
 
   /**
-   * Get status
+   * LinkedIn only. LinkedIn&#39;s own ad account status. In practice always &#x60;ACTIVE&#x60;, because the LinkedIn query filters to active accounts. Meta, Google, TikTok and Pinterest report &#x60;accountStatus&#x60; instead; X reports &#x60;approvalStatus&#x60;.
    * @return status
    */
   @javax.annotation.Nullable
@@ -181,6 +195,86 @@ public class ListAdAccounts200ResponseAccountsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
+  }
+
+
+  public ListAdAccounts200ResponseAccountsInner accountStatus(@javax.annotation.Nullable Object accountStatus) {
+    this.accountStatus = JsonNullable.<Object>of(accountStatus);
+    return this;
+  }
+
+  /**
+   * Get accountStatus
+   * @return accountStatus
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Object getAccountStatus() {
+        return accountStatus.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getAccountStatus_JsonNullable() {
+    return accountStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_STATUS)
+  public void setAccountStatus_JsonNullable(JsonNullable<Object> accountStatus) {
+    this.accountStatus = accountStatus;
+  }
+
+  public void setAccountStatus(@javax.annotation.Nullable Object accountStatus) {
+    this.accountStatus = JsonNullable.<Object>of(accountStatus);
+  }
+
+
+  public ListAdAccounts200ResponseAccountsInner approvalStatus(@javax.annotation.Nullable String approvalStatus) {
+    this.approvalStatus = approvalStatus;
+    return this;
+  }
+
+  /**
+   * X only. X&#39;s own ad account approval status. Observed values are &#x60;ACCEPTED&#x60;, &#x60;PENDING&#x60; and &#x60;REJECTED&#x60;, but X does not publish the full vocabulary, so treat an unrecognised value as not usable. Other platforms report &#x60;accountStatus&#x60; or &#x60;status&#x60; instead.
+   * @return approvalStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_APPROVAL_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getApprovalStatus() {
+    return approvalStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_APPROVAL_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setApprovalStatus(@javax.annotation.Nullable String approvalStatus) {
+    this.approvalStatus = approvalStatus;
+  }
+
+
+  public ListAdAccounts200ResponseAccountsInner disableReason(@javax.annotation.Nullable Integer disableReason) {
+    this.disableReason = disableReason;
+    return this;
+  }
+
+  /**
+   * Meta only. Meta&#39;s &#x60;disable_reason&#x60; code, forwarded unchanged. Present when &#x60;accountStatus&#x60; is &#x60;2&#x60; (DISABLED) and Meta gives a reason, which is what separates a policy action from a payment problem. Meta does not publish a stable list of values for this field, so none are enumerated here: resolve the code against Meta&#39;s own ad account reference. Absent when Meta reports no reason, or when the connected token cannot read the field.
+   * @return disableReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DISABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDisableReason() {
+    return disableReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DISABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisableReason(@javax.annotation.Nullable Integer disableReason) {
+    this.disableReason = disableReason;
   }
 
 
@@ -328,6 +422,9 @@ public class ListAdAccounts200ResponseAccountsInner {
         Objects.equals(this.name, listAdAccounts200ResponseAccountsInner.name) &&
         Objects.equals(this.currency, listAdAccounts200ResponseAccountsInner.currency) &&
         Objects.equals(this.status, listAdAccounts200ResponseAccountsInner.status) &&
+        equalsNullable(this.accountStatus, listAdAccounts200ResponseAccountsInner.accountStatus) &&
+        Objects.equals(this.approvalStatus, listAdAccounts200ResponseAccountsInner.approvalStatus) &&
+        Objects.equals(this.disableReason, listAdAccounts200ResponseAccountsInner.disableReason) &&
         Objects.equals(this.timezoneName, listAdAccounts200ResponseAccountsInner.timezoneName) &&
         Objects.equals(this.timezoneOffsetHoursUtc, listAdAccounts200ResponseAccountsInner.timezoneOffsetHoursUtc) &&
         Objects.equals(this.minimumDailyBudget, listAdAccounts200ResponseAccountsInner.minimumDailyBudget) &&
@@ -341,7 +438,7 @@ public class ListAdAccounts200ResponseAccountsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, hashCodeNullable(unusableReason));
+    return Objects.hash(id, name, currency, status, hashCodeNullable(accountStatus), approvalStatus, disableReason, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, hashCodeNullable(unusableReason));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -359,6 +456,9 @@ public class ListAdAccounts200ResponseAccountsInner {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    accountStatus: ").append(toIndentedString(accountStatus)).append("\n");
+    sb.append("    approvalStatus: ").append(toIndentedString(approvalStatus)).append("\n");
+    sb.append("    disableReason: ").append(toIndentedString(disableReason)).append("\n");
     sb.append("    timezoneName: ").append(toIndentedString(timezoneName)).append("\n");
     sb.append("    timezoneOffsetHoursUtc: ").append(toIndentedString(timezoneOffsetHoursUtc)).append("\n");
     sb.append("    minimumDailyBudget: ").append(toIndentedString(minimumDailyBudget)).append("\n");
@@ -429,6 +529,21 @@ public class ListAdAccounts200ResponseAccountsInner {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `accountStatus` to the URL query string
+    if (getAccountStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountStatus()))));
+    }
+
+    // add `approvalStatus` to the URL query string
+    if (getApprovalStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sapprovalStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getApprovalStatus()))));
+    }
+
+    // add `disableReason` to the URL query string
+    if (getDisableReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdisableReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisableReason()))));
     }
 
     // add `timezoneName` to the URL query string
