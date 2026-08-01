@@ -20,6 +20,8 @@ Platform-specific creative data. Fields vary by platform.
 |**instagramUserId** | **String** | Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media. |  [optional] |
 |**instagramPermalinkUrl** | **String** | Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media. |  [optional] |
 |**mediaUrls** | **List&lt;String&gt;** | All media URLs for this ad (carousel images, multiple assets). Populated for Meta (carousel child_attachments), Google Ads (responsive display marketing_images), and LinkedIn (multi-image posts). |  [optional] |
+|**isServing** | **Boolean** | LinkedIn only. Whether LinkedIn is currently serving this specific creative. Complements the ad-level &#x60;servingStatuses&#x60;, which describes the parent campaign. |  [optional] |
+|**servingHoldReasons** | **List&lt;String&gt;** | LinkedIn only. Why this specific creative is not being served. Empty when it is serving. A superset of the ad-level &#x60;servingStatuses&#x60;: it repeats the inherited campaign, campaign group and account holds AND adds creative-only causes such as UNDER_REVIEW, REJECTED, PROCESSING, PROCESSING_FAILED, FORM_HOLD (lead-gen-form creatives), REFERRED_CONTENT_QUALITY_HOLD, JOB_POSTING_ON_HOLD and JOB_POSTING_INVALID (job ads). Some values are format-specific and will never appear on other ad formats. The list is open, so treat unrecognized values as holds rather than errors.  |  [optional] |
 |**body** | **String** | Ad copy/text |  [optional] |
 |**googleHeadline** | **String** | Google Ads headline |  [optional] |
 |**googleDescription** | **String** | Google Ads description |  [optional] |

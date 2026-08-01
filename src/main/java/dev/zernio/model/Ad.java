@@ -34,7 +34,9 @@ import dev.zernio.model.AdStatus;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -66,6 +68,8 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_AD_SET_NAME,
   Ad.JSON_PROPERTY_PLATFORM_OBJECTIVE,
   Ad.JSON_PROPERTY_OPTIMIZATION_GOAL,
+  Ad.JSON_PROPERTY_COST_TYPE,
+  Ad.JSON_PROPERTY_SERVING_STATUSES,
   Ad.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME,
   Ad.JSON_PROPERTY_PLATFORM_CREATED_AT,
   Ad.JSON_PROPERTY_BID_STRATEGY,
@@ -79,7 +83,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -285,6 +289,13 @@ public class Ad {
 
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
   private JsonNullable<String> optimizationGoal = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_COST_TYPE = "costType";
+  private JsonNullable<String> costType = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SERVING_STATUSES = "servingStatuses";
+  @javax.annotation.Nullable
+  private List<String> servingStatuses = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME = "platformAdAccountName";
   private JsonNullable<String> platformAdAccountName = JsonNullable.<String>undefined();
@@ -794,7 +805,7 @@ public class Ad {
   }
 
   /**
-   * Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads.
+   * What the delivery system optimizes for, at ad-set level. The value space depends on &#x60;platform&#x60;:  - Meta: ad set &#x60;optimization_goal&#x60; (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS). - LinkedIn: the campaign&#39;s EFFECTIVE &#x60;optimizationTargetType&#x60;, refreshed from LinkedIn on every   sync rather than echoing what was passed on create. &#x60;NONE&#x60; means manual bidding, and it is a   real value, not missing data. Auto-bid values are MAX_IMPRESSION / MAX_CLICK / MAX_CONVERSION /   MAX_VIDEO_VIEW / MAX_LEAD / MAX_REACH; target-cost values are TARGET_COST_PER_CLICK /   TARGET_COST_PER_IMPRESSION / TARGET_COST_PER_VIDEO_VIEW; cost-cap values are the   CAP_COST_AND_MAXIMIZE_* family. 
    * @return optimizationGoal
    */
   @javax.annotation.Nullable
@@ -817,6 +828,70 @@ public class Ad {
 
   public void setOptimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
     this.optimizationGoal = JsonNullable.<String>of(optimizationGoal);
+  }
+
+
+  public Ad costType(@javax.annotation.Nullable String costType) {
+    this.costType = JsonNullable.<String>of(costType);
+    return this;
+  }
+
+  /**
+   * LinkedIn only. The campaign&#39;s EFFECTIVE cost model (billing event) as applied by LinkedIn, refreshed on every sync rather than echoing what was passed on create. One of &#x60;CPM&#x60; (cost per thousand impressions), &#x60;CPC&#x60; (cost per click) or &#x60;CPV&#x60; (cost per video view). On LinkedIn this is the axis that pairs with &#x60;bidAmount&#x60;; there is no &#x60;bidStrategy&#x60;. For campaign type SPONSORED_INMAILS, &#x60;CPM&#x60; bills as cost-per-send x 1000. &#x60;null&#x60; for non-LinkedIn ads. 
+   * @return costType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCostType() {
+        return costType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_COST_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCostType_JsonNullable() {
+    return costType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COST_TYPE)
+  public void setCostType_JsonNullable(JsonNullable<String> costType) {
+    this.costType = costType;
+  }
+
+  public void setCostType(@javax.annotation.Nullable String costType) {
+    this.costType = JsonNullable.<String>of(costType);
+  }
+
+
+  public Ad servingStatuses(@javax.annotation.Nullable List<String> servingStatuses) {
+    this.servingStatuses = servingStatuses;
+    return this;
+  }
+
+  public Ad addServingStatusesItem(String servingStatusesItem) {
+    if (this.servingStatuses == null) {
+      this.servingStatuses = new ArrayList<>();
+    }
+    this.servingStatuses.add(servingStatusesItem);
+    return this;
+  }
+
+  /**
+   * LinkedIn only. Why the parent campaign is (or is not) delivering, verbatim from LinkedIn. A campaign can report &#x60;status: ACTIVE&#x60; and still serve nothing; this array is what says so.  - &#x60;[]&#x60; means no serving data: a non-LinkedIn ad, or a LinkedIn ad not yet re-synced. - &#x60;[\&quot;RUNNABLE\&quot;]&#x60; means the campaign is eligible to serve. - Anything else is a hold. Known values include ACCOUNT_SERVING_HOLD, ACCOUNT_TOTAL_BUDGET_HOLD,   ACCOUNT_END_DATE_HOLD, CAMPAIGN_START_DATE_HOLD, CAMPAIGN_END_DATE_HOLD,   CAMPAIGN_TOTAL_BUDGET_HOLD, CAMPAIGN_AUDIENCE_COUNT_HOLD, CAMPAIGN_GROUP_START_DATE_HOLD,   CAMPAIGN_GROUP_END_DATE_HOLD, CAMPAIGN_GROUP_TOTAL_BUDGET_HOLD, CAMPAIGN_GROUP_STATUS_HOLD and   STOPPED. The list is open on purpose, so treat unrecognized values as holds rather than errors.  The end-date and total-budget holds are terminal and surface as &#x60;status: completed&#x60;; the rest surface as &#x60;status: paused&#x60;. Note that a hold is not the only cause of zero delivery: with manual, target-cost or cost-cap bidding, a &#x60;bidAmount&#x60; of 0 stops delivery while &#x60;servingStatuses&#x60; still reads &#x60;[\&quot;RUNNABLE\&quot;]&#x60;. Check &#x60;costType&#x60; / &#x60;bidAmount&#x60; / &#x60;optimizationGoal&#x60; as well. 
+   * @return servingStatuses
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SERVING_STATUSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getServingStatuses() {
+    return servingStatuses;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVING_STATUSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServingStatuses(@javax.annotation.Nullable List<String> servingStatuses) {
+    this.servingStatuses = servingStatuses;
   }
 
 
@@ -922,7 +997,7 @@ public class Ad {
   }
 
   /**
-   * Bid cap in WHOLE currency units of the ad account (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Populated when bidStrategy is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. &#x60;null&#x60; for auto-bid (&#x60;LOWEST_COST_WITHOUT_CAP&#x60;).  - Meta source: &#x60;bid_amount&#x60; on the ad set (smallest-denomination int, decoded here). - TikTok source: priority order &#x60;bid_price&#x60; -&gt; &#x60;conversion_bid_price&#x60; -&gt; &#x60;deep_cpa_bid&#x60;   (whichever is set on the ad group). TikTok stores all three in whole currency units.  Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (&#x60;bid_amount&#x60;). 
+   * Bid amount in WHOLE currency units of the ad account (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100).  - Meta source: &#x60;bid_amount&#x60; on the ad set (smallest-denomination int, decoded here). Populated   when bidStrategy is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; &#x60;null&#x60; for auto-bid   (&#x60;LOWEST_COST_WITHOUT_CAP&#x60;). - TikTok source: priority order &#x60;bid_price&#x60; -&gt; &#x60;conversion_bid_price&#x60; -&gt; &#x60;deep_cpa_bid&#x60;   (whichever is set on the ad group). TikTok stores all three in whole currency units. - LinkedIn source: the campaign&#39;s EFFECTIVE &#x60;unitCost&#x60;, refreshed on every sync rather than   echoing what was passed on create. Its meaning depends on the bidding mode implied by   &#x60;optimizationGoal&#x60;: bid amount (manual), target cost, or cost cap. It pairs with &#x60;costType&#x60;,   NOT with &#x60;bidStrategy&#x60;, which LinkedIn does not have. A value of &#x60;0&#x60; is a real, delivery-   stopping configuration and not \&quot;unset\&quot;, so do not gate this field on &#x60;bidStrategy&#x60; for   LinkedIn ads.  Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (&#x60;bid_amount&#x60;). 
    * @return bidAmount
    */
   @javax.annotation.Nullable
@@ -1179,6 +1254,8 @@ public class Ad {
         Objects.equals(this.adSetName, ad.adSetName) &&
         equalsNullable(this.platformObjective, ad.platformObjective) &&
         equalsNullable(this.optimizationGoal, ad.optimizationGoal) &&
+        equalsNullable(this.costType, ad.costType) &&
+        Objects.equals(this.servingStatuses, ad.servingStatuses) &&
         equalsNullable(this.platformAdAccountName, ad.platformAdAccountName) &&
         equalsNullable(this.platformCreatedAt, ad.platformCreatedAt) &&
         equalsNullable(this.bidStrategy, ad.bidStrategy) &&
@@ -1199,7 +1276,7 @@ public class Ad {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, status, hashCodeNullable(configuredStatus), reviewStatus, adType, goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
+    return Objects.hash(id, name, platform, status, hashCodeNullable(configuredStatus), reviewStatus, adType, goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(costType), servingStatuses, hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1232,6 +1309,8 @@ public class Ad {
     sb.append("    adSetName: ").append(toIndentedString(adSetName)).append("\n");
     sb.append("    platformObjective: ").append(toIndentedString(platformObjective)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
+    sb.append("    costType: ").append(toIndentedString(costType)).append("\n");
+    sb.append("    servingStatuses: ").append(toIndentedString(servingStatuses)).append("\n");
     sb.append("    platformAdAccountName: ").append(toIndentedString(platformAdAccountName)).append("\n");
     sb.append("    platformCreatedAt: ").append(toIndentedString(platformCreatedAt)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
@@ -1384,6 +1463,20 @@ public class Ad {
     // add `optimizationGoal` to the URL query string
     if (getOptimizationGoal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%soptimizationGoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptimizationGoal()))));
+    }
+
+    // add `costType` to the URL query string
+    if (getCostType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scostType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCostType()))));
+    }
+
+    // add `servingStatuses` to the URL query string
+    if (getServingStatuses() != null) {
+      for (int i = 0; i < getServingStatuses().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sservingStatuses%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getServingStatuses().get(i)))));
+      }
     }
 
     // add `platformAdAccountName` to the URL query string

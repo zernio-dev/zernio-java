@@ -41903,6 +41903,7 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         adType: boost
         targeting: "{}"
+        costType: CPC
         platformAdSetId: platformAdSetId
         budget:
           amount: 0.8008281904610115
@@ -41912,11 +41913,15 @@ components:
         configuredStatus: ACTIVE
         goal: engagement
         isExternal: true
+        servingStatuses:
+        - ACCOUNT_TOTAL_BUDGET_HOLD
         bidAmount: 5
         roasAverageFloor: 2.0
         creative:
           instagramPermalinkUrl: instagramPermalinkUrl
           effectiveInstagramMediaId: effectiveInstagramMediaId
+          servingHoldReasons:
+          - UNDER_REVIEW
           instagramUserId: instagramUserId
           videoId: videoId
           pinterestTitle: pinterestTitle
@@ -41929,6 +41934,7 @@ components:
           objectStoryId: objectStoryId
           pinterestDescription: pinterestDescription
           imageUrl: imageUrl
+          isServing: true
           linkUrl: linkUrl
           googleHeadline: googleHeadline
           mediaUrls:
@@ -42040,11 +42046,52 @@ components:
           nullable: true
           type: string
         optimizationGoal:
-          description: "Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE,\
-            \ LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads."
+          description: |
+            What the delivery system optimizes for, at ad-set level. The value space depends on `platform`:
+
+            - Meta: ad set `optimization_goal` (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS).
+            - LinkedIn: the campaign's EFFECTIVE `optimizationTargetType`, refreshed from LinkedIn on every
+              sync rather than echoing what was passed on create. `NONE` means manual bidding, and it is a
+              real value, not missing data. Auto-bid values are MAX_IMPRESSION / MAX_CLICK / MAX_CONVERSION /
+              MAX_VIDEO_VIEW / MAX_LEAD / MAX_REACH; target-cost values are TARGET_COST_PER_CLICK /
+              TARGET_COST_PER_IMPRESSION / TARGET_COST_PER_VIDEO_VIEW; cost-cap values are the
+              CAP_COST_AND_MAXIMIZE_* family.
           example: OFFSITE_CONVERSIONS
           nullable: true
           type: string
+        costType:
+          description: |
+            LinkedIn only. The campaign's EFFECTIVE cost model (billing event) as applied by LinkedIn,
+            refreshed on every sync rather than echoing what was passed on create. One of `CPM` (cost per
+            thousand impressions), `CPC` (cost per click) or `CPV` (cost per video view). On LinkedIn this is
+            the axis that pairs with `bidAmount`; there is no `bidStrategy`. For campaign type
+            SPONSORED_INMAILS, `CPM` bills as cost-per-send x 1000. `null` for non-LinkedIn ads.
+          example: CPC
+          nullable: true
+          type: string
+        servingStatuses:
+          description: |
+            LinkedIn only. Why the parent campaign is (or is not) delivering, verbatim from LinkedIn.
+            A campaign can report `status: ACTIVE` and still serve nothing; this array is what says so.
+
+            - `[]` means no serving data: a non-LinkedIn ad, or a LinkedIn ad not yet re-synced.
+            - `["RUNNABLE"]` means the campaign is eligible to serve.
+            - Anything else is a hold. Known values include ACCOUNT_SERVING_HOLD, ACCOUNT_TOTAL_BUDGET_HOLD,
+              ACCOUNT_END_DATE_HOLD, CAMPAIGN_START_DATE_HOLD, CAMPAIGN_END_DATE_HOLD,
+              CAMPAIGN_TOTAL_BUDGET_HOLD, CAMPAIGN_AUDIENCE_COUNT_HOLD, CAMPAIGN_GROUP_START_DATE_HOLD,
+              CAMPAIGN_GROUP_END_DATE_HOLD, CAMPAIGN_GROUP_TOTAL_BUDGET_HOLD, CAMPAIGN_GROUP_STATUS_HOLD and
+              STOPPED. The list is open on purpose, so treat unrecognized values as holds rather than errors.
+
+            The end-date and total-budget holds are terminal and surface as `status: completed`; the rest
+            surface as `status: paused`. Note that a hold is not the only cause of zero delivery: with
+            manual, target-cost or cost-cap bidding, a `bidAmount` of 0 stops delivery while
+            `servingStatuses` still reads `["RUNNABLE"]`. Check `costType` / `bidAmount` /
+            `optimizationGoal` as well.
+          example:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
+          items:
+            type: string
+          type: array
         platformAdAccountName:
           description: |
             Human-readable advertiser/account name (Meta `AdAccount.name`, TikTok
@@ -42070,13 +42117,19 @@ components:
           nullable: true
         bidAmount:
           description: |
-            Bid cap in WHOLE currency units of the ad account (USD: 5 = $5.00; JPY: 100 = ¥100).
-            Populated when bidStrategy is `LOWEST_COST_WITH_BID_CAP` or `COST_CAP`. `null` for
-            auto-bid (`LOWEST_COST_WITHOUT_CAP`).
+            Bid amount in WHOLE currency units of the ad account (USD: 5 = $5.00; JPY: 100 = ¥100).
 
-            - Meta source: `bid_amount` on the ad set (smallest-denomination int, decoded here).
+            - Meta source: `bid_amount` on the ad set (smallest-denomination int, decoded here). Populated
+              when bidStrategy is `LOWEST_COST_WITH_BID_CAP` or `COST_CAP`; `null` for auto-bid
+              (`LOWEST_COST_WITHOUT_CAP`).
             - TikTok source: priority order `bid_price` -> `conversion_bid_price` -> `deep_cpa_bid`
               (whichever is set on the ad group). TikTok stores all three in whole currency units.
+            - LinkedIn source: the campaign's EFFECTIVE `unitCost`, refreshed on every sync rather than
+              echoing what was passed on create. Its meaning depends on the bidding mode implied by
+              `optimizationGoal`: bid amount (manual), target cost, or cost cap. It pairs with `costType`,
+              NOT with `bidStrategy`, which LinkedIn does not have. A value of `0` is a real, delivery-
+              stopping configuration and not "unset", so do not gate this field on `bidStrategy` for
+              LinkedIn ads.
 
             Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (`bid_amount`).
           example: 5
@@ -42126,6 +42179,8 @@ components:
         adSetName: adSetName
         adCount: 7
         bidAmount: 2.027123023002322
+        servingStatuses:
+        - RUNNABLE
         optimizationGoal: optimizationGoal
         roasAverageFloor: 4.145608029883936
         promotedObject:
@@ -42148,6 +42203,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -42157,11 +42213,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -42174,6 +42234,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -42209,6 +42270,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -42218,11 +42280,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -42235,6 +42301,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -42258,6 +42325,7 @@ components:
         adSetBudget:
           amount: 3.616076749251911
           type: daily
+        costType: costType
         daily:
         - date: 2000-01-23
           conversions: 5.025004791520295
@@ -42372,8 +42440,10 @@ components:
         metrics:
           $ref: "#/components/schemas/AdMetrics"
         optimizationGoal:
-          description: "Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE,\
-            \ LEAD_GENERATION)"
+          description: "What the delivery system optimizes for. Meta ad set optimization\
+            \ goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION), or on LinkedIn\
+            \ the campaign's effective optimizationTargetType (NONE means manual bidding).\
+            \ See the `optimizationGoal` field on `Ad` for the full value spaces."
           nullable: true
           type: string
         bidStrategy:
@@ -42381,8 +42451,10 @@ components:
           - $ref: "#/components/schemas/BidStrategy"
           nullable: true
         bidAmount:
-          description: Bid cap in whole currency units. Populated when bidStrategy
-            is LOWEST_COST_WITH_BID_CAP or COST_CAP.
+          description: "Bid amount in whole currency units. On Meta/TikTok populated\
+            \ when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP; on LinkedIn\
+            \ it is the campaign's effective unitCost and pairs with `costType`, where\
+            \ 0 is a real, delivery-stopping value."
           nullable: true
           type: number
         roasAverageFloor:
@@ -42390,6 +42462,23 @@ components:
             when bidStrategy is LOWEST_COST_WITH_MIN_ROAS.
           nullable: true
           type: number
+        costType:
+          description: "LinkedIn only. Effective cost model (billing event) of the\
+            \ LinkedIn campaign backing this ad set: CPM, CPC or CPV. Null for non-LinkedIn\
+            \ ad sets."
+          nullable: true
+          type: string
+        servingStatuses:
+          description: "LinkedIn only. Why the LinkedIn campaign backing this ad set\
+            \ is (or is not) delivering. A LinkedIn Campaign maps to this ad-set node,\
+            \ so this is the level where LinkedIn's holds actually apply. Empty means\
+            \ no serving data, [\"RUNNABLE\"] means eligible to serve, anything else\
+            \ is a hold. See the `servingStatuses` field on `Ad` for the known values."
+          example:
+          - RUNNABLE
+          items:
+            type: string
+          type: array
         promotedObject:
           $ref: "#/components/schemas/AdTreeAdSet_promotedObject"
         ads:
@@ -42505,6 +42594,8 @@ components:
           adSetName: adSetName
           adCount: 7
           bidAmount: 2.027123023002322
+          servingStatuses:
+          - RUNNABLE
           optimizationGoal: optimizationGoal
           roasAverageFloor: 4.145608029883936
           promotedObject:
@@ -42527,6 +42618,7 @@ components:
             createdAt: 2000-01-23T04:56:07.000+00:00
             adType: boost
             targeting: "{}"
+            costType: CPC
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
@@ -42536,11 +42628,15 @@ components:
             configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
+            servingStatuses:
+            - ACCOUNT_TOTAL_BUDGET_HOLD
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
               instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
+              servingHoldReasons:
+              - UNDER_REVIEW
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -42553,6 +42649,7 @@ components:
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
+              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
               mediaUrls:
@@ -42588,6 +42685,7 @@ components:
             createdAt: 2000-01-23T04:56:07.000+00:00
             adType: boost
             targeting: "{}"
+            costType: CPC
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
@@ -42597,11 +42695,15 @@ components:
             configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
+            servingStatuses:
+            - ACCOUNT_TOTAL_BUDGET_HOLD
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
               instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
+              servingHoldReasons:
+              - UNDER_REVIEW
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -42614,6 +42716,7 @@ components:
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
+              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
               mediaUrls:
@@ -42637,6 +42740,7 @@ components:
           adSetBudget:
             amount: 3.616076749251911
             type: daily
+          costType: costType
           daily:
           - date: 2000-01-23
             conversions: 5.025004791520295
@@ -42737,6 +42841,8 @@ components:
           adSetName: adSetName
           adCount: 7
           bidAmount: 2.027123023002322
+          servingStatuses:
+          - RUNNABLE
           optimizationGoal: optimizationGoal
           roasAverageFloor: 4.145608029883936
           promotedObject:
@@ -42759,6 +42865,7 @@ components:
             createdAt: 2000-01-23T04:56:07.000+00:00
             adType: boost
             targeting: "{}"
+            costType: CPC
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
@@ -42768,11 +42875,15 @@ components:
             configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
+            servingStatuses:
+            - ACCOUNT_TOTAL_BUDGET_HOLD
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
               instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
+              servingHoldReasons:
+              - UNDER_REVIEW
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -42785,6 +42896,7 @@ components:
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
+              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
               mediaUrls:
@@ -42820,6 +42932,7 @@ components:
             createdAt: 2000-01-23T04:56:07.000+00:00
             adType: boost
             targeting: "{}"
+            costType: CPC
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
@@ -42829,11 +42942,15 @@ components:
             configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
+            servingStatuses:
+            - ACCOUNT_TOTAL_BUDGET_HOLD
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
               instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
+              servingHoldReasons:
+              - UNDER_REVIEW
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -42846,6 +42963,7 @@ components:
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
+              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
               mediaUrls:
@@ -42869,6 +42987,7 @@ components:
           adSetBudget:
             amount: 3.616076749251911
             type: daily
+          costType: costType
           daily:
           - date: 2000-01-23
             conversions: 5.025004791520295
@@ -43095,8 +43214,11 @@ components:
           nullable: true
           type: string
         optimizationGoal:
-          description: "Meta optimization goal shared across ad sets, or comma-separated\
-            \ values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)"
+          description: "Optimization goal shared across ad sets, or comma-separated\
+            \ values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION.\
+            \ LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION,\
+            \ NONE); `NONE` with a manual costType is a campaign LinkedIn will not\
+            \ deliver."
           nullable: true
           type: string
         bidStrategy:
@@ -43104,9 +43226,11 @@ components:
           - $ref: "#/components/schemas/BidStrategy"
           nullable: true
         bidAmount:
-          description: Representative bid cap for the campaign — bubbled up from the
-            top-spending ad set's `bid_amount` (whole currency units). Populated when
-            the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
+          description: "Representative bid for the campaign, bubbled up from the top-spending\
+            \ ad set (whole currency units). Meta: populated when the ad-set bidStrategy\
+            \ is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost,\
+            \ which has no bidStrategy gate and where 0 is a real, delivery-stopping\
+            \ value rather than unset."
           nullable: true
           type: number
         roasAverageFloor:
@@ -43275,8 +43399,11 @@ components:
           nullable: true
           type: string
         optimizationGoal:
-          description: "Meta optimization goal shared across ad sets, or comma-separated\
-            \ values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)"
+          description: "Optimization goal shared across ad sets, or comma-separated\
+            \ values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION.\
+            \ LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION,\
+            \ NONE); `NONE` with a manual costType is a campaign LinkedIn will not\
+            \ deliver."
           nullable: true
           type: string
         bidStrategy:
@@ -43284,9 +43411,10 @@ components:
           - $ref: "#/components/schemas/BidStrategy"
           nullable: true
         bidAmount:
-          description: Representative bid cap from the top-spending ad set (whole
-            currency units). Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP
-            or COST_CAP.
+          description: "Representative bid from the top-spending ad set (whole currency\
+            \ units). Meta: populated when bidStrategy is LOWEST_COST_WITH_BID_CAP\
+            \ or COST_CAP. LinkedIn: the campaign unitCost, ungated, where 0 is a\
+            \ real delivery-stopping value."
           nullable: true
           type: number
         roasAverageFloor:
@@ -68080,6 +68208,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -68089,11 +68218,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -68106,6 +68239,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -68141,6 +68275,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -68150,11 +68285,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -68167,6 +68306,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -69237,6 +69377,8 @@ components:
             adSetName: adSetName
             adCount: 7
             bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
             optimizationGoal: optimizationGoal
             roasAverageFloor: 4.145608029883936
             promotedObject:
@@ -69259,6 +69401,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -69268,11 +69411,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -69285,6 +69432,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -69320,6 +69468,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -69329,11 +69478,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -69346,6 +69499,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -69369,6 +69523,7 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            costType: costType
             daily:
             - date: 2000-01-23
               conversions: 5.025004791520295
@@ -69469,6 +69624,8 @@ components:
             adSetName: adSetName
             adCount: 7
             bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
             optimizationGoal: optimizationGoal
             roasAverageFloor: 4.145608029883936
             promotedObject:
@@ -69491,6 +69648,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -69500,11 +69658,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -69517,6 +69679,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -69552,6 +69715,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -69561,11 +69725,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -69578,6 +69746,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -69601,6 +69770,7 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            costType: costType
             daily:
             - date: 2000-01-23
               conversions: 5.025004791520295
@@ -69827,6 +69997,8 @@ components:
             adSetName: adSetName
             adCount: 7
             bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
             optimizationGoal: optimizationGoal
             roasAverageFloor: 4.145608029883936
             promotedObject:
@@ -69849,6 +70021,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -69858,11 +70031,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -69875,6 +70052,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -69910,6 +70088,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -69919,11 +70098,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -69936,6 +70119,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -69959,6 +70143,7 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            costType: costType
             daily:
             - date: 2000-01-23
               conversions: 5.025004791520295
@@ -70059,6 +70244,8 @@ components:
             adSetName: adSetName
             adCount: 7
             bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
             optimizationGoal: optimizationGoal
             roasAverageFloor: 4.145608029883936
             promotedObject:
@@ -70081,6 +70268,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -70090,11 +70278,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -70107,6 +70299,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -70142,6 +70335,7 @@ components:
               createdAt: 2000-01-23T04:56:07.000+00:00
               adType: boost
               targeting: "{}"
+              costType: CPC
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
@@ -70151,11 +70345,15 @@ components:
               configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
                 instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -70168,6 +70366,7 @@ components:
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
+                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 mediaUrls:
@@ -70191,6 +70390,7 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            costType: costType
             daily:
             - date: 2000-01-23
               conversions: 5.025004791520295
@@ -70470,6 +70670,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -70479,11 +70680,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -70496,6 +70701,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -70631,6 +70837,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -70640,11 +70847,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -70657,6 +70868,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -74077,6 +74289,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           adType: boost
           targeting: "{}"
+          costType: CPC
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
@@ -74086,11 +74299,15 @@ components:
           configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
             instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -74103,6 +74320,7 @@ components:
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
+            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
             mediaUrls:
@@ -81320,6 +81538,8 @@ components:
       example:
         instagramPermalinkUrl: instagramPermalinkUrl
         effectiveInstagramMediaId: effectiveInstagramMediaId
+        servingHoldReasons:
+        - UNDER_REVIEW
         instagramUserId: instagramUserId
         videoId: videoId
         pinterestTitle: pinterestTitle
@@ -81332,6 +81552,7 @@ components:
         objectStoryId: objectStoryId
         pinterestDescription: pinterestDescription
         imageUrl: imageUrl
+        isServing: true
         linkUrl: linkUrl
         googleHeadline: googleHeadline
         mediaUrls:
@@ -81402,6 +81623,26 @@ components:
           description: "All media URLs for this ad (carousel images, multiple assets).\
             \ Populated for Meta (carousel child_attachments), Google Ads (responsive\
             \ display marketing_images), and LinkedIn (multi-image posts)."
+          items:
+            type: string
+          type: array
+        isServing:
+          description: "LinkedIn only. Whether LinkedIn is currently serving this\
+            \ specific creative. Complements the ad-level `servingStatuses`, which\
+            \ describes the parent campaign."
+          nullable: true
+          type: boolean
+        servingHoldReasons:
+          description: |
+            LinkedIn only. Why this specific creative is not being served. Empty when it is serving.
+            A superset of the ad-level `servingStatuses`: it repeats the inherited campaign, campaign
+            group and account holds AND adds creative-only causes such as UNDER_REVIEW, REJECTED,
+            PROCESSING, PROCESSING_FAILED, FORM_HOLD (lead-gen-form creatives),
+            REFERRED_CONTENT_QUALITY_HOLD, JOB_POSTING_ON_HOLD and JOB_POSTING_INVALID (job ads).
+            Some values are format-specific and will never appear on other ad formats. The list is
+            open, so treat unrecognized values as holds rather than errors.
+          example:
+          - UNDER_REVIEW
           items:
             type: string
           type: array

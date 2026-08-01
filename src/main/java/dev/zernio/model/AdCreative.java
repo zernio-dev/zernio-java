@@ -51,6 +51,8 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_INSTAGRAM_USER_ID,
   AdCreative.JSON_PROPERTY_INSTAGRAM_PERMALINK_URL,
   AdCreative.JSON_PROPERTY_MEDIA_URLS,
+  AdCreative.JSON_PROPERTY_IS_SERVING,
+  AdCreative.JSON_PROPERTY_SERVING_HOLD_REASONS,
   AdCreative.JSON_PROPERTY_BODY,
   AdCreative.JSON_PROPERTY_GOOGLE_HEADLINE,
   AdCreative.JSON_PROPERTY_GOOGLE_DESCRIPTION,
@@ -59,7 +61,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -100,6 +102,13 @@ public class AdCreative {
   public static final String JSON_PROPERTY_MEDIA_URLS = "mediaUrls";
   @javax.annotation.Nullable
   private List<String> mediaUrls = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_IS_SERVING = "isServing";
+  private JsonNullable<Boolean> isServing = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_SERVING_HOLD_REASONS = "servingHoldReasons";
+  @javax.annotation.Nullable
+  private List<String> servingHoldReasons = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nullable
@@ -492,6 +501,70 @@ public class AdCreative {
   }
 
 
+  public AdCreative isServing(@javax.annotation.Nullable Boolean isServing) {
+    this.isServing = JsonNullable.<Boolean>of(isServing);
+    return this;
+  }
+
+  /**
+   * LinkedIn only. Whether LinkedIn is currently serving this specific creative. Complements the ad-level &#x60;servingStatuses&#x60;, which describes the parent campaign.
+   * @return isServing
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Boolean getIsServing() {
+        return isServing.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_IS_SERVING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getIsServing_JsonNullable() {
+    return isServing;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_SERVING)
+  public void setIsServing_JsonNullable(JsonNullable<Boolean> isServing) {
+    this.isServing = isServing;
+  }
+
+  public void setIsServing(@javax.annotation.Nullable Boolean isServing) {
+    this.isServing = JsonNullable.<Boolean>of(isServing);
+  }
+
+
+  public AdCreative servingHoldReasons(@javax.annotation.Nullable List<String> servingHoldReasons) {
+    this.servingHoldReasons = servingHoldReasons;
+    return this;
+  }
+
+  public AdCreative addServingHoldReasonsItem(String servingHoldReasonsItem) {
+    if (this.servingHoldReasons == null) {
+      this.servingHoldReasons = new ArrayList<>();
+    }
+    this.servingHoldReasons.add(servingHoldReasonsItem);
+    return this;
+  }
+
+  /**
+   * LinkedIn only. Why this specific creative is not being served. Empty when it is serving. A superset of the ad-level &#x60;servingStatuses&#x60;: it repeats the inherited campaign, campaign group and account holds AND adds creative-only causes such as UNDER_REVIEW, REJECTED, PROCESSING, PROCESSING_FAILED, FORM_HOLD (lead-gen-form creatives), REFERRED_CONTENT_QUALITY_HOLD, JOB_POSTING_ON_HOLD and JOB_POSTING_INVALID (job ads). Some values are format-specific and will never appear on other ad formats. The list is open, so treat unrecognized values as holds rather than errors. 
+   * @return servingHoldReasons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SERVING_HOLD_REASONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getServingHoldReasons() {
+    return servingHoldReasons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVING_HOLD_REASONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServingHoldReasons(@javax.annotation.Nullable List<String> servingHoldReasons) {
+    this.servingHoldReasons = servingHoldReasons;
+  }
+
+
   public AdCreative body(@javax.annotation.Nullable String body) {
     this.body = body;
     return this;
@@ -684,6 +757,8 @@ public class AdCreative {
         equalsNullable(this.instagramUserId, adCreative.instagramUserId) &&
         equalsNullable(this.instagramPermalinkUrl, adCreative.instagramPermalinkUrl) &&
         Objects.equals(this.mediaUrls, adCreative.mediaUrls) &&
+        equalsNullable(this.isServing, adCreative.isServing) &&
+        Objects.equals(this.servingHoldReasons, adCreative.servingHoldReasons) &&
         Objects.equals(this.body, adCreative.body) &&
         Objects.equals(this.googleHeadline, adCreative.googleHeadline) &&
         Objects.equals(this.googleDescription, adCreative.googleDescription) &&
@@ -699,7 +774,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(thumbnailUrl, imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(thumbnailUrl, imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -725,6 +800,8 @@ public class AdCreative {
     sb.append("    instagramUserId: ").append(toIndentedString(instagramUserId)).append("\n");
     sb.append("    instagramPermalinkUrl: ").append(toIndentedString(instagramPermalinkUrl)).append("\n");
     sb.append("    mediaUrls: ").append(toIndentedString(mediaUrls)).append("\n");
+    sb.append("    isServing: ").append(toIndentedString(isServing)).append("\n");
+    sb.append("    servingHoldReasons: ").append(toIndentedString(servingHoldReasons)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    googleHeadline: ").append(toIndentedString(googleHeadline)).append("\n");
     sb.append("    googleDescription: ").append(toIndentedString(googleDescription)).append("\n");
@@ -840,6 +917,20 @@ public class AdCreative {
         joiner.add(String.format(java.util.Locale.ROOT, "%smediaUrls%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getMediaUrls().get(i)))));
+      }
+    }
+
+    // add `isServing` to the URL query string
+    if (getIsServing() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisServing%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsServing()))));
+    }
+
+    // add `servingHoldReasons` to the URL query string
+    if (getServingHoldReasons() != null) {
+      for (int i = 0; i < getServingHoldReasons().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sservingHoldReasons%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getServingHoldReasons().get(i)))));
       }
     }
 

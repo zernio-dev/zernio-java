@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SearchInboxConversations200ResponseDataInner.JSON_PROPERTY_MATCH_COUNT,
   SearchInboxConversations200ResponseDataInner.JSON_PROPERTY_MATCHES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchInboxConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_CONVERSATION = "conversation";
   @javax.annotation.Nullable

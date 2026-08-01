@@ -59,11 +59,13 @@ import dev.zernio.ApiClient;
   AdTreeAdSet.JSON_PROPERTY_BID_STRATEGY,
   AdTreeAdSet.JSON_PROPERTY_BID_AMOUNT,
   AdTreeAdSet.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  AdTreeAdSet.JSON_PROPERTY_COST_TYPE,
+  AdTreeAdSet.JSON_PROPERTY_SERVING_STATUSES,
   AdTreeAdSet.JSON_PROPERTY_PROMOTED_OBJECT,
   AdTreeAdSet.JSON_PROPERTY_ADS,
   AdTreeAdSet.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSet {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable
@@ -104,6 +106,13 @@ public class AdTreeAdSet {
 
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   private JsonNullable<BigDecimal> roasAverageFloor = JsonNullable.<BigDecimal>undefined();
+
+  public static final String JSON_PROPERTY_COST_TYPE = "costType";
+  private JsonNullable<String> costType = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SERVING_STATUSES = "servingStatuses";
+  @javax.annotation.Nullable
+  private List<String> servingStatuses = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
   @javax.annotation.Nullable
@@ -294,7 +303,7 @@ public class AdTreeAdSet {
   }
 
   /**
-   * Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)
+   * What the delivery system optimizes for. Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION), or on LinkedIn the campaign&#39;s effective optimizationTargetType (NONE means manual bidding). See the &#x60;optimizationGoal&#x60; field on &#x60;Ad&#x60; for the full value spaces.
    * @return optimizationGoal
    */
   @javax.annotation.Nullable
@@ -358,7 +367,7 @@ public class AdTreeAdSet {
   }
 
   /**
-   * Bid cap in whole currency units. Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
+   * Bid amount in whole currency units. On Meta/TikTok populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP; on LinkedIn it is the campaign&#39;s effective unitCost and pairs with &#x60;costType&#x60;, where 0 is a real, delivery-stopping value.
    * @return bidAmount
    */
   @javax.annotation.Nullable
@@ -413,6 +422,70 @@ public class AdTreeAdSet {
 
   public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
     this.roasAverageFloor = JsonNullable.<BigDecimal>of(roasAverageFloor);
+  }
+
+
+  public AdTreeAdSet costType(@javax.annotation.Nullable String costType) {
+    this.costType = JsonNullable.<String>of(costType);
+    return this;
+  }
+
+  /**
+   * LinkedIn only. Effective cost model (billing event) of the LinkedIn campaign backing this ad set: CPM, CPC or CPV. Null for non-LinkedIn ad sets.
+   * @return costType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCostType() {
+        return costType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_COST_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCostType_JsonNullable() {
+    return costType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COST_TYPE)
+  public void setCostType_JsonNullable(JsonNullable<String> costType) {
+    this.costType = costType;
+  }
+
+  public void setCostType(@javax.annotation.Nullable String costType) {
+    this.costType = JsonNullable.<String>of(costType);
+  }
+
+
+  public AdTreeAdSet servingStatuses(@javax.annotation.Nullable List<String> servingStatuses) {
+    this.servingStatuses = servingStatuses;
+    return this;
+  }
+
+  public AdTreeAdSet addServingStatusesItem(String servingStatusesItem) {
+    if (this.servingStatuses == null) {
+      this.servingStatuses = new ArrayList<>();
+    }
+    this.servingStatuses.add(servingStatusesItem);
+    return this;
+  }
+
+  /**
+   * LinkedIn only. Why the LinkedIn campaign backing this ad set is (or is not) delivering. A LinkedIn Campaign maps to this ad-set node, so this is the level where LinkedIn&#39;s holds actually apply. Empty means no serving data, [\&quot;RUNNABLE\&quot;] means eligible to serve, anything else is a hold. See the &#x60;servingStatuses&#x60; field on &#x60;Ad&#x60; for the known values.
+   * @return servingStatuses
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SERVING_STATUSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getServingStatuses() {
+    return servingStatuses;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVING_STATUSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServingStatuses(@javax.annotation.Nullable List<String> servingStatuses) {
+    this.servingStatuses = servingStatuses;
   }
 
 
@@ -527,6 +600,8 @@ public class AdTreeAdSet {
         equalsNullable(this.bidStrategy, adTreeAdSet.bidStrategy) &&
         equalsNullable(this.bidAmount, adTreeAdSet.bidAmount) &&
         equalsNullable(this.roasAverageFloor, adTreeAdSet.roasAverageFloor) &&
+        equalsNullable(this.costType, adTreeAdSet.costType) &&
+        Objects.equals(this.servingStatuses, adTreeAdSet.servingStatuses) &&
         Objects.equals(this.promotedObject, adTreeAdSet.promotedObject) &&
         Objects.equals(this.ads, adTreeAdSet.ads) &&
         Objects.equals(this.daily, adTreeAdSet.daily);
@@ -538,7 +613,7 @@ public class AdTreeAdSet {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, adSetBudget, metrics, hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, ads, daily);
+    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, adSetBudget, metrics, hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), hashCodeNullable(costType), servingStatuses, promotedObject, ads, daily);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -563,6 +638,8 @@ public class AdTreeAdSet {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    costType: ").append(toIndentedString(costType)).append("\n");
+    sb.append("    servingStatuses: ").append(toIndentedString(servingStatuses)).append("\n");
     sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("    ads: ").append(toIndentedString(ads)).append("\n");
     sb.append("    daily: ").append(toIndentedString(daily)).append("\n");
@@ -666,6 +743,20 @@ public class AdTreeAdSet {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `costType` to the URL query string
+    if (getCostType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scostType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCostType()))));
+    }
+
+    // add `servingStatuses` to the URL query string
+    if (getServingStatuses() != null) {
+      for (int i = 0; i < getServingStatuses().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sservingStatuses%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getServingStatuses().get(i)))));
+      }
     }
 
     // add `promotedObject` to the URL query string

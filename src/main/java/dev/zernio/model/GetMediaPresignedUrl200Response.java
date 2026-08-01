@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetMediaPresignedUrl200Response.JSON_PROPERTY_KEY,
   GetMediaPresignedUrl200Response.JSON_PROPERTY_EXPIRES_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T15:18:39.927233075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrl200Response {
   public static final String JSON_PROPERTY_UPLOAD_URL = "uploadUrl";
   @javax.annotation.Nullable
