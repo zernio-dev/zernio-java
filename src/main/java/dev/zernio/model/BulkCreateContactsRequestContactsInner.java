@@ -42,14 +42,14 @@ import dev.zernio.ApiClient;
   BulkCreateContactsRequestContactsInner.JSON_PROPERTY_COMPANY,
   BulkCreateContactsRequestContactsInner.JSON_PROPERTY_TAGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T19:17:54.341344705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T11:49:34.582412469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkCreateContactsRequestContactsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
   private String name;
 
   public static final String JSON_PROPERTY_PLATFORM_IDENTIFIER = "platformIdentifier";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String platformIdentifier;
 
   public static final String JSON_PROPERTY_DISPLAY_IDENTIFIER = "displayIdentifier";
@@ -95,26 +95,26 @@ public class BulkCreateContactsRequestContactsInner {
   }
 
 
-  public BulkCreateContactsRequestContactsInner platformIdentifier(@javax.annotation.Nonnull String platformIdentifier) {
+  public BulkCreateContactsRequestContactsInner platformIdentifier(@javax.annotation.Nullable String platformIdentifier) {
     this.platformIdentifier = platformIdentifier;
     return this;
   }
 
   /**
-   * Get platformIdentifier
+   * Required when the top-level accountId is set (channel mode). A row missing it in that mode is rejected individually and reported in errors[], not a 400 for the whole import.
    * @return platformIdentifier
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_IDENTIFIER, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_IDENTIFIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPlatformIdentifier() {
     return platformIdentifier;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_IDENTIFIER, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPlatformIdentifier(@javax.annotation.Nonnull String platformIdentifier) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_IDENTIFIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformIdentifier(@javax.annotation.Nullable String platformIdentifier) {
     this.platformIdentifier = platformIdentifier;
   }
 

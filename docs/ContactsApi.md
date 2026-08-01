@@ -27,7 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Bulk create contacts
 
-Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact. accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId); platform is always derived from the resolved account, never used to decide whether channels are created, and a mismatched platform 404s as account not found. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
+Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact. accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId); platform is always derived from the resolved account, never used to decide whether channels are created, and a mismatched platform 404s as account not found. When accountId is set, each contact must carry a platformIdentifier; a row missing it is rejected individually (reported in errors[], HTTP 200), not a 400 for the whole import. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
 
 ### Example
 
@@ -90,7 +90,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Missing required field, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to |  -  |
+| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
 | **401** | Unauthorized |  -  |
 
 ## bulkCreateContactsWithHttpInfo
@@ -99,7 +99,7 @@ public class Example {
 
 Bulk create contacts
 
-Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact. accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId); platform is always derived from the resolved account, never used to decide whether channels are created, and a mismatched platform 404s as account not found. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
+Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact. accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId); platform is always derived from the resolved account, never used to decide whether channels are created, and a mismatched platform 404s as account not found. When accountId is set, each contact must carry a platformIdentifier; a row missing it is rejected individually (reported in errors[], HTTP 200), not a 400 for the whole import. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
 
 ### Example
 
@@ -165,7 +165,7 @@ ApiResponse<[**BulkCreateContacts200Response**](BulkCreateContacts200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Missing required field, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to |  -  |
+| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
 | **401** | Unauthorized |  -  |
 
 
