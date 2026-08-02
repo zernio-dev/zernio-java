@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   RegisterWhatsAppNumber200Response.JSON_PROPERTY_ACCOUNT_ID,
   RegisterWhatsAppNumber200Response.JSON_PROPERTY_PHONE_NUMBER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RegisterWhatsAppNumber200Response {
   public static final String JSON_PROPERTY_REGISTERED = "registered";
   @javax.annotation.Nullable

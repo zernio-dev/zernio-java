@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UploadAdImage201Response.JSON_PROPERTY_AD_ACCOUNT_ID,
   UploadAdImage201Response.JSON_PROPERTY_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadAdImage201Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

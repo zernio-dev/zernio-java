@@ -39062,6 +39062,7 @@ components:
         igReelsVideoViewTotalTime: 0
         follows: 0
         impressions: 0
+        videoDurationSeconds: 30
         shares: 0
         engagementRate: 0
         lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -39110,6 +39111,14 @@ components:
           description: "Instagram Reels only: total watch time including replays,\
             \ in milliseconds. 0 for non-Reels media and other platforms."
           example: 0
+          type: integer
+        videoDurationSeconds:
+          description: "Video length in seconds. Currently Instagram Reels only; combine\
+            \ with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown\
+            \ (other platforms, non-video media, or when Instagram does not expose\
+            \ the media URL, e.g. reels with copyrighted audio)."
+          example: 30
+          nullable: true
           type: integer
         engagementRate:
           example: 0
@@ -39213,6 +39222,7 @@ components:
           igReelsVideoViewTotalTime: 0
           follows: 0
           impressions: 0
+          videoDurationSeconds: 30
           shares: 0
           engagementRate: 0
           lastUpdated: 2000-01-23T04:56:07.000+00:00

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf6SectionsInner.JSON_PROPERTY_TITLE,
   SendInboxMessageRequestInteractiveActionOneOf6SectionsInner.JSON_PROPERTY_PRODUCT_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf6SectionsInner {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

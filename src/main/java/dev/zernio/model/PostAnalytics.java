@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,10 +50,11 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_FOLLOWS,
   PostAnalytics.JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME,
   PostAnalytics.JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME,
+  PostAnalytics.JSON_PROPERTY_VIDEO_DURATION_SECONDS,
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-01T22:44:02.465248098Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -94,6 +99,9 @@ public class PostAnalytics {
   public static final String JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME = "igReelsVideoViewTotalTime";
   @javax.annotation.Nullable
   private Integer igReelsVideoViewTotalTime;
+
+  public static final String JSON_PROPERTY_VIDEO_DURATION_SECONDS = "videoDurationSeconds";
+  private JsonNullable<Integer> videoDurationSeconds = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_ENGAGEMENT_RATE = "engagementRate";
   @javax.annotation.Nullable
@@ -370,6 +378,38 @@ public class PostAnalytics {
   }
 
 
+  public PostAnalytics videoDurationSeconds(@javax.annotation.Nullable Integer videoDurationSeconds) {
+    this.videoDurationSeconds = JsonNullable.<Integer>of(videoDurationSeconds);
+    return this;
+  }
+
+  /**
+   * Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio).
+   * @return videoDurationSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getVideoDurationSeconds() {
+        return videoDurationSeconds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_DURATION_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getVideoDurationSeconds_JsonNullable() {
+    return videoDurationSeconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VIDEO_DURATION_SECONDS)
+  public void setVideoDurationSeconds_JsonNullable(JsonNullable<Integer> videoDurationSeconds) {
+    this.videoDurationSeconds = videoDurationSeconds;
+  }
+
+  public void setVideoDurationSeconds(@javax.annotation.Nullable Integer videoDurationSeconds) {
+    this.videoDurationSeconds = JsonNullable.<Integer>of(videoDurationSeconds);
+  }
+
+
   public PostAnalytics engagementRate(@javax.annotation.Nullable BigDecimal engagementRate) {
     this.engagementRate = engagementRate;
     return this;
@@ -441,13 +481,25 @@ public class PostAnalytics {
         Objects.equals(this.follows, postAnalytics.follows) &&
         Objects.equals(this.igReelsAvgWatchTime, postAnalytics.igReelsAvgWatchTime) &&
         Objects.equals(this.igReelsVideoViewTotalTime, postAnalytics.igReelsVideoViewTotalTime) &&
+        equalsNullable(this.videoDurationSeconds, postAnalytics.videoDurationSeconds) &&
         Objects.equals(this.engagementRate, postAnalytics.engagementRate) &&
         Objects.equals(this.lastUpdated, postAnalytics.lastUpdated);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, engagementRate, lastUpdated);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -465,6 +517,7 @@ public class PostAnalytics {
     sb.append("    follows: ").append(toIndentedString(follows)).append("\n");
     sb.append("    igReelsAvgWatchTime: ").append(toIndentedString(igReelsAvgWatchTime)).append("\n");
     sb.append("    igReelsVideoViewTotalTime: ").append(toIndentedString(igReelsVideoViewTotalTime)).append("\n");
+    sb.append("    videoDurationSeconds: ").append(toIndentedString(videoDurationSeconds)).append("\n");
     sb.append("    engagementRate: ").append(toIndentedString(engagementRate)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
     sb.append("}");
@@ -567,6 +620,11 @@ public class PostAnalytics {
     // add `igReelsVideoViewTotalTime` to the URL query string
     if (getIgReelsVideoViewTotalTime() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sigReelsVideoViewTotalTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIgReelsVideoViewTotalTime()))));
+    }
+
+    // add `videoDurationSeconds` to the URL query string
+    if (getVideoDurationSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoDurationSeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoDurationSeconds()))));
     }
 
     // add `engagementRate` to the URL query string
