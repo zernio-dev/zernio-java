@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdatePostRequestPlatformsInner.JSON_PROPERTY_SCHEDULED_FOR,
   UpdatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:43:26.922376366Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T17:00:57.029375775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostRequestPlatformsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull
@@ -217,7 +217,7 @@ public class UpdatePostRequestPlatformsInner {
   }
 
   /**
-   * Get platformSpecificData
+   * A &lt;platform&gt;Settings namespace (e.g. facebookSettings, tiktokSettings) omitted from the request is preserved from the stored post. Sending the key replaces the whole namespace; it is not deep-merged.
    * @return platformSpecificData
    */
   @javax.annotation.Nullable
