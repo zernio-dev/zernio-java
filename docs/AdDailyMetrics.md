@@ -2,7 +2,7 @@
 
 # AdDailyMetrics
 
-One day of metrics. Same fields as `AdMetrics` plus the `date` they apply to. Returned inside a node's `daily[]` when `GET /v1/ads/tree` is called with `timeIncrement=1`. Rate metrics (ctr/cpc/cpm/costPerConversion/ roas/videoAvgTimeWatchedActions) are recomputed per day from that day's sums, so summing the additive fields across a node's `daily[]` reproduces its aggregated `metrics` total. Do NOT sum or plain-average `videoAvgTimeWatchedActions` across days: the range value is the play-weighted average of the daily values. 
+One day of metrics. Same fields as `AdMetrics` plus the `date` they apply to. Returned inside a node's `daily[]` when `GET /v1/ads/tree` is called with `timeIncrement=1`. Rate metrics (ctr/cpc/cpm/costPerConversion/ roas/videoAvgTimeWatchedActions) are recomputed per day from that day's sums, so summing the additive fields across a node's `daily[]` reproduces its aggregated `metrics` total. `reach` is the exception: on Meta the aggregated total is de-duplicated across the range, so daily reach does not sum to it. Do NOT sum or plain-average `videoAvgTimeWatchedActions` across days: the range value is the play-weighted average of the daily values. 
 
 ## Properties
 
@@ -10,7 +10,7 @@ One day of metrics. Same fields as `AdMetrics` plus the `date` they apply to. Re
 |------------ | ------------- | ------------- | -------------|
 |**spend** | **BigDecimal** |  |  [optional] |
 |**impressions** | **Integer** |  |  [optional] |
-|**reach** | **Integer** |  |  [optional] |
+|**reach** | **Integer** | Unique people reached in the requested date range. Meta (facebook/instagram): Meta&#39;s own de-duplicated reach for the exact range, fetched live and cached up to ~1 hour (may lag recent delivery; on a transient Meta error the value temporarily falls back to a sum of per-day reach, which overcounts people reached on multiple days or by multiple child ads). Because it is de-duplicated, Meta reach is NOT additive: neither daily values nor child nodes sum to the range total. TikTok: sum of per-day reach, so multi-day ranges overcount vs TikTok Ads Manager. Google, LinkedIn, X, Pinterest and OpenAI report 0 (reach not synced). Only derive frequency (impressions / reach) for Meta. |  [optional] |
 |**clicks** | **Integer** |  |  [optional] |
 |**ctr** | **BigDecimal** | Click-through rate (%) |  [optional] |
 |**cpc** | **BigDecimal** | Cost per click |  [optional] |

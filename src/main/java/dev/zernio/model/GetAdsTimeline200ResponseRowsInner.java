@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetAdsTimeline200ResponseRowsInner.JSON_PROPERTY_PURCHASE_VALUE,
   GetAdsTimeline200ResponseRowsInner.JSON_PROPERTY_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T10:11:45.182244097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:20:47.759134487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdsTimeline200ResponseRowsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -196,7 +196,7 @@ public class GetAdsTimeline200ResponseRowsInner {
   }
 
   /**
-   * Get reach
+   * Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted).
    * @return reach
    */
   @javax.annotation.Nullable

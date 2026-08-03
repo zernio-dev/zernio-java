@@ -10,7 +10,7 @@
 |**date** | **LocalDate** |  |  [optional] |
 |**spend** | **BigDecimal** | Native currency units (matches /ads/tree convention). |  [optional] |
 |**impressions** | **Integer** |  |  [optional] |
-|**reach** | **Integer** |  |  [optional] |
+|**reach** | **Integer** | Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted). |  [optional] |
 |**clicks** | **Integer** |  |  [optional] |
 |**engagement** | **Integer** |  |  [optional] |
 |**ctr** | **BigDecimal** | Click-through rate as a percentage (0–100). |  [optional] |
