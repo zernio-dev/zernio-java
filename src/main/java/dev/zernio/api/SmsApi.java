@@ -83,7 +83,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:03:54.104282906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:15:55.997430594Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -334,7 +334,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @return CreateSmsSenderId200Response
    * @throws ApiException if fails to make API call
@@ -345,7 +345,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateSmsSenderId200Response
@@ -358,7 +358,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @return ApiResponse&lt;CreateSmsSenderId200Response&gt;
    * @throws ApiException if fails to make API call
@@ -369,7 +369,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateSmsSenderId200Response&gt;

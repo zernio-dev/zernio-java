@@ -211,7 +211,7 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 
 Create an alphanumeric sender ID
 
-Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
 
 ### Example
 
@@ -276,8 +276,7 @@ public class Example {
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Workspace is not on usage-based billing, or already holds the maximum of 5 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
-| **409** | Sender ID already registered by another workspace (code &#x60;sender_id_taken&#x60;). |  -  |
+| **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 ## createSmsSenderIdWithHttpInfo
@@ -286,7 +285,7 @@ public class Example {
 
 Create an alphanumeric sender ID
 
-Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
 
 ### Example
 
@@ -354,8 +353,7 @@ ApiResponse<[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)>
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Workspace is not on usage-based billing, or already holds the maximum of 5 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
-| **409** | Sender ID already registered by another workspace (code &#x60;sender_id_taken&#x60;). |  -  |
+| **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 
