@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   InlineObject2.JSON_PROPERTY_DASHBOARD_URL,
   InlineObject2.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:20:47.759134487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:43:26.922376366Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject2 {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nonnull

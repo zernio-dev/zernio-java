@@ -560,6 +560,7 @@ docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md
 docs/GetInboxConversation200Response.md
 docs/GetInboxConversation200ResponseData.md
+docs/GetInboxConversation200ResponseDataMetadata.md
 docs/GetInboxConversationAnalytics200Response.md
 docs/GetInboxConversationAnalytics200ResponseBySourceInner.md
 docs/GetInboxConversationAnalytics200ResponseSummary.md
@@ -895,6 +896,7 @@ docs/ListInboxConversationAnalytics200ResponsePagination.md
 docs/ListInboxConversations200Response.md
 docs/ListInboxConversations200ResponseDataInner.md
 docs/ListInboxConversations200ResponseDataInnerInstagramProfile.md
+docs/ListInboxConversations200ResponseDataInnerMetadata.md
 docs/ListInboxConversations200ResponseMeta.md
 docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/ListInboxConversations200ResponsePagination.md
@@ -2245,6 +2247,7 @@ src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfM
 src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.java
 src/main/java/dev/zernio/model/GetInboxConversation200Response.java
 src/main/java/dev/zernio/model/GetInboxConversation200ResponseData.java
+src/main/java/dev/zernio/model/GetInboxConversation200ResponseDataMetadata.java
 src/main/java/dev/zernio/model/GetInboxConversationAnalytics200Response.java
 src/main/java/dev/zernio/model/GetInboxConversationAnalytics200ResponseBySourceInner.java
 src/main/java/dev/zernio/model/GetInboxConversationAnalytics200ResponseSummary.java
@@ -2567,6 +2570,7 @@ src/main/java/dev/zernio/model/ListInboxConversationAnalytics200ResponsePaginati
 src/main/java/dev/zernio/model/ListInboxConversations200Response.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseDataInnerInstagramProfile.java
+src/main/java/dev/zernio/model/ListInboxConversations200ResponseDataInnerMetadata.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseMeta.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponsePagination.java
@@ -3269,3 +3273,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetInboxConversation200ResponseDataMetadataTest.java
+src/test/java/dev/zernio/model/ListInboxConversations200ResponseDataInnerMetadataTest.java

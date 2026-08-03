@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestBrand.JSON_PROPERTY_VERTICAL,
   StartSmsRegistrationRequestBrand.JSON_PROPERTY_STOCK_SYMBOL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:20:47.759134487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:43:26.922376366Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestBrand {
   /**
    * Gets or Sets entityType

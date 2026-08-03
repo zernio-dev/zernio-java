@@ -1043,7 +1043,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram] |
+| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp] |
 | **status** | **String**| Filter by conversation status | [optional] [enum: active, archived] |
 | **sortOrder** | **String**| Sort order by updated time | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 50] |
@@ -1130,7 +1130,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram] |
+| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp] |
 | **status** | **String**| Filter by conversation status | [optional] [enum: active, archived] |
 | **sortOrder** | **String**| Sort order by updated time | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 50] |

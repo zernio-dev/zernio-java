@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetInboxConversation200ResponseDataMetadata;
 import dev.zernio.model.ListInboxConversations200ResponseDataInnerInstagramProfile;
 import dev.zernio.model.UpdateFacebookPage200ResponseSelectedPage;
 import java.time.OffsetDateTime;
@@ -54,9 +55,10 @@ import dev.zernio.ApiClient;
   GetInboxConversation200ResponseData.JSON_PROPERTY_LAST_MESSAGE_AT,
   GetInboxConversation200ResponseData.JSON_PROPERTY_UPDATED_TIME,
   GetInboxConversation200ResponseData.JSON_PROPERTY_PARTICIPANTS,
-  GetInboxConversation200ResponseData.JSON_PROPERTY_INSTAGRAM_PROFILE
+  GetInboxConversation200ResponseData.JSON_PROPERTY_INSTAGRAM_PROFILE,
+  GetInboxConversation200ResponseData.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:20:47.759134487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:43:26.922376366Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversation200ResponseData {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -182,6 +184,10 @@ public class GetInboxConversation200ResponseData {
   public static final String JSON_PROPERTY_INSTAGRAM_PROFILE = "instagramProfile";
   @javax.annotation.Nullable
   private ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nullable
+  private GetInboxConversation200ResponseDataMetadata metadata;
 
   public GetInboxConversation200ResponseData() { 
   }
@@ -514,6 +520,30 @@ public class GetInboxConversation200ResponseData {
   }
 
 
+  public GetInboxConversation200ResponseData metadata(@javax.annotation.Nullable GetInboxConversation200ResponseDataMetadata metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetInboxConversation200ResponseDataMetadata getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(@javax.annotation.Nullable GetInboxConversation200ResponseDataMetadata metadata) {
+    this.metadata = metadata;
+  }
+
+
   /**
    * Return true if this getInboxConversation_200_response_data object is equal to o.
    */
@@ -538,7 +568,8 @@ public class GetInboxConversation200ResponseData {
         Objects.equals(this.lastMessageAt, getInboxConversation200ResponseData.lastMessageAt) &&
         Objects.equals(this.updatedTime, getInboxConversation200ResponseData.updatedTime) &&
         Objects.equals(this.participants, getInboxConversation200ResponseData.participants) &&
-        Objects.equals(this.instagramProfile, getInboxConversation200ResponseData.instagramProfile);
+        Objects.equals(this.instagramProfile, getInboxConversation200ResponseData.instagramProfile) &&
+        Objects.equals(this.metadata, getInboxConversation200ResponseData.metadata);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -547,7 +578,7 @@ public class GetInboxConversation200ResponseData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, accountUsername, platform, status, participantName, participantId, hashCodeNullable(participantVerifiedType), lastMessage, lastMessageAt, updatedTime, participants, instagramProfile);
+    return Objects.hash(id, accountId, accountUsername, platform, status, participantName, participantId, hashCodeNullable(participantVerifiedType), lastMessage, lastMessageAt, updatedTime, participants, instagramProfile, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -574,6 +605,7 @@ public class GetInboxConversation200ResponseData {
     sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
     sb.append("    participants: ").append(toIndentedString(participants)).append("\n");
     sb.append("    instagramProfile: ").append(toIndentedString(instagramProfile)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -689,6 +721,11 @@ public class GetInboxConversation200ResponseData {
     // add `instagramProfile` to the URL query string
     if (getInstagramProfile() != null) {
       joiner.add(getInstagramProfile().toUrlQueryString(prefix + "instagramProfile" + suffix));
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      joiner.add(getMetadata().toUrlQueryString(prefix + "metadata" + suffix));
     }
 
     return joiner.toString();

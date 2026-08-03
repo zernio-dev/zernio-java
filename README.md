@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-03T13:20:47.759134487Z[Etc/UTC]
+- Build date: 2026-08-03T13:43:26.922376366Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1716,6 +1716,7 @@ Class | Method | HTTP request | Description
  - [GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md)
  - [GetInboxConversation200Response](docs/GetInboxConversation200Response.md)
  - [GetInboxConversation200ResponseData](docs/GetInboxConversation200ResponseData.md)
+ - [GetInboxConversation200ResponseDataMetadata](docs/GetInboxConversation200ResponseDataMetadata.md)
  - [GetInboxConversationAnalytics200Response](docs/GetInboxConversationAnalytics200Response.md)
  - [GetInboxConversationAnalytics200ResponseBySourceInner](docs/GetInboxConversationAnalytics200ResponseBySourceInner.md)
  - [GetInboxConversationAnalytics200ResponseSummary](docs/GetInboxConversationAnalytics200ResponseSummary.md)
@@ -2038,6 +2039,7 @@ Class | Method | HTTP request | Description
  - [ListInboxConversations200Response](docs/ListInboxConversations200Response.md)
  - [ListInboxConversations200ResponseDataInner](docs/ListInboxConversations200ResponseDataInner.md)
  - [ListInboxConversations200ResponseDataInnerInstagramProfile](docs/ListInboxConversations200ResponseDataInnerInstagramProfile.md)
+ - [ListInboxConversations200ResponseDataInnerMetadata](docs/ListInboxConversations200ResponseDataInnerMetadata.md)
  - [ListInboxConversations200ResponseMeta](docs/ListInboxConversations200ResponseMeta.md)
  - [ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [ListInboxConversations200ResponsePagination](docs/ListInboxConversations200ResponsePagination.md)

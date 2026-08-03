@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateCommentAutomation200ResponseAutomationStats.JSON_PROPERTY_TOTAL_SENT,
   CreateCommentAutomation200ResponseAutomationStats.JSON_PROPERTY_TOTAL_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:20:47.759134487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:43:26.922376366Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomation200ResponseAutomationStats {
   public static final String JSON_PROPERTY_TOTAL_TRIGGERED = "totalTriggered";
   @javax.annotation.Nullable

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest1.JSON_PROPERTY_ATTACHMENT,
   CreateInboxConversationRequest1.JSON_PROPERTY_SKIP_DM_CHECK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:20:47.759134487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T13:43:26.922376366Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest1 {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
