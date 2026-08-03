@@ -10,6 +10,7 @@
 |**accountId** | **String** | Social account ID |  |
 |**message** | **String** | Message text |  [optional] |
 |**attachmentUrl** | **String** | URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead. |  [optional] |
+|**category** | [**CategoryEnum**](#CategoryEnum) | WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests. |  [optional] |
 |**attachmentType** | [**AttachmentTypeEnum**](#AttachmentTypeEnum) | Type of attachment. Defaults to file if not specified. |  [optional] |
 |**attachmentName** | **String** | WhatsApp only. Display name for a document sent via attachmentUrl with attachmentType: file (e.g. \&quot;Report.pdf\&quot;). Maps to the recipient&#39;s file name; without it WhatsApp derives the name from the URL and shows \&quot;Untitled\&quot;. Ignored for image/video/audio and for binary uploads (which use the uploaded file&#39;s name). |  [optional] |
 |**voiceNote** | **Boolean** | WhatsApp only. When &#x60;true&#x60; on an audio attachment, the message is sent as a voice message (PTT) — the recipient sees the waveform + voice-note UI instead of a basic audio attachment. The audio file MUST be &#x60;.ogg&#x60; encoded with the OPUS codec (mono) per Meta&#39;s voice-message contract; other formats are rejected by WhatsApp. Ignored for non-audio attachments.  |  [optional] |
@@ -23,6 +24,14 @@
 |**replyTo** | **String** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID. |  [optional] |
 |**location** | [**SendInboxMessageRequestLocation**](SendInboxMessageRequestLocation.md) |  |  [optional] |
 |**contacts** | [**List&lt;SendInboxMessageRequestContactsInner&gt;**](SendInboxMessageRequestContactsInner.md) | WhatsApp-only. Send one or more contact cards. |  [optional] |
+
+
+
+## Enum: CategoryEnum
+
+| Name | Value |
+|---- | -----|
+| UTILITY | &quot;utility&quot; |
 
 
 

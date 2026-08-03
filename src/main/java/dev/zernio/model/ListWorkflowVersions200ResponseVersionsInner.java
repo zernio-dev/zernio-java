@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListWorkflowVersions200ResponseVersionsInner.JSON_PROPERTY_RESTORED_FROM_VERSION,
   ListWorkflowVersions200ResponseVersionsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:03:54.104282906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowVersions200ResponseVersionsInner {
   public static final String JSON_PROPERTY_VERSION = "version";
   @javax.annotation.Nullable

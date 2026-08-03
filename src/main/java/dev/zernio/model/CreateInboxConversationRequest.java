@@ -42,11 +42,12 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_MESSAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_SKIP_DM_CHECK,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_NAME,
+  CreateInboxConversationRequest.JSON_PROPERTY_CATEGORY,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:03:54.104282906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -71,6 +72,43 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_TEMPLATE_NAME = "templateName";
   @javax.annotation.Nullable
   private String templateName;
+
+  /**
+   * WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+   */
+  public enum CategoryEnum {
+    UTILITY(String.valueOf("utility"));
+
+    private String value;
+
+    CategoryEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CategoryEnum fromValue(String value) {
+      for (CategoryEnum b : CategoryEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CATEGORY = "category";
+  @javax.annotation.Nullable
+  private CategoryEnum category;
 
   public static final String JSON_PROPERTY_TEMPLATE_LANGUAGE = "templateLanguage";
   @javax.annotation.Nullable
@@ -165,7 +203,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required.
+   * Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required. Required when category is set (a Direct Send utility message is a text message).
    * @return message
    */
   @javax.annotation.Nullable
@@ -213,7 +251,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp).
+   * WhatsApp only. Name of the approved template to start the conversation with. Required for WhatsApp unless category is used instead (Direct Send). Cannot be combined with category.
    * @return templateName
    */
   @javax.annotation.Nullable
@@ -228,6 +266,30 @@ public class CreateInboxConversationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplateName(@javax.annotation.Nullable String templateName) {
     this.templateName = templateName;
+  }
+
+
+  public CreateInboxConversationRequest category(@javax.annotation.Nullable CategoryEnum category) {
+    this.category = category;
+    return this;
+  }
+
+  /**
+   * WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+   * @return category
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CATEGORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CategoryEnum getCategory() {
+    return category;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CATEGORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCategory(@javax.annotation.Nullable CategoryEnum category) {
+    this.category = category;
   }
 
 
@@ -329,6 +391,7 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.message, createInboxConversationRequest.message) &&
         Objects.equals(this.skipDmCheck, createInboxConversationRequest.skipDmCheck) &&
         Objects.equals(this.templateName, createInboxConversationRequest.templateName) &&
+        Objects.equals(this.category, createInboxConversationRequest.category) &&
         Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
         Objects.equals(this.templateParams, createInboxConversationRequest.templateParams) &&
         Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia);
@@ -336,7 +399,7 @@ public class CreateInboxConversationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, templateLanguage, templateParams, headerMedia);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, templateLanguage, templateParams, headerMedia);
   }
 
   @Override
@@ -349,6 +412,7 @@ public class CreateInboxConversationRequest {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    skipDmCheck: ").append(toIndentedString(skipDmCheck)).append("\n");
     sb.append("    templateName: ").append(toIndentedString(templateName)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    templateLanguage: ").append(toIndentedString(templateLanguage)).append("\n");
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
     sb.append("    headerMedia: ").append(toIndentedString(headerMedia)).append("\n");
@@ -427,6 +491,11 @@ public class CreateInboxConversationRequest {
     // add `templateName` to the URL query string
     if (getTemplateName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stemplateName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTemplateName()))));
+    }
+
+    // add `category` to the URL query string
+    if (getCategory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scategory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCategory()))));
     }
 
     // add `templateLanguage` to the URL query string

@@ -45,6 +45,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_ACCOUNT_ID,
   SendInboxMessageRequest.JSON_PROPERTY_MESSAGE,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_URL,
+  SendInboxMessageRequest.JSON_PROPERTY_CATEGORY,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_TYPE,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_NAME,
   SendInboxMessageRequest.JSON_PROPERTY_VOICE_NOTE,
@@ -59,7 +60,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
   SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:03:54.104282906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -72,6 +73,43 @@ public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ATTACHMENT_URL = "attachmentUrl";
   @javax.annotation.Nullable
   private String attachmentUrl;
+
+  /**
+   * WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+   */
+  public enum CategoryEnum {
+    UTILITY(String.valueOf("utility"));
+
+    private String value;
+
+    CategoryEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CategoryEnum fromValue(String value) {
+      for (CategoryEnum b : CategoryEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CATEGORY = "category";
+  @javax.annotation.Nullable
+  private CategoryEnum category;
 
   /**
    * Type of attachment. Defaults to file if not specified.
@@ -312,6 +350,30 @@ public class SendInboxMessageRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachmentUrl(@javax.annotation.Nullable String attachmentUrl) {
     this.attachmentUrl = attachmentUrl;
+  }
+
+
+  public SendInboxMessageRequest category(@javax.annotation.Nullable CategoryEnum category) {
+    this.category = category;
+    return this;
+  }
+
+  /**
+   * WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+   * @return category
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CATEGORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CategoryEnum getCategory() {
+    return category;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CATEGORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCategory(@javax.annotation.Nullable CategoryEnum category) {
+    this.category = category;
   }
 
 
@@ -666,6 +728,7 @@ public class SendInboxMessageRequest {
     return Objects.equals(this.accountId, sendInboxMessageRequest.accountId) &&
         Objects.equals(this.message, sendInboxMessageRequest.message) &&
         Objects.equals(this.attachmentUrl, sendInboxMessageRequest.attachmentUrl) &&
+        Objects.equals(this.category, sendInboxMessageRequest.category) &&
         Objects.equals(this.attachmentType, sendInboxMessageRequest.attachmentType) &&
         Objects.equals(this.attachmentName, sendInboxMessageRequest.attachmentName) &&
         Objects.equals(this.voiceNote, sendInboxMessageRequest.voiceNote) &&
@@ -683,7 +746,7 @@ public class SendInboxMessageRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, attachmentUrl, attachmentType, attachmentName, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
+    return Objects.hash(accountId, message, attachmentUrl, category, attachmentType, attachmentName, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
   }
 
   @Override
@@ -693,6 +756,7 @@ public class SendInboxMessageRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    attachmentUrl: ").append(toIndentedString(attachmentUrl)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
     sb.append("    attachmentName: ").append(toIndentedString(attachmentName)).append("\n");
     sb.append("    voiceNote: ").append(toIndentedString(voiceNote)).append("\n");
@@ -766,6 +830,11 @@ public class SendInboxMessageRequest {
     // add `attachmentUrl` to the URL query string
     if (getAttachmentUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sattachmentUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttachmentUrl()))));
+    }
+
+    // add `category` to the URL query string
+    if (getCategory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scategory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCategory()))));
     }
 
     // add `attachmentType` to the URL query string

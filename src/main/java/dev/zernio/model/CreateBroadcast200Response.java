@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateBroadcast200Response.JSON_PROPERTY_SUCCESS,
   CreateBroadcast200Response.JSON_PROPERTY_BROADCAST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:03:54.104282906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBroadcast200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
