@@ -36,6 +36,7 @@ End-user / current-carrier account info that authorizes the port. The losing car
 | FR | &quot;FR&quot; |
 | NL | &quot;NL&quot; |
 | AU | &quot;AU&quot; |
+| BR | &quot;BR&quot; |
 
 
 

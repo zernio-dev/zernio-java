@@ -45845,15 +45845,15 @@ components:
         tiktokSettings:
           allOf:
           - $ref: "#/components/schemas/TikTokPlatformData"
-          description: "Root-level TikTok settings applied to all TikTok platforms.\
-            \ Merged into each platform's platformSpecificData, with platform-specific\
-            \ settings taking precedence."
+          description: "Root-level TikTok settings applied to the TikTok platforms\
+            \ sent in the same request. Merged into each platform's platformSpecificData,\
+            \ with platform-specific settings taking precedence."
         facebookSettings:
           allOf:
           - $ref: "#/components/schemas/FacebookSettings"
-          description: "Root-level Facebook settings applied to all Facebook platforms.\
-            \ Merged into each platform's platformSpecificData.facebookSettings, with\
-            \ platform-specific settings taking precedence."
+          description: "Root-level Facebook settings applied to the Facebook platforms\
+            \ sent in the same request. Merged into each platform's platformSpecificData.facebookSettings,\
+            \ with platform-specific settings taking precedence."
         recycling:
           $ref: "#/components/schemas/RecyclingConfig"
         queuedFromProfile:
@@ -46118,15 +46118,17 @@ components:
         tiktokSettings:
           allOf:
           - $ref: "#/components/schemas/TikTokPlatformData"
-          description: "Root-level TikTok settings applied to all TikTok platforms.\
-            \ Merged into each platform's platformSpecificData, with platform-specific\
-            \ settings taking precedence."
+          description: "Root-level TikTok settings applied to the TikTok platforms\
+            \ sent in the same request. Merged into each platform's platformSpecificData,\
+            \ with platform-specific settings taking precedence. Returns 400 if sent\
+            \ without a platforms array."
         facebookSettings:
           allOf:
           - $ref: "#/components/schemas/FacebookSettings"
-          description: "Root-level Facebook settings applied to all Facebook platforms.\
-            \ Merged into each platform's platformSpecificData.facebookSettings, with\
-            \ platform-specific settings taking precedence."
+          description: "Root-level Facebook settings applied to the Facebook platforms\
+            \ sent in the same request. Merged into each platform's platformSpecificData.facebookSettings,\
+            \ with platform-specific settings taking precedence. Returns 400 if sent\
+            \ without a platforms array."
         recycling:
           $ref: "#/components/schemas/RecyclingConfig"
     bulkUploadPosts_request:
@@ -62616,6 +62618,7 @@ components:
           - FR
           - NL
           - AU
+          - BR
           maxLength: 2
           minLength: 2
           type: string

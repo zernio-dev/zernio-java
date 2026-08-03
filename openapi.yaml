@@ -12704,10 +12704,10 @@ paths:
                 metadata: { type: object, additionalProperties: true }
                 tiktokSettings:
                   $ref: '#/components/schemas/TikTokPlatformData'
-                  description: Root-level TikTok settings applied to all TikTok platforms. Merged into each platform's platformSpecificData, with platform-specific settings taking precedence.
+                  description: 'Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform''s platformSpecificData, with platform-specific settings taking precedence.'
                 facebookSettings:
                   $ref: '#/components/schemas/FacebookSettings'
-                  description: Root-level Facebook settings applied to all Facebook platforms. Merged into each platform's platformSpecificData.facebookSettings, with platform-specific settings taking precedence.
+                  description: 'Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform''s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.'
                 recycling:
                   $ref: '#/components/schemas/RecyclingConfig'
                 queuedFromProfile:
@@ -13321,10 +13321,10 @@ paths:
                   description: Specific queue ID to use when scheduling via queue.
                 tiktokSettings:
                   $ref: '#/components/schemas/TikTokPlatformData'
-                  description: Root-level TikTok settings applied to all TikTok platforms. Merged into each platform's platformSpecificData, with platform-specific settings taking precedence.
+                  description: 'Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform''s platformSpecificData, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array.'
                 facebookSettings:
                   $ref: '#/components/schemas/FacebookSettings'
-                  description: Root-level Facebook settings applied to all Facebook platforms. Merged into each platform's platformSpecificData.facebookSettings, with platform-specific settings taking precedence.
+                  description: 'Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform''s platformSpecificData.facebookSettings, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array.'
                 recycling:
                   $ref: '#/components/schemas/RecyclingConfig'
               additionalProperties: true
@@ -30250,7 +30250,7 @@ paths:
                     locality: { type: string }
                     administrativeArea: { type: string, description: "Region. Required for US/CA as the 2-letter state/province code (full names are accepted and normalized); optional elsewhere." }
                     postalCode: { type: string, description: "Postal code. Validated as a US ZIP / Canadian postal code for US/CA; free-form elsewhere." }
-                    countryCode: { type: string, minLength: 2, maxLength: 2, enum: [US, CA, GB, ES, DE, FR, NL, AU], description: "Service-address country (a supported port-in country)." }
+                    countryCode: { type: string, minLength: 2, maxLength: 2, enum: [US, CA, GB, ES, DE, FR, NL, AU, BR], description: "Service-address country (a supported port-in country)." }
                 loaDocumentId: { type: string, description: Document id from POST /v1/phone-numbers/port-in/documents (kind=loa). }
                 invoiceDocumentId: { type: string, description: Document id from POST /v1/phone-numbers/port-in/documents (kind=invoice). }
                 focDatetimeRequested: { type: string, format: date-time, description: "Requested port date; the carrier confirms the actual FOC later. US/CA default is one week out (shifted off weekends); international orders are scheduled into the carrier's next allowed porting window at or after this date." }
