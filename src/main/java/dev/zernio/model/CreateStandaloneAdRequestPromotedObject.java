@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T09:22:11.618995469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T10:11:45.182244097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -96,7 +96,7 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
   /**
-   * Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. 
+   * Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. To discover the pixels an ad account can use, call &#x60;GET /v1/accounts/{accountId}/tracking-tags?adAccountId&#x3D;act_...&#x60; (each entry carries &#x60;kind&#x60; and &#x60;ownerAdAccountId&#x60;), or &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Note this is a different resource from &#x60;GET /v1/ads/{adId}/tracking-tags&#x60;, which reads an ad&#39;s click-URL params (&#x60;url_tags&#x60;), not pixels. 
    * @return pixelId
    */
   @javax.annotation.Nullable
