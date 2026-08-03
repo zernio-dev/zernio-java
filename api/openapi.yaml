@@ -6041,17 +6041,7 @@ paths:
         \ original 201 (same _id) instead of conflicting."
       operationId: createProfile
       parameters:
-      - description: Optional client-generated unique key (e.g. a UUID) that makes
-          create retries safe. Same key + same body replays the original response;
-          same key + different body → 422; key still processing → 409.
-        explode: false
-        in: header
-        name: Idempotency-Key
-        required: false
-        schema:
-          maxLength: 255
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -6092,7 +6082,7 @@ paths:
             \ details.existingProfileId carries the id of the existing profile. Also\
             \ returned while a request with the same Idempotency-Key is still processing."
         "422":
-          description: Idempotency-Key reused with a different body
+          $ref: "#/components/responses/IdempotencyKeyReused"
       summary: Create profile
       tags:
       - Profiles
@@ -14919,6 +14909,13 @@ paths:
         are available via the `interactive` field. Tap events are delivered through
         the `message.received` webhook with WhatsApp-specific `metadata` fields
         (`interactiveType`, `interactiveId`, `flowResponseJson`, `flowResponseData`).
+
+        **Idempotency:** send an `Idempotency-Key` header to make retries safe
+        (e.g. after a client-side timeout where delivery is unknown): same key +
+        same body replays the original response (with `Idempotent-Replayed: true`)
+        instead of sending the message a second time; same key + different body
+        returns 422; a key still in flight returns 409. Works for JSON and
+        multipart (file upload) requests alike. Keys are retained for 24 hours.
       operationId: sendInboxMessage
       parameters:
       - description: "The conversation ID (id field from list conversations endpoint).\
@@ -14931,6 +14928,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -14958,6 +14956,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Inbox addon required
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
       security:
       - bearerAuth: []
       summary: Send message
@@ -17682,17 +17684,7 @@ paths:
         dialing (and billing) a second call.
       operationId: initiateWhatsAppCall
       parameters:
-      - description: Optional client-generated unique key (e.g. a UUID) that makes
-          dial retries safe. Same key + same body replays the original response; same
-          key + different body → 422; key still processing → 409.
-        explode: false
-        in: header
-        name: Idempotency-Key
-        required: false
-        schema:
-          maxLength: 255
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -18160,17 +18152,7 @@ paths:
         (and billing) a second call.
       operationId: createVoiceCall
       parameters:
-      - description: Optional client-generated unique key (e.g. a UUID) that makes
-          dial retries safe. Same key + same body replays the original response; same
-          key + different body → 422; key still processing → 409.
-        explode: false
-        in: header
-        name: Idempotency-Key
-        required: false
-        schema:
-          maxLength: 255
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -18506,17 +18488,7 @@ paths:
         flight returns 409.
       operationId: sendSms
       parameters:
-      - description: Optional client-generated unique key (e.g. a UUID) that makes
-          send retries safe. Same key + same body replays the original response; same
-          key + different body → 422; key still processing → 409.
-        explode: false
-        in: header
-        name: Idempotency-Key
-        required: false
-        schema:
-          maxLength: 255
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -18535,10 +18507,9 @@ paths:
         "404":
           description: No SMS-enabled number matches `from`
         "409":
-          description: Same Idempotency-Key still processing; retry after a short
-            backoff
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
-          description: Idempotency-Key reused with a different body
+          $ref: "#/components/responses/IdempotencyKeyReused"
         "502":
           description: Carrier-side send failed
       security:
@@ -29157,17 +29128,7 @@ paths:
         **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an `Idempotency-Key` header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with `Idempotent-Replayed: true`) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
       operationId: createStandaloneAd
       parameters:
-      - description: Optional client-generated unique key (e.g. a UUID) that makes
-          create retries safe. Same key + same body replays the original response;
-          same key + different body → 422; key still processing → 409.
-        explode: false
-        in: header
-        name: Idempotency-Key
-        required: false
-        schema:
-          maxLength: 255
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -32190,7 +32151,23 @@ components:
         minimum: 1
         type: integer
       style: form
+    IdempotencyKeyHeader:
+      description: Optional client-generated unique key (e.g. a UUID) that makes retries
+        safe. Same key + same body replays the original response; same key + different
+        body → 422; key still processing → 409.
+      explode: false
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        maxLength: 255
+        type: string
+      style: simple
   responses:
+    IdempotencyKeyInFlight:
+      description: Same Idempotency-Key still processing; retry after a short backoff
+    IdempotencyKeyReused:
+      description: Idempotency-Key reused with a different body
     BadRequest:
       content:
         application/json:

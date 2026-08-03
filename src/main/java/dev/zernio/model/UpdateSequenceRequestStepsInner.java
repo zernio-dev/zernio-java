@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateSequenceRequestStepsInner.JSON_PROPERTY_MESSAGE,
   UpdateSequenceRequestStepsInner.JSON_PROPERTY_TEMPLATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateSequenceRequestStepsInner {
   public static final String JSON_PROPERTY_ORDER = "order";
   @javax.annotation.Nonnull

@@ -1601,7 +1601,7 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
             InitiateWhatsAppCall200Response result = apiInstance.initiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey);
             System.out.println(result);
@@ -1622,7 +1622,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1678,7 +1678,7 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
             ApiResponse<InitiateWhatsAppCall200Response> response = apiInstance.initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1701,7 +1701,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 

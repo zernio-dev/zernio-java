@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UploadMediaDirect200Response.JSON_PROPERTY_CONTENT_TYPE,
   UploadMediaDirect200Response.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadMediaDirect200Response {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable

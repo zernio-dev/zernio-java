@@ -61,7 +61,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -182,7 +182,7 @@ public class ProfilesApi {
    * Create profile
    * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ProfileCreateResponse
    * @throws ApiException if fails to make API call
    */
@@ -194,7 +194,7 @@ public class ProfilesApi {
    * Create profile
    * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ProfileCreateResponse
    * @throws ApiException if fails to make API call
@@ -208,7 +208,7 @@ public class ProfilesApi {
    * Create profile
    * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;ProfileCreateResponse&gt;
    * @throws ApiException if fails to make API call
    */
@@ -220,7 +220,7 @@ public class ProfilesApi {
    * Create profile
    * Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
    * @param createProfileRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ProfileCreateResponse&gt;
    * @throws ApiException if fails to make API call

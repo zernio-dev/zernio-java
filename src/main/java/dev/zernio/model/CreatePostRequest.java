@@ -62,7 +62,7 @@ import dev.zernio.ApiClient;
   CreatePostRequest.JSON_PROPERTY_QUEUED_FROM_PROFILE,
   CreatePostRequest.JSON_PROPERTY_QUEUE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

@@ -83,7 +83,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-02T09:37:16.513585876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T07:28:44.894902893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2166,7 +2166,7 @@ public class SmsApi {
    * Send an SMS/MMS
    * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return SendSms200Response
    * @throws ApiException if fails to make API call
    */
@@ -2178,7 +2178,7 @@ public class SmsApi {
    * Send an SMS/MMS
    * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return SendSms200Response
    * @throws ApiException if fails to make API call
@@ -2192,7 +2192,7 @@ public class SmsApi {
    * Send an SMS/MMS
    * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;SendSms200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2204,7 +2204,7 @@ public class SmsApi {
    * Send an SMS/MMS
    * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
-   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SendSms200Response&gt;
    * @throws ApiException if fails to make API call

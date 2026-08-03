@@ -1649,11 +1649,11 @@ ApiResponse<[**SearchInboxConversations200Response**](SearchInboxConversations20
 
 ## sendInboxMessage
 
-> SendInboxMessage200Response sendInboxMessage(conversationId, sendInboxMessageRequest)
+> SendInboxMessage200Response sendInboxMessage(conversationId, sendInboxMessageRequest, idempotencyKey)
 
 Send message
 
-Send a message in a conversation. Supports text, attachments, quick replies, buttons, templates, and message tags. Attachment and interactive message support varies by platform.  WhatsApp template messages: to send an approved template into this conversation (required when the 24-hour customer-service window is closed), use the &#x60;template&#x60; field with a single element carrying the template reference: &#x60;{ \&quot;elements\&quot;: [{ \&quot;name\&quot;: ..., \&quot;language\&quot;: ..., \&quot;components\&quot;: [...] }] }&#x60;. See the &#x60;template&#x60; field below for the exact shape. To send a template to a phone number you have no conversation with yet, use the create-conversation endpoint (POST /v1/inbox/conversations) instead.  WhatsApp rich interactive messages (list, CTA URL, Flow, location request) are available via the &#x60;interactive&#x60; field. Tap events are delivered through the &#x60;message.received&#x60; webhook with WhatsApp-specific &#x60;metadata&#x60; fields (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseJson&#x60;, &#x60;flowResponseData&#x60;). 
+Send a message in a conversation. Supports text, attachments, quick replies, buttons, templates, and message tags. Attachment and interactive message support varies by platform.  WhatsApp template messages: to send an approved template into this conversation (required when the 24-hour customer-service window is closed), use the &#x60;template&#x60; field with a single element carrying the template reference: &#x60;{ \&quot;elements\&quot;: [{ \&quot;name\&quot;: ..., \&quot;language\&quot;: ..., \&quot;components\&quot;: [...] }] }&#x60;. See the &#x60;template&#x60; field below for the exact shape. To send a template to a phone number you have no conversation with yet, use the create-conversation endpoint (POST /v1/inbox/conversations) instead.  WhatsApp rich interactive messages (list, CTA URL, Flow, location request) are available via the &#x60;interactive&#x60; field. Tap events are delivered through the &#x60;message.received&#x60; webhook with WhatsApp-specific &#x60;metadata&#x60; fields (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseJson&#x60;, &#x60;flowResponseData&#x60;).  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the message a second time; same key + different body returns 422; a key still in flight returns 409. Works for JSON and multipart (file upload) requests alike. Keys are retained for 24 hours. 
 
 ### Example
 
@@ -1678,8 +1678,9 @@ public class Example {
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
         SendInboxMessageRequest sendInboxMessageRequest = new SendInboxMessageRequest(); // SendInboxMessageRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            SendInboxMessage200Response result = apiInstance.sendInboxMessage(conversationId, sendInboxMessageRequest);
+            SendInboxMessage200Response result = apiInstance.sendInboxMessage(conversationId, sendInboxMessageRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#sendInboxMessage");
@@ -1699,6 +1700,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
 | **sendInboxMessageRequest** | [**SendInboxMessageRequest**](SendInboxMessageRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1721,14 +1723,16 @@ public class Example {
 | **400** | Bad request (e.g., attachment not supported for platform, validation error) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different body |  -  |
 
 ## sendInboxMessageWithHttpInfo
 
-> ApiResponse<SendInboxMessage200Response> sendInboxMessage sendInboxMessageWithHttpInfo(conversationId, sendInboxMessageRequest)
+> ApiResponse<SendInboxMessage200Response> sendInboxMessage sendInboxMessageWithHttpInfo(conversationId, sendInboxMessageRequest, idempotencyKey)
 
 Send message
 
-Send a message in a conversation. Supports text, attachments, quick replies, buttons, templates, and message tags. Attachment and interactive message support varies by platform.  WhatsApp template messages: to send an approved template into this conversation (required when the 24-hour customer-service window is closed), use the &#x60;template&#x60; field with a single element carrying the template reference: &#x60;{ \&quot;elements\&quot;: [{ \&quot;name\&quot;: ..., \&quot;language\&quot;: ..., \&quot;components\&quot;: [...] }] }&#x60;. See the &#x60;template&#x60; field below for the exact shape. To send a template to a phone number you have no conversation with yet, use the create-conversation endpoint (POST /v1/inbox/conversations) instead.  WhatsApp rich interactive messages (list, CTA URL, Flow, location request) are available via the &#x60;interactive&#x60; field. Tap events are delivered through the &#x60;message.received&#x60; webhook with WhatsApp-specific &#x60;metadata&#x60; fields (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseJson&#x60;, &#x60;flowResponseData&#x60;). 
+Send a message in a conversation. Supports text, attachments, quick replies, buttons, templates, and message tags. Attachment and interactive message support varies by platform.  WhatsApp template messages: to send an approved template into this conversation (required when the 24-hour customer-service window is closed), use the &#x60;template&#x60; field with a single element carrying the template reference: &#x60;{ \&quot;elements\&quot;: [{ \&quot;name\&quot;: ..., \&quot;language\&quot;: ..., \&quot;components\&quot;: [...] }] }&#x60;. See the &#x60;template&#x60; field below for the exact shape. To send a template to a phone number you have no conversation with yet, use the create-conversation endpoint (POST /v1/inbox/conversations) instead.  WhatsApp rich interactive messages (list, CTA URL, Flow, location request) are available via the &#x60;interactive&#x60; field. Tap events are delivered through the &#x60;message.received&#x60; webhook with WhatsApp-specific &#x60;metadata&#x60; fields (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseJson&#x60;, &#x60;flowResponseData&#x60;).  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the message a second time; same key + different body returns 422; a key still in flight returns 409. Works for JSON and multipart (file upload) requests alike. Keys are retained for 24 hours. 
 
 ### Example
 
@@ -1754,8 +1758,9 @@ public class Example {
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
         SendInboxMessageRequest sendInboxMessageRequest = new SendInboxMessageRequest(); // SendInboxMessageRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<SendInboxMessage200Response> response = apiInstance.sendInboxMessageWithHttpInfo(conversationId, sendInboxMessageRequest);
+            ApiResponse<SendInboxMessage200Response> response = apiInstance.sendInboxMessageWithHttpInfo(conversationId, sendInboxMessageRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1777,6 +1782,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
 | **sendInboxMessageRequest** | [**SendInboxMessageRequest**](SendInboxMessageRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1799,6 +1805,8 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | **400** | Bad request (e.g., attachment not supported for platform, validation error) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different body |  -  |
 
 
 ## sendTypingIndicator
