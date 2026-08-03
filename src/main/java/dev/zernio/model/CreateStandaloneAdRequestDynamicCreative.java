@@ -33,10 +33,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and optimises them into the best-performing variations within a single ad (mapped to the creative&#39;s &#x60;asset_feed_spec&#x60;). When set, the top-level single-creative fields (&#x60;imageUrl&#x60;, &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) are ignored. Mutually exclusive with the &#x60;creatives[]&#x60; multi-creative shape. Meta limits: ≤10 images, ≤5 bodies / titles / descriptions. 
+ * Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and optimises them into the best-performing variations within a single ad (mapped to the creative&#39;s &#x60;asset_feed_spec&#x60;). When set, the top-level single-creative fields (&#x60;imageUrl&#x60;, &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) are ignored. Mutually exclusive with the &#x60;creatives[]&#x60; multi-creative shape. Exactly ONE of &#x60;imageUrls&#x60; / &#x60;videoUrls&#x60; is required (Meta allows one ad format per asset feed; sending both → 400). Meta limits: ≤10 images or ≤10 videos, ≤5 bodies / titles / descriptions. 
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_IMAGE_URLS,
+  CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_VIDEO_URLS,
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_BODIES,
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_TITLES,
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_DESCRIPTIONS,
@@ -44,11 +45,15 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_CALL_TO_ACTION_TYPES,
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_AD_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T17:52:32.421058909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T19:02:24.350912545Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestDynamicCreative {
   public static final String JSON_PROPERTY_IMAGE_URLS = "imageUrls";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<URI> imageUrls = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_VIDEO_URLS = "videoUrls";
+  @javax.annotation.Nullable
+  private List<URI> videoUrls = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BODIES = "bodies";
   @javax.annotation.Nullable
@@ -170,12 +175,14 @@ public class CreateStandaloneAdRequestDynamicCreative {
   private List<CallToActionTypesEnum> callToActionTypes = new ArrayList<>();
 
   /**
-   * Asset-feed ad format. Defaults to SINGLE_IMAGE.
+   * Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;.
    */
   public enum AdFormatEnum {
     SINGLE_IMAGE(String.valueOf("SINGLE_IMAGE")),
     
-    CAROUSEL_IMAGE(String.valueOf("CAROUSEL_IMAGE"));
+    CAROUSEL_IMAGE(String.valueOf("CAROUSEL_IMAGE")),
+    
+    SINGLE_VIDEO(String.valueOf("SINGLE_VIDEO"));
 
     private String value;
 
@@ -206,12 +213,12 @@ public class CreateStandaloneAdRequestDynamicCreative {
 
   public static final String JSON_PROPERTY_AD_FORMAT = "adFormat";
   @javax.annotation.Nullable
-  private AdFormatEnum adFormat = AdFormatEnum.SINGLE_IMAGE;
+  private AdFormatEnum adFormat;
 
   public CreateStandaloneAdRequestDynamicCreative() { 
   }
 
-  public CreateStandaloneAdRequestDynamicCreative imageUrls(@javax.annotation.Nonnull List<URI> imageUrls) {
+  public CreateStandaloneAdRequestDynamicCreative imageUrls(@javax.annotation.Nullable List<URI> imageUrls) {
     this.imageUrls = imageUrls;
     return this;
   }
@@ -225,21 +232,53 @@ public class CreateStandaloneAdRequestDynamicCreative {
   }
 
   /**
-   * Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed.
+   * Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed. Mutually exclusive with &#x60;videoUrls&#x60;.
    * @return imageUrls
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_IMAGE_URLS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<URI> getImageUrls() {
     return imageUrls;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_IMAGE_URLS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setImageUrls(@javax.annotation.Nonnull List<URI> imageUrls) {
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImageUrls(@javax.annotation.Nullable List<URI> imageUrls) {
     this.imageUrls = imageUrls;
+  }
+
+
+  public CreateStandaloneAdRequestDynamicCreative videoUrls(@javax.annotation.Nullable List<URI> videoUrls) {
+    this.videoUrls = videoUrls;
+    return this;
+  }
+
+  public CreateStandaloneAdRequestDynamicCreative addVideoUrlsItem(URI videoUrlsItem) {
+    if (this.videoUrls == null) {
+      this.videoUrls = new ArrayList<>();
+    }
+    this.videoUrls.add(videoUrlsItem);
+    return this;
+  }
+
+  /**
+   * Pool of video URLs (1-10). Uploaded to the ad account and referenced by video id in the asset feed. No thumbnails are needed: Meta auto-generates a poster per video. Mutually exclusive with &#x60;imageUrls&#x60;; &#x60;adFormat&#x60; defaults to SINGLE_VIDEO.
+   * @return videoUrls
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<URI> getVideoUrls() {
+    return videoUrls;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoUrls(@javax.annotation.Nullable List<URI> videoUrls) {
+    this.videoUrls = videoUrls;
   }
 
 
@@ -409,7 +448,7 @@ public class CreateStandaloneAdRequestDynamicCreative {
   }
 
   /**
-   * Asset-feed ad format. Defaults to SINGLE_IMAGE.
+   * Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;.
    * @return adFormat
    */
   @javax.annotation.Nullable
@@ -440,6 +479,7 @@ public class CreateStandaloneAdRequestDynamicCreative {
     }
     CreateStandaloneAdRequestDynamicCreative createStandaloneAdRequestDynamicCreative = (CreateStandaloneAdRequestDynamicCreative) o;
     return Objects.equals(this.imageUrls, createStandaloneAdRequestDynamicCreative.imageUrls) &&
+        Objects.equals(this.videoUrls, createStandaloneAdRequestDynamicCreative.videoUrls) &&
         Objects.equals(this.bodies, createStandaloneAdRequestDynamicCreative.bodies) &&
         Objects.equals(this.titles, createStandaloneAdRequestDynamicCreative.titles) &&
         Objects.equals(this.descriptions, createStandaloneAdRequestDynamicCreative.descriptions) &&
@@ -450,7 +490,7 @@ public class CreateStandaloneAdRequestDynamicCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageUrls, bodies, titles, descriptions, linkUrls, callToActionTypes, adFormat);
+    return Objects.hash(imageUrls, videoUrls, bodies, titles, descriptions, linkUrls, callToActionTypes, adFormat);
   }
 
   @Override
@@ -458,6 +498,7 @@ public class CreateStandaloneAdRequestDynamicCreative {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestDynamicCreative {\n");
     sb.append("    imageUrls: ").append(toIndentedString(imageUrls)).append("\n");
+    sb.append("    videoUrls: ").append(toIndentedString(videoUrls)).append("\n");
     sb.append("    bodies: ").append(toIndentedString(bodies)).append("\n");
     sb.append("    titles: ").append(toIndentedString(titles)).append("\n");
     sb.append("    descriptions: ").append(toIndentedString(descriptions)).append("\n");
@@ -518,6 +559,17 @@ public class CreateStandaloneAdRequestDynamicCreative {
           joiner.add(String.format(java.util.Locale.ROOT, "%simageUrls%s%s=%s", prefix, suffix,
               "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
               ApiClient.urlEncode(ApiClient.valueToString(getImageUrls().get(i)))));
+        }
+      }
+    }
+
+    // add `videoUrls` to the URL query string
+    if (getVideoUrls() != null) {
+      for (int i = 0; i < getVideoUrls().size(); i++) {
+        if (getVideoUrls().get(i) != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%svideoUrls%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(getVideoUrls().get(i)))));
         }
       }
     }

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   QueueDeleteResponse.JSON_PROPERTY_DELETED_COUNT,
   QueueDeleteResponse.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T17:52:32.421058909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T19:02:24.350912545Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueDeleteResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
