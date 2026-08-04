@@ -73,7 +73,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T21:52:26.485869348Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T22:16:21.314020303Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1675,7 +1675,7 @@ public class DiscordApi {
 
   /**
    * Get a Discord guild member
-   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param userId Discord user snowflake. (required)
    * @param accountId  (required)
@@ -1688,7 +1688,7 @@ public class DiscordApi {
 
   /**
    * Get a Discord guild member
-   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param userId Discord user snowflake. (required)
    * @param accountId  (required)
@@ -1703,7 +1703,7 @@ public class DiscordApi {
 
   /**
    * Get a Discord guild member
-   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param userId Discord user snowflake. (required)
    * @param accountId  (required)
@@ -1716,7 +1716,7 @@ public class DiscordApi {
 
   /**
    * Get a Discord guild member
-   * Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param userId Discord user snowflake. (required)
    * @param accountId  (required)
@@ -2093,7 +2093,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -2107,7 +2107,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -2123,7 +2123,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -2137,7 +2137,7 @@ public class DiscordApi {
 
   /**
    * List Discord guild members
-   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+   * Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param limit Page size (1-1000). (optional, default to 100)
@@ -2984,7 +2984,7 @@ public class DiscordApi {
 
   /**
    * Search Discord guild members
-   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param query Username or nickname prefix to match. (required)
@@ -2998,7 +2998,7 @@ public class DiscordApi {
 
   /**
    * Search Discord guild members
-   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param query Username or nickname prefix to match. (required)
@@ -3014,7 +3014,7 @@ public class DiscordApi {
 
   /**
    * Search Discord guild members
-   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param query Username or nickname prefix to match. (required)
@@ -3028,7 +3028,7 @@ public class DiscordApi {
 
   /**
    * Search Discord guild members
-   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+   * Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
    * @param guildId  (required)
    * @param accountId  (required)
    * @param query Username or nickname prefix to match. (required)

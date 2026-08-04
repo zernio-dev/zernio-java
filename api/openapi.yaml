@@ -12664,12 +12664,6 @@ paths:
         objects so callers can build community-ops automation (e.g. "add role
         to all members joined in the last 7 days") on the actual platform shape.
 
-        **Important:** this endpoint requires the privileged "Server Members
-        Intent" on the Discord application. If the intent is not enabled,
-        Discord rejects the call and this endpoint returns **403**. Single
-        member lookup and prefix search (see the sibling endpoints) do not
-        need the intent.
-
         Pagination: pass `after` = the last `user.id` from the previous page.
         Omit on the first call. Response includes a `nextCursor` and `hasMore`
         flag so callers don't need to know Discord's pagination shape.
@@ -12720,7 +12714,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: The Server Members Intent is not enabled on the Discord application.
+          description: Discord denied access to the guild members (the bot is no longer
+            in the guild).
         "404":
           description: Discord account not found or not in this guild.
       summary: List Discord guild members
@@ -12734,8 +12729,8 @@ paths:
         Search guild members whose username or nickname **starts with** the
         query (Discord matches prefixes only, not substrings).
 
-        Does not require the privileged Server Members Intent, so this works
-        even where the full member listing returns 403.
+        Cheaper than paginating the full member listing when you already know
+        who you are looking for.
       operationId: searchDiscordGuildMembers
       parameters:
       - explode: false
@@ -12795,8 +12790,8 @@ paths:
       description: |
         Fetch a single guild member by Discord user id.
 
-        Does not require the privileged Server Members Intent, so this works
-        even where the full member listing returns 403.
+        Cheaper than paginating the full member listing when you already know
+        who you are looking for.
       operationId: getDiscordGuildMember
       parameters:
       - explode: false
@@ -16767,6 +16762,62 @@ paths:
       security:
       - bearerAuth: []
       summary: Search recent tweets
+      tags:
+      - Twitter Engagement
+      x-accepts:
+      - application/json
+  /v1/twitter/tweet:
+    get:
+      description: |
+        Resolve a single tweet by ID or URL into its text, author and public metrics.
+
+        Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post.
+        Unlike `/v1/twitter/search` this is not limited to the last 7 days and works for any tweet
+        visible to the connected account.
+
+        Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day
+        are charged once.
+      operationId: getTweet
+      parameters:
+      - description: The social account ID whose X token is used for the lookup
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+        explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTweet_200_response"
+          description: The resolved tweet
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          description: X API spend cap reached for this billing period
+        "403":
+          description: "X analytics capability not enabled for this account (code\
+            \ X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended"
+        "404":
+          description: "Account not found, or the tweet was deleted or never existed"
+        "429":
+          description: X rate limit exceeded
+      security:
+      - bearerAuth: []
+      summary: Look up a tweet
       tags:
       - Twitter Engagement
       x-accepts:
@@ -57761,6 +57812,81 @@ components:
           $ref: "#/components/schemas/searchTweets_200_response_pagination"
         meta:
           $ref: "#/components/schemas/searchTweets_200_response_meta"
+    getTweet_200_response_tweet:
+      example:
+        replyCount: 6
+        created: 2000-01-23T04:56:07.000+00:00
+        conversationId: conversationId
+        author:
+          displayName: displayName
+          verifiedType: verifiedType
+          id: id
+          avatar: avatar
+          username: username
+        quoteCount: 5
+        likeCount: 0
+        id: id
+        text: text
+        lang: lang
+        retweetCount: 1
+        platform: twitter
+        inReplyToTweetId: inReplyToTweetId
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        created:
+          format: date-time
+          type: string
+        conversationId:
+          type: string
+        inReplyToTweetId:
+          description: Parent tweet ID when the tweet is itself a reply
+          nullable: true
+          type: string
+        lang:
+          type: string
+        author:
+          $ref: "#/components/schemas/searchTweets_200_response_tweets_inner_author"
+        likeCount:
+          type: integer
+        replyCount:
+          type: integer
+        retweetCount:
+          type: integer
+        quoteCount:
+          type: integer
+        platform:
+          example: twitter
+          type: string
+    getTweet_200_response:
+      example:
+        tweet:
+          replyCount: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          conversationId: conversationId
+          author:
+            displayName: displayName
+            verifiedType: verifiedType
+            id: id
+            avatar: avatar
+            username: username
+          quoteCount: 5
+          likeCount: 0
+          id: id
+          text: text
+          lang: lang
+          retweetCount: 1
+          platform: twitter
+          inReplyToTweetId: inReplyToTweetId
+        status: success
+      properties:
+        status:
+          example: success
+          type: string
+        tweet:
+          $ref: "#/components/schemas/getTweet_200_response_tweet"
     listInboxMentions_200_response_data_inner:
       example:
         publishedAt: 2000-01-23T04:56:07.000+00:00

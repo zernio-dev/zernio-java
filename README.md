@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-04T21:52:26.485869348Z[Etc/UTC]
+- Build date: 2026-08-04T22:16:21.314020303Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -910,6 +910,8 @@ Class | Method | HTTP request | Description
 *TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
 *TwitterEngagementApi* | [**followUserWithHttpInfo**](docs/TwitterEngagementApi.md#followUserWithHttpInfo) | **POST** /v1/twitter/follow | Follow a user
+*TwitterEngagementApi* | [**getTweet**](docs/TwitterEngagementApi.md#getTweet) | **GET** /v1/twitter/tweet | Look up a tweet
+*TwitterEngagementApi* | [**getTweetWithHttpInfo**](docs/TwitterEngagementApi.md#getTweetWithHttpInfo) | **GET** /v1/twitter/tweet | Look up a tweet
 *TwitterEngagementApi* | [**removeBookmark**](docs/TwitterEngagementApi.md#removeBookmark) | **DELETE** /v1/twitter/bookmark | Remove bookmark
 *TwitterEngagementApi* | [**removeBookmarkWithHttpInfo**](docs/TwitterEngagementApi.md#removeBookmarkWithHttpInfo) | **DELETE** /v1/twitter/bookmark | Remove bookmark
 *TwitterEngagementApi* | [**retweetPost**](docs/TwitterEngagementApi.md#retweetPost) | **POST** /v1/twitter/retweet | Retweet a post
@@ -1836,6 +1838,8 @@ Class | Method | HTTP request | Description
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
+ - [GetTweet200Response](docs/GetTweet200Response.md)
+ - [GetTweet200ResponseTweet](docs/GetTweet200ResponseTweet.md)
  - [GetUsage200Response](docs/GetUsage200Response.md)
  - [GetUser200Response](docs/GetUser200Response.md)
  - [GetUser200ResponseUser](docs/GetUser200ResponseUser.md)

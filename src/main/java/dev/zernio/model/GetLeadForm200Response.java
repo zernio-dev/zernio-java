@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetLeadForm200Response.JSON_PROPERTY_STATUS,
   GetLeadForm200Response.JSON_PROPERTY_FORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T21:52:26.485869348Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T22:16:21.314020303Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLeadForm200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

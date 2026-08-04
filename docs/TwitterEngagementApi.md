@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**bookmarkPostWithHttpInfo**](TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet |
 | [**followUser**](TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user |
 | [**followUserWithHttpInfo**](TwitterEngagementApi.md#followUserWithHttpInfo) | **POST** /v1/twitter/follow | Follow a user |
+| [**getTweet**](TwitterEngagementApi.md#getTweet) | **GET** /v1/twitter/tweet | Look up a tweet |
+| [**getTweetWithHttpInfo**](TwitterEngagementApi.md#getTweetWithHttpInfo) | **GET** /v1/twitter/tweet | Look up a tweet |
 | [**removeBookmark**](TwitterEngagementApi.md#removeBookmark) | **DELETE** /v1/twitter/bookmark | Remove bookmark |
 | [**removeBookmarkWithHttpInfo**](TwitterEngagementApi.md#removeBookmarkWithHttpInfo) | **DELETE** /v1/twitter/bookmark | Remove bookmark |
 | [**retweetPost**](TwitterEngagementApi.md#retweetPost) | **POST** /v1/twitter/retweet | Retweet a post |
@@ -319,6 +321,166 @@ ApiResponse<[**FollowUser200Response**](FollowUser200Response.md)>
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+
+## getTweet
+
+> GetTweet200Response getTweet(accountId, id)
+
+Look up a tweet
+
+Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
+        String accountId = "accountId_example"; // String | The social account ID whose X token is used for the lookup
+        String id = "id_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+        try {
+            GetTweet200Response result = apiInstance.getTweet(accountId, id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TwitterEngagementApi#getTweet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The social account ID whose X token is used for the lookup | |
+| **id** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) | |
+
+### Return type
+
+[**GetTweet200Response**](GetTweet200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The resolved tweet |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | X API spend cap reached for this billing period |  -  |
+| **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
+| **404** | Account not found, or the tweet was deleted or never existed |  -  |
+| **429** | X rate limit exceeded |  -  |
+
+## getTweetWithHttpInfo
+
+> ApiResponse<GetTweet200Response> getTweet getTweetWithHttpInfo(accountId, id)
+
+Look up a tweet
+
+Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
+        String accountId = "accountId_example"; // String | The social account ID whose X token is used for the lookup
+        String id = "id_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+        try {
+            ApiResponse<GetTweet200Response> response = apiInstance.getTweetWithHttpInfo(accountId, id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TwitterEngagementApi#getTweet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The social account ID whose X token is used for the lookup | |
+| **id** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) | |
+
+### Return type
+
+ApiResponse<[**GetTweet200Response**](GetTweet200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The resolved tweet |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | X API spend cap reached for this billing period |  -  |
+| **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
+| **404** | Account not found, or the tweet was deleted or never existed |  -  |
+| **429** | X rate limit exceeded |  -  |
 
 
 ## removeBookmark

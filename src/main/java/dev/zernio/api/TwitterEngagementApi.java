@@ -20,8 +20,10 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.BookmarkPost200Response;
 import dev.zernio.model.BookmarkPostRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.FollowUser200Response;
 import dev.zernio.model.FollowUserRequest;
+import dev.zernio.model.GetTweet200Response;
 import dev.zernio.model.InlineObject;
 import java.time.OffsetDateTime;
 import dev.zernio.model.RemoveBookmark200Response;
@@ -62,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T21:52:26.485869348Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T22:16:21.314020303Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterEngagementApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -414,6 +416,148 @@ public class TwitterEngagementApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Look up a tweet
+   * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
+   * @return GetTweet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetTweet200Response getTweet(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String id) throws ApiException {
+    return getTweet(accountId, id, null);
+  }
+
+  /**
+   * Look up a tweet
+   * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
+   * @param headers Optional headers to include in the request
+   * @return GetTweet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetTweet200Response getTweet(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetTweet200Response> localVarResponse = getTweetWithHttpInfo(accountId, id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Look up a tweet
+   * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
+   * @return ApiResponse&lt;GetTweet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetTweet200Response> getTweetWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String id) throws ApiException {
+    return getTweetWithHttpInfo(accountId, id, null);
+  }
+
+  /**
+   * Look up a tweet
+   * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetTweet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetTweet200Response> getTweetWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getTweetRequestBuilder(accountId, id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getTweet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetTweet200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetTweet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTweet200Response>() {});
+        
+
+        return new ApiResponse<GetTweet200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getTweetRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getTweet");
+    }
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getTweet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/twitter/tweet";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("id", id));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

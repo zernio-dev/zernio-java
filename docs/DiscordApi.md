@@ -1667,7 +1667,7 @@ ApiResponse<[**GetDiscordChannels200Response**](GetDiscordChannels200Response.md
 
 Get a Discord guild member
 
-Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
 
 ### Example
 
@@ -1744,7 +1744,7 @@ public class Example {
 
 Get a Discord guild member
 
-Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
 
 ### Example
 
@@ -2127,7 +2127,7 @@ ApiResponse<[**GetDiscordSettings200Response**](GetDiscordSettings200Response.md
 
 List Discord guild members
 
-Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
 
 ### Example
 
@@ -2198,7 +2198,7 @@ public class Example {
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Server Members Intent is not enabled on the Discord application. |  -  |
+| **403** | Discord denied access to the guild members (the bot is no longer in the guild). |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 ## listDiscordGuildMembersWithHttpInfo
@@ -2207,7 +2207,7 @@ public class Example {
 
 List Discord guild members
 
-Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
 
 ### Example
 
@@ -2281,7 +2281,7 @@ ApiResponse<[**ListDiscordGuildMembers200Response**](ListDiscordGuildMembers200R
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Server Members Intent is not enabled on the Discord application. |  -  |
+| **403** | Discord denied access to the guild members (the bot is no longer in the guild). |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 
@@ -3091,7 +3091,7 @@ ApiResponse<[**RemoveDiscordMemberRole200Response**](RemoveDiscordMemberRole200R
 
 Search Discord guild members
 
-Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
 
 ### Example
 
@@ -3170,7 +3170,7 @@ public class Example {
 
 Search Discord guild members
 
-Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
 
 ### Example
 

@@ -680,6 +680,8 @@ docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
+docs/GetTweet200Response.md
+docs/GetTweet200ResponseTweet.md
 docs/GetUsage200Response.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
@@ -2368,6 +2370,8 @@ src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner
 src/main/java/dev/zernio/model/GetTrackingTag200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200ResponseStats.java
+src/main/java/dev/zernio/model/GetTweet200Response.java
+src/main/java/dev/zernio/model/GetTweet200ResponseTweet.java
 src/main/java/dev/zernio/model/GetUsage200Response.java
 src/main/java/dev/zernio/model/GetUser200Response.java
 src/main/java/dev/zernio/model/GetUser200ResponseUser.java
@@ -3275,3 +3279,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetTweet200ResponseTest.java
+src/test/java/dev/zernio/model/GetTweet200ResponseTweetTest.java
