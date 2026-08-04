@@ -1602,6 +1602,7 @@ docs/WhatsAppHeaderComponent.md
 docs/WhatsAppHeaderComponentExample.md
 docs/WhatsAppLimitedTimeOfferComponent.md
 docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md
+docs/WhatsAppNamedParamExample.md
 docs/WhatsAppPhoneNumbersApi.md
 docs/WhatsAppSandboxApi.md
 docs/WhatsAppSandboxSession.md
@@ -3250,6 +3251,7 @@ src/main/java/dev/zernio/model/WhatsAppHeaderComponent.java
 src/main/java/dev/zernio/model/WhatsAppHeaderComponentExample.java
 src/main/java/dev/zernio/model/WhatsAppLimitedTimeOfferComponent.java
 src/main/java/dev/zernio/model/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.java
+src/main/java/dev/zernio/model/WhatsAppNamedParamExample.java
 src/main/java/dev/zernio/model/WhatsAppSandboxSession.java
 src/main/java/dev/zernio/model/WhatsAppTemplateButton.java
 src/main/java/dev/zernio/model/WhatsAppTemplateComponent.java
@@ -3273,3 +3275,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WhatsAppNamedParamExampleTest.java

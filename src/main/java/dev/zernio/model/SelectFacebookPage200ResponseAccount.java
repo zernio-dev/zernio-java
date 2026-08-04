@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SelectFacebookPage200ResponseAccount.JSON_PROPERTY_IS_ACTIVE,
   SelectFacebookPage200ResponseAccount.JSON_PROPERTY_SELECTED_PAGE_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:32:29.302287833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectFacebookPage200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

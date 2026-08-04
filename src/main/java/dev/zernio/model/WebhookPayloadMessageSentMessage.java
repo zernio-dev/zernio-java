@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_IS_READ,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:32:29.302287833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

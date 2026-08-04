@@ -41,12 +41,13 @@ import dev.zernio.ApiClient;
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_NAME,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_CATEGORY,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LANGUAGE,
+  CreateWhatsAppTemplateRequest.JSON_PROPERTY_PARAMETER_FORMAT,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_COMPONENTS,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_NAME,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BODY_INPUTS,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BUTTON_INPUTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:32:29.302287833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -100,6 +101,49 @@ public class CreateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   @javax.annotation.Nonnull
   private String language;
+
+  /**
+   * Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present.
+   */
+  public enum ParameterFormatEnum {
+    POSITIONAL(String.valueOf("POSITIONAL")),
+    
+    NAMED(String.valueOf("NAMED")),
+    
+    POSITIONAL2(String.valueOf("positional")),
+    
+    NAMED2(String.valueOf("named"));
+
+    private String value;
+
+    ParameterFormatEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ParameterFormatEnum fromValue(String value) {
+      for (ParameterFormatEnum b : ParameterFormatEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PARAMETER_FORMAT = "parameter_format";
+  @javax.annotation.Nullable
+  private ParameterFormatEnum parameterFormat;
 
   public static final String JSON_PROPERTY_COMPONENTS = "components";
   @javax.annotation.Nullable
@@ -213,6 +257,30 @@ public class CreateWhatsAppTemplateRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLanguage(@javax.annotation.Nonnull String language) {
     this.language = language;
+  }
+
+
+  public CreateWhatsAppTemplateRequest parameterFormat(@javax.annotation.Nullable ParameterFormatEnum parameterFormat) {
+    this.parameterFormat = parameterFormat;
+    return this;
+  }
+
+  /**
+   * Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present.
+   * @return parameterFormat
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARAMETER_FORMAT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ParameterFormatEnum getParameterFormat() {
+    return parameterFormat;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARAMETER_FORMAT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParameterFormat(@javax.annotation.Nullable ParameterFormatEnum parameterFormat) {
+    this.parameterFormat = parameterFormat;
   }
 
 
@@ -344,6 +412,7 @@ public class CreateWhatsAppTemplateRequest {
         Objects.equals(this.name, createWhatsAppTemplateRequest.name) &&
         Objects.equals(this.category, createWhatsAppTemplateRequest.category) &&
         Objects.equals(this.language, createWhatsAppTemplateRequest.language) &&
+        Objects.equals(this.parameterFormat, createWhatsAppTemplateRequest.parameterFormat) &&
         Objects.equals(this.components, createWhatsAppTemplateRequest.components) &&
         Objects.equals(this.libraryTemplateName, createWhatsAppTemplateRequest.libraryTemplateName) &&
         Objects.equals(this.libraryTemplateBodyInputs, createWhatsAppTemplateRequest.libraryTemplateBodyInputs) &&
@@ -352,7 +421,7 @@ public class CreateWhatsAppTemplateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, name, category, language, components, libraryTemplateName, libraryTemplateBodyInputs, libraryTemplateButtonInputs);
+    return Objects.hash(accountId, name, category, language, parameterFormat, components, libraryTemplateName, libraryTemplateBodyInputs, libraryTemplateButtonInputs);
   }
 
   @Override
@@ -363,6 +432,7 @@ public class CreateWhatsAppTemplateRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    parameterFormat: ").append(toIndentedString(parameterFormat)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
     sb.append("    libraryTemplateName: ").append(toIndentedString(libraryTemplateName)).append("\n");
     sb.append("    libraryTemplateBodyInputs: ").append(toIndentedString(libraryTemplateBodyInputs)).append("\n");
@@ -432,6 +502,11 @@ public class CreateWhatsAppTemplateRequest {
     // add `language` to the URL query string
     if (getLanguage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLanguage()))));
+    }
+
+    // add `parameter_format` to the URL query string
+    if (getParameterFormat() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sparameter_format%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParameterFormat()))));
     }
 
     // add `components` to the URL query string

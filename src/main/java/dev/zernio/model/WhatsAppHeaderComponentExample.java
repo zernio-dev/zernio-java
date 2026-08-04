@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WhatsAppNamedParamExample;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,13 +38,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_TEXT,
+  WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_TEXT_NAMED_PARAMS,
   WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:32:29.302287833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppHeaderComponentExample {
   public static final String JSON_PROPERTY_HEADER_TEXT = "header_text";
   @javax.annotation.Nullable
   private List<String> headerText = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HEADER_TEXT_NAMED_PARAMS = "header_text_named_params";
+  @javax.annotation.Nullable
+  private List<WhatsAppNamedParamExample> headerTextNamedParams = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HEADER_HANDLE = "header_handle";
   @javax.annotation.Nullable
@@ -81,6 +87,38 @@ public class WhatsAppHeaderComponentExample {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHeaderText(@javax.annotation.Nullable List<String> headerText) {
     this.headerText = headerText;
+  }
+
+
+  public WhatsAppHeaderComponentExample headerTextNamedParams(@javax.annotation.Nullable List<WhatsAppNamedParamExample> headerTextNamedParams) {
+    this.headerTextNamedParams = headerTextNamedParams;
+    return this;
+  }
+
+  public WhatsAppHeaderComponentExample addHeaderTextNamedParamsItem(WhatsAppNamedParamExample headerTextNamedParamsItem) {
+    if (this.headerTextNamedParams == null) {
+      this.headerTextNamedParams = new ArrayList<>();
+    }
+    this.headerTextNamedParams.add(headerTextNamedParamsItem);
+    return this;
+  }
+
+  /**
+   * Sample values for NAMED header variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED).
+   * @return headerTextNamedParams
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADER_TEXT_NAMED_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<WhatsAppNamedParamExample> getHeaderTextNamedParams() {
+    return headerTextNamedParams;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADER_TEXT_NAMED_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeaderTextNamedParams(@javax.annotation.Nullable List<WhatsAppNamedParamExample> headerTextNamedParams) {
+    this.headerTextNamedParams = headerTextNamedParams;
   }
 
 
@@ -129,12 +167,13 @@ public class WhatsAppHeaderComponentExample {
     }
     WhatsAppHeaderComponentExample whatsAppHeaderComponentExample = (WhatsAppHeaderComponentExample) o;
     return Objects.equals(this.headerText, whatsAppHeaderComponentExample.headerText) &&
+        Objects.equals(this.headerTextNamedParams, whatsAppHeaderComponentExample.headerTextNamedParams) &&
         Objects.equals(this.headerHandle, whatsAppHeaderComponentExample.headerHandle);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headerText, headerHandle);
+    return Objects.hash(headerText, headerTextNamedParams, headerHandle);
   }
 
   @Override
@@ -142,6 +181,7 @@ public class WhatsAppHeaderComponentExample {
     StringBuilder sb = new StringBuilder();
     sb.append("class WhatsAppHeaderComponentExample {\n");
     sb.append("    headerText: ").append(toIndentedString(headerText)).append("\n");
+    sb.append("    headerTextNamedParams: ").append(toIndentedString(headerTextNamedParams)).append("\n");
     sb.append("    headerHandle: ").append(toIndentedString(headerHandle)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -196,6 +236,16 @@ public class WhatsAppHeaderComponentExample {
         joiner.add(String.format(java.util.Locale.ROOT, "%sheader_text%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getHeaderText().get(i)))));
+      }
+    }
+
+    // add `header_text_named_params` to the URL query string
+    if (getHeaderTextNamedParams() != null) {
+      for (int i = 0; i < getHeaderTextNamedParams().size(); i++) {
+        if (getHeaderTextNamedParams().get(i) != null) {
+          joiner.add(getHeaderTextNamedParams().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sheader_text_named_params%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

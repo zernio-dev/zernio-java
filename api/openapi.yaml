@@ -33319,6 +33319,19 @@ components:
       required:
       - text
       - type
+    WhatsAppNamedParamExample:
+      properties:
+        param_name:
+          description: "Variable name as it appears in the text, without braces (e.g.\
+            \ customer_name for {{customer_name}})."
+          pattern: "^[a-z0-9_]+$"
+          type: string
+        example:
+          description: Sample value for this variable.
+          type: string
+      required:
+      - example
+      - param_name
     WhatsAppFooterComponent:
       properties:
         type:
@@ -58235,6 +58248,16 @@ components:
         language:
           description: "Template language code (e.g., en_US)"
           type: string
+        parameter_format:
+          description: "Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}).\
+            \ Named templates provide examples via body_text_named_params / header_text_named_params.\
+            \ Inferred as NAMED when omitted but a named-params example is present."
+          enum:
+          - POSITIONAL
+          - NAMED
+          - positional
+          - named
+          type: string
         components:
           description: "Template components (header, body, footer, buttons, carousel,\
             \ limited_time_offer). Required for custom templates, omit when using\
@@ -77955,6 +77978,12 @@ components:
           items:
             type: string
           type: array
+        header_text_named_params:
+          description: "Sample values for NAMED header variables (templates using\
+            \ {{customer_name}}-style tokens with parameter_format: NAMED)."
+          items:
+            $ref: "#/components/schemas/WhatsAppNamedParamExample"
+          type: array
         header_handle:
           description: "When the header format is a media type (image, video, gif,\
             \ document), provide a public URL here. Zernio will download and upload\
@@ -77974,6 +78003,12 @@ components:
             items:
               type: string
             type: array
+          type: array
+        body_text_named_params:
+          description: "Sample values for NAMED body variables (templates using {{customer_name}}-style\
+            \ tokens with parameter_format: NAMED)."
+          items:
+            $ref: "#/components/schemas/WhatsAppNamedParamExample"
           type: array
     WhatsAppCarouselComponent_cards_inner:
       properties:

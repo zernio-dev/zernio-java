@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WhatsAppNamedParamExample;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,13 +36,18 @@ import dev.zernio.ApiClient;
  * WhatsAppBodyComponentExample
  */
 @JsonPropertyOrder({
-  WhatsAppBodyComponentExample.JSON_PROPERTY_BODY_TEXT
+  WhatsAppBodyComponentExample.JSON_PROPERTY_BODY_TEXT,
+  WhatsAppBodyComponentExample.JSON_PROPERTY_BODY_TEXT_NAMED_PARAMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:32:29.302287833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppBodyComponentExample {
   public static final String JSON_PROPERTY_BODY_TEXT = "body_text";
   @javax.annotation.Nullable
   private List<List<String>> bodyText = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BODY_TEXT_NAMED_PARAMS = "body_text_named_params";
+  @javax.annotation.Nullable
+  private List<WhatsAppNamedParamExample> bodyTextNamedParams = new ArrayList<>();
 
   public WhatsAppBodyComponentExample() { 
   }
@@ -78,6 +84,38 @@ public class WhatsAppBodyComponentExample {
   }
 
 
+  public WhatsAppBodyComponentExample bodyTextNamedParams(@javax.annotation.Nullable List<WhatsAppNamedParamExample> bodyTextNamedParams) {
+    this.bodyTextNamedParams = bodyTextNamedParams;
+    return this;
+  }
+
+  public WhatsAppBodyComponentExample addBodyTextNamedParamsItem(WhatsAppNamedParamExample bodyTextNamedParamsItem) {
+    if (this.bodyTextNamedParams == null) {
+      this.bodyTextNamedParams = new ArrayList<>();
+    }
+    this.bodyTextNamedParams.add(bodyTextNamedParamsItem);
+    return this;
+  }
+
+  /**
+   * Sample values for NAMED body variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED).
+   * @return bodyTextNamedParams
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODY_TEXT_NAMED_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<WhatsAppNamedParamExample> getBodyTextNamedParams() {
+    return bodyTextNamedParams;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BODY_TEXT_NAMED_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBodyTextNamedParams(@javax.annotation.Nullable List<WhatsAppNamedParamExample> bodyTextNamedParams) {
+    this.bodyTextNamedParams = bodyTextNamedParams;
+  }
+
+
   /**
    * Return true if this WhatsAppBodyComponent_example object is equal to o.
    */
@@ -90,12 +128,13 @@ public class WhatsAppBodyComponentExample {
       return false;
     }
     WhatsAppBodyComponentExample whatsAppBodyComponentExample = (WhatsAppBodyComponentExample) o;
-    return Objects.equals(this.bodyText, whatsAppBodyComponentExample.bodyText);
+    return Objects.equals(this.bodyText, whatsAppBodyComponentExample.bodyText) &&
+        Objects.equals(this.bodyTextNamedParams, whatsAppBodyComponentExample.bodyTextNamedParams);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bodyText);
+    return Objects.hash(bodyText, bodyTextNamedParams);
   }
 
   @Override
@@ -103,6 +142,7 @@ public class WhatsAppBodyComponentExample {
     StringBuilder sb = new StringBuilder();
     sb.append("class WhatsAppBodyComponentExample {\n");
     sb.append("    bodyText: ").append(toIndentedString(bodyText)).append("\n");
+    sb.append("    bodyTextNamedParams: ").append(toIndentedString(bodyTextNamedParams)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,6 +196,16 @@ public class WhatsAppBodyComponentExample {
         joiner.add(String.format(java.util.Locale.ROOT, "%sbody_text%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getBodyText().get(i)))));
+      }
+    }
+
+    // add `body_text_named_params` to the URL query string
+    if (getBodyTextNamedParams() != null) {
+      for (int i = 0; i < getBodyTextNamedParams().size(); i++) {
+        if (getBodyTextNamedParams().get(i) != null) {
+          joiner.add(getBodyTextNamedParams().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbody_text_named_params%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

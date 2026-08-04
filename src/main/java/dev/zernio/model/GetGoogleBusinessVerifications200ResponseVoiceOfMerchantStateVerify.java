@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.JSON_PROPERTY_HAS_PENDING_VERIFICATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:32:29.302287833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify {
   public static final String JSON_PROPERTY_HAS_PENDING_VERIFICATION = "hasPendingVerification";
   @javax.annotation.Nullable

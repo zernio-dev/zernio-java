@@ -11,6 +11,7 @@
 |**name** | **String** | Template name (lowercase, letters/numbers/underscores, must start with a letter) |  |
 |**category** | [**CategoryEnum**](#CategoryEnum) | Template category |  |
 |**language** | **String** | Template language code (e.g., en_US) |  |
+|**parameterFormat** | [**ParameterFormatEnum**](#ParameterFormatEnum) | Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present. |  [optional] |
 |**components** | [**List&lt;WhatsAppTemplateComponent&gt;**](WhatsAppTemplateComponent.md) | Template components (header, body, footer, buttons, carousel, limited_time_offer). Required for custom templates, omit when using library_template_name. |  [optional] |
 |**libraryTemplateName** | **String** | Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit components when using this field.  |  [optional] |
 |**libraryTemplateBodyInputs** | **Object** | Optional body customizations for library templates. Available options depend on the template (e.g., add_contact_number, add_learn_more_link, add_security_recommendation, add_track_package_link, code_expiration_minutes).  |  [optional] |
@@ -25,6 +26,17 @@
 | AUTHENTICATION | &quot;AUTHENTICATION&quot; |
 | MARKETING | &quot;MARKETING&quot; |
 | UTILITY | &quot;UTILITY&quot; |
+
+
+
+## Enum: ParameterFormatEnum
+
+| Name | Value |
+|---- | -----|
+| POSITIONAL | &quot;POSITIONAL&quot; |
+| NAMED | &quot;NAMED&quot; |
+| POSITIONAL2 | &quot;positional&quot; |
+| NAMED2 | &quot;named&quot; |
 
 
 
