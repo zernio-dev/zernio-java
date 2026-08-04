@@ -61,11 +61,10 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:58:03.226963559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nullable
-  private String thumbnailUrl;
+  private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
@@ -142,7 +141,7 @@ public class AdCreative {
   }
 
   public AdCreative thumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
-    this.thumbnailUrl = thumbnailUrl;
+    this.thumbnailUrl = JsonNullable.<String>of(thumbnailUrl);
     return this;
   }
 
@@ -151,17 +150,25 @@ public class AdCreative {
    * @return thumbnailUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getThumbnailUrl() {
-    return thumbnailUrl;
+        return thumbnailUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
+
+  public JsonNullable<String> getThumbnailUrl_JsonNullable() {
+    return thumbnailUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_URL)
+  public void setThumbnailUrl_JsonNullable(JsonNullable<String> thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
+  }
+
+  public void setThumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
+    this.thumbnailUrl = JsonNullable.<String>of(thumbnailUrl);
   }
 
 
@@ -745,7 +752,7 @@ public class AdCreative {
       return false;
     }
     AdCreative adCreative = (AdCreative) o;
-    return Objects.equals(this.thumbnailUrl, adCreative.thumbnailUrl) &&
+    return equalsNullable(this.thumbnailUrl, adCreative.thumbnailUrl) &&
         Objects.equals(this.imageUrl, adCreative.imageUrl) &&
         equalsNullable(this.videoId, adCreative.videoId) &&
         equalsNullable(this.videoUrl, adCreative.videoUrl) &&
@@ -774,7 +781,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(thumbnailUrl, imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DiscordPlatformDataThreadFromMessage.JSON_PROPERTY_AUTO_ARCHIVE_DURATION,
   DiscordPlatformDataThreadFromMessage.JSON_PROPERTY_RATE_LIMIT_PER_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:58:03.226963559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T14:09:49.149169737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordPlatformDataThreadFromMessage {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

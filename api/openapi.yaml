@@ -81951,6 +81951,7 @@ components:
       properties:
         thumbnailUrl:
           description: Primary thumbnail/image URL
+          nullable: true
           type: string
         imageUrl:
           description: Alternative image URL
