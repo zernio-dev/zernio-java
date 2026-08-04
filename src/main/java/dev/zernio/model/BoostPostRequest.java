@@ -69,7 +69,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:48:06.603570440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:58:03.226963559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -508,7 +508,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * Meta only. A Meta-native targeting spec (e.g. &#x60;{ \&quot;geo_locations\&quot;: { \&quot;cities\&quot;: [{ \&quot;key\&quot;: \&quot;...\&quot;, \&quot;radius\&quot;: 15, \&quot;distance_unit\&quot;: \&quot;kilometer\&quot; }] } }&#x60;). Sent alone it is forwarded unchanged. Use for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places, user_os, wireless_carrier).  Can be combined with &#x60;targeting&#x60;: rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key (camelCase wins on collision). The merge goes one level deep inside &#x60;geo_locations&#x60; and &#x60;excluded_geo_locations&#x60; (built sub-keys win; raw-only sub-keys such as &#x60;location_types&#x60; survive). Array values (&#x60;flexible_spec&#x60;, ...) are replaced as a whole key, never element-merged. 
+   * Meta only. A Meta-native targeting spec (e.g. &#x60;{ \&quot;geo_locations\&quot;: { \&quot;cities\&quot;: [{ \&quot;key\&quot;: \&quot;...\&quot;, \&quot;radius\&quot;: 15, \&quot;distance_unit\&quot;: \&quot;kilometer\&quot; }] } }&#x60;). Sent alone it is forwarded unchanged. Use for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places, user_os, wireless_carrier).  Can be combined with &#x60;targeting&#x60;: rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key (camelCase wins on collision). The merge goes one level deep inside &#x60;geo_locations&#x60; and &#x60;excluded_geo_locations&#x60; (built sub-keys win; raw-only sub-keys such as &#x60;location_types&#x60; survive). Array values (&#x60;flexible_spec&#x60;, ...) are replaced as a whole key, never element-merged.  When &#x60;rawTargeting&#x60; is present the &#x60;advantage_audience: 0&#x60; default that Zernio normally applies is no longer emitted, so it cannot clobber a &#x60;targeting_automation&#x60; sent in the raw spec. Meta requires &#x60;targeting_automation&#x60; on ad set creation, so include it in the raw spec, or send &#x60;targeting.advantage_audience&#x60; (0 or 1), which is merged over raw as &#x60;targeting_automation&#x60;. 
    * @return rawTargeting
    */
   @javax.annotation.Nullable

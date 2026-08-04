@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   DiscordPlatformDataPollAnswersInner.JSON_PROPERTY_POLL_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:48:06.603570440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:58:03.226963559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordPlatformDataPollAnswersInner {
   public static final String JSON_PROPERTY_POLL_MEDIA = "poll_media";
   @javax.annotation.Nullable
