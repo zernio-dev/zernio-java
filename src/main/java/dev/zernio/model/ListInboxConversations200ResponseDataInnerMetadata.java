@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInnerMetadata.JSON_PROPERTY_META_AD_FLOW_ID,
   ListInboxConversations200ResponseDataInnerMetadata.JSON_PROPERTY_META_AD_CAPTURED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T21:47:41.654092531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T21:52:26.485869348Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInnerMetadata {
   public static final String JSON_PROPERTY_CTWA_CLID = "ctwa_clid";
   @javax.annotation.Nullable
