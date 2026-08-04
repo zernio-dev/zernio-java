@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_BILLABLE_COST_U_S_D,
   WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_TOTAL_COST_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-03T19:02:24.350912545Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T11:48:06.603570440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallEndedCallBilling {
   public static final String JSON_PROPERTY_META_COST_U_S_D = "metaCostUSD";
   @javax.annotation.Nullable
