@@ -245,6 +245,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+| **422** | Meta rejected the lead form with error code 3. The Facebook Page normally needs a Page admin to accept the Lead Ads Terms of Service. |  -  |
 
 ## createLeadFormWithHttpInfo
 
@@ -321,6 +322,7 @@ ApiResponse<[**CreateLeadForm200Response**](CreateLeadForm200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+| **422** | Meta rejected the lead form with error code 3. The Facebook Page normally needs a Page admin to accept the Lead Ads Terms of Service. |  -  |
 
 
 ## createTestLead

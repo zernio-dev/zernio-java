@@ -3256,7 +3256,8 @@ null (empty response body)
 | **400** | Invalid params |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | BYOK required for AppSumo Twitter |  -  |
-| **500** | Failed to connect account |  -  |
+| **500** | Internal error while connecting the account |  -  |
+| **502** | The platform rejected the token exchange (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
 
 ## handleOAuthCallbackWithHttpInfo
 
@@ -3334,7 +3335,8 @@ ApiResponse<Void>
 | **400** | Invalid params |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | BYOK required for AppSumo Twitter |  -  |
-| **500** | Failed to connect account |  -  |
+| **500** | Internal error while connecting the account |  -  |
+| **502** | The platform rejected the token exchange (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
 
 
 ## initiateTelegramConnect
