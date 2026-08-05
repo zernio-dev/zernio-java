@@ -943,6 +943,8 @@ docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
+docs/ListSlackMembers200Response.md
+docs/ListSlackMembers200ResponseMembersInner.md
 docs/ListSmsOptOuts200Response.md
 docs/ListSmsOptOuts200ResponseOptOutsInner.md
 docs/ListSmsRegistrations200Response.md
@@ -1264,6 +1266,7 @@ docs/SetWhatsappBusinessUsernameRequest.md
 docs/ShareSmsRegistration200Response.md
 docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
+docs/SlackApi.md
 docs/SlackPlatformData.md
 docs/SmsApi.md
 docs/SnapchatPlatformData.md
@@ -1710,6 +1713,7 @@ src/main/java/dev/zernio/api/ReachAndFrequencyApi.java
 src/main/java/dev/zernio/api/RedditSearchApi.java
 src/main/java/dev/zernio/api/ReviewsApi.java
 src/main/java/dev/zernio/api/SequencesApi.java
+src/main/java/dev/zernio/api/SlackApi.java
 src/main/java/dev/zernio/api/SmsApi.java
 src/main/java/dev/zernio/api/TrackingTagsApi.java
 src/main/java/dev/zernio/api/TwitterEngagementApi.java
@@ -2632,6 +2636,8 @@ src/main/java/dev/zernio/model/ListSequenceEnrollments200Response.java
 src/main/java/dev/zernio/model/ListSequenceEnrollments200ResponseEnrollmentsInner.java
 src/main/java/dev/zernio/model/ListSequences200Response.java
 src/main/java/dev/zernio/model/ListSequences200ResponseSequencesInner.java
+src/main/java/dev/zernio/model/ListSlackMembers200Response.java
+src/main/java/dev/zernio/model/ListSlackMembers200ResponseMembersInner.java
 src/main/java/dev/zernio/model/ListSmsOptOuts200Response.java
 src/main/java/dev/zernio/model/ListSmsOptOuts200ResponseOptOutsInner.java
 src/main/java/dev/zernio/model/ListSmsRegistrations200Response.java
@@ -3303,3 +3309,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/SlackApiTest.java
+src/test/java/dev/zernio/model/ListSlackMembers200ResponseMembersInnerTest.java
+src/test/java/dev/zernio/model/ListSlackMembers200ResponseTest.java

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-05T10:56:08.655736404Z[Etc/UTC]
+- Build date: 2026-08-05T10:59:09.955360561Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -854,6 +854,8 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**unenrollContactWithHttpInfo**](docs/SequencesApi.md#unenrollContactWithHttpInfo) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll contact
 *SequencesApi* | [**updateSequence**](docs/SequencesApi.md#updateSequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SequencesApi* | [**updateSequenceWithHttpInfo**](docs/SequencesApi.md#updateSequenceWithHttpInfo) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
+*SlackApi* | [**listSlackMembers**](docs/SlackApi.md#listSlackMembers) | **GET** /v1/accounts/{accountId}/slack-members | List Slack workspace members
+*SlackApi* | [**listSlackMembersWithHttpInfo**](docs/SlackApi.md#listSlackMembersWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-members | List Slack workspace members
 *SmsApi* | [**appealSmsRegistration**](docs/SmsApi.md#appealSmsRegistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
 *SmsApi* | [**appealSmsRegistrationWithHttpInfo**](docs/SmsApi.md#appealSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
 *SmsApi* | [**createSmsSenderId**](docs/SmsApi.md#createSmsSenderId) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID
@@ -2100,6 +2102,8 @@ Class | Method | HTTP request | Description
  - [ListSequenceEnrollments200ResponseEnrollmentsInner](docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md)
  - [ListSequences200Response](docs/ListSequences200Response.md)
  - [ListSequences200ResponseSequencesInner](docs/ListSequences200ResponseSequencesInner.md)
+ - [ListSlackMembers200Response](docs/ListSlackMembers200Response.md)
+ - [ListSlackMembers200ResponseMembersInner](docs/ListSlackMembers200ResponseMembersInner.md)
  - [ListSmsOptOuts200Response](docs/ListSmsOptOuts200Response.md)
  - [ListSmsOptOuts200ResponseOptOutsInner](docs/ListSmsOptOuts200ResponseOptOutsInner.md)
  - [ListSmsRegistrations200Response](docs/ListSmsRegistrations200Response.md)
