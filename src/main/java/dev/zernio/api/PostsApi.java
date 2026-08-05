@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T12:55:17.221702532Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T13:59:04.619715283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -867,8 +867,8 @@ public class PostsApi {
    * @param platform  (optional)
    * @param profileId Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)
    * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
-   * @param dateFrom  (optional)
-   * @param dateTo  (optional)
+   * @param dateFrom Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
+   * @param dateTo Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
    * @param includeHidden  (optional, default to false)
    * @param search Search posts by text content. (optional)
    * @param sortBy Sort order for results. (optional, default to scheduled-desc)
@@ -890,8 +890,8 @@ public class PostsApi {
    * @param platform  (optional)
    * @param profileId Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)
    * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
-   * @param dateFrom  (optional)
-   * @param dateTo  (optional)
+   * @param dateFrom Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
+   * @param dateTo Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
    * @param includeHidden  (optional, default to false)
    * @param search Search posts by text content. (optional)
    * @param sortBy Sort order for results. (optional, default to scheduled-desc)
@@ -915,8 +915,8 @@ public class PostsApi {
    * @param platform  (optional)
    * @param profileId Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)
    * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
-   * @param dateFrom  (optional)
-   * @param dateTo  (optional)
+   * @param dateFrom Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
+   * @param dateTo Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
    * @param includeHidden  (optional, default to false)
    * @param search Search posts by text content. (optional)
    * @param sortBy Sort order for results. (optional, default to scheduled-desc)
@@ -938,8 +938,8 @@ public class PostsApi {
    * @param platform  (optional)
    * @param profileId Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)
    * @param createdBy Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)
-   * @param dateFrom  (optional)
-   * @param dateTo  (optional)
+   * @param dateFrom Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
+   * @param dateTo Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)
    * @param includeHidden  (optional, default to false)
    * @param search Search posts by text content. (optional)
    * @param sortBy Sort order for results. (optional, default to scheduled-desc)

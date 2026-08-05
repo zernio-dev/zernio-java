@@ -843,8 +843,8 @@ public class Example {
         String platform = "twitter"; // String | 
         String profileId = "profileId_example"; // String | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send `all` or an empty value, to list posts across every profile.
         String createdBy = "createdBy_example"; // String | Filter posts to those created by a specific team user (24-char hex ObjectId).
-        LocalDate dateFrom = LocalDate.now(); // LocalDate | 
-        LocalDate dateTo = LocalDate.now(); // LocalDate | 
+        LocalDate dateFrom = LocalDate.now(); // LocalDate | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400.
+        LocalDate dateTo = LocalDate.now(); // LocalDate | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400.
         Boolean includeHidden = false; // Boolean | 
         String search = "search_example"; // String | Search posts by text content.
         String sortBy = "scheduled-desc"; // String | Sort order for results.
@@ -875,8 +875,8 @@ public class Example {
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**| Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional] |
 | **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
-| **dateFrom** | **LocalDate**|  | [optional] |
-| **dateTo** | **LocalDate**|  | [optional] |
+| **dateFrom** | **LocalDate**| Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional] |
+| **dateTo** | **LocalDate**| Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional] |
 | **includeHidden** | **Boolean**|  | [optional] [default to false] |
 | **search** | **String**| Search posts by text content. | [optional] |
 | **sortBy** | **String**| Sort order for results. | [optional] [default to scheduled-desc] [enum: scheduled-desc, scheduled-asc, created-desc, created-asc, status, platform] |
@@ -940,8 +940,8 @@ public class Example {
         String platform = "twitter"; // String | 
         String profileId = "profileId_example"; // String | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send `all` or an empty value, to list posts across every profile.
         String createdBy = "createdBy_example"; // String | Filter posts to those created by a specific team user (24-char hex ObjectId).
-        LocalDate dateFrom = LocalDate.now(); // LocalDate | 
-        LocalDate dateTo = LocalDate.now(); // LocalDate | 
+        LocalDate dateFrom = LocalDate.now(); // LocalDate | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400.
+        LocalDate dateTo = LocalDate.now(); // LocalDate | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400.
         Boolean includeHidden = false; // Boolean | 
         String search = "search_example"; // String | Search posts by text content.
         String sortBy = "scheduled-desc"; // String | Sort order for results.
@@ -974,8 +974,8 @@ public class Example {
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**| Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional] |
 | **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
-| **dateFrom** | **LocalDate**|  | [optional] |
-| **dateTo** | **LocalDate**|  | [optional] |
+| **dateFrom** | **LocalDate**| Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional] |
+| **dateTo** | **LocalDate**| Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional] |
 | **includeHidden** | **Boolean**|  | [optional] [default to false] |
 | **search** | **String**| Search posts by text content. | [optional] |
 | **sortBy** | **String**| Sort order for results. | [optional] [default to scheduled-desc] [enum: scheduled-desc, scheduled-asc, created-desc, created-asc, status, platform] |
