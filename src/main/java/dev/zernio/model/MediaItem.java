@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   MediaItem.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
   MediaItem.JSON_PROPERTY_TIKTOK_PROCESSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:47:04.724765058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T12:55:17.221702532Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MediaItem {
   /**
    * Gets or Sets type
@@ -303,7 +303,7 @@ public class MediaItem {
   }
 
   /**
-   * Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended.
+   * Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, regular video uploads, and LinkedIn video posts. Max 10MB, JPG/PNG recommended.
    * @return thumbnail
    */
   @javax.annotation.Nullable

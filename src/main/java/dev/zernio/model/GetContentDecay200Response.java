@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetContentDecay200Response.JSON_PROPERTY_BUCKETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:47:04.724765058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T12:55:17.221702532Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetContentDecay200Response {
   public static final String JSON_PROPERTY_BUCKETS = "buckets";
   @javax.annotation.Nullable

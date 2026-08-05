@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PostRetryResponse.JSON_PROPERTY_MESSAGE,
   PostRetryResponse.JSON_PROPERTY_POST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:47:04.724765058Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T12:55:17.221702532Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostRetryResponse {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

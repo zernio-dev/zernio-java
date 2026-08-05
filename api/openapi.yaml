@@ -37371,8 +37371,8 @@ components:
           type: string
         thumbnail:
           description: "Optional custom thumbnail/cover image URL for videos. Supported\
-            \ for Facebook video posts, Facebook Reels, and regular video uploads.\
-            \ Max 10MB, JPG/PNG recommended."
+            \ for Facebook video posts, Facebook Reels, regular video uploads, and\
+            \ LinkedIn video posts. Max 10MB, JPG/PNG recommended."
           format: uri
           type: string
         instagramThumbnail:
