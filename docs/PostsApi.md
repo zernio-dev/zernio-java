@@ -1327,7 +1327,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 
 Update post
 
-Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
+Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft.  Non-draft updates run the same per-platform validation as post creation (media requirements, platform-specific field rules, etc.) against the resulting platforms, returning 400 on failure. 
 
 ### Example
 
@@ -1404,7 +1404,7 @@ public class Example {
 
 Update post
 
-Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
+Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft.  Non-draft updates run the same per-platform validation as post creation (media requirements, platform-specific field rules, etc.) against the resulting platforms, returning 400 on failure. 
 
 ### Example
 

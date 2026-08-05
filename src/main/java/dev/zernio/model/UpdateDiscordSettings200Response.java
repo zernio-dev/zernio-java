@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateDiscordSettings200Response.JSON_PROPERTY_MESSAGE,
   UpdateDiscordSettings200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T14:47:02.754337853Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T15:06:40.689432085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateDiscordSettings200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

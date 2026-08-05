@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.Post;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,9 +37,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   PostUpdateResponse.JSON_PROPERTY_MESSAGE,
-  PostUpdateResponse.JSON_PROPERTY_POST
+  PostUpdateResponse.JSON_PROPERTY_POST,
+  PostUpdateResponse.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T14:47:02.754337853Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T15:06:40.689432085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostUpdateResponse {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -46,6 +49,10 @@ public class PostUpdateResponse {
   public static final String JSON_PROPERTY_POST = "post";
   @javax.annotation.Nullable
   private Post post;
+
+  public static final String JSON_PROPERTY_WARNINGS = "warnings";
+  @javax.annotation.Nullable
+  private List<String> warnings = new ArrayList<>();
 
   public PostUpdateResponse() { 
   }
@@ -98,6 +105,38 @@ public class PostUpdateResponse {
   }
 
 
+  public PostUpdateResponse warnings(@javax.annotation.Nullable List<String> warnings) {
+    this.warnings = warnings;
+    return this;
+  }
+
+  public PostUpdateResponse addWarningsItem(String warningsItem) {
+    if (this.warnings == null) {
+      this.warnings = new ArrayList<>();
+    }
+    this.warnings.add(warningsItem);
+    return this;
+  }
+
+  /**
+   * Get warnings
+   * @return warnings
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getWarnings() {
+    return warnings;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWarnings(@javax.annotation.Nullable List<String> warnings) {
+    this.warnings = warnings;
+  }
+
+
   /**
    * Return true if this PostUpdateResponse object is equal to o.
    */
@@ -111,12 +150,13 @@ public class PostUpdateResponse {
     }
     PostUpdateResponse postUpdateResponse = (PostUpdateResponse) o;
     return Objects.equals(this.message, postUpdateResponse.message) &&
-        Objects.equals(this.post, postUpdateResponse.post);
+        Objects.equals(this.post, postUpdateResponse.post) &&
+        Objects.equals(this.warnings, postUpdateResponse.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, post);
+    return Objects.hash(message, post, warnings);
   }
 
   @Override
@@ -125,6 +165,7 @@ public class PostUpdateResponse {
     sb.append("class PostUpdateResponse {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    post: ").append(toIndentedString(post)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -180,6 +221,15 @@ public class PostUpdateResponse {
     // add `post` to the URL query string
     if (getPost() != null) {
       joiner.add(getPost().toUrlQueryString(prefix + "post" + suffix));
+    }
+
+    // add `warnings` to the URL query string
+    if (getWarnings() != null) {
+      for (int i = 0; i < getWarnings().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%swarnings%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getWarnings().get(i)))));
+      }
     }
 
     return joiner.toString();

@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**message** | **String** |  |  [optional] |
 |**post** | [**Post**](Post.md) |  |  [optional] |
+|**warnings** | **List&lt;String&gt;** |  |  [optional] |
 
 
 
