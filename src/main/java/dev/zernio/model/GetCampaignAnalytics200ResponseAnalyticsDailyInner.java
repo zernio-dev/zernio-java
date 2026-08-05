@@ -64,7 +64,7 @@ import dev.zernio.ApiClient;
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_LAST_SYNCED_AT,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-04T22:16:21.314020303Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T07:12:19.435221399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -223,7 +223,7 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   }
 
   /**
-   * Unique people reached in the requested date range. Meta (facebook/instagram): Meta&#39;s own de-duplicated reach for the exact range, fetched live and cached up to ~1 hour (may lag recent delivery; on a transient Meta error the value temporarily falls back to a sum of per-day reach, which overcounts people reached on multiple days or by multiple child ads). Because it is de-duplicated, Meta reach is NOT additive: neither daily values nor child nodes sum to the range total. TikTok: sum of per-day reach, so multi-day ranges overcount vs TikTok Ads Manager. Google, LinkedIn, X, Pinterest and OpenAI report 0 (reach not synced). Only derive frequency (impressions / reach) for Meta.
+   * Unique people reached in the requested date range. Meta (facebook/instagram) and TikTok: the platform&#39;s own de-duplicated reach for the exact range, fetched live and cached up to ~1 hour (may lag recent delivery; on a transient platform error the value temporarily falls back to a sum of per-day reach, which overcounts people reached on multiple days or by multiple child ads). Because it is de-duplicated, reach is NOT additive on these platforms: neither daily values nor child nodes sum to the range total. Google, LinkedIn, X, Pinterest and OpenAI report 0 (reach not synced). Frequency (impressions / reach) is only meaningful for Meta and TikTok.
    * @return reach
    */
   @javax.annotation.Nullable

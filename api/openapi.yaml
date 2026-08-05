@@ -26749,9 +26749,10 @@ paths:
           \ (same fields as the aggregated `metrics`) alongside the range total, so\
           \ you get per-entity daily trends in ONE call instead of calling the tree\
           \ once per day. Only `1` (daily) is supported. The daily series covers the\
-          \ same date range and uses the same source data as `metrics`, except Meta\
-          \ `reach`: the range total is Meta's de-duplicated value, so daily reach\
-          \ does not sum to it. See `dailyLevel` to control which levels carry it."
+          \ same date range and uses the same source data as `metrics`, except `reach`\
+          \ on Meta and TikTok: the range total is the platform's de-duplicated value,\
+          \ so daily reach does not sum to it. See `dailyLevel` to control which levels\
+          \ carry it."
         explode: true
         in: query
         name: timeIncrement
@@ -41592,16 +41593,16 @@ components:
         impressions:
           type: integer
         reach:
-          description: "Unique people reached in the requested date range. Meta (facebook/instagram):\
-            \ Meta's own de-duplicated reach for the exact range, fetched live and\
-            \ cached up to ~1 hour (may lag recent delivery; on a transient Meta error\
-            \ the value temporarily falls back to a sum of per-day reach, which overcounts\
-            \ people reached on multiple days or by multiple child ads). Because it\
-            \ is de-duplicated, Meta reach is NOT additive: neither daily values nor\
-            \ child nodes sum to the range total. TikTok: sum of per-day reach, so\
-            \ multi-day ranges overcount vs TikTok Ads Manager. Google, LinkedIn,\
-            \ X, Pinterest and OpenAI report 0 (reach not synced). Only derive frequency\
-            \ (impressions / reach) for Meta."
+          description: "Unique people reached in the requested date range. Meta (facebook/instagram)\
+            \ and TikTok: the platform's own de-duplicated reach for the exact range,\
+            \ fetched live and cached up to ~1 hour (may lag recent delivery; on a\
+            \ transient platform error the value temporarily falls back to a sum of\
+            \ per-day reach, which overcounts people reached on multiple days or by\
+            \ multiple child ads). Because it is de-duplicated, reach is NOT additive\
+            \ on these platforms: neither daily values nor child nodes sum to the\
+            \ range total. Google, LinkedIn, X, Pinterest and OpenAI report 0 (reach\
+            \ not synced). Frequency (impressions / reach) is only meaningful for\
+            \ Meta and TikTok."
           type: integer
         clicks:
           type: integer
@@ -41723,9 +41724,9 @@ components:
         called with `timeIncrement=1`. Rate metrics (ctr/cpc/cpm/costPerConversion/
         roas/videoAvgTimeWatchedActions) are recomputed per day from that day's
         sums, so summing the additive fields across a node's `daily[]` reproduces
-        its aggregated `metrics` total. `reach` is the exception: on Meta the
-        aggregated total is de-duplicated across the range, so daily reach does
-        not sum to it. Do NOT sum or plain-average
+        its aggregated `metrics` total. `reach` is the exception: on Meta and
+        TikTok the aggregated total is de-duplicated across the range, so daily
+        reach does not sum to it. Do NOT sum or plain-average
         `videoAvgTimeWatchedActions` across days: the range value is the
         play-weighted average of the daily values.
       example:
