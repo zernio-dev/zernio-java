@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T10:59:09.955360561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:33:39.589973199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();

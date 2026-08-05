@@ -24,58 +24,110 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf8CardsInner;
-import java.util.ArrayList;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf8Parameters;
 import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Carousel action. &#x60;type&#x60; on the parent must be &#x60;carousel&#x60;. Carries 2-10 cards, either all product cards (&#x60;type: \&quot;product\&quot;&#x60;, all referencing the same &#x60;catalog_id&#x60;) or media cards (any other &#x60;type&#x60;, e.g. &#x60;cta_url&#x60;, with a required image/video &#x60;header&#x60; on each card). &#x60;card_index&#x60; (0-9, non-repeating) is auto-filled sequentially when omitted. Product carousels require a Meta catalog connected to the WhatsApp Business Account in Commerce Manager; media carousels do not. 
+ * Catalog-message action. &#x60;type&#x60; on the parent must be &#x60;catalog_message&#x60;. May be omitted entirely; it is defaulted to &#x60;{ \&quot;name\&quot;: \&quot;catalog_message\&quot; }&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
  */
 @JsonPropertyOrder({
-  SendInboxMessageRequestInteractiveActionOneOf8.JSON_PROPERTY_CARDS
+  SendInboxMessageRequestInteractiveActionOneOf8.JSON_PROPERTY_NAME,
+  SendInboxMessageRequestInteractiveActionOneOf8.JSON_PROPERTY_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T10:59:09.955360561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:33:39.589973199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf8 {
-  public static final String JSON_PROPERTY_CARDS = "cards";
+  /**
+   * Gets or Sets name
+   */
+  public enum NameEnum {
+    CATALOG_MESSAGE(String.valueOf("catalog_message"));
+
+    private String value;
+
+    NameEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NameEnum fromValue(String value) {
+      for (NameEnum b : NameEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
-  private List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> cards = new ArrayList<>();
+  private NameEnum name;
+
+  public static final String JSON_PROPERTY_PARAMETERS = "parameters";
+  @javax.annotation.Nullable
+  private SendInboxMessageRequestInteractiveActionOneOf8Parameters parameters;
 
   public SendInboxMessageRequestInteractiveActionOneOf8() { 
   }
 
-  public SendInboxMessageRequestInteractiveActionOneOf8 cards(@javax.annotation.Nonnull List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> cards) {
-    this.cards = cards;
-    return this;
-  }
-
-  public SendInboxMessageRequestInteractiveActionOneOf8 addCardsItem(SendInboxMessageRequestInteractiveActionOneOf8CardsInner cardsItem) {
-    if (this.cards == null) {
-      this.cards = new ArrayList<>();
-    }
-    this.cards.add(cardsItem);
+  public SendInboxMessageRequestInteractiveActionOneOf8 name(@javax.annotation.Nonnull NameEnum name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get cards
-   * @return cards
+   * Get name
+   * @return name
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CARDS, required = true)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> getCards() {
-    return cards;
+  public NameEnum getName() {
+    return name;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CARDS, required = true)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCards(@javax.annotation.Nonnull List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> cards) {
-    this.cards = cards;
+  public void setName(@javax.annotation.Nonnull NameEnum name) {
+    this.name = name;
+  }
+
+
+  public SendInboxMessageRequestInteractiveActionOneOf8 parameters(@javax.annotation.Nullable SendInboxMessageRequestInteractiveActionOneOf8Parameters parameters) {
+    this.parameters = parameters;
+    return this;
+  }
+
+  /**
+   * Get parameters
+   * @return parameters
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SendInboxMessageRequestInteractiveActionOneOf8Parameters getParameters() {
+    return parameters;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParameters(@javax.annotation.Nullable SendInboxMessageRequestInteractiveActionOneOf8Parameters parameters) {
+    this.parameters = parameters;
   }
 
 
@@ -91,19 +143,21 @@ public class SendInboxMessageRequestInteractiveActionOneOf8 {
       return false;
     }
     SendInboxMessageRequestInteractiveActionOneOf8 sendInboxMessageRequestInteractiveActionOneOf8 = (SendInboxMessageRequestInteractiveActionOneOf8) o;
-    return Objects.equals(this.cards, sendInboxMessageRequestInteractiveActionOneOf8.cards);
+    return Objects.equals(this.name, sendInboxMessageRequestInteractiveActionOneOf8.name) &&
+        Objects.equals(this.parameters, sendInboxMessageRequestInteractiveActionOneOf8.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cards);
+    return Objects.hash(name, parameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessageRequestInteractiveActionOneOf8 {\n");
-    sb.append("    cards: ").append(toIndentedString(cards)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -151,15 +205,14 @@ public class SendInboxMessageRequestInteractiveActionOneOf8 {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `cards` to the URL query string
-    if (getCards() != null) {
-      for (int i = 0; i < getCards().size(); i++) {
-        if (getCards().get(i) != null) {
-          joiner.add(String.format(java.util.Locale.ROOT, "%scards%s%s=%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-              ApiClient.urlEncode(ApiClient.valueToString(getCards().get(i)))));
-        }
-      }
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `parameters` to the URL query string
+    if (getParameters() != null) {
+      joiner.add(getParameters().toUrlQueryString(prefix + "parameters" + suffix));
     }
 
     return joiner.toString();

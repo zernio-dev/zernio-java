@@ -30,70 +30,74 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Single-product action. &#x60;type&#x60; on the parent must be &#x60;product&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+ * Contact-info request action. &#x60;type&#x60; on the parent must be &#x60;request_contact_info&#x60;. May be omitted entirely; it is defaulted.
  */
 @JsonPropertyOrder({
-  SendInboxMessageRequestInteractiveActionOneOf5.JSON_PROPERTY_CATALOG_ID,
-  SendInboxMessageRequestInteractiveActionOneOf5.JSON_PROPERTY_PRODUCT_RETAILER_ID
+  SendInboxMessageRequestInteractiveActionOneOf5.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T10:59:09.955360561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:33:39.589973199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf5 {
-  public static final String JSON_PROPERTY_CATALOG_ID = "catalog_id";
-  @javax.annotation.Nonnull
-  private String catalogId;
+  /**
+   * Gets or Sets name
+   */
+  public enum NameEnum {
+    REQUEST_CONTACT_INFO(String.valueOf("request_contact_info"));
 
-  public static final String JSON_PROPERTY_PRODUCT_RETAILER_ID = "product_retailer_id";
+    private String value;
+
+    NameEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NameEnum fromValue(String value) {
+      for (NameEnum b : NameEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
-  private String productRetailerId;
+  private NameEnum name;
 
   public SendInboxMessageRequestInteractiveActionOneOf5() { 
   }
 
-  public SendInboxMessageRequestInteractiveActionOneOf5 catalogId(@javax.annotation.Nonnull String catalogId) {
-    this.catalogId = catalogId;
+  public SendInboxMessageRequestInteractiveActionOneOf5 name(@javax.annotation.Nonnull NameEnum name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Meta catalog ID connected to the WhatsApp Business Account.
-   * @return catalogId
+   * Get name
+   * @return name
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CATALOG_ID, required = true)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getCatalogId() {
-    return catalogId;
+  public NameEnum getName() {
+    return name;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CATALOG_ID, required = true)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCatalogId(@javax.annotation.Nonnull String catalogId) {
-    this.catalogId = catalogId;
-  }
-
-
-  public SendInboxMessageRequestInteractiveActionOneOf5 productRetailerId(@javax.annotation.Nonnull String productRetailerId) {
-    this.productRetailerId = productRetailerId;
-    return this;
-  }
-
-  /**
-   * Retailer ID (SKU) of the product inside the catalog.
-   * @return productRetailerId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PRODUCT_RETAILER_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getProductRetailerId() {
-    return productRetailerId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PRODUCT_RETAILER_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setProductRetailerId(@javax.annotation.Nonnull String productRetailerId) {
-    this.productRetailerId = productRetailerId;
+  public void setName(@javax.annotation.Nonnull NameEnum name) {
+    this.name = name;
   }
 
 
@@ -109,21 +113,19 @@ public class SendInboxMessageRequestInteractiveActionOneOf5 {
       return false;
     }
     SendInboxMessageRequestInteractiveActionOneOf5 sendInboxMessageRequestInteractiveActionOneOf5 = (SendInboxMessageRequestInteractiveActionOneOf5) o;
-    return Objects.equals(this.catalogId, sendInboxMessageRequestInteractiveActionOneOf5.catalogId) &&
-        Objects.equals(this.productRetailerId, sendInboxMessageRequestInteractiveActionOneOf5.productRetailerId);
+    return Objects.equals(this.name, sendInboxMessageRequestInteractiveActionOneOf5.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(catalogId, productRetailerId);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessageRequestInteractiveActionOneOf5 {\n");
-    sb.append("    catalogId: ").append(toIndentedString(catalogId)).append("\n");
-    sb.append("    productRetailerId: ").append(toIndentedString(productRetailerId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,14 +173,9 @@ public class SendInboxMessageRequestInteractiveActionOneOf5 {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `catalog_id` to the URL query string
-    if (getCatalogId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scatalog_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCatalogId()))));
-    }
-
-    // add `product_retailer_id` to the URL query string
-    if (getProductRetailerId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sproduct_retailer_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductRetailerId()))));
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     return joiner.toString();

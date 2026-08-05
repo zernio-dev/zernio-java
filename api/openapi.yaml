@@ -36103,6 +36103,7 @@ components:
             storyId: storyId
             storyUrl: storyUrl
           flowResponseJson: flowResponseJson
+          contactsOrigin: contact_request
           postbackPayload: postbackPayload
           interactiveId: interactiveId
           interactiveType: button_reply
@@ -36135,6 +36136,9 @@ components:
           callbackData: callbackData
           flowResponseData:
             key: ""
+          contacts:
+          - key: ""
+          - key: ""
           buttonPayload: buttonPayload
           order:
             catalog_id: catalog_id
@@ -56745,6 +56749,16 @@ components:
       required:
       - name
     sendInboxMessage_request_interactive_action_oneOf_5:
+      description: Contact-info request action. `type` on the parent must be `request_contact_info`.
+        May be omitted entirely; it is defaulted.
+      properties:
+        name:
+          enum:
+          - request_contact_info
+          type: string
+      required:
+      - name
+    sendInboxMessage_request_interactive_action_oneOf_6:
       description: |
         Single-product action. `type` on the parent must be
         `product`. Requires a Meta catalog connected to the
@@ -56759,26 +56773,26 @@ components:
       required:
       - catalog_id
       - product_retailer_id
-    sendInboxMessage_request_interactive_action_oneOf_6_sections_inner_product_items_inner:
+    sendInboxMessage_request_interactive_action_oneOf_7_sections_inner_product_items_inner:
       properties:
         product_retailer_id:
           description: Retailer ID (SKU) of the product inside the catalog.
           type: string
       required:
       - product_retailer_id
-    sendInboxMessage_request_interactive_action_oneOf_6_sections_inner:
+    sendInboxMessage_request_interactive_action_oneOf_7_sections_inner:
       properties:
         title:
           description: Optional section header.
           type: string
         product_items:
           items:
-            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_6_sections_inner_product_items_inner"
+            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7_sections_inner_product_items_inner"
           minItems: 1
           type: array
       required:
       - product_items
-    sendInboxMessage_request_interactive_action_oneOf_6:
+    sendInboxMessage_request_interactive_action_oneOf_7:
       description: |
         Multi-product action. `type` on the parent must be
         `product_list`. Requires a Meta catalog connected to the
@@ -56791,20 +56805,20 @@ components:
           description: 1-10 sections. Total products across all sections cannot exceed
             30.
           items:
-            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_6_sections_inner"
+            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7_sections_inner"
           maxItems: 10
           minItems: 1
           type: array
       required:
       - catalog_id
       - sections
-    sendInboxMessage_request_interactive_action_oneOf_7_parameters:
+    sendInboxMessage_request_interactive_action_oneOf_8_parameters:
       properties:
         thumbnail_product_retailer_id:
           description: Optional product whose image is used as the message thumbnail.
             Falls back to the first catalog item when omitted.
           type: string
-    sendInboxMessage_request_interactive_action_oneOf_7:
+    sendInboxMessage_request_interactive_action_oneOf_8:
       description: |
         Catalog-message action. `type` on the parent must be
         `catalog_message`. May be omitted entirely; it is defaulted
@@ -56817,10 +56831,10 @@ components:
           - catalog_message
           type: string
         parameters:
-          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7_parameters"
+          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_8_parameters"
       required:
       - name
-    sendInboxMessage_request_interactive_action_oneOf_8_cards_inner:
+    sendInboxMessage_request_interactive_action_oneOf_9_cards_inner:
       additionalProperties: {}
       properties:
         card_index:
@@ -56843,7 +56857,7 @@ components:
             \ Media cards: the card's button action (e.g. `cta_url` with `parameters.display_text`\
             \ and `parameters.url`)."
           type: object
-    sendInboxMessage_request_interactive_action_oneOf_8:
+    sendInboxMessage_request_interactive_action_oneOf_9:
       description: |
         Carousel action. `type` on the parent must be `carousel`.
         Carries 2-10 cards, either all product cards
@@ -56857,7 +56871,7 @@ components:
       properties:
         cards:
           items:
-            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_8_cards_inner"
+            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_9_cards_inner"
           maxItems: 10
           minItems: 2
           type: array
@@ -56874,6 +56888,7 @@ components:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_6"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_8"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_9"
     sendInboxMessage_request_interactive:
       description: |
         WhatsApp-only. Rich interactive payload for list messages, CTA URL
@@ -56915,6 +56930,16 @@ components:
         "Send location" button; the user's reply arrives as a regular
         location message in the conversation.
 
+        For `request_contact_info`, `action` may be omitted (we default it
+        to `{ "name": "request_contact_info" }`). WhatsApp renders a
+        localized share button that cannot be relabelled, so put the reason
+        for asking in `body.text`: this is a consent prompt, and a bare
+        request converts badly. The reply arrives as an inbound `contacts`
+        message with `metadata.contactsOrigin` set to `contact_request`,
+        and we fold the shared number back into the contact automatically.
+        A `contacts` message with origin `other` is a card the user picked
+        from their address book and is NOT proof of their own number.
+
         For `catalog_message`, `action` may also be omitted (we default it
         to `{ "name": "catalog_message" }`).
 
@@ -56930,6 +56955,7 @@ components:
           - cta_url
           - flow
           - location_request_message
+          - request_contact_info
           - voice_call
           - product
           - product_list
@@ -81085,6 +81111,7 @@ components:
           storyId: storyId
           storyUrl: storyUrl
         flowResponseJson: flowResponseJson
+        contactsOrigin: contact_request
         postbackPayload: postbackPayload
         interactiveId: interactiveId
         interactiveType: button_reply
@@ -81117,6 +81144,9 @@ components:
         callbackData: callbackData
         flowResponseData:
           key: ""
+        contacts:
+        - key: ""
+        - key: ""
         buttonPayload: buttonPayload
         order:
           catalog_id: catalog_id
@@ -81181,6 +81211,27 @@ components:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_order"
         referredProduct:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referredProduct"
+        contacts:
+          description: |
+            WhatsApp only. Contact cards the user shared, forwarded verbatim
+            from Meta. Read `contactsOrigin` before treating any number here
+            as the sender's own.
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+        contactsOrigin:
+          description: |
+            WhatsApp only. How the contact card was shared.
+            `contact_request` means the user tapped a `request_contact_info`
+            button, so the number is their own and consented. `other` means
+            they picked a card from their address book: it may be anyone's,
+            and must NOT be stored as the sender's identity. Omitted when
+            Meta sends no origin.
+          enum:
+          - contact_request
+          - other
+          type: string
         storyReply:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_storyReply"
         isStoryMention:

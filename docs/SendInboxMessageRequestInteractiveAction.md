@@ -12,6 +12,7 @@
 * [SendInboxMessageRequestInteractiveActionOneOf6](SendInboxMessageRequestInteractiveActionOneOf6.md)
 * [SendInboxMessageRequestInteractiveActionOneOf7](SendInboxMessageRequestInteractiveActionOneOf7.md)
 * [SendInboxMessageRequestInteractiveActionOneOf8](SendInboxMessageRequestInteractiveActionOneOf8.md)
+* [SendInboxMessageRequestInteractiveActionOneOf9](SendInboxMessageRequestInteractiveActionOneOf9.md)
 
 ## Example
 ```java
@@ -26,6 +27,7 @@ import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf5;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf6;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf7;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf8;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf9;
 
 public class Example {
     public static void main(String[] args) {
@@ -93,6 +95,13 @@ public class Example {
         exampleSendInboxMessageRequestInteractiveAction.setActualInstance(exampleSendInboxMessageRequestInteractiveActionOneOf8);
         // to get back the SendInboxMessageRequestInteractiveActionOneOf8 set earlier
         SendInboxMessageRequestInteractiveActionOneOf8 testSendInboxMessageRequestInteractiveActionOneOf8 = (SendInboxMessageRequestInteractiveActionOneOf8) exampleSendInboxMessageRequestInteractiveAction.getActualInstance();
+
+        // create a new SendInboxMessageRequestInteractiveActionOneOf9
+        SendInboxMessageRequestInteractiveActionOneOf9 exampleSendInboxMessageRequestInteractiveActionOneOf9 = new SendInboxMessageRequestInteractiveActionOneOf9();
+        // set SendInboxMessageRequestInteractiveAction to SendInboxMessageRequestInteractiveActionOneOf9
+        exampleSendInboxMessageRequestInteractiveAction.setActualInstance(exampleSendInboxMessageRequestInteractiveActionOneOf9);
+        // to get back the SendInboxMessageRequestInteractiveActionOneOf9 set earlier
+        SendInboxMessageRequestInteractiveActionOneOf9 testSendInboxMessageRequestInteractiveActionOneOf9 = (SendInboxMessageRequestInteractiveActionOneOf9) exampleSendInboxMessageRequestInteractiveAction.getActualInstance();
     }
 }
 ```

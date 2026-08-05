@@ -24,110 +24,87 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf7Parameters;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf7SectionsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Catalog-message action. &#x60;type&#x60; on the parent must be &#x60;catalog_message&#x60;. May be omitted entirely; it is defaulted to &#x60;{ \&quot;name\&quot;: \&quot;catalog_message\&quot; }&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+ * Multi-product action. &#x60;type&#x60; on the parent must be &#x60;product_list&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
  */
 @JsonPropertyOrder({
-  SendInboxMessageRequestInteractiveActionOneOf7.JSON_PROPERTY_NAME,
-  SendInboxMessageRequestInteractiveActionOneOf7.JSON_PROPERTY_PARAMETERS
+  SendInboxMessageRequestInteractiveActionOneOf7.JSON_PROPERTY_CATALOG_ID,
+  SendInboxMessageRequestInteractiveActionOneOf7.JSON_PROPERTY_SECTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T10:59:09.955360561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:33:39.589973199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf7 {
-  /**
-   * Gets or Sets name
-   */
-  public enum NameEnum {
-    CATALOG_MESSAGE(String.valueOf("catalog_message"));
-
-    private String value;
-
-    NameEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static NameEnum fromValue(String value) {
-      for (NameEnum b : NameEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_NAME = "name";
+  public static final String JSON_PROPERTY_CATALOG_ID = "catalog_id";
   @javax.annotation.Nonnull
-  private NameEnum name;
+  private String catalogId;
 
-  public static final String JSON_PROPERTY_PARAMETERS = "parameters";
-  @javax.annotation.Nullable
-  private SendInboxMessageRequestInteractiveActionOneOf7Parameters parameters;
+  public static final String JSON_PROPERTY_SECTIONS = "sections";
+  @javax.annotation.Nonnull
+  private List<SendInboxMessageRequestInteractiveActionOneOf7SectionsInner> sections = new ArrayList<>();
 
   public SendInboxMessageRequestInteractiveActionOneOf7() { 
   }
 
-  public SendInboxMessageRequestInteractiveActionOneOf7 name(@javax.annotation.Nonnull NameEnum name) {
-    this.name = name;
+  public SendInboxMessageRequestInteractiveActionOneOf7 catalogId(@javax.annotation.Nonnull String catalogId) {
+    this.catalogId = catalogId;
     return this;
   }
 
   /**
-   * Get name
-   * @return name
+   * Meta catalog ID connected to the WhatsApp Business Account.
+   * @return catalogId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonProperty(value = JSON_PROPERTY_CATALOG_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public NameEnum getName() {
-    return name;
+  public String getCatalogId() {
+    return catalogId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonProperty(value = JSON_PROPERTY_CATALOG_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(@javax.annotation.Nonnull NameEnum name) {
-    this.name = name;
+  public void setCatalogId(@javax.annotation.Nonnull String catalogId) {
+    this.catalogId = catalogId;
   }
 
 
-  public SendInboxMessageRequestInteractiveActionOneOf7 parameters(@javax.annotation.Nullable SendInboxMessageRequestInteractiveActionOneOf7Parameters parameters) {
-    this.parameters = parameters;
+  public SendInboxMessageRequestInteractiveActionOneOf7 sections(@javax.annotation.Nonnull List<SendInboxMessageRequestInteractiveActionOneOf7SectionsInner> sections) {
+    this.sections = sections;
+    return this;
+  }
+
+  public SendInboxMessageRequestInteractiveActionOneOf7 addSectionsItem(SendInboxMessageRequestInteractiveActionOneOf7SectionsInner sectionsItem) {
+    if (this.sections == null) {
+      this.sections = new ArrayList<>();
+    }
+    this.sections.add(sectionsItem);
     return this;
   }
 
   /**
-   * Get parameters
-   * @return parameters
+   * 1-10 sections. Total products across all sections cannot exceed 30.
+   * @return sections
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public SendInboxMessageRequestInteractiveActionOneOf7Parameters getParameters() {
-    return parameters;
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<SendInboxMessageRequestInteractiveActionOneOf7SectionsInner> getSections() {
+    return sections;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParameters(@javax.annotation.Nullable SendInboxMessageRequestInteractiveActionOneOf7Parameters parameters) {
-    this.parameters = parameters;
+  @JsonProperty(value = JSON_PROPERTY_SECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSections(@javax.annotation.Nonnull List<SendInboxMessageRequestInteractiveActionOneOf7SectionsInner> sections) {
+    this.sections = sections;
   }
 
 
@@ -143,21 +120,21 @@ public class SendInboxMessageRequestInteractiveActionOneOf7 {
       return false;
     }
     SendInboxMessageRequestInteractiveActionOneOf7 sendInboxMessageRequestInteractiveActionOneOf7 = (SendInboxMessageRequestInteractiveActionOneOf7) o;
-    return Objects.equals(this.name, sendInboxMessageRequestInteractiveActionOneOf7.name) &&
-        Objects.equals(this.parameters, sendInboxMessageRequestInteractiveActionOneOf7.parameters);
+    return Objects.equals(this.catalogId, sendInboxMessageRequestInteractiveActionOneOf7.catalogId) &&
+        Objects.equals(this.sections, sendInboxMessageRequestInteractiveActionOneOf7.sections);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, parameters);
+    return Objects.hash(catalogId, sections);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessageRequestInteractiveActionOneOf7 {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    catalogId: ").append(toIndentedString(catalogId)).append("\n");
+    sb.append("    sections: ").append(toIndentedString(sections)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -205,14 +182,19 @@ public class SendInboxMessageRequestInteractiveActionOneOf7 {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    // add `catalog_id` to the URL query string
+    if (getCatalogId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scatalog_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCatalogId()))));
     }
 
-    // add `parameters` to the URL query string
-    if (getParameters() != null) {
-      joiner.add(getParameters().toUrlQueryString(prefix + "parameters" + suffix));
+    // add `sections` to the URL query string
+    if (getSections() != null) {
+      for (int i = 0; i < getSections().size(); i++) {
+        if (getSections().get(i) != null) {
+          joiner.add(getSections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%ssections%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

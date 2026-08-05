@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-05T10:59:09.955360561Z[Etc/UTC]
+- Build date: 2026-08-05T11:33:39.589973199Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2363,12 +2363,13 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestInteractiveActionOneOf4](docs/SendInboxMessageRequestInteractiveActionOneOf4.md)
  - [SendInboxMessageRequestInteractiveActionOneOf5](docs/SendInboxMessageRequestInteractiveActionOneOf5.md)
  - [SendInboxMessageRequestInteractiveActionOneOf6](docs/SendInboxMessageRequestInteractiveActionOneOf6.md)
- - [SendInboxMessageRequestInteractiveActionOneOf6SectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOf6SectionsInner.md)
- - [SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner](docs/SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOf7](docs/SendInboxMessageRequestInteractiveActionOneOf7.md)
- - [SendInboxMessageRequestInteractiveActionOneOf7Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf7Parameters.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf7SectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOf7SectionsInner.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner](docs/SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOf8](docs/SendInboxMessageRequestInteractiveActionOneOf8.md)
- - [SendInboxMessageRequestInteractiveActionOneOf8CardsInner](docs/SendInboxMessageRequestInteractiveActionOneOf8CardsInner.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf8Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf8Parameters.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf9](docs/SendInboxMessageRequestInteractiveActionOneOf9.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf9CardsInner](docs/SendInboxMessageRequestInteractiveActionOneOf9CardsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOfSectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner.md)
  - [SendInboxMessageRequestInteractiveBody](docs/SendInboxMessageRequestInteractiveBody.md)

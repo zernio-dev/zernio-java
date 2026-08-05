@@ -28,8 +28,10 @@ import dev.zernio.model.WebhookPayloadMessageMetadataOrder;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferral;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferredProduct;
 import dev.zernio.model.WebhookPayloadMessageMetadataStoryReply;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -50,11 +52,13 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_FLOW_RESPONSE_DATA,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_ORDER,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRED_PRODUCT,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_CONTACTS,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_CONTACTS_ORIGIN,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_STORY_REPLY,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_IS_STORY_MENTION,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T10:59:09.955360561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:33:39.589973199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUICK_REPLY_PAYLOAD = "quickReplyPayload";
   @javax.annotation.Nullable
@@ -136,6 +140,49 @@ public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_REFERRED_PRODUCT = "referredProduct";
   @javax.annotation.Nullable
   private WebhookPayloadMessageMetadataReferredProduct referredProduct;
+
+  public static final String JSON_PROPERTY_CONTACTS = "contacts";
+  @javax.annotation.Nullable
+  private List<Map<String, Object>> contacts = new ArrayList<>();
+
+  /**
+   * WhatsApp only. How the contact card was shared. &#x60;contact_request&#x60; means the user tapped a &#x60;request_contact_info&#x60; button, so the number is their own and consented. &#x60;other&#x60; means they picked a card from their address book: it may be anyone&#39;s, and must NOT be stored as the sender&#39;s identity. Omitted when Meta sends no origin. 
+   */
+  public enum ContactsOriginEnum {
+    CONTACT_REQUEST(String.valueOf("contact_request")),
+    
+    OTHER(String.valueOf("other"));
+
+    private String value;
+
+    ContactsOriginEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ContactsOriginEnum fromValue(String value) {
+      for (ContactsOriginEnum b : ContactsOriginEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CONTACTS_ORIGIN = "contactsOrigin";
+  @javax.annotation.Nullable
+  private ContactsOriginEnum contactsOrigin;
 
   public static final String JSON_PROPERTY_STORY_REPLY = "storyReply";
   @javax.annotation.Nullable
@@ -424,6 +471,62 @@ public class WebhookPayloadMessageMetadata {
   }
 
 
+  public WebhookPayloadMessageMetadata contacts(@javax.annotation.Nullable List<Map<String, Object>> contacts) {
+    this.contacts = contacts;
+    return this;
+  }
+
+  public WebhookPayloadMessageMetadata addContactsItem(Map<String, Object> contactsItem) {
+    if (this.contacts == null) {
+      this.contacts = new ArrayList<>();
+    }
+    this.contacts.add(contactsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Contact cards the user shared, forwarded verbatim from Meta. Read &#x60;contactsOrigin&#x60; before treating any number here as the sender&#39;s own. 
+   * @return contacts
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<Map<String, Object>> getContacts() {
+    return contacts;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContacts(@javax.annotation.Nullable List<Map<String, Object>> contacts) {
+    this.contacts = contacts;
+  }
+
+
+  public WebhookPayloadMessageMetadata contactsOrigin(@javax.annotation.Nullable ContactsOriginEnum contactsOrigin) {
+    this.contactsOrigin = contactsOrigin;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. How the contact card was shared. &#x60;contact_request&#x60; means the user tapped a &#x60;request_contact_info&#x60; button, so the number is their own and consented. &#x60;other&#x60; means they picked a card from their address book: it may be anyone&#39;s, and must NOT be stored as the sender&#39;s identity. Omitted when Meta sends no origin. 
+   * @return contactsOrigin
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS_ORIGIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ContactsOriginEnum getContactsOrigin() {
+    return contactsOrigin;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS_ORIGIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContactsOrigin(@javax.annotation.Nullable ContactsOriginEnum contactsOrigin) {
+    this.contactsOrigin = contactsOrigin;
+  }
+
+
   public WebhookPayloadMessageMetadata storyReply(@javax.annotation.Nullable WebhookPayloadMessageMetadataStoryReply storyReply) {
     this.storyReply = storyReply;
     return this;
@@ -519,6 +622,8 @@ public class WebhookPayloadMessageMetadata {
         Objects.equals(this.flowResponseData, webhookPayloadMessageMetadata.flowResponseData) &&
         Objects.equals(this.order, webhookPayloadMessageMetadata.order) &&
         Objects.equals(this.referredProduct, webhookPayloadMessageMetadata.referredProduct) &&
+        Objects.equals(this.contacts, webhookPayloadMessageMetadata.contacts) &&
+        Objects.equals(this.contactsOrigin, webhookPayloadMessageMetadata.contactsOrigin) &&
         Objects.equals(this.storyReply, webhookPayloadMessageMetadata.storyReply) &&
         Objects.equals(this.isStoryMention, webhookPayloadMessageMetadata.isStoryMention) &&
         Objects.equals(this.referral, webhookPayloadMessageMetadata.referral);
@@ -526,7 +631,7 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, storyReply, isStoryMention, referral);
+    return Objects.hash(quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral);
   }
 
   @Override
@@ -544,6 +649,8 @@ public class WebhookPayloadMessageMetadata {
     sb.append("    flowResponseData: ").append(toIndentedString(flowResponseData)).append("\n");
     sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    referredProduct: ").append(toIndentedString(referredProduct)).append("\n");
+    sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
+    sb.append("    contactsOrigin: ").append(toIndentedString(contactsOrigin)).append("\n");
     sb.append("    storyReply: ").append(toIndentedString(storyReply)).append("\n");
     sb.append("    isStoryMention: ").append(toIndentedString(isStoryMention)).append("\n");
     sb.append("    referral: ").append(toIndentedString(referral)).append("\n");
@@ -651,6 +758,20 @@ public class WebhookPayloadMessageMetadata {
     // add `referredProduct` to the URL query string
     if (getReferredProduct() != null) {
       joiner.add(getReferredProduct().toUrlQueryString(prefix + "referredProduct" + suffix));
+    }
+
+    // add `contacts` to the URL query string
+    if (getContacts() != null) {
+      for (int i = 0; i < getContacts().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scontacts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getContacts().get(i)))));
+      }
+    }
+
+    // add `contactsOrigin` to the URL query string
+    if (getContactsOrigin() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontactsOrigin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactsOrigin()))));
     }
 
     // add `storyReply` to the URL query string

@@ -2,14 +2,21 @@
 
 # SendInboxMessageRequestInteractiveActionOneOf5
 
-Single-product action. `type` on the parent must be `product`. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+Contact-info request action. `type` on the parent must be `request_contact_info`. May be omitted entirely; it is defaulted.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**catalogId** | **String** | Meta catalog ID connected to the WhatsApp Business Account. |  |
-|**productRetailerId** | **String** | Retailer ID (SKU) of the product inside the catalog. |  |
+|**name** | [**NameEnum**](#NameEnum) |  |  |
+
+
+
+## Enum: NameEnum
+
+| Name | Value |
+|---- | -----|
+| REQUEST_CONTACT_INFO | &quot;request_contact_info&quot; |
 
 
 

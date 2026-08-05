@@ -24,30 +24,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf6SectionsInner;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Multi-product action. &#x60;type&#x60; on the parent must be &#x60;product_list&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+ * Single-product action. &#x60;type&#x60; on the parent must be &#x60;product&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractiveActionOneOf6.JSON_PROPERTY_CATALOG_ID,
-  SendInboxMessageRequestInteractiveActionOneOf6.JSON_PROPERTY_SECTIONS
+  SendInboxMessageRequestInteractiveActionOneOf6.JSON_PROPERTY_PRODUCT_RETAILER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T10:59:09.955360561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T11:33:39.589973199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf6 {
   public static final String JSON_PROPERTY_CATALOG_ID = "catalog_id";
   @javax.annotation.Nonnull
   private String catalogId;
 
-  public static final String JSON_PROPERTY_SECTIONS = "sections";
+  public static final String JSON_PROPERTY_PRODUCT_RETAILER_ID = "product_retailer_id";
   @javax.annotation.Nonnull
-  private List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInner> sections = new ArrayList<>();
+  private String productRetailerId;
 
   public SendInboxMessageRequestInteractiveActionOneOf6() { 
   }
@@ -76,35 +73,27 @@ public class SendInboxMessageRequestInteractiveActionOneOf6 {
   }
 
 
-  public SendInboxMessageRequestInteractiveActionOneOf6 sections(@javax.annotation.Nonnull List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInner> sections) {
-    this.sections = sections;
-    return this;
-  }
-
-  public SendInboxMessageRequestInteractiveActionOneOf6 addSectionsItem(SendInboxMessageRequestInteractiveActionOneOf6SectionsInner sectionsItem) {
-    if (this.sections == null) {
-      this.sections = new ArrayList<>();
-    }
-    this.sections.add(sectionsItem);
+  public SendInboxMessageRequestInteractiveActionOneOf6 productRetailerId(@javax.annotation.Nonnull String productRetailerId) {
+    this.productRetailerId = productRetailerId;
     return this;
   }
 
   /**
-   * 1-10 sections. Total products across all sections cannot exceed 30.
-   * @return sections
+   * Retailer ID (SKU) of the product inside the catalog.
+   * @return productRetailerId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SECTIONS, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_RETAILER_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInner> getSections() {
-    return sections;
+  public String getProductRetailerId() {
+    return productRetailerId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SECTIONS, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_RETAILER_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSections(@javax.annotation.Nonnull List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInner> sections) {
-    this.sections = sections;
+  public void setProductRetailerId(@javax.annotation.Nonnull String productRetailerId) {
+    this.productRetailerId = productRetailerId;
   }
 
 
@@ -121,12 +110,12 @@ public class SendInboxMessageRequestInteractiveActionOneOf6 {
     }
     SendInboxMessageRequestInteractiveActionOneOf6 sendInboxMessageRequestInteractiveActionOneOf6 = (SendInboxMessageRequestInteractiveActionOneOf6) o;
     return Objects.equals(this.catalogId, sendInboxMessageRequestInteractiveActionOneOf6.catalogId) &&
-        Objects.equals(this.sections, sendInboxMessageRequestInteractiveActionOneOf6.sections);
+        Objects.equals(this.productRetailerId, sendInboxMessageRequestInteractiveActionOneOf6.productRetailerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(catalogId, sections);
+    return Objects.hash(catalogId, productRetailerId);
   }
 
   @Override
@@ -134,7 +123,7 @@ public class SendInboxMessageRequestInteractiveActionOneOf6 {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessageRequestInteractiveActionOneOf6 {\n");
     sb.append("    catalogId: ").append(toIndentedString(catalogId)).append("\n");
-    sb.append("    sections: ").append(toIndentedString(sections)).append("\n");
+    sb.append("    productRetailerId: ").append(toIndentedString(productRetailerId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -187,14 +176,9 @@ public class SendInboxMessageRequestInteractiveActionOneOf6 {
       joiner.add(String.format(java.util.Locale.ROOT, "%scatalog_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCatalogId()))));
     }
 
-    // add `sections` to the URL query string
-    if (getSections() != null) {
-      for (int i = 0; i < getSections().size(); i++) {
-        if (getSections().get(i) != null) {
-          joiner.add(getSections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%ssections%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
-        }
-      }
+    // add `product_retailer_id` to the URL query string
+    if (getProductRetailerId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproduct_retailer_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductRetailerId()))));
     }
 
     return joiner.toString();
