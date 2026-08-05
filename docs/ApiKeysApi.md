@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteApiKeyWithHttpInfo**](ApiKeysApi.md#deleteApiKeyWithHttpInfo) | **DELETE** /v1/api-keys/{keyId} | Delete key |
 | [**listApiKeys**](ApiKeysApi.md#listApiKeys) | **GET** /v1/api-keys | List keys |
 | [**listApiKeysWithHttpInfo**](ApiKeysApi.md#listApiKeysWithHttpInfo) | **GET** /v1/api-keys | List keys |
+| [**verifyCredential**](ApiKeysApi.md#verifyCredential) | **GET** /v1/auth/verify | Verify credential |
+| [**verifyCredentialWithHttpInfo**](ApiKeysApi.md#verifyCredentialWithHttpInfo) | **GET** /v1/auth/verify | Verify credential |
 
 
 
@@ -444,5 +446,143 @@ ApiResponse<[**ListApiKeys200Response**](ListApiKeys200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | API keys |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## verifyCredential
+
+> VerifyCredential200Response verifyCredential()
+
+Verify credential
+
+Checks whether the bearer credential on this request is valid, without reading any data. Accepts an API key or an OAuth access token. Intended for clients that must validate a credential before use (for example an MCP server verifying an incoming token) so they do not have to call a data endpoint to do it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ApiKeysApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
+        try {
+            VerifyCredential200Response result = apiInstance.verifyCredential();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ApiKeysApi#verifyCredential");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**VerifyCredential200Response**](VerifyCredential200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Credential is valid |  -  |
+| **401** | Unauthorized |  -  |
+
+## verifyCredentialWithHttpInfo
+
+> ApiResponse<VerifyCredential200Response> verifyCredential verifyCredentialWithHttpInfo()
+
+Verify credential
+
+Checks whether the bearer credential on this request is valid, without reading any data. Accepts an API key or an OAuth access token. Intended for clients that must validate a credential before use (for example an MCP server verifying an incoming token) so they do not have to call a data endpoint to do it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ApiKeysApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
+        try {
+            ApiResponse<VerifyCredential200Response> response = apiInstance.verifyCredentialWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ApiKeysApi#verifyCredential");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**VerifyCredential200Response**](VerifyCredential200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Credential is valid |  -  |
 | **401** | Unauthorized |  -  |
 

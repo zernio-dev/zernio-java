@@ -6836,6 +6836,33 @@ paths:
       - Accounts
       x-accepts:
       - application/json
+  /v1/auth/verify:
+    get:
+      description: "Checks whether the bearer credential on this request is valid,\
+        \ without reading any data. Accepts an API key or an OAuth access token. Intended\
+        \ for clients that must validate a credential before use (for example an MCP\
+        \ server verifying an incoming token) so they do not have to call a data endpoint\
+        \ to do it."
+      operationId: verifyCredential
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                valid: true
+                userId: 6507a1b2c3d4e5f6a7b8c9d0
+                authType: oauth
+                scope: posts:read posts:write accounts:read
+              schema:
+                $ref: "#/components/schemas/verifyCredential_200_response"
+          description: Credential is valid
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      summary: Verify credential
+      tags:
+      - API Keys
+      x-accepts:
+      - application/json
   /v1/api-keys:
     get:
       description: "Returns all API keys for the authenticated user. Keys are returned\
@@ -47531,6 +47558,27 @@ components:
           items:
             $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_commercialContentTypes_inner"
           type: array
+    verifyCredential_200_response:
+      example:
+        valid: true
+        scope: scope
+        authType: api_key
+        userId: userId
+      properties:
+        valid:
+          type: boolean
+        userId:
+          type: string
+        authType:
+          enum:
+          - api_key
+          - oauth
+          - session
+          type: string
+        scope:
+          description: "Granted OAuth scopes, space-separated. Null for API keys."
+          nullable: true
+          type: string
     listApiKeys_200_response:
       example:
         apiKeys:

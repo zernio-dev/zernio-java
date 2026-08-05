@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-05T08:55:58.863745720Z[Etc/UTC]
+- Build date: 2026-08-05T09:10:43.867281266Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -350,6 +350,8 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**deleteApiKeyWithHttpInfo**](docs/ApiKeysApi.md#deleteApiKeyWithHttpInfo) | **DELETE** /v1/api-keys/{keyId} | Delete key
 *ApiKeysApi* | [**listApiKeys**](docs/ApiKeysApi.md#listApiKeys) | **GET** /v1/api-keys | List keys
 *ApiKeysApi* | [**listApiKeysWithHttpInfo**](docs/ApiKeysApi.md#listApiKeysWithHttpInfo) | **GET** /v1/api-keys | List keys
+*ApiKeysApi* | [**verifyCredential**](docs/ApiKeysApi.md#verifyCredential) | **GET** /v1/auth/verify | Verify credential
+*ApiKeysApi* | [**verifyCredentialWithHttpInfo**](docs/ApiKeysApi.md#verifyCredentialWithHttpInfo) | **GET** /v1/auth/verify | Verify credential
 *BroadcastsApi* | [**addBroadcastRecipients**](docs/BroadcastsApi.md#addBroadcastRecipients) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**addBroadcastRecipientsWithHttpInfo**](docs/BroadcastsApi.md#addBroadcastRecipientsWithHttpInfo) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**cancelBroadcast**](docs/BroadcastsApi.md#cancelBroadcast) | **POST** /v1/broadcasts/{broadcastId}/cancel | Cancel broadcast
@@ -2655,6 +2657,7 @@ Class | Method | HTTP request | Description
  - [ValueRuleCriterion](docs/ValueRuleCriterion.md)
  - [ValueRuleSet](docs/ValueRuleSet.md)
  - [Verification](docs/Verification.md)
+ - [VerifyCredential200Response](docs/VerifyCredential200Response.md)
  - [VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
  - [VerifyWhatsAppCallerIdRequest](docs/VerifyWhatsAppCallerIdRequest.md)

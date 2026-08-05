@@ -24,6 +24,7 @@ import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListApiKeys200Response;
+import dev.zernio.model.VerifyCredential200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T08:55:58.863745720Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T09:10:43.867281266Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiKeysApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -500,6 +501,115 @@ public class ApiKeysApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/api-keys";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Verify credential
+   * Checks whether the bearer credential on this request is valid, without reading any data. Accepts an API key or an OAuth access token. Intended for clients that must validate a credential before use (for example an MCP server verifying an incoming token) so they do not have to call a data endpoint to do it.
+   * @return VerifyCredential200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifyCredential200Response verifyCredential() throws ApiException {
+    return verifyCredential(null);
+  }
+
+  /**
+   * Verify credential
+   * Checks whether the bearer credential on this request is valid, without reading any data. Accepts an API key or an OAuth access token. Intended for clients that must validate a credential before use (for example an MCP server verifying an incoming token) so they do not have to call a data endpoint to do it.
+   * @param headers Optional headers to include in the request
+   * @return VerifyCredential200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifyCredential200Response verifyCredential(Map<String, String> headers) throws ApiException {
+    ApiResponse<VerifyCredential200Response> localVarResponse = verifyCredentialWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Verify credential
+   * Checks whether the bearer credential on this request is valid, without reading any data. Accepts an API key or an OAuth access token. Intended for clients that must validate a credential before use (for example an MCP server verifying an incoming token) so they do not have to call a data endpoint to do it.
+   * @return ApiResponse&lt;VerifyCredential200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifyCredential200Response> verifyCredentialWithHttpInfo() throws ApiException {
+    return verifyCredentialWithHttpInfo(null);
+  }
+
+  /**
+   * Verify credential
+   * Checks whether the bearer credential on this request is valid, without reading any data. Accepts an API key or an OAuth access token. Intended for clients that must validate a credential before use (for example an MCP server verifying an incoming token) so they do not have to call a data endpoint to do it.
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;VerifyCredential200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifyCredential200Response> verifyCredentialWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = verifyCredentialRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("verifyCredential", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<VerifyCredential200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        VerifyCredential200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<VerifyCredential200Response>() {});
+        
+
+        return new ApiResponse<VerifyCredential200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder verifyCredentialRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/auth/verify";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

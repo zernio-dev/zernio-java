@@ -1520,6 +1520,7 @@ docs/ValueRuleCriterion.md
 docs/ValueRuleSet.md
 docs/Verification.md
 docs/VerifyApi.md
+docs/VerifyCredential200Response.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VerifyWhatsAppCallerIdRequest.md
@@ -3188,6 +3189,7 @@ src/main/java/dev/zernio/model/ValueRule.java
 src/main/java/dev/zernio/model/ValueRuleCriterion.java
 src/main/java/dev/zernio/model/ValueRuleSet.java
 src/main/java/dev/zernio/model/Verification.java
+src/main/java/dev/zernio/model/VerifyCredential200Response.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtp200Response.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtpRequest.java
 src/main/java/dev/zernio/model/VerifyWhatsAppCallerIdRequest.java
@@ -3301,3 +3303,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/VerifyCredential200ResponseTest.java
