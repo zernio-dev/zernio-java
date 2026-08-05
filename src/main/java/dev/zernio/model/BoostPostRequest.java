@@ -67,9 +67,10 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_CALL_TO_ACTION,
   BoostPostRequest.JSON_PROPERTY_SPARK_AUTH_CODE,
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
-  BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
+  BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
+  BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T08:44:02.802711132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T08:55:58.863745720Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -250,6 +251,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
   @javax.annotation.Nullable
   private String dsaPayor;
+
+  public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
+  @javax.annotation.Nullable
+  private String optimizationGoal;
 
   public BoostPostRequest() { 
   }
@@ -830,6 +835,30 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest optimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
+    this.optimizationGoal = optimizationGoal;
+    return this;
+  }
+
+  /**
+   * Meta only. Explicit ad-set &#x60;optimization_goal&#x60; override. When omitted, defaults to the value derived from &#x60;goal&#x60;. The value must be compatible with the objective Meta derives from &#x60;goal&#x60;, not with the objective used by &#x60;POST /v1/ads/create&#x60; for the same &#x60;goal&#x60; name: boost maps &#x60;goal: \&quot;engagement\&quot;&#x60; to objective &#x60;OUTCOME_AWARENESS&#x60;, which accepts &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;AD_RECALL_LIFT&#x60;, or THRUPLAY-class values, and rejects &#x60;POST_ENGAGEMENT&#x60; (that value is only valid under &#x60;OUTCOME_ENGAGEMENT&#x60;, which create uses for the same goal name). 
+   * @return optimizationGoal
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOptimizationGoal() {
+    return optimizationGoal;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOptimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
+    this.optimizationGoal = optimizationGoal;
+  }
+
+
   /**
    * Return true if this boostPost_request object is equal to o.
    */
@@ -864,12 +893,13 @@ public class BoostPostRequest {
         Objects.equals(this.callToAction, boostPostRequest.callToAction) &&
         Objects.equals(this.sparkAuthCode, boostPostRequest.sparkAuthCode) &&
         Objects.equals(this.dsaBeneficiary, boostPostRequest.dsaBeneficiary) &&
-        Objects.equals(this.dsaPayor, boostPostRequest.dsaPayor);
+        Objects.equals(this.dsaPayor, boostPostRequest.dsaPayor) &&
+        Objects.equals(this.optimizationGoal, boostPostRequest.optimizationGoal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, optimizationGoal);
   }
 
   @Override
@@ -899,6 +929,7 @@ public class BoostPostRequest {
     sb.append("    sparkAuthCode: ").append(toIndentedString(sparkAuthCode)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
+    sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1071,6 +1102,11 @@ public class BoostPostRequest {
     // add `dsaPayor` to the URL query string
     if (getDsaPayor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
+    }
+
+    // add `optimizationGoal` to the URL query string
+    if (getOptimizationGoal() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soptimizationGoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptimizationGoal()))));
     }
 
     return joiner.toString();

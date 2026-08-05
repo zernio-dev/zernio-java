@@ -3301,14 +3301,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateValueRuleSet201ResponseTest.java
-src/test/java/dev/zernio/model/CreateValueRuleSetRequestTest.java
-src/test/java/dev/zernio/model/DeleteValueRuleSet200ResponseTest.java
-src/test/java/dev/zernio/model/GetValueRuleSet200ResponseTest.java
-src/test/java/dev/zernio/model/ListValueRuleSets200ResponsePagingTest.java
-src/test/java/dev/zernio/model/ListValueRuleSets200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateValueRuleSet200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateValueRuleSetRequestTest.java
-src/test/java/dev/zernio/model/ValueRuleCriterionTest.java
-src/test/java/dev/zernio/model/ValueRuleSetTest.java
-src/test/java/dev/zernio/model/ValueRuleTest.java
