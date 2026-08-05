@@ -44,9 +44,11 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequest.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdSetRequest.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdSetRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  UpdateAdSetRequest.JSON_PROPERTY_VALUE_RULE_SET_ID,
+  UpdateAdSetRequest.JSON_PROPERTY_VALUE_RULES_APPLIED,
   UpdateAdSetRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T07:12:19.435221399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T08:44:02.802711132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequest {
   /**
    * Gets or Sets platform
@@ -157,6 +159,14 @@ public class UpdateAdSetRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_VALUE_RULE_SET_ID = "valueRuleSetId";
+  @javax.annotation.Nullable
+  private String valueRuleSetId;
+
+  public static final String JSON_PROPERTY_VALUE_RULES_APPLIED = "valueRulesApplied";
+  @javax.annotation.Nullable
+  private Boolean valueRulesApplied;
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
@@ -333,6 +343,54 @@ public class UpdateAdSetRequest {
   }
 
 
+  public UpdateAdSetRequest valueRuleSetId(@javax.annotation.Nullable String valueRuleSetId) {
+    this.valueRuleSetId = valueRuleSetId;
+    return this;
+  }
+
+  /**
+   * Meta only (other platforms return 501). Value rule set to attach to this ad set, from &#x60;/v1/ads/value-rule-sets&#x60;. Sending a different id replaces the current association. To DETACH, send &#x60;valueRulesApplied: false&#x60; and omit this field. 
+   * @return valueRuleSetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULE_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getValueRuleSetId() {
+    return valueRuleSetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULE_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValueRuleSetId(@javax.annotation.Nullable String valueRuleSetId) {
+    this.valueRuleSetId = valueRuleSetId;
+  }
+
+
+  public UpdateAdSetRequest valueRulesApplied(@javax.annotation.Nullable Boolean valueRulesApplied) {
+    this.valueRulesApplied = valueRulesApplied;
+    return this;
+  }
+
+  /**
+   * Meta only (other platforms return 501). &#x60;false&#x60; DETACHES the ad set&#39;s value rule set and must be sent WITHOUT &#x60;valueRuleSetId&#x60;; the combination returns 400. &#x60;true&#x60; is optional when attaching, since attachment is driven by &#x60;valueRuleSetId&#x60;, and requires it to be present. 
+   * @return valueRulesApplied
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULES_APPLIED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getValueRulesApplied() {
+    return valueRulesApplied;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULES_APPLIED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValueRulesApplied(@javax.annotation.Nullable Boolean valueRulesApplied) {
+    this.valueRulesApplied = valueRulesApplied;
+  }
+
+
   public UpdateAdSetRequest platformSpecificData(@javax.annotation.Nullable UpdateAdSetRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
@@ -376,12 +434,14 @@ public class UpdateAdSetRequest {
         Objects.equals(this.bidStrategy, updateAdSetRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, updateAdSetRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, updateAdSetRequest.roasAverageFloor) &&
+        Objects.equals(this.valueRuleSetId, updateAdSetRequest.valueRuleSetId) &&
+        Objects.equals(this.valueRulesApplied, updateAdSetRequest.valueRulesApplied) &&
         Objects.equals(this.platformSpecificData, updateAdSetRequest.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, budget, status, name, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData);
+    return Objects.hash(platform, budget, status, name, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData);
   }
 
   @Override
@@ -395,6 +455,8 @@ public class UpdateAdSetRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    valueRuleSetId: ").append(toIndentedString(valueRuleSetId)).append("\n");
+    sb.append("    valueRulesApplied: ").append(toIndentedString(valueRulesApplied)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -476,6 +538,16 @@ public class UpdateAdSetRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `valueRuleSetId` to the URL query string
+    if (getValueRuleSetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalueRuleSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValueRuleSetId()))));
+    }
+
+    // add `valueRulesApplied` to the URL query string
+    if (getValueRulesApplied() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalueRulesApplied%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValueRulesApplied()))));
     }
 
     // add `platformSpecificData` to the URL query string

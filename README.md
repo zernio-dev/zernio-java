@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-05T07:12:19.435221399Z[Etc/UTC]
+- Build date: 2026-08-05T08:44:02.802711132Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -158,6 +158,10 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AdAccountsApi* | [**createValueRuleSet**](docs/AdAccountsApi.md#createValueRuleSet) | **POST** /v1/ads/value-rule-sets | Create a value rule set
+*AdAccountsApi* | [**createValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#createValueRuleSetWithHttpInfo) | **POST** /v1/ads/value-rule-sets | Create a value rule set
+*AdAccountsApi* | [**deleteValueRuleSet**](docs/AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
+*AdAccountsApi* | [**deleteValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdComments**](docs/AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
@@ -168,6 +172,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**getDsaDefaultsWithHttpInfo**](docs/AdAccountsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
 *AdAccountsApi* | [**getDsaRecommendations**](docs/AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
 *AdAccountsApi* | [**getDsaRecommendationsWithHttpInfo**](docs/AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdAccountsApi* | [**getValueRuleSet**](docs/AdAccountsApi.md#getValueRuleSet) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set
+*AdAccountsApi* | [**getValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set
 *AdAccountsApi* | [**listAdAccounts**](docs/AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdAccountsApi* | [**listAdAccountsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
 *AdAccountsApi* | [**listAdLabels**](docs/AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels
@@ -180,8 +186,12 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listHighDemandPeriodsWithHttpInfo**](docs/AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
 *AdAccountsApi* | [**listMetaBusinesses**](docs/AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list
 *AdAccountsApi* | [**listMetaBusinessesWithHttpInfo**](docs/AdAccountsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list
+*AdAccountsApi* | [**listValueRuleSets**](docs/AdAccountsApi.md#listValueRuleSets) | **GET** /v1/ads/value-rule-sets | List value rule sets
+*AdAccountsApi* | [**listValueRuleSetsWithHttpInfo**](docs/AdAccountsApi.md#listValueRuleSetsWithHttpInfo) | **GET** /v1/ads/value-rule-sets | List value rule sets
 *AdAccountsApi* | [**updateAdAccount**](docs/AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAccountsApi* | [**updateAdAccountWithHttpInfo**](docs/AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdAccountsApi* | [**updateValueRuleSet**](docs/AdAccountsApi.md#updateValueRuleSet) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set
+*AdAccountsApi* | [**updateValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#updateValueRuleSetWithHttpInfo) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set
 *AdAudiencesApi* | [**addUsersToAdAudience**](docs/AdAudiencesApi.md#addUsersToAdAudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**addUsersToAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#addUsersToAdAudienceWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**createAdAudience**](docs/AdAudiencesApi.md#createAdAudience) | **POST** /v1/ads/audiences | Create custom audience
@@ -1452,6 +1462,8 @@ Class | Method | HTTP request | Description
  - [CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
+ - [CreateValueRuleSet201Response](docs/CreateValueRuleSet201Response.md)
+ - [CreateValueRuleSetRequest](docs/CreateValueRuleSetRequest.md)
  - [CreateVerificationRequest](docs/CreateVerificationRequest.md)
  - [CreateVoiceCall200Response](docs/CreateVoiceCall200Response.md)
  - [CreateVoiceCallRequest](docs/CreateVoiceCallRequest.md)
@@ -1499,6 +1511,7 @@ Class | Method | HTTP request | Description
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
+ - [DeleteValueRuleSet200Response](docs/DeleteValueRuleSet200Response.md)
  - [DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
@@ -1843,6 +1856,7 @@ Class | Method | HTTP request | Description
  - [GetUsage200Response](docs/GetUsage200Response.md)
  - [GetUser200Response](docs/GetUser200Response.md)
  - [GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
+ - [GetValueRuleSet200Response](docs/GetValueRuleSet200Response.md)
  - [GetVoiceCall200Response](docs/GetVoiceCall200Response.md)
  - [GetVoiceCallEstimate200Response](docs/GetVoiceCallEstimate200Response.md)
  - [GetVoiceCallEstimate200ResponseBreakdown](docs/GetVoiceCallEstimate200ResponseBreakdown.md)
@@ -2099,6 +2113,8 @@ Class | Method | HTTP request | Description
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [ListValueRuleSets200Response](docs/ListValueRuleSets200Response.md)
+ - [ListValueRuleSets200ResponsePaging](docs/ListValueRuleSets200ResponsePaging.md)
  - [ListVoiceCalls200Response](docs/ListVoiceCalls200Response.md)
  - [ListWhatsAppCalls200Response](docs/ListWhatsAppCalls200Response.md)
  - [ListWhatsAppCalls200ResponseCallsInner](docs/ListWhatsAppCalls200ResponseCallsInner.md)
@@ -2555,6 +2571,8 @@ Class | Method | HTTP request | Description
  - [UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
  - [UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
  - [UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
+ - [UpdateValueRuleSet200Response](docs/UpdateValueRuleSet200Response.md)
+ - [UpdateValueRuleSetRequest](docs/UpdateValueRuleSetRequest.md)
  - [UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)
  - [UpdateWhatsAppBusinessProfileRequest](docs/UpdateWhatsAppBusinessProfileRequest.md)
@@ -2633,6 +2651,9 @@ Class | Method | HTTP request | Description
  - [ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
+ - [ValueRule](docs/ValueRule.md)
+ - [ValueRuleCriterion](docs/ValueRuleCriterion.md)
+ - [ValueRuleSet](docs/ValueRuleSet.md)
  - [Verification](docs/Verification.md)
  - [VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)

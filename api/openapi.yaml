@@ -26473,9 +26473,25 @@ paths:
     put:
       description: |
         Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped
-        pause/resume, bid-strategy edits, and Meta-only post-launch delivery
-        settings via `platformSpecificData`. At least one updatable field
-        is required.
+        pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, and
+        Meta-only post-launch delivery settings via `platformSpecificData`. At
+        least one updatable field is required.
+
+        Value rule sets (Meta only, see `/v1/ads/value-rule-sets`):
+        - ATTACH or REPLACE: send `valueRuleSetId`. Attachment is driven by the id's
+          presence, so `valueRulesApplied: true` is optional. Sending a different id
+          replaces the previous association; there is no separate replace call.
+        - DETACH: send `valueRulesApplied: false` and OMIT `valueRuleSetId`.
+        - Sending `valueRulesApplied: false` TOGETHER with `valueRuleSetId` returns 400
+          `mutually_exclusive_fields`. This is deliberate: Meta attaches the rule set
+          whenever `value_rule_set_id` is present, even with `value_rules_applied` false,
+          so echoing stored state while asking to detach would silently keep the bid
+          adjustments live.
+        - Eligibility: only ad sets on `LOWEST_COST_WITHOUT_CAP` or `COST_CAP`. Meta
+          rejects the rest server-side.
+        - Read back with `GET /v1/ads/ad-sets/{adSetId}?fields=value_rule_set_id`. Meta
+          does not document `value_rules_applied` as a readable ad-set field, so the
+          boolean cannot be read back.
 
         Bid strategy compatibility (per Meta's spec):
         - `LOWEST_COST_WITHOUT_CAP`: no `bidAmount`, no `roasAverageFloor`.
@@ -28874,6 +28890,312 @@ paths:
       summary: Rename a creative
       tags:
       - Ad Creatives
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/value-rule-sets:
+    get:
+      description: |-
+        Lists the ad account's value rule sets (Meta's `/act_X/value_rule_set`). A value rule
+        set adjusts the auction bid up or down for audience segments you value differently;
+        attach one to an ad set with `valueRuleSetId` on `POST /v1/ads/create` or
+        `PUT /v1/ads/ad-sets/{adSetId}`.
+
+        Rows are returned in the same camelCase shape the `PUT` body takes, ids included, so a
+        set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate
+        and send the whole thing back.
+
+        Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.
+
+        **Rule order is semantic.** Rules are evaluated in array order and only the FIRST
+        matching rule adjusts the bid for an overlapping audience. The order you send is the
+        order that is stored and returned.
+
+        Eligibility: value rule sets apply only to ad sets on the `LOWEST_COST_WITHOUT_CAP`
+        (auto-bid) or `COST_CAP` bid strategies. Meta rejects the rest server-side.
+      operationId: listValueRuleSets
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page. Meta does not
+          document paging on this edge; `after` comes back null when it omits cursors.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listValueRuleSets_200_response"
+          description: Value rule sets
+        "400":
+          description: "Invalid input, or Meta rejected the query. Meta answers a\
+            \ bad rule-set id with GraphMethodException code 100 / subcode 33, which\
+            \ is indistinguishable between not-found, no-permission, and account-not-enabled."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: List value rule sets
+      tags:
+      - Ad Accounts
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Creates a value rule set on the ad account (Meta's `POST /act_X/value_rule_set`).
+        Attach the returned id to an ad set with `valueRuleSetId` on `POST /v1/ads/create` or
+        `PUT /v1/ads/ad-sets/{adSetId}`.
+
+        **Rule order is semantic**: rules are evaluated in array order and only the first
+        matching rule adjusts the bid for an overlapping audience.
+
+        `adjustValue` is an unsigned magnitude in percent; the direction lives in `adjustSign`.
+        `INCREASE` accepts 1-1000, `DECREASE` accepts 1-90. There is no signed field and 0 is
+        out of range.
+
+        `criteriaValueTypes` is positionally paired with `criteriaValues` (same length, same
+        order). Every type is the literal `"NONE"` except on `LOCATION`, which uses
+        `LOCATION_COUNTRY` / `LOCATION_REGION` / `LOCATION_CITY` / `LOCATION_COMSCORE_MARKET`
+        and may mix them within one criterion. Location values are Targeting-Search keys: a
+        two-letter country code for `LOCATION_COUNTRY`, a numeric key for the rest.
+
+        `LOCATION_DMA` was replaced by `LOCATION_COMSCORE_MARKET` on 2026-06-22 and rules using
+        DMAs are no longer active, so this API rejects it.
+
+        `AUDIENCE_LABEL` values (e.g. `HIGH_VALUE`) are applied to a Custom Audience in Ads
+        Manager. There is no API to provision them, so label strings are passed through
+        unvalidated and a typo produces a rule that never fires.
+
+        Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more
+        than 2 criteria, a custom age range, or the placements `FB_MARKETPLACE`, `FB_SEARCH`,
+        `FB_VIDEO` or `IG_EXPLORE`.
+
+        Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The
+        per-account cap is enforced by Meta, not here.
+      operationId: createValueRuleSet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createValueRuleSet_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createValueRuleSet_201_response"
+          description: Value rule set created
+        "400":
+          description: "Invalid input, or Meta rejected the create (per-account rule-set\
+            \ cap, ineligible criteria, or an account that is not enabled for value\
+            \ rules)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Create a value rule set
+      tags:
+      - Ad Accounts
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/value-rule-sets/{valueRuleSetId}:
+    delete:
+      description: |-
+        Deletes the rule set (Meta's `POST /{value-rule-set-id}/delete_rule_set`, a custom
+        action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not
+        modified here; detach them first with `valueRulesApplied: false` on
+        `PUT /v1/ads/ad-sets/{adSetId}`.
+      operationId: deleteValueRuleSet
+      parameters:
+      - description: Platform value rule set id.
+        explode: false
+        in: path
+        name: valueRuleSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteValueRuleSet_200_response"
+          description: Value rule set deleted
+        "400":
+          description: "Invalid input, or Meta rejected the delete. A bad id comes\
+            \ back as GraphMethodException code 100 / subcode 33, which reads like\
+            \ a permission error rather than a 404."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Delete a value rule set
+      tags:
+      - Ad Accounts
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    get:
+      description: |-
+        Reads one value rule set including every nested rule id and criterion id. This is step
+        one of any edit: `PUT` is a full replace, so you need the ids before you can keep the
+        objects you are not changing.
+
+        Meta's own read returns `GENDER` values lowercase (`"male"`) while writes require
+        `"MALE"`. Values are passed through untouched, so never case-compare a stored rule
+        against a fetched one.
+      operationId: getValueRuleSet
+      parameters:
+      - description: Platform value rule set id.
+        explode: false
+        in: path
+        name: valueRuleSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getValueRuleSet_200_response"
+          description: Value rule set
+        "400":
+          description: "Invalid input, or Meta rejected the read. A bad id comes back\
+            \ as GraphMethodException code 100 / subcode 33, which cannot be told\
+            \ apart from a permission problem."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Read a value rule set
+      tags:
+      - Ad Accounts
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    put:
+      description: |-
+        **THIS IS A FULL REPLACE, NOT A PATCH.** Meta's update is declarative: the body you
+        send becomes the rule set.
+
+        - `GET /v1/ads/value-rule-sets/{valueRuleSetId}` FIRST.
+        - Keep a rule or criterion by echoing its `id`.
+        - Create one by including the object WITHOUT an `id`.
+        - Delete one by OMITTING it from the array. There is no warning and no undo.
+
+        `name` and `rules` are both required for exactly this reason: a partial body would
+        silently destroy every rule left out.
+
+        **Rule order is semantic**: the array order you send is the evaluation order, and only
+        the first matching rule adjusts the bid for an overlapping audience.
+
+        Existing rule sets created elsewhere may contain `LOCATION_DMA` criteria. Those went
+        inert on 2026-06-22 and are rejected here; migrate them to `LOCATION_COMSCORE_MARKET`.
+      operationId: updateValueRuleSet
+      parameters:
+      - description: Platform value rule set id.
+        explode: false
+        in: path
+        name: valueRuleSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateValueRuleSet_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateValueRuleSet_200_response"
+          description: Value rule set replaced
+        "400":
+          description: "Invalid input, or Meta rejected the update"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Replace a value rule set
+      tags:
+      - Ad Accounts
       x-platforms:
       - meta
       x-content-type: application/json
@@ -41808,6 +42130,272 @@ components:
           example: 23
           nullable: true
           type: integer
+    ValueRuleCriterion:
+      additionalProperties: false
+      description: |
+        One matching condition inside a value rule. `criteriaValues` and `criteriaValueTypes`
+        are POSITIONALLY paired: same length, same order.
+      example:
+        criteriaValues:
+        - criteriaValues
+        - criteriaValues
+        criteriaValueTypes:
+        - criteriaValueTypes
+        - criteriaValueTypes
+        id: id
+        criteriaType: AGE
+        operator: CONTAINS
+      properties:
+        id:
+          description: |
+            Platform criterion id. Echo it on `PUT` to KEEP this criterion, omit it to CREATE a
+            new one. A criterion left out of the array entirely is DELETED.
+          type: string
+        criteriaType:
+          description: |
+            The dimension being matched. `OMNI_CHANNEL` (conversion location: APP, INSTANT_FORM,
+            PHONE_CALL, WEBSITE) is accepted even though Meta's own enum table omits it.
+          enum:
+          - AGE
+          - GENDER
+          - OS_TYPE
+          - DEVICE_PLATFORM
+          - LOCATION
+          - PLACEMENT
+          - OMNI_CHANNEL
+          - AUDIENCE_LABEL
+          type: string
+        operator:
+          description: Required on every criterion. `CONTAINS` is currently the only
+            value Meta supports.
+          enum:
+          - CONTAINS
+          type: string
+        criteriaValues:
+          description: |
+            The values to match. `AGE` takes ranges such as `18-24`, `18+` or a custom `18-26`;
+            a range whose upper bound is 65 is NOT allowed (use `18+` instead of `18-65`).
+            `LOCATION` takes Targeting-Search keys: a two-letter country code for
+            `LOCATION_COUNTRY`, a numeric key for region / city / comScore market.
+            `AUDIENCE_LABEL` takes labels such as `HIGH_VALUE`, which are applied to a Custom
+            Audience in Ads Manager: there is no API to provision them, so they are passed
+            through unvalidated.
+          items:
+            type: string
+          minItems: 1
+          type: array
+        criteriaValueTypes:
+          description: |
+            One entry per `criteriaValues` entry, in the same order. The literal `"NONE"` for
+            every criteriaType except `LOCATION`, which uses `LOCATION_COUNTRY`,
+            `LOCATION_REGION`, `LOCATION_CITY` or `LOCATION_COMSCORE_MARKET` and MAY mix them
+            within one criterion. `LOCATION_DMA` was replaced by `LOCATION_COMSCORE_MARKET` on
+            2026-06-22 and is rejected by this API.
+          items:
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - criteriaType
+      - criteriaValueTypes
+      - criteriaValues
+      - operator
+    ValueRule:
+      additionalProperties: false
+      description: |
+        One bid-adjustment rule. Rules are evaluated in ARRAY ORDER and only the first matching
+        rule adjusts the bid for an overlapping audience, so the order is semantic.
+      example:
+        adjustSign: INCREASE
+        criteria:
+        - criteriaValues:
+          - criteriaValues
+          - criteriaValues
+          criteriaValueTypes:
+          - criteriaValueTypes
+          - criteriaValueTypes
+          id: id
+          criteriaType: AGE
+          operator: CONTAINS
+        - criteriaValues:
+          - criteriaValues
+          - criteriaValues
+          criteriaValueTypes:
+          - criteriaValueTypes
+          - criteriaValueTypes
+          id: id
+          criteriaType: AGE
+          operator: CONTAINS
+        - criteriaValues:
+          - criteriaValues
+          - criteriaValues
+          criteriaValueTypes:
+          - criteriaValueTypes
+          - criteriaValueTypes
+          id: id
+          criteriaType: AGE
+          operator: CONTAINS
+        - criteriaValues:
+          - criteriaValues
+          - criteriaValues
+          criteriaValueTypes:
+          - criteriaValueTypes
+          - criteriaValueTypes
+          id: id
+          criteriaType: AGE
+          operator: CONTAINS
+        name: name
+        id: id
+        adjustValue: 81
+        status: status
+      properties:
+        id:
+          description: |
+            Platform rule id. Echo it on `PUT` to KEEP this rule, omit it to CREATE a new one.
+            A rule left out of the array entirely is DELETED.
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        adjustSign:
+          description: Direction of the adjustment. There is no signed value field.
+          enum:
+          - INCREASE
+          - DECREASE
+          type: string
+        adjustValue:
+          description: |
+            Unsigned percentage magnitude. `INCREASE` accepts 1-1000, `DECREASE` accepts 1-90.
+            0 is out of range on both.
+          maximum: 1000
+          minimum: 1
+          type: integer
+        status:
+          description: |
+            Meta returns `ACTIVE` here but documents no enum for the field. Treat it as a
+            passthrough: echo whatever the `GET` returned, and do not synthesize values.
+          type: string
+        criteria:
+          description: All criteria on a rule must match for the rule to fire.
+          items:
+            $ref: "#/components/schemas/ValueRuleCriterion"
+          maxItems: 4
+          minItems: 1
+          type: array
+      required:
+      - adjustSign
+      - adjustValue
+      - criteria
+      - name
+    ValueRuleSet:
+      additionalProperties: false
+      description: |
+        A named set of bid-adjustment rules on an ad account. Attach it to an ad set with
+        `valueRuleSetId`. Limits: 6 sets per ad account, 10 rules per set, 4 criteria per rule.
+      example:
+        name: name
+        rules:
+        - adjustSign: INCREASE
+          criteria:
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          name: name
+          id: id
+          adjustValue: 81
+          status: status
+        - adjustSign: INCREASE
+          criteria:
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          name: name
+          id: id
+          adjustValue: 81
+          status: status
+        id: id
+      properties:
+        id:
+          description: Platform value rule set id.
+          type: string
+        name:
+          type: string
+        rules:
+          description: Evaluated in order; the first matching rule wins.
+          items:
+            $ref: "#/components/schemas/ValueRule"
+          type: array
+      required:
+      - id
+      - name
+      - rules
     BidStrategy:
       description: |
         Meta bid strategy. Same enum applies at campaign and ad-set level; ad-set value (when set)
@@ -69714,6 +70302,21 @@ components:
             LOWEST_COST_WITH_MIN_ROAS. Sent to Meta as `bid_constraints.roas_average_floor` × 10000.
             Not supported on OpenAI (422).
           type: number
+        valueRuleSetId:
+          description: |
+            Meta only (other platforms return 501). Value rule set to attach to this ad
+            set, from `/v1/ads/value-rule-sets`. Sending a different id replaces the
+            current association. To DETACH, send `valueRulesApplied: false` and omit
+            this field.
+          pattern: ^\d+$
+          type: string
+        valueRulesApplied:
+          description: |
+            Meta only (other platforms return 501). `false` DETACHES the ad set's value
+            rule set and must be sent WITHOUT `valueRuleSetId`; the combination returns
+            400. `true` is optional when attaching, since attachment is driven by
+            `valueRuleSetId`, and requires it to be present.
+          type: boolean
         platformSpecificData:
           $ref: "#/components/schemas/updateAdSet_request_platformSpecificData"
       required:
@@ -72803,6 +73406,466 @@ components:
           type: string
         message:
           type: string
+    listValueRuleSets_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          description: Cursor for the next page; null when exhausted or when Meta
+            omits paging.
+          nullable: true
+          type: string
+    listValueRuleSets_200_response:
+      example:
+        data:
+        - name: name
+          rules:
+          - adjustSign: INCREASE
+            criteria:
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            name: name
+            id: id
+            adjustValue: 81
+            status: status
+          - adjustSign: INCREASE
+            criteria:
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            name: name
+            id: id
+            adjustValue: 81
+            status: status
+          id: id
+        - name: name
+          rules:
+          - adjustSign: INCREASE
+            criteria:
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            name: name
+            id: id
+            adjustValue: 81
+            status: status
+          - adjustSign: INCREASE
+            criteria:
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            name: name
+            id: id
+            adjustValue: 81
+            status: status
+          id: id
+        adAccountId: adAccountId
+        paging:
+          after: after
+      properties:
+        adAccountId:
+          type: string
+        data:
+          items:
+            $ref: "#/components/schemas/ValueRuleSet"
+          type: array
+        paging:
+          $ref: "#/components/schemas/listValueRuleSets_200_response_paging"
+    createValueRuleSet_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant) used to resolve
+            the Meta token.
+          type: string
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        rules:
+          description: Evaluated in order; the first matching rule wins.
+          items:
+            $ref: "#/components/schemas/ValueRule"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - adAccountId
+      - name
+      - rules
+    createValueRuleSet_201_response:
+      example:
+        valueRuleSetId: valueRuleSetId
+        adAccountId: adAccountId
+      properties:
+        adAccountId:
+          type: string
+        valueRuleSetId:
+          description: "The new rule set id. Meta does not document the create response\
+            \ body, so this is null on the (unobserved) case where it omits the id."
+          nullable: true
+          type: string
+    getValueRuleSet_200_response:
+      example:
+        valueRuleSet:
+          name: name
+          rules:
+          - adjustSign: INCREASE
+            criteria:
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            name: name
+            id: id
+            adjustValue: 81
+            status: status
+          - adjustSign: INCREASE
+            criteria:
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            - criteriaValues:
+              - criteriaValues
+              - criteriaValues
+              criteriaValueTypes:
+              - criteriaValueTypes
+              - criteriaValueTypes
+              id: id
+              criteriaType: AGE
+              operator: CONTAINS
+            name: name
+            id: id
+            adjustValue: 81
+            status: status
+          id: id
+      properties:
+        valueRuleSet:
+          $ref: "#/components/schemas/ValueRuleSet"
+    updateValueRuleSet_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant) used to resolve
+            the Meta token.
+          type: string
+        name:
+          description: "Required: the update replaces the whole set."
+          maxLength: 255
+          minLength: 1
+          type: string
+        rules:
+          description: The COMPLETE rule list. Omitting a rule deletes it on Meta.
+          items:
+            $ref: "#/components/schemas/ValueRule"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - name
+      - rules
+    updateValueRuleSet_200_response:
+      example:
+        valueRuleSetId: valueRuleSetId
+        name: name
+        rules:
+        - adjustSign: INCREASE
+          criteria:
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          name: name
+          id: id
+          adjustValue: 81
+          status: status
+        - adjustSign: INCREASE
+          criteria:
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          - criteriaValues:
+            - criteriaValues
+            - criteriaValues
+            criteriaValueTypes:
+            - criteriaValueTypes
+            - criteriaValueTypes
+            id: id
+            criteriaType: AGE
+            operator: CONTAINS
+          name: name
+          id: id
+          adjustValue: 81
+          status: status
+        message: message
+      properties:
+        valueRuleSetId:
+          type: string
+        name:
+          type: string
+        rules:
+          items:
+            $ref: "#/components/schemas/ValueRule"
+          type: array
+        message:
+          type: string
+    deleteValueRuleSet_200_response:
+      example:
+        valueRuleSetId: valueRuleSetId
+        message: message
+      properties:
+        valueRuleSetId:
+          type: string
+        message:
+          type: string
     getAdAccountFinance_200_response_fundingSource:
       example:
         displayString: displayString
@@ -74718,6 +75781,31 @@ components:
             `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`. Sent to Meta as
             `bid_constraints.roas_average_floor` × 10000.
           type: number
+        valueRuleSetId:
+          description: |
+            Meta only (facebook, instagram; other platforms return 400). Value rule set
+            to attach to the new ad set, from `/v1/ads/value-rule-sets`. Attachment is
+            driven by this id, so `valueRulesApplied` is optional alongside it.
+
+            Rejected with 400 in `adSetId` attach mode: that shape inherits the existing
+            ad set's attachment, so the field would be silently ignored. Use
+            `PUT /v1/ads/ad-sets/{adSetId}` there instead.
+
+            Ignored (stripped before the ad-set create) when `buyingType` is `RESERVED`:
+            value rules only apply to auction ad sets on `LOWEST_COST_WITHOUT_CAP` or
+            `COST_CAP`, and a Reach & Frequency reservation has no auction bid strategy.
+
+            Read back with `GET /v1/ads/ad-sets/{adSetId}?fields=value_rule_set_id`; the
+            attachment is not mirrored onto Zernio's ad documents.
+          pattern: ^\d+$
+          type: string
+        valueRulesApplied:
+          description: |
+            Meta only (facebook, instagram; other platforms return 400). Optional when
+            attaching, and requires `valueRuleSetId`. `false` is REJECTED here with 400:
+            a newly created ad set has nothing to detach, so detaching lives on
+            `PUT /v1/ads/ad-sets/{adSetId}`.
+          type: boolean
         platformSpecificData:
           $ref: "#/components/schemas/LinkedInAdsPlatformData"
         dsaBeneficiary:

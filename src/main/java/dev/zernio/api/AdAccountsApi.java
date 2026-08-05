@@ -18,11 +18,15 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.CreateValueRuleSet201Response;
+import dev.zernio.model.CreateValueRuleSetRequest;
+import dev.zernio.model.DeleteValueRuleSet200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetAdAccountFinance200Response;
 import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetAdsActivityLog200Response;
 import dev.zernio.model.GetDsaRecommendations200Response;
+import dev.zernio.model.GetValueRuleSet200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
@@ -31,9 +35,12 @@ import dev.zernio.model.ListAdStudies200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
 import dev.zernio.model.ListHighDemandPeriods200Response;
 import dev.zernio.model.ListMetaBusinesses200Response;
+import dev.zernio.model.ListValueRuleSets200Response;
 import java.time.LocalDate;
 import dev.zernio.model.UpdateAdAccount200Response;
 import dev.zernio.model.UpdateAdAccountRequest;
+import dev.zernio.model.UpdateValueRuleSet200Response;
+import dev.zernio.model.UpdateValueRuleSetRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T07:12:19.435221399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T08:44:02.802711132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -175,6 +182,270 @@ public class AdAccountsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Create a value rule set
+   * Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+   * @param createValueRuleSetRequest  (required)
+   * @return CreateValueRuleSet201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateValueRuleSet201Response createValueRuleSet(@javax.annotation.Nonnull CreateValueRuleSetRequest createValueRuleSetRequest) throws ApiException {
+    return createValueRuleSet(createValueRuleSetRequest, null);
+  }
+
+  /**
+   * Create a value rule set
+   * Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+   * @param createValueRuleSetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateValueRuleSet201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateValueRuleSet201Response createValueRuleSet(@javax.annotation.Nonnull CreateValueRuleSetRequest createValueRuleSetRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateValueRuleSet201Response> localVarResponse = createValueRuleSetWithHttpInfo(createValueRuleSetRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a value rule set
+   * Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+   * @param createValueRuleSetRequest  (required)
+   * @return ApiResponse&lt;CreateValueRuleSet201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateValueRuleSet201Response> createValueRuleSetWithHttpInfo(@javax.annotation.Nonnull CreateValueRuleSetRequest createValueRuleSetRequest) throws ApiException {
+    return createValueRuleSetWithHttpInfo(createValueRuleSetRequest, null);
+  }
+
+  /**
+   * Create a value rule set
+   * Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+   * @param createValueRuleSetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateValueRuleSet201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateValueRuleSet201Response> createValueRuleSetWithHttpInfo(@javax.annotation.Nonnull CreateValueRuleSetRequest createValueRuleSetRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createValueRuleSetRequestBuilder(createValueRuleSetRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createValueRuleSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateValueRuleSet201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateValueRuleSet201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateValueRuleSet201Response>() {});
+        
+
+        return new ApiResponse<CreateValueRuleSet201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createValueRuleSetRequestBuilder(@javax.annotation.Nonnull CreateValueRuleSetRequest createValueRuleSetRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createValueRuleSetRequest' is set
+    if (createValueRuleSetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createValueRuleSetRequest' when calling createValueRuleSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/value-rule-sets";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createValueRuleSetRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a value rule set
+   * Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @return DeleteValueRuleSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteValueRuleSet200Response deleteValueRuleSet(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteValueRuleSet(valueRuleSetId, accountId, null);
+  }
+
+  /**
+   * Delete a value rule set
+   * Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteValueRuleSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteValueRuleSet200Response deleteValueRuleSet(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteValueRuleSet200Response> localVarResponse = deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a value rule set
+   * Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @return ApiResponse&lt;DeleteValueRuleSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteValueRuleSet200Response> deleteValueRuleSetWithHttpInfo(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId, null);
+  }
+
+  /**
+   * Delete a value rule set
+   * Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteValueRuleSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteValueRuleSet200Response> deleteValueRuleSetWithHttpInfo(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteValueRuleSetRequestBuilder(valueRuleSetId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteValueRuleSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteValueRuleSet200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteValueRuleSet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteValueRuleSet200Response>() {});
+        
+
+        return new ApiResponse<DeleteValueRuleSet200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteValueRuleSetRequestBuilder(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'valueRuleSetId' is set
+    if (valueRuleSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'valueRuleSetId' when calling deleteValueRuleSet");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteValueRuleSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/value-rule-sets/{valueRuleSetId}"
+        .replace("{valueRuleSetId}", ApiClient.urlEncode(valueRuleSetId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -898,6 +1169,147 @@ public class AdAccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "adAccountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Read a value rule set
+   * Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @return GetValueRuleSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetValueRuleSet200Response getValueRuleSet(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getValueRuleSet(valueRuleSetId, accountId, null);
+  }
+
+  /**
+   * Read a value rule set
+   * Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param headers Optional headers to include in the request
+   * @return GetValueRuleSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetValueRuleSet200Response getValueRuleSet(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetValueRuleSet200Response> localVarResponse = getValueRuleSetWithHttpInfo(valueRuleSetId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read a value rule set
+   * Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @return ApiResponse&lt;GetValueRuleSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetValueRuleSet200Response> getValueRuleSetWithHttpInfo(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getValueRuleSetWithHttpInfo(valueRuleSetId, accountId, null);
+  }
+
+  /**
+   * Read a value rule set
+   * Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetValueRuleSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetValueRuleSet200Response> getValueRuleSetWithHttpInfo(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getValueRuleSetRequestBuilder(valueRuleSetId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getValueRuleSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetValueRuleSet200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetValueRuleSet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetValueRuleSet200Response>() {});
+        
+
+        return new ApiResponse<GetValueRuleSet200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getValueRuleSetRequestBuilder(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'valueRuleSetId' is set
+    if (valueRuleSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'valueRuleSetId' when calling getValueRuleSet");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getValueRuleSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/value-rule-sets/{valueRuleSetId}"
+        .replace("{valueRuleSetId}", ApiClient.urlEncode(valueRuleSetId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -1815,6 +2227,160 @@ public class AdAccountsApi {
   }
 
   /**
+   * List value rule sets
+   * Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)
+   * @return ListValueRuleSets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListValueRuleSets200Response listValueRuleSets(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return listValueRuleSets(accountId, adAccountId, limit, after, null);
+  }
+
+  /**
+   * List value rule sets
+   * Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListValueRuleSets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListValueRuleSets200Response listValueRuleSets(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListValueRuleSets200Response> localVarResponse = listValueRuleSetsWithHttpInfo(accountId, adAccountId, limit, after, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List value rule sets
+   * Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)
+   * @return ApiResponse&lt;ListValueRuleSets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListValueRuleSets200Response> listValueRuleSetsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return listValueRuleSetsWithHttpInfo(accountId, adAccountId, limit, after, null);
+  }
+
+  /**
+   * List value rule sets
+   * Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListValueRuleSets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListValueRuleSets200Response> listValueRuleSetsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listValueRuleSetsRequestBuilder(accountId, adAccountId, limit, after, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listValueRuleSets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListValueRuleSets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListValueRuleSets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListValueRuleSets200Response>() {});
+        
+
+        return new ApiResponse<ListValueRuleSets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listValueRuleSetsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listValueRuleSets");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listValueRuleSets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/value-rule-sets";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Update ad account settings
    * Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
    * @param updateAdAccountRequest  (required)
@@ -1923,6 +2489,138 @@ public class AdAccountsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdAccountRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Replace a value rule set
+   * **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param updateValueRuleSetRequest  (required)
+   * @return UpdateValueRuleSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateValueRuleSet200Response updateValueRuleSet(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull UpdateValueRuleSetRequest updateValueRuleSetRequest) throws ApiException {
+    return updateValueRuleSet(valueRuleSetId, updateValueRuleSetRequest, null);
+  }
+
+  /**
+   * Replace a value rule set
+   * **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param updateValueRuleSetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateValueRuleSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateValueRuleSet200Response updateValueRuleSet(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull UpdateValueRuleSetRequest updateValueRuleSetRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateValueRuleSet200Response> localVarResponse = updateValueRuleSetWithHttpInfo(valueRuleSetId, updateValueRuleSetRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Replace a value rule set
+   * **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param updateValueRuleSetRequest  (required)
+   * @return ApiResponse&lt;UpdateValueRuleSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateValueRuleSet200Response> updateValueRuleSetWithHttpInfo(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull UpdateValueRuleSetRequest updateValueRuleSetRequest) throws ApiException {
+    return updateValueRuleSetWithHttpInfo(valueRuleSetId, updateValueRuleSetRequest, null);
+  }
+
+  /**
+   * Replace a value rule set
+   * **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+   * @param valueRuleSetId Platform value rule set id. (required)
+   * @param updateValueRuleSetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateValueRuleSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateValueRuleSet200Response> updateValueRuleSetWithHttpInfo(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull UpdateValueRuleSetRequest updateValueRuleSetRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateValueRuleSetRequestBuilder(valueRuleSetId, updateValueRuleSetRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateValueRuleSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateValueRuleSet200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateValueRuleSet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateValueRuleSet200Response>() {});
+        
+
+        return new ApiResponse<UpdateValueRuleSet200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateValueRuleSetRequestBuilder(@javax.annotation.Nonnull String valueRuleSetId, @javax.annotation.Nonnull UpdateValueRuleSetRequest updateValueRuleSetRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'valueRuleSetId' is set
+    if (valueRuleSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'valueRuleSetId' when calling updateValueRuleSet");
+    }
+    // verify the required parameter 'updateValueRuleSetRequest' is set
+    if (updateValueRuleSetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateValueRuleSetRequest' when calling updateValueRuleSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/value-rule-sets/{valueRuleSetId}"
+        .replace("{valueRuleSetId}", ApiClient.urlEncode(valueRuleSetId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateValueRuleSetRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

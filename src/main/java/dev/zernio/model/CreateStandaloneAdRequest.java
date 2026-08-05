@@ -134,6 +134,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  CreateStandaloneAdRequest.JSON_PROPERTY_VALUE_RULE_SET_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_VALUE_RULES_APPLIED,
   CreateStandaloneAdRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   CreateStandaloneAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateStandaloneAdRequest.JSON_PROPERTY_DSA_PAYOR,
@@ -141,7 +143,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T07:12:19.435221399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T08:44:02.802711132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -948,6 +950,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_VALUE_RULE_SET_ID = "valueRuleSetId";
+  @javax.annotation.Nullable
+  private String valueRuleSetId;
+
+  public static final String JSON_PROPERTY_VALUE_RULES_APPLIED = "valueRulesApplied";
+  @javax.annotation.Nullable
+  private Boolean valueRulesApplied;
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
@@ -2927,6 +2937,54 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest valueRuleSetId(@javax.annotation.Nullable String valueRuleSetId) {
+    this.valueRuleSetId = valueRuleSetId;
+    return this;
+  }
+
+  /**
+   * Meta only (facebook, instagram; other platforms return 400). Value rule set to attach to the new ad set, from &#x60;/v1/ads/value-rule-sets&#x60;. Attachment is driven by this id, so &#x60;valueRulesApplied&#x60; is optional alongside it.  Rejected with 400 in &#x60;adSetId&#x60; attach mode: that shape inherits the existing ad set&#39;s attachment, so the field would be silently ignored. Use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60; there instead.  Ignored (stripped before the ad-set create) when &#x60;buyingType&#x60; is &#x60;RESERVED&#x60;: value rules only apply to auction ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;, and a Reach &amp; Frequency reservation has no auction bid strategy.  Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;; the attachment is not mirrored onto Zernio&#39;s ad documents. 
+   * @return valueRuleSetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULE_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getValueRuleSetId() {
+    return valueRuleSetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULE_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValueRuleSetId(@javax.annotation.Nullable String valueRuleSetId) {
+    this.valueRuleSetId = valueRuleSetId;
+  }
+
+
+  public CreateStandaloneAdRequest valueRulesApplied(@javax.annotation.Nullable Boolean valueRulesApplied) {
+    this.valueRulesApplied = valueRulesApplied;
+    return this;
+  }
+
+  /**
+   * Meta only (facebook, instagram; other platforms return 400). Optional when attaching, and requires &#x60;valueRuleSetId&#x60;. &#x60;false&#x60; is REJECTED here with 400: a newly created ad set has nothing to detach, so detaching lives on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. 
+   * @return valueRulesApplied
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULES_APPLIED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getValueRulesApplied() {
+    return valueRulesApplied;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALUE_RULES_APPLIED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValueRulesApplied(@javax.annotation.Nullable Boolean valueRulesApplied) {
+    this.valueRulesApplied = valueRulesApplied;
+  }
+
+
   public CreateStandaloneAdRequest platformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
@@ -3156,6 +3214,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.bidStrategy, createStandaloneAdRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, createStandaloneAdRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, createStandaloneAdRequest.roasAverageFloor) &&
+        Objects.equals(this.valueRuleSetId, createStandaloneAdRequest.valueRuleSetId) &&
+        Objects.equals(this.valueRulesApplied, createStandaloneAdRequest.valueRulesApplied) &&
         Objects.equals(this.platformSpecificData, createStandaloneAdRequest.platformSpecificData) &&
         Objects.equals(this.dsaBeneficiary, createStandaloneAdRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, createStandaloneAdRequest.dsaPayor) &&
@@ -3166,7 +3226,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -3246,6 +3306,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    valueRuleSetId: ").append(toIndentedString(valueRuleSetId)).append("\n");
+    sb.append("    valueRulesApplied: ").append(toIndentedString(valueRulesApplied)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
@@ -3753,6 +3815,16 @@ public class CreateStandaloneAdRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `valueRuleSetId` to the URL query string
+    if (getValueRuleSetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalueRuleSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValueRuleSetId()))));
+    }
+
+    // add `valueRulesApplied` to the URL query string
+    if (getValueRulesApplied() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalueRulesApplied%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValueRulesApplied()))));
     }
 
     // add `platformSpecificData` to the URL query string

@@ -4,6 +4,10 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**createValueRuleSet**](AdAccountsApi.md#createValueRuleSet) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
+| [**createValueRuleSetWithHttpInfo**](AdAccountsApi.md#createValueRuleSetWithHttpInfo) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
+| [**deleteValueRuleSet**](AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
+| [**deleteValueRuleSetWithHttpInfo**](AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**getAdAccountFinance**](AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdAccountFinanceWithHttpInfo**](AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdComments**](AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
@@ -14,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getDsaDefaultsWithHttpInfo**](AdAccountsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
 | [**getDsaRecommendations**](AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
 | [**getDsaRecommendationsWithHttpInfo**](AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
+| [**getValueRuleSet**](AdAccountsApi.md#getValueRuleSet) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
+| [**getValueRuleSetWithHttpInfo**](AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
 | [**listAdAccounts**](AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdLabels**](AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels |
@@ -26,9 +32,317 @@ All URIs are relative to *https://zernio.com/api*
 | [**listHighDemandPeriodsWithHttpInfo**](AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules |
 | [**listMetaBusinesses**](AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list |
 | [**listMetaBusinessesWithHttpInfo**](AdAccountsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list |
+| [**listValueRuleSets**](AdAccountsApi.md#listValueRuleSets) | **GET** /v1/ads/value-rule-sets | List value rule sets |
+| [**listValueRuleSetsWithHttpInfo**](AdAccountsApi.md#listValueRuleSetsWithHttpInfo) | **GET** /v1/ads/value-rule-sets | List value rule sets |
 | [**updateAdAccount**](AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdAccountWithHttpInfo**](AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**updateValueRuleSet**](AdAccountsApi.md#updateValueRuleSet) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
+| [**updateValueRuleSetWithHttpInfo**](AdAccountsApi.md#updateValueRuleSetWithHttpInfo) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
 
+
+
+## createValueRuleSet
+
+> CreateValueRuleSet201Response createValueRuleSet(createValueRuleSetRequest)
+
+Create a value rule set
+
+Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        CreateValueRuleSetRequest createValueRuleSetRequest = new CreateValueRuleSetRequest(); // CreateValueRuleSetRequest | 
+        try {
+            CreateValueRuleSet201Response result = apiInstance.createValueRuleSet(createValueRuleSetRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#createValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createValueRuleSetRequest** | [**CreateValueRuleSetRequest**](CreateValueRuleSetRequest.md)|  | |
+
+### Return type
+
+[**CreateValueRuleSet201Response**](CreateValueRuleSet201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Value rule set created |  -  |
+| **400** | Invalid input, or Meta rejected the create (per-account rule-set cap, ineligible criteria, or an account that is not enabled for value rules) |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## createValueRuleSetWithHttpInfo
+
+> ApiResponse<CreateValueRuleSet201Response> createValueRuleSet createValueRuleSetWithHttpInfo(createValueRuleSetRequest)
+
+Create a value rule set
+
+Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        CreateValueRuleSetRequest createValueRuleSetRequest = new CreateValueRuleSetRequest(); // CreateValueRuleSetRequest | 
+        try {
+            ApiResponse<CreateValueRuleSet201Response> response = apiInstance.createValueRuleSetWithHttpInfo(createValueRuleSetRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#createValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createValueRuleSetRequest** | [**CreateValueRuleSetRequest**](CreateValueRuleSetRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateValueRuleSet201Response**](CreateValueRuleSet201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Value rule set created |  -  |
+| **400** | Invalid input, or Meta rejected the create (per-account rule-set cap, ineligible criteria, or an account that is not enabled for value rules) |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## deleteValueRuleSet
+
+> DeleteValueRuleSet200Response deleteValueRuleSet(valueRuleSetId, accountId)
+
+Delete a value rule set
+
+Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        try {
+            DeleteValueRuleSet200Response result = apiInstance.deleteValueRuleSet(valueRuleSetId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#deleteValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **valueRuleSetId** | **String**| Platform value rule set id. | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+
+### Return type
+
+[**DeleteValueRuleSet200Response**](DeleteValueRuleSet200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule set deleted |  -  |
+| **400** | Invalid input, or Meta rejected the delete. A bad id comes back as GraphMethodException code 100 / subcode 33, which reads like a permission error rather than a 404. |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## deleteValueRuleSetWithHttpInfo
+
+> ApiResponse<DeleteValueRuleSet200Response> deleteValueRuleSet deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId)
+
+Delete a value rule set
+
+Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        try {
+            ApiResponse<DeleteValueRuleSet200Response> response = apiInstance.deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#deleteValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **valueRuleSetId** | **String**| Platform value rule set id. | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+
+### Return type
+
+ApiResponse<[**DeleteValueRuleSet200Response**](DeleteValueRuleSet200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule set deleted |  -  |
+| **400** | Invalid input, or Meta rejected the delete. A bad id comes back as GraphMethodException code 100 / subcode 33, which reads like a permission error rather than a 404. |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## getAdAccountFinance
@@ -831,6 +1145,160 @@ ApiResponse<[**GetDsaRecommendations200Response**](GetDsaRecommendations200Respo
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Social account not found |  -  |
+
+
+## getValueRuleSet
+
+> GetValueRuleSet200Response getValueRuleSet(valueRuleSetId, accountId)
+
+Read a value rule set
+
+Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        try {
+            GetValueRuleSet200Response result = apiInstance.getValueRuleSet(valueRuleSetId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **valueRuleSetId** | **String**| Platform value rule set id. | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+
+### Return type
+
+[**GetValueRuleSet200Response**](GetValueRuleSet200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule set |  -  |
+| **400** | Invalid input, or Meta rejected the read. A bad id comes back as GraphMethodException code 100 / subcode 33, which cannot be told apart from a permission problem. |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getValueRuleSetWithHttpInfo
+
+> ApiResponse<GetValueRuleSet200Response> getValueRuleSet getValueRuleSetWithHttpInfo(valueRuleSetId, accountId)
+
+Read a value rule set
+
+Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        try {
+            ApiResponse<GetValueRuleSet200Response> response = apiInstance.getValueRuleSetWithHttpInfo(valueRuleSetId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **valueRuleSetId** | **String**| Platform value rule set id. | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+
+### Return type
+
+ApiResponse<[**GetValueRuleSet200Response**](GetValueRuleSet200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule set |  -  |
+| **400** | Invalid input, or Meta rejected the read. A bad id comes back as GraphMethodException code 100 / subcode 33, which cannot be told apart from a permission problem. |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## listAdAccounts
@@ -1795,6 +2263,168 @@ ApiResponse<[**ListMetaBusinesses200Response**](ListMetaBusinesses200Response.md
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
+## listValueRuleSets
+
+> ListValueRuleSets200Response listValueRuleSets(accountId, adAccountId, limit, after)
+
+List value rule sets
+
+Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        Integer limit = 25; // Integer | Rows per page
+        String after = "after_example"; // String | Cursor from paging.after of the previous page. Meta does not document paging on this edge; `after` comes back null when it omits cursors.
+        try {
+            ListValueRuleSets200Response result = apiInstance.listValueRuleSets(accountId, adAccountId, limit, after);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listValueRuleSets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **limit** | **Integer**| Rows per page | [optional] [default to 25] |
+| **after** | **String**| Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. | [optional] |
+
+### Return type
+
+[**ListValueRuleSets200Response**](ListValueRuleSets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule sets |  -  |
+| **400** | Invalid input, or Meta rejected the query. Meta answers a bad rule-set id with GraphMethodException code 100 / subcode 33, which is indistinguishable between not-found, no-permission, and account-not-enabled. |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## listValueRuleSetsWithHttpInfo
+
+> ApiResponse<ListValueRuleSets200Response> listValueRuleSets listValueRuleSetsWithHttpInfo(accountId, adAccountId, limit, after)
+
+List value rule sets
+
+Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        Integer limit = 25; // Integer | Rows per page
+        String after = "after_example"; // String | Cursor from paging.after of the previous page. Meta does not document paging on this edge; `after` comes back null when it omits cursors.
+        try {
+            ApiResponse<ListValueRuleSets200Response> response = apiInstance.listValueRuleSetsWithHttpInfo(accountId, adAccountId, limit, after);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listValueRuleSets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **limit** | **Integer**| Rows per page | [optional] [default to 25] |
+| **after** | **String**| Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListValueRuleSets200Response**](ListValueRuleSets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule sets |  -  |
+| **400** | Invalid input, or Meta rejected the query. Meta answers a bad rule-set id with GraphMethodException code 100 / subcode 33, which is indistinguishable between not-found, no-permission, and account-not-enabled. |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
 ## updateAdAccount
 
 > UpdateAdAccount200Response updateAdAccount(updateAdAccountRequest)
@@ -1943,4 +2573,158 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Social account not found |  -  |
+
+
+## updateValueRuleSet
+
+> UpdateValueRuleSet200Response updateValueRuleSet(valueRuleSetId, updateValueRuleSetRequest)
+
+Replace a value rule set
+
+**THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
+        UpdateValueRuleSetRequest updateValueRuleSetRequest = new UpdateValueRuleSetRequest(); // UpdateValueRuleSetRequest | 
+        try {
+            UpdateValueRuleSet200Response result = apiInstance.updateValueRuleSet(valueRuleSetId, updateValueRuleSetRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **valueRuleSetId** | **String**| Platform value rule set id. | |
+| **updateValueRuleSetRequest** | [**UpdateValueRuleSetRequest**](UpdateValueRuleSetRequest.md)|  | |
+
+### Return type
+
+[**UpdateValueRuleSet200Response**](UpdateValueRuleSet200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule set replaced |  -  |
+| **400** | Invalid input, or Meta rejected the update |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## updateValueRuleSetWithHttpInfo
+
+> ApiResponse<UpdateValueRuleSet200Response> updateValueRuleSet updateValueRuleSetWithHttpInfo(valueRuleSetId, updateValueRuleSetRequest)
+
+Replace a value rule set
+
+**THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
+        UpdateValueRuleSetRequest updateValueRuleSetRequest = new UpdateValueRuleSetRequest(); // UpdateValueRuleSetRequest | 
+        try {
+            ApiResponse<UpdateValueRuleSet200Response> response = apiInstance.updateValueRuleSetWithHttpInfo(valueRuleSetId, updateValueRuleSetRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateValueRuleSet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **valueRuleSetId** | **String**| Platform value rule set id. | |
+| **updateValueRuleSetRequest** | [**UpdateValueRuleSetRequest**](UpdateValueRuleSetRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateValueRuleSet200Response**](UpdateValueRuleSet200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Value rule set replaced |  -  |
+| **400** | Invalid input, or Meta rejected the update |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
