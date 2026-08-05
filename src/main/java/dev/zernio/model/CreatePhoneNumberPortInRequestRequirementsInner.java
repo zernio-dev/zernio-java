@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequestRequirementsInner.JSON_PROPERTY_REQUIREMENT_TYPE_ID,
   CreatePhoneNumberPortInRequestRequirementsInner.JSON_PROPERTY_FIELD_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T13:59:04.619715283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T14:47:02.754337853Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequestRequirementsInner {
   public static final String JSON_PROPERTY_REQUIREMENT_TYPE_ID = "requirementTypeId";
   @javax.annotation.Nonnull

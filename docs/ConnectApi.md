@@ -624,10 +624,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Brand identity configured (or updated) |  -  |
-| **400** | Missing fields, invalid lengths, account is in linked mode, or no advertiser found on the account |  -  |
+| **400** | Missing fields, invalid JSON body, invalid accountId format, invalid lengths, or no advertiser found on the account |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | TikTok Ads account not found |  -  |
-| **500** | Failed to create the TikTok identity (TikTok API error) |  -  |
+| **500** | Unexpected server error while caching the identity |  -  |
+| **502** | TikTok rejected the image upload or the identity creation (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
 
 ## configureTikTokAdsBrandIdentityWithHttpInfo
 
@@ -701,10 +702,11 @@ ApiResponse<[**ConfigureTikTokAdsBrandIdentity200Response**](ConfigureTikTokAdsB
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Brand identity configured (or updated) |  -  |
-| **400** | Missing fields, invalid lengths, account is in linked mode, or no advertiser found on the account |  -  |
+| **400** | Missing fields, invalid JSON body, invalid accountId format, invalid lengths, or no advertiser found on the account |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | TikTok Ads account not found |  -  |
-| **500** | Failed to create the TikTok identity (TikTok API error) |  -  |
+| **500** | Unexpected server error while caching the identity |  -  |
+| **502** | TikTok rejected the image upload or the identity creation (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
 
 
 ## connectAds
