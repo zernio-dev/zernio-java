@@ -3311,8 +3311,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInnerTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf8ParametersTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf9CardsInnerTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf9Test.java

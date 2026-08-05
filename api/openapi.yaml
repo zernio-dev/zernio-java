@@ -4658,7 +4658,9 @@ paths:
           example: twitter
           type: string
         style: form
-      - explode: true
+      - description: "Filter posts to a specific profile (24-char hex ObjectId). Omit\
+          \ it, or send `all` or an empty value, to list posts across every profile."
+        explode: true
         in: query
         name: profileId
         required: false
