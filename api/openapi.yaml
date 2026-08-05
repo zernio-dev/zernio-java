@@ -14236,6 +14236,8 @@ paths:
           description: Webhook ID required
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Webhook not found
         "500":
           content:
             application/json:

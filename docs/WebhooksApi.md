@@ -692,6 +692,7 @@ public class Example {
 | **200** | Test webhook sent successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Webhook not found |  -  |
 | **500** | Test webhook failed to deliver |  -  |
 
 ## testWebhookWithHttpInfo
@@ -768,6 +769,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **200** | Test webhook sent successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Webhook not found |  -  |
 | **500** | Test webhook failed to deliver |  -  |
 
 
