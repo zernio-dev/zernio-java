@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T09:10:43.867281266Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-05T09:58:03.667316267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContactsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -761,7 +761,8 @@ public class ContactsApi {
   /**
    * List contacts
    * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
-   * @param profileId Filter by profile. Omit to list across all profiles (optional)
+   * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
+   * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
    * @param search  (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
@@ -772,14 +773,15 @@ public class ContactsApi {
    * @return ListContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    return listContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip, null);
+  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip, null);
   }
 
   /**
    * List contacts
    * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
-   * @param profileId Filter by profile. Omit to list across all profiles (optional)
+   * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
+   * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
    * @param search  (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
@@ -791,15 +793,16 @@ public class ContactsApi {
    * @return ListContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListContacts200Response> localVarResponse = listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip, headers);
+  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListContacts200Response> localVarResponse = listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List contacts
    * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
-   * @param profileId Filter by profile. Omit to list across all profiles (optional)
+   * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
+   * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
    * @param search  (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
@@ -810,14 +813,15 @@ public class ContactsApi {
    * @return ApiResponse&lt;ListContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    return listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip, null);
+  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip, null);
   }
 
   /**
    * List contacts
    * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
-   * @param profileId Filter by profile. Omit to list across all profiles (optional)
+   * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
+   * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
    * @param search  (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
@@ -829,8 +833,8 @@ public class ContactsApi {
    * @return ApiResponse&lt;ListContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listContactsRequestBuilder(profileId, search, tag, tags, platform, isSubscribed, limit, skip, headers);
+  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listContactsRequestBuilder(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -877,7 +881,7 @@ public class ContactsApi {
     }
   }
 
-  private HttpRequest.Builder listContactsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listContactsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -888,6 +892,8 @@ public class ContactsApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "search";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
     localVarQueryParameterBaseName = "tag";

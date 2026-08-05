@@ -240,7 +240,7 @@ public class Example {
 | **200** | Contact created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | Duplicate contact |  -  |
+| **409** | Duplicate channel. The platformIdentifier is already bound to a channel on this accountId. |  -  |
 
 ## createContactWithHttpInfo
 
@@ -316,7 +316,7 @@ ApiResponse<[**CreateContact200Response**](CreateContact200Response.md)>
 | **200** | Contact created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | Duplicate contact |  -  |
+| **409** | Duplicate channel. The platformIdentifier is already bound to a channel on this accountId. |  -  |
 
 
 ## deleteContact
@@ -769,7 +769,7 @@ ApiResponse<[**GetContactChannels200Response**](GetContactChannels200Response.md
 
 ## listContacts
 
-> ListContacts200Response listContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip)
+> ListContacts200Response listContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip)
 
 List contacts
 
@@ -796,7 +796,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ContactsApi apiInstance = new ContactsApi(defaultClient);
-        String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles
+        String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead.
+        String accountId = "accountId_example"; // String | Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list.
         String search = "search_example"; // String | 
         String tag = "tag_example"; // String | 
         String tags = "tags_example"; // String | Comma-separated tags, matches contacts carrying any of them
@@ -805,7 +806,7 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ListContacts200Response result = apiInstance.listContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
+            ListContacts200Response result = apiInstance.listContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#listContacts");
@@ -823,7 +824,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Filter by profile. Omit to list across all profiles | [optional] |
+| **profileId** | **String**| Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. | [optional] |
+| **accountId** | **String**| Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. | [optional] |
 | **search** | **String**|  | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
@@ -855,7 +857,7 @@ public class Example {
 
 ## listContactsWithHttpInfo
 
-> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip)
+> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip)
 
 List contacts
 
@@ -883,7 +885,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ContactsApi apiInstance = new ContactsApi(defaultClient);
-        String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles
+        String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead.
+        String accountId = "accountId_example"; // String | Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list.
         String search = "search_example"; // String | 
         String tag = "tag_example"; // String | 
         String tags = "tags_example"; // String | Comma-separated tags, matches contacts carrying any of them
@@ -892,7 +895,7 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
+            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -912,7 +915,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Filter by profile. Omit to list across all profiles | [optional] |
+| **profileId** | **String**| Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. | [optional] |
+| **accountId** | **String**| Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. | [optional] |
 | **search** | **String**|  | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
