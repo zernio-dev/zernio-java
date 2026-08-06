@@ -38,11 +38,12 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_HEADLINE,
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_BODY,
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_DESCRIPTION,
+  CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_IMAGE_URL,
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_VIDEO_URL,
   CreateStandaloneAdRequestTranslationsInner.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:39:32.678968864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T10:52:13.106788473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestTranslationsInner {
   public static final String JSON_PROPERTY_LOCALE = "locale";
   @javax.annotation.Nonnull
@@ -59,6 +60,10 @@ public class CreateStandaloneAdRequestTranslationsInner {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nonnull
   private String description;
+
+  public static final String JSON_PROPERTY_LINK_URL = "linkUrl";
+  @javax.annotation.Nullable
+  private URI linkUrl;
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
@@ -171,6 +176,30 @@ public class CreateStandaloneAdRequestTranslationsInner {
   }
 
 
+  public CreateStandaloneAdRequestTranslationsInner linkUrl(@javax.annotation.Nullable URI linkUrl) {
+    this.linkUrl = linkUrl;
+    return this;
+  }
+
+  /**
+   * Destination URL for this language. Inherits the ad&#39;s top-level &#x60;linkUrl&#x60; when omitted, and requires it to be present (400 otherwise): the top-level URL is the destination for every locale you did not override. Unlike text, identical URLs across locales are fine (they share one asset).
+   * @return linkUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINK_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getLinkUrl() {
+    return linkUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINK_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkUrl(@javax.annotation.Nullable URI linkUrl) {
+    this.linkUrl = linkUrl;
+  }
+
+
   public CreateStandaloneAdRequestTranslationsInner imageUrl(@javax.annotation.Nullable URI imageUrl) {
     this.imageUrl = imageUrl;
     return this;
@@ -259,6 +288,7 @@ public class CreateStandaloneAdRequestTranslationsInner {
         Objects.equals(this.headline, createStandaloneAdRequestTranslationsInner.headline) &&
         Objects.equals(this.body, createStandaloneAdRequestTranslationsInner.body) &&
         Objects.equals(this.description, createStandaloneAdRequestTranslationsInner.description) &&
+        Objects.equals(this.linkUrl, createStandaloneAdRequestTranslationsInner.linkUrl) &&
         Objects.equals(this.imageUrl, createStandaloneAdRequestTranslationsInner.imageUrl) &&
         Objects.equals(this.videoUrl, createStandaloneAdRequestTranslationsInner.videoUrl) &&
         Objects.equals(this.thumbnailUrl, createStandaloneAdRequestTranslationsInner.thumbnailUrl);
@@ -266,7 +296,7 @@ public class CreateStandaloneAdRequestTranslationsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, headline, body, description, imageUrl, videoUrl, thumbnailUrl);
+    return Objects.hash(locale, headline, body, description, linkUrl, imageUrl, videoUrl, thumbnailUrl);
   }
 
   @Override
@@ -277,6 +307,7 @@ public class CreateStandaloneAdRequestTranslationsInner {
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
@@ -345,6 +376,11 @@ public class CreateStandaloneAdRequestTranslationsInner {
     // add `description` to the URL query string
     if (getDescription() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+    }
+
+    // add `linkUrl` to the URL query string
+    if (getLinkUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slinkUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkUrl()))));
     }
 
     // add `imageUrl` to the URL query string

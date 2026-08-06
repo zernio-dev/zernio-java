@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AdPromotedObject.JSON_PROPERTY_APPLICATION_ID,
   AdPromotedObject.JSON_PROPERTY_PRODUCT_SET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:39:32.678968864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T10:52:13.106788473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdPromotedObject {
   public static final String JSON_PROPERTY_CUSTOM_EVENT_TYPE = "custom_event_type";
   @javax.annotation.Nullable

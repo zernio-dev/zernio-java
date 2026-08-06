@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200Response.JSON_PROPERTY_CONNECTED,
   ListPhoneNumbers200Response.JSON_PROPERTY_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:39:32.678968864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T10:52:13.106788473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200Response {
   public static final String JSON_PROPERTY_NUMBERS = "numbers";
   @javax.annotation.Nullable
