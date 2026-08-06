@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestTemplate.JSON_PROPERTY_TYPE,
   SendInboxMessageRequestTemplate.JSON_PROPERTY_ELEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T10:52:13.106788473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:07:20.812337906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestTemplate {
   /**
    * Template type. Required for Instagram/Facebook generic templates; ignored on WhatsApp.

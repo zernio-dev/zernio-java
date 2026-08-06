@@ -36829,6 +36829,7 @@ components:
           referredProduct:
             catalog_id: catalog_id
             product_retailer_id: product_retailer_id
+          quotedMessageId: quotedMessageId
           callbackData: callbackData
           flowResponseData:
             key: ""
@@ -58010,8 +58011,11 @@ components:
           type: string
         replyTo:
           description: "Platform message ID to quote-reply to. For WhatsApp, pass\
-            \ the wamid (available in message.platformMessageId from webhooks). For\
-            \ Telegram, pass the Telegram message ID."
+            \ the wamid; for Telegram, the Telegram message ID; for Instagram, the\
+            \ Meta mid (all available in message.platformMessageId from webhooks or\
+            \ the list-messages endpoint). On Slack it threads the reply (thread_ts)\
+            \ instead of quoting. Silently ignored on platforms without reply support,\
+            \ including Facebook Messenger (Meta's Messenger Send API has no reply_to)."
           type: string
         location:
           $ref: "#/components/schemas/sendInboxMessage_request_location"
@@ -58059,8 +58063,11 @@ components:
           type: string
         replyTo:
           description: "Platform message ID to quote-reply to. For WhatsApp, pass\
-            \ the wamid (available in message.platformMessageId from webhooks). For\
-            \ Telegram, pass the Telegram message ID."
+            \ the wamid; for Telegram, the Telegram message ID; for Instagram, the\
+            \ Meta mid (all available in message.platformMessageId from webhooks or\
+            \ the list-messages endpoint). On Slack it threads the reply (thread_ts)\
+            \ instead of quoting. Silently ignored on platforms without reply support,\
+            \ including Facebook Messenger (Meta's Messenger Send API has no reply_to)."
           type: string
         voiceNote:
           description: WhatsApp-only. Set to "true" when the audio attachment is an
@@ -81963,8 +81970,9 @@ components:
         ads_context_data:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral_ads_context_data"
     WebhookPayloadMessage_metadata:
-      description: "Interactive message metadata (present when message is a quick\
-        \ reply tap, postback button tap, or inline keyboard callback)"
+      description: "Platform-specific message context (present when the message is\
+        \ a quick reply tap, postback button tap, inline keyboard callback, or a quote-reply\
+        \ to an earlier message)"
       example:
         quickReplyPayload: quickReplyPayload
         postbackTitle: postbackTitle
@@ -82002,6 +82010,7 @@ components:
         referredProduct:
           catalog_id: catalog_id
           product_retailer_id: product_retailer_id
+        quotedMessageId: quotedMessageId
         callbackData: callbackData
         flowResponseData:
           key: ""
@@ -82022,6 +82031,13 @@ components:
             currency: currency
           text: text
       properties:
+        quotedMessageId:
+          description: |
+            platformMessageId of the message this one is a quote-reply to.
+            WhatsApp (`context.id`), Instagram and Facebook Messenger
+            (`reply_to.mid`). On `message.sent` echoes (operator replied
+            from the native app) this is the only metadata field populated.
+          type: string
         quickReplyPayload:
           description: Payload from a quick reply tap (Facebook/Instagram Messenger).
           type: string

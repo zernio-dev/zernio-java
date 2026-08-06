@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest1.JSON_PROPERTY_REPLY_TO,
   SendInboxMessageRequest1.JSON_PROPERTY_VOICE_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T10:52:13.106788473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:07:20.812337906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest1 {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -350,7 +350,7 @@ public class SendInboxMessageRequest1 {
   }
 
   /**
-   * Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID.
+   * Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID; for Instagram, the Meta mid (all available in message.platformMessageId from webhooks or the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without reply support, including Facebook Messenger (Meta&#39;s Messenger Send API has no reply_to).
    * @return replyTo
    */
   @javax.annotation.Nullable

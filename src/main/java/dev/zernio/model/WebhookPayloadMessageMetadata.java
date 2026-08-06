@@ -38,9 +38,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Interactive message metadata (present when message is a quick reply tap, postback button tap, or inline keyboard callback)
+ * Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, or a quote-reply to an earlier message)
  */
 @JsonPropertyOrder({
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_QUOTED_MESSAGE_ID,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_QUICK_REPLY_PAYLOAD,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_POSTBACK_PAYLOAD,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_POSTBACK_TITLE,
@@ -58,8 +59,12 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_IS_STORY_MENTION,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T10:52:13.106788473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:07:20.812337906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
+  public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
+  @javax.annotation.Nullable
+  private String quotedMessageId;
+
   public static final String JSON_PROPERTY_QUICK_REPLY_PAYLOAD = "quickReplyPayload";
   @javax.annotation.Nullable
   private String quickReplyPayload;
@@ -198,6 +203,30 @@ public class WebhookPayloadMessageMetadata {
 
   public WebhookPayloadMessageMetadata() { 
   }
+
+  public WebhookPayloadMessageMetadata quotedMessageId(@javax.annotation.Nullable String quotedMessageId) {
+    this.quotedMessageId = quotedMessageId;
+    return this;
+  }
+
+  /**
+   * platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On &#x60;message.sent&#x60; echoes (operator replied from the native app) this is the only metadata field populated. 
+   * @return quotedMessageId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUOTED_MESSAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQuotedMessageId() {
+    return quotedMessageId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUOTED_MESSAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuotedMessageId(@javax.annotation.Nullable String quotedMessageId) {
+    this.quotedMessageId = quotedMessageId;
+  }
+
 
   public WebhookPayloadMessageMetadata quickReplyPayload(@javax.annotation.Nullable String quickReplyPayload) {
     this.quickReplyPayload = quickReplyPayload;
@@ -611,7 +640,8 @@ public class WebhookPayloadMessageMetadata {
       return false;
     }
     WebhookPayloadMessageMetadata webhookPayloadMessageMetadata = (WebhookPayloadMessageMetadata) o;
-    return Objects.equals(this.quickReplyPayload, webhookPayloadMessageMetadata.quickReplyPayload) &&
+    return Objects.equals(this.quotedMessageId, webhookPayloadMessageMetadata.quotedMessageId) &&
+        Objects.equals(this.quickReplyPayload, webhookPayloadMessageMetadata.quickReplyPayload) &&
         Objects.equals(this.postbackPayload, webhookPayloadMessageMetadata.postbackPayload) &&
         Objects.equals(this.postbackTitle, webhookPayloadMessageMetadata.postbackTitle) &&
         Objects.equals(this.callbackData, webhookPayloadMessageMetadata.callbackData) &&
@@ -631,13 +661,14 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral);
+    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageMetadata {\n");
+    sb.append("    quotedMessageId: ").append(toIndentedString(quotedMessageId)).append("\n");
     sb.append("    quickReplyPayload: ").append(toIndentedString(quickReplyPayload)).append("\n");
     sb.append("    postbackPayload: ").append(toIndentedString(postbackPayload)).append("\n");
     sb.append("    postbackTitle: ").append(toIndentedString(postbackTitle)).append("\n");
@@ -700,6 +731,11 @@ public class WebhookPayloadMessageMetadata {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `quotedMessageId` to the URL query string
+    if (getQuotedMessageId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squotedMessageId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuotedMessageId()))));
+    }
 
     // add `quickReplyPayload` to the URL query string
     if (getQuickReplyPayload() != null) {
