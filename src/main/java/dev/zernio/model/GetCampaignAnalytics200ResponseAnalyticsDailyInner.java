@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdEngagementCounts;
+import dev.zernio.model.AdFunnelCounts;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -61,10 +63,13 @@ import dev.zernio.ApiClient;
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P95_WATCHED_ACTIONS,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_COST_PER_THRUPLAY,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_FUNNEL,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_ENGAGEMENT_BREAKDOWN,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_LAST_SYNCED_AT,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:08:49.339730530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:16:56.940892820Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -157,6 +162,18 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS = "videoAvgTimeWatchedActions";
   @javax.annotation.Nullable
   private BigDecimal videoAvgTimeWatchedActions;
+
+  public static final String JSON_PROPERTY_COST_PER_THRUPLAY = "costPerThruplay";
+  @javax.annotation.Nullable
+  private BigDecimal costPerThruplay;
+
+  public static final String JSON_PROPERTY_FUNNEL = "funnel";
+  @javax.annotation.Nullable
+  private AdFunnelCounts funnel;
+
+  public static final String JSON_PROPERTY_ENGAGEMENT_BREAKDOWN = "engagementBreakdown";
+  @javax.annotation.Nullable
+  private AdEngagementCounts engagementBreakdown;
 
   public static final String JSON_PROPERTY_LAST_SYNCED_AT = "lastSyncedAt";
   @javax.annotation.Nullable
@@ -737,6 +754,78 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   }
 
 
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner costPerThruplay(@javax.annotation.Nullable BigDecimal costPerThruplay) {
+    this.costPerThruplay = costPerThruplay;
+    return this;
+  }
+
+  /**
+   * Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays.
+   * @return costPerThruplay
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COST_PER_THRUPLAY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getCostPerThruplay() {
+    return costPerThruplay;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COST_PER_THRUPLAY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCostPerThruplay(@javax.annotation.Nullable BigDecimal costPerThruplay) {
+    this.costPerThruplay = costPerThruplay;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner funnel(@javax.annotation.Nullable AdFunnelCounts funnel) {
+    this.funnel = funnel;
+    return this;
+  }
+
+  /**
+   * Get funnel
+   * @return funnel
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FUNNEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdFunnelCounts getFunnel() {
+    return funnel;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FUNNEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFunnel(@javax.annotation.Nullable AdFunnelCounts funnel) {
+    this.funnel = funnel;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner engagementBreakdown(@javax.annotation.Nullable AdEngagementCounts engagementBreakdown) {
+    this.engagementBreakdown = engagementBreakdown;
+    return this;
+  }
+
+  /**
+   * Get engagementBreakdown
+   * @return engagementBreakdown
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ENGAGEMENT_BREAKDOWN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdEngagementCounts getEngagementBreakdown() {
+    return engagementBreakdown;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ENGAGEMENT_BREAKDOWN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEngagementBreakdown(@javax.annotation.Nullable AdEngagementCounts engagementBreakdown) {
+    this.engagementBreakdown = engagementBreakdown;
+  }
+
+
   public GetCampaignAnalytics200ResponseAnalyticsDailyInner lastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
     this.lastSyncedAt = lastSyncedAt;
     return this;
@@ -820,13 +909,16 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
         Objects.equals(this.videoP95WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP95WatchedActions) &&
         Objects.equals(this.videoP100WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP100WatchedActions) &&
         Objects.equals(this.videoAvgTimeWatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoAvgTimeWatchedActions) &&
+        Objects.equals(this.costPerThruplay, getCampaignAnalytics200ResponseAnalyticsDailyInner.costPerThruplay) &&
+        Objects.equals(this.funnel, getCampaignAnalytics200ResponseAnalyticsDailyInner.funnel) &&
+        Objects.equals(this.engagementBreakdown, getCampaignAnalytics200ResponseAnalyticsDailyInner.engagementBreakdown) &&
         Objects.equals(this.lastSyncedAt, getCampaignAnalytics200ResponseAnalyticsDailyInner.lastSyncedAt) &&
         Objects.equals(this.date, getCampaignAnalytics200ResponseAnalyticsDailyInner.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, lastSyncedAt, date);
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt, date);
   }
 
   @Override
@@ -856,6 +948,9 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
     sb.append("    videoP95WatchedActions: ").append(toIndentedString(videoP95WatchedActions)).append("\n");
     sb.append("    videoP100WatchedActions: ").append(toIndentedString(videoP100WatchedActions)).append("\n");
     sb.append("    videoAvgTimeWatchedActions: ").append(toIndentedString(videoAvgTimeWatchedActions)).append("\n");
+    sb.append("    costPerThruplay: ").append(toIndentedString(costPerThruplay)).append("\n");
+    sb.append("    funnel: ").append(toIndentedString(funnel)).append("\n");
+    sb.append("    engagementBreakdown: ").append(toIndentedString(engagementBreakdown)).append("\n");
     sb.append("    lastSyncedAt: ").append(toIndentedString(lastSyncedAt)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
@@ -1026,6 +1121,21 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
     // add `videoAvgTimeWatchedActions` to the URL query string
     if (getVideoAvgTimeWatchedActions() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoAvgTimeWatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoAvgTimeWatchedActions()))));
+    }
+
+    // add `costPerThruplay` to the URL query string
+    if (getCostPerThruplay() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scostPerThruplay%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCostPerThruplay()))));
+    }
+
+    // add `funnel` to the URL query string
+    if (getFunnel() != null) {
+      joiner.add(getFunnel().toUrlQueryString(prefix + "funnel" + suffix));
+    }
+
+    // add `engagementBreakdown` to the URL query string
+    if (getEngagementBreakdown() != null) {
+      joiner.add(getEngagementBreakdown().toUrlQueryString(prefix + "engagementBreakdown" + suffix));
     }
 
     // add `lastSyncedAt` to the URL query string

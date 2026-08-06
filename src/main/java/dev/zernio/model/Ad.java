@@ -56,6 +56,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CONFIGURED_STATUS,
   Ad.JSON_PROPERTY_REVIEW_STATUS,
   Ad.JSON_PROPERTY_AD_TYPE,
+  Ad.JSON_PROPERTY_CREATIVE_TYPE,
   Ad.JSON_PROPERTY_GOAL,
   Ad.JSON_PROPERTY_IS_EXTERNAL,
   Ad.JSON_PROPERTY_BUDGET,
@@ -83,7 +84,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:08:49.339730530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:16:56.940892820Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -193,6 +194,48 @@ public class Ad {
   public static final String JSON_PROPERTY_AD_TYPE = "adType";
   @javax.annotation.Nullable
   private AdTypeEnum adType;
+
+  /**
+   * Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
+   */
+  public enum CreativeTypeEnum {
+    CAROUSEL(String.valueOf("carousel")),
+    
+    VIDEO(String.valueOf("video")),
+    
+    DOCUMENT(String.valueOf("document")),
+    
+    IMAGE(String.valueOf("image"));
+
+    private String value;
+
+    CreativeTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CreativeTypeEnum fromValue(String value) {
+      for (CreativeTypeEnum b : CreativeTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_TYPE = "creativeType";
+  private JsonNullable<CreativeTypeEnum> creativeType = JsonNullable.<CreativeTypeEnum>undefined();
 
   /**
    * Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
@@ -516,6 +559,38 @@ public class Ad {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdType(@javax.annotation.Nullable AdTypeEnum adType) {
     this.adType = adType;
+  }
+
+
+  public Ad creativeType(@javax.annotation.Nullable CreativeTypeEnum creativeType) {
+    this.creativeType = JsonNullable.<CreativeTypeEnum>of(creativeType);
+    return this;
+  }
+
+  /**
+   * Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
+   * @return creativeType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CreativeTypeEnum getCreativeType() {
+        return creativeType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CreativeTypeEnum> getCreativeType_JsonNullable() {
+    return creativeType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATIVE_TYPE)
+  public void setCreativeType_JsonNullable(JsonNullable<CreativeTypeEnum> creativeType) {
+    this.creativeType = creativeType;
+  }
+
+  public void setCreativeType(@javax.annotation.Nullable CreativeTypeEnum creativeType) {
+    this.creativeType = JsonNullable.<CreativeTypeEnum>of(creativeType);
   }
 
 
@@ -1242,6 +1317,7 @@ public class Ad {
         equalsNullable(this.configuredStatus, ad.configuredStatus) &&
         Objects.equals(this.reviewStatus, ad.reviewStatus) &&
         Objects.equals(this.adType, ad.adType) &&
+        equalsNullable(this.creativeType, ad.creativeType) &&
         Objects.equals(this.goal, ad.goal) &&
         Objects.equals(this.isExternal, ad.isExternal) &&
         Objects.equals(this.budget, ad.budget) &&
@@ -1276,7 +1352,7 @@ public class Ad {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, status, hashCodeNullable(configuredStatus), reviewStatus, adType, goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(costType), servingStatuses, hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
+    return Objects.hash(id, name, platform, status, hashCodeNullable(configuredStatus), reviewStatus, adType, hashCodeNullable(creativeType), goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(costType), servingStatuses, hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1297,6 +1373,7 @@ public class Ad {
     sb.append("    configuredStatus: ").append(toIndentedString(configuredStatus)).append("\n");
     sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
     sb.append("    adType: ").append(toIndentedString(adType)).append("\n");
+    sb.append("    creativeType: ").append(toIndentedString(creativeType)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    isExternal: ").append(toIndentedString(isExternal)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
@@ -1403,6 +1480,11 @@ public class Ad {
     // add `adType` to the URL query string
     if (getAdType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdType()))));
+    }
+
+    // add `creativeType` to the URL query string
+    if (getCreativeType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%screativeType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreativeType()))));
     }
 
     // add `goal` to the URL query string

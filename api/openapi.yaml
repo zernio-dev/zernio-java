@@ -42759,30 +42759,55 @@ components:
           $ref: "#/components/schemas/User"
     AdMetrics:
       example:
-        ctr: 9.301444243932576
-        purchaseValue: 1.0246457001441578
-        cpm: 2.027123023002322
         conversions: 7.386281948385884
         videoAvgTimeWatchedActions: 8.762042012749001
         engagement: 4
+        funnel:
+          searches: 6
+          contentViews: 3
+          purchases: 5
+          registrationsCompleted: 3
+          cartAdds: 2
+          wishlistAdds: 1
+          messagingConversationsStarted: 7
+          messagingFirstReplies: 0
+          appInstalls: 3
+          leads: 6
+          paymentInfoAdds: 6
+          landingPageViews: 6
+          checkoutsInitiated: 6
         reach: 2
         videoP75WatchedActions: 9
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-        videoP50WatchedActions: 5
-        videoP95WatchedActions: 9
-        impressions: 5
-        videoP100WatchedActions: 6
         actionValues:
           offsite_conversion.fb_pixel_purchase: 2456.78
           offsite_conversion.fb_pixel_add_to_cart: 980.5
         videoP25WatchedActions: 4
-        videoPlayActions: 6
         spend: 5.962133916683182
         cpc: 3.616076749251911
+        roas: 1.4894159098541704
+        ctr: 9.301444243932576
+        purchaseValue: 1.0246457001441578
+        cpm: 2.027123023002322
+        videoP50WatchedActions: 5
+        videoP95WatchedActions: 9
+        impressions: 5
+        videoP100WatchedActions: 6
+        videoPlayActions: 6
+        engagementBreakdown:
+          shares: 8
+          pageEngagement: 6
+          comments: 4
+          pageLikes: 3
+          saves: 7
+          linkClicks: 7
+          reactions: 0
+          postEngagement: 7
+          videoViews: 3
         videoThruplayWatchedActions: 1
         video30SecWatchedActions: 7
         clicks: 7
-        roas: 1.4894159098541704
+        costPerThruplay: 9.018348186070783
         costPerConversion: 1.2315135367772556
         actions:
           link_click: 160
@@ -42907,10 +42932,149 @@ components:
             \ Aggregated over date ranges and across children as a play-weighted average\
             \ (total watch time / total plays), never a plain average of averages."
           type: number
+        costPerThruplay:
+          description: "Derived `spend / videoThruplayWatchedActions`, in ad-account\
+            \ native currency. Rounded to 4 decimals rather than the usual 2 because\
+            \ a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays."
+          type: number
+        funnel:
+          $ref: "#/components/schemas/AdFunnelCounts"
+        engagementBreakdown:
+          $ref: "#/components/schemas/AdEngagementCounts"
         lastSyncedAt:
           description: "Present on individual ads only, not on campaign aggregations"
           format: date-time
           type: string
+    AdFunnelCounts:
+      description: |
+        Named conversion-funnel steps, resolved from the same data as `actions`
+        so you never have to parse action-type strings yourself.
+
+        Meta reports one event under several action types at once
+        (`offsite_conversion.fb_pixel_purchase`, `omni_purchase`, `purchase`, …).
+        Each field below takes the FIRST family member present rather than
+        summing them, which is what makes these counts safe to add up — summing
+        the raw `actions` keys yourself double or triple counts. The same
+        priority order backs `conversions`, so a purchase-optimised campaign
+        reports the identical number in `conversions` and `funnel.purchases`.
+
+        Every field is 0 when that step never fired. Populated for Meta ads;
+        other platforms report a different action taxonomy and generally leave
+        these at 0 (read `actions` for those). At ad-set and campaign level each
+        step is summed from its per-ad values.
+      example:
+        searches: 6
+        contentViews: 3
+        purchases: 5
+        registrationsCompleted: 3
+        cartAdds: 2
+        wishlistAdds: 1
+        messagingConversationsStarted: 7
+        messagingFirstReplies: 0
+        appInstalls: 3
+        leads: 6
+        paymentInfoAdds: 6
+        landingPageViews: 6
+        checkoutsInitiated: 6
+      properties:
+        landingPageViews:
+          description: "Landing page views — the visitor actually loaded the destination,\
+            \ unlike a link click. Meta `landing_page_view`."
+          type: integer
+        contentViews:
+          description: Content views (Meta `ViewContent` pixel event).
+          type: integer
+        searches:
+          description: On-site searches (Meta `Search` pixel event).
+          type: integer
+        wishlistAdds:
+          description: Adds to wishlist (Meta `AddToWishlist` pixel event).
+          type: integer
+        cartAdds:
+          description: Adds to cart (Meta `AddToCart` pixel event).
+          type: integer
+        checkoutsInitiated:
+          description: Checkouts started (Meta `InitiateCheckout` pixel event).
+          type: integer
+        paymentInfoAdds:
+          description: Payment details added at checkout (Meta `AddPaymentInfo` pixel
+            event).
+          type: integer
+        purchases:
+          description: Purchases (Meta `Purchase` pixel event). Pair with `purchaseValue`
+            for revenue.
+          type: integer
+        leads:
+          description: "Leads, from either the website pixel or an instant form —\
+            \ whichever the ad uses."
+          type: integer
+        registrationsCompleted:
+          description: Completed registrations (Meta `CompleteRegistration` pixel
+            event).
+          type: integer
+        appInstalls:
+          description: Mobile app installs attributed to the ad.
+          type: integer
+        messagingConversationsStarted:
+          description: Messaging conversations started within 7 days — the headline
+            metric for click-to-WhatsApp and click-to-Messenger ads.
+          type: integer
+        messagingFirstReplies:
+          description: Messaging threads where the person sent a first reply.
+          type: integer
+    AdEngagementCounts:
+      description: |
+        The single `engagement` total split into the interactions behind it.
+
+        Note that `engagement` is not the sum of these: Meta's own
+        `post_engagement` and `page_engagement` totals already contain the
+        individual interactions, and all of them are counted into `engagement`.
+        Use these fields when you need a specific interaction, and `engagement`
+        only as the coarse total it has always been.
+
+        Meta-only; other platforms leave these at 0.
+      example:
+        shares: 8
+        pageEngagement: 6
+        comments: 4
+        pageLikes: 3
+        saves: 7
+        linkClicks: 7
+        reactions: 0
+        postEngagement: 7
+        videoViews: 3
+      properties:
+        postEngagement:
+          description: Meta's own post-engagement total (`post_engagement`).
+          type: integer
+        pageEngagement:
+          description: Meta's own page-engagement total (`page_engagement`).
+          type: integer
+        reactions:
+          description: Reactions on the ad's post (`post_reaction`).
+          type: integer
+        comments:
+          description: Comments on the ad's post.
+          type: integer
+        shares:
+          description: Shares of the ad's post. Meta reports these under the action
+            type literally named `post`.
+          type: integer
+        saves:
+          description: Saves of the ad's post (`onsite_conversion.post_save`).
+          type: integer
+        pageLikes:
+          description: New Page likes attributed to the ad (`like`).
+          type: integer
+        videoViews:
+          description: 3-second video views (`video_view`). For completion-based counts
+            use `videoThruplayWatchedActions`.
+          type: integer
+        linkClicks:
+          description: "Attributed link clicks (`link_click`). This is the attribution-window\
+            \ count, which differs from the in-session `inline_link_clicks` reported\
+            \ by `GET /v1/ads/{adId}/analytics`."
+          type: integer
     AdDailyMetrics:
       allOf:
       - $ref: "#/components/schemas/AdMetrics"
@@ -42935,6 +43099,20 @@ components:
         conversions: 5.025004791520295
         videoAvgTimeWatchedActions: 6.878052220127876
         engagement: 4
+        funnel:
+          searches: 6
+          contentViews: 3
+          purchases: 5
+          registrationsCompleted: 3
+          cartAdds: 2
+          wishlistAdds: 1
+          messagingConversationsStarted: 7
+          messagingFirstReplies: 0
+          appInstalls: 3
+          leads: 6
+          paymentInfoAdds: 6
+          landingPageViews: 6
+          checkoutsInitiated: 6
         reach: 1
         videoP75WatchedActions: 1
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -42953,9 +43131,20 @@ components:
         impressions: 1
         videoP100WatchedActions: 6
         videoPlayActions: 8
+        engagementBreakdown:
+          shares: 8
+          pageEngagement: 6
+          comments: 4
+          pageLikes: 3
+          saves: 7
+          linkClicks: 7
+          reactions: 0
+          postEngagement: 7
+          videoViews: 3
         videoThruplayWatchedActions: 6
         video30SecWatchedActions: 9
         clicks: 1
+        costPerThruplay: 5.944895607614016
         costPerConversion: 9.965781217890562
         actions:
           link_click: 160
@@ -43500,6 +43689,7 @@ components:
         schedule:
           endDate: 2000-01-23T04:56:07.000+00:00
           startDate: 2000-01-23T04:56:07.000+00:00
+        creativeType: video
         name: name
         platformObjective: OUTCOME_SALES
         platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -43552,6 +43742,21 @@ components:
           enum:
           - boost
           - standalone
+          type: string
+        creativeType:
+          description: "Creative format, classified from the media the creative carries.\
+            \ `null` when the creative carries no media to classify — an unsynced\
+            \ creative and a genuine text-only ad are indistinguishable, so neither\
+            \ is guessed at. Returned by `GET /v1/ads`, `GET /v1/ads/{adId}` and the\
+            \ ad nodes of `GET /v1/ads/tree`."
+          enum:
+          - carousel
+          - video
+          - document
+          - image
+          - null
+          example: video
+          nullable: true
           type: string
         goal:
           description: "Available goals vary by platform. Meta (Facebook/Instagram)\
@@ -43800,6 +44005,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -43867,6 +44073,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -43886,6 +44093,20 @@ components:
           conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 1
           videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -43904,9 +44125,20 @@ components:
           impressions: 1
           videoP100WatchedActions: 6
           videoPlayActions: 8
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 6
           video30SecWatchedActions: 9
           clicks: 1
+          costPerThruplay: 5.944895607614016
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
@@ -43916,6 +44148,20 @@ components:
           conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 1
           videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -43934,9 +44180,20 @@ components:
           impressions: 1
           videoP100WatchedActions: 6
           videoPlayActions: 8
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 6
           video30SecWatchedActions: 9
           clicks: 1
+          costPerThruplay: 5.944895607614016
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
@@ -43944,30 +44201,55 @@ components:
             offsite_conversion.fb_pixel_purchase: 42
         platformAdSetId: platformAdSetId
         metrics:
-          ctr: 9.301444243932576
-          purchaseValue: 1.0246457001441578
-          cpm: 2.027123023002322
           conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 2
           videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          videoP50WatchedActions: 5
-          videoP95WatchedActions: 9
-          impressions: 5
-          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
           videoP25WatchedActions: 4
-          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          roas: 1.4894159098541704
+          ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
+          cpm: 2.027123023002322
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
+          impressions: 5
+          videoP100WatchedActions: 6
+          videoPlayActions: 6
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 1
           video30SecWatchedActions: 7
           clicks: 7
-          roas: 1.4894159098541704
+          costPerThruplay: 9.018348186070783
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -44090,6 +44372,20 @@ components:
           conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 1
           videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -44108,9 +44404,20 @@ components:
           impressions: 1
           videoP100WatchedActions: 6
           videoPlayActions: 8
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 6
           video30SecWatchedActions: 9
           clicks: 1
+          costPerThruplay: 5.944895607614016
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
@@ -44120,6 +44427,20 @@ components:
           conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 1
           videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -44138,9 +44459,20 @@ components:
           impressions: 1
           videoP100WatchedActions: 6
           videoPlayActions: 8
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 6
           video30SecWatchedActions: 9
           clicks: 1
+          costPerThruplay: 5.944895607614016
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
@@ -44219,6 +44551,7 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
+            creativeType: video
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -44286,6 +44619,7 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
+            creativeType: video
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -44305,6 +44639,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -44323,9 +44671,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -44335,6 +44694,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -44353,9 +44726,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -44363,30 +44747,55 @@ components:
               offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
           metrics:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -44466,6 +44875,7 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
+            creativeType: video
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -44533,6 +44943,7 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
+            creativeType: video
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -44552,6 +44963,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -44570,9 +44995,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -44582,6 +45018,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -44600,9 +45050,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -44610,30 +45071,55 @@ components:
               offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
           metrics:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -44644,30 +45130,55 @@ components:
             amount: 9.301444243932576
             type: daily
         metrics:
-          ctr: 9.301444243932576
-          purchaseValue: 1.0246457001441578
-          cpm: 2.027123023002322
           conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 2
           videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          videoP50WatchedActions: 5
-          videoP95WatchedActions: 9
-          impressions: 5
-          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
           videoP25WatchedActions: 4
-          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          roas: 1.4894159098541704
+          ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
+          cpm: 2.027123023002322
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
+          impressions: 5
+          videoP100WatchedActions: 6
+          videoPlayActions: 6
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 1
           video30SecWatchedActions: 7
           clicks: 7
-          roas: 1.4894159098541704
+          costPerThruplay: 9.018348186070783
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -44833,8 +45344,8 @@ components:
         platformAdAccountName: platformAdAccountName
         budgetLevel: campaign
         adCount: 0
-        bidAmount: 9.018348186070783
-        roasAverageFloor: 6.438423552598547
+        bidAmount: 5.533258397034986
+        roasAverageFloor: 3.2588565619047607
         accountId: accountId
         campaignBudget:
           amount: 1.4658129805029452
@@ -44844,30 +45355,55 @@ components:
         latestAd: 2000-01-23T04:56:07.000+00:00
         reviewStatus: ""
         metrics:
-          ctr: 9.301444243932576
-          purchaseValue: 1.0246457001441578
-          cpm: 2.027123023002322
           conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 2
           videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          videoP50WatchedActions: 5
-          videoP95WatchedActions: 9
-          impressions: 5
-          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
           videoP25WatchedActions: 4
-          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          roas: 1.4894159098541704
+          ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
+          cpm: 2.027123023002322
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
+          impressions: 5
+          videoP100WatchedActions: 6
+          videoPlayActions: 6
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 1
           video30SecWatchedActions: 7
           clicks: 7
-          roas: 1.4894159098541704
+          costPerThruplay: 9.018348186070783
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -70518,6 +71054,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -70585,6 +71122,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -70758,8 +71296,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 9.018348186070783
-          roasAverageFloor: 6.438423552598547
+          bidAmount: 5.533258397034986
+          roasAverageFloor: 3.2588565619047607
           accountId: accountId
           campaignBudget:
             amount: 1.4658129805029452
@@ -70769,30 +71307,55 @@ components:
           latestAd: 2000-01-23T04:56:07.000+00:00
           reviewStatus: ""
           metrics:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -70823,8 +71386,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 9.018348186070783
-          roasAverageFloor: 6.438423552598547
+          bidAmount: 5.533258397034986
+          roasAverageFloor: 3.2588565619047607
           accountId: accountId
           campaignBudget:
             amount: 1.4658129805029452
@@ -70834,30 +71397,55 @@ components:
           latestAd: 2000-01-23T04:56:07.000+00:00
           reviewStatus: ""
           metrics:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -71601,6 +72189,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -71619,9 +72221,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -71631,6 +72244,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -71649,9 +72276,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -71730,6 +72368,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -71797,6 +72436,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -71816,6 +72456,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -71834,9 +72488,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -71846,6 +72511,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -71864,9 +72543,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -71874,30 +72564,55 @@ components:
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
-              ctr: 9.301444243932576
-              purchaseValue: 1.0246457001441578
-              cpm: 2.027123023002322
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 2
               videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              videoP50WatchedActions: 5
-              videoP95WatchedActions: 9
-              impressions: 5
-              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
               videoP25WatchedActions: 4
-              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
+              impressions: 5
+              videoP100WatchedActions: 6
+              videoPlayActions: 6
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 1
               video30SecWatchedActions: 7
               clicks: 7
-              roas: 1.4894159098541704
+              costPerThruplay: 9.018348186070783
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -71977,6 +72692,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -72044,6 +72760,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -72063,6 +72780,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72081,9 +72812,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -72093,6 +72835,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72111,9 +72867,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -72121,30 +72888,55 @@ components:
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
-              ctr: 9.301444243932576
-              purchaseValue: 1.0246457001441578
-              cpm: 2.027123023002322
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 2
               videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              videoP50WatchedActions: 5
-              videoP95WatchedActions: 9
-              impressions: 5
-              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
               videoP25WatchedActions: 4
-              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
+              impressions: 5
+              videoP100WatchedActions: 6
+              videoPlayActions: 6
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 1
               video30SecWatchedActions: 7
               clicks: 7
-              roas: 1.4894159098541704
+              costPerThruplay: 9.018348186070783
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -72155,30 +72947,55 @@ components:
               amount: 9.301444243932576
               type: daily
           metrics:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -72221,6 +73038,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72239,9 +73070,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -72251,6 +73093,20 @@ components:
             conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72269,9 +73125,20 @@ components:
             impressions: 1
             videoP100WatchedActions: 6
             videoPlayActions: 8
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 6
             video30SecWatchedActions: 9
             clicks: 1
+            costPerThruplay: 5.944895607614016
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -72350,6 +73217,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -72417,6 +73285,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -72436,6 +73305,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72454,9 +73337,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -72466,6 +73360,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72484,9 +73392,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -72494,30 +73413,55 @@ components:
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
-              ctr: 9.301444243932576
-              purchaseValue: 1.0246457001441578
-              cpm: 2.027123023002322
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 2
               videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              videoP50WatchedActions: 5
-              videoP95WatchedActions: 9
-              impressions: 5
-              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
               videoP25WatchedActions: 4
-              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
+              impressions: 5
+              videoP100WatchedActions: 6
+              videoPlayActions: 6
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 1
               video30SecWatchedActions: 7
               clicks: 7
-              roas: 1.4894159098541704
+              costPerThruplay: 9.018348186070783
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -72597,6 +73541,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -72664,6 +73609,7 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -72683,6 +73629,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72701,9 +73661,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -72713,6 +73684,20 @@ components:
               conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 1
               videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -72731,9 +73716,20 @@ components:
               impressions: 1
               videoP100WatchedActions: 6
               videoPlayActions: 8
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 6
               video30SecWatchedActions: 9
               clicks: 1
+              costPerThruplay: 5.944895607614016
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -72741,30 +73737,55 @@ components:
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
-              ctr: 9.301444243932576
-              purchaseValue: 1.0246457001441578
-              cpm: 2.027123023002322
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 3
+                purchases: 5
+                registrationsCompleted: 3
+                cartAdds: 2
+                wishlistAdds: 1
+                messagingConversationsStarted: 7
+                messagingFirstReplies: 0
+                appInstalls: 3
+                leads: 6
+                paymentInfoAdds: 6
+                landingPageViews: 6
+                checkoutsInitiated: 6
               reach: 2
               videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              videoP50WatchedActions: 5
-              videoP95WatchedActions: 9
-              impressions: 5
-              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
               videoP25WatchedActions: 4
-              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
+              impressions: 5
+              videoP100WatchedActions: 6
+              videoPlayActions: 6
+              engagementBreakdown:
+                shares: 8
+                pageEngagement: 6
+                comments: 4
+                pageLikes: 3
+                saves: 7
+                linkClicks: 7
+                reactions: 0
+                postEngagement: 7
+                videoViews: 3
               videoThruplayWatchedActions: 1
               video30SecWatchedActions: 7
               clicks: 7
-              roas: 1.4894159098541704
+              costPerThruplay: 9.018348186070783
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -72775,30 +73796,55 @@ components:
               amount: 9.301444243932576
               type: daily
           metrics:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -73003,6 +74049,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -73170,6 +74217,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -73247,6 +74295,20 @@ components:
         conversions: 3.616076749251911
         videoAvgTimeWatchedActions: 9.965781217890562
         engagement: 9
+        funnel:
+          searches: 6
+          contentViews: 3
+          purchases: 5
+          registrationsCompleted: 3
+          cartAdds: 2
+          wishlistAdds: 1
+          messagingConversationsStarted: 7
+          messagingFirstReplies: 0
+          appInstalls: 3
+          leads: 6
+          paymentInfoAdds: 6
+          landingPageViews: 6
+          checkoutsInitiated: 6
         reach: 1
         videoP75WatchedActions: 1
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73265,9 +74327,20 @@ components:
         impressions: 6
         videoP100WatchedActions: 5
         videoPlayActions: 1
+        engagementBreakdown:
+          shares: 8
+          pageEngagement: 6
+          comments: 4
+          pageLikes: 3
+          saves: 7
+          linkClicks: 7
+          reactions: 0
+          postEngagement: 7
+          videoViews: 3
         videoThruplayWatchedActions: 1
         video30SecWatchedActions: 1
         clicks: 5
+        costPerThruplay: 9.369310271410669
         costPerConversion: 2.027123023002322
         actions:
           link_click: 160
@@ -73276,30 +74349,55 @@ components:
     getCampaignAnalytics_200_response_analytics:
       example:
         summary:
-          ctr: 9.301444243932576
-          purchaseValue: 1.0246457001441578
-          cpm: 2.027123023002322
           conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 2
           videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          videoP50WatchedActions: 5
-          videoP95WatchedActions: 9
-          impressions: 5
-          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
           videoP25WatchedActions: 4
-          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          roas: 1.4894159098541704
+          ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
+          cpm: 2.027123023002322
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
+          impressions: 5
+          videoP100WatchedActions: 6
+          videoPlayActions: 6
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 1
           video30SecWatchedActions: 7
           clicks: 7
-          roas: 1.4894159098541704
+          costPerThruplay: 9.018348186070783
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -73310,6 +74408,20 @@ components:
           conversions: 3.616076749251911
           videoAvgTimeWatchedActions: 9.965781217890562
           engagement: 9
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 1
           videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73328,9 +74440,20 @@ components:
           impressions: 6
           videoP100WatchedActions: 5
           videoPlayActions: 1
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 1
           video30SecWatchedActions: 1
           clicks: 5
+          costPerThruplay: 9.369310271410669
           costPerConversion: 2.027123023002322
           actions:
             link_click: 160
@@ -73340,6 +74463,20 @@ components:
           conversions: 3.616076749251911
           videoAvgTimeWatchedActions: 9.965781217890562
           engagement: 9
+          funnel:
+            searches: 6
+            contentViews: 3
+            purchases: 5
+            registrationsCompleted: 3
+            cartAdds: 2
+            wishlistAdds: 1
+            messagingConversationsStarted: 7
+            messagingFirstReplies: 0
+            appInstalls: 3
+            leads: 6
+            paymentInfoAdds: 6
+            landingPageViews: 6
+            checkoutsInitiated: 6
           reach: 1
           videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73358,9 +74495,20 @@ components:
           impressions: 6
           videoP100WatchedActions: 5
           videoPlayActions: 1
+          engagementBreakdown:
+            shares: 8
+            pageEngagement: 6
+            comments: 4
+            pageLikes: 3
+            saves: 7
+            linkClicks: 7
+            reactions: 0
+            postEngagement: 7
+            videoViews: 3
           videoThruplayWatchedActions: 1
           video30SecWatchedActions: 1
           clicks: 5
+          costPerThruplay: 9.369310271410669
           costPerConversion: 2.027123023002322
           actions:
             link_click: 160
@@ -73385,30 +74533,55 @@ components:
       example:
         analytics:
           summary:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -73419,6 +74592,20 @@ components:
             conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73437,9 +74624,20 @@ components:
             impressions: 6
             videoP100WatchedActions: 5
             videoPlayActions: 1
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 1
             clicks: 5
+            costPerThruplay: 9.369310271410669
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
@@ -73449,6 +74647,20 @@ components:
             conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73467,9 +74679,20 @@ components:
             impressions: 6
             videoP100WatchedActions: 5
             videoPlayActions: 1
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 1
             clicks: 5
+            costPerThruplay: 9.369310271410669
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
@@ -73909,30 +75132,55 @@ components:
       example:
         analytics:
           summary:
-            ctr: 9.301444243932576
-            purchaseValue: 1.0246457001441578
-            cpm: 2.027123023002322
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 2
             videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            videoP50WatchedActions: 5
-            videoP95WatchedActions: 9
-            impressions: 5
-            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
             videoP25WatchedActions: 4
-            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
+            impressions: 5
+            videoP100WatchedActions: 6
+            videoPlayActions: 6
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 7
             clicks: 7
-            roas: 1.4894159098541704
+            costPerThruplay: 9.018348186070783
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -73943,6 +75191,20 @@ components:
             conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73961,9 +75223,20 @@ components:
             impressions: 6
             videoP100WatchedActions: 5
             videoPlayActions: 1
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 1
             clicks: 5
+            costPerThruplay: 9.369310271410669
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
@@ -73973,6 +75246,20 @@ components:
             conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 3
+              purchases: 5
+              registrationsCompleted: 3
+              cartAdds: 2
+              wishlistAdds: 1
+              messagingConversationsStarted: 7
+              messagingFirstReplies: 0
+              appInstalls: 3
+              leads: 6
+              paymentInfoAdds: 6
+              landingPageViews: 6
+              checkoutsInitiated: 6
             reach: 1
             videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -73991,9 +75278,20 @@ components:
             impressions: 6
             videoP100WatchedActions: 5
             videoPlayActions: 1
+            engagementBreakdown:
+              shares: 8
+              pageEngagement: 6
+              comments: 4
+              pageLikes: 3
+              saves: 7
+              linkClicks: 7
+              reactions: 0
+              postEngagement: 7
+              videoViews: 3
             videoThruplayWatchedActions: 1
             video30SecWatchedActions: 1
             clicks: 5
+            costPerThruplay: 9.369310271410669
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
@@ -77181,6 +78479,7 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -85000,7 +86299,7 @@ x-documentation:
 
     Receive real-time notifications for post status changes, account events, and incoming messages:
 
-    - `post.scheduled` - Post created and scheduled for publishing
+    - `post.scheduled` - Post entered the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed post retried, or a recycled clone created
     - `post.published` - Post successfully published
     - `post.failed` - Post failed on all platforms
     - `post.partial` - Post published to some platforms, failed on others

@@ -25,6 +25,8 @@ docs/AdCampaignsApi.md
 docs/AdCreative.md
 docs/AdCreativesApi.md
 docs/AdDailyMetrics.md
+docs/AdEngagementCounts.md
+docs/AdFunnelCounts.md
 docs/AdInsightsApi.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
@@ -1747,6 +1749,8 @@ src/main/java/dev/zernio/model/AdCampaignBudget.java
 src/main/java/dev/zernio/model/AdCampaignCampaignBudget.java
 src/main/java/dev/zernio/model/AdCreative.java
 src/main/java/dev/zernio/model/AdDailyMetrics.java
+src/main/java/dev/zernio/model/AdEngagementCounts.java
+src/main/java/dev/zernio/model/AdFunnelCounts.java
 src/main/java/dev/zernio/model/AdMetrics.java
 src/main/java/dev/zernio/model/AdPromotedObject.java
 src/main/java/dev/zernio/model/AdReviewStatus.java
@@ -3313,3 +3317,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdEngagementCountsTest.java
+src/test/java/dev/zernio/model/AdFunnelCountsTest.java
