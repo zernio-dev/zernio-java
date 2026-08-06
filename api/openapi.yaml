@@ -38116,6 +38116,7 @@ components:
           type: image
           title: title
           url: https://openapi-generator.tech
+        removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
         status: pending
         platformPostId: "1234567890123456789"
       properties:
@@ -38162,6 +38163,16 @@ components:
         publishedAt:
           description: Timestamp when the post was published to this platform
           format: date-time
+          type: string
+        removedFromPlatformAt:
+          description: "Set when a post that was successfully published later disappears\
+            \ from the platform (deleted on-platform or taken down by the platform).\
+            \ status stays \"published\" (it reflects the publish outcome); poll this\
+            \ field to detect post-publish removals. Absent while the post is live,\
+            \ and cleared if the post reappears. Detection runs with the analytics\
+            \ sync, so expect up to a few hours of lag."
+          format: date-time
+          nullable: true
           type: string
         isTrialReel:
           description: "Present and true only when this Instagram reel was launched\
@@ -38335,6 +38346,7 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
+          removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
           status: pending
           platformPostId: "1234567890123456789"
         - platformSpecificData:
@@ -38437,6 +38449,7 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
+          removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
           status: pending
           platformPostId: "1234567890123456789"
         tags:
@@ -40682,6 +40695,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
@@ -40784,6 +40798,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           tags:
@@ -40946,6 +40961,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
@@ -41048,6 +41064,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           tags:
@@ -41220,6 +41237,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
@@ -41322,6 +41340,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           tags:
@@ -41490,6 +41509,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
@@ -41592,6 +41612,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           tags:
@@ -41763,6 +41784,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
@@ -41865,6 +41887,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           tags:
@@ -42049,6 +42072,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
@@ -42151,6 +42175,7 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
             status: pending
             platformPostId: "1234567890123456789"
           tags:

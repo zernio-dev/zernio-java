@@ -32,6 +32,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,13 +54,14 @@ import dev.zernio.ApiClient;
   PlatformTarget.JSON_PROPERTY_PLATFORM_POST_ID,
   PlatformTarget.JSON_PROPERTY_PLATFORM_POST_URL,
   PlatformTarget.JSON_PROPERTY_PUBLISHED_AT,
+  PlatformTarget.JSON_PROPERTY_REMOVED_FROM_PLATFORM_AT,
   PlatformTarget.JSON_PROPERTY_IS_TRIAL_REEL,
   PlatformTarget.JSON_PROPERTY_TRIAL_GRADUATION_STRATEGY,
   PlatformTarget.JSON_PROPERTY_ERROR_MESSAGE,
   PlatformTarget.JSON_PROPERTY_ERROR_CATEGORY,
   PlatformTarget.JSON_PROPERTY_ERROR_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:32:48.977196344Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformTarget {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -97,6 +102,9 @@ public class PlatformTarget {
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
   @javax.annotation.Nullable
   private OffsetDateTime publishedAt;
+
+  public static final String JSON_PROPERTY_REMOVED_FROM_PLATFORM_AT = "removedFromPlatformAt";
+  private JsonNullable<OffsetDateTime> removedFromPlatformAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_IS_TRIAL_REEL = "isTrialReel";
   @javax.annotation.Nullable
@@ -488,6 +496,38 @@ public class PlatformTarget {
   }
 
 
+  public PlatformTarget removedFromPlatformAt(@javax.annotation.Nullable OffsetDateTime removedFromPlatformAt) {
+    this.removedFromPlatformAt = JsonNullable.<OffsetDateTime>of(removedFromPlatformAt);
+    return this;
+  }
+
+  /**
+   * Set when a post that was successfully published later disappears from the platform (deleted on-platform or taken down by the platform). status stays \&quot;published\&quot; (it reflects the publish outcome); poll this field to detect post-publish removals. Absent while the post is live, and cleared if the post reappears. Detection runs with the analytics sync, so expect up to a few hours of lag.
+   * @return removedFromPlatformAt
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getRemovedFromPlatformAt() {
+        return removedFromPlatformAt.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_REMOVED_FROM_PLATFORM_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getRemovedFromPlatformAt_JsonNullable() {
+    return removedFromPlatformAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REMOVED_FROM_PLATFORM_AT)
+  public void setRemovedFromPlatformAt_JsonNullable(JsonNullable<OffsetDateTime> removedFromPlatformAt) {
+    this.removedFromPlatformAt = removedFromPlatformAt;
+  }
+
+  public void setRemovedFromPlatformAt(@javax.annotation.Nullable OffsetDateTime removedFromPlatformAt) {
+    this.removedFromPlatformAt = JsonNullable.<OffsetDateTime>of(removedFromPlatformAt);
+  }
+
+
   public PlatformTarget isTrialReel(@javax.annotation.Nullable Boolean isTrialReel) {
     this.isTrialReel = isTrialReel;
     return this;
@@ -630,6 +670,7 @@ public class PlatformTarget {
         Objects.equals(this.platformPostId, platformTarget.platformPostId) &&
         Objects.equals(this.platformPostUrl, platformTarget.platformPostUrl) &&
         Objects.equals(this.publishedAt, platformTarget.publishedAt) &&
+        equalsNullable(this.removedFromPlatformAt, platformTarget.removedFromPlatformAt) &&
         Objects.equals(this.isTrialReel, platformTarget.isTrialReel) &&
         Objects.equals(this.trialGraduationStrategy, platformTarget.trialGraduationStrategy) &&
         Objects.equals(this.errorMessage, platformTarget.errorMessage) &&
@@ -637,9 +678,20 @@ public class PlatformTarget {
         Objects.equals(this.errorSource, platformTarget.errorSource);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(platform, accountId, customContent, customMedia, scheduledFor, platformSpecificData, status, platformPostId, platformPostUrl, publishedAt, isTrialReel, trialGraduationStrategy, errorMessage, errorCategory, errorSource);
+    return Objects.hash(platform, accountId, customContent, customMedia, scheduledFor, platformSpecificData, status, platformPostId, platformPostUrl, publishedAt, hashCodeNullable(removedFromPlatformAt), isTrialReel, trialGraduationStrategy, errorMessage, errorCategory, errorSource);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -656,6 +708,7 @@ public class PlatformTarget {
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    platformPostUrl: ").append(toIndentedString(platformPostUrl)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
+    sb.append("    removedFromPlatformAt: ").append(toIndentedString(removedFromPlatformAt)).append("\n");
     sb.append("    isTrialReel: ").append(toIndentedString(isTrialReel)).append("\n");
     sb.append("    trialGraduationStrategy: ").append(toIndentedString(trialGraduationStrategy)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
@@ -761,6 +814,11 @@ public class PlatformTarget {
     // add `publishedAt` to the URL query string
     if (getPublishedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spublishedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublishedAt()))));
+    }
+
+    // add `removedFromPlatformAt` to the URL query string
+    if (getRemovedFromPlatformAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremovedFromPlatformAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemovedFromPlatformAt()))));
     }
 
     // add `isTrialReel` to the URL query string
