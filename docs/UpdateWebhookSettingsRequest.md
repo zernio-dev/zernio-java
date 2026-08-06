@@ -14,6 +14,7 @@
 |**events** | [**List&lt;EventsEnum&gt;**](#List&lt;EventsEnum&gt;) | Events to subscribe to. Must contain at least one event if provided. |  [optional] |
 |**isActive** | **Boolean** | Enable or disable webhook delivery |  [optional] |
 |**customHeaders** | **Map&lt;String, String&gt;** | Custom headers to include in webhook requests |  [optional] |
+|**disabledResourceGroups** | [**List&lt;DisabledResourceGroupsEnum&gt;**](#List&lt;DisabledResourceGroupsEnum&gt;) | Replaces the subscription&#39;s denylist. Send an empty array to clear it and receive every event in &#x60;events&#x60; again. Omitting the field leaves the current denylist untouched. Applies to events emitted after the update; already-queued events can still deliver for up to five minutes after they were enqueued. When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned back in either way, so a restricted key can neither clear nor widen a subscription past its own groups. |  [optional] |
 
 
 
@@ -67,6 +68,23 @@
 | WHATSAPP_NUMBER_KYC_SUBMITTED | &quot;whatsapp.number.kyc_submitted&quot; |
 | VERIFICATION_APPROVED | &quot;verification.approved&quot; |
 | VERIFICATION_FAILED | &quot;verification.failed&quot; |
+
+
+
+## Enum: List&lt;DisabledResourceGroupsEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| PUBLISHING | &quot;publishing&quot; |
+| ENGAGEMENT | &quot;engagement&quot; |
+| MESSAGES | &quot;messages&quot; |
+| CONTACTS | &quot;contacts&quot; |
+| ANALYTICS | &quot;analytics&quot; |
+| ADS | &quot;ads&quot; |
+| TELEPHONY | &quot;telephony&quot; |
+| ACCOUNTS | &quot;accounts&quot; |
+| BILLING | &quot;billing&quot; |
+| WEBHOOKS | &quot;webhooks&quot; |
 
 
 

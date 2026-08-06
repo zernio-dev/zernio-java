@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetFacebookPages200Response.JSON_PROPERTY_SELECTED_PAGE_ID,
   GetFacebookPages200Response.JSON_PROPERTY_CACHED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:16:45.760707393Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:39:32.678968864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetFacebookPages200Response {
   public static final String JSON_PROPERTY_PAGES = "pages";
   @javax.annotation.Nullable

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CreateApiKeyRequest.JSON_PROPERTY_PERMISSION,
   CreateApiKeyRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:16:45.760707393Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:39:32.678968864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateApiKeyRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -334,7 +334,7 @@ public class CreateApiKeyRequest {
   }
 
   /**
-   * Resource groups to DISABLE on this key (opt-out denylist). Omit for a legacy full-access key. A key with any group disabled mints with the zrk_ prefix, gets 403 with code&#x3D;insufficient_permissions and required_group on operations in disabled groups (each operation&#39;s group is published as x-resource-group), and can never manage API keys, invites, or member identity. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.
+   * Resource groups to DISABLE on this key (opt-out denylist). Omit for a legacy full-access key. A key with any group disabled mints with the zrk_ prefix, gets 403 with code&#x3D;insufficient_permissions and required_group on operations in disabled groups (each operation&#39;s group is published as x-resource-group), and can never manage API keys, invites, or member identity. With &#39;messages&#39; disabled, the key cannot read or send private messages through any API surface and cannot create or edit a webhook subscription broader than itself. Subscriptions that already exist are governed by their own &#x60;disabledResourceGroups&#x60;, not by this key&#39;s. OAuth connector tokens resolve against the same registry, but their groups are not settable yet.
    * @return disabledResourceGroups
    */
   @javax.annotation.Nullable

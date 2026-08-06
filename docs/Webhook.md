@@ -17,6 +17,7 @@ Individual webhook configuration for receiving real-time notifications
 |**lastFiredAt** | **OffsetDateTime** | Timestamp of last successful webhook delivery |  [optional] |
 |**failureCount** | **Integer** | Consecutive delivery failures (resets on success, webhook disabled at 10) |  [optional] |
 |**customHeaders** | **Map&lt;String, String&gt;** | Custom headers included in webhook requests |  [optional] |
+|**disabledResourceGroups** | [**List&lt;DisabledResourceGroupsEnum&gt;**](#List&lt;DisabledResourceGroupsEnum&gt;) | Resource groups this subscription does not receive (opt-out denylist, same vocabulary and same semantics as the field on API keys). Absent or empty means the subscription receives every event listed in &#x60;events&#x60;, which is how every subscription created before this field existed behaves. An event whose group is listed here is dropped before delivery even when it is still present in &#x60;events&#x60;, and the same check runs on every replay path (test fire, redelivery, dead-letter requeue). Editing the denylist applies to every event emitted afterwards; events already queued when the edit landed can still be delivered for up to five minutes after they were enqueued. |  [optional] |
 
 
 
@@ -70,6 +71,23 @@ Individual webhook configuration for receiving real-time notifications
 | WHATSAPP_NUMBER_KYC_SUBMITTED | &quot;whatsapp.number.kyc_submitted&quot; |
 | VERIFICATION_APPROVED | &quot;verification.approved&quot; |
 | VERIFICATION_FAILED | &quot;verification.failed&quot; |
+
+
+
+## Enum: List&lt;DisabledResourceGroupsEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| PUBLISHING | &quot;publishing&quot; |
+| ENGAGEMENT | &quot;engagement&quot; |
+| MESSAGES | &quot;messages&quot; |
+| CONTACTS | &quot;contacts&quot; |
+| ANALYTICS | &quot;analytics&quot; |
+| ADS | &quot;ads&quot; |
+| TELEPHONY | &quot;telephony&quot; |
+| ACCOUNTS | &quot;accounts&quot; |
+| BILLING | &quot;billing&quot; |
+| WEBHOOKS | &quot;webhooks&quot; |
 
 
 

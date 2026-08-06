@@ -25,7 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create webhook
 
-Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only subscribe to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403. Note that the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface. 
+Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only subscribe to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403, so a restricted key can never create a subscription broader than itself.  &#x60;disabledResourceGroups&#x60; restricts the subscription itself, independently of which key or session later reads it. Events in a disabled group are dropped before delivery to this endpoint, on live delivery and on every replay path (test fire, redelivery, dead-letter requeue), even if they are listed in &#x60;events&#x60;. Omit it to receive everything in &#x60;events&#x60;, which is how existing subscriptions behave. A restricted key&#39;s own disabled groups are always unioned in. 
 
 ### Example
 
@@ -90,7 +90,7 @@ public class Example {
 | **200** | Webhook created successfully |  -  |
 | **400** | Validation error or maximum webhooks reached |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 ## createWebhookSettingsWithHttpInfo
 
@@ -98,7 +98,7 @@ public class Example {
 
 Create webhook
 
-Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only subscribe to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403. Note that the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface. 
+Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only subscribe to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403, so a restricted key can never create a subscription broader than itself.  &#x60;disabledResourceGroups&#x60; restricts the subscription itself, independently of which key or session later reads it. Events in a disabled group are dropped before delivery to this endpoint, on live delivery and on every replay path (test fire, redelivery, dead-letter requeue), even if they are listed in &#x60;events&#x60;. Omit it to receive everything in &#x60;events&#x60;, which is how existing subscriptions behave. A restricted key&#39;s own disabled groups are always unioned in. 
 
 ### Example
 
@@ -166,7 +166,7 @@ ApiResponse<[**UpdateWebhookSettings200Response**](UpdateWebhookSettings200Respo
 | **200** | Webhook created successfully |  -  |
 | **400** | Validation error or maximum webhooks reached |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 
 ## deleteWebhookSettings
@@ -240,6 +240,7 @@ public class Example {
 | **200** | Webhook deleted successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 ## deleteWebhookSettingsWithHttpInfo
 
@@ -315,6 +316,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **200** | Webhook deleted successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 
 ## getWebhookLogs
@@ -323,7 +325,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 List webhook delivery logs
 
-Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination.  For a restricted (zrk_) API key, rows for events outside the key&#39;s resource groups are omitted (&#x60;pagination.total&#x60; may over-count), and an &#x60;event&#x60; filter naming such an event is rejected with 403. 
+Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination.  For a restricted (zrk_) API key, rows for events outside the key&#39;s resource groups are omitted (&#x60;pagination.total&#x60; may over-count), and an &#x60;event&#x60; filter naming such an event is rejected with 403. Events blocked by a subscription&#39;s own &#x60;disabledResourceGroups&#x60; are dropped before delivery, so they produce no log rows for anyone; the exception is the five-minute tail after a denylist change, where an already-queued event can still be delivered and logged. 
 
 ### Example
 
@@ -398,7 +400,7 @@ public class Example {
 | **200** | Webhook logs retrieved successfully |  -  |
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 ## getWebhookLogsWithHttpInfo
 
@@ -406,7 +408,7 @@ public class Example {
 
 List webhook delivery logs
 
-Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination.  For a restricted (zrk_) API key, rows for events outside the key&#39;s resource groups are omitted (&#x60;pagination.total&#x60; may over-count), and an &#x60;event&#x60; filter naming such an event is rejected with 403. 
+Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination.  For a restricted (zrk_) API key, rows for events outside the key&#39;s resource groups are omitted (&#x60;pagination.total&#x60; may over-count), and an &#x60;event&#x60; filter naming such an event is rejected with 403. Events blocked by a subscription&#39;s own &#x60;disabledResourceGroups&#x60; are dropped before delivery, so they produce no log rows for anyone; the exception is the five-minute tail after a denylist change, where an already-queued event can still be delivered and logged. 
 
 ### Example
 
@@ -484,7 +486,7 @@ ApiResponse<[**GetWebhookLogs200Response**](GetWebhookLogs200Response.md)>
 | **200** | Webhook logs retrieved successfully |  -  |
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 
 ## getWebhookSettings
@@ -553,6 +555,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Webhooks retrieved successfully |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 ## getWebhookSettingsWithHttpInfo
 
@@ -623,6 +626,7 @@ ApiResponse<[**GetWebhookSettings200Response**](GetWebhookSettings200Response.md
 |-------------|-------------|------------------|
 | **200** | Webhooks retrieved successfully |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
 
 ## testWebhook
@@ -631,7 +635,7 @@ ApiResponse<[**GetWebhookSettings200Response**](GetWebhookSettings200Response.md
 
 Send test webhook
 
-Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: \&quot;webhook.test\&quot; to distinguish it from real events. 
+Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: \&quot;webhook.test\&quot; to distinguish it from real events.  &#x60;webhook.test&#x60; belongs to the &#x60;webhooks&#x60; resource group, so a key with that group disabled is rejected with 403, as is a test fire on a subscription that lists &#x60;webhooks&#x60; in its own &#x60;disabledResourceGroups&#x60; (a 403, not a reported delivery failure). Replays of real events (redelivery, dead-letter requeue) run the same checks as live delivery, against both the key&#39;s groups and the subscription&#39;s. 
 
 ### Example
 
@@ -696,6 +700,7 @@ public class Example {
 | **200** | Test webhook sent successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | Webhook not found |  -  |
 | **500** | Test webhook failed to deliver |  -  |
 
@@ -705,7 +710,7 @@ public class Example {
 
 Send test webhook
 
-Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: \&quot;webhook.test\&quot; to distinguish it from real events. 
+Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: \&quot;webhook.test\&quot; to distinguish it from real events.  &#x60;webhook.test&#x60; belongs to the &#x60;webhooks&#x60; resource group, so a key with that group disabled is rejected with 403, as is a test fire on a subscription that lists &#x60;webhooks&#x60; in its own &#x60;disabledResourceGroups&#x60; (a 403, not a reported delivery failure). Replays of real events (redelivery, dead-letter requeue) run the same checks as live delivery, against both the key&#39;s groups and the subscription&#39;s. 
 
 ### Example
 
@@ -773,6 +778,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **200** | Test webhook sent successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | Webhook not found |  -  |
 | **500** | Test webhook failed to deliver |  -  |
 
@@ -783,7 +789,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 
 Update webhook
 
-Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only set &#x60;events&#x60; to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403. 
+Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only set &#x60;events&#x60; to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403. It also cannot widen an existing subscription past its own groups.  &#x60;disabledResourceGroups&#x60; replaces the subscription&#39;s own denylist, which applies to delivery regardless of which key or session created it. Send an empty array to clear it. A restricted key&#39;s own disabled groups are unioned into the stored value on every update, so repointing a legacy unrestricted subscription with a restricted key also narrows it.  Timing: the new denylist applies to every event emitted after the update. Events already queued for delivery when the update landed were filtered against the previous denylist and can still arrive at your endpoint for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking the subscription. Retries beyond that window, dead-letter replays, test fires, and redeliveries are all checked against the current denylist. 
 
 ### Example
 
@@ -848,7 +854,7 @@ public class Example {
 | **200** | Webhook updated successfully |  -  |
 | **400** | Validation error or missing webhook ID |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | Webhook not found |  -  |
 
 ## updateWebhookSettingsWithHttpInfo
@@ -857,7 +863,7 @@ public class Example {
 
 Update webhook
 
-Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only set &#x60;events&#x60; to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403. 
+Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures.  A restricted (zrk_) API key can only set &#x60;events&#x60; to events whose resource group the key holds; an event outside the key&#39;s groups is rejected with 403. It also cannot widen an existing subscription past its own groups.  &#x60;disabledResourceGroups&#x60; replaces the subscription&#39;s own denylist, which applies to delivery regardless of which key or session created it. Send an empty array to clear it. A restricted key&#39;s own disabled groups are unioned into the stored value on every update, so repointing a legacy unrestricted subscription with a restricted key also narrows it.  Timing: the new denylist applies to every event emitted after the update. Events already queued for delivery when the update landed were filtered against the previous denylist and can still arrive at your endpoint for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking the subscription. Retries beyond that window, dead-letter replays, test fires, and redeliveries are all checked against the current denylist. 
 
 ### Example
 
@@ -925,6 +931,6 @@ ApiResponse<[**UpdateWebhookSettings200Response**](UpdateWebhookSettings200Respo
 | **200** | Webhook updated successfully |  -  |
 | **400** | Validation error or missing webhook ID |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | Webhook not found |  -  |
 

@@ -82,10 +82,14 @@ tags:
   name: Account Groups
 - description: |
     Create, list, and revoke API keys used to authenticate requests.
+
+    Resource groups. A key can opt out of any of the ten groups (publishing, engagement, messages, contacts, analytics, ads, telephony, accounts, billing, webhooks) via `disabledResourceGroups` at creation. Omit the field for a legacy full-access key. A key with any group disabled mints with the `zrk_` prefix, is refused on operations in those groups with 403 `insufficient_permissions` plus `required_group`, and can never manage API keys, invites, connected apps, or member identity. Each operation publishes its group as `x-resource-group`. There is no update endpoint: duplicate the key with different groups and revoke the old one.
   name: API Keys
 - description: |
     List and revoke the OAuth clients (AI assistants and MCP connectors) authorized
     on the account.
+
+    Connector tokens resolve against the same resource-group registry as API keys, but there is no way to narrow a connector's groups yet. Treat an authorized connector as full account access and revoke it if that is not what you want.
   name: Connected Apps
 - description: |
     Generate invite tokens for adding members to a team.
@@ -266,6 +270,8 @@ tags:
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
     Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
+
+    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.* and whatsapp.template.* to accounts, whatsapp.number.* and verification.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
   name: Webhooks
 - description: |
     Incoming webhook deliveries sent by Zernio to your configured endpoint URL.
@@ -14224,6 +14230,8 @@ paths:
           description: Webhook ID required
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
       security:
       - bearerAuth: []
       summary: Delete webhook
@@ -14264,6 +14272,8 @@ paths:
           description: Webhooks retrieved successfully
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
       security:
       - bearerAuth: []
       summary: List webhooks
@@ -14281,9 +14291,16 @@ paths:
         Webhooks are automatically disabled after 10 consecutive delivery failures.
 
         A restricted (zrk_) API key can only subscribe to events whose resource group
-        the key holds; an event outside the key's groups is rejected with 403. Note
-        that the KEY cannot access private messages; the ACCOUNT's pre-existing
-        webhook subscriptions are a separate grant surface.
+        the key holds; an event outside the key's groups is rejected with 403, so a
+        restricted key can never create a subscription broader than itself.
+
+        `disabledResourceGroups` restricts the subscription itself, independently of
+        which key or session later reads it. Events in a disabled group are dropped
+        before delivery to this endpoint, on live delivery and on every replay path
+        (test fire, redelivery, dead-letter requeue), even if they are listed in
+        `events`. Omit it to receive everything in `events`, which is how existing
+        subscriptions behave. A restricted key's own disabled groups are always
+        unioned in.
       operationId: createWebhookSettings
       requestBody:
         content:
@@ -14316,6 +14333,19 @@ paths:
                   - review.new
                   - review.updated
                   - ad.status_changed
+                  isActive: true
+              createWebhookWithoutMessages:
+                summary: Subscription that does not receive private message payloads
+                value:
+                  name: Publishing Webhook
+                  url: https://example.com/webhook
+                  events:
+                  - post.published
+                  - post.failed
+                  - comment.received
+                  disabledResourceGroups:
+                  - messages
+                  - contacts
                   isActive: true
             schema:
               $ref: "#/components/schemas/createWebhookSettings_request"
@@ -14352,6 +14382,21 @@ paths:
 
         A restricted (zrk_) API key can only set `events` to events whose resource
         group the key holds; an event outside the key's groups is rejected with 403.
+        It also cannot widen an existing subscription past its own groups.
+
+        `disabledResourceGroups` replaces the subscription's own denylist, which
+        applies to delivery regardless of which key or session created it. Send an
+        empty array to clear it. A restricted key's own disabled groups are unioned
+        into the stored value on every update, so repointing a legacy unrestricted
+        subscription with a restricted key also narrows it.
+
+        Timing: the new denylist applies to every event emitted after the update.
+        Events already queued for delivery when the update landed were filtered
+        against the previous denylist and can still arrive at your endpoint for up
+        to five minutes after they were enqueued, because the delivery worker
+        trusts a five-minute enqueue-time snapshot before re-checking the
+        subscription. Retries beyond that window, dead-letter replays, test fires,
+        and redeliveries are all checked against the current denylist.
       operationId: updateWebhookSettings
       requestBody:
         content:
@@ -14406,7 +14451,10 @@ paths:
 
         For a restricted (zrk_) API key, rows for events outside the key's resource
         groups are omitted (`pagination.total` may over-count), and an `event` filter
-        naming such an event is rejected with 403.
+        naming such an event is rejected with 403. Events blocked by a subscription's
+        own `disabledResourceGroups` are dropped before delivery, so they produce no
+        log rows for anyone; the exception is the five-minute tail after a denylist
+        change, where an already-queued event can still be delivered and logged.
       operationId: getWebhookLogs
       parameters:
       - description: Maximum number of logs to return
@@ -14497,6 +14545,13 @@ paths:
     post:
       description: |
         Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: "webhook.test" to distinguish it from real events.
+
+        `webhook.test` belongs to the `webhooks` resource group, so a key with that
+        group disabled is rejected with 403, as is a test fire on a subscription that
+        lists `webhooks` in its own `disabledResourceGroups` (a 403, not a reported
+        delivery failure). Replays of real events (redelivery, dead-letter requeue) run
+        the same checks as live delivery, against both the key's groups and the
+        subscription's.
       operationId: testWebhook
       requestBody:
         content:
@@ -14520,6 +14575,8 @@ paths:
           description: Webhook ID required
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
         "404":
           description: Webhook not found
         "500":
@@ -33292,9 +33349,10 @@ components:
         \ to restricted keys; the error reads \"Restricted API keys cannot manage\
         \ API keys, invites, or member identity.\" and the fix is a full-access key\
         \ or the dashboard, never a new restricted key. (3) On webhook subscription\
-        \ writes and delivery-log reads, a named event maps to a resource group the\
-        \ key does not hold (a no-messages key cannot subscribe to or replay message.*\
-        \ events)."
+        \ writes, delivery-log reads and replays, a named event maps to a resource\
+        \ group the key does not hold, so a restricted key can never create or edit\
+        \ a subscription broader than itself (a no-messages key cannot subscribe to,\
+        \ test-fire, redeliver or read logs for message.* events)."
     RateLimited:
       content:
         application/json:
@@ -35696,6 +35754,9 @@ components:
       description: Individual webhook configuration for receiving real-time notifications
       example:
         lastFiredAt: 2000-01-23T04:56:07.000+00:00
+        disabledResourceGroups:
+        - publishing
+        - publishing
         name: name
         _id: _id
         secret: secret
@@ -35789,6 +35850,31 @@ components:
           additionalProperties:
             type: string
           description: Custom headers included in webhook requests
+        disabledResourceGroups:
+          description: "Resource groups this subscription does not receive (opt-out\
+            \ denylist, same vocabulary and same semantics as the field on API keys).\
+            \ Absent or empty means the subscription receives every event listed in\
+            \ `events`, which is how every subscription created before this field\
+            \ existed behaves. An event whose group is listed here is dropped before\
+            \ delivery even when it is still present in `events`, and the same check\
+            \ runs on every replay path (test fire, redelivery, dead-letter requeue).\
+            \ Editing the denylist applies to every event emitted afterwards; events\
+            \ already queued when the edit landed can still be delivered for up to\
+            \ five minutes after they were enqueued."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            type: string
+          type: array
     WebhookLog:
       description: A single webhook delivery attempt recorded by Zernio (30-day retention).
       example:
@@ -39859,8 +39945,16 @@ components:
             \ Absent or empty means legacy full access. A key with any group disabled\
             \ is a restricted key (zrk_ prefix) and can never manage API keys, invites,\
             \ or member identity. Each operation's group is published as x-resource-group.\
-            \ With 'messages' disabled, the KEY cannot access private messages; the\
-            \ ACCOUNT's pre-existing webhook subscriptions are a separate grant surface."
+            \ With 'messages' disabled, the key cannot read or send private messages\
+            \ through any API surface, and it cannot create or edit a webhook subscription\
+            \ broader than itself: it cannot subscribe to, test-fire, redeliver, or\
+            \ read delivery logs for message events. Subscriptions created earlier,\
+            \ from the dashboard, or with a full-access key keep delivering whatever\
+            \ their own `disabledResourceGroups` allows, so restricting an existing\
+            \ integration end to end means restricting the subscription too. OAuth\
+            \ connector tokens (AI assistants and MCP clients) resolve against the\
+            \ same registry, but their groups are not settable yet: treat an authorized\
+            \ connector as full access."
           items:
             enum:
             - publishing
@@ -48410,9 +48504,12 @@ components:
             \ with the zrk_ prefix, gets 403 with code=insufficient_permissions and\
             \ required_group on operations in disabled groups (each operation's group\
             \ is published as x-resource-group), and can never manage API keys, invites,\
-            \ or member identity. With 'messages' disabled, the KEY cannot access\
-            \ private messages; the ACCOUNT's pre-existing webhook subscriptions are\
-            \ a separate grant surface."
+            \ or member identity. With 'messages' disabled, the key cannot read or\
+            \ send private messages through any API surface and cannot create or edit\
+            \ a webhook subscription broader than itself. Subscriptions that already\
+            \ exist are governed by their own `disabledResourceGroups`, not by this\
+            \ key's. OAuth connector tokens resolve against the same registry, but\
+            \ their groups are not settable yet."
           items:
             enum:
             - publishing
@@ -55188,6 +55285,9 @@ components:
       example:
         webhooks:
         - lastFiredAt: 2000-01-23T04:56:07.000+00:00
+          disabledResourceGroups:
+          - publishing
+          - publishing
           name: name
           _id: _id
           secret: secret
@@ -55200,6 +55300,9 @@ components:
           customHeaders:
             key: customHeaders
         - lastFiredAt: 2000-01-23T04:56:07.000+00:00
+          disabledResourceGroups:
+          - publishing
+          - publishing
           name: name
           _id: _id
           secret: secret
@@ -55295,12 +55398,38 @@ components:
           additionalProperties:
             type: string
           description: Custom headers to include in webhook requests
+        disabledResourceGroups:
+          description: "Replaces the subscription's denylist. Send an empty array\
+            \ to clear it and receive every event in `events` again. Omitting the\
+            \ field leaves the current denylist untouched. Applies to events emitted\
+            \ after the update; already-queued events can still deliver for up to\
+            \ five minutes after they were enqueued. When the caller is a restricted\
+            \ (zrk_) key, that key's own disabled groups are unioned back in either\
+            \ way, so a restricted key can neither clear nor widen a subscription\
+            \ past its own groups."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            type: string
+          type: array
       required:
       - _id
     updateWebhookSettings_200_response:
       example:
         webhook:
           lastFiredAt: 2000-01-23T04:56:07.000+00:00
+          disabledResourceGroups:
+          - publishing
+          - publishing
           name: name
           _id: _id
           secret: secret
@@ -55394,6 +55523,30 @@ components:
           additionalProperties:
             type: string
           description: Custom headers to include in webhook requests
+        disabledResourceGroups:
+          description: "Resource groups this subscription does not receive (opt-out\
+            \ denylist). Omit or send an empty array to receive every event in `events`.\
+            \ Listing a group here drops its events before delivery and on every replay\
+            \ path. Set at creation it applies to everything this subscription ever\
+            \ receives; changed later via PUT it applies to events emitted after the\
+            \ change, with a five-minute tail for events already queued (see that\
+            \ operation). When the caller is a restricted (zrk_) key, that key's own\
+            \ disabled groups are unioned into whatever you send here, so a restricted\
+            \ key can never create a subscription wider than itself."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            type: string
+          type: array
       required:
       - events
       - name

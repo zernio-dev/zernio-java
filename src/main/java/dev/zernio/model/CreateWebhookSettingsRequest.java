@@ -43,9 +43,10 @@ import dev.zernio.ApiClient;
   CreateWebhookSettingsRequest.JSON_PROPERTY_SECRET,
   CreateWebhookSettingsRequest.JSON_PROPERTY_EVENTS,
   CreateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
-  CreateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
+  CreateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS,
+  CreateWebhookSettingsRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:16:45.760707393Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:39:32.678968864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -193,6 +194,61 @@ public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_CUSTOM_HEADERS = "customHeaders";
   @javax.annotation.Nullable
   private Map<String, String> customHeaders = new HashMap<>();
+
+  /**
+   * Gets or Sets disabledResourceGroups
+   */
+  public enum DisabledResourceGroupsEnum {
+    PUBLISHING(String.valueOf("publishing")),
+    
+    ENGAGEMENT(String.valueOf("engagement")),
+    
+    MESSAGES(String.valueOf("messages")),
+    
+    CONTACTS(String.valueOf("contacts")),
+    
+    ANALYTICS(String.valueOf("analytics")),
+    
+    ADS(String.valueOf("ads")),
+    
+    TELEPHONY(String.valueOf("telephony")),
+    
+    ACCOUNTS(String.valueOf("accounts")),
+    
+    BILLING(String.valueOf("billing")),
+    
+    WEBHOOKS(String.valueOf("webhooks"));
+
+    private String value;
+
+    DisabledResourceGroupsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DisabledResourceGroupsEnum fromValue(String value) {
+      for (DisabledResourceGroupsEnum b : DisabledResourceGroupsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_DISABLED_RESOURCE_GROUPS = "disabledResourceGroups";
+  @javax.annotation.Nullable
+  private List<DisabledResourceGroupsEnum> disabledResourceGroups = new ArrayList<>();
 
   public CreateWebhookSettingsRequest() { 
   }
@@ -357,6 +413,38 @@ public class CreateWebhookSettingsRequest {
   }
 
 
+  public CreateWebhookSettingsRequest disabledResourceGroups(@javax.annotation.Nullable List<DisabledResourceGroupsEnum> disabledResourceGroups) {
+    this.disabledResourceGroups = disabledResourceGroups;
+    return this;
+  }
+
+  public CreateWebhookSettingsRequest addDisabledResourceGroupsItem(DisabledResourceGroupsEnum disabledResourceGroupsItem) {
+    if (this.disabledResourceGroups == null) {
+      this.disabledResourceGroups = new ArrayList<>();
+    }
+    this.disabledResourceGroups.add(disabledResourceGroupsItem);
+    return this;
+  }
+
+  /**
+   * Resource groups this subscription does not receive (opt-out denylist). Omit or send an empty array to receive every event in &#x60;events&#x60;. Listing a group here drops its events before delivery and on every replay path. Set at creation it applies to everything this subscription ever receives; changed later via PUT it applies to events emitted after the change, with a five-minute tail for events already queued (see that operation). When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned into whatever you send here, so a restricted key can never create a subscription wider than itself.
+   * @return disabledResourceGroups
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DISABLED_RESOURCE_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DisabledResourceGroupsEnum> getDisabledResourceGroups() {
+    return disabledResourceGroups;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DISABLED_RESOURCE_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisabledResourceGroups(@javax.annotation.Nullable List<DisabledResourceGroupsEnum> disabledResourceGroups) {
+    this.disabledResourceGroups = disabledResourceGroups;
+  }
+
+
   /**
    * Return true if this createWebhookSettings_request object is equal to o.
    */
@@ -374,12 +462,13 @@ public class CreateWebhookSettingsRequest {
         Objects.equals(this.secret, createWebhookSettingsRequest.secret) &&
         Objects.equals(this.events, createWebhookSettingsRequest.events) &&
         Objects.equals(this.isActive, createWebhookSettingsRequest.isActive) &&
-        Objects.equals(this.customHeaders, createWebhookSettingsRequest.customHeaders);
+        Objects.equals(this.customHeaders, createWebhookSettingsRequest.customHeaders) &&
+        Objects.equals(this.disabledResourceGroups, createWebhookSettingsRequest.disabledResourceGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, url, secret, events, isActive, customHeaders);
+    return Objects.hash(name, url, secret, events, isActive, customHeaders, disabledResourceGroups);
   }
 
   @Override
@@ -392,6 +481,7 @@ public class CreateWebhookSettingsRequest {
     sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    customHeaders: ").append(toIndentedString(customHeaders)).append("\n");
+    sb.append("    disabledResourceGroups: ").append(toIndentedString(disabledResourceGroups)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -474,6 +564,15 @@ public class CreateWebhookSettingsRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%scustomHeaders%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCustomHeaders().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCustomHeaders().get(_key)))));
+      }
+    }
+
+    // add `disabledResourceGroups` to the URL query string
+    if (getDisabledResourceGroups() != null) {
+      for (int i = 0; i < getDisabledResourceGroups().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sdisabledResourceGroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getDisabledResourceGroups().get(i)))));
       }
     }
 
