@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateBroadcastRequest.JSON_PROPERTY_TEMPLATE,
   UpdateBroadcastRequest.JSON_PROPERTY_SEGMENT_FILTERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:32:48.977196344Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T09:16:45.760707393Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateBroadcastRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
