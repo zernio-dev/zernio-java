@@ -70769,6 +70769,15 @@ components:
       properties:
         name:
           type: string
+        trigger:
+          description: "What fires the automation. Changing it detaches the automation\
+            \ from its bound post or story (a post id and a story id are different\
+            \ objects), unless this same request sets a new binding. 'story_reply'\
+            \ is Instagram only."
+          enum:
+          - comment
+          - story_reply
+          type: string
         keywords:
           items:
             type: string

@@ -37,6 +37,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateCommentAutomationRequest.JSON_PROPERTY_NAME,
+  UpdateCommentAutomationRequest.JSON_PROPERTY_TRIGGER,
   UpdateCommentAutomationRequest.JSON_PROPERTY_KEYWORDS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_MATCH_MODE,
   UpdateCommentAutomationRequest.JSON_PROPERTY_EXCLUDE_KEYWORDS,
@@ -50,11 +51,50 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomationRequest.JSON_PROPERTY_CLICK_TAG,
   UpdateCommentAutomationRequest.JSON_PROPERTY_IS_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:20:04.572383457Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:34:32.420257775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
+
+  /**
+   * What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only.
+   */
+  public enum TriggerEnum {
+    COMMENT(String.valueOf("comment")),
+    
+    STORY_REPLY(String.valueOf("story_reply"));
+
+    private String value;
+
+    TriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TriggerEnum fromValue(String value) {
+      for (TriggerEnum b : TriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TRIGGER = "trigger";
+  @javax.annotation.Nullable
+  private TriggerEnum trigger;
 
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
@@ -165,6 +205,30 @@ public class UpdateCommentAutomationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
+  }
+
+
+  public UpdateCommentAutomationRequest trigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
+    return this;
+  }
+
+  /**
+   * What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only.
+   * @return trigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TriggerEnum getTrigger() {
+    return trigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
   }
 
 
@@ -509,6 +573,7 @@ public class UpdateCommentAutomationRequest {
     }
     UpdateCommentAutomationRequest updateCommentAutomationRequest = (UpdateCommentAutomationRequest) o;
     return Objects.equals(this.name, updateCommentAutomationRequest.name) &&
+        Objects.equals(this.trigger, updateCommentAutomationRequest.trigger) &&
         Objects.equals(this.keywords, updateCommentAutomationRequest.keywords) &&
         Objects.equals(this.matchMode, updateCommentAutomationRequest.matchMode) &&
         Objects.equals(this.excludeKeywords, updateCommentAutomationRequest.excludeKeywords) &&
@@ -525,7 +590,7 @@ public class UpdateCommentAutomationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, isActive);
+    return Objects.hash(name, trigger, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, isActive);
   }
 
   @Override
@@ -533,6 +598,7 @@ public class UpdateCommentAutomationRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateCommentAutomationRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    trigger: ").append(toIndentedString(trigger)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
     sb.append("    excludeKeywords: ").append(toIndentedString(excludeKeywords)).append("\n");
@@ -595,6 +661,11 @@ public class UpdateCommentAutomationRequest {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `trigger` to the URL query string
+    if (getTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrigger()))));
     }
 
     // add `keywords` to the URL query string
