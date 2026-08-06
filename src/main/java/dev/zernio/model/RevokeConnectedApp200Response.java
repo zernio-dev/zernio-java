@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   RevokeConnectedApp200Response.JSON_PROPERTY_REVOKED_TOKENS,
   RevokeConnectedApp200Response.JSON_PROPERTY_INVALIDATED_CODES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:16:56.940892820Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:20:04.572383457Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RevokeConnectedApp200Response {
   public static final String JSON_PROPERTY_REVOKED = "revoked";
   @javax.annotation.Nullable
