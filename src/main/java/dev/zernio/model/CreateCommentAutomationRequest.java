@@ -45,6 +45,8 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_NAME,
   CreateCommentAutomationRequest.JSON_PROPERTY_KEYWORDS,
   CreateCommentAutomationRequest.JSON_PROPERTY_MATCH_MODE,
+  CreateCommentAutomationRequest.JSON_PROPERTY_EXCLUDE_KEYWORDS,
+  CreateCommentAutomationRequest.JSON_PROPERTY_TYPO_TOLERANCE,
   CreateCommentAutomationRequest.JSON_PROPERTY_DM_MESSAGE,
   CreateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
   CreateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY,
@@ -53,7 +55,7 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING,
   CreateCommentAutomationRequest.JSON_PROPERTY_CLICK_TAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:46:05.365806940Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:08:49.339730530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -123,12 +125,14 @@ public class CreateCommentAutomationRequest {
   private List<String> keywords = new ArrayList<>();
 
   /**
-   * Gets or Sets matchMode
+   * How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
    */
   public enum MatchModeEnum {
     EXACT(String.valueOf("exact")),
     
-    CONTAINS(String.valueOf("contains"));
+    CONTAINS(String.valueOf("contains")),
+    
+    WORD(String.valueOf("word"));
 
     private String value;
 
@@ -160,6 +164,14 @@ public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_MATCH_MODE = "matchMode";
   @javax.annotation.Nullable
   private MatchModeEnum matchMode = MatchModeEnum.CONTAINS;
+
+  public static final String JSON_PROPERTY_EXCLUDE_KEYWORDS = "excludeKeywords";
+  @javax.annotation.Nullable
+  private List<String> excludeKeywords = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TYPO_TOLERANCE = "typoTolerance";
+  @javax.annotation.Nullable
+  private Boolean typoTolerance;
 
   public static final String JSON_PROPERTY_DM_MESSAGE = "dmMessage";
   @javax.annotation.Nonnull
@@ -398,7 +410,7 @@ public class CreateCommentAutomationRequest {
   }
 
   /**
-   * Get matchMode
+   * How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
    * @return matchMode
    */
   @javax.annotation.Nullable
@@ -413,6 +425,62 @@ public class CreateCommentAutomationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMatchMode(@javax.annotation.Nullable MatchModeEnum matchMode) {
     this.matchMode = matchMode;
+  }
+
+
+  public CreateCommentAutomationRequest excludeKeywords(@javax.annotation.Nullable List<String> excludeKeywords) {
+    this.excludeKeywords = excludeKeywords;
+    return this;
+  }
+
+  public CreateCommentAutomationRequest addExcludeKeywordsItem(String excludeKeywordsItem) {
+    if (this.excludeKeywords == null) {
+      this.excludeKeywords = new ArrayList<>();
+    }
+    this.excludeKeywords.add(excludeKeywordsItem);
+    return this;
+  }
+
+  /**
+   * Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode.
+   * @return excludeKeywords
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDE_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getExcludeKeywords() {
+    return excludeKeywords;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDE_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExcludeKeywords(@javax.annotation.Nullable List<String> excludeKeywords) {
+    this.excludeKeywords = excludeKeywords;
+  }
+
+
+  public CreateCommentAutomationRequest typoTolerance(@javax.annotation.Nullable Boolean typoTolerance) {
+    this.typoTolerance = typoTolerance;
+    return this;
+  }
+
+  /**
+   * Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched.
+   * @return typoTolerance
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TYPO_TOLERANCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getTypoTolerance() {
+    return typoTolerance;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TYPO_TOLERANCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTypoTolerance(@javax.annotation.Nullable Boolean typoTolerance) {
+    this.typoTolerance = typoTolerance;
   }
 
 
@@ -629,6 +697,8 @@ public class CreateCommentAutomationRequest {
         Objects.equals(this.name, createCommentAutomationRequest.name) &&
         Objects.equals(this.keywords, createCommentAutomationRequest.keywords) &&
         Objects.equals(this.matchMode, createCommentAutomationRequest.matchMode) &&
+        Objects.equals(this.excludeKeywords, createCommentAutomationRequest.excludeKeywords) &&
+        Objects.equals(this.typoTolerance, createCommentAutomationRequest.typoTolerance) &&
         Objects.equals(this.dmMessage, createCommentAutomationRequest.dmMessage) &&
         Objects.equals(this.buttons, createCommentAutomationRequest.buttons) &&
         Objects.equals(this.commentReply, createCommentAutomationRequest.commentReply) &&
@@ -640,7 +710,7 @@ public class CreateCommentAutomationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, accountId, trigger, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag);
+    return Objects.hash(profileId, accountId, trigger, platformPostId, postId, postTitle, name, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag);
   }
 
   @Override
@@ -656,6 +726,8 @@ public class CreateCommentAutomationRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
+    sb.append("    excludeKeywords: ").append(toIndentedString(excludeKeywords)).append("\n");
+    sb.append("    typoTolerance: ").append(toIndentedString(typoTolerance)).append("\n");
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
@@ -757,6 +829,20 @@ public class CreateCommentAutomationRequest {
     // add `matchMode` to the URL query string
     if (getMatchMode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smatchMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMatchMode()))));
+    }
+
+    // add `excludeKeywords` to the URL query string
+    if (getExcludeKeywords() != null) {
+      for (int i = 0; i < getExcludeKeywords().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sexcludeKeywords%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getExcludeKeywords().get(i)))));
+      }
+    }
+
+    // add `typoTolerance` to the URL query string
+    if (getTypoTolerance() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stypoTolerance%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTypoTolerance()))));
     }
 
     // add `dmMessage` to the URL query string

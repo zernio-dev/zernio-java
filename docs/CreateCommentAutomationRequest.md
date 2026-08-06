@@ -15,7 +15,9 @@
 |**postTitle** | **String** | Post content snippet for display |  [optional] |
 |**name** | **String** | Automation label |  |
 |**keywords** | **List&lt;String&gt;** | Trigger keywords (empty &#x3D; any comment triggers) |  [optional] |
-|**matchMode** | [**MatchModeEnum**](#MatchModeEnum) |  |  [optional] |
+|**matchMode** | [**MatchModeEnum**](#MatchModeEnum) | How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword. |  [optional] |
+|**excludeKeywords** | **List&lt;String&gt;** | Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode. |  [optional] |
+|**typoTolerance** | **Boolean** | Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched. |  [optional] |
 |**dmMessage** | **String** | DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. |  |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM. |  [optional] |
 |**commentReply** | **String** | Optional public reply to the comment |  [optional] |
@@ -41,6 +43,7 @@
 |---- | -----|
 | EXACT | &quot;exact&quot; |
 | CONTAINS | &quot;contains&quot; |
+| WORD | &quot;word&quot; |
 
 
 

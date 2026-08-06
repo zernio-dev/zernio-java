@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListAccountGroups200ResponseGroupsInner.JSON_PROPERTY_CREATED_BY,
   ListAccountGroups200ResponseGroupsInner.JSON_PROPERTY_PROFILE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:46:05.365806940Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:08:49.339730530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAccountGroups200ResponseGroupsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

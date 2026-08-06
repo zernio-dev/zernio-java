@@ -55,7 +55,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:46:05.365806940Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:08:49.339730530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = ValidateSubreddit200Response.ValidateSubreddit200ResponseDeserializer.class)
 @JsonSerialize(using = ValidateSubreddit200Response.ValidateSubreddit200ResponseSerializer.class)
 public class ValidateSubreddit200Response extends AbstractOpenApiSchema {

@@ -69483,6 +69483,10 @@ components:
         - commentReplyVariations
         - commentReplyVariations
         commentReply: commentReply
+        excludeKeywords:
+        - excludeKeywords
+        - excludeKeywords
+        typoTolerance: true
         trigger: comment
         isActive: true
         linkTracking: true
@@ -69534,10 +69538,26 @@ components:
             type: string
           type: array
         matchMode:
+          description: "How a keyword is compared with the comment. 'contains' (default)\
+            \ matches anywhere, even inside another word (keyword 'app' fires on 'happy').\
+            \ 'word' matches the keyword only as a standalone word. 'exact' requires\
+            \ the whole comment to be exactly the keyword."
           enum:
           - exact
           - contains
+          - word
           type: string
+        excludeKeywords:
+          description: "Comments containing one of these never trigger the automation,\
+            \ even when a trigger keyword also matches. Compared using the same matchMode."
+          items:
+            type: string
+          type: array
+        typoTolerance:
+          description: "Only with matchMode=word: also fire on close misspellings\
+            \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
+            \ shorter than 4 characters are never fuzzy-matched."
+          type: boolean
         dmMessage:
           type: string
         buttons:
@@ -69595,6 +69615,10 @@ components:
           - commentReplyVariations
           - commentReplyVariations
           commentReply: commentReply
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          typoTolerance: true
           trigger: comment
           isActive: true
           linkTracking: true
@@ -69639,6 +69663,10 @@ components:
           - commentReplyVariations
           - commentReplyVariations
           commentReply: commentReply
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          typoTolerance: true
           trigger: comment
           isActive: true
           linkTracking: true
@@ -69709,10 +69737,26 @@ components:
           type: array
         matchMode:
           default: contains
+          description: "How a keyword is compared with the comment. 'contains' (default)\
+            \ matches anywhere, even inside another word (keyword 'app' fires on 'happy').\
+            \ 'word' matches the keyword only as a standalone word. 'exact' requires\
+            \ the whole comment to be exactly the keyword."
           enum:
           - exact
           - contains
+          - word
           type: string
+        excludeKeywords:
+          description: "Comments containing one of these never trigger the automation,\
+            \ even when a trigger keyword also matches. Compared using the same matchMode."
+          items:
+            type: string
+          type: array
+        typoTolerance:
+          description: "Only with matchMode=word: also fire on close misspellings\
+            \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
+            \ shorter than 4 characters are never fuzzy-matched."
+          type: boolean
         dmMessage:
           description: "DM text to send to commenter. Max 640 chars when buttons are\
             \ set, otherwise ~1000."
@@ -69792,6 +69836,10 @@ components:
         - commentReplyVariations
         - commentReplyVariations
         commentReply: commentReply
+        excludeKeywords:
+        - excludeKeywords
+        - excludeKeywords
+        typoTolerance: true
         trigger: comment
         isActive: true
         linkTracking: true
@@ -69828,10 +69876,26 @@ components:
             type: string
           type: array
         matchMode:
+          description: "How a keyword is compared with the comment. 'contains' (default)\
+            \ matches anywhere, even inside another word (keyword 'app' fires on 'happy').\
+            \ 'word' matches the keyword only as a standalone word. 'exact' requires\
+            \ the whole comment to be exactly the keyword."
           enum:
           - exact
           - contains
+          - word
           type: string
+        excludeKeywords:
+          description: "Comments containing one of these never trigger the automation,\
+            \ even when a trigger keyword also matches. Compared using the same matchMode."
+          items:
+            type: string
+          type: array
+        typoTolerance:
+          description: "Only with matchMode=word: also fire on close misspellings\
+            \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
+            \ shorter than 4 characters are never fuzzy-matched."
+          type: boolean
         dmMessage:
           type: string
         buttons:
@@ -69886,6 +69950,10 @@ components:
           - commentReplyVariations
           - commentReplyVariations
           commentReply: commentReply
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          typoTolerance: true
           trigger: comment
           isActive: true
           linkTracking: true
@@ -69930,6 +69998,10 @@ components:
         - commentReplyVariations
         - commentReplyVariations
         commentReply: commentReply
+        excludeKeywords:
+        - excludeKeywords
+        - excludeKeywords
+        typoTolerance: true
         trigger: comment
         postId: postId
         isActive: true
@@ -69976,10 +70048,26 @@ components:
             type: string
           type: array
         matchMode:
+          description: "How a keyword is compared with the comment. 'contains' (default)\
+            \ matches anywhere, even inside another word (keyword 'app' fires on 'happy').\
+            \ 'word' matches the keyword only as a standalone word. 'exact' requires\
+            \ the whole comment to be exactly the keyword."
           enum:
           - exact
           - contains
+          - word
           type: string
+        excludeKeywords:
+          description: "Comments containing one of these never trigger the automation,\
+            \ even when a trigger keyword also matches. Compared using the same matchMode."
+          items:
+            type: string
+          type: array
+        typoTolerance:
+          description: "Only with matchMode=word: also fire on close misspellings\
+            \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
+            \ shorter than 4 characters are never fuzzy-matched."
+          type: boolean
         dmMessage:
           type: string
         buttons:
@@ -70085,6 +70173,10 @@ components:
           - commentReplyVariations
           - commentReplyVariations
           commentReply: commentReply
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          typoTolerance: true
           trigger: comment
           postId: postId
           isActive: true
@@ -70146,10 +70238,26 @@ components:
             type: string
           type: array
         matchMode:
+          description: "How a keyword is compared with the comment. 'contains' (default)\
+            \ matches anywhere, even inside another word (keyword 'app' fires on 'happy').\
+            \ 'word' matches the keyword only as a standalone word. 'exact' requires\
+            \ the whole comment to be exactly the keyword."
           enum:
           - exact
           - contains
+          - word
           type: string
+        excludeKeywords:
+          description: "Comments containing one of these never trigger the automation,\
+            \ even when a trigger keyword also matches. Compared using the same matchMode."
+          items:
+            type: string
+          type: array
+        typoTolerance:
+          description: "Only with matchMode=word: also fire on close misspellings\
+            \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
+            \ shorter than 4 characters are never fuzzy-matched."
+          type: boolean
         dmMessage:
           type: string
         buttons:
@@ -70204,12 +70312,16 @@ components:
         - commentReplyVariations
         - commentReplyVariations
         commentReply: commentReply
+        excludeKeywords:
+        - excludeKeywords
+        - excludeKeywords
+        typoTolerance: true
+        isActive: true
         name: name
         dmMessageVariations:
         - dmMessageVariations
         - dmMessageVariations
         id: id
-        isActive: true
         matchMode: exact
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -70222,10 +70334,26 @@ components:
             type: string
           type: array
         matchMode:
+          description: "How a keyword is compared with the comment. 'contains' (default)\
+            \ matches anywhere, even inside another word (keyword 'app' fires on 'happy').\
+            \ 'word' matches the keyword only as a standalone word. 'exact' requires\
+            \ the whole comment to be exactly the keyword."
           enum:
           - exact
           - contains
+          - word
           type: string
+        excludeKeywords:
+          description: "Comments containing one of these never trigger the automation,\
+            \ even when a trigger keyword also matches. Compared using the same matchMode."
+          items:
+            type: string
+          type: array
+        typoTolerance:
+          description: "Only with matchMode=word: also fire on close misspellings\
+            \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
+            \ shorter than 4 characters are never fuzzy-matched."
+          type: boolean
         dmMessage:
           type: string
         buttons:
@@ -70274,12 +70402,16 @@ components:
           - commentReplyVariations
           - commentReplyVariations
           commentReply: commentReply
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          typoTolerance: true
+          isActive: true
           name: name
           dmMessageVariations:
           - dmMessageVariations
           - dmMessageVariations
           id: id
-          isActive: true
           matchMode: exact
           updatedAt: 2000-01-23T04:56:07.000+00:00
         success: true
