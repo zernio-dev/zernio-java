@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SharedAdAccount.JSON_PROPERTY_NAME,
   SharedAdAccount.JSON_PROPERTY_BUSINESS_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:07:20.812337906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:13:34.913261803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SharedAdAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

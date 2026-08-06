@@ -31,11 +31,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * What the ad optimises against. Behaviour depends on the platform.  **Meta**: forwarded to the ad set&#39;s &#x60;promoted_object&#x60; (snake-cased). Required for goals whose ad-set optimization_goal points at a specific event/page/app (without it Meta rejects the ad-set create with &#x60;error_subcode: 1815430&#x60; \&quot;Please select a promoted object for your ad set\&quot;):   - &#x60;goal: conversions&#x60; / &#x60;lead_conversion&#x60; (OFFSITE_CONVERSIONS): requires &#x60;pixelId&#x60; + &#x60;customEventType&#x60;, or &#x60;customConversionId&#x60; when optimising against a Custom Conversion (the conversion carries its own event definition)   - &#x60;goal: app_promotion&#x60; (APP_INSTALLS): requires &#x60;applicationId&#x60; + &#x60;objectStoreUrl&#x60;   - &#x60;goal: lead_generation&#x60; (LEAD_GENERATION): &#x60;pageId&#x60; is auto-filled from the connected Page when omitted  Other Meta goals (engagement, traffic, awareness, video_views) ignore this field.  **TikTok**: only &#x60;goal: conversions&#x60; uses it.   - &#x60;pixelId&#x60; maps to the ad group&#39;s &#x60;pixel_id&#x60;. Required: a TikTok website-conversion     ad group without a pixel is rejected with &#x60;40002: Please select a pixel&#x60;.   - &#x60;customEventType&#x60; maps to the ad group&#39;s &#x60;optimization_event&#x60; (the pixel event to     optimise for). Optional: TikTok accepts a pixel-only auto-bid conversion ad group.     See the &#x60;customEventType&#x60; field below for the valid TikTok codes.  The remaining &#x60;promotedObject.*&#x60; fields are Meta-only. Platforms other than Meta and TikTok ignore &#x60;promotedObject&#x60; entirely. 
+ * What the ad optimises against. Behaviour depends on the platform.  **Meta**: forwarded to the ad set&#39;s &#x60;promoted_object&#x60; (snake-cased). Required for goals whose ad-set optimization_goal points at a specific event/page/app (without it Meta rejects the ad-set create with &#x60;error_subcode: 1815430&#x60; \&quot;Please select a promoted object for your ad set\&quot;):   - &#x60;goal: conversions&#x60; / &#x60;lead_conversion&#x60; (OFFSITE_CONVERSIONS): requires &#x60;pixelId&#x60; + &#x60;customEventType&#x60;, or &#x60;customConversionId&#x60; when optimising against a Custom Conversion (the conversion carries its own event definition). For a pixel CUSTOM event (one you named yourself in CAPI/Events Manager), send &#x60;customEventType: OTHER&#x60; + &#x60;customEventStr&#x60; with the event name.   - &#x60;goal: app_promotion&#x60; (APP_INSTALLS): requires &#x60;applicationId&#x60; + &#x60;objectStoreUrl&#x60;   - &#x60;goal: lead_generation&#x60; (LEAD_GENERATION): &#x60;pageId&#x60; is auto-filled from the connected Page when omitted  Other Meta goals (engagement, traffic, awareness, video_views) ignore this field.  **TikTok**: only &#x60;goal: conversions&#x60; uses it.   - &#x60;pixelId&#x60; maps to the ad group&#39;s &#x60;pixel_id&#x60;. Required: a TikTok website-conversion     ad group without a pixel is rejected with &#x60;40002: Please select a pixel&#x60;.   - &#x60;customEventType&#x60; maps to the ad group&#39;s &#x60;optimization_event&#x60; (the pixel event to     optimise for). Optional: TikTok accepts a pixel-only auto-bid conversion ad group.     See the &#x60;customEventType&#x60; field below for the valid TikTok codes.  The remaining &#x60;promotedObject.*&#x60; fields are Meta-only. Platforms other than Meta and TikTok ignore &#x60;promotedObject&#x60; entirely. 
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PIXEL_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_CUSTOM_EVENT_TYPE,
+  CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_CUSTOM_EVENT_STR,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PAGE_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_APPLICATION_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OBJECT_STORE_URL,
@@ -45,7 +46,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:07:20.812337906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:13:34.913261803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -54,6 +55,10 @@ public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_CUSTOM_EVENT_TYPE = "customEventType";
   @javax.annotation.Nullable
   private String customEventType;
+
+  public static final String JSON_PROPERTY_CUSTOM_EVENT_STR = "customEventStr";
+  @javax.annotation.Nullable
+  private String customEventStr;
 
   public static final String JSON_PROPERTY_PAGE_ID = "pageId";
   @javax.annotation.Nullable
@@ -135,6 +140,30 @@ public class CreateStandaloneAdRequestPromotedObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCustomEventType(@javax.annotation.Nullable String customEventType) {
     this.customEventType = customEventType;
+  }
+
+
+  public CreateStandaloneAdRequestPromotedObject customEventStr(@javax.annotation.Nullable String customEventStr) {
+    this.customEventStr = customEventStr;
+    return this;
+  }
+
+  /**
+   * Meta only. Pixel custom-event name to optimise against (Meta&#39;s &#x60;custom_event_str&#x60;), exactly as it appears in Events Manager and in your CAPI payloads (case-sensitive, not uppercased). Requires &#x60;customEventType: OTHER&#x60;, and &#x60;OTHER&#x60; requires this field (400 either way). The same as picking a custom event in Ads Manager&#39;s conversion-event dropdown. For rule-based Custom Conversions use &#x60;customConversionId&#x60; instead. 
+   * @return customEventStr
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_STR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCustomEventStr() {
+    return customEventStr;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_STR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomEventStr(@javax.annotation.Nullable String customEventStr) {
+    this.customEventStr = customEventStr;
   }
 
 
@@ -344,6 +373,7 @@ public class CreateStandaloneAdRequestPromotedObject {
     CreateStandaloneAdRequestPromotedObject createStandaloneAdRequestPromotedObject = (CreateStandaloneAdRequestPromotedObject) o;
     return Objects.equals(this.pixelId, createStandaloneAdRequestPromotedObject.pixelId) &&
         Objects.equals(this.customEventType, createStandaloneAdRequestPromotedObject.customEventType) &&
+        Objects.equals(this.customEventStr, createStandaloneAdRequestPromotedObject.customEventStr) &&
         Objects.equals(this.pageId, createStandaloneAdRequestPromotedObject.pageId) &&
         Objects.equals(this.applicationId, createStandaloneAdRequestPromotedObject.applicationId) &&
         Objects.equals(this.objectStoreUrl, createStandaloneAdRequestPromotedObject.objectStoreUrl) &&
@@ -356,7 +386,7 @@ public class CreateStandaloneAdRequestPromotedObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(pixelId, customEventType, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId, offlineConversionDataSetId, whatsappPhoneNumber);
+    return Objects.hash(pixelId, customEventType, customEventStr, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId, offlineConversionDataSetId, whatsappPhoneNumber);
   }
 
   @Override
@@ -365,6 +395,7 @@ public class CreateStandaloneAdRequestPromotedObject {
     sb.append("class CreateStandaloneAdRequestPromotedObject {\n");
     sb.append("    pixelId: ").append(toIndentedString(pixelId)).append("\n");
     sb.append("    customEventType: ").append(toIndentedString(customEventType)).append("\n");
+    sb.append("    customEventStr: ").append(toIndentedString(customEventStr)).append("\n");
     sb.append("    pageId: ").append(toIndentedString(pageId)).append("\n");
     sb.append("    applicationId: ").append(toIndentedString(applicationId)).append("\n");
     sb.append("    objectStoreUrl: ").append(toIndentedString(objectStoreUrl)).append("\n");
@@ -428,6 +459,11 @@ public class CreateStandaloneAdRequestPromotedObject {
     // add `customEventType` to the URL query string
     if (getCustomEventType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scustomEventType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomEventType()))));
+    }
+
+    // add `customEventStr` to the URL query string
+    if (getCustomEventStr() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scustomEventStr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomEventStr()))));
     }
 
     // add `pageId` to the URL query string

@@ -35,6 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_PIXEL_ID,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_CUSTOM_EVENT_TYPE,
+  UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_CUSTOM_EVENT_STR,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_PAGE_ID,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_APPLICATION_ID,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_OBJECT_STORE_URL,
@@ -44,7 +45,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:07:20.812337906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T11:13:34.913261803Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -53,6 +54,10 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   public static final String JSON_PROPERTY_CUSTOM_EVENT_TYPE = "customEventType";
   @javax.annotation.Nullable
   private String customEventType;
+
+  public static final String JSON_PROPERTY_CUSTOM_EVENT_STR = "customEventStr";
+  @javax.annotation.Nullable
+  private String customEventStr;
 
   public static final String JSON_PROPERTY_PAGE_ID = "pageId";
   @javax.annotation.Nullable
@@ -134,6 +139,30 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCustomEventType(@javax.annotation.Nullable String customEventType) {
     this.customEventType = customEventType;
+  }
+
+
+  public UpdateAdSetRequestPlatformSpecificDataPromotedObject customEventStr(@javax.annotation.Nullable String customEventStr) {
+    this.customEventStr = customEventStr;
+    return this;
+  }
+
+  /**
+   * Pixel custom-event name (custom_event_str); requires customEventType OTHER. Same pairing rules as /v1/ads/create.
+   * @return customEventStr
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_STR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCustomEventStr() {
+    return customEventStr;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_STR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomEventStr(@javax.annotation.Nullable String customEventStr) {
+    this.customEventStr = customEventStr;
   }
 
 
@@ -343,6 +372,7 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
     UpdateAdSetRequestPlatformSpecificDataPromotedObject updateAdSetRequestPlatformSpecificDataPromotedObject = (UpdateAdSetRequestPlatformSpecificDataPromotedObject) o;
     return Objects.equals(this.pixelId, updateAdSetRequestPlatformSpecificDataPromotedObject.pixelId) &&
         Objects.equals(this.customEventType, updateAdSetRequestPlatformSpecificDataPromotedObject.customEventType) &&
+        Objects.equals(this.customEventStr, updateAdSetRequestPlatformSpecificDataPromotedObject.customEventStr) &&
         Objects.equals(this.pageId, updateAdSetRequestPlatformSpecificDataPromotedObject.pageId) &&
         Objects.equals(this.applicationId, updateAdSetRequestPlatformSpecificDataPromotedObject.applicationId) &&
         Objects.equals(this.objectStoreUrl, updateAdSetRequestPlatformSpecificDataPromotedObject.objectStoreUrl) &&
@@ -355,7 +385,7 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(pixelId, customEventType, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId, offlineConversionDataSetId, whatsappPhoneNumber);
+    return Objects.hash(pixelId, customEventType, customEventStr, pageId, applicationId, objectStoreUrl, customConversionId, productCatalogId, productSetId, offlineConversionDataSetId, whatsappPhoneNumber);
   }
 
   @Override
@@ -364,6 +394,7 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
     sb.append("class UpdateAdSetRequestPlatformSpecificDataPromotedObject {\n");
     sb.append("    pixelId: ").append(toIndentedString(pixelId)).append("\n");
     sb.append("    customEventType: ").append(toIndentedString(customEventType)).append("\n");
+    sb.append("    customEventStr: ").append(toIndentedString(customEventStr)).append("\n");
     sb.append("    pageId: ").append(toIndentedString(pageId)).append("\n");
     sb.append("    applicationId: ").append(toIndentedString(applicationId)).append("\n");
     sb.append("    objectStoreUrl: ").append(toIndentedString(objectStoreUrl)).append("\n");
@@ -427,6 +458,11 @@ public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
     // add `customEventType` to the URL query string
     if (getCustomEventType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scustomEventType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomEventType()))));
+    }
+
+    // add `customEventStr` to the URL query string
+    if (getCustomEventStr() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scustomEventStr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomEventStr()))));
     }
 
     // add `pageId` to the URL query string
