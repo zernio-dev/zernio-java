@@ -16553,6 +16553,9 @@ paths:
           description: Bad request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "X rejected the request (e.g. suspended account, missing OAuth\
+            \ scope)"
         "404":
           description: Account not found
       security:
@@ -16584,6 +16587,9 @@ paths:
           description: Bad request or platform limitation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "X rejected the request (e.g. suspended account, missing OAuth\
+            \ scope)"
         "404":
           description: Account not found
       security:
@@ -16626,6 +16632,9 @@ paths:
           description: Bad request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "X rejected the request (e.g. suspended account, missing OAuth\
+            \ scope)"
         "404":
           description: Account not found
       security:
@@ -16658,6 +16667,9 @@ paths:
           description: Bad request or platform limitation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "X rejected the request (e.g. suspended account, missing OAuth\
+            \ scope)"
         "404":
           description: Account not found
       security:
@@ -16700,6 +16712,9 @@ paths:
           description: Bad request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "X rejected the request (e.g. suspended account, missing OAuth\
+            \ scope)"
         "404":
           description: Account not found
       security:
@@ -16732,6 +16747,9 @@ paths:
           description: Bad request or platform limitation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "X rejected the request (e.g. suspended account, missing OAuth\
+            \ scope)"
         "404":
           description: Account not found
       security:

@@ -94,6 +94,7 @@ public class Example {
 | **200** | Tweet bookmarked |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 ## bookmarkPostWithHttpInfo
@@ -170,6 +171,7 @@ ApiResponse<[**BookmarkPost200Response**](BookmarkPost200Response.md)>
 | **200** | Tweet bookmarked |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -244,6 +246,7 @@ public class Example {
 | **200** | User followed or follow request sent |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 ## followUserWithHttpInfo
@@ -320,6 +323,7 @@ ApiResponse<[**FollowUser200Response**](FollowUser200Response.md)>
 | **200** | User followed or follow request sent |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -556,6 +560,7 @@ public class Example {
 | **200** | Bookmark removed |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 ## removeBookmarkWithHttpInfo
@@ -634,6 +639,7 @@ ApiResponse<[**RemoveBookmark200Response**](RemoveBookmark200Response.md)>
 | **200** | Bookmark removed |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -708,6 +714,7 @@ public class Example {
 | **200** | Tweet retweeted |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 ## retweetPostWithHttpInfo
@@ -784,6 +791,7 @@ ApiResponse<[**RetweetPost200Response**](RetweetPost200Response.md)>
 | **200** | Tweet retweeted |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -1048,6 +1056,7 @@ public class Example {
 | **200** | Retweet undone |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 ## undoRetweetWithHttpInfo
@@ -1126,6 +1135,7 @@ ApiResponse<[**UndoRetweet200Response**](UndoRetweet200Response.md)>
 | **200** | Retweet undone |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -1202,6 +1212,7 @@ public class Example {
 | **200** | User unfollowed |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 ## unfollowUserWithHttpInfo
@@ -1280,5 +1291,6 @@ ApiResponse<[**UnfollowUser200Response**](UnfollowUser200Response.md)>
 | **200** | User unfollowed |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
