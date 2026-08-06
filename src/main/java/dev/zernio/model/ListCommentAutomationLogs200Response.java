@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetCommentAutomation200ResponseLogsInner;
+import dev.zernio.model.ListCommentAutomationLogs200ResponseMisses;
 import dev.zernio.model.ListContacts200ResponsePagination;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,9 +40,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListCommentAutomationLogs200Response.JSON_PROPERTY_SUCCESS,
   ListCommentAutomationLogs200Response.JSON_PROPERTY_LOGS,
-  ListCommentAutomationLogs200Response.JSON_PROPERTY_PAGINATION
+  ListCommentAutomationLogs200Response.JSON_PROPERTY_PAGINATION,
+  ListCommentAutomationLogs200Response.JSON_PROPERTY_MISSES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:34:32.420257775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomationLogs200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -54,6 +56,10 @@ public class ListCommentAutomationLogs200Response {
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
   private ListContacts200ResponsePagination pagination;
+
+  public static final String JSON_PROPERTY_MISSES = "misses";
+  @javax.annotation.Nullable
+  private ListCommentAutomationLogs200ResponseMisses misses;
 
   public ListCommentAutomationLogs200Response() { 
   }
@@ -138,6 +144,30 @@ public class ListCommentAutomationLogs200Response {
   }
 
 
+  public ListCommentAutomationLogs200Response misses(@javax.annotation.Nullable ListCommentAutomationLogs200ResponseMisses misses) {
+    this.misses = misses;
+    return this;
+  }
+
+  /**
+   * Get misses
+   * @return misses
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MISSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ListCommentAutomationLogs200ResponseMisses getMisses() {
+    return misses;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MISSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMisses(@javax.annotation.Nullable ListCommentAutomationLogs200ResponseMisses misses) {
+    this.misses = misses;
+  }
+
+
   /**
    * Return true if this listCommentAutomationLogs_200_response object is equal to o.
    */
@@ -152,12 +182,13 @@ public class ListCommentAutomationLogs200Response {
     ListCommentAutomationLogs200Response listCommentAutomationLogs200Response = (ListCommentAutomationLogs200Response) o;
     return Objects.equals(this.success, listCommentAutomationLogs200Response.success) &&
         Objects.equals(this.logs, listCommentAutomationLogs200Response.logs) &&
-        Objects.equals(this.pagination, listCommentAutomationLogs200Response.pagination);
+        Objects.equals(this.pagination, listCommentAutomationLogs200Response.pagination) &&
+        Objects.equals(this.misses, listCommentAutomationLogs200Response.misses);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, logs, pagination);
+    return Objects.hash(success, logs, pagination, misses);
   }
 
   @Override
@@ -167,6 +198,7 @@ public class ListCommentAutomationLogs200Response {
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    pagination: ").append(toIndentedString(pagination)).append("\n");
+    sb.append("    misses: ").append(toIndentedString(misses)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -232,6 +264,11 @@ public class ListCommentAutomationLogs200Response {
     // add `pagination` to the URL query string
     if (getPagination() != null) {
       joiner.add(getPagination().toUrlQueryString(prefix + "pagination" + suffix));
+    }
+
+    // add `misses` to the URL query string
+    if (getMisses() != null) {
+      joiner.add(getMisses().toUrlQueryString(prefix + "misses" + suffix));
     }
 
     return joiner.toString();

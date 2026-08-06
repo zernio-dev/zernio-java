@@ -864,6 +864,8 @@ docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCalls200Response.md
 docs/ListCalls200ResponseCallsInner.md
 docs/ListCommentAutomationLogs200Response.md
+docs/ListCommentAutomationLogs200ResponseMisses.md
+docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
@@ -2561,6 +2563,8 @@ src/main/java/dev/zernio/model/ListBroadcasts200ResponseBroadcastsInner.java
 src/main/java/dev/zernio/model/ListCalls200Response.java
 src/main/java/dev/zernio/model/ListCalls200ResponseCallsInner.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200Response.java
+src/main/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMisses.java
+src/main/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMissesSamplesInner.java
 src/main/java/dev/zernio/model/ListCommentAutomations200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomations200ResponseAutomationsInner.java
 src/main/java/dev/zernio/model/ListCommentAutomations200ResponseAutomationsInnerStats.java
@@ -3317,3 +3321,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMissesSamplesInnerTest.java
+src/test/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMissesTest.java

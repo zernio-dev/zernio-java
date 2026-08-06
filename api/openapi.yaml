@@ -26077,6 +26077,8 @@ paths:
         required: false
         schema:
           default: 50
+          maximum: 200
+          minimum: 1
           type: integer
         style: form
       - explode: true
@@ -26085,6 +26087,7 @@ paths:
         required: false
         schema:
           default: 0
+          minimum: 0
           type: integer
         style: form
       responses:
@@ -26094,6 +26097,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listCommentAutomationLogs_200_response"
           description: Trigger logs with pagination
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -70965,6 +70970,53 @@ components:
           type: boolean
         automation:
           $ref: "#/components/schemas/updateCommentAutomation_200_response_automation"
+    listCommentAutomationLogs_200_response_misses_samples_inner:
+      example:
+        at: 2000-01-23T04:56:07.000+00:00
+        commenterName: commenterName
+        excludedBy: excludedBy
+        commentText: commentText
+      properties:
+        commentText:
+          type: string
+        commenterName:
+          type: string
+        excludedBy:
+          description: Set when an exclusion keyword vetoed an otherwise matching
+            comment
+          type: string
+        at:
+          format: date-time
+          type: string
+    listCommentAutomationLogs_200_response_misses:
+      description: "Comments that reached this automation but matched none of its\
+        \ keywords. These produce no log entry, so this is the only signal that a\
+        \ keyword is catching nothing. Retained for a short window, then dropped."
+      example:
+        total: 0
+        retentionDays: 6
+        samples:
+        - at: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          excludedBy: excludedBy
+          commentText: commentText
+        - at: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          excludedBy: excludedBy
+          commentText: commentText
+      properties:
+        total:
+          description: Number of non-matching comments in the retention window
+          type: integer
+        retentionDays:
+          description: How many days of non-matching comments the total covers
+          type: integer
+        samples:
+          description: "A few of the most recent non-matching comments, for diagnosing\
+            \ a keyword setup."
+          items:
+            $ref: "#/components/schemas/listCommentAutomationLogs_200_response_misses_samples_inner"
+          type: array
     listCommentAutomationLogs_200_response:
       example:
         pagination:
@@ -70973,6 +71025,18 @@ components:
           hasMore: true
           skip: 5
         success: true
+        misses:
+          total: 0
+          retentionDays: 6
+          samples:
+          - at: 2000-01-23T04:56:07.000+00:00
+            commenterName: commenterName
+            excludedBy: excludedBy
+            commentText: commentText
+          - at: 2000-01-23T04:56:07.000+00:00
+            commenterName: commenterName
+            excludedBy: excludedBy
+            commentText: commentText
         logs:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           commentReplyError: commentReplyError
@@ -71003,6 +71067,8 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/listContacts_200_response_pagination"
+        misses:
+          $ref: "#/components/schemas/listCommentAutomationLogs_200_response_misses"
     listAds_200_response:
       example:
         ads:

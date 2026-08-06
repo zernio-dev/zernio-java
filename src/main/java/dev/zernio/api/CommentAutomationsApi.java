@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.CreateCommentAutomation200Response;
 import dev.zernio.model.CreateCommentAutomationRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetCommentAutomation200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -53,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T12:34:32.420257775Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

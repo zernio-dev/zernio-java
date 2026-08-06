@@ -538,6 +538,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Trigger logs with pagination |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -619,6 +620,7 @@ ApiResponse<[**ListCommentAutomationLogs200Response**](ListCommentAutomationLogs
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Trigger logs with pagination |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
