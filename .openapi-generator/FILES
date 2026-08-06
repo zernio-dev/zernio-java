@@ -786,7 +786,8 @@ docs/InitiateWhatsAppCallRequest.md
 docs/InlineObject.md
 docs/InlineObject1.md
 docs/InlineObject2.md
-docs/InlineObject2Details.md
+docs/InlineObject3.md
+docs/InlineObject3Details.md
 docs/InstagramAccountInsightsResponse.md
 docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
@@ -2484,7 +2485,8 @@ src/main/java/dev/zernio/model/InitiateWhatsAppCallRequest.java
 src/main/java/dev/zernio/model/InlineObject.java
 src/main/java/dev/zernio/model/InlineObject1.java
 src/main/java/dev/zernio/model/InlineObject2.java
-src/main/java/dev/zernio/model/InlineObject2Details.java
+src/main/java/dev/zernio/model/InlineObject3.java
+src/main/java/dev/zernio/model/InlineObject3Details.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponse.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseDateRange.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValue.java
@@ -3311,3 +3313,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/InlineObject3DetailsTest.java
+src/test/java/dev/zernio/model/InlineObject3Test.java

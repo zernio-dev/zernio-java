@@ -45,9 +45,10 @@ import dev.zernio.ApiClient;
   ApiKey.JSON_PROPERTY_KEY,
   ApiKey.JSON_PROPERTY_SCOPE,
   ApiKey.JSON_PROPERTY_PROFILE_IDS,
-  ApiKey.JSON_PROPERTY_PERMISSION
+  ApiKey.JSON_PROPERTY_PERMISSION,
+  ApiKey.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:07:01.292269555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiKey {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -154,6 +155,61 @@ public class ApiKey {
   public static final String JSON_PROPERTY_PERMISSION = "permission";
   @javax.annotation.Nullable
   private PermissionEnum permission = PermissionEnum.READ_WRITE;
+
+  /**
+   * Gets or Sets disabledResourceGroups
+   */
+  public enum DisabledResourceGroupsEnum {
+    PUBLISHING(String.valueOf("publishing")),
+    
+    ENGAGEMENT(String.valueOf("engagement")),
+    
+    MESSAGES(String.valueOf("messages")),
+    
+    CONTACTS(String.valueOf("contacts")),
+    
+    ANALYTICS(String.valueOf("analytics")),
+    
+    ADS(String.valueOf("ads")),
+    
+    TELEPHONY(String.valueOf("telephony")),
+    
+    ACCOUNTS(String.valueOf("accounts")),
+    
+    BILLING(String.valueOf("billing")),
+    
+    WEBHOOKS(String.valueOf("webhooks"));
+
+    private String value;
+
+    DisabledResourceGroupsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DisabledResourceGroupsEnum fromValue(String value) {
+      for (DisabledResourceGroupsEnum b : DisabledResourceGroupsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_DISABLED_RESOURCE_GROUPS = "disabledResourceGroups";
+  @javax.annotation.Nullable
+  private List<DisabledResourceGroupsEnum> disabledResourceGroups = new ArrayList<>();
 
   public ApiKey() { 
   }
@@ -382,6 +438,38 @@ public class ApiKey {
   }
 
 
+  public ApiKey disabledResourceGroups(@javax.annotation.Nullable List<DisabledResourceGroupsEnum> disabledResourceGroups) {
+    this.disabledResourceGroups = disabledResourceGroups;
+    return this;
+  }
+
+  public ApiKey addDisabledResourceGroupsItem(DisabledResourceGroupsEnum disabledResourceGroupsItem) {
+    if (this.disabledResourceGroups == null) {
+      this.disabledResourceGroups = new ArrayList<>();
+    }
+    this.disabledResourceGroups.add(disabledResourceGroupsItem);
+    return this;
+  }
+
+  /**
+   * Resource groups this key can NOT access (opt-out denylist). Absent or empty means legacy full access. A key with any group disabled is a restricted key (zrk_ prefix) and can never manage API keys, invites, or member identity. Each operation&#39;s group is published as x-resource-group. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.
+   * @return disabledResourceGroups
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DISABLED_RESOURCE_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DisabledResourceGroupsEnum> getDisabledResourceGroups() {
+    return disabledResourceGroups;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DISABLED_RESOURCE_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisabledResourceGroups(@javax.annotation.Nullable List<DisabledResourceGroupsEnum> disabledResourceGroups) {
+    this.disabledResourceGroups = disabledResourceGroups;
+  }
+
+
   /**
    * Return true if this ApiKey object is equal to o.
    */
@@ -402,12 +490,13 @@ public class ApiKey {
         Objects.equals(this.key, apiKey.key) &&
         Objects.equals(this.scope, apiKey.scope) &&
         Objects.equals(this.profileIds, apiKey.profileIds) &&
-        Objects.equals(this.permission, apiKey.permission);
+        Objects.equals(this.permission, apiKey.permission) &&
+        Objects.equals(this.disabledResourceGroups, apiKey.disabledResourceGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, keyPreview, expiresAt, createdAt, key, scope, profileIds, permission);
+    return Objects.hash(id, name, keyPreview, expiresAt, createdAt, key, scope, profileIds, permission, disabledResourceGroups);
   }
 
   @Override
@@ -423,6 +512,7 @@ public class ApiKey {
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    profileIds: ").append(toIndentedString(profileIds)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    disabledResourceGroups: ").append(toIndentedString(disabledResourceGroups)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -518,6 +608,15 @@ public class ApiKey {
     // add `permission` to the URL query string
     if (getPermission() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spermission%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermission()))));
+    }
+
+    // add `disabledResourceGroups` to the URL query string
+    if (getDisabledResourceGroups() != null) {
+      for (int i = 0; i < getDisabledResourceGroups().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sdisabledResourceGroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getDisabledResourceGroups().get(i)))));
+      }
     }
 
     return joiner.toString();

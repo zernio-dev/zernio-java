@@ -21,6 +21,7 @@ import dev.zernio.Pair;
 import dev.zernio.model.CreateInviteToken201Response;
 import dev.zernio.model.CreateInviteTokenRequest;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject2;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:07:01.292269555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InvitesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -166,7 +167,7 @@ public class InvitesApi {
 
   /**
    * Create invite token
-   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use. 
+   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane. 
    * @param createInviteTokenRequest  (required)
    * @return CreateInviteToken201Response
    * @throws ApiException if fails to make API call
@@ -177,7 +178,7 @@ public class InvitesApi {
 
   /**
    * Create invite token
-   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use. 
+   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane. 
    * @param createInviteTokenRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateInviteToken201Response
@@ -190,7 +191,7 @@ public class InvitesApi {
 
   /**
    * Create invite token
-   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use. 
+   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane. 
    * @param createInviteTokenRequest  (required)
    * @return ApiResponse&lt;CreateInviteToken201Response&gt;
    * @throws ApiException if fails to make API call
@@ -201,7 +202,7 @@ public class InvitesApi {
 
   /**
    * Create invite token
-   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use. 
+   * Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane. 
    * @param createInviteTokenRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateInviteToken201Response&gt;

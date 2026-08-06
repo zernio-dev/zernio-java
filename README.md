@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-06T08:07:01.292269555Z[Etc/UTC]
+- Build date: 2026-08-06T08:14:42.091387436Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1949,7 +1949,8 @@ Class | Method | HTTP request | Description
  - [InlineObject](docs/InlineObject.md)
  - [InlineObject1](docs/InlineObject1.md)
  - [InlineObject2](docs/InlineObject2.md)
- - [InlineObject2Details](docs/InlineObject2Details.md)
+ - [InlineObject3](docs/InlineObject3.md)
+ - [InlineObject3Details](docs/InlineObject3Details.md)
  - [InstagramAccountInsightsResponse](docs/InstagramAccountInsightsResponse.md)
  - [InstagramAccountInsightsResponseDateRange](docs/InstagramAccountInsightsResponseDateRange.md)
  - [InstagramAccountInsightsResponseMetricsValue](docs/InstagramAccountInsightsResponseMetricsValue.md)

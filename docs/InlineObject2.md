@@ -7,12 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**error** | **String** | Human-readable error message suitable for end-user display. |  |
-|**code** | [**CodeEnum**](#CodeEnum) | Machine-readable error code. Stable across versions. |  |
-|**reason** | [**ReasonEnum**](#ReasonEnum) | Discriminator for which gate fired. |  |
-|**documentationUrl** | **URI** | Link to the relevant documentation page. |  [optional] |
-|**dashboardUrl** | **URI** | Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this is the Zernio billing tab. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page.  |  [optional] |
-|**details** | [**InlineObject2Details**](InlineObject2Details.md) |  |  [optional] |
+|**error** | **String** |  |  [optional] |
+|**code** | [**CodeEnum**](#CodeEnum) |  |  [optional] |
+|**requiredGroup** | [**RequiredGroupEnum**](#RequiredGroupEnum) | The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials. |  [optional] |
 
 
 
@@ -20,17 +17,25 @@
 
 | Name | Value |
 |---- | -----|
-| PAYMENT_REQUIRED | &quot;PAYMENT_REQUIRED&quot; |
+| INSUFFICIENT_PERMISSIONS | &quot;insufficient_permissions&quot; |
+| UNCLASSIFIED_RESOURCE | &quot;unclassified_resource&quot; |
 
 
 
-## Enum: ReasonEnum
+## Enum: RequiredGroupEnum
 
 | Name | Value |
 |---- | -----|
-| FREE_TIER_EXCEEDED | &quot;free_tier_exceeded&quot; |
-| TWITTER_PASSTHROUGH | &quot;twitter_passthrough&quot; |
-| ENTERPRISE_REQUIRED | &quot;enterprise_required&quot; |
+| PUBLISHING | &quot;publishing&quot; |
+| ENGAGEMENT | &quot;engagement&quot; |
+| MESSAGES | &quot;messages&quot; |
+| CONTACTS | &quot;contacts&quot; |
+| ANALYTICS | &quot;analytics&quot; |
+| ADS | &quot;ads&quot; |
+| TELEPHONY | &quot;telephony&quot; |
+| ACCOUNTS | &quot;accounts&quot; |
+| BILLING | &quot;billing&quot; |
+| WEBHOOKS | &quot;webhooks&quot; |
 
 
 

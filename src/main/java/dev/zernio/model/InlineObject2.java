@@ -24,8 +24,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.InlineObject2Details;
-import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,22 +35,21 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   InlineObject2.JSON_PROPERTY_ERROR,
   InlineObject2.JSON_PROPERTY_CODE,
-  InlineObject2.JSON_PROPERTY_REASON,
-  InlineObject2.JSON_PROPERTY_DOCUMENTATION_URL,
-  InlineObject2.JSON_PROPERTY_DASHBOARD_URL,
-  InlineObject2.JSON_PROPERTY_DETAILS
+  InlineObject2.JSON_PROPERTY_REQUIRED_GROUP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:07:01.292269555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject2 {
   public static final String JSON_PROPERTY_ERROR = "error";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String error;
 
   /**
-   * Machine-readable error code. Stable across versions.
+   * Gets or Sets code
    */
   public enum CodeEnum {
-    PAYMENT_REQUIRED(String.valueOf("PAYMENT_REQUIRED"));
+    INSUFFICIENT_PERMISSIONS(String.valueOf("insufficient_permissions")),
+    
+    UNCLASSIFIED_RESOURCE(String.valueOf("unclassified_resource"));
 
     private String value;
 
@@ -82,22 +79,36 @@ public class InlineObject2 {
   }
 
   public static final String JSON_PROPERTY_CODE = "code";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private CodeEnum code;
 
   /**
-   * Discriminator for which gate fired.
+   * The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
    */
-  public enum ReasonEnum {
-    FREE_TIER_EXCEEDED(String.valueOf("free_tier_exceeded")),
+  public enum RequiredGroupEnum {
+    PUBLISHING(String.valueOf("publishing")),
     
-    TWITTER_PASSTHROUGH(String.valueOf("twitter_passthrough")),
+    ENGAGEMENT(String.valueOf("engagement")),
     
-    ENTERPRISE_REQUIRED(String.valueOf("enterprise_required"));
+    MESSAGES(String.valueOf("messages")),
+    
+    CONTACTS(String.valueOf("contacts")),
+    
+    ANALYTICS(String.valueOf("analytics")),
+    
+    ADS(String.valueOf("ads")),
+    
+    TELEPHONY(String.valueOf("telephony")),
+    
+    ACCOUNTS(String.valueOf("accounts")),
+    
+    BILLING(String.valueOf("billing")),
+    
+    WEBHOOKS(String.valueOf("webhooks"));
 
     private String value;
 
-    ReasonEnum(String value) {
+    RequiredGroupEnum(String value) {
       this.value = value;
     }
 
@@ -112,8 +123,8 @@ public class InlineObject2 {
     }
 
     @JsonCreator
-    public static ReasonEnum fromValue(String value) {
-      for (ReasonEnum b : ReasonEnum.values()) {
+    public static RequiredGroupEnum fromValue(String value) {
+      for (RequiredGroupEnum b : RequiredGroupEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -122,166 +133,82 @@ public class InlineObject2 {
     }
   }
 
-  public static final String JSON_PROPERTY_REASON = "reason";
-  @javax.annotation.Nonnull
-  private ReasonEnum reason;
-
-  public static final String JSON_PROPERTY_DOCUMENTATION_URL = "documentation_url";
+  public static final String JSON_PROPERTY_REQUIRED_GROUP = "required_group";
   @javax.annotation.Nullable
-  private URI documentationUrl;
-
-  public static final String JSON_PROPERTY_DASHBOARD_URL = "dashboard_url";
-  @javax.annotation.Nullable
-  private URI dashboardUrl;
-
-  public static final String JSON_PROPERTY_DETAILS = "details";
-  @javax.annotation.Nullable
-  private InlineObject2Details details;
+  private RequiredGroupEnum requiredGroup;
 
   public InlineObject2() { 
   }
 
-  public InlineObject2 error(@javax.annotation.Nonnull String error) {
+  public InlineObject2 error(@javax.annotation.Nullable String error) {
     this.error = error;
     return this;
   }
 
   /**
-   * Human-readable error message suitable for end-user display.
+   * Get error
    * @return error
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ERROR, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getError() {
     return error;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ERROR, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setError(@javax.annotation.Nonnull String error) {
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setError(@javax.annotation.Nullable String error) {
     this.error = error;
   }
 
 
-  public InlineObject2 code(@javax.annotation.Nonnull CodeEnum code) {
+  public InlineObject2 code(@javax.annotation.Nullable CodeEnum code) {
     this.code = code;
     return this;
   }
 
   /**
-   * Machine-readable error code. Stable across versions.
+   * Get code
    * @return code
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public CodeEnum getCode() {
     return code;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCode(@javax.annotation.Nonnull CodeEnum code) {
+  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCode(@javax.annotation.Nullable CodeEnum code) {
     this.code = code;
   }
 
 
-  public InlineObject2 reason(@javax.annotation.Nonnull ReasonEnum reason) {
-    this.reason = reason;
+  public InlineObject2 requiredGroup(@javax.annotation.Nullable RequiredGroupEnum requiredGroup) {
+    this.requiredGroup = requiredGroup;
     return this;
   }
 
   /**
-   * Discriminator for which gate fired.
-   * @return reason
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_REASON, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public ReasonEnum getReason() {
-    return reason;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_REASON, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setReason(@javax.annotation.Nonnull ReasonEnum reason) {
-    this.reason = reason;
-  }
-
-
-  public InlineObject2 documentationUrl(@javax.annotation.Nullable URI documentationUrl) {
-    this.documentationUrl = documentationUrl;
-    return this;
-  }
-
-  /**
-   * Link to the relevant documentation page.
-   * @return documentationUrl
+   * The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
+   * @return requiredGroup
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOCUMENTATION_URL, required = false)
+  @JsonProperty(value = JSON_PROPERTY_REQUIRED_GROUP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getDocumentationUrl() {
-    return documentationUrl;
+  public RequiredGroupEnum getRequiredGroup() {
+    return requiredGroup;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DOCUMENTATION_URL, required = false)
+  @JsonProperty(value = JSON_PROPERTY_REQUIRED_GROUP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDocumentationUrl(@javax.annotation.Nullable URI documentationUrl) {
-    this.documentationUrl = documentationUrl;
-  }
-
-
-  public InlineObject2 dashboardUrl(@javax.annotation.Nullable URI dashboardUrl) {
-    this.dashboardUrl = dashboardUrl;
-    return this;
-  }
-
-  /**
-   * Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this is the Zernio billing tab. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page. 
-   * @return dashboardUrl
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DASHBOARD_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getDashboardUrl() {
-    return dashboardUrl;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DASHBOARD_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDashboardUrl(@javax.annotation.Nullable URI dashboardUrl) {
-    this.dashboardUrl = dashboardUrl;
-  }
-
-
-  public InlineObject2 details(@javax.annotation.Nullable InlineObject2Details details) {
-    this.details = details;
-    return this;
-  }
-
-  /**
-   * Get details
-   * @return details
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public InlineObject2Details getDetails() {
-    return details;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(@javax.annotation.Nullable InlineObject2Details details) {
-    this.details = details;
+  public void setRequiredGroup(@javax.annotation.Nullable RequiredGroupEnum requiredGroup) {
+    this.requiredGroup = requiredGroup;
   }
 
 
@@ -299,15 +226,12 @@ public class InlineObject2 {
     InlineObject2 inlineObject2 = (InlineObject2) o;
     return Objects.equals(this.error, inlineObject2.error) &&
         Objects.equals(this.code, inlineObject2.code) &&
-        Objects.equals(this.reason, inlineObject2.reason) &&
-        Objects.equals(this.documentationUrl, inlineObject2.documentationUrl) &&
-        Objects.equals(this.dashboardUrl, inlineObject2.dashboardUrl) &&
-        Objects.equals(this.details, inlineObject2.details);
+        Objects.equals(this.requiredGroup, inlineObject2.requiredGroup);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, code, reason, documentationUrl, dashboardUrl, details);
+    return Objects.hash(error, code, requiredGroup);
   }
 
   @Override
@@ -316,10 +240,7 @@ public class InlineObject2 {
     sb.append("class InlineObject2 {\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
-    sb.append("    documentationUrl: ").append(toIndentedString(documentationUrl)).append("\n");
-    sb.append("    dashboardUrl: ").append(toIndentedString(dashboardUrl)).append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    requiredGroup: ").append(toIndentedString(requiredGroup)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -377,24 +298,9 @@ public class InlineObject2 {
       joiner.add(String.format(java.util.Locale.ROOT, "%scode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCode()))));
     }
 
-    // add `reason` to the URL query string
-    if (getReason() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sreason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReason()))));
-    }
-
-    // add `documentation_url` to the URL query string
-    if (getDocumentationUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdocumentation_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDocumentationUrl()))));
-    }
-
-    // add `dashboard_url` to the URL query string
-    if (getDashboardUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdashboard_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDashboardUrl()))));
-    }
-
-    // add `details` to the URL query string
-    if (getDetails() != null) {
-      joiner.add(getDetails().toUrlQueryString(prefix + "details" + suffix));
+    // add `required_group` to the URL query string
+    if (getRequiredGroup() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srequired_group%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequiredGroup()))));
     }
 
     return joiner.toString();

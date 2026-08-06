@@ -39,9 +39,10 @@ import dev.zernio.ApiClient;
   CreateApiKeyRequest.JSON_PROPERTY_EXPIRES_IN,
   CreateApiKeyRequest.JSON_PROPERTY_SCOPE,
   CreateApiKeyRequest.JSON_PROPERTY_PROFILE_IDS,
-  CreateApiKeyRequest.JSON_PROPERTY_PERMISSION
+  CreateApiKeyRequest.JSON_PROPERTY_PERMISSION,
+  CreateApiKeyRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:07:01.292269555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateApiKeyRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -132,6 +133,61 @@ public class CreateApiKeyRequest {
   public static final String JSON_PROPERTY_PERMISSION = "permission";
   @javax.annotation.Nullable
   private PermissionEnum permission = PermissionEnum.READ_WRITE;
+
+  /**
+   * Gets or Sets disabledResourceGroups
+   */
+  public enum DisabledResourceGroupsEnum {
+    PUBLISHING(String.valueOf("publishing")),
+    
+    ENGAGEMENT(String.valueOf("engagement")),
+    
+    MESSAGES(String.valueOf("messages")),
+    
+    CONTACTS(String.valueOf("contacts")),
+    
+    ANALYTICS(String.valueOf("analytics")),
+    
+    ADS(String.valueOf("ads")),
+    
+    TELEPHONY(String.valueOf("telephony")),
+    
+    ACCOUNTS(String.valueOf("accounts")),
+    
+    BILLING(String.valueOf("billing")),
+    
+    WEBHOOKS(String.valueOf("webhooks"));
+
+    private String value;
+
+    DisabledResourceGroupsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DisabledResourceGroupsEnum fromValue(String value) {
+      for (DisabledResourceGroupsEnum b : DisabledResourceGroupsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_DISABLED_RESOURCE_GROUPS = "disabledResourceGroups";
+  @javax.annotation.Nullable
+  private List<DisabledResourceGroupsEnum> disabledResourceGroups = new ArrayList<>();
 
   public CreateApiKeyRequest() { 
   }
@@ -264,6 +320,38 @@ public class CreateApiKeyRequest {
   }
 
 
+  public CreateApiKeyRequest disabledResourceGroups(@javax.annotation.Nullable List<DisabledResourceGroupsEnum> disabledResourceGroups) {
+    this.disabledResourceGroups = disabledResourceGroups;
+    return this;
+  }
+
+  public CreateApiKeyRequest addDisabledResourceGroupsItem(DisabledResourceGroupsEnum disabledResourceGroupsItem) {
+    if (this.disabledResourceGroups == null) {
+      this.disabledResourceGroups = new ArrayList<>();
+    }
+    this.disabledResourceGroups.add(disabledResourceGroupsItem);
+    return this;
+  }
+
+  /**
+   * Resource groups to DISABLE on this key (opt-out denylist). Omit for a legacy full-access key. A key with any group disabled mints with the zrk_ prefix, gets 403 with code&#x3D;insufficient_permissions and required_group on operations in disabled groups (each operation&#39;s group is published as x-resource-group), and can never manage API keys, invites, or member identity. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.
+   * @return disabledResourceGroups
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DISABLED_RESOURCE_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DisabledResourceGroupsEnum> getDisabledResourceGroups() {
+    return disabledResourceGroups;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DISABLED_RESOURCE_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisabledResourceGroups(@javax.annotation.Nullable List<DisabledResourceGroupsEnum> disabledResourceGroups) {
+    this.disabledResourceGroups = disabledResourceGroups;
+  }
+
+
   /**
    * Return true if this createApiKey_request object is equal to o.
    */
@@ -280,12 +368,13 @@ public class CreateApiKeyRequest {
         Objects.equals(this.expiresIn, createApiKeyRequest.expiresIn) &&
         Objects.equals(this.scope, createApiKeyRequest.scope) &&
         Objects.equals(this.profileIds, createApiKeyRequest.profileIds) &&
-        Objects.equals(this.permission, createApiKeyRequest.permission);
+        Objects.equals(this.permission, createApiKeyRequest.permission) &&
+        Objects.equals(this.disabledResourceGroups, createApiKeyRequest.disabledResourceGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, expiresIn, scope, profileIds, permission);
+    return Objects.hash(name, expiresIn, scope, profileIds, permission, disabledResourceGroups);
   }
 
   @Override
@@ -297,6 +386,7 @@ public class CreateApiKeyRequest {
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    profileIds: ").append(toIndentedString(profileIds)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    disabledResourceGroups: ").append(toIndentedString(disabledResourceGroups)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -371,6 +461,15 @@ public class CreateApiKeyRequest {
     // add `permission` to the URL query string
     if (getPermission() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spermission%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermission()))));
+    }
+
+    // add `disabledResourceGroups` to the URL query string
+    if (getDisabledResourceGroups() != null) {
+      for (int i = 0; i < getDisabledResourceGroups().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sdisabledResourceGroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getDisabledResourceGroups().get(i)))));
+      }
     }
 
     return joiner.toString();

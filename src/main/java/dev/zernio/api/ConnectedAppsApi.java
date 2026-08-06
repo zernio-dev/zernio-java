@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListConnectedApps200Response;
 import dev.zernio.model.RevokeConnectedApp200Response;
 
@@ -48,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:07:01.292269555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectedAppsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -167,7 +168,7 @@ public class ConnectedAppsApi {
 
   /**
    * List connected apps
-   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
    * @return ListConnectedApps200Response
    * @throws ApiException if fails to make API call
    */
@@ -177,7 +178,7 @@ public class ConnectedAppsApi {
 
   /**
    * List connected apps
-   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
    * @param headers Optional headers to include in the request
    * @return ListConnectedApps200Response
    * @throws ApiException if fails to make API call
@@ -189,7 +190,7 @@ public class ConnectedAppsApi {
 
   /**
    * List connected apps
-   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
    * @return ApiResponse&lt;ListConnectedApps200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -199,7 +200,7 @@ public class ConnectedAppsApi {
 
   /**
    * List connected apps
-   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+   * Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListConnectedApps200Response&gt;
    * @throws ApiException if fails to make API call
@@ -276,7 +277,7 @@ public class ConnectedAppsApi {
 
   /**
    * Revoke connected app
-   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
    * @param clientId OAuth client id, as returned by GET /v1/me/connected-apps. (required)
    * @return RevokeConnectedApp200Response
    * @throws ApiException if fails to make API call
@@ -287,7 +288,7 @@ public class ConnectedAppsApi {
 
   /**
    * Revoke connected app
-   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
    * @param clientId OAuth client id, as returned by GET /v1/me/connected-apps. (required)
    * @param headers Optional headers to include in the request
    * @return RevokeConnectedApp200Response
@@ -300,7 +301,7 @@ public class ConnectedAppsApi {
 
   /**
    * Revoke connected app
-   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
    * @param clientId OAuth client id, as returned by GET /v1/me/connected-apps. (required)
    * @return ApiResponse&lt;RevokeConnectedApp200Response&gt;
    * @throws ApiException if fails to make API call
@@ -311,7 +312,7 @@ public class ConnectedAppsApi {
 
   /**
    * Revoke connected app
-   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+   * Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
    * @param clientId OAuth client id, as returned by GET /v1/me/connected-apps. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;RevokeConnectedApp200Response&gt;

@@ -23,6 +23,7 @@ import dev.zernio.model.CreateApiKeyRequest;
 import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListApiKeys200Response;
 import dev.zernio.model.VerifyCredential200Response;
 
@@ -51,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:07:01.292269555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T08:14:42.091387436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiKeysApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
