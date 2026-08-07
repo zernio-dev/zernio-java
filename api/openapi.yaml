@@ -7917,7 +7917,9 @@ paths:
                 $ref: "#/components/schemas/selectGoogleBusinessLocation_200_response"
           description: Google Business location connected successfully
         "400":
-          description: "Missing required fields (profileId, locationId, or tempToken)"
+          description: "Missing required fields (profileId, locationId, or tempToken),\
+            \ or the provided accountId is not one of the accounts this connection\
+            \ manages"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -11981,7 +11983,8 @@ paths:
                 $ref: "#/components/schemas/updateGmbLocation_200_response"
           description: Location updated
         "400":
-          description: Location not in available locations
+          description: "Location not in available locations, or the provided googleAccountId\
+            \ is not one of the accounts this connection manages"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -12035,8 +12038,9 @@ paths:
                 $ref: "#/components/schemas/assignGoogleBusinessLocation_200_response"
           description: Location assigned to the target profile
         "400":
-          description: "Invalid body, or selected location not found under the Google\
-            \ account"
+          description: "Invalid body, selected location not found under the Google\
+            \ account, or the provided googleAccountId is not one of the accounts\
+            \ this connection manages"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":

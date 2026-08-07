@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CommentAutomationAudience.JSON_PROPERTY_MIN_FOLLOWER_COUNT,
   CommentAutomationAudience.JSON_PROPERTY_WHEN_UNKNOWN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:23:33.764208866Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:40:46.738090737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationAudience {
   /**
    * Gets or Sets followerStatus

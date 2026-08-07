@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   EnableVoiceOnNumber200ResponseBusinessHoursInner.JSON_PROPERTY_OPEN,
   EnableVoiceOnNumber200ResponseBusinessHoursInner.JSON_PROPERTY_CLOSE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:23:33.764208866Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:40:46.738090737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableVoiceOnNumber200ResponseBusinessHoursInner {
   public static final String JSON_PROPERTY_DAY = "day";
   @javax.annotation.Nullable

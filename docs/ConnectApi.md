@@ -160,7 +160,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Location assigned to the target profile |  -  |
-| **400** | Invalid body, or selected location not found under the Google account |  -  |
+| **400** | Invalid body, selected location not found under the Google account, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Payment required, or target profile exceeds plan limit |  -  |
 | **404** | Source Google Business account not found |  -  |
@@ -240,7 +240,7 @@ ApiResponse<[**AssignGoogleBusinessLocation200Response**](AssignGoogleBusinessLo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Location assigned to the target profile |  -  |
-| **400** | Invalid body, or selected location not found under the Google account |  -  |
+| **400** | Invalid body, selected location not found under the Google account, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Payment required, or target profile exceeds plan limit |  -  |
 | **404** | Source Google Business account not found |  -  |
@@ -4714,7 +4714,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Google Business location connected successfully |  -  |
-| **400** | Missing required fields (profileId, locationId, or tempToken) |  -  |
+| **400** | Missing required fields (profileId, locationId, or tempToken), or the provided accountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected location not found in available locations |  -  |
@@ -4798,7 +4798,7 @@ ApiResponse<[**SelectGoogleBusinessLocation200Response**](SelectGoogleBusinessLo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Google Business location connected successfully |  -  |
-| **400** | Missing required fields (profileId, locationId, or tempToken) |  -  |
+| **400** | Missing required fields (profileId, locationId, or tempToken), or the provided accountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected location not found in available locations |  -  |
@@ -5644,7 +5644,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Location updated |  -  |
-| **400** | Location not in available locations |  -  |
+| **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 
@@ -5722,7 +5722,7 @@ ApiResponse<[**UpdateGmbLocation200Response**](UpdateGmbLocation200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Location updated |  -  |
-| **400** | Location not in available locations |  -  |
+| **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 
