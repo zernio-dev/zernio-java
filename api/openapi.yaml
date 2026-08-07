@@ -15383,9 +15383,9 @@ paths:
         multipart (file upload) requests alike. Keys are retained for 24 hours.
       operationId: sendInboxMessage
       parameters:
-      - description: "The conversation ID (id field from list conversations endpoint).\
-          \ This is the platform-specific conversation identifier, not an internal\
-          \ database ID."
+      - description: "Opaque conversation identifier, accepted verbatim from the list\
+          \ endpoint or from the conversationId on inbox webhooks. Format not to be\
+          \ assumed."
         explode: false
         in: path
         name: conversationId
