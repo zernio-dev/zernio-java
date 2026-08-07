@@ -3335,6 +3335,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CommentAutomationTemplateElementButtonsInnerTest.java
-src/test/java/dev/zernio/model/CommentAutomationTemplateElementTest.java
-src/test/java/dev/zernio/model/CommentAutomationTemplateTest.java
