@@ -16,22 +16,10 @@
 |**thankYouButtonText** | **String** |  |  [optional] |
 |**thankYouButtonType** | **String** |  |  [optional] |
 |**thankYouWebsiteUrl** | **URI** |  |  [optional] |
-|**isOptimizedForQuality** | **Boolean** |  |  [optional] |
-|**formType** | [**FormTypeEnum**](#FormTypeEnum) |  |  [optional] |
+|**isOptimizedForQuality** | **Boolean** | Set true for a higher-intent form (adds a review step before submit). |  [optional] |
 |**blockDisplayForNonTargetedViewer** | **Boolean** |  |  [optional] |
-|**allowOrganicLeadGen** | **Boolean** |  |  [optional] |
 |**questionPageCustomHeadline** | **String** |  |  [optional] |
 |**contextCard** | [**MetaLeadFormPlatformDataContextCard**](MetaLeadFormPlatformDataContextCard.md) |  |  [optional] |
-
-
-
-## Enum: FormTypeEnum
-
-| Name | Value |
-|---- | -----|
-| MORE_VOLUME | &quot;MORE_VOLUME&quot; |
-| HIGHER_INTENT | &quot;HIGHER_INTENT&quot; |
-| RICH_CREATIVE | &quot;RICH_CREATIVE&quot; |
 
 
 

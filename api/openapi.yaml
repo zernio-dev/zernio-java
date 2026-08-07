@@ -79614,16 +79614,10 @@ components:
           format: uri
           type: string
         isOptimizedForQuality:
+          description: Set true for a higher-intent form (adds a review step before
+            submit).
           type: boolean
-        formType:
-          enum:
-          - MORE_VOLUME
-          - HIGHER_INTENT
-          - RICH_CREATIVE
-          type: string
         blockDisplayForNonTargetedViewer:
-          type: boolean
-        allowOrganicLeadGen:
           type: boolean
         questionPageCustomHeadline:
           type: string
