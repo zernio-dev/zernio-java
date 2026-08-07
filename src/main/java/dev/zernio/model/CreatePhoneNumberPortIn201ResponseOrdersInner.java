@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortIn201ResponseOrdersInner.JSON_PROPERTY_PHONE_NUMBERS,
   CreatePhoneNumberPortIn201ResponseOrdersInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortIn201ResponseOrdersInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

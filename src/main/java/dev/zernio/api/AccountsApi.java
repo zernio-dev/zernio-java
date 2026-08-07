@@ -25,6 +25,7 @@ import dev.zernio.model.FollowerStatsResponse;
 import dev.zernio.model.GetAccountHealth200Response;
 import dev.zernio.model.GetAllAccountsHealth200Response;
 import dev.zernio.model.GetFollowerStats403Response;
+import dev.zernio.model.GetInstagramFollowStatus200Response;
 import dev.zernio.model.GetSlackSettings200Response;
 import dev.zernio.model.GetTikTokCreatorInfo200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
@@ -62,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -681,6 +682,152 @@ public class AccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "granularity";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Check whether an Instagram user follows the account
+   * Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+   * @param accountId Instagram account ID (required)
+   * @param userId Instagram-scoped user id (IGSID) from a webhook payload (required)
+   * @param refresh Bypass the cache and re-query Meta (optional)
+   * @return GetInstagramFollowStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetInstagramFollowStatus200Response getInstagramFollowStatus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Boolean refresh) throws ApiException {
+    return getInstagramFollowStatus(accountId, userId, refresh, null);
+  }
+
+  /**
+   * Check whether an Instagram user follows the account
+   * Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+   * @param accountId Instagram account ID (required)
+   * @param userId Instagram-scoped user id (IGSID) from a webhook payload (required)
+   * @param refresh Bypass the cache and re-query Meta (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetInstagramFollowStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetInstagramFollowStatus200Response getInstagramFollowStatus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetInstagramFollowStatus200Response> localVarResponse = getInstagramFollowStatusWithHttpInfo(accountId, userId, refresh, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Check whether an Instagram user follows the account
+   * Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+   * @param accountId Instagram account ID (required)
+   * @param userId Instagram-scoped user id (IGSID) from a webhook payload (required)
+   * @param refresh Bypass the cache and re-query Meta (optional)
+   * @return ApiResponse&lt;GetInstagramFollowStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetInstagramFollowStatus200Response> getInstagramFollowStatusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Boolean refresh) throws ApiException {
+    return getInstagramFollowStatusWithHttpInfo(accountId, userId, refresh, null);
+  }
+
+  /**
+   * Check whether an Instagram user follows the account
+   * Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+   * @param accountId Instagram account ID (required)
+   * @param userId Instagram-scoped user id (IGSID) from a webhook payload (required)
+   * @param refresh Bypass the cache and re-query Meta (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetInstagramFollowStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetInstagramFollowStatus200Response> getInstagramFollowStatusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getInstagramFollowStatusRequestBuilder(accountId, userId, refresh, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getInstagramFollowStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetInstagramFollowStatus200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetInstagramFollowStatus200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetInstagramFollowStatus200Response>() {});
+        
+
+        return new ApiResponse<GetInstagramFollowStatus200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getInstagramFollowStatusRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getInstagramFollowStatus");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling getInstagramFollowStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/follow-status/{userId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "refresh";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("refresh", refresh));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

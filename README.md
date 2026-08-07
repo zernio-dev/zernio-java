@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-06T13:04:04.066983518Z[Etc/UTC]
+- Build date: 2026-08-07T08:13:00.276984579Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -146,6 +146,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getAllAccountsHealthWithHttpInfo**](docs/AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getFollowerStats**](docs/AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**getFollowerStatsWithHttpInfo**](docs/AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AccountsApi* | [**getInstagramFollowStatus**](docs/AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
+*AccountsApi* | [**getInstagramFollowStatusWithHttpInfo**](docs/AccountsApi.md#getInstagramFollowStatusWithHttpInfo) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
 *AccountsApi* | [**getSlackSettings**](docs/AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getSlackSettingsWithHttpInfo**](docs/AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getTikTokCreatorInfo**](docs/AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
@@ -1313,6 +1315,8 @@ Class | Method | HTTP request | Description
  - [CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)
  - [CheckVerification200Response](docs/CheckVerification200Response.md)
  - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
+ - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
+ - [CommentAutomationFollowGate](docs/CommentAutomationFollowGate.md)
  - [CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)
@@ -1771,6 +1775,7 @@ Class | Method | HTTP request | Description
  - [GetInboxVolume200ResponseTimeseriesInner](docs/GetInboxVolume200ResponseTimeseriesInner.md)
  - [GetInboxVolume400Response](docs/GetInboxVolume400Response.md)
  - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
+ - [GetInstagramFollowStatus200Response](docs/GetInstagramFollowStatus200Response.md)
  - [GetInstagramPublishingLimit200Response](docs/GetInstagramPublishingLimit200Response.md)
  - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
@@ -2701,6 +2706,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommentCommentAd](docs/WebhookPayloadCommentCommentAd.md)
  - [WebhookPayloadCommentCommentAttachment](docs/WebhookPayloadCommentCommentAttachment.md)
  - [WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
+ - [WebhookPayloadCommentCommentAuthorInstagramProfile](docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md)
  - [WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
  - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)

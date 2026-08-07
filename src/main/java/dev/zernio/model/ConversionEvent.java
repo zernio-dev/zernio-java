@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ConversionEvent.JSON_PROPERTY_ACTION_SOURCE,
   ConversionEvent.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEvent {
   public static final String JSON_PROPERTY_EVENT_NAME = "eventName";
   @javax.annotation.Nonnull
@@ -378,7 +378,7 @@ public class ConversionEvent {
   }
 
   /**
-   * Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is.
+   * Escape hatch for platform-specific fields we haven&#39;t normalized. On Meta, keys are shallow-merged into &#x60;custom_data&#x60; only: fields Zernio already builds (&#x60;value&#x60;, &#x60;currency&#x60;, &#x60;contents&#x60;, &#x60;num_items&#x60;) always win on collision, and &#x60;user_data&#x60; (hashed match keys) is never touched. Use first-class fields (e.g. &#x60;user.leadId&#x60;) for anything that must reach &#x60;user_data&#x60;. 
    * @return platformData
    */
   @javax.annotation.Nullable

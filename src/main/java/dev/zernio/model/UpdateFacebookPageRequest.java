@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateFacebookPageRequest.JSON_PROPERTY_SELECTED_PAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateFacebookPageRequest {
   public static final String JSON_PROPERTY_SELECTED_PAGE_ID = "selectedPageId";
   @javax.annotation.Nonnull

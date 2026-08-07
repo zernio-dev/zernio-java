@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CommentAutomationAudience;
+import dev.zernio.model.CommentAutomationFollowGate;
 import dev.zernio.model.CreateCommentAutomation200ResponseAutomationStats;
 import dev.zernio.model.DmButton;
 import java.time.OffsetDateTime;
@@ -54,11 +56,15 @@ import dev.zernio.ApiClient;
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY_VARIATIONS,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_LINK_TRACKING,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_CLICK_TAG,
+  CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_DM_DELAY_SECONDS,
+  CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS,
+  CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_AUDIENCE,
+  CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_FOLLOW_GATE,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_IS_ACTIVE,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_STATS,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -195,6 +201,22 @@ public class CreateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_CLICK_TAG = "clickTag";
   @javax.annotation.Nullable
   private String clickTag;
+
+  public static final String JSON_PROPERTY_DM_DELAY_SECONDS = "dmDelaySeconds";
+  @javax.annotation.Nullable
+  private Integer dmDelaySeconds;
+
+  public static final String JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS = "commentReplyDelaySeconds";
+  @javax.annotation.Nullable
+  private Integer commentReplyDelaySeconds;
+
+  public static final String JSON_PROPERTY_AUDIENCE = "audience";
+  @javax.annotation.Nullable
+  private CommentAutomationAudience audience;
+
+  public static final String JSON_PROPERTY_FOLLOW_GATE = "followGate";
+  @javax.annotation.Nullable
+  private CommentAutomationFollowGate followGate;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -635,6 +657,102 @@ public class CreateCommentAutomation200ResponseAutomation {
   }
 
 
+  public CreateCommentAutomation200ResponseAutomation dmDelaySeconds(@javax.annotation.Nullable Integer dmDelaySeconds) {
+    this.dmDelaySeconds = dmDelaySeconds;
+    return this;
+  }
+
+  /**
+   * Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately.
+   * @return dmDelaySeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DM_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDmDelaySeconds() {
+    return dmDelaySeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DM_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDmDelaySeconds(@javax.annotation.Nullable Integer dmDelaySeconds) {
+    this.dmDelaySeconds = dmDelaySeconds;
+  }
+
+
+  public CreateCommentAutomation200ResponseAutomation commentReplyDelaySeconds(@javax.annotation.Nullable Integer commentReplyDelaySeconds) {
+    this.commentReplyDelaySeconds = commentReplyDelaySeconds;
+    return this;
+  }
+
+  /**
+   * Seconds waited before the public reply is posted. Absent when it follows the DM immediately.
+   * @return commentReplyDelaySeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getCommentReplyDelaySeconds() {
+    return commentReplyDelaySeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommentReplyDelaySeconds(@javax.annotation.Nullable Integer commentReplyDelaySeconds) {
+    this.commentReplyDelaySeconds = commentReplyDelaySeconds;
+  }
+
+
+  public CreateCommentAutomation200ResponseAutomation audience(@javax.annotation.Nullable CommentAutomationAudience audience) {
+    this.audience = audience;
+    return this;
+  }
+
+  /**
+   * Get audience
+   * @return audience
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CommentAutomationAudience getAudience() {
+    return audience;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAudience(@javax.annotation.Nullable CommentAutomationAudience audience) {
+    this.audience = audience;
+  }
+
+
+  public CreateCommentAutomation200ResponseAutomation followGate(@javax.annotation.Nullable CommentAutomationFollowGate followGate) {
+    this.followGate = followGate;
+    return this;
+  }
+
+  /**
+   * Get followGate
+   * @return followGate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FOLLOW_GATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CommentAutomationFollowGate getFollowGate() {
+    return followGate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FOLLOW_GATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFollowGate(@javax.annotation.Nullable CommentAutomationFollowGate followGate) {
+    this.followGate = followGate;
+  }
+
+
   public CreateCommentAutomation200ResponseAutomation isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -735,6 +853,10 @@ public class CreateCommentAutomation200ResponseAutomation {
         Objects.equals(this.commentReplyVariations, createCommentAutomation200ResponseAutomation.commentReplyVariations) &&
         Objects.equals(this.linkTracking, createCommentAutomation200ResponseAutomation.linkTracking) &&
         Objects.equals(this.clickTag, createCommentAutomation200ResponseAutomation.clickTag) &&
+        Objects.equals(this.dmDelaySeconds, createCommentAutomation200ResponseAutomation.dmDelaySeconds) &&
+        Objects.equals(this.commentReplyDelaySeconds, createCommentAutomation200ResponseAutomation.commentReplyDelaySeconds) &&
+        Objects.equals(this.audience, createCommentAutomation200ResponseAutomation.audience) &&
+        Objects.equals(this.followGate, createCommentAutomation200ResponseAutomation.followGate) &&
         Objects.equals(this.isActive, createCommentAutomation200ResponseAutomation.isActive) &&
         Objects.equals(this.stats, createCommentAutomation200ResponseAutomation.stats) &&
         Objects.equals(this.createdAt, createCommentAutomation200ResponseAutomation.createdAt);
@@ -742,7 +864,7 @@ public class CreateCommentAutomation200ResponseAutomation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, trigger, platformPostId, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, isActive, stats, createdAt);
+    return Objects.hash(id, name, platform, trigger, platformPostId, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, dmDelaySeconds, commentReplyDelaySeconds, audience, followGate, isActive, stats, createdAt);
   }
 
   @Override
@@ -765,6 +887,10 @@ public class CreateCommentAutomation200ResponseAutomation {
     sb.append("    commentReplyVariations: ").append(toIndentedString(commentReplyVariations)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
     sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
+    sb.append("    dmDelaySeconds: ").append(toIndentedString(dmDelaySeconds)).append("\n");
+    sb.append("    commentReplyDelaySeconds: ").append(toIndentedString(commentReplyDelaySeconds)).append("\n");
+    sb.append("    audience: ").append(toIndentedString(audience)).append("\n");
+    sb.append("    followGate: ").append(toIndentedString(followGate)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -914,6 +1040,26 @@ public class CreateCommentAutomation200ResponseAutomation {
     // add `clickTag` to the URL query string
     if (getClickTag() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sclickTag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClickTag()))));
+    }
+
+    // add `dmDelaySeconds` to the URL query string
+    if (getDmDelaySeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdmDelaySeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDmDelaySeconds()))));
+    }
+
+    // add `commentReplyDelaySeconds` to the URL query string
+    if (getCommentReplyDelaySeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommentReplyDelaySeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyDelaySeconds()))));
+    }
+
+    // add `audience` to the URL query string
+    if (getAudience() != null) {
+      joiner.add(getAudience().toUrlQueryString(prefix + "audience" + suffix));
+    }
+
+    // add `followGate` to the URL query string
+    if (getFollowGate() != null) {
+      joiner.add(getFollowGate().toUrlQueryString(prefix + "followGate" + suffix));
     }
 
     // add `isActive` to the URL query string

@@ -47,9 +47,10 @@ import dev.zernio.ApiClient;
   ConversionEventUser.JSON_PROPERTY_ZIP,
   ConversionEventUser.JSON_PROPERTY_DOB,
   ConversionEventUser.JSON_PROPERTY_GENDER,
+  ConversionEventUser.JSON_PROPERTY_LEAD_ID,
   ConversionEventUser.JSON_PROPERTY_CLICK_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUser {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
@@ -102,6 +103,10 @@ public class ConversionEventUser {
   public static final String JSON_PROPERTY_GENDER = "gender";
   @javax.annotation.Nullable
   private String gender;
+
+  public static final String JSON_PROPERTY_LEAD_ID = "leadId";
+  @javax.annotation.Nullable
+  private String leadId;
 
   public static final String JSON_PROPERTY_CLICK_IDS = "clickIds";
   @javax.annotation.Nullable
@@ -422,6 +427,30 @@ public class ConversionEventUser {
   }
 
 
+  public ConversionEventUser leadId(@javax.annotation.Nullable String leadId) {
+    this.leadId = leadId;
+    return this;
+  }
+
+  /**
+   * Meta lead ID from a Lead Ad submission, as a string. Required for Conversion Leads CRM events: send it with &#x60;actionSource: &#39;crm&#39;&#x60; and &#x60;platformData: { event_source: &#39;crm&#39;, lead_event_source: &#39;&lt;CRM name&gt;&#39; }&#x60;. Forwarded unhashed to Meta&#39;s &#x60;user_data.lead_id&#x60;. Meta only. 
+   * @return leadId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LEAD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLeadId() {
+    return leadId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LEAD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLeadId(@javax.annotation.Nullable String leadId) {
+    this.leadId = leadId;
+  }
+
+
   public ConversionEventUser clickIds(@javax.annotation.Nullable ConversionEventUserClickIds clickIds) {
     this.clickIds = clickIds;
     return this;
@@ -471,12 +500,13 @@ public class ConversionEventUser {
         Objects.equals(this.zip, conversionEventUser.zip) &&
         Objects.equals(this.dob, conversionEventUser.dob) &&
         Objects.equals(this.gender, conversionEventUser.gender) &&
+        Objects.equals(this.leadId, conversionEventUser.leadId) &&
         Objects.equals(this.clickIds, conversionEventUser.clickIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phone, firstName, lastName, externalId, ipAddress, userAgent, country, city, state, zip, dob, gender, clickIds);
+    return Objects.hash(email, phone, firstName, lastName, externalId, ipAddress, userAgent, country, city, state, zip, dob, gender, leadId, clickIds);
   }
 
   @Override
@@ -496,6 +526,7 @@ public class ConversionEventUser {
     sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
     sb.append("    dob: ").append(toIndentedString(dob)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
+    sb.append("    leadId: ").append(toIndentedString(leadId)).append("\n");
     sb.append("    clickIds: ").append(toIndentedString(clickIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -607,6 +638,11 @@ public class ConversionEventUser {
     // add `gender` to the URL query string
     if (getGender() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGender()))));
+    }
+
+    // add `leadId` to the URL query string
+    if (getLeadId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sleadId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLeadId()))));
     }
 
     // add `clickIds` to the URL query string

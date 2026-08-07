@@ -23,6 +23,10 @@
 |**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. |  [optional] |
 |**linkTracking** | **Boolean** |  |  [optional] |
 |**clickTag** | **String** |  |  [optional] |
+|**dmDelaySeconds** | **Integer** | Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately. |  [optional] |
+|**commentReplyDelaySeconds** | **Integer** | Seconds waited before the public reply is posted. Absent when it follows the DM immediately. |  [optional] |
+|**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
+|**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**CreateCommentAutomation200ResponseAutomationStats**](CreateCommentAutomation200ResponseAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |

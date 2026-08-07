@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListTrackingTagSharedAccounts200Response.JSON_PROPERTY_PLATFORM,
   ListTrackingTagSharedAccounts200Response.JSON_PROPERTY_SHARED_ACCOUNTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTrackingTagSharedAccounts200Response {
   /**
    * Gets or Sets platform

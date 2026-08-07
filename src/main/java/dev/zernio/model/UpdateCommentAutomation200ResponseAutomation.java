@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CommentAutomationAudience;
+import dev.zernio.model.CommentAutomationFollowGate;
 import dev.zernio.model.DmButton;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -48,10 +50,12 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_DM_MESSAGE_VARIATIONS,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY_VARIATIONS,
+  UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_AUDIENCE,
+  UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_FOLLOW_GATE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_IS_ACTIVE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -133,6 +137,14 @@ public class UpdateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_COMMENT_REPLY_VARIATIONS = "commentReplyVariations";
   @javax.annotation.Nullable
   private List<String> commentReplyVariations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_AUDIENCE = "audience";
+  @javax.annotation.Nullable
+  private CommentAutomationAudience audience;
+
+  public static final String JSON_PROPERTY_FOLLOW_GATE = "followGate";
+  @javax.annotation.Nullable
+  private CommentAutomationFollowGate followGate;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -449,6 +461,54 @@ public class UpdateCommentAutomation200ResponseAutomation {
   }
 
 
+  public UpdateCommentAutomation200ResponseAutomation audience(@javax.annotation.Nullable CommentAutomationAudience audience) {
+    this.audience = audience;
+    return this;
+  }
+
+  /**
+   * Get audience
+   * @return audience
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CommentAutomationAudience getAudience() {
+    return audience;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAudience(@javax.annotation.Nullable CommentAutomationAudience audience) {
+    this.audience = audience;
+  }
+
+
+  public UpdateCommentAutomation200ResponseAutomation followGate(@javax.annotation.Nullable CommentAutomationFollowGate followGate) {
+    this.followGate = followGate;
+    return this;
+  }
+
+  /**
+   * Get followGate
+   * @return followGate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FOLLOW_GATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CommentAutomationFollowGate getFollowGate() {
+    return followGate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FOLLOW_GATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFollowGate(@javax.annotation.Nullable CommentAutomationFollowGate followGate) {
+    this.followGate = followGate;
+  }
+
+
   public UpdateCommentAutomation200ResponseAutomation isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -520,13 +580,15 @@ public class UpdateCommentAutomation200ResponseAutomation {
         Objects.equals(this.commentReply, updateCommentAutomation200ResponseAutomation.commentReply) &&
         Objects.equals(this.dmMessageVariations, updateCommentAutomation200ResponseAutomation.dmMessageVariations) &&
         Objects.equals(this.commentReplyVariations, updateCommentAutomation200ResponseAutomation.commentReplyVariations) &&
+        Objects.equals(this.audience, updateCommentAutomation200ResponseAutomation.audience) &&
+        Objects.equals(this.followGate, updateCommentAutomation200ResponseAutomation.followGate) &&
         Objects.equals(this.isActive, updateCommentAutomation200ResponseAutomation.isActive) &&
         Objects.equals(this.updatedAt, updateCommentAutomation200ResponseAutomation.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, isActive, updatedAt);
+    return Objects.hash(id, name, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, audience, followGate, isActive, updatedAt);
   }
 
   @Override
@@ -544,6 +606,8 @@ public class UpdateCommentAutomation200ResponseAutomation {
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    dmMessageVariations: ").append(toIndentedString(dmMessageVariations)).append("\n");
     sb.append("    commentReplyVariations: ").append(toIndentedString(commentReplyVariations)).append("\n");
+    sb.append("    audience: ").append(toIndentedString(audience)).append("\n");
+    sb.append("    followGate: ").append(toIndentedString(followGate)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
@@ -667,6 +731,16 @@ public class UpdateCommentAutomation200ResponseAutomation {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyVariations().get(i)))));
       }
+    }
+
+    // add `audience` to the URL query string
+    if (getAudience() != null) {
+      joiner.add(getAudience().toUrlQueryString(prefix + "audience" + suffix));
+    }
+
+    // add `followGate` to the URL query string
+    if (getFollowGate() != null) {
+      joiner.add(getFollowGate().toUrlQueryString(prefix + "followGate" + suffix));
     }
 
     // add `isActive` to the URL query string

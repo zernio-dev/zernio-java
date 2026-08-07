@@ -11,6 +11,7 @@
 |**username** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**picture** | **String** |  |  [optional] |
+|**instagramProfile** | [**WebhookPayloadCommentCommentAuthorInstagramProfile**](WebhookPayloadCommentCommentAuthorInstagramProfile.md) |  |  [optional] |
 
 
 

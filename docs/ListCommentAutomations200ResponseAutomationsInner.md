@@ -25,6 +25,8 @@
 |**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. |  [optional] |
 |**linkTracking** | **Boolean** | Whether link buttons in the DM are wrapped in a tracked redirect to count clicks. |  [optional] |
 |**clickTag** | **String** | Tag applied to a contact when they click a tracked link. |  [optional] |
+|**dmDelaySeconds** | **Integer** | Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately. |  [optional] |
+|**commentReplyDelaySeconds** | **Integer** | Seconds waited before the public reply is posted. Absent when it follows the DM immediately. |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**ListCommentAutomations200ResponseAutomationsInnerStats**](ListCommentAutomations200ResponseAutomationsInnerStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |

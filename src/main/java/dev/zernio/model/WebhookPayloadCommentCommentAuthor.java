@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WebhookPayloadCommentCommentAuthorInstagramProfile;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,9 +41,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_ID,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_USERNAME,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_NAME,
-  WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_PICTURE
+  WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_PICTURE,
+  WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAuthor {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -58,6 +60,10 @@ public class WebhookPayloadCommentCommentAuthor {
 
   public static final String JSON_PROPERTY_PICTURE = "picture";
   private JsonNullable<String> picture = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_INSTAGRAM_PROFILE = "instagramProfile";
+  @javax.annotation.Nullable
+  private WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile;
 
   public WebhookPayloadCommentCommentAuthor() { 
   }
@@ -166,6 +172,30 @@ public class WebhookPayloadCommentCommentAuthor {
   }
 
 
+  public WebhookPayloadCommentCommentAuthor instagramProfile(@javax.annotation.Nullable WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile) {
+    this.instagramProfile = instagramProfile;
+    return this;
+  }
+
+  /**
+   * Get instagramProfile
+   * @return instagramProfile
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PROFILE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadCommentCommentAuthorInstagramProfile getInstagramProfile() {
+    return instagramProfile;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PROFILE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramProfile(@javax.annotation.Nullable WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile) {
+    this.instagramProfile = instagramProfile;
+  }
+
+
   /**
    * Return true if this WebhookPayloadComment_comment_author object is equal to o.
    */
@@ -181,7 +211,8 @@ public class WebhookPayloadCommentCommentAuthor {
     return Objects.equals(this.id, webhookPayloadCommentCommentAuthor.id) &&
         Objects.equals(this.username, webhookPayloadCommentCommentAuthor.username) &&
         Objects.equals(this.name, webhookPayloadCommentCommentAuthor.name) &&
-        equalsNullable(this.picture, webhookPayloadCommentCommentAuthor.picture);
+        equalsNullable(this.picture, webhookPayloadCommentCommentAuthor.picture) &&
+        Objects.equals(this.instagramProfile, webhookPayloadCommentCommentAuthor.instagramProfile);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -190,7 +221,7 @@ public class WebhookPayloadCommentCommentAuthor {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, name, hashCodeNullable(picture));
+    return Objects.hash(id, username, name, hashCodeNullable(picture), instagramProfile);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -208,6 +239,7 @@ public class WebhookPayloadCommentCommentAuthor {
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
+    sb.append("    instagramProfile: ").append(toIndentedString(instagramProfile)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -273,6 +305,11 @@ public class WebhookPayloadCommentCommentAuthor {
     // add `picture` to the URL query string
     if (getPicture() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPicture()))));
+    }
+
+    // add `instagramProfile` to the URL query string
+    if (getInstagramProfile() != null) {
+      joiner.add(getInstagramProfile().toUrlQueryString(prefix + "instagramProfile" + suffix));
     }
 
     return joiner.toString();

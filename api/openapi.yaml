@@ -6833,6 +6833,91 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/follow-status/{userId}:
+    get:
+      description: |
+        Resolves the follow relationship between an Instagram user and the connected
+        account, plus their public profile counters.
+
+        `userId` is the Instagram-scoped id (IGSID) Meta gives you on a webhook:
+        `sender.id` on `message.received`, `comment.author.id` on `comment.received`.
+
+        **Meta only answers for people who have MESSAGED the account.** Commenting grants
+        no consent, so a commenter who has never DMed you is unresolvable - that is a
+        platform rule, not a limitation of this endpoint. When it cannot be resolved the
+        response is still `200` with `isFollower: null` and an `unavailableReason`, because
+        "unknown" is a normal state to branch on:
+
+          * `consent_required` - the user has never messaged this account.
+          * `dm_access_disabled` - the account owner turned off Instagram Direct API access.
+          * `not_messageable` - the id is not a messaging-scoped id.
+          * `error` - a transient Graph API failure.
+
+        To gate a comment automation on this, use the automation's `audience` rules instead
+        of calling this per comment - they run the same lookup only on comments that
+        actually match a keyword, and can ask the commenter to confirm with one tap.
+
+        Answers are cached briefly per (account, user). Pass `refresh=true` right after
+        asking someone to follow, so a follow from a moment ago is visible.
+      operationId: getInstagramFollowStatus
+      parameters:
+      - description: Instagram account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instagram-scoped user id (IGSID) from a webhook payload
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Bypass the cache and re-query Meta
+        explode: true
+        in: query
+        name: refresh
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                userId: "1312733120229708"
+                accountId: 6977a34e77637c5c857c816c
+                isFollower: true
+                isFollowedByAccount: false
+                followerCount: 25
+                isVerified: false
+                username: to.bias8262
+                name: Tobi Ma
+                unavailableReason: null
+              schema:
+                $ref: "#/components/schemas/getInstagramFollowStatus_200_response"
+          description: Follow status (fields are null when Meta would not resolve
+            it)
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Check whether an Instagram user follows the account
+      tags:
+      - Accounts
+      x-platforms:
+      - instagram
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/tiktok/creator-info:
     get:
       description: "Returns TikTok creator details, available privacy levels, posting\
@@ -25916,6 +26001,13 @@ paths:
             account-wide automations, each with its own keyword set, and they all run
             independently. Per-post automations take priority on their post.
 
+        Audience (`audience`, Instagram only): restrict the automation to followers or
+        non-followers, and/or to accounts above a follower count. Instagram only reveals the
+        follow relationship for people who have messaged the account, so `audience.whenUnknown`
+        decides what happens for everyone else - including `verify`, which sends a one-tap
+        confirmation DM (`followGate`) and then delivers the real DM automatically. People we
+        already know follow you skip the tap entirely.
+
         Links in the DM's buttons can be click-tracked (`linkTracking`, on by default) and
         clickers optionally tagged (`clickTag`) for segmentation. Stats returned include
         delivered, read, and link clicks.
@@ -26066,9 +26158,11 @@ paths:
         required: false
         schema:
           enum:
+          - pending
           - sent
           - failed
           - skipped
+          - gated
           type: string
         style: form
       - explode: true
@@ -34327,6 +34421,65 @@ components:
           description: Additional structured context (e.g. field-level validation
             errors).
           type: object
+    CommentAutomationAudience:
+      description: |
+        Who a comment automation answers. Instagram only - Meta exposes the follow
+        relationship on no other platform, and only for people who have MESSAGED the
+        account (a comment grants no consent). `whenUnknown` is therefore the important
+        setting: it decides what happens for a first-time commenter.
+      example:
+        followerStatus: any
+        whenUnknown: send
+        minFollowerCount: 0
+      properties:
+        followerStatus:
+          default: any
+          enum:
+          - any
+          - follower
+          - non_follower
+          type: string
+        minFollowerCount:
+          description: Skip commenters with fewer followers than this. Omit for no
+            size rule.
+          minimum: 0
+          type: integer
+        whenUnknown:
+          default: send
+          description: |
+            What to do when Instagram will not reveal the follow relationship.
+              * `send` (default) - deliver the DM anyway (fails open).
+              * `skip` - stay silent.
+              * `verify` - send `followGate.message` with a confirm button. Tapping it is a
+                message, which grants consent, so the re-check on the tap resolves and the
+                real DM (or `followGate.notFollowingMessage`) follows automatically.
+          enum:
+          - send
+          - skip
+          - verify
+          type: string
+    CommentAutomationFollowGate:
+      description: Copy for the follow gate. Sensible defaults are used for any field
+        left empty.
+      example:
+        message: message
+        buttonLabel: buttonLabel
+        notFollowingMessage: notFollowingMessage
+      properties:
+        message:
+          description: Confirmation DM sent when whenUnknown=verify.
+          maxLength: 640
+          type: string
+        buttonLabel:
+          description: Confirm button label. Defaults to "I'm following".
+          maxLength: 20
+          type: string
+        notFollowingMessage:
+          description: Sent to a commenter we know does not follow (followerStatus=follower).
+            Omit to stay silent on a keyword comment; a confirm tap always gets an
+            answer.
+          maxLength: 1000
+          type: string
     DmButton:
       description: |
         A single inline button rendered inside an auto-DM via Meta's button_template.
@@ -36211,6 +36364,11 @@ components:
             name: name
             id: id
             picture: picture
+            instagramProfile:
+              isFollowing: true
+              isVerified: true
+              isFollower: true
+              followerCount: 0
             username: username
           parentCommentId: parentCommentId
           id: id
@@ -45599,8 +45757,13 @@ components:
           type: string
         platformData:
           additionalProperties: true
-          description: Escape hatch for platform-specific fields we haven't normalized.
-            Forwarded as-is.
+          description: |
+            Escape hatch for platform-specific fields we haven't normalized.
+            On Meta, keys are shallow-merged into `custom_data` only: fields
+            Zernio already builds (`value`, `currency`, `contents`,
+            `num_items`) always win on collision, and `user_data` (hashed
+            match keys) is never touched. Use first-class fields (e.g.
+            `user.leadId`) for anything that must reach `user_data`.
           type: object
       required:
       - eventId
@@ -48851,6 +49014,58 @@ components:
           items:
             type: string
           type: array
+    getInstagramFollowStatus_200_response:
+      example:
+        accountId: accountId
+        unavailableReason: consent_required
+        isVerified: true
+        isFollowedByAccount: true
+        name: name
+        isFollower: true
+        userId: userId
+        followerCount: 0
+        username: username
+      properties:
+        userId:
+          type: string
+        accountId:
+          type: string
+        isFollower:
+          description: "The user follows this account. Null = unknown, never \"no\"\
+            ."
+          nullable: true
+          type: boolean
+        isFollowedByAccount:
+          description: This account follows the user.
+          nullable: true
+          type: boolean
+        followerCount:
+          nullable: true
+          type: integer
+        isVerified:
+          nullable: true
+          type: boolean
+        username:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        unavailableReason:
+          description: Why the follow relationship could not be resolved. Null when
+            it was.
+          enum:
+          - consent_required
+          - dm_access_disabled
+          - not_messageable
+          - error
+          - null
+          nullable: true
+          type: string
+      required:
+      - accountId
+      - isFollower
+      - userId
     getTikTokCreatorInfo_200_response_creator:
       example:
         avatarUrl: avatarUrl
@@ -69968,15 +70183,15 @@ components:
           $ref: "#/components/schemas/listContacts_200_response_pagination"
     listCommentAutomations_200_response_automations_inner_stats:
       example:
-        triggered: 0
-        read: 3
-        dmsFailed: 1
-        linkClicks: 2
-        uniqueContacts: 5
-        dmsSent: 6
-        delivered: 9
-        trackedSends: 5
-        uniqueClicks: 7
+        triggered: 1
+        read: 4
+        dmsFailed: 5
+        linkClicks: 9
+        uniqueContacts: 2
+        dmsSent: 5
+        delivered: 2
+        trackedSends: 7
+        uniqueClicks: 3
       properties:
         triggered:
           type: integer
@@ -70033,18 +70248,20 @@ components:
         linkTracking: true
         platform: instagram
         accountId: accountId
+        dmDelaySeconds: 0
         createdAt: 2000-01-23T04:56:07.000+00:00
         clickTag: clickTag
+        commentReplyDelaySeconds: 6
         stats:
-          triggered: 0
-          read: 3
-          dmsFailed: 1
-          linkClicks: 2
-          uniqueContacts: 5
-          dmsSent: 6
-          delivered: 9
-          trackedSends: 5
-          uniqueClicks: 7
+          triggered: 1
+          read: 4
+          dmsFailed: 5
+          linkClicks: 9
+          uniqueContacts: 2
+          dmsSent: 5
+          delivered: 2
+          trackedSends: 7
+          uniqueClicks: 3
         name: name
         postTitle: postTitle
         dmMessageVariations:
@@ -70127,6 +70344,14 @@ components:
         clickTag:
           description: Tag applied to a contact when they click a tracked link.
           type: string
+        dmDelaySeconds:
+          description: Seconds waited after the trigger before the DM is sent. Absent
+            when the DM goes out immediately.
+          type: integer
+        commentReplyDelaySeconds:
+          description: Seconds waited before the public reply is posted. Absent when
+            it follows the DM immediately.
+          type: integer
         isActive:
           type: boolean
         stats:
@@ -70165,18 +70390,20 @@ components:
           linkTracking: true
           platform: instagram
           accountId: accountId
+          dmDelaySeconds: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           clickTag: clickTag
+          commentReplyDelaySeconds: 6
           stats:
-            triggered: 0
-            read: 3
-            dmsFailed: 1
-            linkClicks: 2
-            uniqueContacts: 5
-            dmsSent: 6
-            delivered: 9
-            trackedSends: 5
-            uniqueClicks: 7
+            triggered: 1
+            read: 4
+            dmsFailed: 5
+            linkClicks: 9
+            uniqueContacts: 2
+            dmsSent: 5
+            delivered: 2
+            trackedSends: 7
+            uniqueClicks: 3
           name: name
           postTitle: postTitle
           dmMessageVariations:
@@ -70213,18 +70440,20 @@ components:
           linkTracking: true
           platform: instagram
           accountId: accountId
+          dmDelaySeconds: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           clickTag: clickTag
+          commentReplyDelaySeconds: 6
           stats:
-            triggered: 0
-            read: 3
-            dmsFailed: 1
-            linkClicks: 2
-            uniqueContacts: 5
-            dmsSent: 6
-            delivered: 9
-            trackedSends: 5
-            uniqueClicks: 7
+            triggered: 1
+            read: 4
+            dmsFailed: 5
+            linkClicks: 9
+            uniqueContacts: 2
+            dmsSent: 5
+            delivered: 2
+            trackedSends: 7
+            uniqueClicks: 3
           name: name
           postTitle: postTitle
           dmMessageVariations:
@@ -70339,6 +70568,26 @@ components:
           description: Optional tag applied to a contact when they click a tracked
             link (requires linkTracking). Lets you segment clickers for broadcasts/sequences.
           type: string
+        dmDelaySeconds:
+          description: "Seconds to wait after the trigger before sending the DM. Omit\
+            \ or send 0 to reply immediately (the default). Max 86400 (24h). The trigger\
+            \ is still matched and deduplicated the moment the comment arrives, so\
+            \ a delay only moves when the response is sent."
+          maximum: 86400
+          minimum: 0
+          type: integer
+        commentReplyDelaySeconds:
+          description: "Seconds to wait before posting the public comment reply. Omit\
+            \ or send 0 to post it right after the DM (the default). The reply never\
+            \ goes out before the DM, so a value below dmDelaySeconds is raised to\
+            \ it. Ignored when trigger=story_reply, which has no public reply."
+          maximum: 86400
+          minimum: 0
+          type: integer
+        audience:
+          $ref: "#/components/schemas/CommentAutomationAudience"
+        followGate:
+          $ref: "#/components/schemas/CommentAutomationFollowGate"
       required:
       - accountId
       - dmMessage
@@ -70346,9 +70595,9 @@ components:
       - profileId
     createCommentAutomation_200_response_automation_stats:
       example:
-        totalFailed: 1
-        totalSent: 6
-        totalTriggered: 0
+        totalFailed: 2
+        totalSent: 5
+        totalTriggered: 5
       properties:
         totalTriggered:
           type: integer
@@ -70359,6 +70608,10 @@ components:
     createCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
+        audience:
+          followerStatus: any
+          whenUnknown: send
+          minFollowerCount: 0
         buttons:
         - payload: payload
           phone: phone
@@ -70385,17 +70638,23 @@ components:
         isActive: true
         linkTracking: true
         platform: platform
+        dmDelaySeconds: 0
         createdAt: 2000-01-23T04:56:07.000+00:00
         clickTag: clickTag
+        commentReplyDelaySeconds: 6
         stats:
-          totalFailed: 1
-          totalSent: 6
-          totalTriggered: 0
+          totalFailed: 2
+          totalSent: 5
+          totalTriggered: 5
         name: name
         dmMessageVariations:
         - dmMessageVariations
         - dmMessageVariations
         id: id
+        followGate:
+          message: message
+          buttonLabel: buttonLabel
+          notFollowingMessage: notFollowingMessage
         matchMode: exact
         platformPostId: platformPostId
       properties:
@@ -70462,6 +70721,18 @@ components:
           type: boolean
         clickTag:
           type: string
+        dmDelaySeconds:
+          description: Seconds waited after the trigger before the DM is sent. Absent
+            when the DM goes out immediately.
+          type: integer
+        commentReplyDelaySeconds:
+          description: Seconds waited before the public reply is posted. Absent when
+            it follows the DM immediately.
+          type: integer
+        audience:
+          $ref: "#/components/schemas/CommentAutomationAudience"
+        followGate:
+          $ref: "#/components/schemas/CommentAutomationFollowGate"
         isActive:
           type: boolean
         stats:
@@ -70473,6 +70744,10 @@ components:
       example:
         automation:
           dmMessage: dmMessage
+          audience:
+            followerStatus: any
+            whenUnknown: send
+            minFollowerCount: 0
           buttons:
           - payload: payload
             phone: phone
@@ -70499,17 +70774,23 @@ components:
           isActive: true
           linkTracking: true
           platform: platform
+          dmDelaySeconds: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           clickTag: clickTag
+          commentReplyDelaySeconds: 6
           stats:
-            totalFailed: 1
-            totalSent: 6
-            totalTriggered: 0
+            totalFailed: 2
+            totalSent: 5
+            totalTriggered: 5
           name: name
           dmMessageVariations:
           - dmMessageVariations
           - dmMessageVariations
           id: id
+          followGate:
+            message: message
+            buttonLabel: buttonLabel
+            notFollowingMessage: notFollowingMessage
           matchMode: exact
           platformPostId: platformPostId
         success: true
@@ -70521,6 +70802,34 @@ components:
     getCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
+        keywords:
+        - keywords
+        - keywords
+        commentReplyVariations:
+        - commentReplyVariations
+        - commentReplyVariations
+        excludeKeywords:
+        - excludeKeywords
+        - excludeKeywords
+        isActive: true
+        platform: platform
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        commentReplyDelaySeconds: 6
+        stats:
+          totalFailed: 2
+          totalSent: 5
+          totalTriggered: 5
+        postTitle: postTitle
+        dmMessageVariations:
+        - dmMessageVariations
+        - dmMessageVariations
+        id: id
+        matchMode: exact
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        audience:
+          followerStatus: any
+          whenUnknown: send
+          minFollowerCount: 0
         buttons:
         - payload: payload
           phone: phone
@@ -70532,38 +70841,20 @@ components:
           type: url
           title: title
           url: https://openapi-generator.tech
-        keywords:
-        - keywords
-        - keywords
-        commentReplyVariations:
-        - commentReplyVariations
-        - commentReplyVariations
         commentReply: commentReply
-        excludeKeywords:
-        - excludeKeywords
-        - excludeKeywords
         typoTolerance: true
         trigger: comment
         postId: postId
-        isActive: true
         linkTracking: true
-        platform: platform
         accountId: accountId
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        dmDelaySeconds: 0
         clickTag: clickTag
-        stats:
-          totalFailed: 1
-          totalSent: 6
-          totalTriggered: 0
         name: name
-        postTitle: postTitle
-        dmMessageVariations:
-        - dmMessageVariations
-        - dmMessageVariations
-        id: id
-        matchMode: exact
+        followGate:
+          message: message
+          buttonLabel: buttonLabel
+          notFollowingMessage: notFollowingMessage
         platformPostId: platformPostId
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -70634,6 +70925,18 @@ components:
           type: boolean
         clickTag:
           type: string
+        dmDelaySeconds:
+          description: Seconds waited after the trigger before the DM is sent. Absent
+            when the DM goes out immediately.
+          type: integer
+        commentReplyDelaySeconds:
+          description: Seconds waited before the public reply is posted. Absent when
+            it follows the DM immediately.
+          type: integer
+        audience:
+          $ref: "#/components/schemas/CommentAutomationAudience"
+        followGate:
+          $ref: "#/components/schemas/CommentAutomationFollowGate"
         isActive:
           type: boolean
         stats:
@@ -70646,16 +70949,20 @@ components:
           type: string
     getCommentAutomation_200_response_logs_inner:
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
         commentReplyError: commentReplyError
+        nextDueAt: 2000-01-23T04:56:07.000+00:00
         commenterName: commenterName
-        commentId: commentId
+        commenterFollowerCount: 1
+        audienceOutcome: passed
         commentReplyStatus: sent
-        id: id
         error: error
         commentText: commentText
         commenterId: commenterId
-        status: sent
+        commenterIsFollower: true
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        commentId: commentId
+        id: id
+        status: pending
       properties:
         id:
           type: string
@@ -70668,12 +70975,33 @@ components:
         commentText:
           type: string
         status:
-          description: DM outcome
+          description: DM outcome. 'pending' = the automation has a dmDelaySeconds
+            and the response is queued but not sent yet. 'gated' = the follow-gate
+            confirmation DM went out and we are waiting for the tap; it flips to 'sent'
+            or 'skipped' when they tap.
           enum:
+          - pending
           - sent
           - failed
           - skipped
+          - gated
           type: string
+        audienceOutcome:
+          description: How the audience rule resolved. Absent on automations without
+            one.
+          enum:
+          - passed
+          - blocked
+          - gate_sent
+          - gate_passed
+          - gate_failed
+          type: string
+        commenterIsFollower:
+          description: Follow relationship at decision time. Absent when Instagram
+            would not tell us (the commenter never messaged the account).
+          type: boolean
+        commenterFollowerCount:
+          type: integer
         error:
           description: DM error message if status is failed
           type: string
@@ -70689,6 +71017,11 @@ components:
         commentReplyError:
           description: Public-reply error message if commentReplyStatus is failed
           type: string
+        nextDueAt:
+          description: When the next queued send fires. Present only while something
+            is still pending.
+          format: date-time
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -70696,6 +71029,34 @@ components:
       example:
         automation:
           dmMessage: dmMessage
+          keywords:
+          - keywords
+          - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          isActive: true
+          platform: platform
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          commentReplyDelaySeconds: 6
+          stats:
+            totalFailed: 2
+            totalSent: 5
+            totalTriggered: 5
+          postTitle: postTitle
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
+          id: id
+          matchMode: exact
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          audience:
+            followerStatus: any
+            whenUnknown: send
+            minFollowerCount: 0
           buttons:
           - payload: payload
             phone: phone
@@ -70707,60 +71068,50 @@ components:
             type: url
             title: title
             url: https://openapi-generator.tech
-          keywords:
-          - keywords
-          - keywords
-          commentReplyVariations:
-          - commentReplyVariations
-          - commentReplyVariations
           commentReply: commentReply
-          excludeKeywords:
-          - excludeKeywords
-          - excludeKeywords
           typoTolerance: true
           trigger: comment
           postId: postId
-          isActive: true
           linkTracking: true
-          platform: platform
           accountId: accountId
-          createdAt: 2000-01-23T04:56:07.000+00:00
+          dmDelaySeconds: 0
           clickTag: clickTag
-          stats:
-            totalFailed: 1
-            totalSent: 6
-            totalTriggered: 0
           name: name
-          postTitle: postTitle
-          dmMessageVariations:
-          - dmMessageVariations
-          - dmMessageVariations
-          id: id
-          matchMode: exact
+          followGate:
+            message: message
+            buttonLabel: buttonLabel
+            notFollowingMessage: notFollowingMessage
           platformPostId: platformPostId
-          updatedAt: 2000-01-23T04:56:07.000+00:00
         success: true
         logs:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          commentReplyError: commentReplyError
+        - commentReplyError: commentReplyError
+          nextDueAt: 2000-01-23T04:56:07.000+00:00
           commenterName: commenterName
-          commentId: commentId
+          commenterFollowerCount: 1
+          audienceOutcome: passed
           commentReplyStatus: sent
-          id: id
           error: error
           commentText: commentText
           commenterId: commenterId
-          status: sent
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          commentReplyError: commentReplyError
-          commenterName: commenterName
+          commenterIsFollower: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
           commentId: commentId
-          commentReplyStatus: sent
           id: id
+          status: pending
+        - commentReplyError: commentReplyError
+          nextDueAt: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          commenterFollowerCount: 1
+          audienceOutcome: passed
+          commentReplyStatus: sent
           error: error
           commentText: commentText
           commenterId: commenterId
-          status: sent
+          commenterIsFollower: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          commentId: commentId
+          id: id
+          status: pending
       properties:
         success:
           type: boolean
@@ -70839,11 +71190,31 @@ components:
           description: Tag applied to a contact when they click a tracked link (requires
             linkTracking). Empty string clears it.
           type: string
+        dmDelaySeconds:
+          description: Seconds to wait after the trigger before sending the DM. Send
+            0 to clear the delay and reply immediately.
+          maximum: 86400
+          minimum: 0
+          type: integer
+        commentReplyDelaySeconds:
+          description: Seconds to wait before posting the public comment reply. Send
+            0 to clear it. The reply never goes out before the DM.
+          maximum: 86400
+          minimum: 0
+          type: integer
+        audience:
+          $ref: "#/components/schemas/CommentAutomationAudience"
+        followGate:
+          $ref: "#/components/schemas/CommentAutomationFollowGate"
         isActive:
           type: boolean
     updateCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
+        audience:
+          followerStatus: any
+          whenUnknown: send
+          minFollowerCount: 0
         buttons:
         - payload: payload
           phone: phone
@@ -70872,6 +71243,10 @@ components:
         - dmMessageVariations
         - dmMessageVariations
         id: id
+        followGate:
+          message: message
+          buttonLabel: buttonLabel
+          notFollowingMessage: notFollowingMessage
         matchMode: exact
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -70925,6 +71300,10 @@ components:
           items:
             type: string
           type: array
+        audience:
+          $ref: "#/components/schemas/CommentAutomationAudience"
+        followGate:
+          $ref: "#/components/schemas/CommentAutomationFollowGate"
         isActive:
           type: boolean
         updatedAt:
@@ -70934,6 +71313,10 @@ components:
       example:
         automation:
           dmMessage: dmMessage
+          audience:
+            followerStatus: any
+            whenUnknown: send
+            minFollowerCount: 0
           buttons:
           - payload: payload
             phone: phone
@@ -70962,6 +71345,10 @@ components:
           - dmMessageVariations
           - dmMessageVariations
           id: id
+          followGate:
+            message: message
+            buttonLabel: buttonLabel
+            notFollowingMessage: notFollowingMessage
           matchMode: exact
           updatedAt: 2000-01-23T04:56:07.000+00:00
         success: true
@@ -71038,26 +71425,34 @@ components:
             excludedBy: excludedBy
             commentText: commentText
         logs:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          commentReplyError: commentReplyError
+        - commentReplyError: commentReplyError
+          nextDueAt: 2000-01-23T04:56:07.000+00:00
           commenterName: commenterName
-          commentId: commentId
+          commenterFollowerCount: 1
+          audienceOutcome: passed
           commentReplyStatus: sent
-          id: id
           error: error
           commentText: commentText
           commenterId: commenterId
-          status: sent
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          commentReplyError: commentReplyError
-          commenterName: commenterName
+          commenterIsFollower: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
           commentId: commentId
-          commentReplyStatus: sent
           id: id
+          status: pending
+        - commentReplyError: commentReplyError
+          nextDueAt: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          commenterFollowerCount: 1
+          audienceOutcome: passed
+          commentReplyStatus: sent
           error: error
           commentText: commentText
           commenterId: commenterId
-          status: sent
+          commenterIsFollower: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          commentId: commentId
+          id: id
+          status: pending
       properties:
         success:
           type: boolean
@@ -82612,11 +83007,43 @@ components:
       - status
       - synced
       - totalAds
+    WebhookPayloadComment_comment_author_instagramProfile:
+      description: |
+        Instagram only, best-effort. Present ONLY for commenters who have
+        messaged the account before: Meta gates the follow relationship behind
+        messaging consent, and commenting does not grant it. Absent otherwise -
+        treat a missing object as "unknown", never as "not a follower". To check
+        on demand, call GET /v1/accounts/{accountId}/follow-status/{userId}.
+      example:
+        isFollowing: true
+        isVerified: true
+        isFollower: true
+        followerCount: 0
+      properties:
+        isFollower:
+          description: The commenter follows this account.
+          nullable: true
+          type: boolean
+        isFollowing:
+          description: This account follows the commenter.
+          nullable: true
+          type: boolean
+        followerCount:
+          nullable: true
+          type: integer
+        isVerified:
+          nullable: true
+          type: boolean
     WebhookPayloadComment_comment_author:
       example:
         name: name
         id: id
         picture: picture
+        instagramProfile:
+          isFollowing: true
+          isVerified: true
+          isFollower: true
+          followerCount: 0
         username: username
       properties:
         id:
@@ -82629,6 +83056,8 @@ components:
         picture:
           nullable: true
           type: string
+        instagramProfile:
+          $ref: "#/components/schemas/WebhookPayloadComment_comment_author_instagramProfile"
       required:
       - id
     WebhookPayloadComment_comment_ad:
@@ -82691,6 +83120,11 @@ components:
           name: name
           id: id
           picture: picture
+          instagramProfile:
+            isFollowing: true
+            isVerified: true
+            isFollower: true
+            followerCount: 0
           username: username
         parentCommentId: parentCommentId
         id: id
@@ -86134,6 +86568,14 @@ components:
         gender:
           description: Meta advanced matching (ge). 'f' or 'm'; hashed server-side.
             Meta only.
+          type: string
+        leadId:
+          description: |
+            Meta lead ID from a Lead Ad submission, as a string. Required
+            for Conversion Leads CRM events: send it with
+            `actionSource: 'crm'` and
+            `platformData: { event_source: 'crm', lead_event_source: '<CRM name>' }`.
+            Forwarded unhashed to Meta's `user_data.lead_id`. Meta only.
           type: string
         clickIds:
           $ref: "#/components/schemas/ConversionEvent_user_clickIds"

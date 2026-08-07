@@ -56,11 +56,13 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_COMMENT_REPLY_VARIATIONS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_LINK_TRACKING,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CLICK_TAG,
+  ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_DM_DELAY_SECONDS,
+  ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_IS_ACTIVE,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_STATS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -240,6 +242,14 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_CLICK_TAG = "clickTag";
   @javax.annotation.Nullable
   private String clickTag;
+
+  public static final String JSON_PROPERTY_DM_DELAY_SECONDS = "dmDelaySeconds";
+  @javax.annotation.Nullable
+  private Integer dmDelaySeconds;
+
+  public static final String JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS = "commentReplyDelaySeconds";
+  @javax.annotation.Nullable
+  private Integer commentReplyDelaySeconds;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -728,6 +738,54 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInner dmDelaySeconds(@javax.annotation.Nullable Integer dmDelaySeconds) {
+    this.dmDelaySeconds = dmDelaySeconds;
+    return this;
+  }
+
+  /**
+   * Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately.
+   * @return dmDelaySeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DM_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDmDelaySeconds() {
+    return dmDelaySeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DM_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDmDelaySeconds(@javax.annotation.Nullable Integer dmDelaySeconds) {
+    this.dmDelaySeconds = dmDelaySeconds;
+  }
+
+
+  public ListCommentAutomations200ResponseAutomationsInner commentReplyDelaySeconds(@javax.annotation.Nullable Integer commentReplyDelaySeconds) {
+    this.commentReplyDelaySeconds = commentReplyDelaySeconds;
+    return this;
+  }
+
+  /**
+   * Seconds waited before the public reply is posted. Absent when it follows the DM immediately.
+   * @return commentReplyDelaySeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getCommentReplyDelaySeconds() {
+    return commentReplyDelaySeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommentReplyDelaySeconds(@javax.annotation.Nullable Integer commentReplyDelaySeconds) {
+    this.commentReplyDelaySeconds = commentReplyDelaySeconds;
+  }
+
+
   public ListCommentAutomations200ResponseAutomationsInner isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -830,6 +888,8 @@ public class ListCommentAutomations200ResponseAutomationsInner {
         Objects.equals(this.commentReplyVariations, listCommentAutomations200ResponseAutomationsInner.commentReplyVariations) &&
         Objects.equals(this.linkTracking, listCommentAutomations200ResponseAutomationsInner.linkTracking) &&
         Objects.equals(this.clickTag, listCommentAutomations200ResponseAutomationsInner.clickTag) &&
+        Objects.equals(this.dmDelaySeconds, listCommentAutomations200ResponseAutomationsInner.dmDelaySeconds) &&
+        Objects.equals(this.commentReplyDelaySeconds, listCommentAutomations200ResponseAutomationsInner.commentReplyDelaySeconds) &&
         Objects.equals(this.isActive, listCommentAutomations200ResponseAutomationsInner.isActive) &&
         Objects.equals(this.stats, listCommentAutomations200ResponseAutomationsInner.stats) &&
         Objects.equals(this.createdAt, listCommentAutomations200ResponseAutomationsInner.createdAt);
@@ -837,7 +897,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, trigger, accountId, platformPostId, postTitle, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, isActive, stats, createdAt);
+    return Objects.hash(id, name, platform, trigger, accountId, platformPostId, postTitle, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, dmDelaySeconds, commentReplyDelaySeconds, isActive, stats, createdAt);
   }
 
   @Override
@@ -862,6 +922,8 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     sb.append("    commentReplyVariations: ").append(toIndentedString(commentReplyVariations)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
     sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
+    sb.append("    dmDelaySeconds: ").append(toIndentedString(dmDelaySeconds)).append("\n");
+    sb.append("    commentReplyDelaySeconds: ").append(toIndentedString(commentReplyDelaySeconds)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -1021,6 +1083,16 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     // add `clickTag` to the URL query string
     if (getClickTag() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sclickTag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClickTag()))));
+    }
+
+    // add `dmDelaySeconds` to the URL query string
+    if (getDmDelaySeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdmDelaySeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDmDelaySeconds()))));
+    }
+
+    // add `commentReplyDelaySeconds` to the URL query string
+    if (getCommentReplyDelaySeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommentReplyDelaySeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyDelaySeconds()))));
     }
 
     // add `isActive` to the URL query string

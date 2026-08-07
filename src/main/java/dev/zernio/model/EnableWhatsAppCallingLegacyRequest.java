@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   EnableWhatsAppCallingLegacyRequest.JSON_PROPERTY_MAX_CALL_DURATION_SECONDS,
   EnableWhatsAppCallingLegacyRequest.JSON_PROPERTY_FORWARD_CALLER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableWhatsAppCallingLegacyRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

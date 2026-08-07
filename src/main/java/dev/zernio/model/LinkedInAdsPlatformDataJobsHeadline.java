@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformDataJobsHeadline.JSON_PROPERTY_PRE_APPROVED,
   LinkedInAdsPlatformDataJobsHeadline.JSON_PROPERTY_CUSTOM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataJobsHeadline {
   public static final String JSON_PROPERTY_PRE_APPROVED = "preApproved";
   @javax.annotation.Nullable

@@ -20,6 +20,10 @@
 |**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies for random rotation. Pass [] to clear. |  [optional] |
 |**linkTracking** | **Boolean** | Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched. |  [optional] |
 |**clickTag** | **String** | Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it. |  [optional] |
+|**dmDelaySeconds** | **Integer** | Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately. |  [optional] |
+|**commentReplyDelaySeconds** | **Integer** | Seconds to wait before posting the public comment reply. Send 0 to clear it. The reply never goes out before the DM. |  [optional] |
+|**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
+|**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 
 

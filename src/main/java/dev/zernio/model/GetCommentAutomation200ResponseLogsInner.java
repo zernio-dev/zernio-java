@@ -40,12 +40,16 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_NAME,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_TEXT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_STATUS,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_AUDIENCE_OUTCOME,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_IS_FOLLOWER,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_FOLLOWER_COUNT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_ERROR,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_REPLY_STATUS,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_REPLY_ERROR,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_NEXT_DUE_AT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-06T13:04:04.066983518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -68,14 +72,18 @@ public class GetCommentAutomation200ResponseLogsInner {
   private String commentText;
 
   /**
-   * DM outcome
+   * DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.
    */
   public enum StatusEnum {
+    PENDING(String.valueOf("pending")),
+    
     SENT(String.valueOf("sent")),
     
     FAILED(String.valueOf("failed")),
     
-    SKIPPED(String.valueOf("skipped"));
+    SKIPPED(String.valueOf("skipped")),
+    
+    GATED(String.valueOf("gated"));
 
     private String value;
 
@@ -107,6 +115,59 @@ public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
+
+  /**
+   * How the audience rule resolved. Absent on automations without one.
+   */
+  public enum AudienceOutcomeEnum {
+    PASSED(String.valueOf("passed")),
+    
+    BLOCKED(String.valueOf("blocked")),
+    
+    GATE_SENT(String.valueOf("gate_sent")),
+    
+    GATE_PASSED(String.valueOf("gate_passed")),
+    
+    GATE_FAILED(String.valueOf("gate_failed"));
+
+    private String value;
+
+    AudienceOutcomeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AudienceOutcomeEnum fromValue(String value) {
+      for (AudienceOutcomeEnum b : AudienceOutcomeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_AUDIENCE_OUTCOME = "audienceOutcome";
+  @javax.annotation.Nullable
+  private AudienceOutcomeEnum audienceOutcome;
+
+  public static final String JSON_PROPERTY_COMMENTER_IS_FOLLOWER = "commenterIsFollower";
+  @javax.annotation.Nullable
+  private Boolean commenterIsFollower;
+
+  public static final String JSON_PROPERTY_COMMENTER_FOLLOWER_COUNT = "commenterFollowerCount";
+  @javax.annotation.Nullable
+  private Integer commenterFollowerCount;
 
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -156,6 +217,10 @@ public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_COMMENT_REPLY_ERROR = "commentReplyError";
   @javax.annotation.Nullable
   private String commentReplyError;
+
+  public static final String JSON_PROPERTY_NEXT_DUE_AT = "nextDueAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime nextDueAt;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -290,7 +355,7 @@ public class GetCommentAutomation200ResponseLogsInner {
   }
 
   /**
-   * DM outcome
+   * DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.
    * @return status
    */
   @javax.annotation.Nullable
@@ -305,6 +370,78 @@ public class GetCommentAutomation200ResponseLogsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public GetCommentAutomation200ResponseLogsInner audienceOutcome(@javax.annotation.Nullable AudienceOutcomeEnum audienceOutcome) {
+    this.audienceOutcome = audienceOutcome;
+    return this;
+  }
+
+  /**
+   * How the audience rule resolved. Absent on automations without one.
+   * @return audienceOutcome
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE_OUTCOME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AudienceOutcomeEnum getAudienceOutcome() {
+    return audienceOutcome;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE_OUTCOME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAudienceOutcome(@javax.annotation.Nullable AudienceOutcomeEnum audienceOutcome) {
+    this.audienceOutcome = audienceOutcome;
+  }
+
+
+  public GetCommentAutomation200ResponseLogsInner commenterIsFollower(@javax.annotation.Nullable Boolean commenterIsFollower) {
+    this.commenterIsFollower = commenterIsFollower;
+    return this;
+  }
+
+  /**
+   * Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account).
+   * @return commenterIsFollower
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENTER_IS_FOLLOWER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCommenterIsFollower() {
+    return commenterIsFollower;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENTER_IS_FOLLOWER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommenterIsFollower(@javax.annotation.Nullable Boolean commenterIsFollower) {
+    this.commenterIsFollower = commenterIsFollower;
+  }
+
+
+  public GetCommentAutomation200ResponseLogsInner commenterFollowerCount(@javax.annotation.Nullable Integer commenterFollowerCount) {
+    this.commenterFollowerCount = commenterFollowerCount;
+    return this;
+  }
+
+  /**
+   * Get commenterFollowerCount
+   * @return commenterFollowerCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENTER_FOLLOWER_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getCommenterFollowerCount() {
+    return commenterFollowerCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENTER_FOLLOWER_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommenterFollowerCount(@javax.annotation.Nullable Integer commenterFollowerCount) {
+    this.commenterFollowerCount = commenterFollowerCount;
   }
 
 
@@ -380,6 +517,30 @@ public class GetCommentAutomation200ResponseLogsInner {
   }
 
 
+  public GetCommentAutomation200ResponseLogsInner nextDueAt(@javax.annotation.Nullable OffsetDateTime nextDueAt) {
+    this.nextDueAt = nextDueAt;
+    return this;
+  }
+
+  /**
+   * When the next queued send fires. Present only while something is still pending.
+   * @return nextDueAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NEXT_DUE_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getNextDueAt() {
+    return nextDueAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NEXT_DUE_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNextDueAt(@javax.annotation.Nullable OffsetDateTime nextDueAt) {
+    this.nextDueAt = nextDueAt;
+  }
+
+
   public GetCommentAutomation200ResponseLogsInner createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -422,15 +583,19 @@ public class GetCommentAutomation200ResponseLogsInner {
         Objects.equals(this.commenterName, getCommentAutomation200ResponseLogsInner.commenterName) &&
         Objects.equals(this.commentText, getCommentAutomation200ResponseLogsInner.commentText) &&
         Objects.equals(this.status, getCommentAutomation200ResponseLogsInner.status) &&
+        Objects.equals(this.audienceOutcome, getCommentAutomation200ResponseLogsInner.audienceOutcome) &&
+        Objects.equals(this.commenterIsFollower, getCommentAutomation200ResponseLogsInner.commenterIsFollower) &&
+        Objects.equals(this.commenterFollowerCount, getCommentAutomation200ResponseLogsInner.commenterFollowerCount) &&
         Objects.equals(this.error, getCommentAutomation200ResponseLogsInner.error) &&
         Objects.equals(this.commentReplyStatus, getCommentAutomation200ResponseLogsInner.commentReplyStatus) &&
         Objects.equals(this.commentReplyError, getCommentAutomation200ResponseLogsInner.commentReplyError) &&
+        Objects.equals(this.nextDueAt, getCommentAutomation200ResponseLogsInner.nextDueAt) &&
         Objects.equals(this.createdAt, getCommentAutomation200ResponseLogsInner.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, commentId, commenterId, commenterName, commentText, status, error, commentReplyStatus, commentReplyError, createdAt);
+    return Objects.hash(id, commentId, commenterId, commenterName, commentText, status, audienceOutcome, commenterIsFollower, commenterFollowerCount, error, commentReplyStatus, commentReplyError, nextDueAt, createdAt);
   }
 
   @Override
@@ -443,9 +608,13 @@ public class GetCommentAutomation200ResponseLogsInner {
     sb.append("    commenterName: ").append(toIndentedString(commenterName)).append("\n");
     sb.append("    commentText: ").append(toIndentedString(commentText)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    audienceOutcome: ").append(toIndentedString(audienceOutcome)).append("\n");
+    sb.append("    commenterIsFollower: ").append(toIndentedString(commenterIsFollower)).append("\n");
+    sb.append("    commenterFollowerCount: ").append(toIndentedString(commenterFollowerCount)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    commentReplyStatus: ").append(toIndentedString(commentReplyStatus)).append("\n");
     sb.append("    commentReplyError: ").append(toIndentedString(commentReplyError)).append("\n");
+    sb.append("    nextDueAt: ").append(toIndentedString(nextDueAt)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -524,6 +693,21 @@ public class GetCommentAutomation200ResponseLogsInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
+    // add `audienceOutcome` to the URL query string
+    if (getAudienceOutcome() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saudienceOutcome%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudienceOutcome()))));
+    }
+
+    // add `commenterIsFollower` to the URL query string
+    if (getCommenterIsFollower() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommenterIsFollower%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommenterIsFollower()))));
+    }
+
+    // add `commenterFollowerCount` to the URL query string
+    if (getCommenterFollowerCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommenterFollowerCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommenterFollowerCount()))));
+    }
+
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
@@ -537,6 +721,11 @@ public class GetCommentAutomation200ResponseLogsInner {
     // add `commentReplyError` to the URL query string
     if (getCommentReplyError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scommentReplyError%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyError()))));
+    }
+
+    // add `nextDueAt` to the URL query string
+    if (getNextDueAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snextDueAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNextDueAt()))));
     }
 
     // add `createdAt` to the URL query string

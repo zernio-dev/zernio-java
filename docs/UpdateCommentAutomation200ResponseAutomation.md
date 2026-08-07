@@ -18,6 +18,8 @@
 |**commentReply** | **String** |  |  [optional] |
 |**dmMessageVariations** | **List&lt;String&gt;** | Alternate DM texts rotated at random with dmMessage. Omitted when none. |  [optional] |
 |**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. |  [optional] |
+|**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
+|**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
 
