@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppPhoneNumbersWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
 | [**listWhatsAppNumberCountries**](WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries |
 | [**listWhatsAppNumberCountriesWithHttpInfo**](WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountriesWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries |
+| [**moveWhatsAppNumberToProfile**](WhatsAppPhoneNumbersApi.md#moveWhatsAppNumberToProfile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile |
+| [**moveWhatsAppNumberToProfileWithHttpInfo**](WhatsAppPhoneNumbersApi.md#moveWhatsAppNumberToProfileWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile |
 | [**purchaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number |
 | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number |
 | [**releaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
@@ -1231,6 +1233,164 @@ ApiResponse<[**ListWhatsAppNumberCountries200Response**](ListWhatsAppNumberCount
 |-------------|-------------|------------------|
 | **200** | Offerable countries, cheapest first. |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## moveWhatsAppNumberToProfile
+
+> MoveWhatsAppNumberToProfile200Response moveWhatsAppNumberToProfile(id, moveWhatsAppNumberToProfileRequest)
+
+Move a number to another profile
+
+Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | WhatsAppPhoneNumber id.
+        MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest = new MoveWhatsAppNumberToProfileRequest(); // MoveWhatsAppNumberToProfileRequest | 
+        try {
+            MoveWhatsAppNumberToProfile200Response result = apiInstance.moveWhatsAppNumberToProfile(id, moveWhatsAppNumberToProfileRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#moveWhatsAppNumberToProfile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| WhatsAppPhoneNumber id. | |
+| **moveWhatsAppNumberToProfileRequest** | [**MoveWhatsAppNumberToProfileRequest**](MoveWhatsAppNumberToProfileRequest.md)|  | |
+
+### Return type
+
+[**MoveWhatsAppNumberToProfile200Response**](MoveWhatsAppNumberToProfile200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number moved, or already on that profile. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | No access to the source or destination profile, or the Inbox add-on is not active. |  -  |
+| **404** | Number not found, or the destination profile does not exist. |  -  |
+| **409** | The destination profile already holds an account on one of the platforms this number occupies. |  -  |
+
+## moveWhatsAppNumberToProfileWithHttpInfo
+
+> ApiResponse<MoveWhatsAppNumberToProfile200Response> moveWhatsAppNumberToProfile moveWhatsAppNumberToProfileWithHttpInfo(id, moveWhatsAppNumberToProfileRequest)
+
+Move a number to another profile
+
+Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | WhatsAppPhoneNumber id.
+        MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest = new MoveWhatsAppNumberToProfileRequest(); // MoveWhatsAppNumberToProfileRequest | 
+        try {
+            ApiResponse<MoveWhatsAppNumberToProfile200Response> response = apiInstance.moveWhatsAppNumberToProfileWithHttpInfo(id, moveWhatsAppNumberToProfileRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#moveWhatsAppNumberToProfile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| WhatsAppPhoneNumber id. | |
+| **moveWhatsAppNumberToProfileRequest** | [**MoveWhatsAppNumberToProfileRequest**](MoveWhatsAppNumberToProfileRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**MoveWhatsAppNumberToProfile200Response**](MoveWhatsAppNumberToProfile200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number moved, or already on that profile. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | No access to the source or destination profile, or the Inbox add-on is not active. |  -  |
+| **404** | Number not found, or the destination profile does not exist. |  -  |
+| **409** | The destination profile already holds an account on one of the platforms this number occupies. |  -  |
 
 
 ## purchaseWhatsAppPhoneNumber

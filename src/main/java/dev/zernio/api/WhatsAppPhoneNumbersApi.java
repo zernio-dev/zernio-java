@@ -31,6 +31,8 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListPhoneNumbers200Response;
 import dev.zernio.model.ListWhatsAppNumberCountries200Response;
+import dev.zernio.model.MoveWhatsAppNumberToProfile200Response;
+import dev.zernio.model.MoveWhatsAppNumberToProfileRequest;
 import dev.zernio.model.PurchasePhoneNumber202Response;
 import dev.zernio.model.PurchasePhoneNumber409Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
@@ -77,7 +79,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T13:57:59.077632649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T14:17:34.953098551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1259,6 +1261,138 @@ public class WhatsAppPhoneNumbersApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Move a number to another profile
+   * Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @param moveWhatsAppNumberToProfileRequest  (required)
+   * @return MoveWhatsAppNumberToProfile200Response
+   * @throws ApiException if fails to make API call
+   */
+  public MoveWhatsAppNumberToProfile200Response moveWhatsAppNumberToProfile(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest) throws ApiException {
+    return moveWhatsAppNumberToProfile(id, moveWhatsAppNumberToProfileRequest, null);
+  }
+
+  /**
+   * Move a number to another profile
+   * Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @param moveWhatsAppNumberToProfileRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return MoveWhatsAppNumberToProfile200Response
+   * @throws ApiException if fails to make API call
+   */
+  public MoveWhatsAppNumberToProfile200Response moveWhatsAppNumberToProfile(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<MoveWhatsAppNumberToProfile200Response> localVarResponse = moveWhatsAppNumberToProfileWithHttpInfo(id, moveWhatsAppNumberToProfileRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Move a number to another profile
+   * Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @param moveWhatsAppNumberToProfileRequest  (required)
+   * @return ApiResponse&lt;MoveWhatsAppNumberToProfile200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<MoveWhatsAppNumberToProfile200Response> moveWhatsAppNumberToProfileWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest) throws ApiException {
+    return moveWhatsAppNumberToProfileWithHttpInfo(id, moveWhatsAppNumberToProfileRequest, null);
+  }
+
+  /**
+   * Move a number to another profile
+   * Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @param moveWhatsAppNumberToProfileRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;MoveWhatsAppNumberToProfile200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<MoveWhatsAppNumberToProfile200Response> moveWhatsAppNumberToProfileWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = moveWhatsAppNumberToProfileRequestBuilder(id, moveWhatsAppNumberToProfileRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("moveWhatsAppNumberToProfile", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<MoveWhatsAppNumberToProfile200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        MoveWhatsAppNumberToProfile200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<MoveWhatsAppNumberToProfile200Response>() {});
+        
+
+        return new ApiResponse<MoveWhatsAppNumberToProfile200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder moveWhatsAppNumberToProfileRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling moveWhatsAppNumberToProfile");
+    }
+    // verify the required parameter 'moveWhatsAppNumberToProfileRequest' is set
+    if (moveWhatsAppNumberToProfileRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'moveWhatsAppNumberToProfileRequest' when calling moveWhatsAppNumberToProfile");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/{id}/profile"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(moveWhatsAppNumberToProfileRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -22277,6 +22277,71 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/phone-numbers/{id}/profile:
+    patch:
+      description: |
+        Move a provisioned number to a different profile.
+
+        A number is not a single record. Alongside the number itself there are
+        hidden telephony owner accounts (platform `phone`, plus `sms` when SMS is
+        enabled) and, once WhatsApp is connected, the `whatsapp` account. They all
+        carry a profileId and this endpoint moves them together.
+
+        Use this instead of `PATCH /v1/accounts/{accountId}`: that one moves the
+        social account only and leaves the number itself pinned to its original
+        profile, which splits the number across two profiles. Connecting a
+        provisioned number always places it on the profile the NUMBER is on, so a
+        `profileId` passed to `GET /v1/connect/whatsapp` cannot re-home it and a
+        later reconnect pulls the account back. This endpoint is how you re-home it.
+
+        `id` is the number record id from `GET /v1/phone-numbers`, not an account id.
+
+        A profile holds at most one account per platform, so the destination must be
+        free of every platform this number occupies.
+      operationId: moveWhatsAppNumberToProfile
+      parameters:
+      - description: WhatsAppPhoneNumber id.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/moveWhatsAppNumberToProfile_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/moveWhatsAppNumberToProfile_200_response"
+          description: "Number moved, or already on that profile."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "No access to the source or destination profile, or the Inbox\
+            \ add-on is not active."
+        "404":
+          description: "Number not found, or the destination profile does not exist."
+        "409":
+          description: The destination profile already holds an account on one of
+            the platforms this number occupies.
+      security:
+      - bearerAuth: []
+      summary: Move a number to another profile
+      tags:
+      - WhatsApp Phone Numbers
+      x-resource-group: telephony
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/phone-numbers/{id}/remediate:
     get:
       deprecated: true
@@ -66123,6 +66188,33 @@ components:
       required:
       - country
       - profileId
+    moveWhatsAppNumberToProfile_request:
+      properties:
+        profileId:
+          description: Destination profile id. Must belong to the same team.
+          type: string
+      required:
+      - profileId
+    moveWhatsAppNumberToProfile_200_response:
+      example:
+        movedPlatforms:
+        - movedPlatforms
+        - movedPlatforms
+        profileId: profileId
+        message: message
+      properties:
+        message:
+          type: string
+        profileId:
+          description: The profile the number is now on.
+          type: string
+        movedPlatforms:
+          description: "Platforms whose accounts travelled with the number (phone,\
+            \ sms, whatsapp). Absent when the number was already on the destination\
+            \ profile."
+          items:
+            type: string
+          type: array
     getWhatsAppNumberRemediation_200_response:
       example:
         country: country

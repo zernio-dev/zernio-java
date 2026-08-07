@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-07T13:57:59.077632649Z[Etc/UTC]
+- Build date: 2026-08-07T14:17:34.953098551Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1146,6 +1146,8 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
 *WhatsAppPhoneNumbersApi* | [**listWhatsAppNumberCountries**](docs/WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
 *WhatsAppPhoneNumbersApi* | [**listWhatsAppNumberCountriesWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountriesWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
+*WhatsAppPhoneNumbersApi* | [**moveWhatsAppNumberToProfile**](docs/WhatsAppPhoneNumbersApi.md#moveWhatsAppNumberToProfile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile
+*WhatsAppPhoneNumbersApi* | [**moveWhatsAppNumberToProfileWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#moveWhatsAppNumberToProfileWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile
 *WhatsAppPhoneNumbersApi* | [**purchaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
@@ -2176,6 +2178,8 @@ Class | Method | HTTP request | Description
  - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [MoveWhatsAppNumberToProfile200Response](docs/MoveWhatsAppNumberToProfile200Response.md)
+ - [MoveWhatsAppNumberToProfileRequest](docs/MoveWhatsAppNumberToProfileRequest.md)
  - [OnVerificationApprovedRequest](docs/OnVerificationApprovedRequest.md)
  - [OnVerificationApprovedRequestVerification](docs/OnVerificationApprovedRequestVerification.md)
  - [OnVerificationFailedRequest](docs/OnVerificationFailedRequest.md)
