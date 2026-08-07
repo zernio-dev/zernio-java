@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppCarouselComponent.JSON_PROPERTY_TYPE,
   WhatsAppCarouselComponent.JSON_PROPERTY_CARDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:40:46.738090737Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:52:32.922079794Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCarouselComponent {
   /**
    * Gets or Sets type
