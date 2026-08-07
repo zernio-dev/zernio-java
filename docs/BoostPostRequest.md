@@ -13,7 +13,10 @@
 |**adAccountId** | **String** | Platform ad account ID |  |
 |**name** | **String** |  |  |
 |**goal** | [**GoalEnum**](#GoalEnum) | Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. |  |
-|**budget** | [**BoostPostRequestBudget**](BoostPostRequestBudget.md) |  |  |
+|**adSetId** | **String** | Meta only. Attach the boosted post to this existing ad set instead of creating a campaign. The ad set then owns budget, schedule and targeting; sending those too is a 400. |  [optional] |
+|**budget** | [**BoostPostRequestBudget**](BoostPostRequestBudget.md) |  |  [optional] |
+|**instagramAccountId** | **String** | Meta only. Instagram identity the ad runs AS (creative.instagram_user_id), overriding the account linked to the Page. Live-verified against a Page-post creative. |  [optional] |
+|**destinationType** | [**DestinationTypeEnum**](#DestinationTypeEnum) | Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this. |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**schedule** | [**BoostPostRequestSchedule**](BoostPostRequestSchedule.md) |  |  [optional] |
 |**targeting** | [**BoostPostRequestTargeting**](BoostPostRequestTargeting.md) |  |  [optional] |
@@ -25,8 +28,8 @@
 |**tracking** | [**BoostPostRequestTracking**](BoostPostRequestTracking.md) |  |  [optional] |
 |**specialAdCategories** | [**List&lt;SpecialAdCategoriesEnum&gt;**](#List&lt;SpecialAdCategoriesEnum&gt;) | Meta only. Required for housing, employment, credit, or political ads. |  [optional] |
 |**specialAdCategoryCountry** | **List&lt;String&gt;** | Meta (metaads) only. 2-letter ISO country codes the special ad category applies to. Requires specialAdCategories to be set (400 otherwise). |  [optional] |
-|**linkUrl** | **URI** | TikTok-only. Custom destination URL for the Spark Ad. Without this, TikTok Spark Ads have no clickable destination — required for traffic / conversion objectives. Maps to &#x60;landing_page_url&#x60; on the creative entry of /v2/ad/create/ (TikTok SDK &#x60;AdcreateCreatives.landing_page_url&#x60;). Ignored on Meta / LinkedIn / Pinterest / X / Google (those infer the destination from the boosted post).  |  [optional] |
-|**callToAction** | **String** | TikTok-only. Call-to-action button label on the Spark Ad creative (e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;DOWNLOAD_NOW&#x60;, &#x60;SIGN_UP&#x60;, &#x60;WATCH_NOW&#x60;). Maps to &#x60;call_to_action&#x60; on the creative entry of /v2/ad/create/. Pass-through — the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot; reference for the full list.  |  [optional] |
+|**linkUrl** | **URI** | Destination URL for the CTA button. Send it together with &#x60;callToAction&#x60;.  **Meta**: adds a top-level &#x60;call_to_action&#x60; to the post-reference creative. This is what gives a &#x60;traffic&#x60; boost a clickable destination without replacing the creative and losing the post&#39;s social proof. Ignored when &#x60;leadGenFormId&#x60; is set, which supplies its own destination. Live-verified against a Page-post creative.  **TikTok**: maps to &#x60;landing_page_url&#x60; on the Spark Ad creative (&#x60;AdcreateCreatives.landing_page_url&#x60;); Spark Ads have no clickable destination without it.  Ignored on LinkedIn / Pinterest / X / Google, which infer the destination from the boosted post.  |  [optional] |
+|**callToAction** | **String** | CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: validated against the Meta CTA enum (same values as POST /v1/ads/create), e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;SIGN_UP&#x60;.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;.  |  [optional] |
 |**sparkAuthCode** | **String** | TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/.  |  [optional] |
 |**dsaBeneficiary** | **String** | Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted.  |  [optional] |
 |**dsaPayor** | **String** | Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor.  |  [optional] |
@@ -45,6 +48,18 @@
 | LEAD_GENERATION | &quot;lead_generation&quot; |
 | CONVERSIONS | &quot;conversions&quot; |
 | APP_PROMOTION | &quot;app_promotion&quot; |
+
+
+
+## Enum: DestinationTypeEnum
+
+| Name | Value |
+|---- | -----|
+| INSTAGRAM_PROFILE | &quot;INSTAGRAM_PROFILE&quot; |
+| WEBSITE | &quot;WEBSITE&quot; |
+| ON_AD | &quot;ON_AD&quot; |
+| MESSENGER | &quot;MESSENGER&quot; |
+| WHATSAPP | &quot;WHATSAPP&quot; |
 
 
 

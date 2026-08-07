@@ -54,6 +54,7 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_IMAGE_URL,
   CreateMessagingAdRequest.JSON_PROPERTY_VIDEO,
   CreateMessagingAdRequest.JSON_PROPERTY_CREATIVES,
+  CreateMessagingAdRequest.JSON_PROPERTY_AD_SET_ID,
   CreateMessagingAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateMessagingAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateMessagingAdRequest.JSON_PROPERTY_CURRENCY,
@@ -78,7 +79,7 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_DSA_PAYOR,
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:19:52.865276001Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:23:33.764208866Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -112,12 +113,16 @@ public class CreateMessagingAdRequest {
   @javax.annotation.Nullable
   private List<CtwaAdRequestBodyCreativesInner> creatives = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_AD_SET_ID = "adSetId";
+  @javax.annotation.Nullable
+  private String adSetId;
+
   public static final String JSON_PROPERTY_BUDGET_AMOUNT = "budgetAmount";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private BigDecimal budgetAmount;
 
   /**
-   * Gets or Sets budgetType
+   * Required unless &#x60;adSetId&#x60; is set.
    */
   public enum BudgetTypeEnum {
     DAILY(String.valueOf("daily")),
@@ -152,7 +157,7 @@ public class CreateMessagingAdRequest {
   }
 
   public static final String JSON_PROPERTY_BUDGET_TYPE = "budgetType";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private BudgetTypeEnum budgetType;
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
@@ -590,50 +595,74 @@ public class CreateMessagingAdRequest {
   }
 
 
-  public CreateMessagingAdRequest budgetAmount(@javax.annotation.Nonnull BigDecimal budgetAmount) {
+  public CreateMessagingAdRequest adSetId(@javax.annotation.Nullable String adSetId) {
+    this.adSetId = adSetId;
+    return this;
+  }
+
+  /**
+   * Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. 
+   * @return adSetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdSetId() {
+    return adSetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdSetId(@javax.annotation.Nullable String adSetId) {
+    this.adSetId = adSetId;
+  }
+
+
+  public CreateMessagingAdRequest budgetAmount(@javax.annotation.Nullable BigDecimal budgetAmount) {
     this.budgetAmount = budgetAmount;
     return this;
   }
 
   /**
-   * Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. 
+   * Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. 
    * @return budgetAmount
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BUDGET_AMOUNT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BigDecimal getBudgetAmount() {
     return budgetAmount;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BUDGET_AMOUNT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBudgetAmount(@javax.annotation.Nonnull BigDecimal budgetAmount) {
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBudgetAmount(@javax.annotation.Nullable BigDecimal budgetAmount) {
     this.budgetAmount = budgetAmount;
   }
 
 
-  public CreateMessagingAdRequest budgetType(@javax.annotation.Nonnull BudgetTypeEnum budgetType) {
+  public CreateMessagingAdRequest budgetType(@javax.annotation.Nullable BudgetTypeEnum budgetType) {
     this.budgetType = budgetType;
     return this;
   }
 
   /**
-   * Get budgetType
+   * Required unless &#x60;adSetId&#x60; is set.
    * @return budgetType
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BUDGET_TYPE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BudgetTypeEnum getBudgetType() {
     return budgetType;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BUDGET_TYPE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBudgetType(@javax.annotation.Nonnull BudgetTypeEnum budgetType) {
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBudgetType(@javax.annotation.Nullable BudgetTypeEnum budgetType) {
     this.budgetType = budgetType;
   }
 
@@ -1222,6 +1251,7 @@ public class CreateMessagingAdRequest {
         Objects.equals(this.imageUrl, createMessagingAdRequest.imageUrl) &&
         Objects.equals(this.video, createMessagingAdRequest.video) &&
         Objects.equals(this.creatives, createMessagingAdRequest.creatives) &&
+        Objects.equals(this.adSetId, createMessagingAdRequest.adSetId) &&
         Objects.equals(this.budgetAmount, createMessagingAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createMessagingAdRequest.budgetType) &&
         Objects.equals(this.currency, createMessagingAdRequest.currency) &&
@@ -1249,7 +1279,7 @@ public class CreateMessagingAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, destination);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, destination);
   }
 
   @Override
@@ -1264,6 +1294,7 @@ public class CreateMessagingAdRequest {
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
     sb.append("    creatives: ").append(toIndentedString(creatives)).append("\n");
+    sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
@@ -1377,6 +1408,11 @@ public class CreateMessagingAdRequest {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `adSetId` to the URL query string
+    if (getAdSetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdSetId()))));
     }
 
     // add `budgetAmount` to the URL query string

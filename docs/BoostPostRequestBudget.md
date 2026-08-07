@@ -2,6 +2,7 @@
 
 # BoostPostRequestBudget
 
+Required unless adSetId is set.
 
 ## Properties
 

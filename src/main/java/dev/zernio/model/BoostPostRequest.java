@@ -51,7 +51,10 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   BoostPostRequest.JSON_PROPERTY_NAME,
   BoostPostRequest.JSON_PROPERTY_GOAL,
+  BoostPostRequest.JSON_PROPERTY_AD_SET_ID,
   BoostPostRequest.JSON_PROPERTY_BUDGET,
+  BoostPostRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
+  BoostPostRequest.JSON_PROPERTY_DESTINATION_TYPE,
   BoostPostRequest.JSON_PROPERTY_CURRENCY,
   BoostPostRequest.JSON_PROPERTY_SCHEDULE,
   BoostPostRequest.JSON_PROPERTY_TARGETING,
@@ -70,7 +73,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:19:52.865276001Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:23:33.764208866Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -141,9 +144,62 @@ public class BoostPostRequest {
   @javax.annotation.Nonnull
   private GoalEnum goal;
 
+  public static final String JSON_PROPERTY_AD_SET_ID = "adSetId";
+  @javax.annotation.Nullable
+  private String adSetId;
+
   public static final String JSON_PROPERTY_BUDGET = "budget";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private BoostPostRequestBudget budget;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID = "instagramAccountId";
+  @javax.annotation.Nullable
+  private String instagramAccountId;
+
+  /**
+   * Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
+   */
+  public enum DestinationTypeEnum {
+    INSTAGRAM_PROFILE(String.valueOf("INSTAGRAM_PROFILE")),
+    
+    WEBSITE(String.valueOf("WEBSITE")),
+    
+    ON_AD(String.valueOf("ON_AD")),
+    
+    MESSENGER(String.valueOf("MESSENGER")),
+    
+    WHATSAPP(String.valueOf("WHATSAPP"));
+
+    private String value;
+
+    DestinationTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DestinationTypeEnum fromValue(String value) {
+      for (DestinationTypeEnum b : DestinationTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_DESTINATION_TYPE = "destinationType";
+  @javax.annotation.Nullable
+  private DestinationTypeEnum destinationType;
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
@@ -403,7 +459,31 @@ public class BoostPostRequest {
   }
 
 
-  public BoostPostRequest budget(@javax.annotation.Nonnull BoostPostRequestBudget budget) {
+  public BoostPostRequest adSetId(@javax.annotation.Nullable String adSetId) {
+    this.adSetId = adSetId;
+    return this;
+  }
+
+  /**
+   * Meta only. Attach the boosted post to this existing ad set instead of creating a campaign. The ad set then owns budget, schedule and targeting; sending those too is a 400.
+   * @return adSetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdSetId() {
+    return adSetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdSetId(@javax.annotation.Nullable String adSetId) {
+    this.adSetId = adSetId;
+  }
+
+
+  public BoostPostRequest budget(@javax.annotation.Nullable BoostPostRequestBudget budget) {
     this.budget = budget;
     return this;
   }
@@ -412,18 +492,66 @@ public class BoostPostRequest {
    * Get budget
    * @return budget
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BUDGET, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BoostPostRequestBudget getBudget() {
     return budget;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BUDGET, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBudget(@javax.annotation.Nonnull BoostPostRequestBudget budget) {
+  @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBudget(@javax.annotation.Nullable BoostPostRequestBudget budget) {
     this.budget = budget;
+  }
+
+
+  public BoostPostRequest instagramAccountId(@javax.annotation.Nullable String instagramAccountId) {
+    this.instagramAccountId = instagramAccountId;
+    return this;
+  }
+
+  /**
+   * Meta only. Instagram identity the ad runs AS (creative.instagram_user_id), overriding the account linked to the Page. Live-verified against a Page-post creative.
+   * @return instagramAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramAccountId() {
+    return instagramAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramAccountId(@javax.annotation.Nullable String instagramAccountId) {
+    this.instagramAccountId = instagramAccountId;
+  }
+
+
+  public BoostPostRequest destinationType(@javax.annotation.Nullable DestinationTypeEnum destinationType) {
+    this.destinationType = destinationType;
+    return this;
+  }
+
+  /**
+   * Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
+   * @return destinationType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESTINATION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public DestinationTypeEnum getDestinationType() {
+    return destinationType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESTINATION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDestinationType(@javax.annotation.Nullable DestinationTypeEnum destinationType) {
+    this.destinationType = destinationType;
   }
 
 
@@ -721,7 +849,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * TikTok-only. Custom destination URL for the Spark Ad. Without this, TikTok Spark Ads have no clickable destination — required for traffic / conversion objectives. Maps to &#x60;landing_page_url&#x60; on the creative entry of /v2/ad/create/ (TikTok SDK &#x60;AdcreateCreatives.landing_page_url&#x60;). Ignored on Meta / LinkedIn / Pinterest / X / Google (those infer the destination from the boosted post). 
+   * Destination URL for the CTA button. Send it together with &#x60;callToAction&#x60;.  **Meta**: adds a top-level &#x60;call_to_action&#x60; to the post-reference creative. This is what gives a &#x60;traffic&#x60; boost a clickable destination without replacing the creative and losing the post&#39;s social proof. Ignored when &#x60;leadGenFormId&#x60; is set, which supplies its own destination. Live-verified against a Page-post creative.  **TikTok**: maps to &#x60;landing_page_url&#x60; on the Spark Ad creative (&#x60;AdcreateCreatives.landing_page_url&#x60;); Spark Ads have no clickable destination without it.  Ignored on LinkedIn / Pinterest / X / Google, which infer the destination from the boosted post. 
    * @return linkUrl
    */
   @javax.annotation.Nullable
@@ -745,7 +873,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * TikTok-only. Call-to-action button label on the Spark Ad creative (e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;DOWNLOAD_NOW&#x60;, &#x60;SIGN_UP&#x60;, &#x60;WATCH_NOW&#x60;). Maps to &#x60;call_to_action&#x60; on the creative entry of /v2/ad/create/. Pass-through — the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot; reference for the full list. 
+   * CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: validated against the Meta CTA enum (same values as POST /v1/ads/create), e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;SIGN_UP&#x60;.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
    * @return callToAction
    */
   @javax.annotation.Nullable
@@ -877,7 +1005,10 @@ public class BoostPostRequest {
         Objects.equals(this.adAccountId, boostPostRequest.adAccountId) &&
         Objects.equals(this.name, boostPostRequest.name) &&
         Objects.equals(this.goal, boostPostRequest.goal) &&
+        Objects.equals(this.adSetId, boostPostRequest.adSetId) &&
         Objects.equals(this.budget, boostPostRequest.budget) &&
+        Objects.equals(this.instagramAccountId, boostPostRequest.instagramAccountId) &&
+        Objects.equals(this.destinationType, boostPostRequest.destinationType) &&
         Objects.equals(this.currency, boostPostRequest.currency) &&
         Objects.equals(this.schedule, boostPostRequest.schedule) &&
         Objects.equals(this.targeting, boostPostRequest.targeting) &&
@@ -899,7 +1030,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, optimizationGoal);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, optimizationGoal);
   }
 
   @Override
@@ -912,7 +1043,10 @@ public class BoostPostRequest {
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
+    sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
+    sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
+    sb.append("    destinationType: ").append(toIndentedString(destinationType)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
     sb.append("    targeting: ").append(toIndentedString(targeting)).append("\n");
@@ -1007,9 +1141,24 @@ public class BoostPostRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoal()))));
     }
 
+    // add `adSetId` to the URL query string
+    if (getAdSetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdSetId()))));
+    }
+
     // add `budget` to the URL query string
     if (getBudget() != null) {
       joiner.add(getBudget().toUrlQueryString(prefix + "budget" + suffix));
+    }
+
+    // add `instagramAccountId` to the URL query string
+    if (getInstagramAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramAccountId()))));
+    }
+
+    // add `destinationType` to the URL query string
+    if (getDestinationType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdestinationType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDestinationType()))));
     }
 
     // add `currency` to the URL query string
