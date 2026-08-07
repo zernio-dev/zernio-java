@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateWhatsAppSandboxSessionRequest.JSON_PROPERTY_PHONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:38:14.814594291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppSandboxSessionRequest {
   public static final String JSON_PROPERTY_PHONE = "phone";
   @javax.annotation.Nonnull

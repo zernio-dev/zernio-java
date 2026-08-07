@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetLinkedInAggregateAnalytics400Response.JSON_PROPERTY_CODE,
   GetLinkedInAggregateAnalytics400Response.JSON_PROPERTY_VALID_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:38:14.814594291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInAggregateAnalytics400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable

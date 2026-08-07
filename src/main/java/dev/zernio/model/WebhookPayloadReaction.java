@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Webhook payload for reaction received events (WhatsApp, Telegram)
+ * Webhook payload for reaction received events (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)
  */
 @JsonPropertyOrder({
   WebhookPayloadReaction.JSON_PROPERTY_ID,
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadReaction.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadReaction.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:13:00.276984579Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:38:14.814594291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadReaction {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
