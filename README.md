@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-07T08:38:14.814594291Z[Etc/UTC]
+- Build date: 2026-08-07T08:54:14.594286193Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1317,6 +1317,9 @@ Class | Method | HTTP request | Description
  - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
  - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
  - [CommentAutomationFollowGate](docs/CommentAutomationFollowGate.md)
+ - [CommentAutomationTemplate](docs/CommentAutomationTemplate.md)
+ - [CommentAutomationTemplateElement](docs/CommentAutomationTemplateElement.md)
+ - [CommentAutomationTemplateElementButtonsInner](docs/CommentAutomationTemplateElementButtonsInner.md)
  - [CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)

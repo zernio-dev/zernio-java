@@ -15,6 +15,7 @@
 |**typoTolerance** | **Boolean** | Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched. |  [optional] |
 |**dmMessage** | **String** |  |  [optional] |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (1-3). Pass [] to clear all buttons. |  [optional] |
+|**template** | [**CommentAutomationTemplate**](CommentAutomationTemplate.md) |  |  [optional] |
 |**commentReply** | **String** |  |  [optional] |
 |**dmMessageVariations** | **List&lt;String&gt;** | Alternate DM texts for random rotation (see create). Pass [] to clear. |  [optional] |
 |**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies for random rotation. Pass [] to clear. |  [optional] |

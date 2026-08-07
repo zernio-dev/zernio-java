@@ -135,6 +135,9 @@ docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
 docs/CommentAutomationAudience.md
 docs/CommentAutomationFollowGate.md
+docs/CommentAutomationTemplate.md
+docs/CommentAutomationTemplateElement.md
+docs/CommentAutomationTemplateElementButtonsInner.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteGoogleBusinessVerificationRequest.md
@@ -1859,6 +1862,9 @@ src/main/java/dev/zernio/model/CheckVerification200Response.java
 src/main/java/dev/zernio/model/CheckVerificationRequest.java
 src/main/java/dev/zernio/model/CommentAutomationAudience.java
 src/main/java/dev/zernio/model/CommentAutomationFollowGate.java
+src/main/java/dev/zernio/model/CommentAutomationTemplate.java
+src/main/java/dev/zernio/model/CommentAutomationTemplateElement.java
+src/main/java/dev/zernio/model/CommentAutomationTemplateElementButtonsInner.java
 src/main/java/dev/zernio/model/CompleteGoogleBusinessVerificationRequest.java
 src/main/java/dev/zernio/model/CompleteTelegramConnect200Response.java
 src/main/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200Response.java
@@ -3329,3 +3335,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CommentAutomationTemplateElementButtonsInnerTest.java
+src/test/java/dev/zernio/model/CommentAutomationTemplateElementTest.java
+src/test/java/dev/zernio/model/CommentAutomationTemplateTest.java

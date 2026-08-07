@@ -26,11 +26,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CommentAutomationAudience;
 import dev.zernio.model.CommentAutomationFollowGate;
+import dev.zernio.model.CommentAutomationTemplate;
 import dev.zernio.model.DmButton;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -47,6 +52,7 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_TYPO_TOLERANCE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_DM_MESSAGE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_BUTTONS,
+  UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_TEMPLATE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_DM_MESSAGE_VARIATIONS,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY_VARIATIONS,
@@ -55,7 +61,7 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_IS_ACTIVE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:38:14.814594291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T08:54:14.594286193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -125,6 +131,9 @@ public class UpdateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_BUTTONS = "buttons";
   @javax.annotation.Nullable
   private List<DmButton> buttons = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TEMPLATE = "template";
+  private JsonNullable<CommentAutomationTemplate> template = JsonNullable.<CommentAutomationTemplate>undefined();
 
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
@@ -373,6 +382,38 @@ public class UpdateCommentAutomation200ResponseAutomation {
   }
 
 
+  public UpdateCommentAutomation200ResponseAutomation template(@javax.annotation.Nullable CommentAutomationTemplate template) {
+    this.template = JsonNullable.<CommentAutomationTemplate>of(template);
+    return this;
+  }
+
+  /**
+   * Get template
+   * @return template
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CommentAutomationTemplate getTemplate() {
+        return template.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CommentAutomationTemplate> getTemplate_JsonNullable() {
+    return template;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEMPLATE)
+  public void setTemplate_JsonNullable(JsonNullable<CommentAutomationTemplate> template) {
+    this.template = template;
+  }
+
+  public void setTemplate(@javax.annotation.Nullable CommentAutomationTemplate template) {
+    this.template = JsonNullable.<CommentAutomationTemplate>of(template);
+  }
+
+
   public UpdateCommentAutomation200ResponseAutomation commentReply(@javax.annotation.Nullable String commentReply) {
     this.commentReply = commentReply;
     return this;
@@ -577,6 +618,7 @@ public class UpdateCommentAutomation200ResponseAutomation {
         Objects.equals(this.typoTolerance, updateCommentAutomation200ResponseAutomation.typoTolerance) &&
         Objects.equals(this.dmMessage, updateCommentAutomation200ResponseAutomation.dmMessage) &&
         Objects.equals(this.buttons, updateCommentAutomation200ResponseAutomation.buttons) &&
+        equalsNullable(this.template, updateCommentAutomation200ResponseAutomation.template) &&
         Objects.equals(this.commentReply, updateCommentAutomation200ResponseAutomation.commentReply) &&
         Objects.equals(this.dmMessageVariations, updateCommentAutomation200ResponseAutomation.dmMessageVariations) &&
         Objects.equals(this.commentReplyVariations, updateCommentAutomation200ResponseAutomation.commentReplyVariations) &&
@@ -586,9 +628,20 @@ public class UpdateCommentAutomation200ResponseAutomation {
         Objects.equals(this.updatedAt, updateCommentAutomation200ResponseAutomation.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, audience, followGate, isActive, updatedAt);
+    return Objects.hash(id, name, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, hashCodeNullable(template), commentReply, dmMessageVariations, commentReplyVariations, audience, followGate, isActive, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -603,6 +656,7 @@ public class UpdateCommentAutomation200ResponseAutomation {
     sb.append("    typoTolerance: ").append(toIndentedString(typoTolerance)).append("\n");
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
+    sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    dmMessageVariations: ").append(toIndentedString(dmMessageVariations)).append("\n");
     sb.append("    commentReplyVariations: ").append(toIndentedString(commentReplyVariations)).append("\n");
@@ -708,6 +762,11 @@ public class UpdateCommentAutomation200ResponseAutomation {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `template` to the URL query string
+    if (getTemplate() != null) {
+      joiner.add(getTemplate().toUrlQueryString(prefix + "template" + suffix));
     }
 
     // add `commentReply` to the URL query string
