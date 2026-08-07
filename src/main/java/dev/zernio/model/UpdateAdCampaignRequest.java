@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.UpdateAdCampaignRequestBudget;
 import dev.zernio.model.UpdateAdCampaignRequestPlatformSpecificData;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -36,26 +37,26 @@ import dev.zernio.ApiClient;
  * UpdateAdCampaignRequest
  */
 @JsonPropertyOrder({
-  UpdateAdCampaignRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM,
-  UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
+  UpdateAdCampaignRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
+  UpdateAdCampaignRequest.JSON_PROPERTY_BID_AMOUNT,
+  UpdateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T13:08:50.256386422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T13:57:59.077632649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
-  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nullable
-  private String accountId;
-
   /**
-   * Gets or Sets platform
+   * Required: platform campaign IDs are not globally unique.
    */
   public enum PlatformEnum {
     FACEBOOK(String.valueOf("facebook")),
     
-    INSTAGRAM(String.valueOf("instagram"));
+    INSTAGRAM(String.valueOf("instagram")),
+    
+    GOOGLE(String.valueOf("google"));
 
     private String value;
 
@@ -88,13 +89,25 @@ public class UpdateAdCampaignRequest {
   @javax.annotation.Nonnull
   private PlatformEnum platform;
 
-  public static final String JSON_PROPERTY_BUDGET = "budget";
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
-  private UpdateAdCampaignRequestBudget budget;
+  private String accountId;
 
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
   private BidStrategy bidStrategy;
+
+  public static final String JSON_PROPERTY_BID_AMOUNT = "bidAmount";
+  @javax.annotation.Nullable
+  private BigDecimal bidAmount;
+
+  public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
+  @javax.annotation.Nullable
+  private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_BUDGET = "budget";
+  @javax.annotation.Nullable
+  private UpdateAdCampaignRequestBudget budget;
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -107,13 +120,37 @@ public class UpdateAdCampaignRequest {
   public UpdateAdCampaignRequest() { 
   }
 
+  public UpdateAdCampaignRequest platform(@javax.annotation.Nonnull PlatformEnum platform) {
+    this.platform = platform;
+    return this;
+  }
+
+  /**
+   * Required: platform campaign IDs are not globally unique.
+   * @return platform
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public PlatformEnum getPlatform() {
+    return platform;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull PlatformEnum platform) {
+    this.platform = platform;
+  }
+
+
   public UpdateAdCampaignRequest accountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
     return this;
   }
 
   /**
-   * Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.
+   * **Meta only.** Zernio SocialAccount id owning the ad account. Needed only for an EMPTY campaign (zero ads); ignored otherwise.
    * @return accountId
    */
   @javax.annotation.Nullable
@@ -131,27 +168,75 @@ public class UpdateAdCampaignRequest {
   }
 
 
-  public UpdateAdCampaignRequest platform(@javax.annotation.Nonnull PlatformEnum platform) {
-    this.platform = platform;
+  public UpdateAdCampaignRequest bidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
+    this.bidStrategy = bidStrategy;
     return this;
   }
 
   /**
-   * Get platform
-   * @return platform
+   * **Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy.
+   * @return bidStrategy
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public PlatformEnum getPlatform() {
-    return platform;
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BidStrategy getBidStrategy() {
+    return bidStrategy;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPlatform(@javax.annotation.Nonnull PlatformEnum platform) {
-    this.platform = platform;
+  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
+    this.bidStrategy = bidStrategy;
+  }
+
+
+  public UpdateAdCampaignRequest bidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = bidAmount;
+    return this;
+  }
+
+  /**
+   * **Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both.
+   * @return bidAmount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getBidAmount() {
+    return bidAmount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = bidAmount;
+  }
+
+
+  public UpdateAdCampaignRequest roasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = roasAverageFloor;
+    return this;
+  }
+
+  /**
+   * **Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.
+   * @return roasAverageFloor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getRoasAverageFloor() {
+    return roasAverageFloor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = roasAverageFloor;
   }
 
 
@@ -179,37 +264,13 @@ public class UpdateAdCampaignRequest {
   }
 
 
-  public UpdateAdCampaignRequest bidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
-    this.bidStrategy = bidStrategy;
-    return this;
-  }
-
-  /**
-   * Campaign-level default. Ad sets inherit this unless they override.
-   * @return bidStrategy
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public BidStrategy getBidStrategy() {
-    return bidStrategy;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
-    this.bidStrategy = bidStrategy;
-  }
-
-
   public UpdateAdCampaignRequest name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required.
+   * **Meta only.** Rename the campaign.
    * @return name
    */
   @javax.annotation.Nullable
@@ -263,27 +324,31 @@ public class UpdateAdCampaignRequest {
       return false;
     }
     UpdateAdCampaignRequest updateAdCampaignRequest = (UpdateAdCampaignRequest) o;
-    return Objects.equals(this.accountId, updateAdCampaignRequest.accountId) &&
-        Objects.equals(this.platform, updateAdCampaignRequest.platform) &&
-        Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
+    return Objects.equals(this.platform, updateAdCampaignRequest.platform) &&
+        Objects.equals(this.accountId, updateAdCampaignRequest.accountId) &&
         Objects.equals(this.bidStrategy, updateAdCampaignRequest.bidStrategy) &&
+        Objects.equals(this.bidAmount, updateAdCampaignRequest.bidAmount) &&
+        Objects.equals(this.roasAverageFloor, updateAdCampaignRequest.roasAverageFloor) &&
+        Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
         Objects.equals(this.name, updateAdCampaignRequest.name) &&
         Objects.equals(this.platformSpecificData, updateAdCampaignRequest.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, platform, budget, bidStrategy, name, platformSpecificData);
+    return Objects.hash(platform, accountId, bidStrategy, bidAmount, roasAverageFloor, budget, name, platformSpecificData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdCampaignRequest {\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
-    sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
+    sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
+    sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
@@ -333,24 +398,34 @@ public class UpdateAdCampaignRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `accountId` to the URL query string
-    if (getAccountId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
-    }
-
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
     }
 
-    // add `budget` to the URL query string
-    if (getBudget() != null) {
-      joiner.add(getBudget().toUrlQueryString(prefix + "budget" + suffix));
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `bidStrategy` to the URL query string
     if (getBidStrategy() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbidStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidStrategy()))));
+    }
+
+    // add `bidAmount` to the URL query string
+    if (getBidAmount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbidAmount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidAmount()))));
+    }
+
+    // add `roasAverageFloor` to the URL query string
+    if (getRoasAverageFloor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `budget` to the URL query string
+    if (getBudget() != null) {
+      joiner.add(getBudget().toUrlQueryString(prefix + "budget" + suffix));
     }
 
     // add `name` to the URL query string

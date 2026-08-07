@@ -817,7 +817,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 
 Delete a campaign
 
-Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
+Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
 
 ### Example
 
@@ -892,7 +892,7 @@ public class Example {
 
 Delete a campaign
 
-Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
+Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so it is invisible to &#x60;/v1/ads/tree&#x60; and this endpoint would 404. That state is produced by the two-step create flow (campaign, then ads via &#x60;existingCampaignId&#x60;) whenever Meta rejects the ad step. To delete such a shell, send &#x60;accountId&#x60; in the body: we skip the local lookup entirely and forward the delete to Meta. &#x60;accountId&#x60; is ignored when the campaign does have ads. 
 
 ### Example
 
@@ -2879,7 +2879,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 
 Update a campaign
 
-Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
 
 ### Example
 
@@ -2944,7 +2944,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign updated |  -  |
-| **400** | Invalid input |  -  |
+| **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign is ABO — route to /v1/ads/ad-sets/{adSetId} instead |  -  |
@@ -2956,7 +2956,7 @@ public class Example {
 
 Update a campaign
 
-Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
 
 ### Example
 
@@ -3024,7 +3024,7 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign updated |  -  |
-| **400** | Invalid input |  -  |
+| **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign is ABO — route to /v1/ads/ad-sets/{adSetId} instead |  -  |

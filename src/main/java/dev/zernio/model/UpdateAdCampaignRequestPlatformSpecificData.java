@@ -35,12 +35,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Platform-specific campaign settings. The platform is implied by the &#x60;platform&#x60; body param (same convention as platformSpecificData on POST /v1/ads/create). Meta (facebook/instagram) only; other platforms return 400. 
+ * **Meta only.** Platform implied by the &#x60;platform&#x60; body param, same convention as POST /v1/ads/create.
  */
 @JsonPropertyOrder({
   UpdateAdCampaignRequestPlatformSpecificData.JSON_PROPERTY_SPEND_CAP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T13:08:50.256386422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T13:57:59.077632649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequestPlatformSpecificData {
   public static final String JSON_PROPERTY_SPEND_CAP = "spendCap";
   private JsonNullable<BigDecimal> spendCap = JsonNullable.<BigDecimal>undefined();
@@ -54,7 +54,7 @@ public class UpdateAdCampaignRequestPlatformSpecificData {
   }
 
   /**
-   * Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap (0 is rejected by Meta).
+   * Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap; 0 is rejected by Meta.
    * @return spendCap
    */
   @javax.annotation.Nullable

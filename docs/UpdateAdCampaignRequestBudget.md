@@ -2,6 +2,7 @@
 
 # UpdateAdCampaignRequestBudget
 
+**Meta only.** The CBO budget.
 
 ## Properties
 

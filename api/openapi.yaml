@@ -26787,6 +26787,7 @@ paths:
       - linkedin
       - pinterest
       - x
+      - openai
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -26796,9 +26797,6 @@ paths:
         Deletes the whole campaign on the platform, cascading to its ad sets
         and ads. Locally, all Ad documents for this campaign are marked
         `status: cancelled`.
-
-        Meta-only for now. Other platforms return 501 Not Implemented — fall
-        back to DELETE /v1/ads/{adId} per ad in the meantime.
 
         **Empty campaigns.** A campaign with zero ads has no local Ad documents
         to resolve, so it is invisible to `/v1/ads/tree` and this endpoint would
@@ -26844,33 +26842,34 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
-      - google
       - tiktok
-      - linkedin
-      - pinterest
-      - x
       x-content-type: application/json
       x-accepts:
       - application/json
     put:
       description: |
-        Campaign-level edits. At least one of `budget`, `bidStrategy`, `name` or `platformSpecificData` is required.
+        Campaign-level edits. Send at least one of `budget`, `bidStrategy`, `name`
+        or `platformSpecificData`. An unsupported field is always an error, never a
+        silent drop.
 
-        **Empty campaigns.** A campaign with zero ads has no local Ad documents to
-        resolve, so this would 404 even though it exists on Meta. Send `accountId`
-        in the body to skip the local lookup and forward the update to Meta. The
-        response then carries `updated: 0`, since there are no local rows to mirror
-        onto. `accountId` is ignored when the campaign does have ads.
+        | Body field | Meta | Google | Others |
+        |---|---|---|---|
+        | `bidStrategy` | Yes | Yes | 501 |
+        | `bidAmount`, `roasAverageFloor` | 400 — ad-set level | Yes | 400 |
+        | `budget` (CBO; ABO returns 409) | Yes | 501 | 501 |
+        | `name` | Yes | 501 | 501 |
+        | `platformSpecificData.spendCap` | Yes | 400 | 400 |
+        | `accountId` (empty campaigns) | Yes | - | - |
 
-        - `budget` updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns
-          (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint
-          will return 409 with code BUDGET_LEVEL_MISMATCH.
-        - `bidStrategy` sets the campaign-level default bid strategy. Per Meta's spec, `bid_amount` and
-          `bid_constraints` do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.
-        - `platformSpecificData.spendCap` (Meta only) sets the campaign's lifetime spend cap, in the ad
-          account's currency.
+        Google maps the shared enum onto its own strategies: `LOWEST_COST_WITHOUT_CAP`
+        to Maximize Clicks, `LOWEST_COST_WITH_BID_CAP` to Maximize Clicks with a max
+        CPC (`bidAmount`), `COST_CAP` to Target CPA (`bidAmount`),
+        `LOWEST_COST_WITH_MIN_ROAS` to Target ROAS (`roasAverageFloor`). A campaign on
+        a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since
+        it is shared across campaigns.
 
-        Meta-only for now. Other platforms return 501 Not Implemented.
+        `accountId` forwards the update straight to Meta for a campaign with zero ads,
+        which would otherwise 404; the response then carries `updated: 0`.
       operationId: updateAdCampaign
       parameters:
       - description: Platform campaign ID
@@ -26895,7 +26894,8 @@ paths:
                 $ref: "#/components/schemas/updateAdCampaign_200_response"
           description: Campaign updated
         "400":
-          description: Invalid input
+          description: "Invalid input, or a field the resolved platform does not support\
+            \ at the campaign level (see the support table)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -26913,10 +26913,6 @@ paths:
       x-platforms:
       - meta
       - google
-      - tiktok
-      - linkedin
-      - pinterest
-      - x
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -72521,6 +72517,7 @@ components:
           description: Human-readable summary (present when no ads were actionable)
           type: string
     updateAdCampaign_request_budget:
+      description: '**Meta only.** The CBO budget.'
       properties:
         amount:
           description: Budget amount in the ad account's currency
@@ -72534,37 +72531,46 @@ components:
       - amount
       - type
     updateAdCampaign_request_platformSpecificData:
-      description: |
-        Platform-specific campaign settings. The platform is implied by the `platform`
-        body param (same convention as platformSpecificData on POST /v1/ads/create).
-        Meta (facebook/instagram) only; other platforms return 400.
+      description: "**Meta only.** Platform implied by the `platform` body param,\
+        \ same convention as POST /v1/ads/create."
       properties:
         spendCap:
           description: "Campaign lifetime spend cap, in the ad account's currency\
-            \ (Meta `spend_cap`). Pass null to remove the cap (0 is rejected by Meta)."
+            \ (Meta `spend_cap`). Pass null to remove the cap; 0 is rejected by Meta."
           nullable: true
           type: number
     updateAdCampaign_request:
       properties:
-        accountId:
-          description: "Zernio SocialAccount id owning the ad account. Required only\
-            \ to update an EMPTY campaign (zero ads), which has no local Ad documents\
-            \ to resolve a token from."
-          type: string
         platform:
+          description: "Required: platform campaign IDs are not globally unique."
           enum:
           - facebook
           - instagram
+          - google
           type: string
-        budget:
-          $ref: "#/components/schemas/updateAdCampaign_request_budget"
+        accountId:
+          description: '**Meta only.** Zernio SocialAccount id owning the ad account.
+            Needed only for an EMPTY campaign (zero ads); ignored otherwise.'
+          type: string
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
-          description: Campaign-level default. Ad sets inherit this unless they override.
+          description: "**Meta + Google.** On Meta, the campaign default that ad sets\
+            \ inherit unless they override it. On Google, the campaign's own bidding\
+            \ strategy."
+        bidAmount:
+          description: "**Google only.** Whole currency units (USD: 12 = $12.00).\
+            \ Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required\
+            \ for both."
+          type: number
+        roasAverageFloor:
+          description: "**Google only.** Decimal ROAS multiplier (2.0 = 2.0x), required\
+            \ for LOWEST_COST_WITH_MIN_ROAS."
+          type: number
+        budget:
+          $ref: "#/components/schemas/updateAdCampaign_request_budget"
         name:
-          description: Rename the campaign (Meta only; other platforms return 501).
-            At least one of budget/bidStrategy/name/platformSpecificData is required.
+          description: '**Meta only.** Rename the campaign.'
           maxLength: 255
           type: string
         platformSpecificData:
@@ -72572,16 +72578,20 @@ components:
       required:
       - platform
     updateAdCampaign_200_response:
+      description: "Echoes back only the fields you sent, plus `updated`."
       example:
         bidStrategy: LOWEST_COST_WITHOUT_CAP
         platformSpecificData: "{}"
         budgetLevel: campaign
+        bidAmount: 1.4658129805029452
         updated: 0
+        roasAverageFloor: 5.962133916683182
         budget:
           amount: 6.027456183070403
           type: daily
       properties:
         updated:
+          description: Local Ad documents mirrored. 0 on the empty-campaign path.
           type: integer
         budget:
           $ref: "#/components/schemas/AdBudget"
@@ -72591,6 +72601,10 @@ components:
           type: string
         bidStrategy:
           $ref: "#/components/schemas/BidStrategy"
+        bidAmount:
+          type: number
+        roasAverageFloor:
+          type: number
         platformSpecificData:
           type: object
     deleteAdCampaign_request:
