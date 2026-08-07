@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetLinkedInMentions200Response.JSON_PROPERTY_VANITY_NAME,
   GetLinkedInMentions200Response.JSON_PROPERTY_WARNING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T14:17:34.953098551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T14:56:15.454020307Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInMentions200Response {
   public static final String JSON_PROPERTY_URN = "urn";
   @javax.annotation.Nullable
