@@ -12,6 +12,7 @@
 |**commenterId** | **String** |  |  [optional] |
 |**commenterName** | **String** |  |  [optional] |
 |**commentText** | **String** |  |  [optional] |
+|**source** | [**SourceEnum**](#SourceEnum) | Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered). |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap. |  [optional] |
 |**audienceOutcome** | [**AudienceOutcomeEnum**](#AudienceOutcomeEnum) | How the audience rule resolved. Absent on automations without one. |  [optional] |
 |**commenterIsFollower** | **Boolean** | Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account). |  [optional] |
@@ -21,6 +22,16 @@
 |**commentReplyError** | **String** | Public-reply error message if commentReplyStatus is failed |  [optional] |
 |**nextDueAt** | **OffsetDateTime** | When the next queued send fires. Present only while something is still pending. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
+
+
+
+## Enum: SourceEnum
+
+| Name | Value |
+|---- | -----|
+| COMMENT | &quot;comment&quot; |
+| STORY_REPLY | &quot;story_reply&quot; |
+| DM | &quot;dm&quot; |
 
 
 

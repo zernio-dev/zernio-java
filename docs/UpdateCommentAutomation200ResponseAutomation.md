@@ -21,6 +21,7 @@
 |**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. |  [optional] |
 |**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
 |**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
+|**alsoMatchInDms** | **Boolean** | Whether these keywords also fire on a plain inbound DM. |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
 

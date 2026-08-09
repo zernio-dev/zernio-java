@@ -69,12 +69,13 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS,
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_AUDIENCE,
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_FOLLOW_GATE,
+  GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_ALSO_MATCH_IN_DMS,
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_IS_ACTIVE,
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_STATS,
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_CREATED_AT,
   GetCommentAutomation200ResponseAutomation.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T13:49:21.767377256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -242,6 +243,10 @@ public class GetCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_FOLLOW_GATE = "followGate";
   @javax.annotation.Nullable
   private CommentAutomationFollowGate followGate;
+
+  public static final String JSON_PROPERTY_ALSO_MATCH_IN_DMS = "alsoMatchInDms";
+  @javax.annotation.Nullable
+  private Boolean alsoMatchInDms;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -886,6 +891,30 @@ public class GetCommentAutomation200ResponseAutomation {
   }
 
 
+  public GetCommentAutomation200ResponseAutomation alsoMatchInDms(@javax.annotation.Nullable Boolean alsoMatchInDms) {
+    this.alsoMatchInDms = alsoMatchInDms;
+    return this;
+  }
+
+  /**
+   * Whether these keywords also fire on a plain inbound DM.
+   * @return alsoMatchInDms
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALSO_MATCH_IN_DMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAlsoMatchInDms() {
+    return alsoMatchInDms;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALSO_MATCH_IN_DMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlsoMatchInDms(@javax.annotation.Nullable Boolean alsoMatchInDms) {
+    this.alsoMatchInDms = alsoMatchInDms;
+  }
+
+
   public GetCommentAutomation200ResponseAutomation isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -1018,6 +1047,7 @@ public class GetCommentAutomation200ResponseAutomation {
         Objects.equals(this.commentReplyDelaySeconds, getCommentAutomation200ResponseAutomation.commentReplyDelaySeconds) &&
         Objects.equals(this.audience, getCommentAutomation200ResponseAutomation.audience) &&
         Objects.equals(this.followGate, getCommentAutomation200ResponseAutomation.followGate) &&
+        Objects.equals(this.alsoMatchInDms, getCommentAutomation200ResponseAutomation.alsoMatchInDms) &&
         Objects.equals(this.isActive, getCommentAutomation200ResponseAutomation.isActive) &&
         Objects.equals(this.stats, getCommentAutomation200ResponseAutomation.stats) &&
         Objects.equals(this.createdAt, getCommentAutomation200ResponseAutomation.createdAt) &&
@@ -1030,7 +1060,7 @@ public class GetCommentAutomation200ResponseAutomation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, trigger, accountId, platformPostId, postId, postTitle, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, hashCodeNullable(template), commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, dmDelaySeconds, commentReplyDelaySeconds, audience, followGate, isActive, stats, createdAt, updatedAt);
+    return Objects.hash(id, name, platform, trigger, accountId, platformPostId, postId, postTitle, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, hashCodeNullable(template), commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, dmDelaySeconds, commentReplyDelaySeconds, audience, followGate, alsoMatchInDms, isActive, stats, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1068,6 +1098,7 @@ public class GetCommentAutomation200ResponseAutomation {
     sb.append("    commentReplyDelaySeconds: ").append(toIndentedString(commentReplyDelaySeconds)).append("\n");
     sb.append("    audience: ").append(toIndentedString(audience)).append("\n");
     sb.append("    followGate: ").append(toIndentedString(followGate)).append("\n");
+    sb.append("    alsoMatchInDms: ").append(toIndentedString(alsoMatchInDms)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -1258,6 +1289,11 @@ public class GetCommentAutomation200ResponseAutomation {
     // add `followGate` to the URL query string
     if (getFollowGate() != null) {
       joiner.add(getFollowGate().toUrlQueryString(prefix + "followGate" + suffix));
+    }
+
+    // add `alsoMatchInDms` to the URL query string
+    if (getAlsoMatchInDms() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%salsoMatchInDms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAlsoMatchInDms()))));
     }
 
     // add `isActive` to the URL query string

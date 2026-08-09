@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.JSON_PROPERTY_SERVICE_TYPE_ID,
   UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T13:49:21.767377256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem {
   public static final String JSON_PROPERTY_SERVICE_TYPE_ID = "serviceTypeId";
   @javax.annotation.Nonnull

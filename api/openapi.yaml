@@ -26223,6 +26223,12 @@ paths:
         confirmation DM (`followGate`) and then delivers the real DM automatically. People we
         already know follow you skip the tap entirely.
 
+        Set `alsoMatchInDms: true` on a `comment` automation to also answer people who send
+        a keyword as a direct message instead of commenting it. One automation then covers
+        both doors, and each door is deduplicated separately (someone who already got the DM
+        from their comment still gets it if they later DM the keyword). Requires at least one
+        keyword.
+
         Links in the DM's buttons can be click-tracked (`linkTracking`, on by default) and
         clickers optionally tagged (`clickTag`) for segmentation. Stats returned include
         delivered, read, and link clicks.
@@ -70851,36 +70857,19 @@ components:
             title: title
           type: generic
         dmMessage: dmMessage
-        buttons:
-        - payload: payload
-          phone: phone
-          type: url
-          title: title
-          url: https://openapi-generator.tech
-        - payload: payload
-          phone: phone
-          type: url
-          title: title
-          url: https://openapi-generator.tech
         keywords:
         - keywords
         - keywords
         commentReplyVariations:
         - commentReplyVariations
         - commentReplyVariations
-        commentReply: commentReply
         excludeKeywords:
         - excludeKeywords
         - excludeKeywords
-        typoTolerance: true
-        trigger: comment
+        alsoMatchInDms: true
         isActive: true
-        linkTracking: true
         platform: instagram
-        accountId: accountId
-        dmDelaySeconds: 0
         createdAt: 2000-01-23T04:56:07.000+00:00
-        clickTag: clickTag
         commentReplyDelaySeconds: 6
         stats:
           triggered: 1
@@ -70892,13 +70881,31 @@ components:
           delivered: 2
           trackedSends: 7
           uniqueClicks: 3
-        name: name
         postTitle: postTitle
         dmMessageVariations:
         - dmMessageVariations
         - dmMessageVariations
         id: id
         matchMode: exact
+        buttons:
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        commentReply: commentReply
+        typoTolerance: true
+        trigger: comment
+        linkTracking: true
+        accountId: accountId
+        dmDelaySeconds: 0
+        clickTag: clickTag
+        name: name
         platformPostId: platformPostId
       properties:
         id:
@@ -70984,6 +70991,9 @@ components:
           description: Seconds waited before the public reply is posted. Absent when
             it follows the DM immediately.
           type: integer
+        alsoMatchInDms:
+          description: Whether these keywords also fire on a plain inbound DM.
+          type: boolean
         isActive:
           type: boolean
         stats:
@@ -71078,36 +71088,19 @@ components:
               title: title
             type: generic
           dmMessage: dmMessage
-          buttons:
-          - payload: payload
-            phone: phone
-            type: url
-            title: title
-            url: https://openapi-generator.tech
-          - payload: payload
-            phone: phone
-            type: url
-            title: title
-            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
           commentReplyVariations:
           - commentReplyVariations
           - commentReplyVariations
-          commentReply: commentReply
           excludeKeywords:
           - excludeKeywords
           - excludeKeywords
-          typoTolerance: true
-          trigger: comment
+          alsoMatchInDms: true
           isActive: true
-          linkTracking: true
           platform: instagram
-          accountId: accountId
-          dmDelaySeconds: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
-          clickTag: clickTag
           commentReplyDelaySeconds: 6
           stats:
             triggered: 1
@@ -71119,13 +71112,31 @@ components:
             delivered: 2
             trackedSends: 7
             uniqueClicks: 3
-          name: name
           postTitle: postTitle
           dmMessageVariations:
           - dmMessageVariations
           - dmMessageVariations
           id: id
           matchMode: exact
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          commentReply: commentReply
+          typoTolerance: true
+          trigger: comment
+          linkTracking: true
+          accountId: accountId
+          dmDelaySeconds: 0
+          clickTag: clickTag
+          name: name
           platformPostId: platformPostId
         - template:
             elements:
@@ -71211,36 +71222,19 @@ components:
               title: title
             type: generic
           dmMessage: dmMessage
-          buttons:
-          - payload: payload
-            phone: phone
-            type: url
-            title: title
-            url: https://openapi-generator.tech
-          - payload: payload
-            phone: phone
-            type: url
-            title: title
-            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
           commentReplyVariations:
           - commentReplyVariations
           - commentReplyVariations
-          commentReply: commentReply
           excludeKeywords:
           - excludeKeywords
           - excludeKeywords
-          typoTolerance: true
-          trigger: comment
+          alsoMatchInDms: true
           isActive: true
-          linkTracking: true
           platform: instagram
-          accountId: accountId
-          dmDelaySeconds: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
-          clickTag: clickTag
           commentReplyDelaySeconds: 6
           stats:
             triggered: 1
@@ -71252,13 +71246,31 @@ components:
             delivered: 2
             trackedSends: 7
             uniqueClicks: 3
-          name: name
           postTitle: postTitle
           dmMessageVariations:
           - dmMessageVariations
           - dmMessageVariations
           id: id
           matchMode: exact
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          commentReply: commentReply
+          typoTolerance: true
+          trigger: comment
+          linkTracking: true
+          accountId: accountId
+          dmDelaySeconds: 0
+          clickTag: clickTag
+          name: name
           platformPostId: platformPostId
         success: true
       properties:
@@ -71390,6 +71402,16 @@ components:
           maximum: 86400
           minimum: 0
           type: integer
+        alsoMatchInDms:
+          default: false
+          description: "Also fire these keywords on a plain inbound DM, so the automation\
+            \ answers people who message the keyword instead of commenting it. Requires\
+            \ at least one keyword (an empty keyword list means 'match anything',\
+            \ which would answer every inbound message) and is rejected on story_reply\
+            \ automations, which already trigger on DMs. Dedup is per door: a contact\
+            \ who already received the DM from their comment can still receive it\
+            \ from a DM."
+          type: boolean
         audience:
           $ref: "#/components/schemas/CommentAutomationAudience"
         followGate:
@@ -71415,6 +71437,29 @@ components:
       example:
         template: ""
         dmMessage: dmMessage
+        keywords:
+        - keywords
+        - keywords
+        commentReplyVariations:
+        - commentReplyVariations
+        - commentReplyVariations
+        excludeKeywords:
+        - excludeKeywords
+        - excludeKeywords
+        alsoMatchInDms: true
+        isActive: true
+        platform: platform
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        commentReplyDelaySeconds: 6
+        stats:
+          totalFailed: 2
+          totalSent: 5
+          totalTriggered: 5
+        dmMessageVariations:
+        - dmMessageVariations
+        - dmMessageVariations
+        id: id
+        matchMode: exact
         audience:
           followerStatus: any
           whenUnknown: send
@@ -71430,39 +71475,17 @@ components:
           type: url
           title: title
           url: https://openapi-generator.tech
-        keywords:
-        - keywords
-        - keywords
-        commentReplyVariations:
-        - commentReplyVariations
-        - commentReplyVariations
         commentReply: commentReply
-        excludeKeywords:
-        - excludeKeywords
-        - excludeKeywords
         typoTolerance: true
         trigger: comment
-        isActive: true
         linkTracking: true
-        platform: platform
         dmDelaySeconds: 0
-        createdAt: 2000-01-23T04:56:07.000+00:00
         clickTag: clickTag
-        commentReplyDelaySeconds: 6
-        stats:
-          totalFailed: 2
-          totalSent: 5
-          totalTriggered: 5
         name: name
-        dmMessageVariations:
-        - dmMessageVariations
-        - dmMessageVariations
-        id: id
         followGate:
           message: message
           buttonLabel: buttonLabel
           notFollowingMessage: notFollowingMessage
-        matchMode: exact
         platformPostId: platformPostId
       properties:
         id:
@@ -71544,6 +71567,9 @@ components:
           $ref: "#/components/schemas/CommentAutomationAudience"
         followGate:
           $ref: "#/components/schemas/CommentAutomationFollowGate"
+        alsoMatchInDms:
+          description: Whether these keywords also fire on a plain inbound DM.
+          type: boolean
         isActive:
           type: boolean
         stats:
@@ -71556,6 +71582,29 @@ components:
         automation:
           template: ""
           dmMessage: dmMessage
+          keywords:
+          - keywords
+          - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
+          excludeKeywords:
+          - excludeKeywords
+          - excludeKeywords
+          alsoMatchInDms: true
+          isActive: true
+          platform: platform
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          commentReplyDelaySeconds: 6
+          stats:
+            totalFailed: 2
+            totalSent: 5
+            totalTriggered: 5
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
+          id: id
+          matchMode: exact
           audience:
             followerStatus: any
             whenUnknown: send
@@ -71571,39 +71620,17 @@ components:
             type: url
             title: title
             url: https://openapi-generator.tech
-          keywords:
-          - keywords
-          - keywords
-          commentReplyVariations:
-          - commentReplyVariations
-          - commentReplyVariations
           commentReply: commentReply
-          excludeKeywords:
-          - excludeKeywords
-          - excludeKeywords
           typoTolerance: true
           trigger: comment
-          isActive: true
           linkTracking: true
-          platform: platform
           dmDelaySeconds: 0
-          createdAt: 2000-01-23T04:56:07.000+00:00
           clickTag: clickTag
-          commentReplyDelaySeconds: 6
-          stats:
-            totalFailed: 2
-            totalSent: 5
-            totalTriggered: 5
           name: name
-          dmMessageVariations:
-          - dmMessageVariations
-          - dmMessageVariations
-          id: id
           followGate:
             message: message
             buttonLabel: buttonLabel
             notFollowingMessage: notFollowingMessage
-          matchMode: exact
           platformPostId: platformPostId
         success: true
       properties:
@@ -71624,6 +71651,7 @@ components:
         excludeKeywords:
         - excludeKeywords
         - excludeKeywords
+        alsoMatchInDms: true
         isActive: true
         platform: platform
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -71754,6 +71782,9 @@ components:
           $ref: "#/components/schemas/CommentAutomationAudience"
         followGate:
           $ref: "#/components/schemas/CommentAutomationFollowGate"
+        alsoMatchInDms:
+          description: Whether these keywords also fire on a plain inbound DM.
+          type: boolean
         isActive:
           type: boolean
         stats:
@@ -71772,6 +71803,7 @@ components:
         commenterFollowerCount: 1
         audienceOutcome: passed
         commentReplyStatus: sent
+        source: comment
         error: error
         commentText: commentText
         commenterId: commenterId
@@ -71790,6 +71822,14 @@ components:
         commenterName:
           type: string
         commentText:
+          type: string
+        source:
+          description: Which door triggered this send. Absent on rows written before
+            this field existed (all of those are comment-triggered).
+          enum:
+          - comment
+          - story_reply
+          - dm
           type: string
         status:
           description: DM outcome. 'pending' = the automation has a dmDelaySeconds
@@ -71856,6 +71896,7 @@ components:
           excludeKeywords:
           - excludeKeywords
           - excludeKeywords
+          alsoMatchInDms: true
           isActive: true
           platform: platform
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -71908,6 +71949,7 @@ components:
           commenterFollowerCount: 1
           audienceOutcome: passed
           commentReplyStatus: sent
+          source: comment
           error: error
           commentText: commentText
           commenterId: commenterId
@@ -71922,6 +71964,7 @@ components:
           commenterFollowerCount: 1
           audienceOutcome: passed
           commentReplyStatus: sent
+          source: comment
           error: error
           commentText: commentText
           commenterId: commenterId
@@ -72012,6 +72055,12 @@ components:
           description: Tag applied to a contact when they click a tracked link (requires
             linkTracking). Empty string clears it.
           type: string
+        alsoMatchInDms:
+          description: "Also fire these keywords on a plain inbound DM. Enabling it\
+            \ requires the automation to end up with at least one keyword (this request's\
+            \ keywords if you send them, otherwise the stored ones) and is rejected\
+            \ on story_reply automations."
+          type: boolean
         dmDelaySeconds:
           description: Seconds to wait after the trigger before sending the DM. Send
             0 to clear the delay and reply immediately.
@@ -72060,6 +72109,7 @@ components:
         - excludeKeywords
         - excludeKeywords
         typoTolerance: true
+        alsoMatchInDms: true
         isActive: true
         name: name
         dmMessageVariations:
@@ -72131,6 +72181,9 @@ components:
           $ref: "#/components/schemas/CommentAutomationAudience"
         followGate:
           $ref: "#/components/schemas/CommentAutomationFollowGate"
+        alsoMatchInDms:
+          description: Whether these keywords also fire on a plain inbound DM.
+          type: boolean
         isActive:
           type: boolean
         updatedAt:
@@ -72167,6 +72220,7 @@ components:
           - excludeKeywords
           - excludeKeywords
           typoTolerance: true
+          alsoMatchInDms: true
           isActive: true
           name: name
           dmMessageVariations:
@@ -72259,6 +72313,7 @@ components:
           commenterFollowerCount: 1
           audienceOutcome: passed
           commentReplyStatus: sent
+          source: comment
           error: error
           commentText: commentText
           commenterId: commenterId
@@ -72273,6 +72328,7 @@ components:
           commenterFollowerCount: 1
           audienceOutcome: passed
           commentReplyStatus: sent
+          source: comment
           error: error
           commentText: commentText
           commenterId: commenterId

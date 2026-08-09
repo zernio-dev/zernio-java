@@ -39,6 +39,7 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_ID,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_NAME,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_TEXT,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_SOURCE,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_STATUS,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_AUDIENCE_OUTCOME,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_IS_FOLLOWER,
@@ -49,7 +50,7 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_NEXT_DUE_AT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T13:49:21.767377256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -70,6 +71,47 @@ public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_COMMENT_TEXT = "commentText";
   @javax.annotation.Nullable
   private String commentText;
+
+  /**
+   * Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered).
+   */
+  public enum SourceEnum {
+    COMMENT(String.valueOf("comment")),
+    
+    STORY_REPLY(String.valueOf("story_reply")),
+    
+    DM(String.valueOf("dm"));
+
+    private String value;
+
+    SourceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  @javax.annotation.Nullable
+  private SourceEnum source;
 
   /**
    * DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.
@@ -349,6 +391,30 @@ public class GetCommentAutomation200ResponseLogsInner {
   }
 
 
+  public GetCommentAutomation200ResponseLogsInner source(@javax.annotation.Nullable SourceEnum source) {
+    this.source = source;
+    return this;
+  }
+
+  /**
+   * Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered).
+   * @return source
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SourceEnum getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSource(@javax.annotation.Nullable SourceEnum source) {
+    this.source = source;
+  }
+
+
   public GetCommentAutomation200ResponseLogsInner status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
@@ -582,6 +648,7 @@ public class GetCommentAutomation200ResponseLogsInner {
         Objects.equals(this.commenterId, getCommentAutomation200ResponseLogsInner.commenterId) &&
         Objects.equals(this.commenterName, getCommentAutomation200ResponseLogsInner.commenterName) &&
         Objects.equals(this.commentText, getCommentAutomation200ResponseLogsInner.commentText) &&
+        Objects.equals(this.source, getCommentAutomation200ResponseLogsInner.source) &&
         Objects.equals(this.status, getCommentAutomation200ResponseLogsInner.status) &&
         Objects.equals(this.audienceOutcome, getCommentAutomation200ResponseLogsInner.audienceOutcome) &&
         Objects.equals(this.commenterIsFollower, getCommentAutomation200ResponseLogsInner.commenterIsFollower) &&
@@ -595,7 +662,7 @@ public class GetCommentAutomation200ResponseLogsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, commentId, commenterId, commenterName, commentText, status, audienceOutcome, commenterIsFollower, commenterFollowerCount, error, commentReplyStatus, commentReplyError, nextDueAt, createdAt);
+    return Objects.hash(id, commentId, commenterId, commenterName, commentText, source, status, audienceOutcome, commenterIsFollower, commenterFollowerCount, error, commentReplyStatus, commentReplyError, nextDueAt, createdAt);
   }
 
   @Override
@@ -607,6 +674,7 @@ public class GetCommentAutomation200ResponseLogsInner {
     sb.append("    commenterId: ").append(toIndentedString(commenterId)).append("\n");
     sb.append("    commenterName: ").append(toIndentedString(commenterName)).append("\n");
     sb.append("    commentText: ").append(toIndentedString(commentText)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    audienceOutcome: ").append(toIndentedString(audienceOutcome)).append("\n");
     sb.append("    commenterIsFollower: ").append(toIndentedString(commenterIsFollower)).append("\n");
@@ -686,6 +754,11 @@ public class GetCommentAutomation200ResponseLogsInner {
     // add `commentText` to the URL query string
     if (getCommentText() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scommentText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentText()))));
+    }
+
+    // add `source` to the URL query string
+    if (getSource() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSource()))));
     }
 
     // add `status` to the URL query string

@@ -31,6 +31,7 @@
 |**commentReplyDelaySeconds** | **Integer** | Seconds waited before the public reply is posted. Absent when it follows the DM immediately. |  [optional] |
 |**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
 |**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
+|**alsoMatchInDms** | **Boolean** | Whether these keywords also fire on a plain inbound DM. |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**CreateCommentAutomation200ResponseAutomationStats**](CreateCommentAutomation200ResponseAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |

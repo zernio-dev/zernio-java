@@ -57,13 +57,14 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY_VARIATIONS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING,
   UpdateCommentAutomationRequest.JSON_PROPERTY_CLICK_TAG,
+  UpdateCommentAutomationRequest.JSON_PROPERTY_ALSO_MATCH_IN_DMS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_DM_DELAY_SECONDS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY_DELAY_SECONDS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_AUDIENCE,
   UpdateCommentAutomationRequest.JSON_PROPERTY_FOLLOW_GATE,
   UpdateCommentAutomationRequest.JSON_PROPERTY_IS_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T13:49:21.767377256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -191,6 +192,10 @@ public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_CLICK_TAG = "clickTag";
   @javax.annotation.Nullable
   private String clickTag;
+
+  public static final String JSON_PROPERTY_ALSO_MATCH_IN_DMS = "alsoMatchInDms";
+  @javax.annotation.Nullable
+  private Boolean alsoMatchInDms;
 
   public static final String JSON_PROPERTY_DM_DELAY_SECONDS = "dmDelaySeconds";
   @javax.annotation.Nullable
@@ -599,6 +604,30 @@ public class UpdateCommentAutomationRequest {
   }
 
 
+  public UpdateCommentAutomationRequest alsoMatchInDms(@javax.annotation.Nullable Boolean alsoMatchInDms) {
+    this.alsoMatchInDms = alsoMatchInDms;
+    return this;
+  }
+
+  /**
+   * Also fire these keywords on a plain inbound DM. Enabling it requires the automation to end up with at least one keyword (this request&#39;s keywords if you send them, otherwise the stored ones) and is rejected on story_reply automations.
+   * @return alsoMatchInDms
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALSO_MATCH_IN_DMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAlsoMatchInDms() {
+    return alsoMatchInDms;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALSO_MATCH_IN_DMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlsoMatchInDms(@javax.annotation.Nullable Boolean alsoMatchInDms) {
+    this.alsoMatchInDms = alsoMatchInDms;
+  }
+
+
   public UpdateCommentAutomationRequest dmDelaySeconds(@javax.annotation.Nullable Integer dmDelaySeconds) {
     this.dmDelaySeconds = dmDelaySeconds;
     return this;
@@ -749,6 +778,7 @@ public class UpdateCommentAutomationRequest {
         Objects.equals(this.commentReplyVariations, updateCommentAutomationRequest.commentReplyVariations) &&
         Objects.equals(this.linkTracking, updateCommentAutomationRequest.linkTracking) &&
         Objects.equals(this.clickTag, updateCommentAutomationRequest.clickTag) &&
+        Objects.equals(this.alsoMatchInDms, updateCommentAutomationRequest.alsoMatchInDms) &&
         Objects.equals(this.dmDelaySeconds, updateCommentAutomationRequest.dmDelaySeconds) &&
         Objects.equals(this.commentReplyDelaySeconds, updateCommentAutomationRequest.commentReplyDelaySeconds) &&
         Objects.equals(this.audience, updateCommentAutomationRequest.audience) &&
@@ -762,7 +792,7 @@ public class UpdateCommentAutomationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, trigger, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, hashCodeNullable(template), commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, dmDelaySeconds, commentReplyDelaySeconds, audience, followGate, isActive);
+    return Objects.hash(name, trigger, keywords, matchMode, excludeKeywords, typoTolerance, dmMessage, buttons, hashCodeNullable(template), commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, alsoMatchInDms, dmDelaySeconds, commentReplyDelaySeconds, audience, followGate, isActive);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -790,6 +820,7 @@ public class UpdateCommentAutomationRequest {
     sb.append("    commentReplyVariations: ").append(toIndentedString(commentReplyVariations)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
     sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
+    sb.append("    alsoMatchInDms: ").append(toIndentedString(alsoMatchInDms)).append("\n");
     sb.append("    dmDelaySeconds: ").append(toIndentedString(dmDelaySeconds)).append("\n");
     sb.append("    commentReplyDelaySeconds: ").append(toIndentedString(commentReplyDelaySeconds)).append("\n");
     sb.append("    audience: ").append(toIndentedString(audience)).append("\n");
@@ -931,6 +962,11 @@ public class UpdateCommentAutomationRequest {
     // add `clickTag` to the URL query string
     if (getClickTag() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sclickTag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClickTag()))));
+    }
+
+    // add `alsoMatchInDms` to the URL query string
+    if (getAlsoMatchInDms() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%salsoMatchInDms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAlsoMatchInDms()))));
     }
 
     // add `dmDelaySeconds` to the URL query string
