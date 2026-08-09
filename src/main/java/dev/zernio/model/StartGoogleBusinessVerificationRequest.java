@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   StartGoogleBusinessVerificationRequest.JSON_PROPERTY_MAILER_CONTACT,
   StartGoogleBusinessVerificationRequest.JSON_PROPERTY_CONTEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:52:32.922079794Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T12:51:48.130711657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartGoogleBusinessVerificationRequest {
   /**
    * The verification method. Selects which method-specific field below is required.

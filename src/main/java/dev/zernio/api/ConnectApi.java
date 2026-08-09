@@ -54,6 +54,7 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject3;
 import dev.zernio.model.ListFacebookPages200Response;
 import dev.zernio.model.ListGoogleBusinessLocations200Response;
+import dev.zernio.model.ListInstagramPages200Response;
 import dev.zernio.model.ListLinkedInOrganizations200Response;
 import dev.zernio.model.ListPinterestBoardsForSelection200Response;
 import dev.zernio.model.ListSnapchatProfiles200Response;
@@ -63,6 +64,8 @@ import dev.zernio.model.SelectFacebookPage409Response;
 import dev.zernio.model.SelectFacebookPageRequest;
 import dev.zernio.model.SelectGoogleBusinessLocation200Response;
 import dev.zernio.model.SelectGoogleBusinessLocationRequest;
+import dev.zernio.model.SelectInstagramAccount200Response;
+import dev.zernio.model.SelectInstagramAccountRequest;
 import dev.zernio.model.SelectLinkedInOrganization200Response;
 import dev.zernio.model.SelectLinkedInOrganizationRequest;
 import dev.zernio.model.SelectPinterestBoard200Response;
@@ -108,7 +111,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:52:32.922079794Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T12:51:48.130711657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1427,11 +1430,12 @@ public class ConnectApi {
    * @param profileId Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. (required)
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
+   * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)
    * @return GetConnectUrl200Response
    * @throws ApiException if fails to make API call
    */
-  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless) throws ApiException {
-    return getConnectUrl(platform, profileId, redirectUrl, headless, null);
+  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod) throws ApiException {
+    return getConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, null);
   }
 
   /**
@@ -1441,12 +1445,13 @@ public class ConnectApi {
    * @param profileId Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. (required)
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
+   * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)
    * @param headers Optional headers to include in the request
    * @return GetConnectUrl200Response
    * @throws ApiException if fails to make API call
    */
-  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetConnectUrl200Response> localVarResponse = getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, headers);
+  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConnectUrl200Response> localVarResponse = getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, headers);
     return localVarResponse.getData();
   }
 
@@ -1457,11 +1462,12 @@ public class ConnectApi {
    * @param profileId Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. (required)
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
+   * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)
    * @return ApiResponse&lt;GetConnectUrl200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless) throws ApiException {
-    return getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, null);
+  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod) throws ApiException {
+    return getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, null);
   }
 
   /**
@@ -1471,12 +1477,13 @@ public class ConnectApi {
    * @param profileId Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. (required)
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
+   * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetConnectUrl200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectUrlRequestBuilder(platform, profileId, redirectUrl, headless, headers);
+  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getConnectUrlRequestBuilder(platform, profileId, redirectUrl, headless, loginMethod, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1523,7 +1530,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder getConnectUrlRequestBuilder(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getConnectUrlRequestBuilder(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'platform' is set
     if (platform == null) {
       throw new ApiException(400, "Missing the required parameter 'platform' when calling getConnectUrl");
@@ -1547,6 +1554,8 @@ public class ConnectApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("redirect_url", redirectUrl));
     localVarQueryParameterBaseName = "headless";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("headless", headless));
+    localVarQueryParameterBaseName = "loginMethod";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("loginMethod", loginMethod));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -3399,6 +3408,148 @@ public class ConnectApi {
   }
 
   /**
+   * List Pages with a linked Instagram account
+   * Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+   * @param profileId Profile ID from your connection flow (required)
+   * @param tempToken Long-lived Facebook user access token from the OAuth callback redirect (required)
+   * @return ListInstagramPages200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListInstagramPages200Response listInstagramPages(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken) throws ApiException {
+    return listInstagramPages(profileId, tempToken, null);
+  }
+
+  /**
+   * List Pages with a linked Instagram account
+   * Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+   * @param profileId Profile ID from your connection flow (required)
+   * @param tempToken Long-lived Facebook user access token from the OAuth callback redirect (required)
+   * @param headers Optional headers to include in the request
+   * @return ListInstagramPages200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListInstagramPages200Response listInstagramPages(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListInstagramPages200Response> localVarResponse = listInstagramPagesWithHttpInfo(profileId, tempToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Pages with a linked Instagram account
+   * Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+   * @param profileId Profile ID from your connection flow (required)
+   * @param tempToken Long-lived Facebook user access token from the OAuth callback redirect (required)
+   * @return ApiResponse&lt;ListInstagramPages200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListInstagramPages200Response> listInstagramPagesWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken) throws ApiException {
+    return listInstagramPagesWithHttpInfo(profileId, tempToken, null);
+  }
+
+  /**
+   * List Pages with a linked Instagram account
+   * Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+   * @param profileId Profile ID from your connection flow (required)
+   * @param tempToken Long-lived Facebook user access token from the OAuth callback redirect (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListInstagramPages200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListInstagramPages200Response> listInstagramPagesWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listInstagramPagesRequestBuilder(profileId, tempToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listInstagramPages", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListInstagramPages200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListInstagramPages200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListInstagramPages200Response>() {});
+        
+
+        return new ApiResponse<ListInstagramPages200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listInstagramPagesRequestBuilder(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'profileId' is set
+    if (profileId == null) {
+      throw new ApiException(400, "Missing the required parameter 'profileId' when calling listInstagramPages");
+    }
+    // verify the required parameter 'tempToken' is set
+    if (tempToken == null) {
+      throw new ApiException(400, "Missing the required parameter 'tempToken' when calling listInstagramPages");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/instagram/select-account";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "tempToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("tempToken", tempToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List LinkedIn orgs
    * Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
    * @param tempToken The temporary LinkedIn access token from the OAuth redirect (required)
@@ -4226,6 +4377,129 @@ public class ConnectApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectGoogleBusinessLocationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Select the Page whose Instagram account to connect
+   * Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+   * @param selectInstagramAccountRequest  (required)
+   * @return SelectInstagramAccount200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SelectInstagramAccount200Response selectInstagramAccount(@javax.annotation.Nonnull SelectInstagramAccountRequest selectInstagramAccountRequest) throws ApiException {
+    return selectInstagramAccount(selectInstagramAccountRequest, null);
+  }
+
+  /**
+   * Select the Page whose Instagram account to connect
+   * Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+   * @param selectInstagramAccountRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return SelectInstagramAccount200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SelectInstagramAccount200Response selectInstagramAccount(@javax.annotation.Nonnull SelectInstagramAccountRequest selectInstagramAccountRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<SelectInstagramAccount200Response> localVarResponse = selectInstagramAccountWithHttpInfo(selectInstagramAccountRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Select the Page whose Instagram account to connect
+   * Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+   * @param selectInstagramAccountRequest  (required)
+   * @return ApiResponse&lt;SelectInstagramAccount200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SelectInstagramAccount200Response> selectInstagramAccountWithHttpInfo(@javax.annotation.Nonnull SelectInstagramAccountRequest selectInstagramAccountRequest) throws ApiException {
+    return selectInstagramAccountWithHttpInfo(selectInstagramAccountRequest, null);
+  }
+
+  /**
+   * Select the Page whose Instagram account to connect
+   * Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+   * @param selectInstagramAccountRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SelectInstagramAccount200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SelectInstagramAccount200Response> selectInstagramAccountWithHttpInfo(@javax.annotation.Nonnull SelectInstagramAccountRequest selectInstagramAccountRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = selectInstagramAccountRequestBuilder(selectInstagramAccountRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("selectInstagramAccount", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SelectInstagramAccount200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SelectInstagramAccount200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SelectInstagramAccount200Response>() {});
+        
+
+        return new ApiResponse<SelectInstagramAccount200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder selectInstagramAccountRequestBuilder(@javax.annotation.Nonnull SelectInstagramAccountRequest selectInstagramAccountRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'selectInstagramAccountRequest' is set
+    if (selectInstagramAccountRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'selectInstagramAccountRequest' when calling selectInstagramAccount");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/instagram/select-account";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectInstagramAccountRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

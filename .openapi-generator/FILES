@@ -925,6 +925,9 @@ docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
+docs/ListInstagramPages200Response.md
+docs/ListInstagramPages200ResponsePagesInner.md
+docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md
 docs/ListInstagramStories200Response.md
 docs/ListInstagramStories200ResponseDataInner.md
 docs/ListLeadForms200Response.md
@@ -1182,6 +1185,9 @@ docs/SelectFacebookPageRequestUserProfile.md
 docs/SelectGoogleBusinessLocation200Response.md
 docs/SelectGoogleBusinessLocation200ResponseAccount.md
 docs/SelectGoogleBusinessLocationRequest.md
+docs/SelectInstagramAccount200Response.md
+docs/SelectInstagramAccount200ResponseAccount.md
+docs/SelectInstagramAccountRequest.md
 docs/SelectLinkedInOrganization200Response.md
 docs/SelectLinkedInOrganization200ResponseAccount.md
 docs/SelectLinkedInOrganization200ResponseBulkRefresh.md
@@ -2633,6 +2639,9 @@ src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReply.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReviewer.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseSummary.java
+src/main/java/dev/zernio/model/ListInstagramPages200Response.java
+src/main/java/dev/zernio/model/ListInstagramPages200ResponsePagesInner.java
+src/main/java/dev/zernio/model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.java
 src/main/java/dev/zernio/model/ListInstagramStories200Response.java
 src/main/java/dev/zernio/model/ListInstagramStories200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListLeadForms200Response.java
@@ -2878,6 +2887,9 @@ src/main/java/dev/zernio/model/SelectFacebookPageRequestUserProfile.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200Response.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocationRequest.java
+src/main/java/dev/zernio/model/SelectInstagramAccount200Response.java
+src/main/java/dev/zernio/model/SelectInstagramAccount200ResponseAccount.java
+src/main/java/dev/zernio/model/SelectInstagramAccountRequest.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200Response.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseBulkRefresh.java
@@ -3339,3 +3351,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccountTest.java
+src/test/java/dev/zernio/model/ListInstagramPages200ResponsePagesInnerTest.java
+src/test/java/dev/zernio/model/ListInstagramPages200ResponseTest.java
+src/test/java/dev/zernio/model/SelectInstagramAccount200ResponseAccountTest.java
+src/test/java/dev/zernio/model/SelectInstagramAccount200ResponseTest.java
+src/test/java/dev/zernio/model/SelectInstagramAccountRequestTest.java

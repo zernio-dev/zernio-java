@@ -7375,6 +7375,25 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: |
+          Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.
+
+          `instagram_login` (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.
+
+          `facebook_login`: the Facebook Login dialog, i.e. "Instagram API with Facebook Login". The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, `/v1/connect/instagram/select-account`.
+
+          `facebook_login` does not support `headless=true`: its callback always redirects to Zernio's hosted account-selection page. Pass a `redirect_url` and let the standard flow return the user to you.
+        explode: true
+        in: query
+        name: loginMethod
+        required: false
+        schema:
+          default: instagram_login
+          enum:
+          - instagram_login
+          - facebook_login
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -7791,6 +7810,117 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/instagram/select-account:
+    get:
+      description: |
+        Completes the `loginMethod=facebook_login` Instagram flow, i.e. "Instagram API with Facebook Login".
+
+        After the user authorizes on Facebook, extract `tempToken` from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.
+
+        Not used by the default `instagram_login` flow, which creates the account without a selection step.
+      operationId: listInstagramPages
+      parameters:
+      - description: Profile ID from your connection flow
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Long-lived Facebook user access token from the OAuth callback
+          redirect
+        explode: true
+        in: query
+        name: tempToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                pages:
+                - id: "811889972008357"
+                  name: My Brand Page
+                  access_token: EAAxxxxx...
+                  instagram_business_account:
+                    id: "17841400649984407"
+                    username: mybrand
+                    profile_picture_url: https://...
+              schema:
+                $ref: "#/components/schemas/listInstagramPages_200_response"
+          description: Facebook Pages that have a linked Instagram professional account
+        "400":
+          description: Missing required parameters (profileId or tempToken)
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: User does not have access to the specified profile
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: List Pages with a linked Instagram account
+      tags:
+      - Connect
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account's access token, so every Instagram call for it runs against the Facebook Graph host.
+
+        One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account's conversations, external posts and stats.
+      operationId: selectInstagramAccount
+      requestBody:
+        content:
+          application/json:
+            example:
+              profileId: 507f1f77bcf86cd799439011
+              pageId: "811889972008357"
+              tempToken: EAAxxxxx...
+              redirect_url: https://yourdomain.com/integrations/callback
+            schema:
+              $ref: "#/components/schemas/selectInstagramAccount_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: Instagram (via Facebook) connected
+                account:
+                  accountId: 64e1f0a9e2b5af0012ab34cd
+                  platform: instagram
+                  username: mybrand
+                  displayName: My Brand Page
+                  profilePicture: https://...
+                  isActive: true
+                  loginMethod: facebook_login
+              schema:
+                $ref: "#/components/schemas/selectInstagramAccount_200_response"
+          description: Instagram account connected
+        "400":
+          description: "Missing required fields, or the selected Page has no linked\
+            \ Instagram professional account"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: User does not have access to the specified profile
+        "404":
+          description: Selected page not found among the pages this token can manage
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Select the Page whose Instagram account to connect
+      tags:
+      - Connect
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -49918,6 +50048,133 @@ components:
           enum:
           - RECONNECT_ACCOUNT_MISMATCH
           type: string
+    listInstagramPages_200_response_pages_inner_instagram_business_account:
+      description: The Instagram professional account linked to this Page
+      example:
+        profile_picture_url: profile_picture_url
+        id: id
+        username: username
+      properties:
+        id:
+          description: Instagram Business Account ID
+          type: string
+        username:
+          type: string
+        profile_picture_url:
+          type: string
+    listInstagramPages_200_response_pages_inner:
+      example:
+        access_token: access_token
+        instagram_business_account:
+          profile_picture_url: profile_picture_url
+          id: id
+          username: username
+        name: name
+        id: id
+      properties:
+        id:
+          description: Facebook Page ID
+          type: string
+        name:
+          description: Page name
+          type: string
+        access_token:
+          description: Page-specific access token
+          type: string
+        instagram_business_account:
+          $ref: "#/components/schemas/listInstagramPages_200_response_pages_inner_instagram_business_account"
+    listInstagramPages_200_response:
+      example:
+        pages:
+        - access_token: access_token
+          instagram_business_account:
+            profile_picture_url: profile_picture_url
+            id: id
+            username: username
+          name: name
+          id: id
+        - access_token: access_token
+          instagram_business_account:
+            profile_picture_url: profile_picture_url
+            id: id
+            username: username
+          name: name
+          id: id
+      properties:
+        pages:
+          items:
+            $ref: "#/components/schemas/listInstagramPages_200_response_pages_inner"
+          type: array
+    selectInstagramAccount_request:
+      properties:
+        profileId:
+          description: Profile ID from your connection flow
+          type: string
+        pageId:
+          description: "The Facebook Page ID selected by the user, from GET /v1/connect/instagram/select-account"
+          type: string
+        tempToken:
+          description: Long-lived Facebook user access token from the OAuth callback
+            redirect
+          type: string
+        redirect_url:
+          description: Optional custom redirect URL to return to after selection
+          format: uri
+          type: string
+      required:
+      - pageId
+      - profileId
+      - tempToken
+    selectInstagramAccount_200_response_account:
+      example:
+        accountId: accountId
+        profilePicture: profilePicture
+        loginMethod: facebook_login
+        displayName: displayName
+        isActive: true
+        platform: instagram
+        username: username
+      properties:
+        accountId:
+          description: ID of the created SocialAccount
+          type: string
+        platform:
+          enum:
+          - instagram
+          type: string
+        username:
+          type: string
+        displayName:
+          description: Name of the Facebook Page backing this account
+          type: string
+        profilePicture:
+          type: string
+        isActive:
+          type: boolean
+        loginMethod:
+          enum:
+          - facebook_login
+          type: string
+    selectInstagramAccount_200_response:
+      example:
+        message: message
+        redirect_url: redirect_url
+        account:
+          accountId: accountId
+          profilePicture: profilePicture
+          loginMethod: facebook_login
+          displayName: displayName
+          isActive: true
+          platform: instagram
+          username: username
+      properties:
+        message:
+          type: string
+        redirect_url:
+          description: Redirect URL if a custom redirect_url was provided
+          type: string
+        account:
+          $ref: "#/components/schemas/selectInstagramAccount_200_response_account"
     listGoogleBusinessLocations_200_response_locations_inner:
       example:
         accountId: accountId

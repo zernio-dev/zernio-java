@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-07T15:52:32.922079794Z[Etc/UTC]
+- Build date: 2026-08-09T12:51:48.130711657Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -462,6 +462,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**listFacebookPagesWithHttpInfo**](docs/ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages
 *ConnectApi* | [**listGoogleBusinessLocations**](docs/ConnectApi.md#listGoogleBusinessLocations) | **GET** /v1/connect/googlebusiness/locations | List GBP locations
 *ConnectApi* | [**listGoogleBusinessLocationsWithHttpInfo**](docs/ConnectApi.md#listGoogleBusinessLocationsWithHttpInfo) | **GET** /v1/connect/googlebusiness/locations | List GBP locations
+*ConnectApi* | [**listInstagramPages**](docs/ConnectApi.md#listInstagramPages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account
+*ConnectApi* | [**listInstagramPagesWithHttpInfo**](docs/ConnectApi.md#listInstagramPagesWithHttpInfo) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account
 *ConnectApi* | [**listLinkedInOrganizations**](docs/ConnectApi.md#listLinkedInOrganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
 *ConnectApi* | [**listLinkedInOrganizationsWithHttpInfo**](docs/ConnectApi.md#listLinkedInOrganizationsWithHttpInfo) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
 *ConnectApi* | [**listPinterestBoardsForSelection**](docs/ConnectApi.md#listPinterestBoardsForSelection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
@@ -474,6 +476,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**selectFacebookPageWithHttpInfo**](docs/ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectGoogleBusinessLocation**](docs/ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select GBP location
 *ConnectApi* | [**selectGoogleBusinessLocationWithHttpInfo**](docs/ConnectApi.md#selectGoogleBusinessLocationWithHttpInfo) | **POST** /v1/connect/googlebusiness/select-location | Select GBP location
+*ConnectApi* | [**selectInstagramAccount**](docs/ConnectApi.md#selectInstagramAccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect
+*ConnectApi* | [**selectInstagramAccountWithHttpInfo**](docs/ConnectApi.md#selectInstagramAccountWithHttpInfo) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect
 *ConnectApi* | [**selectLinkedInOrganization**](docs/ConnectApi.md#selectLinkedInOrganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org
 *ConnectApi* | [**selectLinkedInOrganizationWithHttpInfo**](docs/ConnectApi.md#selectLinkedInOrganizationWithHttpInfo) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org
 *ConnectApi* | [**selectPinterestBoard**](docs/ConnectApi.md#selectPinterestBoard) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board
@@ -2088,6 +2092,9 @@ Class | Method | HTTP request | Description
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
  - [ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
+ - [ListInstagramPages200Response](docs/ListInstagramPages200Response.md)
+ - [ListInstagramPages200ResponsePagesInner](docs/ListInstagramPages200ResponsePagesInner.md)
+ - [ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount](docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md)
  - [ListInstagramStories200Response](docs/ListInstagramStories200Response.md)
  - [ListInstagramStories200ResponseDataInner](docs/ListInstagramStories200ResponseDataInner.md)
  - [ListLeadForms200Response](docs/ListLeadForms200Response.md)
@@ -2333,6 +2340,9 @@ Class | Method | HTTP request | Description
  - [SelectGoogleBusinessLocation200Response](docs/SelectGoogleBusinessLocation200Response.md)
  - [SelectGoogleBusinessLocation200ResponseAccount](docs/SelectGoogleBusinessLocation200ResponseAccount.md)
  - [SelectGoogleBusinessLocationRequest](docs/SelectGoogleBusinessLocationRequest.md)
+ - [SelectInstagramAccount200Response](docs/SelectInstagramAccount200Response.md)
+ - [SelectInstagramAccount200ResponseAccount](docs/SelectInstagramAccount200ResponseAccount.md)
+ - [SelectInstagramAccountRequest](docs/SelectInstagramAccountRequest.md)
  - [SelectLinkedInOrganization200Response](docs/SelectLinkedInOrganization200Response.md)
  - [SelectLinkedInOrganization200ResponseAccount](docs/SelectLinkedInOrganization200ResponseAccount.md)
  - [SelectLinkedInOrganization200ResponseBulkRefresh](docs/SelectLinkedInOrganization200ResponseBulkRefresh.md)

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   InstagramDemographicsResponse.JSON_PROPERTY_DEMOGRAPHICS,
   InstagramDemographicsResponse.JSON_PROPERTY_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-07T15:52:32.922079794Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T12:51:48.130711657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramDemographicsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
