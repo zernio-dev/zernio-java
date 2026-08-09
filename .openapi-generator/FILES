@@ -3351,9 +3351,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccountTest.java
-src/test/java/dev/zernio/model/ListInstagramPages200ResponsePagesInnerTest.java
-src/test/java/dev/zernio/model/ListInstagramPages200ResponseTest.java
-src/test/java/dev/zernio/model/SelectInstagramAccount200ResponseAccountTest.java
-src/test/java/dev/zernio/model/SelectInstagramAccount200ResponseTest.java
-src/test/java/dev/zernio/model/SelectInstagramAccountRequestTest.java

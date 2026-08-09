@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CompleteWhatsAppPhoneSelection200Response.JSON_PROPERTY_REDIRECT_URL,
   CompleteWhatsAppPhoneSelection200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T12:51:48.130711657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T13:49:21.767377256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CompleteWhatsAppPhoneSelection200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
