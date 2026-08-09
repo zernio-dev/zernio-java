@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-09T14:54:11.700997072Z[Etc/UTC]
+- Build date: 2026-08-09T19:18:19.994328796Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -402,6 +402,8 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**hideInboxCommentWithHttpInfo**](docs/CommentsApi.md#hideInboxCommentWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment
 *CommentsApi* | [**likeInboxComment**](docs/CommentsApi.md#likeInboxComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment
 *CommentsApi* | [**likeInboxCommentWithHttpInfo**](docs/CommentsApi.md#likeInboxCommentWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment
+*CommentsApi* | [**likePost**](docs/CommentsApi.md#likePost) | **POST** /v1/inbox/posts/{postId}/like | Like post
+*CommentsApi* | [**likePostWithHttpInfo**](docs/CommentsApi.md#likePostWithHttpInfo) | **POST** /v1/inbox/posts/{postId}/like | Like post
 *CommentsApi* | [**listInboxComments**](docs/CommentsApi.md#listInboxComments) | **GET** /v1/inbox/comments | List commented posts
 *CommentsApi* | [**listInboxCommentsWithHttpInfo**](docs/CommentsApi.md#listInboxCommentsWithHttpInfo) | **GET** /v1/inbox/comments | List commented posts
 *CommentsApi* | [**replyToInboxPost**](docs/CommentsApi.md#replyToInboxPost) | **POST** /v1/inbox/comments/{postId} | Reply to comment
@@ -414,6 +416,8 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**unhideInboxCommentWithHttpInfo**](docs/CommentsApi.md#unhideInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**unlikeInboxComment**](docs/CommentsApi.md#unlikeInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *CommentsApi* | [**unlikeInboxCommentWithHttpInfo**](docs/CommentsApi.md#unlikeInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
+*CommentsApi* | [**unlikePost**](docs/CommentsApi.md#unlikePost) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post
+*CommentsApi* | [**unlikePostWithHttpInfo**](docs/CommentsApi.md#unlikePostWithHttpInfo) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post
 *ConnectApi* | [**assignGoogleBusinessLocation**](docs/ConnectApi.md#assignGoogleBusinessLocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile
 *ConnectApi* | [**assignGoogleBusinessLocationWithHttpInfo**](docs/ConnectApi.md#assignGoogleBusinessLocationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile
 *ConnectApi* | [**completeTelegramConnect**](docs/ConnectApi.md#completeTelegramConnect) | **PATCH** /v1/connect/telegram | Check Telegram status
@@ -1983,6 +1987,8 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
+ - [LikePost200Response](docs/LikePost200Response.md)
+ - [LikePostRequest](docs/LikePostRequest.md)
  - [LinkedInAdsPlatformData](docs/LinkedInAdsPlatformData.md)
  - [LinkedInAdsPlatformDataCarousel](docs/LinkedInAdsPlatformDataCarousel.md)
  - [LinkedInAdsPlatformDataCarouselCardsInner](docs/LinkedInAdsPlatformDataCarouselCardsInner.md)
@@ -2496,6 +2502,7 @@ Class | Method | HTTP request | Description
  - [UndoRetweet200Response](docs/UndoRetweet200Response.md)
  - [UnfollowUser200Response](docs/UnfollowUser200Response.md)
  - [UnlikeInboxComment200Response](docs/UnlikeInboxComment200Response.md)
+ - [UnlikePost200Response](docs/UnlikePost200Response.md)
  - [UnpinDiscordMessage200Response](docs/UnpinDiscordMessage200Response.md)
  - [UnpublishPost200Response](docs/UnpublishPost200Response.md)
  - [UnpublishPostRequest](docs/UnpublishPostRequest.md)

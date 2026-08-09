@@ -34,13 +34,61 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   LikeInboxCommentRequest.JSON_PROPERTY_ACCOUNT_ID,
+  LikeInboxCommentRequest.JSON_PROPERTY_REACTION_TYPE,
   LikeInboxCommentRequest.JSON_PROPERTY_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:54:11.700997072Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T19:18:19.994328796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LikeInboxCommentRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
+
+  /**
+   * (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms.
+   */
+  public enum ReactionTypeEnum {
+    LIKE(String.valueOf("LIKE")),
+    
+    PRAISE(String.valueOf("PRAISE")),
+    
+    EMPATHY(String.valueOf("EMPATHY")),
+    
+    INTEREST(String.valueOf("INTEREST")),
+    
+    APPRECIATION(String.valueOf("APPRECIATION")),
+    
+    ENTERTAINMENT(String.valueOf("ENTERTAINMENT"));
+
+    private String value;
+
+    ReactionTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ReactionTypeEnum fromValue(String value) {
+      for (ReactionTypeEnum b : ReactionTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_REACTION_TYPE = "reactionType";
+  @javax.annotation.Nullable
+  private ReactionTypeEnum reactionType;
 
   public static final String JSON_PROPERTY_CID = "cid";
   @javax.annotation.Nullable
@@ -70,6 +118,30 @@ public class LikeInboxCommentRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
+  }
+
+
+  public LikeInboxCommentRequest reactionType(@javax.annotation.Nullable ReactionTypeEnum reactionType) {
+    this.reactionType = reactionType;
+    return this;
+  }
+
+  /**
+   * (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms.
+   * @return reactionType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REACTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ReactionTypeEnum getReactionType() {
+    return reactionType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REACTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReactionType(@javax.annotation.Nullable ReactionTypeEnum reactionType) {
+    this.reactionType = reactionType;
   }
 
 
@@ -110,12 +182,13 @@ public class LikeInboxCommentRequest {
     }
     LikeInboxCommentRequest likeInboxCommentRequest = (LikeInboxCommentRequest) o;
     return Objects.equals(this.accountId, likeInboxCommentRequest.accountId) &&
+        Objects.equals(this.reactionType, likeInboxCommentRequest.reactionType) &&
         Objects.equals(this.cid, likeInboxCommentRequest.cid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, cid);
+    return Objects.hash(accountId, reactionType, cid);
   }
 
   @Override
@@ -123,6 +196,7 @@ public class LikeInboxCommentRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class LikeInboxCommentRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    reactionType: ").append(toIndentedString(reactionType)).append("\n");
     sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -174,6 +248,11 @@ public class LikeInboxCommentRequest {
     // add `accountId` to the URL query string
     if (getAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `reactionType` to the URL query string
+    if (getReactionType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreactionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReactionType()))));
     }
 
     // add `cid` to the URL query string

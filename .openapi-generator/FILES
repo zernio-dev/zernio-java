@@ -813,6 +813,8 @@ docs/InvitesApi.md
 docs/LeadGenApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
+docs/LikePost200Response.md
+docs/LikePostRequest.md
 docs/LinkedInAdsPlatformData.md
 docs/LinkedInAdsPlatformDataCarousel.md
 docs/LinkedInAdsPlatformDataCarouselCardsInner.md
@@ -1344,6 +1346,7 @@ docs/UnblockWhatsAppUsersRequest.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
+docs/UnlikePost200Response.md
 docs/UnpinDiscordMessage200Response.md
 docs/UnpublishPost200Response.md
 docs/UnpublishPostRequest.md
@@ -2529,6 +2532,8 @@ src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
 src/main/java/dev/zernio/model/LikeInboxCommentRequest.java
+src/main/java/dev/zernio/model/LikePost200Response.java
+src/main/java/dev/zernio/model/LikePostRequest.java
 src/main/java/dev/zernio/model/LinkedInAdsPlatformData.java
 src/main/java/dev/zernio/model/LinkedInAdsPlatformDataCarousel.java
 src/main/java/dev/zernio/model/LinkedInAdsPlatformDataCarouselCardsInner.java
@@ -3042,6 +3047,7 @@ src/main/java/dev/zernio/model/UnblockWhatsAppUsersRequest.java
 src/main/java/dev/zernio/model/UndoRetweet200Response.java
 src/main/java/dev/zernio/model/UnfollowUser200Response.java
 src/main/java/dev/zernio/model/UnlikeInboxComment200Response.java
+src/main/java/dev/zernio/model/UnlikePost200Response.java
 src/main/java/dev/zernio/model/UnpinDiscordMessage200Response.java
 src/main/java/dev/zernio/model/UnpublishPost200Response.java
 src/main/java/dev/zernio/model/UnpublishPostRequest.java
@@ -3353,3 +3359,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/LikePost200ResponseTest.java
+src/test/java/dev/zernio/model/LikePostRequestTest.java
+src/test/java/dev/zernio/model/UnlikePost200ResponseTest.java

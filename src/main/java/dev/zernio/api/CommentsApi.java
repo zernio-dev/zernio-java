@@ -29,6 +29,8 @@ import dev.zernio.model.HideInboxCommentRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.LikeInboxComment200Response;
 import dev.zernio.model.LikeInboxCommentRequest;
+import dev.zernio.model.LikePost200Response;
+import dev.zernio.model.LikePostRequest;
 import dev.zernio.model.ListInboxComments200Response;
 import java.time.OffsetDateTime;
 import dev.zernio.model.ReplyToInboxPost200Response;
@@ -38,6 +40,7 @@ import dev.zernio.model.SendPrivateReplyToComment400Response;
 import dev.zernio.model.SendPrivateReplyToCommentRequest;
 import dev.zernio.model.SetCommentModerationRequest;
 import dev.zernio.model.UnlikeInboxComment200Response;
+import dev.zernio.model.UnlikePost200Response;
 import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -65,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:54:11.700997072Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T19:18:19.994328796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -782,7 +785,7 @@ public class CommentsApi {
 
   /**
    * Like comment
-   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param likeInboxCommentRequest  (required)
@@ -795,7 +798,7 @@ public class CommentsApi {
 
   /**
    * Like comment
-   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param likeInboxCommentRequest  (required)
@@ -810,7 +813,7 @@ public class CommentsApi {
 
   /**
    * Like comment
-   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param likeInboxCommentRequest  (required)
@@ -823,7 +826,7 @@ public class CommentsApi {
 
   /**
    * Like comment
-   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+   * Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param likeInboxCommentRequest  (required)
@@ -906,6 +909,138 @@ public class CommentsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(likeInboxCommentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Like post
+   * Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param likePostRequest  (required)
+   * @return LikePost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public LikePost200Response likePost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull LikePostRequest likePostRequest) throws ApiException {
+    return likePost(postId, likePostRequest, null);
+  }
+
+  /**
+   * Like post
+   * Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param likePostRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return LikePost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public LikePost200Response likePost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull LikePostRequest likePostRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<LikePost200Response> localVarResponse = likePostWithHttpInfo(postId, likePostRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Like post
+   * Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param likePostRequest  (required)
+   * @return ApiResponse&lt;LikePost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LikePost200Response> likePostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull LikePostRequest likePostRequest) throws ApiException {
+    return likePostWithHttpInfo(postId, likePostRequest, null);
+  }
+
+  /**
+   * Like post
+   * Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param likePostRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LikePost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LikePost200Response> likePostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull LikePostRequest likePostRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = likePostRequestBuilder(postId, likePostRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("likePost", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LikePost200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LikePost200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LikePost200Response>() {});
+        
+
+        return new ApiResponse<LikePost200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder likePostRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull LikePostRequest likePostRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling likePost");
+    }
+    // verify the required parameter 'likePostRequest' is set
+    if (likePostRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'likePostRequest' when calling likePost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/posts/{postId}/like"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(likePostRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1663,7 +1798,7 @@ public class CommentsApi {
 
   /**
    * Unlike comment
-   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1677,7 +1812,7 @@ public class CommentsApi {
 
   /**
    * Unlike comment
-   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1693,7 +1828,7 @@ public class CommentsApi {
 
   /**
    * Unlike comment
-   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1707,7 +1842,7 @@ public class CommentsApi {
 
   /**
    * Unlike comment
-   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+   * Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1783,6 +1918,153 @@ public class CommentsApi {
     String localVarPath = "/v1/inbox/comments/{postId}/{commentId}/like"
         .replace("{postId}", ApiClient.urlEncode(postId.toString()))
         .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "likeUri";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("likeUri", likeUri));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Unlike post
+   * Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param accountId  (required)
+   * @param likeUri (Bluesky only) The like URI returned when liking (optional)
+   * @return UnlikePost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UnlikePost200Response unlikePost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String likeUri) throws ApiException {
+    return unlikePost(postId, accountId, likeUri, null);
+  }
+
+  /**
+   * Unlike post
+   * Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param accountId  (required)
+   * @param likeUri (Bluesky only) The like URI returned when liking (optional)
+   * @param headers Optional headers to include in the request
+   * @return UnlikePost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UnlikePost200Response unlikePost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String likeUri, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnlikePost200Response> localVarResponse = unlikePostWithHttpInfo(postId, accountId, likeUri, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Unlike post
+   * Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param accountId  (required)
+   * @param likeUri (Bluesky only) The like URI returned when liking (optional)
+   * @return ApiResponse&lt;UnlikePost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnlikePost200Response> unlikePostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String likeUri) throws ApiException {
+    return unlikePostWithHttpInfo(postId, accountId, likeUri, null);
+  }
+
+  /**
+   * Unlike post
+   * Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+   * @param postId Zernio post ID or the platform&#39;s native post ID (required)
+   * @param accountId  (required)
+   * @param likeUri (Bluesky only) The like URI returned when liking (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnlikePost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnlikePost200Response> unlikePostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String likeUri, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = unlikePostRequestBuilder(postId, accountId, likeUri, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("unlikePost", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UnlikePost200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnlikePost200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnlikePost200Response>() {});
+        
+
+        return new ApiResponse<UnlikePost200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder unlikePostRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String likeUri, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling unlikePost");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling unlikePost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/posts/{postId}/like"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
