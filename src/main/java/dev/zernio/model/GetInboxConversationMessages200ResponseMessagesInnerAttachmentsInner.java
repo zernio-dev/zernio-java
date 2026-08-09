@@ -40,10 +40,11 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_ID,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_TYPE,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_URL,
+  GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_REFRESH_URL,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_FILENAME,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_PREVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:44:33.864791860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -99,6 +100,9 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable
   private String url;
+
+  public static final String JSON_PROPERTY_REFRESH_URL = "refreshUrl";
+  private JsonNullable<String> refreshUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FILENAME = "filename";
   private JsonNullable<String> filename = JsonNullable.<String>undefined();
@@ -163,7 +167,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
   }
 
   /**
-   * Get url
+   * Direct media link. On Instagram and Facebook this is a signed Meta CDN url that EXPIRES: use it now, do not store it. Persist &#x60;refreshUrl&#x60; instead.
    * @return url
    */
   @javax.annotation.Nullable
@@ -178,6 +182,38 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
+  }
+
+
+  public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner refreshUrl(@javax.annotation.Nullable String refreshUrl) {
+    this.refreshUrl = JsonNullable.<String>of(refreshUrl);
+    return this;
+  }
+
+  /**
+   * Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely.
+   * @return refreshUrl
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getRefreshUrl() {
+        return refreshUrl.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_REFRESH_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getRefreshUrl_JsonNullable() {
+    return refreshUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REFRESH_URL)
+  public void setRefreshUrl_JsonNullable(JsonNullable<String> refreshUrl) {
+    this.refreshUrl = refreshUrl;
+  }
+
+  public void setRefreshUrl(@javax.annotation.Nullable String refreshUrl) {
+    this.refreshUrl = JsonNullable.<String>of(refreshUrl);
   }
 
 
@@ -260,6 +296,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     return Objects.equals(this.id, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.id) &&
         Objects.equals(this.type, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.type) &&
         Objects.equals(this.url, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.url) &&
+        equalsNullable(this.refreshUrl, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.refreshUrl) &&
         equalsNullable(this.filename, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.filename) &&
         equalsNullable(this.previewUrl, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.previewUrl);
   }
@@ -270,7 +307,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, url, hashCodeNullable(filename), hashCodeNullable(previewUrl));
+    return Objects.hash(id, type, url, hashCodeNullable(refreshUrl), hashCodeNullable(filename), hashCodeNullable(previewUrl));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -287,6 +324,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    refreshUrl: ").append(toIndentedString(refreshUrl)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    previewUrl: ").append(toIndentedString(previewUrl)).append("\n");
     sb.append("}");
@@ -349,6 +387,11 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     // add `url` to the URL query string
     if (getUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+    }
+
+    // add `refreshUrl` to the URL query string
+    if (getRefreshUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srefreshUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRefreshUrl()))));
     }
 
     // add `filename` to the URL query string

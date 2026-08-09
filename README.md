@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-09T14:20:30.020273613Z[Etc/UTC]
+- Build date: 2026-08-09T14:44:33.864791860Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -708,6 +708,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getInboxConversationWithHttpInfo**](docs/MessagesApi.md#getInboxConversationWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
 *MessagesApi* | [**getInboxConversationMessages**](docs/MessagesApi.md#getInboxConversationMessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
 *MessagesApi* | [**getInboxConversationMessagesWithHttpInfo**](docs/MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
+*MessagesApi* | [**getMessageAttachment**](docs/MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
+*MessagesApi* | [**getMessageAttachmentWithHttpInfo**](docs/MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**listInboxConversations**](docs/MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**listInboxConversationsWithHttpInfo**](docs/MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**markConversationRead**](docs/MessagesApi.md#markConversationRead) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
@@ -1818,6 +1820,7 @@ Class | Method | HTTP request | Description
  - [GetLinkedInSupplyForecastRequestCompetingBid](docs/GetLinkedInSupplyForecastRequestCompetingBid.md)
  - [GetMediaPresignedUrl200Response](docs/GetMediaPresignedUrl200Response.md)
  - [GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
+ - [GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)
  - [GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
  - [GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
  - [GetPendingOAuthData200ResponseOrganizationsInner](docs/GetPendingOAuthData200ResponseOrganizationsInner.md)

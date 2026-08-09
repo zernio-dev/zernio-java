@@ -638,6 +638,7 @@ docs/GetLinkedInSupplyForecastRequest.md
 docs/GetLinkedInSupplyForecastRequestCompetingBid.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
+docs/GetMessageAttachment200Response.md
 docs/GetMessengerMenu200Response.md
 docs/GetPendingOAuthData200Response.md
 docs/GetPendingOAuthData200ResponseOrganizationsInner.md
@@ -2365,6 +2366,7 @@ src/main/java/dev/zernio/model/GetLinkedInSupplyForecastRequest.java
 src/main/java/dev/zernio/model/GetLinkedInSupplyForecastRequestCompetingBid.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrl200Response.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrlRequest.java
+src/main/java/dev/zernio/model/GetMessageAttachment200Response.java
 src/main/java/dev/zernio/model/GetMessengerMenu200Response.java
 src/main/java/dev/zernio/model/GetPendingOAuthData200Response.java
 src/main/java/dev/zernio/model/GetPendingOAuthData200ResponseOrganizationsInner.java
@@ -3351,3 +3353,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetMessageAttachment200ResponseTest.java

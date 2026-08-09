@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInboxConversationWithHttpInfo**](MessagesApi.md#getInboxConversationWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation |
 | [**getInboxConversationMessages**](MessagesApi.md#getInboxConversationMessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
 | [**getInboxConversationMessagesWithHttpInfo**](MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
+| [**getMessageAttachment**](MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
+| [**getMessageAttachmentWithHttpInfo**](MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
 | [**listInboxConversations**](MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations |
 | [**listInboxConversationsWithHttpInfo**](MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations |
 | [**markConversationRead**](MessagesApi.md#markConversationRead) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
@@ -985,6 +987,176 @@ ApiResponse<[**GetInboxConversationMessages200Response**](GetInboxConversationMe
 | **200** | Messages in conversation |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+
+
+## getMessageAttachment
+
+> GetMessageAttachment200Response getMessageAttachment(conversationId, messageId, index, accountId, format)
+
+Resolve message attachment
+
+Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The conversation ID (Zernio id or platform conversation id)
+        String messageId = "messageId_example"; // String | The message id as returned by the list-messages endpoint (the platform message id)
+        Integer index = 56; // Integer | Zero-based position of the attachment in the message's attachments array
+        String accountId = "accountId_example"; // String | Social account ID
+        String format = "redirect"; // String | `redirect` (default) answers 302 to the media; `json` returns the url in the body
+        try {
+            GetMessageAttachment200Response result = apiInstance.getMessageAttachment(conversationId, messageId, index, accountId, format);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#getMessageAttachment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The conversation ID (Zernio id or platform conversation id) | |
+| **messageId** | **String**| The message id as returned by the list-messages endpoint (the platform message id) | |
+| **index** | **Integer**| Zero-based position of the attachment in the message&#39;s attachments array | |
+| **accountId** | **String**| Social account ID | |
+| **format** | **String**| &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body | [optional] [default to redirect] [enum: redirect, json] |
+
+### Return type
+
+[**GetMessageAttachment200Response**](GetMessageAttachment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Resolved url (only when format&#x3D;json) |  -  |
+| **302** | Redirect to the live media url |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
+
+## getMessageAttachmentWithHttpInfo
+
+> ApiResponse<GetMessageAttachment200Response> getMessageAttachment getMessageAttachmentWithHttpInfo(conversationId, messageId, index, accountId, format)
+
+Resolve message attachment
+
+Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The conversation ID (Zernio id or platform conversation id)
+        String messageId = "messageId_example"; // String | The message id as returned by the list-messages endpoint (the platform message id)
+        Integer index = 56; // Integer | Zero-based position of the attachment in the message's attachments array
+        String accountId = "accountId_example"; // String | Social account ID
+        String format = "redirect"; // String | `redirect` (default) answers 302 to the media; `json` returns the url in the body
+        try {
+            ApiResponse<GetMessageAttachment200Response> response = apiInstance.getMessageAttachmentWithHttpInfo(conversationId, messageId, index, accountId, format);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#getMessageAttachment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The conversation ID (Zernio id or platform conversation id) | |
+| **messageId** | **String**| The message id as returned by the list-messages endpoint (the platform message id) | |
+| **index** | **Integer**| Zero-based position of the attachment in the message&#39;s attachments array | |
+| **accountId** | **String**| Social account ID | |
+| **format** | **String**| &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body | [optional] [default to redirect] [enum: redirect, json] |
+
+### Return type
+
+ApiResponse<[**GetMessageAttachment200Response**](GetMessageAttachment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Resolved url (only when format&#x3D;json) |  -  |
+| **302** | Redirect to the live media url |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
 
 
 ## listInboxConversations

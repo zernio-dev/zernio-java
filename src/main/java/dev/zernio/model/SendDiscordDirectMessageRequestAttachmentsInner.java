@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SendDiscordDirectMessageRequestAttachmentsInner.JSON_PROPERTY_MIME_TYPE,
   SendDiscordDirectMessageRequestAttachmentsInner.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:44:33.864791860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendDiscordDirectMessageRequestAttachmentsInner {
   /**
    * Gets or Sets type

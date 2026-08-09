@@ -30,6 +30,7 @@ import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetInboxConversation200Response;
 import dev.zernio.model.GetInboxConversationMessages200Response;
+import dev.zernio.model.GetMessageAttachment200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListInboxConversations200Response;
 import dev.zernio.model.MarkConversationRead200Response;
@@ -75,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:20:30.020273613Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T14:44:33.864791860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1021,6 +1022,171 @@ public class MessagesApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
     localVarQueryParameterBaseName = "sortOrder";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("sortOrder", sortOrder));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Resolve message attachment
+   * Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+   * @param conversationId The conversation ID (Zernio id or platform conversation id) (required)
+   * @param messageId The message id as returned by the list-messages endpoint (the platform message id) (required)
+   * @param index Zero-based position of the attachment in the message&#39;s attachments array (required)
+   * @param accountId Social account ID (required)
+   * @param format &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)
+   * @return GetMessageAttachment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetMessageAttachment200Response getMessageAttachment(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull Integer index, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String format) throws ApiException {
+    return getMessageAttachment(conversationId, messageId, index, accountId, format, null);
+  }
+
+  /**
+   * Resolve message attachment
+   * Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+   * @param conversationId The conversation ID (Zernio id or platform conversation id) (required)
+   * @param messageId The message id as returned by the list-messages endpoint (the platform message id) (required)
+   * @param index Zero-based position of the attachment in the message&#39;s attachments array (required)
+   * @param accountId Social account ID (required)
+   * @param format &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)
+   * @param headers Optional headers to include in the request
+   * @return GetMessageAttachment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetMessageAttachment200Response getMessageAttachment(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull Integer index, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String format, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetMessageAttachment200Response> localVarResponse = getMessageAttachmentWithHttpInfo(conversationId, messageId, index, accountId, format, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Resolve message attachment
+   * Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+   * @param conversationId The conversation ID (Zernio id or platform conversation id) (required)
+   * @param messageId The message id as returned by the list-messages endpoint (the platform message id) (required)
+   * @param index Zero-based position of the attachment in the message&#39;s attachments array (required)
+   * @param accountId Social account ID (required)
+   * @param format &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)
+   * @return ApiResponse&lt;GetMessageAttachment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetMessageAttachment200Response> getMessageAttachmentWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull Integer index, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String format) throws ApiException {
+    return getMessageAttachmentWithHttpInfo(conversationId, messageId, index, accountId, format, null);
+  }
+
+  /**
+   * Resolve message attachment
+   * Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+   * @param conversationId The conversation ID (Zernio id or platform conversation id) (required)
+   * @param messageId The message id as returned by the list-messages endpoint (the platform message id) (required)
+   * @param index Zero-based position of the attachment in the message&#39;s attachments array (required)
+   * @param accountId Social account ID (required)
+   * @param format &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetMessageAttachment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetMessageAttachment200Response> getMessageAttachmentWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull Integer index, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String format, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getMessageAttachmentRequestBuilder(conversationId, messageId, index, accountId, format, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getMessageAttachment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetMessageAttachment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetMessageAttachment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetMessageAttachment200Response>() {});
+        
+
+        return new ApiResponse<GetMessageAttachment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getMessageAttachmentRequestBuilder(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull Integer index, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String format, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'conversationId' is set
+    if (conversationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'conversationId' when calling getMessageAttachment");
+    }
+    // verify the required parameter 'messageId' is set
+    if (messageId == null) {
+      throw new ApiException(400, "Missing the required parameter 'messageId' when calling getMessageAttachment");
+    }
+    // verify the required parameter 'index' is set
+    if (index == null) {
+      throw new ApiException(400, "Missing the required parameter 'index' when calling getMessageAttachment");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getMessageAttachment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}"
+        .replace("{conversationId}", ApiClient.urlEncode(conversationId.toString()))
+        .replace("{messageId}", ApiClient.urlEncode(messageId.toString()))
+        .replace("{index}", ApiClient.urlEncode(index.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "format";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("format", format));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
