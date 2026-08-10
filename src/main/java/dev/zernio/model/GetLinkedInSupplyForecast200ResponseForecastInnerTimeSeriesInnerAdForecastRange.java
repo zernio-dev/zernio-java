@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.JSON_PROPERTY_LOW_END,
   GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.JSON_PROPERTY_HIGH_END
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T19:18:19.994328796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:36:56.102754920Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange {
   public static final String JSON_PROPERTY_LOW_END = "lowEnd";
   @javax.annotation.Nullable

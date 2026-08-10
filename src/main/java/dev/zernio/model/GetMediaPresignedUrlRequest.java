@@ -35,9 +35,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetMediaPresignedUrlRequest.JSON_PROPERTY_FILENAME,
   GetMediaPresignedUrlRequest.JSON_PROPERTY_CONTENT_TYPE,
-  GetMediaPresignedUrlRequest.JSON_PROPERTY_SIZE
+  GetMediaPresignedUrlRequest.JSON_PROPERTY_SIZE,
+  GetMediaPresignedUrlRequest.JSON_PROPERTY_PERMANENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T19:18:19.994328796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:36:56.102754920Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrlRequest {
   public static final String JSON_PROPERTY_FILENAME = "filename";
   @javax.annotation.Nonnull
@@ -122,6 +123,10 @@ public class GetMediaPresignedUrlRequest {
   @javax.annotation.Nullable
   private Integer size;
 
+  public static final String JSON_PROPERTY_PERMANENT = "permanent";
+  @javax.annotation.Nullable
+  private Boolean permanent = false;
+
   public GetMediaPresignedUrlRequest() { 
   }
 
@@ -197,6 +202,30 @@ public class GetMediaPresignedUrlRequest {
   }
 
 
+  public GetMediaPresignedUrlRequest permanent(@javax.annotation.Nullable Boolean permanent) {
+    this.permanent = permanent;
+    return this;
+  }
+
+  /**
+   * Write the file to permanent storage instead of temporary storage. Temporary files auto-delete 7 days after upload; permanent files never expire.
+   * @return permanent
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PERMANENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPermanent() {
+    return permanent;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PERMANENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPermanent(@javax.annotation.Nullable Boolean permanent) {
+    this.permanent = permanent;
+  }
+
+
   /**
    * Return true if this getMediaPresignedUrl_request object is equal to o.
    */
@@ -211,12 +240,13 @@ public class GetMediaPresignedUrlRequest {
     GetMediaPresignedUrlRequest getMediaPresignedUrlRequest = (GetMediaPresignedUrlRequest) o;
     return Objects.equals(this.filename, getMediaPresignedUrlRequest.filename) &&
         Objects.equals(this.contentType, getMediaPresignedUrlRequest.contentType) &&
-        Objects.equals(this.size, getMediaPresignedUrlRequest.size);
+        Objects.equals(this.size, getMediaPresignedUrlRequest.size) &&
+        Objects.equals(this.permanent, getMediaPresignedUrlRequest.permanent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filename, contentType, size);
+    return Objects.hash(filename, contentType, size, permanent);
   }
 
   @Override
@@ -226,6 +256,7 @@ public class GetMediaPresignedUrlRequest {
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    permanent: ").append(toIndentedString(permanent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -286,6 +317,11 @@ public class GetMediaPresignedUrlRequest {
     // add `size` to the URL query string
     if (getSize() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+    }
+
+    // add `permanent` to the URL query string
+    if (getPermanent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spermanent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermanent()))));
     }
 
     return joiner.toString();

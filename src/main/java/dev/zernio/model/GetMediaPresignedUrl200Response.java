@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetMediaPresignedUrl200Response.JSON_PROPERTY_KEY,
   GetMediaPresignedUrl200Response.JSON_PROPERTY_EXPIRES_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-09T19:18:19.994328796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:36:56.102754920Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrl200Response {
   public static final String JSON_PROPERTY_UPLOAD_URL = "uploadUrl";
   @javax.annotation.Nullable
@@ -90,7 +90,7 @@ public class GetMediaPresignedUrl200Response {
   }
 
   /**
-   * Public URL where the file will be accessible after upload
+   * Public URL where the file will be accessible after upload. Served from the temp/ prefix by default (expires 7 days after upload) or from media/ when permanent is true.
    * @return publicUrl
    */
   @javax.annotation.Nullable
@@ -114,7 +114,7 @@ public class GetMediaPresignedUrl200Response {
   }
 
   /**
-   * Storage key/path of the file
+   * Storage key/path of the file. Prefixed temp/ by default, media/ when permanent is true.
    * @return key
    */
   @javax.annotation.Nullable
