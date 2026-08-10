@@ -3894,15 +3894,9 @@ paths:
       - application/json
   /v1/media/presign:
     post:
-      description: |
-        Get a presigned URL to upload files directly to cloud storage (up to 5GB). Returns an
-        uploadUrl and publicUrl. PUT your file to the uploadUrl, then use the publicUrl in your posts.
-
-        By default the file is written to temporary storage and auto-deletes 7 days after upload,
-        so the publicUrl stops resolving once that window passes. Send `permanent: true` to write
-        straight to permanent storage, which has no expiry: use it for anything that must stay
-        reachable for longer, in particular cover and thumbnail images on posts scheduled more
-        than a week out.
+      description: "Get a presigned URL to upload files directly to cloud storage\
+        \ (up to 5GB). Returns an uploadUrl and publicUrl. PUT your file to the uploadUrl,\
+        \ then use the publicUrl in your posts."
       operationId: getMediaPresignedUrl
       requestBody:
         content:
@@ -48353,13 +48347,6 @@ components:
           description: Optional file size in bytes for pre-validation (max 5GB)
           example: 15234567
           type: integer
-        permanent:
-          default: false
-          description: Write the file to permanent storage instead of temporary storage.
-            Temporary files auto-delete 7 days after upload; permanent files never
-            expire.
-          example: true
-          type: boolean
       required:
       - contentType
       - filename
@@ -48375,14 +48362,11 @@ components:
           format: uri
           type: string
         publicUrl:
-          description: Public URL where the file will be accessible after upload.
-            Served from the temp/ prefix by default (expires 7 days after upload)
-            or from media/ when permanent is true.
+          description: Public URL where the file will be accessible after upload
           format: uri
           type: string
         key:
-          description: "Storage key/path of the file. Prefixed temp/ by default, media/\
-            \ when permanent is true."
+          description: Storage key/path of the file
           type: string
         expiresIn:
           description: Seconds until the presigned uploadUrl expires (always 3600)

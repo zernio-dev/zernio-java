@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BlockWhatsAppUsers200ResponseBlockedInner.JSON_PROPERTY_INPUT,
   BlockWhatsAppUsers200ResponseBlockedInner.JSON_PROPERTY_WA_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:36:56.102754920Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:58:33.916155553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BlockWhatsAppUsers200ResponseBlockedInner {
   public static final String JSON_PROPERTY_INPUT = "input";
   @javax.annotation.Nullable

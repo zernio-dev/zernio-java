@@ -15,7 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get upload URL
 
-Get a presigned URL to upload files directly to cloud storage (up to 5GB). Returns an uploadUrl and publicUrl. PUT your file to the uploadUrl, then use the publicUrl in your posts.  By default the file is written to temporary storage and auto-deletes 7 days after upload, so the publicUrl stops resolving once that window passes. Send &#x60;permanent: true&#x60; to write straight to permanent storage, which has no expiry: use it for anything that must stay reachable for longer, in particular cover and thumbnail images on posts scheduled more than a week out. 
+Get a presigned URL to upload files directly to cloud storage (up to 5GB). Returns an uploadUrl and publicUrl. PUT your file to the uploadUrl, then use the publicUrl in your posts.
 
 ### Example
 
@@ -87,7 +87,7 @@ public class Example {
 
 Get upload URL
 
-Get a presigned URL to upload files directly to cloud storage (up to 5GB). Returns an uploadUrl and publicUrl. PUT your file to the uploadUrl, then use the publicUrl in your posts.  By default the file is written to temporary storage and auto-deletes 7 days after upload, so the publicUrl stops resolving once that window passes. Send &#x60;permanent: true&#x60; to write straight to permanent storage, which has no expiry: use it for anything that must stay reachable for longer, in particular cover and thumbnail images on posts scheduled more than a week out. 
+Get a presigned URL to upload files directly to cloud storage (up to 5GB). Returns an uploadUrl and publicUrl. PUT your file to the uploadUrl, then use the publicUrl in your posts.
 
 ### Example
 
