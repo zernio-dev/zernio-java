@@ -34,9 +34,12 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadCommentPost.JSON_PROPERTY_ID,
-  WebhookPayloadCommentPost.JSON_PROPERTY_PLATFORM_POST_ID
+  WebhookPayloadCommentPost.JSON_PROPERTY_PLATFORM_POST_ID,
+  WebhookPayloadCommentPost.JSON_PROPERTY_CONTENT,
+  WebhookPayloadCommentPost.JSON_PROPERTY_IMAGE_URL,
+  WebhookPayloadCommentPost.JSON_PROPERTY_PERMALINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:30:22.953533498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -45,6 +48,18 @@ public class WebhookPayloadCommentPost {
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
   @javax.annotation.Nonnull
   private String platformPostId;
+
+  public static final String JSON_PROPERTY_CONTENT = "content";
+  @javax.annotation.Nullable
+  private String content;
+
+  public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
+  @javax.annotation.Nullable
+  private String imageUrl;
+
+  public static final String JSON_PROPERTY_PERMALINK = "permalink";
+  @javax.annotation.Nullable
+  private String permalink;
 
   public WebhookPayloadCommentPost() { 
   }
@@ -97,6 +112,78 @@ public class WebhookPayloadCommentPost {
   }
 
 
+  public WebhookPayloadCommentPost content(@javax.annotation.Nullable String content) {
+    this.content = content;
+    return this;
+  }
+
+  /**
+   * Post text, from our synced copy — no platform call is made on the comment path, so null when the post was never synced.
+   * @return content
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getContent() {
+    return content;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setContent(@javax.annotation.Nullable String content) {
+    this.content = content;
+  }
+
+
+  public WebhookPayloadCommentPost imageUrl(@javax.annotation.Nullable String imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+  /**
+   * Post thumbnail or first media item URL. Platform CDN URLs expire, fetch promptly.
+   * @return imageUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setImageUrl(@javax.annotation.Nullable String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+
+  public WebhookPayloadCommentPost permalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = permalink;
+    return this;
+  }
+
+  /**
+   * Public URL of the post. Null for posts published through Zernio that were never re-synced.
+   * @return permalink
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getPermalink() {
+    return permalink;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = permalink;
+  }
+
+
   /**
    * Return true if this WebhookPayloadComment_post object is equal to o.
    */
@@ -110,12 +197,15 @@ public class WebhookPayloadCommentPost {
     }
     WebhookPayloadCommentPost webhookPayloadCommentPost = (WebhookPayloadCommentPost) o;
     return Objects.equals(this.id, webhookPayloadCommentPost.id) &&
-        Objects.equals(this.platformPostId, webhookPayloadCommentPost.platformPostId);
+        Objects.equals(this.platformPostId, webhookPayloadCommentPost.platformPostId) &&
+        Objects.equals(this.content, webhookPayloadCommentPost.content) &&
+        Objects.equals(this.imageUrl, webhookPayloadCommentPost.imageUrl) &&
+        Objects.equals(this.permalink, webhookPayloadCommentPost.permalink);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformPostId);
+    return Objects.hash(id, platformPostId, content, imageUrl, permalink);
   }
 
   @Override
@@ -124,6 +214,9 @@ public class WebhookPayloadCommentPost {
     sb.append("class WebhookPayloadCommentPost {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("    permalink: ").append(toIndentedString(permalink)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +272,21 @@ public class WebhookPayloadCommentPost {
     // add `platformPostId` to the URL query string
     if (getPlatformPostId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatformPostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformPostId()))));
+    }
+
+    // add `content` to the URL query string
+    if (getContent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContent()))));
+    }
+
+    // add `imageUrl` to the URL query string
+    if (getImageUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%simageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getImageUrl()))));
+    }
+
+    // add `permalink` to the URL query string
+    if (getPermalink() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spermalink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermalink()))));
     }
 
     return joiner.toString();

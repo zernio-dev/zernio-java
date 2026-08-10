@@ -98,6 +98,7 @@ docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestBudget.md
+docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
@@ -468,6 +469,9 @@ docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsActivityLog200Response.md
 docs/GetAdsActivityLog200ResponsePaging.md
+docs/GetAdsSearchTerms200Response.md
+docs/GetAdsSearchTerms200ResponseDataInner.md
+docs/GetAdsSearchTerms200ResponsePaging.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
 docs/GetAllAccountsHealth200Response.md
@@ -1026,6 +1030,7 @@ docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
+docs/MetaAdsPlatformData.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/Money.md
@@ -1845,6 +1850,7 @@ src/main/java/dev/zernio/model/BookmarkPost200Response.java
 src/main/java/dev/zernio/model/BookmarkPostRequest.java
 src/main/java/dev/zernio/model/BoostPostRequest.java
 src/main/java/dev/zernio/model/BoostPostRequestBudget.java
+src/main/java/dev/zernio/model/BoostPostRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/BoostPostRequestSchedule.java
 src/main/java/dev/zernio/model/BoostPostRequestTargeting.java
 src/main/java/dev/zernio/model/BoostPostRequestTargetingCitiesInner.java
@@ -2205,6 +2211,9 @@ src/main/java/dev/zernio/model/GetAdTrackingTags200Response.java
 src/main/java/dev/zernio/model/GetAdTree200Response.java
 src/main/java/dev/zernio/model/GetAdsActivityLog200Response.java
 src/main/java/dev/zernio/model/GetAdsActivityLog200ResponsePaging.java
+src/main/java/dev/zernio/model/GetAdsSearchTerms200Response.java
+src/main/java/dev/zernio/model/GetAdsSearchTerms200ResponseDataInner.java
+src/main/java/dev/zernio/model/GetAdsSearchTerms200ResponsePaging.java
 src/main/java/dev/zernio/model/GetAdsTimeline200Response.java
 src/main/java/dev/zernio/model/GetAdsTimeline200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200Response.java
@@ -2745,6 +2754,7 @@ src/main/java/dev/zernio/model/LookupSmsNumber200Response.java
 src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
+src/main/java/dev/zernio/model/MetaAdsPlatformData.java
 src/main/java/dev/zernio/model/MetaLeadFormPlatformData.java
 src/main/java/dev/zernio/model/MetaLeadFormPlatformDataContextCard.java
 src/main/java/dev/zernio/model/Money.java
@@ -3371,3 +3381,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPostRequestPlatformSpecificDataTest.java
+src/test/java/dev/zernio/model/GetAdsSearchTerms200ResponseDataInnerTest.java
+src/test/java/dev/zernio/model/GetAdsSearchTerms200ResponsePagingTest.java
+src/test/java/dev/zernio/model/GetAdsSearchTerms200ResponseTest.java
+src/test/java/dev/zernio/model/MetaAdsPlatformDataTest.java

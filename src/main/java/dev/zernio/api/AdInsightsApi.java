@@ -27,6 +27,7 @@ import dev.zernio.model.GenerateKeywordIdeas200Response;
 import dev.zernio.model.GenerateKeywordIdeasRequest;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdInsightsReport200Response;
+import dev.zernio.model.GetAdsSearchTerms200Response;
 import dev.zernio.model.GetCampaignAnalytics200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -58,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:30:22.953533498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdInsightsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -820,6 +821,174 @@ public class AdInsightsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "after";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Google Ads search terms report
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @param campaignId Numeric Google campaign id filter. (optional)
+   * @param adGroupId Numeric Google ad group id filter. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @return GetAdsSearchTerms200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdsSearchTerms200Response getAdsSearchTerms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adGroupId, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken, null);
+  }
+
+  /**
+   * Google Ads search terms report
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @param campaignId Numeric Google campaign id filter. (optional)
+   * @param adGroupId Numeric Google ad group id filter. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdsSearchTerms200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdsSearchTerms200Response getAdsSearchTerms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adGroupId, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdsSearchTerms200Response> localVarResponse = getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Google Ads search terms report
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @param campaignId Numeric Google campaign id filter. (optional)
+   * @param adGroupId Numeric Google ad group id filter. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @return ApiResponse&lt;GetAdsSearchTerms200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTermsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adGroupId, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken, null);
+  }
+
+  /**
+   * Google Ads search terms report
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @param campaignId Numeric Google campaign id filter. (optional)
+   * @param adGroupId Numeric Google ad group id filter. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdsSearchTerms200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTermsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adGroupId, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdsSearchTermsRequestBuilder(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdsSearchTerms", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdsSearchTerms200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdsSearchTerms200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdsSearchTerms200Response>() {});
+        
+
+        return new ApiResponse<GetAdsSearchTerms200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdsSearchTermsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String adGroupId, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdsSearchTerms");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/search-terms";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "campaignId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignId", campaignId));
+    localVarQueryParameterBaseName = "adGroupId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adGroupId", adGroupId));
+    localVarQueryParameterBaseName = "pageToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageToken", pageToken));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

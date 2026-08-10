@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
+import dev.zernio.model.BoostPostRequestPlatformSpecificData;
 import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
@@ -42,7 +43,6 @@ import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
-import dev.zernio.model.LinkedInAdsPlatformData;
 import dev.zernio.model.TargetingSpec;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -144,7 +144,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:30:22.953533498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1001,7 +1001,7 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
-  private LinkedInAdsPlatformData platformSpecificData;
+  private BoostPostRequestPlatformSpecificData platformSpecificData;
 
   public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
   @javax.annotation.Nullable
@@ -2935,9 +2935,11 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta bid strategy applied to the ad set.
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Meta bid strategy applied to the ad set. 
    * @return bidStrategy
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2959,9 +2961,11 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. 
    * @return bidAmount
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2983,9 +2987,11 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. 
    * @return roasAverageFloor
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3049,7 +3055,7 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest platformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+  public CreateStandaloneAdRequest platformSpecificData(@javax.annotation.Nullable BoostPostRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
   }
@@ -3061,14 +3067,14 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinkedInAdsPlatformData getPlatformSpecificData() {
+  public BoostPostRequestPlatformSpecificData getPlatformSpecificData() {
     return platformSpecificData;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+  public void setPlatformSpecificData(@javax.annotation.Nullable BoostPostRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
   }
 

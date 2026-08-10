@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-10T11:30:22.953533498Z[Etc/UTC]
+- Build date: 2026-08-10T14:51:21.580743369Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -288,6 +288,8 @@ Class | Method | HTTP request | Description
 *AdInsightsApi* | [**getAdAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdInsightsApi* | [**getAdInsightsReport**](docs/AdInsightsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
 *AdInsightsApi* | [**getAdInsightsReportWithHttpInfo**](docs/AdInsightsApi.md#getAdInsightsReportWithHttpInfo) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
+*AdInsightsApi* | [**getAdsSearchTerms**](docs/AdInsightsApi.md#getAdsSearchTerms) | **GET** /v1/ads/search-terms | Google Ads search terms report
+*AdInsightsApi* | [**getAdsSearchTermsWithHttpInfo**](docs/AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report
 *AdInsightsApi* | [**getCampaignAnalytics**](docs/AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdInsightsApi* | [**getCampaignAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdInsightsApi* | [**queryAdInsights**](docs/AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query
@@ -1300,6 +1302,7 @@ Class | Method | HTTP request | Description
  - [BookmarkPostRequest](docs/BookmarkPostRequest.md)
  - [BoostPostRequest](docs/BoostPostRequest.md)
  - [BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
+ - [BoostPostRequestPlatformSpecificData](docs/BoostPostRequestPlatformSpecificData.md)
  - [BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
  - [BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
  - [BoostPostRequestTargetingCitiesInner](docs/BoostPostRequestTargetingCitiesInner.md)
@@ -1660,6 +1663,9 @@ Class | Method | HTTP request | Description
  - [GetAdTree200Response](docs/GetAdTree200Response.md)
  - [GetAdsActivityLog200Response](docs/GetAdsActivityLog200Response.md)
  - [GetAdsActivityLog200ResponsePaging](docs/GetAdsActivityLog200ResponsePaging.md)
+ - [GetAdsSearchTerms200Response](docs/GetAdsSearchTerms200Response.md)
+ - [GetAdsSearchTerms200ResponseDataInner](docs/GetAdsSearchTerms200ResponseDataInner.md)
+ - [GetAdsSearchTerms200ResponsePaging](docs/GetAdsSearchTerms200ResponsePaging.md)
  - [GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
  - [GetAdsTimeline200ResponseRowsInner](docs/GetAdsTimeline200ResponseRowsInner.md)
  - [GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
@@ -2200,6 +2206,7 @@ Class | Method | HTTP request | Description
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
+ - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
  - [MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
  - [Money](docs/Money.md)

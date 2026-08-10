@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdAnalyticsWithHttpInfo**](AdInsightsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdInsightsReport**](AdInsightsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
 | [**getAdInsightsReportWithHttpInfo**](AdInsightsApi.md#getAdInsightsReportWithHttpInfo) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
+| [**getAdsSearchTerms**](AdInsightsApi.md#getAdsSearchTerms) | **GET** /v1/ads/search-terms | Google Ads search terms report |
+| [**getAdsSearchTermsWithHttpInfo**](AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**getCampaignAnalytics**](AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**getCampaignAnalyticsWithHttpInfo**](AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**queryAdInsights**](AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query |
@@ -805,6 +807,182 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 | **401** | Unauthorized |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## getAdsSearchTerms
+
+> GetAdsSearchTerms200Response getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken)
+
+Google Ads search terms report
+
+The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
+        String campaignId = "campaignId_example"; // String | Numeric Google campaign id filter.
+        String adGroupId = "adGroupId_example"; // String | Numeric Google ad group id filter.
+        String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
+        try {
+            GetAdsSearchTerms200Response result = apiInstance.getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#getAdsSearchTerms");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| Defaults to today. | [optional] |
+| **campaignId** | **String**| Numeric Google campaign id filter. | [optional] |
+| **adGroupId** | **String**| Numeric Google ad group id filter. | [optional] |
+| **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
+
+### Return type
+
+[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Search terms |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## getAdsSearchTermsWithHttpInfo
+
+> ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTerms getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken)
+
+Google Ads search terms report
+
+The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
+        String campaignId = "campaignId_example"; // String | Numeric Google campaign id filter.
+        String adGroupId = "adGroupId_example"; // String | Numeric Google ad group id filter.
+        String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
+        try {
+            ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#getAdsSearchTerms");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| Defaults to today. | [optional] |
+| **campaignId** | **String**| Numeric Google campaign id filter. | [optional] |
+| **adGroupId** | **String**| Numeric Google ad group id filter. | [optional] |
+| **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Search terms |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## getCampaignAnalytics

@@ -26,10 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.BoostPostRequestBudget;
+import dev.zernio.model.BoostPostRequestPlatformSpecificData;
 import dev.zernio.model.BoostPostRequestSchedule;
 import dev.zernio.model.BoostPostRequestTargeting;
 import dev.zernio.model.BoostPostRequestTracking;
-import dev.zernio.model.LinkedInAdsPlatformData;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:30:22.953533498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -231,7 +231,7 @@ public class BoostPostRequest {
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
-  private LinkedInAdsPlatformData platformSpecificData;
+  private BoostPostRequestPlatformSpecificData platformSpecificData;
 
   public static final String JSON_PROPERTY_TRACKING = "tracking";
   @javax.annotation.Nullable
@@ -665,9 +665,11 @@ public class BoostPostRequest {
   }
 
   /**
-   * Meta bid strategy applied to the ad set. On TikTok, mapped to &#x60;bid_type&#x60; / &#x60;bid_price&#x60; / &#x60;deep_bid_type&#x60; automatically. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Meta bid strategy applied to the ad set. On TikTok, mapped to &#x60;bid_type&#x60; / &#x60;bid_price&#x60; / &#x60;deep_bid_type&#x60; automatically. 
    * @return bidStrategy
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -689,9 +691,11 @@ public class BoostPostRequest {
   }
 
   /**
-   * Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. Backward-compat: providing &#x60;bidAmount&#x60; without &#x60;bidStrategy&#x60; is treated as &#x60;LOWEST_COST_WITH_BID_CAP&#x60;. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. Backward-compat: providing &#x60;bidAmount&#x60; without &#x60;bidStrategy&#x60; is treated as &#x60;LOWEST_COST_WITH_BID_CAP&#x60;. 
    * @return bidAmount
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -713,9 +717,11 @@ public class BoostPostRequest {
   }
 
   /**
-   * Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000 (Meta uses fixed-point integers). 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000 (Meta uses fixed-point integers). 
    * @return roasAverageFloor
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -731,7 +737,7 @@ public class BoostPostRequest {
   }
 
 
-  public BoostPostRequest platformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+  public BoostPostRequest platformSpecificData(@javax.annotation.Nullable BoostPostRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
   }
@@ -743,14 +749,14 @@ public class BoostPostRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinkedInAdsPlatformData getPlatformSpecificData() {
+  public BoostPostRequestPlatformSpecificData getPlatformSpecificData() {
     return platformSpecificData;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+  public void setPlatformSpecificData(@javax.annotation.Nullable BoostPostRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
   }
 
