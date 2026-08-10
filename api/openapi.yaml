@@ -69747,6 +69747,7 @@ components:
         readAt: 2000-01-23T04:56:07.000+00:00
         platformIdentifier: platformIdentifier
         deliveredAt: 2000-01-23T04:56:07.000+00:00
+        errorTraceId: errorTraceId
         id: id
         channelId: channelId
         status: pending
@@ -69785,6 +69786,12 @@ components:
             \ for unmapped codes; fall back to error."
           nullable: true
           type: string
+        errorTraceId:
+          description: Meta trace id (fbtrace_id) for the failed send. Quote this
+            when escalating to Meta Direct Support. Only populated for status=failed
+            on Meta platforms.
+          nullable: true
+          type: string
         sentAt:
           format: date-time
           type: string
@@ -69813,6 +69820,7 @@ components:
           readAt: 2000-01-23T04:56:07.000+00:00
           platformIdentifier: platformIdentifier
           deliveredAt: 2000-01-23T04:56:07.000+00:00
+          errorTraceId: errorTraceId
           id: id
           channelId: channelId
           status: pending
@@ -69826,6 +69834,7 @@ components:
           readAt: 2000-01-23T04:56:07.000+00:00
           platformIdentifier: platformIdentifier
           deliveredAt: 2000-01-23T04:56:07.000+00:00
+          errorTraceId: errorTraceId
           id: id
           channelId: channelId
           status: pending

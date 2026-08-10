@@ -48,11 +48,12 @@ import dev.zernio.ApiClient;
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR_CODE,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR_EXPLANATION,
+  ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR_TRACE_ID,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_SENT_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_DELIVERED_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T15:27:45.441124288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:16:21.212991617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -132,6 +133,9 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
   public static final String JSON_PROPERTY_ERROR_EXPLANATION = "errorExplanation";
   private JsonNullable<String> errorExplanation = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_ERROR_TRACE_ID = "errorTraceId";
+  private JsonNullable<String> errorTraceId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SENT_AT = "sentAt";
   @javax.annotation.Nullable
@@ -404,6 +408,38 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   }
 
 
+  public ListBroadcastRecipients200ResponseRecipientsInner errorTraceId(@javax.annotation.Nullable String errorTraceId) {
+    this.errorTraceId = JsonNullable.<String>of(errorTraceId);
+    return this;
+  }
+
+  /**
+   * Meta trace id (fbtrace_id) for the failed send. Quote this when escalating to Meta Direct Support. Only populated for status&#x3D;failed on Meta platforms.
+   * @return errorTraceId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getErrorTraceId() {
+        return errorTraceId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ERROR_TRACE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getErrorTraceId_JsonNullable() {
+    return errorTraceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_TRACE_ID)
+  public void setErrorTraceId_JsonNullable(JsonNullable<String> errorTraceId) {
+    this.errorTraceId = errorTraceId;
+  }
+
+  public void setErrorTraceId(@javax.annotation.Nullable String errorTraceId) {
+    this.errorTraceId = JsonNullable.<String>of(errorTraceId);
+  }
+
+
   public ListBroadcastRecipients200ResponseRecipientsInner sentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
     this.sentAt = sentAt;
     return this;
@@ -498,6 +534,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
         Objects.equals(this.error, listBroadcastRecipients200ResponseRecipientsInner.error) &&
         equalsNullable(this.errorCode, listBroadcastRecipients200ResponseRecipientsInner.errorCode) &&
         equalsNullable(this.errorExplanation, listBroadcastRecipients200ResponseRecipientsInner.errorExplanation) &&
+        equalsNullable(this.errorTraceId, listBroadcastRecipients200ResponseRecipientsInner.errorTraceId) &&
         Objects.equals(this.sentAt, listBroadcastRecipients200ResponseRecipientsInner.sentAt) &&
         Objects.equals(this.deliveredAt, listBroadcastRecipients200ResponseRecipientsInner.deliveredAt) &&
         Objects.equals(this.readAt, listBroadcastRecipients200ResponseRecipientsInner.readAt);
@@ -509,7 +546,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, hashCodeNullable(errorCode), hashCodeNullable(errorExplanation), sentAt, deliveredAt, readAt);
+    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, hashCodeNullable(errorCode), hashCodeNullable(errorExplanation), hashCodeNullable(errorTraceId), sentAt, deliveredAt, readAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -533,6 +570,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    errorExplanation: ").append(toIndentedString(errorExplanation)).append("\n");
+    sb.append("    errorTraceId: ").append(toIndentedString(errorTraceId)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    deliveredAt: ").append(toIndentedString(deliveredAt)).append("\n");
     sb.append("    readAt: ").append(toIndentedString(readAt)).append("\n");
@@ -631,6 +669,11 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
     // add `errorExplanation` to the URL query string
     if (getErrorExplanation() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serrorExplanation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorExplanation()))));
+    }
+
+    // add `errorTraceId` to the URL query string
+    if (getErrorTraceId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%serrorTraceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorTraceId()))));
     }
 
     // add `sentAt` to the URL query string
