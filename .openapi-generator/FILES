@@ -614,6 +614,7 @@ docs/GetInboxVolume200ResponseSummary.md
 docs/GetInboxVolume200ResponseTimeseriesInner.md
 docs/GetInboxVolume400Response.md
 docs/GetInstagramAccountInsights404Response.md
+docs/GetInstagramAudio200Response.md
 docs/GetInstagramFollowStatus200Response.md
 docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
@@ -814,9 +815,11 @@ docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md
 docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md
 docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md
 docs/InstagramApi.md
+docs/InstagramAudioAsset.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
 docs/InstagramPlatformData.md
+docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InvitesApi.md
@@ -1186,6 +1189,7 @@ docs/SearchInboxConversations200ResponseDataInnerMatchesInner.md
 docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
+docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
 docs/SearchTweets200Response.md
 docs/SearchTweets200ResponseMeta.md
@@ -2357,6 +2361,7 @@ src/main/java/dev/zernio/model/GetInboxVolume200ResponseSummary.java
 src/main/java/dev/zernio/model/GetInboxVolume200ResponseTimeseriesInner.java
 src/main/java/dev/zernio/model/GetInboxVolume400Response.java
 src/main/java/dev/zernio/model/GetInstagramAccountInsights404Response.java
+src/main/java/dev/zernio/model/GetInstagramAudio200Response.java
 src/main/java/dev/zernio/model/GetInstagramFollowStatus200Response.java
 src/main/java/dev/zernio/model/GetInstagramPublishingLimit200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200Response.java
@@ -2547,9 +2552,11 @@ src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValue.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValueValuesInner.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseUnavailableMetricsInner.java
+src/main/java/dev/zernio/model/InstagramAudioAsset.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponse.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponseDemographicsValueInner.java
 src/main/java/dev/zernio/model/InstagramPlatformData.java
+src/main/java/dev/zernio/model/InstagramPlatformDataAudioConfiguration.java
 src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
@@ -2904,6 +2911,7 @@ src/main/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerMatch
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMeta.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaAccountsSkippedInner.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAccountsInner.java
+src/main/java/dev/zernio/model/SearchInstagramAudio200Response.java
 src/main/java/dev/zernio/model/SearchReddit200Response.java
 src/main/java/dev/zernio/model/SearchTweets200Response.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseMeta.java
@@ -3383,3 +3391,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetInstagramAudio200ResponseTest.java
+src/test/java/dev/zernio/model/InstagramAudioAssetTest.java
+src/test/java/dev/zernio/model/InstagramPlatformDataAudioConfigurationTest.java
+src/test/java/dev/zernio/model/SearchInstagramAudio200ResponseTest.java

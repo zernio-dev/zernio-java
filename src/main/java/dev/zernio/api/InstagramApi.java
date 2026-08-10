@@ -18,10 +18,13 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.GetInstagramAudio200Response;
 import dev.zernio.model.GetInstagramPublishingLimit200Response;
 import dev.zernio.model.GetInstagramStoryInsights200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListInstagramStories200Response;
+import dev.zernio.model.SearchInstagramAudio200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:16:21.212991617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:48:31.636550222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -163,6 +166,133 @@ public class InstagramApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Get Instagram audio metadata
+   * Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioId Instagram audio asset ID (required)
+   * @return GetInstagramAudio200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetInstagramAudio200Response getInstagramAudio(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioId) throws ApiException {
+    return getInstagramAudio(accountId, audioId, null);
+  }
+
+  /**
+   * Get Instagram audio metadata
+   * Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioId Instagram audio asset ID (required)
+   * @param headers Optional headers to include in the request
+   * @return GetInstagramAudio200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetInstagramAudio200Response getInstagramAudio(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetInstagramAudio200Response> localVarResponse = getInstagramAudioWithHttpInfo(accountId, audioId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Instagram audio metadata
+   * Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioId Instagram audio asset ID (required)
+   * @return ApiResponse&lt;GetInstagramAudio200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetInstagramAudio200Response> getInstagramAudioWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioId) throws ApiException {
+    return getInstagramAudioWithHttpInfo(accountId, audioId, null);
+  }
+
+  /**
+   * Get Instagram audio metadata
+   * Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioId Instagram audio asset ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetInstagramAudio200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetInstagramAudio200Response> getInstagramAudioWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getInstagramAudioRequestBuilder(accountId, audioId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getInstagramAudio", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetInstagramAudio200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetInstagramAudio200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetInstagramAudio200Response>() {});
+        
+
+        return new ApiResponse<GetInstagramAudio200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getInstagramAudioRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getInstagramAudio");
+    }
+    // verify the required parameter 'audioId' is set
+    if (audioId == null) {
+      throw new ApiException(400, "Missing the required parameter 'audioId' when calling getInstagramAudio");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/instagram/audio/{audioId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{audioId}", ApiClient.urlEncode(audioId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -513,6 +643,153 @@ public class InstagramApi {
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search Instagram audio
+   * Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioType Catalog to search: licensed music or original sounds from Reels. (required)
+   * @param q Search keywords. Omit to get the current trending list. (optional)
+   * @return SearchInstagramAudio200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchInstagramAudio200Response searchInstagramAudio(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioType, @javax.annotation.Nullable String q) throws ApiException {
+    return searchInstagramAudio(accountId, audioType, q, null);
+  }
+
+  /**
+   * Search Instagram audio
+   * Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioType Catalog to search: licensed music or original sounds from Reels. (required)
+   * @param q Search keywords. Omit to get the current trending list. (optional)
+   * @param headers Optional headers to include in the request
+   * @return SearchInstagramAudio200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchInstagramAudio200Response searchInstagramAudio(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioType, @javax.annotation.Nullable String q, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchInstagramAudio200Response> localVarResponse = searchInstagramAudioWithHttpInfo(accountId, audioType, q, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search Instagram audio
+   * Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioType Catalog to search: licensed music or original sounds from Reels. (required)
+   * @param q Search keywords. Omit to get the current trending list. (optional)
+   * @return ApiResponse&lt;SearchInstagramAudio200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchInstagramAudio200Response> searchInstagramAudioWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioType, @javax.annotation.Nullable String q) throws ApiException {
+    return searchInstagramAudioWithHttpInfo(accountId, audioType, q, null);
+  }
+
+  /**
+   * Search Instagram audio
+   * Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param audioType Catalog to search: licensed music or original sounds from Reels. (required)
+   * @param q Search keywords. Omit to get the current trending list. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchInstagramAudio200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchInstagramAudio200Response> searchInstagramAudioWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioType, @javax.annotation.Nullable String q, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchInstagramAudioRequestBuilder(accountId, audioType, q, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchInstagramAudio", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchInstagramAudio200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchInstagramAudio200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchInstagramAudio200Response>() {});
+        
+
+        return new ApiResponse<SearchInstagramAudio200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchInstagramAudioRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String audioType, @javax.annotation.Nullable String q, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchInstagramAudio");
+    }
+    // verify the required parameter 'audioType' is set
+    if (audioType == null) {
+      throw new ApiException(400, "Missing the required parameter 'audioType' when calling searchInstagramAudio");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/instagram/audio"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "audioType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("audioType", audioType));
+    localVarQueryParameterBaseName = "q";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("q", q));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

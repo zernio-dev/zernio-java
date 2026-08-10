@@ -37,6 +37,7 @@ import dev.zernio.model.GoogleBusinessPlatformDataCallToAction;
 import dev.zernio.model.GoogleBusinessPlatformDataEvent;
 import dev.zernio.model.GoogleBusinessPlatformDataOffer;
 import dev.zernio.model.InstagramPlatformData;
+import dev.zernio.model.InstagramPlatformDataAudioConfiguration;
 import dev.zernio.model.InstagramPlatformDataTrialParams;
 import dev.zernio.model.InstagramPlatformDataUserTagsInner;
 import dev.zernio.model.LinkedInPlatformData;
@@ -82,7 +83,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:16:21.212991617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:48:31.636550222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreatePostRequestPlatformsInnerPlatformSpecificData.CreatePostRequestPlatformsInnerPlatformSpecificDataDeserializer.class)
 @JsonSerialize(using = CreatePostRequestPlatformsInnerPlatformSpecificData.CreatePostRequestPlatformsInnerPlatformSpecificDataSerializer.class)
 public class CreatePostRequestPlatformsInnerPlatformSpecificData extends AbstractOpenApiSchema {

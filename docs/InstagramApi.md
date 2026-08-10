@@ -4,13 +4,173 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getInstagramAudio**](InstagramApi.md#getInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata |
+| [**getInstagramAudioWithHttpInfo**](InstagramApi.md#getInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata |
 | [**getInstagramPublishingLimit**](InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**getInstagramPublishingLimitWithHttpInfo**](InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**getInstagramStoryInsights**](InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
 | [**getInstagramStoryInsightsWithHttpInfo**](InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
 | [**listInstagramStories**](InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
 | [**listInstagramStoriesWithHttpInfo**](InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
+| [**searchInstagramAudio**](InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
+| [**searchInstagramAudioWithHttpInfo**](InstagramApi.md#searchInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
 
+
+
+## getInstagramAudio
+
+> GetInstagramAudio200Response getInstagramAudio(accountId, audioId)
+
+Get Instagram audio metadata
+
+Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Instagram account
+        String audioId = "audioId_example"; // String | Instagram audio asset ID
+        try {
+            GetInstagramAudio200Response result = apiInstance.getInstagramAudio(accountId, audioId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramAudio");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Instagram account | |
+| **audioId** | **String**| Instagram audio asset ID | |
+
+### Return type
+
+[**GetInstagramAudio200Response**](GetInstagramAudio200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The audio asset |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Instagram rejected the request |  -  |
+
+## getInstagramAudioWithHttpInfo
+
+> ApiResponse<GetInstagramAudio200Response> getInstagramAudio getInstagramAudioWithHttpInfo(accountId, audioId)
+
+Get Instagram audio metadata
+
+Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Instagram account
+        String audioId = "audioId_example"; // String | Instagram audio asset ID
+        try {
+            ApiResponse<GetInstagramAudio200Response> response = apiInstance.getInstagramAudioWithHttpInfo(accountId, audioId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramAudio");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Instagram account | |
+| **audioId** | **String**| Instagram audio asset ID | |
+
+### Return type
+
+ApiResponse<[**GetInstagramAudio200Response**](GetInstagramAudio200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The audio asset |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Instagram rejected the request |  -  |
 
 
 ## getInstagramPublishingLimit
@@ -469,4 +629,164 @@ ApiResponse<[**ListInstagramStories200Response**](ListInstagramStories200Respons
 | **400** | Invalid request. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Instagram account not found. |  -  |
+
+
+## searchInstagramAudio
+
+> SearchInstagramAudio200Response searchInstagramAudio(accountId, audioType, q)
+
+Search Instagram audio
+
+Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Instagram account
+        String audioType = "music"; // String | Catalog to search: licensed music or original sounds from Reels.
+        String q = "q_example"; // String | Search keywords. Omit to get the current trending list.
+        try {
+            SearchInstagramAudio200Response result = apiInstance.searchInstagramAudio(accountId, audioType, q);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#searchInstagramAudio");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Instagram account | |
+| **audioType** | **String**| Catalog to search: licensed music or original sounds from Reels. | [enum: music, original_sound] |
+| **q** | **String**| Search keywords. Omit to get the current trending list. | [optional] |
+
+### Return type
+
+[**SearchInstagramAudio200Response**](SearchInstagramAudio200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching audio assets (may be empty) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Instagram rejected the request |  -  |
+
+## searchInstagramAudioWithHttpInfo
+
+> ApiResponse<SearchInstagramAudio200Response> searchInstagramAudio searchInstagramAudioWithHttpInfo(accountId, audioType, q)
+
+Search Instagram audio
+
+Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Instagram account
+        String audioType = "music"; // String | Catalog to search: licensed music or original sounds from Reels.
+        String q = "q_example"; // String | Search keywords. Omit to get the current trending list.
+        try {
+            ApiResponse<SearchInstagramAudio200Response> response = apiInstance.searchInstagramAudioWithHttpInfo(accountId, audioType, q);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#searchInstagramAudio");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Instagram account | |
+| **audioType** | **String**| Catalog to search: licensed music or original sounds from Reels. | [enum: music, original_sound] |
+| **q** | **String**| Search keywords. Omit to get the current trending list. | [optional] |
+
+### Return type
+
+ApiResponse<[**SearchInstagramAudio200Response**](SearchInstagramAudio200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching audio assets (may be empty) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Instagram rejected the request |  -  |
 

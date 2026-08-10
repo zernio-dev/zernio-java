@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-10T16:16:21.212991617Z[Etc/UTC]
+- Build date: 2026-08-10T16:48:31.636550222Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -676,12 +676,16 @@ Class | Method | HTTP request | Description
 *InboxAnalyticsApi* | [**getInboxVolumeWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxVolumeWithHttpInfo) | **GET** /v1/analytics/inbox/volume | Get inbox messaging volume
 *InboxAnalyticsApi* | [**listInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#listInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
 *InboxAnalyticsApi* | [**listInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#listInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
+*InstagramApi* | [**getInstagramAudio**](docs/InstagramApi.md#getInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata
+*InstagramApi* | [**getInstagramAudioWithHttpInfo**](docs/InstagramApi.md#getInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata
 *InstagramApi* | [**getInstagramPublishingLimit**](docs/InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramPublishingLimitWithHttpInfo**](docs/InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**getInstagramStoryInsightsWithHttpInfo**](docs/InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InstagramApi* | [**listInstagramStoriesWithHttpInfo**](docs/InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
+*InstagramApi* | [**searchInstagramAudio**](docs/InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
+*InstagramApi* | [**searchInstagramAudioWithHttpInfo**](docs/InstagramApi.md#searchInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
 *InvitesApi* | [**createInviteToken**](docs/InvitesApi.md#createInviteToken) | **POST** /v1/invite/tokens | Create invite token
 *InvitesApi* | [**createInviteTokenWithHttpInfo**](docs/InvitesApi.md#createInviteTokenWithHttpInfo) | **POST** /v1/invite/tokens | Create invite token
 *LeadGenApi* | [**archiveLeadForm**](docs/LeadGenApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
@@ -1808,6 +1812,7 @@ Class | Method | HTTP request | Description
  - [GetInboxVolume200ResponseTimeseriesInner](docs/GetInboxVolume200ResponseTimeseriesInner.md)
  - [GetInboxVolume400Response](docs/GetInboxVolume400Response.md)
  - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
+ - [GetInstagramAudio200Response](docs/GetInstagramAudio200Response.md)
  - [GetInstagramFollowStatus200Response](docs/GetInstagramFollowStatus200Response.md)
  - [GetInstagramPublishingLimit200Response](docs/GetInstagramPublishingLimit200Response.md)
  - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
@@ -1998,9 +2003,11 @@ Class | Method | HTTP request | Description
  - [InstagramAccountInsightsResponseMetricsValueBreakdownsInner](docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md)
  - [InstagramAccountInsightsResponseMetricsValueValuesInner](docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md)
  - [InstagramAccountInsightsResponseUnavailableMetricsInner](docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md)
+ - [InstagramAudioAsset](docs/InstagramAudioAsset.md)
  - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
+ - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
@@ -2355,6 +2362,7 @@ Class | Method | HTTP request | Description
  - [SearchInboxConversations200ResponseMeta](docs/SearchInboxConversations200ResponseMeta.md)
  - [SearchInboxConversations200ResponseMetaAccountsSkippedInner](docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
+ - [SearchInstagramAudio200Response](docs/SearchInstagramAudio200Response.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SearchTweets200Response](docs/SearchTweets200Response.md)
  - [SearchTweets200ResponseMeta](docs/SearchTweets200ResponseMeta.md)

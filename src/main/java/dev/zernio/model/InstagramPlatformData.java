@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.InstagramPlatformDataAudioConfiguration;
 import dev.zernio.model.InstagramPlatformDataTrialParams;
 import dev.zernio.model.InstagramPlatformDataUserTagsInner;
 import java.net.URI;
@@ -45,12 +46,13 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_TRIAL_PARAMS,
   InstagramPlatformData.JSON_PROPERTY_USER_TAGS,
   InstagramPlatformData.JSON_PROPERTY_AUDIO_NAME,
+  InstagramPlatformData.JSON_PROPERTY_AUDIO_CONFIGURATION,
   InstagramPlatformData.JSON_PROPERTY_THUMB_OFFSET,
   InstagramPlatformData.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
   InstagramPlatformData.JSON_PROPERTY_REEL_COVER,
   InstagramPlatformData.JSON_PROPERTY_IS_AI_GENERATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:16:21.212991617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:48:31.636550222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.
@@ -112,6 +114,10 @@ public class InstagramPlatformData {
   public static final String JSON_PROPERTY_AUDIO_NAME = "audioName";
   @javax.annotation.Nullable
   private String audioName;
+
+  public static final String JSON_PROPERTY_AUDIO_CONFIGURATION = "audioConfiguration";
+  @javax.annotation.Nullable
+  private InstagramPlatformDataAudioConfiguration audioConfiguration;
 
   public static final String JSON_PROPERTY_THUMB_OFFSET = "thumbOffset";
   @javax.annotation.Nullable
@@ -298,7 +304,7 @@ public class InstagramPlatformData {
   }
 
   /**
-   * Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once.
+   * Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once. Unrelated to audioConfiguration, which attaches a catalog track.
    * @return audioName
    */
   @javax.annotation.Nullable
@@ -313,6 +319,30 @@ public class InstagramPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAudioName(@javax.annotation.Nullable String audioName) {
     this.audioName = audioName;
+  }
+
+
+  public InstagramPlatformData audioConfiguration(@javax.annotation.Nullable InstagramPlatformDataAudioConfiguration audioConfiguration) {
+    this.audioConfiguration = audioConfiguration;
+    return this;
+  }
+
+  /**
+   * Get audioConfiguration
+   * @return audioConfiguration
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AUDIO_CONFIGURATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public InstagramPlatformDataAudioConfiguration getAudioConfiguration() {
+    return audioConfiguration;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AUDIO_CONFIGURATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAudioConfiguration(@javax.annotation.Nullable InstagramPlatformDataAudioConfiguration audioConfiguration) {
+    this.audioConfiguration = audioConfiguration;
   }
 
 
@@ -432,6 +462,7 @@ public class InstagramPlatformData {
         Objects.equals(this.trialParams, instagramPlatformData.trialParams) &&
         Objects.equals(this.userTags, instagramPlatformData.userTags) &&
         Objects.equals(this.audioName, instagramPlatformData.audioName) &&
+        Objects.equals(this.audioConfiguration, instagramPlatformData.audioConfiguration) &&
         Objects.equals(this.thumbOffset, instagramPlatformData.thumbOffset) &&
         Objects.equals(this.instagramThumbnail, instagramPlatformData.instagramThumbnail) &&
         Objects.equals(this.reelCover, instagramPlatformData.reelCover) &&
@@ -440,7 +471,7 @@ public class InstagramPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, thumbOffset, instagramThumbnail, reelCover, isAiGenerated);
+    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, audioConfiguration, thumbOffset, instagramThumbnail, reelCover, isAiGenerated);
   }
 
   @Override
@@ -454,6 +485,7 @@ public class InstagramPlatformData {
     sb.append("    trialParams: ").append(toIndentedString(trialParams)).append("\n");
     sb.append("    userTags: ").append(toIndentedString(userTags)).append("\n");
     sb.append("    audioName: ").append(toIndentedString(audioName)).append("\n");
+    sb.append("    audioConfiguration: ").append(toIndentedString(audioConfiguration)).append("\n");
     sb.append("    thumbOffset: ").append(toIndentedString(thumbOffset)).append("\n");
     sb.append("    instagramThumbnail: ").append(toIndentedString(instagramThumbnail)).append("\n");
     sb.append("    reelCover: ").append(toIndentedString(reelCover)).append("\n");
@@ -547,6 +579,11 @@ public class InstagramPlatformData {
     // add `audioName` to the URL query string
     if (getAudioName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saudioName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudioName()))));
+    }
+
+    // add `audioConfiguration` to the URL query string
+    if (getAudioConfiguration() != null) {
+      joiner.add(getAudioConfiguration().toUrlQueryString(prefix + "audioConfiguration" + suffix));
     }
 
     // add `thumbOffset` to the URL query string
