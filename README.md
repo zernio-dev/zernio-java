@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-10T10:58:33.916155553Z[Etc/UTC]
+- Build date: 2026-08-10T11:08:15.429040907Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -160,6 +160,10 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AdAccountsApi* | [**createCustomConversion**](docs/AdAccountsApi.md#createCustomConversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion
+*AdAccountsApi* | [**createCustomConversionWithHttpInfo**](docs/AdAccountsApi.md#createCustomConversionWithHttpInfo) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion
+*AdAccountsApi* | [**createHighDemandPeriod**](docs/AdAccountsApi.md#createHighDemandPeriod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase
+*AdAccountsApi* | [**createHighDemandPeriodWithHttpInfo**](docs/AdAccountsApi.md#createHighDemandPeriodWithHttpInfo) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase
 *AdAccountsApi* | [**createValueRuleSet**](docs/AdAccountsApi.md#createValueRuleSet) | **POST** /v1/ads/value-rule-sets | Create a value rule set
 *AdAccountsApi* | [**createValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#createValueRuleSetWithHttpInfo) | **POST** /v1/ads/value-rule-sets | Create a value rule set
 *AdAccountsApi* | [**deleteValueRuleSet**](docs/AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
@@ -184,6 +188,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listAdStudiesWithHttpInfo**](docs/AdAccountsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies
 *AdAccountsApi* | [**listAdsBusinessCenters**](docs/AdAccountsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdAccountsApi* | [**listAdsBusinessCentersWithHttpInfo**](docs/AdAccountsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers
+*AdAccountsApi* | [**listCustomConversions**](docs/AdAccountsApi.md#listCustomConversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
+*AdAccountsApi* | [**listCustomConversionsWithHttpInfo**](docs/AdAccountsApi.md#listCustomConversionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
 *AdAccountsApi* | [**listHighDemandPeriods**](docs/AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
 *AdAccountsApi* | [**listHighDemandPeriodsWithHttpInfo**](docs/AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
 *AdAccountsApi* | [**listMetaBusinesses**](docs/AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list
@@ -1394,6 +1400,7 @@ Class | Method | HTTP request | Description
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
  - [CreateCtwaAd201Response](docs/CreateCtwaAd201Response.md)
+ - [CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
  - [CreateDiscordGuildRole201Response](docs/CreateDiscordGuildRole201Response.md)
@@ -1411,6 +1418,8 @@ Class | Method | HTTP request | Description
  - [CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
  - [CreateGoogleBusinessPlaceActionRequest](docs/CreateGoogleBusinessPlaceActionRequest.md)
+ - [CreateHighDemandPeriod201Response](docs/CreateHighDemandPeriod201Response.md)
+ - [CreateHighDemandPeriodRequest](docs/CreateHighDemandPeriodRequest.md)
  - [CreateInboxConversation201Response](docs/CreateInboxConversation201Response.md)
  - [CreateInboxConversation201ResponseData](docs/CreateInboxConversation201ResponseData.md)
  - [CreateInboxConversation400Response](docs/CreateInboxConversation400Response.md)
@@ -1523,6 +1532,8 @@ Class | Method | HTTP request | Description
  - [CtwaAdRequestBodyZipsInner](docs/CtwaAdRequestBodyZipsInner.md)
  - [CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [CtwaSingleResponse](docs/CtwaSingleResponse.md)
+ - [CustomConversion](docs/CustomConversion.md)
+ - [CustomConversionResult](docs/CustomConversionResult.md)
  - [DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
@@ -2060,6 +2071,7 @@ Class | Method | HTTP request | Description
  - [ListConversionAssociations200ResponseAssociationsInner](docs/ListConversionAssociations200ResponseAssociationsInner.md)
  - [ListConversionDestinations200Response](docs/ListConversionDestinations200Response.md)
  - [ListConversionDestinations200ResponseDestinationsInner](docs/ListConversionDestinations200ResponseDestinationsInner.md)
+ - [ListCustomConversions200Response](docs/ListCustomConversions200Response.md)
  - [ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
  - [ListDiscordGuildMembers200Response](docs/ListDiscordGuildMembers200Response.md)

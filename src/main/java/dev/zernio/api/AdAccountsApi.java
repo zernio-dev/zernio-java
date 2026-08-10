@@ -18,8 +18,12 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.CreateCustomConversionRequest;
+import dev.zernio.model.CreateHighDemandPeriod201Response;
+import dev.zernio.model.CreateHighDemandPeriodRequest;
 import dev.zernio.model.CreateValueRuleSet201Response;
 import dev.zernio.model.CreateValueRuleSetRequest;
+import dev.zernio.model.CustomConversionResult;
 import dev.zernio.model.DeleteValueRuleSet200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetAdAccountFinance200Response;
@@ -33,6 +37,7 @@ import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAdLabels200Response;
 import dev.zernio.model.ListAdStudies200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
+import dev.zernio.model.ListCustomConversions200Response;
 import dev.zernio.model.ListHighDemandPeriods200Response;
 import dev.zernio.model.ListMetaBusinesses200Response;
 import dev.zernio.model.ListValueRuleSets200Response;
@@ -67,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:58:33.916155553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:08:15.429040907Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -182,6 +187,261 @@ public class AdAccountsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Create or reuse a custom conversion
+   * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param createCustomConversionRequest  (required)
+   * @return CustomConversionResult
+   * @throws ApiException if fails to make API call
+   */
+  public CustomConversionResult createCustomConversion(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateCustomConversionRequest createCustomConversionRequest) throws ApiException {
+    return createCustomConversion(accountId, createCustomConversionRequest, null);
+  }
+
+  /**
+   * Create or reuse a custom conversion
+   * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param createCustomConversionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CustomConversionResult
+   * @throws ApiException if fails to make API call
+   */
+  public CustomConversionResult createCustomConversion(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateCustomConversionRequest createCustomConversionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CustomConversionResult> localVarResponse = createCustomConversionWithHttpInfo(accountId, createCustomConversionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create or reuse a custom conversion
+   * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param createCustomConversionRequest  (required)
+   * @return ApiResponse&lt;CustomConversionResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomConversionResult> createCustomConversionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateCustomConversionRequest createCustomConversionRequest) throws ApiException {
+    return createCustomConversionWithHttpInfo(accountId, createCustomConversionRequest, null);
+  }
+
+  /**
+   * Create or reuse a custom conversion
+   * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param createCustomConversionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CustomConversionResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomConversionResult> createCustomConversionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateCustomConversionRequest createCustomConversionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createCustomConversionRequestBuilder(accountId, createCustomConversionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createCustomConversion", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CustomConversionResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CustomConversionResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CustomConversionResult>() {});
+        
+
+        return new ApiResponse<CustomConversionResult>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createCustomConversionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateCustomConversionRequest createCustomConversionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling createCustomConversion");
+    }
+    // verify the required parameter 'createCustomConversionRequest' is set
+    if (createCustomConversionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCustomConversionRequest' when calling createCustomConversion");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/custom-conversions"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCustomConversionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Schedule a budget increase
+   * Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+   * @param createHighDemandPeriodRequest  (required)
+   * @return CreateHighDemandPeriod201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateHighDemandPeriod201Response createHighDemandPeriod(@javax.annotation.Nonnull CreateHighDemandPeriodRequest createHighDemandPeriodRequest) throws ApiException {
+    return createHighDemandPeriod(createHighDemandPeriodRequest, null);
+  }
+
+  /**
+   * Schedule a budget increase
+   * Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+   * @param createHighDemandPeriodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateHighDemandPeriod201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateHighDemandPeriod201Response createHighDemandPeriod(@javax.annotation.Nonnull CreateHighDemandPeriodRequest createHighDemandPeriodRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateHighDemandPeriod201Response> localVarResponse = createHighDemandPeriodWithHttpInfo(createHighDemandPeriodRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Schedule a budget increase
+   * Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+   * @param createHighDemandPeriodRequest  (required)
+   * @return ApiResponse&lt;CreateHighDemandPeriod201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateHighDemandPeriod201Response> createHighDemandPeriodWithHttpInfo(@javax.annotation.Nonnull CreateHighDemandPeriodRequest createHighDemandPeriodRequest) throws ApiException {
+    return createHighDemandPeriodWithHttpInfo(createHighDemandPeriodRequest, null);
+  }
+
+  /**
+   * Schedule a budget increase
+   * Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+   * @param createHighDemandPeriodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateHighDemandPeriod201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateHighDemandPeriod201Response> createHighDemandPeriodWithHttpInfo(@javax.annotation.Nonnull CreateHighDemandPeriodRequest createHighDemandPeriodRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createHighDemandPeriodRequestBuilder(createHighDemandPeriodRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createHighDemandPeriod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateHighDemandPeriod201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateHighDemandPeriod201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateHighDemandPeriod201Response>() {});
+        
+
+        return new ApiResponse<CreateHighDemandPeriod201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createHighDemandPeriodRequestBuilder(@javax.annotation.Nonnull CreateHighDemandPeriodRequest createHighDemandPeriodRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createHighDemandPeriodRequest' is set
+    if (createHighDemandPeriodRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createHighDemandPeriodRequest' when calling createHighDemandPeriod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/high-demand-periods";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createHighDemandPeriodRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -1900,6 +2160,147 @@ public class AdAccountsApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List custom conversions
+   * The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @return ListCustomConversions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListCustomConversions200Response listCustomConversions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listCustomConversions(accountId, adAccountId, null);
+  }
+
+  /**
+   * List custom conversions
+   * The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ListCustomConversions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListCustomConversions200Response listCustomConversions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListCustomConversions200Response> localVarResponse = listCustomConversionsWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List custom conversions
+   * The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @return ApiResponse&lt;ListCustomConversions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCustomConversions200Response> listCustomConversionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listCustomConversionsWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * List custom conversions
+   * The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+   * @param accountId Meta ads SocialAccount id. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListCustomConversions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCustomConversions200Response> listCustomConversionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listCustomConversionsRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listCustomConversions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListCustomConversions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListCustomConversions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCustomConversions200Response>() {});
+        
+
+        return new ApiResponse<ListCustomConversions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listCustomConversionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listCustomConversions");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listCustomConversions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/custom-conversions"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

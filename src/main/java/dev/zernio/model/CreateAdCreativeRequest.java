@@ -50,9 +50,10 @@ import dev.zernio.ApiClient;
   CreateAdCreativeRequest.JSON_PROPERTY_IMAGE_HASH,
   CreateAdCreativeRequest.JSON_PROPERTY_CAROUSEL_CARDS,
   CreateAdCreativeRequest.JSON_PROPERTY_URL_TAGS,
-  CreateAdCreativeRequest.JSON_PROPERTY_CREATIVE_FEATURES
+  CreateAdCreativeRequest.JSON_PROPERTY_CREATIVE_FEATURES,
+  CreateAdCreativeRequest.JSON_PROPERTY_MULTI_ADVERTISER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:58:33.916155553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:08:15.429040907Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreativeRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -136,6 +137,45 @@ public class CreateAdCreativeRequest {
   public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
   @javax.annotation.Nullable
   private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+
+  /**
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   */
+  public enum MultiAdvertiserEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    MultiAdvertiserEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MultiAdvertiserEnum fromValue(String value) {
+      for (MultiAdvertiserEnum b : MultiAdvertiserEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MULTI_ADVERTISER = "multiAdvertiser";
+  @javax.annotation.Nullable
+  private MultiAdvertiserEnum multiAdvertiser;
 
   public CreateAdCreativeRequest() { 
   }
@@ -444,6 +484,30 @@ public class CreateAdCreativeRequest {
   }
 
 
+  public CreateAdCreativeRequest multiAdvertiser(@javax.annotation.Nullable MultiAdvertiserEnum multiAdvertiser) {
+    this.multiAdvertiser = multiAdvertiser;
+    return this;
+  }
+
+  /**
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   * @return multiAdvertiser
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MULTI_ADVERTISER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MultiAdvertiserEnum getMultiAdvertiser() {
+    return multiAdvertiser;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MULTI_ADVERTISER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMultiAdvertiser(@javax.annotation.Nullable MultiAdvertiserEnum multiAdvertiser) {
+    this.multiAdvertiser = multiAdvertiser;
+  }
+
+
   /**
    * Return true if this createAdCreative_request object is equal to o.
    */
@@ -467,12 +531,13 @@ public class CreateAdCreativeRequest {
         Objects.equals(this.imageHash, createAdCreativeRequest.imageHash) &&
         Objects.equals(this.carouselCards, createAdCreativeRequest.carouselCards) &&
         Objects.equals(this.urlTags, createAdCreativeRequest.urlTags) &&
-        Objects.equals(this.creativeFeatures, createAdCreativeRequest.creativeFeatures);
+        Objects.equals(this.creativeFeatures, createAdCreativeRequest.creativeFeatures) &&
+        Objects.equals(this.multiAdvertiser, createAdCreativeRequest.multiAdvertiser);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, headline, body, description, callToAction, linkUrl, imageUrl, imageHash, carouselCards, urlTags, creativeFeatures);
+    return Objects.hash(accountId, adAccountId, headline, body, description, callToAction, linkUrl, imageUrl, imageHash, carouselCards, urlTags, creativeFeatures, multiAdvertiser);
   }
 
   @Override
@@ -491,6 +556,7 @@ public class CreateAdCreativeRequest {
     sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
     sb.append("    urlTags: ").append(toIndentedString(urlTags)).append("\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
+    sb.append("    multiAdvertiser: ").append(toIndentedString(multiAdvertiser)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -605,6 +671,11 @@ public class CreateAdCreativeRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
       }
+    }
+
+    // add `multiAdvertiser` to the URL query string
+    if (getMultiAdvertiser() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smultiAdvertiser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMultiAdvertiser()))));
     }
 
     return joiner.toString();

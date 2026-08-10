@@ -206,6 +206,7 @@ docs/CreateConversionDestination201Response.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateConversionDestinationRequestValue.md
 docs/CreateCtwaAd201Response.md
+docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
 docs/CreateCustomFieldRequest.md
 docs/CreateDiscordGuildRole201Response.md
@@ -223,6 +224,8 @@ docs/CreateGoogleBusinessMedia200Response.md
 docs/CreateGoogleBusinessMediaRequest.md
 docs/CreateGoogleBusinessPlaceAction200Response.md
 docs/CreateGoogleBusinessPlaceActionRequest.md
+docs/CreateHighDemandPeriod201Response.md
+docs/CreateHighDemandPeriodRequest.md
 docs/CreateInboxConversation201Response.md
 docs/CreateInboxConversation201ResponseData.md
 docs/CreateInboxConversation400Response.md
@@ -335,6 +338,8 @@ docs/CtwaAdRequestBodyVideo.md
 docs/CtwaAdRequestBodyZipsInner.md
 docs/CtwaMultiResponse.md
 docs/CtwaSingleResponse.md
+docs/CustomConversion.md
+docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
 docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
@@ -887,6 +892,7 @@ docs/ListConversionAssociations200Response.md
 docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
+docs/ListCustomConversions200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
 docs/ListDiscordGuildMembers200Response.md
@@ -1939,6 +1945,7 @@ src/main/java/dev/zernio/model/CreateConversionDestination201Response.java
 src/main/java/dev/zernio/model/CreateConversionDestinationRequest.java
 src/main/java/dev/zernio/model/CreateConversionDestinationRequestValue.java
 src/main/java/dev/zernio/model/CreateCtwaAd201Response.java
+src/main/java/dev/zernio/model/CreateCustomConversionRequest.java
 src/main/java/dev/zernio/model/CreateCustomField200Response.java
 src/main/java/dev/zernio/model/CreateCustomFieldRequest.java
 src/main/java/dev/zernio/model/CreateDiscordGuildRole201Response.java
@@ -1956,6 +1963,8 @@ src/main/java/dev/zernio/model/CreateGoogleBusinessMedia200Response.java
 src/main/java/dev/zernio/model/CreateGoogleBusinessMediaRequest.java
 src/main/java/dev/zernio/model/CreateGoogleBusinessPlaceAction200Response.java
 src/main/java/dev/zernio/model/CreateGoogleBusinessPlaceActionRequest.java
+src/main/java/dev/zernio/model/CreateHighDemandPeriod201Response.java
+src/main/java/dev/zernio/model/CreateHighDemandPeriodRequest.java
 src/main/java/dev/zernio/model/CreateInboxConversation201Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation201ResponseData.java
 src/main/java/dev/zernio/model/CreateInboxConversation400Response.java
@@ -2068,6 +2077,8 @@ src/main/java/dev/zernio/model/CtwaAdRequestBodyVideo.java
 src/main/java/dev/zernio/model/CtwaAdRequestBodyZipsInner.java
 src/main/java/dev/zernio/model/CtwaMultiResponse.java
 src/main/java/dev/zernio/model/CtwaSingleResponse.java
+src/main/java/dev/zernio/model/CustomConversion.java
+src/main/java/dev/zernio/model/CustomConversionResult.java
 src/main/java/dev/zernio/model/DeactivateSmsRegistration200Response.java
 src/main/java/dev/zernio/model/DeleteAccountGroup200Response.java
 src/main/java/dev/zernio/model/DeleteAdCampaign200Response.java
@@ -2605,6 +2616,7 @@ src/main/java/dev/zernio/model/ListConversionAssociations200Response.java
 src/main/java/dev/zernio/model/ListConversionAssociations200ResponseAssociationsInner.java
 src/main/java/dev/zernio/model/ListConversionDestinations200Response.java
 src/main/java/dev/zernio/model/ListConversionDestinations200ResponseDestinationsInner.java
+src/main/java/dev/zernio/model/ListCustomConversions200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/ListDiscordGuildMembers200Response.java
@@ -3359,3 +3371,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateCustomConversionRequestTest.java
+src/test/java/dev/zernio/model/CreateHighDemandPeriod201ResponseTest.java
+src/test/java/dev/zernio/model/CreateHighDemandPeriodRequestTest.java
+src/test/java/dev/zernio/model/CustomConversionResultTest.java
+src/test/java/dev/zernio/model/CustomConversionTest.java
+src/test/java/dev/zernio/model/ListCustomConversions200ResponseTest.java

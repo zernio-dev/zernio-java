@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ReplyToPhoneNumberReviewerRequestAttachmentsInner.JSON_PROPERTY_FILENAME,
   ReplyToPhoneNumberReviewerRequestAttachmentsInner.JSON_PROPERTY_BASE64
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:58:33.916155553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:08:15.429040907Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToPhoneNumberReviewerRequestAttachmentsInner {
   public static final String JSON_PROPERTY_FILENAME = "filename";
   @javax.annotation.Nonnull

@@ -74,6 +74,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BUYING_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_RF_PREDICTION_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CREATIVE_FEATURES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_MULTI_ADVERTISER,
   CreateStandaloneAdRequest.JSON_PROPERTY_VALIDATE_ONLY,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
@@ -143,7 +144,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T10:58:33.916155553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:08:15.429040907Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -317,6 +318,45 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
   @javax.annotation.Nullable
   private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+
+  /**
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   */
+  public enum MultiAdvertiserEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    MultiAdvertiserEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MultiAdvertiserEnum fromValue(String value) {
+      for (MultiAdvertiserEnum b : MultiAdvertiserEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MULTI_ADVERTISER = "multiAdvertiser";
+  @javax.annotation.Nullable
+  private MultiAdvertiserEnum multiAdvertiser;
 
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable
@@ -1338,6 +1378,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
     this.creativeFeatures = creativeFeatures;
+  }
+
+
+  public CreateStandaloneAdRequest multiAdvertiser(@javax.annotation.Nullable MultiAdvertiserEnum multiAdvertiser) {
+    this.multiAdvertiser = multiAdvertiser;
+    return this;
+  }
+
+  /**
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   * @return multiAdvertiser
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MULTI_ADVERTISER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MultiAdvertiserEnum getMultiAdvertiser() {
+    return multiAdvertiser;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MULTI_ADVERTISER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMultiAdvertiser(@javax.annotation.Nullable MultiAdvertiserEnum multiAdvertiser) {
+    this.multiAdvertiser = multiAdvertiser;
   }
 
 
@@ -3154,6 +3218,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.buyingType, createStandaloneAdRequest.buyingType) &&
         Objects.equals(this.rfPredictionId, createStandaloneAdRequest.rfPredictionId) &&
         Objects.equals(this.creativeFeatures, createStandaloneAdRequest.creativeFeatures) &&
+        Objects.equals(this.multiAdvertiser, createStandaloneAdRequest.multiAdvertiser) &&
         Objects.equals(this.validateOnly, createStandaloneAdRequest.validateOnly) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
@@ -3226,7 +3291,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -3246,6 +3311,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    buyingType: ").append(toIndentedString(buyingType)).append("\n");
     sb.append("    rfPredictionId: ").append(toIndentedString(rfPredictionId)).append("\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
+    sb.append("    multiAdvertiser: ").append(toIndentedString(multiAdvertiser)).append("\n");
     sb.append("    validateOnly: ").append(toIndentedString(validateOnly)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
@@ -3428,6 +3494,11 @@ public class CreateStandaloneAdRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
       }
+    }
+
+    // add `multiAdvertiser` to the URL query string
+    if (getMultiAdvertiser() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smultiAdvertiser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMultiAdvertiser()))));
     }
 
     // add `validateOnly` to the URL query string

@@ -29856,6 +29856,48 @@ paths:
       - meta
       x-accepts:
       - application/json
+    post:
+      description: |-
+        Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of
+        editing the budget by hand on the day. Same target rule as the GET: exactly one of
+        `campaignId` / `adSetId`.
+
+        Two Meta constraints worth knowing before you call it. `timeStart` / `timeEnd` must
+        fall on a 15-minute boundary, and a campaign cannot mix `ABSOLUTE` and `MULTIPLIER`
+        across its schedules — the second type is rejected with "Can't mix your budget scaling
+        selection". Window rules (must sit inside the campaign's run dates, minimum lead time,
+        no overlap) are Meta's and its message is forwarded verbatim.
+      operationId: createHighDemandPeriod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createHighDemandPeriod_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createHighDemandPeriod_201_response"
+          description: Budget schedule created
+        "400":
+          description: "Invalid input, or Meta rejected the schedule"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Schedule a budget increase
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/creatives:
     get:
       description: |-
@@ -33159,6 +33201,112 @@ paths:
       tags:
       - Messaging Ads
       x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/custom-conversions:
+    get:
+      description: "The ad account's Meta custom conversions, including archived ones\
+        \ (`isArchived`)."
+      operationId: listCustomConversions
+      parameters:
+      - description: Meta ads SocialAccount id.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCustomConversions_200_response"
+          description: Custom conversions
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the token lacks the ads permissions."
+      security:
+      - bearerAuth: []
+      summary: List custom conversions
+      tags:
+      - Ad Accounts
+      x-resource-group: accounts
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Provision the Meta custom conversion an ads flow optimises toward, and hand back the
+        `customConversionId` for `promotedObject.customConversionId` on POST /v1/ads/create.
+        Removes the manual "create it in Ads Manager first" step.
+
+        **Reuse is ours, not Meta's.** Meta's create is not idempotent, so a retried request
+        would otherwise mint a duplicate carrying none of the original's optimisation history.
+        A non-archived conversion with the same `name` on the same `pixelId` is returned
+        instead of created, with `reused: true` and a 200 rather than a 201.
+
+        `rule` is forwarded verbatim in Meta's own grammar (e.g.
+        `{"url": {"i_contains": "thank-you"}}`); Meta validates it and rejects a malformed one
+        with "A conversion rule is required at creation time".
+      operationId: createCustomConversion
+      parameters:
+      - description: Meta ads SocialAccount id.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createCustomConversion_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomConversionResult"
+          description: An existing custom conversion was reused
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomConversionResult"
+          description: Custom conversion created
+        "400":
+          description: "Invalid input, or Meta rejected the conversion (bad rule,\
+            \ per-account cap reached)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the token lacks the ads permissions."
+      security:
+      - bearerAuth: []
+      summary: Create or reuse a custom conversion
+      tags:
+      - Ad Accounts
+      x-resource-group: accounts
       x-platforms:
       - meta
       x-content-type: application/json
@@ -46470,6 +46618,58 @@ components:
       - message
       - platformAdSetId
       - platformCampaignId
+    CustomConversion:
+      example:
+        pixelId: pixelId
+        customEventType: customEventType
+        isArchived: true
+        name: name
+        rule: "{}"
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          nullable: true
+          type: string
+        rule:
+          description: "Meta's rule, parsed back from the string Meta stores."
+          nullable: true
+          type: object
+        customEventType:
+          nullable: true
+          type: string
+        pixelId:
+          description: Meta's event_source_id — the pixel the rule reads from.
+          nullable: true
+          type: string
+        isArchived:
+          type: boolean
+    CustomConversionResult:
+      example:
+        customConversion:
+          pixelId: pixelId
+          customEventType: customEventType
+          isArchived: true
+          name: name
+          rule: "{}"
+          id: id
+        adAccountId: adAccountId
+        customConversionId: customConversionId
+        reused: true
+      properties:
+        adAccountId:
+          type: string
+        customConversionId:
+          description: Drops straight into promotedObject.customConversionId on POST
+            /v1/ads/create.
+          type: string
+        reused:
+          description: True when an existing conversion matched name + pixelId; the
+            response is then a 200.
+          type: boolean
+        customConversion:
+          $ref: "#/components/schemas/CustomConversion"
     TrackingTag:
       description: |
         A platform measurement tag — the thing you create, install on a
@@ -77438,6 +77638,60 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
+    createHighDemandPeriod_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id used to resolve the Meta token.
+          type: string
+        campaignId:
+          description: Platform campaign id. Exactly one of campaignId / adSetId.
+          type: string
+        adSetId:
+          description: Platform ad set id. Exactly one of campaignId / adSetId.
+          type: string
+        budgetValue:
+          description: "With ABSOLUTE, a budget in the ad account's currency in WHOLE\
+            \ units (50 = $50.00). With MULTIPLIER, a factor of the existing budget\
+            \ (2 = double it) and NOT a currency amount."
+          type: number
+        budgetValueType:
+          enum:
+          - ABSOLUTE
+          - MULTIPLIER
+          type: string
+        timeStart:
+          description: "Unix seconds, on a 15-minute boundary (:00, :15, :30, :45)."
+          type: integer
+        timeEnd:
+          description: "Unix seconds, on a 15-minute boundary and after timeStart."
+          type: integer
+        recurrenceType:
+          enum:
+          - ONE_TIME
+          - WEEKLY
+          - MONTHLY
+          type: string
+        currency:
+          description: "Ad account currency, for the ABSOLUTE minor-unit conversion.\
+            \ Ignored for MULTIPLIER."
+          type: string
+      required:
+      - accountId
+      - budgetValue
+      - budgetValueType
+      - timeEnd
+      - timeStart
+    createHighDemandPeriod_201_response:
+      example:
+        id: id
+        objectId: objectId
+      properties:
+        objectId:
+          description: The campaign / ad set the schedule was attached to.
+          type: string
+        id:
+          description: Meta budget schedule id.
+          type: string
     listAdCreatives_200_response:
       example:
         data:
@@ -77528,6 +77782,15 @@ components:
           description: "Advantage+ creative enhancements: partial map of Meta creative\
             \ feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec.\
             \ Unspecified features default to OPT_OUT."
+        multiAdvertiser:
+          description: "Meta only. Multi-advertiser ads: whether Meta may show this\
+            \ ad alongside other advertisers' in one unit. Meta auto-enrols since\
+            \ Aug 2024, so send OPT_OUT to leave. It is a top-level creative field,\
+            \ NOT a `creativeFeatures` key — Meta rejects it there."
+          enum:
+          - OPT_IN
+          - OPT_OUT
+          type: string
       required:
       - accountId
       - adAccountId
@@ -79470,6 +79733,15 @@ components:
             \ text_optimizations) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec.\
             \ Meta validates the keys; unspecified features default to OPT_OUT. The\
             \ legacy standard_enhancements bundle is deprecated by Meta and rejected."
+        multiAdvertiser:
+          description: "Meta only. Multi-advertiser ads: whether Meta may show this\
+            \ ad alongside other advertisers' in one unit. Meta auto-enrols since\
+            \ Aug 2024, so send OPT_OUT to leave. It is a top-level creative field,\
+            \ NOT a `creativeFeatures` key — Meta rejects it there."
+          enum:
+          - OPT_IN
+          - OPT_OUT
+          type: string
         validateOnly:
           description: "Meta only, single standalone shape only (no creatives[], adSetId,\
             \ or RESERVED). Dry-run: each node runs Meta's execution_options validate_only\
@@ -82624,6 +82896,53 @@ components:
       oneOf:
       - $ref: "#/components/schemas/CtwaSingleResponse"
       - $ref: "#/components/schemas/CtwaMultiResponse"
+    listCustomConversions_200_response:
+      example:
+        data:
+        - pixelId: pixelId
+          customEventType: customEventType
+          isArchived: true
+          name: name
+          rule: "{}"
+          id: id
+        - pixelId: pixelId
+          customEventType: customEventType
+          isArchived: true
+          name: name
+          rule: "{}"
+          id: id
+        adAccountId: adAccountId
+      properties:
+        adAccountId:
+          type: string
+        data:
+          items:
+            $ref: "#/components/schemas/CustomConversion"
+          type: array
+    createCustomConversion_request:
+      properties:
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        name:
+          description: "Also the reuse key, together with pixelId."
+          maxLength: 255
+          type: string
+        pixelId:
+          description: "Meta pixel id (event_source_id). From GET /v1/accounts/{accountId}/tracking-tags."
+          type: string
+        customEventType:
+          description: "Meta custom_event_type, e.g. LEAD, PURCHASE, OTHER."
+          type: string
+        rule:
+          description: "Meta conversion rule, forwarded verbatim."
+          type: object
+      required:
+      - adAccountId
+      - customEventType
+      - name
+      - pixelId
+      - rule
     listTrackingTags_200_response:
       example:
         platform: metaads
