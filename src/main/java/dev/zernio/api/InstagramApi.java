@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:08:15.429040907Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T11:30:22.953533498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -285,7 +285,7 @@ public class InstagramApi {
 
   /**
    * Get Instagram story insights
-   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
    * @param accountId The Instagram account ID (required)
    * @param storyId The Instagram media ID of the story. (required)
    * @return GetInstagramStoryInsights200Response
@@ -297,7 +297,7 @@ public class InstagramApi {
 
   /**
    * Get Instagram story insights
-   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
    * @param accountId The Instagram account ID (required)
    * @param storyId The Instagram media ID of the story. (required)
    * @param headers Optional headers to include in the request
@@ -311,7 +311,7 @@ public class InstagramApi {
 
   /**
    * Get Instagram story insights
-   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
    * @param accountId The Instagram account ID (required)
    * @param storyId The Instagram media ID of the story. (required)
    * @return ApiResponse&lt;GetInstagramStoryInsights200Response&gt;
@@ -323,7 +323,7 @@ public class InstagramApi {
 
   /**
    * Get Instagram story insights
-   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+   * Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
    * @param accountId The Instagram account ID (required)
    * @param storyId The Instagram media ID of the story. (required)
    * @param headers Optional headers to include in the request

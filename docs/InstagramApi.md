@@ -171,7 +171,7 @@ ApiResponse<[**GetInstagramPublishingLimit200Response**](GetInstagramPublishingL
 
 Get Instagram story insights
 
-Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
 
 ### Example
 
@@ -239,6 +239,7 @@ public class Example {
 | **400** | Invalid request. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Instagram account not found. |  -  |
+| **502** | Instagram rejected the request. |  -  |
 
 ## getInstagramStoryInsightsWithHttpInfo
 
@@ -246,7 +247,7 @@ public class Example {
 
 Get Instagram story insights
 
-Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60; — fetched from Meta in real time (story is still active) - &#x60;cached&#x60; — fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60; — story has expired and we never received its webhook   payload (for example, the account connected after the story expired)  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
 
 ### Example
 
@@ -317,6 +318,7 @@ ApiResponse<[**GetInstagramStoryInsights200Response**](GetInstagramStoryInsights
 | **400** | Invalid request. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Instagram account not found. |  -  |
+| **502** | Instagram rejected the request. |  -  |
 
 
 ## listInstagramStories
