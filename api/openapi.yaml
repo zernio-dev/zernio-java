@@ -27787,6 +27787,10 @@ paths:
         - `LOWEST_COST_WITHOUT_CAP`: no `bidAmount`, no `roasAverageFloor`.
         - `LOWEST_COST_WITH_BID_CAP` / `COST_CAP`: `bidAmount` REQUIRED (whole currency units).
         - `LOWEST_COST_WITH_MIN_ROAS`: `roasAverageFloor` REQUIRED (decimal multiplier, e.g. 2.0 = 2.0x ROAS).
+        - Meta only: send `bidAmount` WITHOUT `bidStrategy` to change the cap amount on an ad set
+          under a COST_CAP / LOWEST_COST_WITH_BID_CAP parent campaign, leaving the strategy itself
+          (inherited from the campaign) untouched. `roasAverageFloor` without `bidStrategy` is
+          rejected (it has no meaning outside LOWEST_COST_WITH_MIN_ROAS).
 
         Delivery settings are validated by Meta against the campaign objective;
         incompatible combinations (e.g. a billingEvent the optimization goal
@@ -40113,11 +40117,15 @@ components:
           $ref: "#/components/schemas/BidStrategy"
         bidAmount:
           description: "Whole currency units (USD: 5 = $5.00). Required when bidStrategy\
-            \ is LOWEST_COST_WITH_BID_CAP or COST_CAP."
+            \ is LOWEST_COST_WITH_BID_CAP or COST_CAP. May also be sent alone, WITHOUT\
+            \ bidStrategy, to set the cap on an ad set joining a COST_CAP / LOWEST_COST_WITH_BID_CAP\
+            \ campaign (the strategy is inherited from the campaign). On POST /v1/ads/create\
+            \ that shape requires existingCampaignId and is a 400 otherwise; on POST\
+            \ /v1/ads/boost it is promoted to LOWEST_COST_WITH_BID_CAP."
           type: number
         roasAverageFloor:
           description: Decimal ROAS multiplier (2.0 = 2.0x). Required when bidStrategy
-            is LOWEST_COST_WITH_MIN_ROAS.
+            is LOWEST_COST_WITH_MIN_ROAS; sending it without bidStrategy is a 400.
           type: number
     LinkedInAdsPlatformData:
       additionalProperties: {}
@@ -73617,7 +73625,10 @@ components:
           type: string
         bidAmount:
           description: "Whole currency units (USD: 5 = $5.00). Required for LOWEST_COST_WITH_BID_CAP\
-            \ and COST_CAP; ignored otherwise."
+            \ and COST_CAP; ignored otherwise. Validated here but NOT stored by Meta:\
+            \ the campaign object has no bid_amount field, only bid_strategy lives\
+            \ on it. The amount takes effect once an ad set joins this campaign (existingCampaignId\
+            \ on POST /v1/ads/create) and supplies its own bidAmount there."
           type: number
         roasAverageFloor:
           description: Decimal ROAS multiplier (2.0 = 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS.
@@ -74177,7 +74188,10 @@ components:
           description: |
             Bid cap in WHOLE currency units (USD: 5 = $5.00; JPY: 100 = ¥100). Required when
             bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. Internally converted to Meta's
-            smallest-denomination integer, or (on OpenAI) to micros (× 1,000,000).
+            smallest-denomination integer, or (on OpenAI) to micros (× 1,000,000). Meta only:
+            may be sent alone, WITHOUT bidStrategy, to update the cap amount on an ad set whose
+            parent campaign is COST_CAP or LOWEST_COST_WITH_BID_CAP (the strategy is inherited
+            from the campaign and is left untouched).
           type: number
         roasAverageFloor:
           description: |
@@ -79753,6 +79767,21 @@ components:
       required:
       - eventType
       - windowDays
+    createStandaloneAd_request_platformSpecificData:
+      description: |
+        Platform-specific options. The platform is derived from `accountId`;
+        sending options for a different platform returns a 400. LinkedIn
+        (campaign bidding and delivery controls) and Meta (the bid trio)
+        have options today.
+
+        **Meta**: `bidStrategy`, `bidAmount` and `roasAverageFloor` may be
+        sent here instead of at the root — the preferred home going forward.
+        Sending the bid fields in BOTH places returns a 400
+        (`mutually_exclusive_fields`), and sending any of them in
+        `adSetId` attach mode is a 400 too (the ad set already has its bid).
+      oneOf:
+      - $ref: "#/components/schemas/LinkedInAdsPlatformData"
+      - $ref: "#/components/schemas/MetaAdsPlatformData"
     createStandaloneAd_request_brandIdentity:
       description: |
         TikTok only. Synthetic Brand Identity used when the ad
@@ -80532,7 +80561,14 @@ components:
             Deprecated: send it inside `platformSpecificData` instead (Meta today; TikTok's nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.
 
             Bid cap in WHOLE currency units (USD: 5 = $5.00; JPY: 100 = ¥100). Required when
-            `bidStrategy` is `LOWEST_COST_WITH_BID_CAP` or `COST_CAP`.
+            `bidStrategy` is `LOWEST_COST_WITH_BID_CAP` or `COST_CAP`. Meta only: sending
+            `bidAmount` WITHOUT `bidStrategy` requires `existingCampaignId` (400 otherwise),
+            and sets the new ad set's cap under the joined campaign's COST_CAP /
+            LOWEST_COST_WITH_BID_CAP parent. The strategy itself is inherited from the
+            campaign. Restating bidStrategy here is accepted but has no effect on the ad set.
+
+            Rejected with 400 in `adSetId` attach mode: that shape inherits its cap from
+            the platform. Use `PUT /v1/ads/ad-sets/{adSetId}` there instead.
           type: number
         roasAverageFloor:
           deprecated: true
@@ -80540,8 +80576,11 @@ components:
             Deprecated: send it inside `platformSpecificData` instead (Meta today; TikTok's nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.
 
             Minimum ROAS as a decimal multiplier (e.g. 2.0 = 2.0x ROAS). Required when
-            `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`. Sent to Meta as
-            `bid_constraints.roas_average_floor` × 10000.
+            `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`. Sending it without `bidStrategy`
+            is a 400. Sent to Meta as
+            `bid_constraints.roas_average_floor` × 10000. Known gap: a CBO campaign's
+            ROAS floor lives on the campaign only (set via `POST /v1/ads/campaigns`);
+            there is no supported way to set it while joining a CBO campaign here.
           type: number
         valueRuleSetId:
           description: |
@@ -80569,7 +80608,7 @@ components:
             `PUT /v1/ads/ad-sets/{adSetId}`.
           type: boolean
         platformSpecificData:
-          $ref: "#/components/schemas/boostPost_request_platformSpecificData"
+          $ref: "#/components/schemas/createStandaloneAd_request_platformSpecificData"
         dsaBeneficiary:
           description: |
             Legal entity that benefits from the ad. Required when targeting EU users

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   MetaAdsPlatformData.JSON_PROPERTY_BID_AMOUNT,
   MetaAdsPlatformData.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T15:27:45.441124288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaAdsPlatformData {
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
@@ -86,7 +86,7 @@ public class MetaAdsPlatformData {
   }
 
   /**
-   * Whole currency units (USD: 5 &#x3D; $5.00). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
+   * Whole currency units (USD: 5 &#x3D; $5.00). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. May also be sent alone, WITHOUT bidStrategy, to set the cap on an ad set joining a COST_CAP / LOWEST_COST_WITH_BID_CAP campaign (the strategy is inherited from the campaign). On POST /v1/ads/create that shape requires existingCampaignId and is a 400 otherwise; on POST /v1/ads/boost it is promoted to LOWEST_COST_WITH_BID_CAP.
    * @return bidAmount
    */
   @javax.annotation.Nullable
@@ -110,7 +110,7 @@ public class MetaAdsPlatformData {
   }
 
   /**
-   * Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required when bidStrategy is LOWEST_COST_WITH_MIN_ROAS.
+   * Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required when bidStrategy is LOWEST_COST_WITH_MIN_ROAS; sending it without bidStrategy is a 400.
    * @return roasAverageFloor
    */
   @javax.annotation.Nullable

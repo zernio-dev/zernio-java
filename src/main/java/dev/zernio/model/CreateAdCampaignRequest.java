@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_BID_AMOUNT,
   CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T15:27:45.441124288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -530,7 +530,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise.
+   * Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise. Validated here but NOT stored by Meta: the campaign object has no bid_amount field, only bid_strategy lives on it. The amount takes effect once an ad set joins this campaign (existingCampaignId on POST /v1/ads/create) and supplies its own bidAmount there.
    * @return bidAmount
    */
   @javax.annotation.Nullable

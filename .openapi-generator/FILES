@@ -292,6 +292,7 @@ docs/CreateStandaloneAdRequestPlacementAssets.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
+docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
@@ -2036,6 +2037,7 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssets.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTracking.java
@@ -3381,8 +3383,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/BoostPostRequestPlatformSpecificDataTest.java
-src/test/java/dev/zernio/model/GetAdsSearchTerms200ResponseDataInnerTest.java
-src/test/java/dev/zernio/model/GetAdsSearchTerms200ResponsePagingTest.java
-src/test/java/dev/zernio/model/GetAdsSearchTerms200ResponseTest.java
-src/test/java/dev/zernio/model/MetaAdsPlatformDataTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestPlatformSpecificDataTest.java

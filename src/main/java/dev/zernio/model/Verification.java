@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   Verification.JSON_PROPERTY_CREATED_AT,
   Verification.JSON_PROPERTY_RESEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T15:27:45.441124288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Verification {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

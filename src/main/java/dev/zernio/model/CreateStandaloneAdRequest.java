@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
-import dev.zernio.model.BoostPostRequestPlatformSpecificData;
 import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
@@ -38,6 +37,7 @@ import dev.zernio.model.CreateStandaloneAdRequestDynamicCreative;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestPlacementAssets;
 import dev.zernio.model.CreateStandaloneAdRequestPlacements;
+import dev.zernio.model.CreateStandaloneAdRequestPlatformSpecificData;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
@@ -144,7 +144,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T14:51:21.580743369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T15:27:45.441124288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1001,7 +1001,7 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
-  private BoostPostRequestPlatformSpecificData platformSpecificData;
+  private CreateStandaloneAdRequestPlatformSpecificData platformSpecificData;
 
   public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
   @javax.annotation.Nullable
@@ -2961,7 +2961,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta only: sending &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; requires &#x60;existingCampaignId&#x60; (400 otherwise), and sets the new ad set&#39;s cap under the joined campaign&#39;s COST_CAP / LOWEST_COST_WITH_BID_CAP parent. The strategy itself is inherited from the campaign. Restating bidStrategy here is accepted but has no effect on the ad set.  Rejected with 400 in &#x60;adSetId&#x60; attach mode: that shape inherits its cap from the platform. Use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60; there instead. 
    * @return bidAmount
    * @deprecated
    */
@@ -2987,7 +2987,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sending it without &#x60;bidStrategy&#x60; is a 400. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. Known gap: a CBO campaign&#39;s ROAS floor lives on the campaign only (set via &#x60;POST /v1/ads/campaigns&#x60;); there is no supported way to set it while joining a CBO campaign here. 
    * @return roasAverageFloor
    * @deprecated
    */
@@ -3055,7 +3055,7 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest platformSpecificData(@javax.annotation.Nullable BoostPostRequestPlatformSpecificData platformSpecificData) {
+  public CreateStandaloneAdRequest platformSpecificData(@javax.annotation.Nullable CreateStandaloneAdRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
   }
@@ -3067,14 +3067,14 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public BoostPostRequestPlatformSpecificData getPlatformSpecificData() {
+  public CreateStandaloneAdRequestPlatformSpecificData getPlatformSpecificData() {
     return platformSpecificData;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformSpecificData(@javax.annotation.Nullable BoostPostRequestPlatformSpecificData platformSpecificData) {
+  public void setPlatformSpecificData(@javax.annotation.Nullable CreateStandaloneAdRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
   }
 
