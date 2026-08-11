@@ -3391,7 +3391,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetInstagramAudio200ResponseTest.java
-src/test/java/dev/zernio/model/InstagramAudioAssetTest.java
-src/test/java/dev/zernio/model/InstagramPlatformDataAudioConfigurationTest.java
-src/test/java/dev/zernio/model/SearchInstagramAudio200ResponseTest.java

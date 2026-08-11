@@ -69,7 +69,7 @@ import dev.zernio.ApiClient;
   AdDailyMetrics.JSON_PROPERTY_LAST_SYNCED_AT,
   AdDailyMetrics.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-10T16:48:31.636550222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T11:17:15.380439678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdDailyMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -544,7 +544,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Meta video ads only (0 for non-video ads and other platforms), like all video* fields below. Number of times the video started playing (Meta &#x60;video_play_actions&#x60;), summed over the date range and across children at ad-set/campaign level.
+   * Number of times the video started playing, summed over the date range and across children at ad-set/campaign level. 0 for non-video ads. Sources: Meta &#x60;video_play_actions&#x60;, TikTok &#x60;video_play_actions&#x60;.
    * @return videoPlayActions
    */
   @javax.annotation.Nullable
@@ -568,7 +568,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Views of at least 30 seconds (or to the end, for shorter videos). Meta &#x60;video_30_sec_watched_actions&#x60;.
+   * Views of at least 30 seconds (or to the end, for shorter videos). Sources: Meta &#x60;video_30_sec_watched_actions&#x60; (Meta only).
    * @return video30SecWatchedActions
    */
   @javax.annotation.Nullable
@@ -592,7 +592,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * ThruPlays (watched to completion, or at least 15 seconds). Meta &#x60;video_thruplay_watched_actions&#x60;.
+   * ThruPlays (watched to completion, or at least 15 seconds). Sources: Meta &#x60;video_thruplay_watched_actions&#x60; (Meta only).
    * @return videoThruplayWatchedActions
    */
   @javax.annotation.Nullable
@@ -616,7 +616,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Views reaching 25% of the video&#39;s length. With the other percentile fields, powers hook/hold/drop-off analysis (e.g. hook rate &#x3D; videoP25WatchedActions / videoPlayActions). Meta &#x60;video_p25_watched_actions&#x60;.
+   * Views reaching 25% of the video&#39;s length. With the other percentile fields, powers hook/hold/drop-off analysis (e.g. hook rate &#x3D; videoP25WatchedActions / videoPlayActions). Sources: Meta &#x60;video_p25_watched_actions&#x60;, TikTok &#x60;video_views_p25&#x60;.
    * @return videoP25WatchedActions
    */
   @javax.annotation.Nullable
@@ -640,7 +640,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Views reaching 50% of the video&#39;s length. Meta &#x60;video_p50_watched_actions&#x60;.
+   * Views reaching 50% of the video&#39;s length. Sources: Meta &#x60;video_p50_watched_actions&#x60;, TikTok &#x60;video_views_p50&#x60;.
    * @return videoP50WatchedActions
    */
   @javax.annotation.Nullable
@@ -664,7 +664,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Views reaching 75% of the video&#39;s length. Meta &#x60;video_p75_watched_actions&#x60;.
+   * Views reaching 75% of the video&#39;s length. Sources: Meta &#x60;video_p75_watched_actions&#x60;, TikTok &#x60;video_views_p75&#x60;.
    * @return videoP75WatchedActions
    */
   @javax.annotation.Nullable
@@ -688,7 +688,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;.
+   * Views reaching 95% of the video&#39;s length. Sources: Meta &#x60;video_p95_watched_actions&#x60; (Meta only).
    * @return videoP95WatchedActions
    */
   @javax.annotation.Nullable
@@ -712,7 +712,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;.
+   * Views reaching 100% of the video&#39;s length. Sources: Meta &#x60;video_p100_watched_actions&#x60;, TikTok &#x60;video_views_p100&#x60;.
    * @return videoP100WatchedActions
    */
   @javax.annotation.Nullable
@@ -736,7 +736,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages.
+   * Average seconds watched per play. Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages. Sources: Meta &#x60;video_avg_time_watched_actions&#x60;, TikTok &#x60;average_video_play&#x60;.
    * @return videoAvgTimeWatchedActions
    */
   @javax.annotation.Nullable
@@ -760,7 +760,7 @@ public class AdDailyMetrics {
   }
 
   /**
-   * Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays.
+   * Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays (ThruPlay is Meta-only).
    * @return costPerThruplay
    */
   @javax.annotation.Nullable
