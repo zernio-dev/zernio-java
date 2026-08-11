@@ -72,7 +72,8 @@
 |**placementAssets** | [**CreateStandaloneAdRequestPlacementAssets**](CreateStandaloneAdRequestPlacementAssets.md) |  |  [optional] |
 |**audienceId** | **String** | Custom audience ID for targeting |  [optional] |
 |**campaignType** | [**CampaignTypeEnum**](#CampaignTypeEnum) | Google only |  [optional] |
-|**keywords** | **List&lt;String&gt;** | Google Search only |  [optional] |
+|**keywords** | **List&lt;String&gt;** | Google Search only. BROAD-match keywords on the new ad group (first 20). |  [optional] |
+|**negativeKeywords** | **List&lt;String&gt;** | Google Search only; other platforms return 400. BROAD-match negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords. |  [optional] |
 |**additionalHeadlines** | **List&lt;String&gt;** | Google Search RSA only. Extra headlines. |  [optional] |
 |**additionalDescriptions** | **List&lt;String&gt;** | Google Search RSA only. Extra descriptions. |  [optional] |
 |**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests. |  [optional] |

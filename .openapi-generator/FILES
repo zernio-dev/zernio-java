@@ -1390,6 +1390,8 @@ docs/UpdateAdRequestBudget.md
 docs/UpdateAdRequestCreative.md
 docs/UpdateAdRequestTargeting.md
 docs/UpdateAdRequestTargetingInterestsInner.md
+docs/UpdateAdRequestTargetingKeywordsInner.md
+docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
@@ -3107,6 +3109,8 @@ src/main/java/dev/zernio/model/UpdateAdRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdRequestCreative.java
 src/main/java/dev/zernio/model/UpdateAdRequestTargeting.java
 src/main/java/dev/zernio/model/UpdateAdRequestTargetingInterestsInner.java
+src/main/java/dev/zernio/model/UpdateAdRequestTargetingKeywordsInner.java
+src/main/java/dev/zernio/model/UpdateAdRequestTargetingKeywordsInnerOneOf.java
 src/main/java/dev/zernio/model/UpdateAdSet200Response.java
 src/main/java/dev/zernio/model/UpdateAdSetRequest.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestBudget.java
@@ -3391,3 +3395,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UpdateAdRequestTargetingKeywordsInnerOneOfTest.java
+src/test/java/dev/zernio/model/UpdateAdRequestTargetingKeywordsInnerTest.java

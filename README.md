@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-11T11:17:15.380439678Z[Etc/UTC]
+- Build date: 2026-08-11T14:31:31.668183960Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2558,6 +2558,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)
  - [UpdateAdRequestTargeting](docs/UpdateAdRequestTargeting.md)
  - [UpdateAdRequestTargetingInterestsInner](docs/UpdateAdRequestTargetingInterestsInner.md)
+ - [UpdateAdRequestTargetingKeywordsInner](docs/UpdateAdRequestTargetingKeywordsInner.md)
+ - [UpdateAdRequestTargetingKeywordsInnerOneOf](docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md)
  - [UpdateAdSet200Response](docs/UpdateAdSet200Response.md)
  - [UpdateAdSetRequest](docs/UpdateAdSetRequest.md)
  - [UpdateAdSetRequestBudget](docs/UpdateAdSetRequestBudget.md)

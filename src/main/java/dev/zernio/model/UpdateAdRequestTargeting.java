@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
+import dev.zernio.model.UpdateAdRequestTargetingKeywordsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,17 +34,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta + TikTok only. Pinterest / X / LinkedIn / Google return 501. 
+ * Meta + TikTok (demographics/interests) and Google (keyword edits only). Pinterest / X / LinkedIn return 501. 
  */
 @JsonPropertyOrder({
+  UpdateAdRequestTargeting.JSON_PROPERTY_KEYWORDS,
+  UpdateAdRequestTargeting.JSON_PROPERTY_NEGATIVE_KEYWORDS,
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MIN,
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MAX,
   UpdateAdRequestTargeting.JSON_PROPERTY_COUNTRIES,
   UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS,
   UpdateAdRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T11:17:15.380439678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T14:31:31.668183960Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargeting {
+  public static final String JSON_PROPERTY_KEYWORDS = "keywords";
+  @javax.annotation.Nullable
+  private List<UpdateAdRequestTargetingKeywordsInner> keywords = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_NEGATIVE_KEYWORDS = "negativeKeywords";
+  @javax.annotation.Nullable
+  private List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = new ArrayList<>();
+
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
   private Integer ageMin;
@@ -101,6 +112,70 @@ public class UpdateAdRequestTargeting {
 
   public UpdateAdRequestTargeting() { 
   }
+
+  public UpdateAdRequestTargeting keywords(@javax.annotation.Nullable List<UpdateAdRequestTargetingKeywordsInner> keywords) {
+    this.keywords = keywords;
+    return this;
+  }
+
+  public UpdateAdRequestTargeting addKeywordsItem(UpdateAdRequestTargetingKeywordsInner keywordsItem) {
+    if (this.keywords == null) {
+      this.keywords = new ArrayList<>();
+    }
+    this.keywords.add(keywordsItem);
+    return this;
+  }
+
+  /**
+   * Google only. The FULL new set of positive keywords for the ad group; live keywords not listed are removed. Entries are strings (BROAD) or { text, matchType } with matchType exact | phrase | broad. Mirrored to GET /v1/ads/keywords immediately.
+   * @return keywords
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateAdRequestTargetingKeywordsInner> getKeywords() {
+    return keywords;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setKeywords(@javax.annotation.Nullable List<UpdateAdRequestTargetingKeywordsInner> keywords) {
+    this.keywords = keywords;
+  }
+
+
+  public UpdateAdRequestTargeting negativeKeywords(@javax.annotation.Nullable List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords) {
+    this.negativeKeywords = negativeKeywords;
+    return this;
+  }
+
+  public UpdateAdRequestTargeting addNegativeKeywordsItem(UpdateAdRequestTargetingKeywordsInner negativeKeywordsItem) {
+    if (this.negativeKeywords == null) {
+      this.negativeKeywords = new ArrayList<>();
+    }
+    this.negativeKeywords.add(negativeKeywordsItem);
+    return this;
+  }
+
+  /**
+   * Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords.
+   * @return negativeKeywords
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NEGATIVE_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateAdRequestTargetingKeywordsInner> getNegativeKeywords() {
+    return negativeKeywords;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NEGATIVE_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNegativeKeywords(@javax.annotation.Nullable List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords) {
+    this.negativeKeywords = negativeKeywords;
+  }
+
 
   public UpdateAdRequestTargeting ageMin(@javax.annotation.Nullable Integer ageMin) {
     this.ageMin = ageMin;
@@ -254,7 +329,9 @@ public class UpdateAdRequestTargeting {
       return false;
     }
     UpdateAdRequestTargeting updateAdRequestTargeting = (UpdateAdRequestTargeting) o;
-    return Objects.equals(this.ageMin, updateAdRequestTargeting.ageMin) &&
+    return Objects.equals(this.keywords, updateAdRequestTargeting.keywords) &&
+        Objects.equals(this.negativeKeywords, updateAdRequestTargeting.negativeKeywords) &&
+        Objects.equals(this.ageMin, updateAdRequestTargeting.ageMin) &&
         Objects.equals(this.ageMax, updateAdRequestTargeting.ageMax) &&
         Objects.equals(this.countries, updateAdRequestTargeting.countries) &&
         Objects.equals(this.interests, updateAdRequestTargeting.interests) &&
@@ -263,13 +340,15 @@ public class UpdateAdRequestTargeting {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ageMin, ageMax, countries, interests, advantageAudience);
+    return Objects.hash(keywords, negativeKeywords, ageMin, ageMax, countries, interests, advantageAudience);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdRequestTargeting {\n");
+    sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
+    sb.append("    negativeKeywords: ").append(toIndentedString(negativeKeywords)).append("\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
@@ -321,6 +400,26 @@ public class UpdateAdRequestTargeting {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `keywords` to the URL query string
+    if (getKeywords() != null) {
+      for (int i = 0; i < getKeywords().size(); i++) {
+        if (getKeywords().get(i) != null) {
+          joiner.add(getKeywords().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%skeywords%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `negativeKeywords` to the URL query string
+    if (getNegativeKeywords() != null) {
+      for (int i = 0; i < getNegativeKeywords().size(); i++) {
+        if (getNegativeKeywords().get(i) != null) {
+          joiner.add(getNegativeKeywords().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%snegativeKeywords%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
 
     // add `ageMin` to the URL query string
     if (getAgeMin() != null) {

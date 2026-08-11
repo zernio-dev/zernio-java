@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   GetInboxResponseTime200Response.JSON_PROPERTY_SUMMARY,
   GetInboxResponseTime200Response.JSON_PROPERTY_HISTOGRAM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T11:17:15.380439678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T14:31:31.668183960Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxResponseTime200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

@@ -28455,7 +28455,12 @@ paths:
         - **Meta** (Facebook + Instagram): all fields supported.
         - **TikTok**: status, budget, targeting (via `/v2/adgroup/update/`), and creative
           (via `/v2/ad/update/` patch-style — `headline` is ignored, `body` becomes `ad_text`).
-        - **Pinterest / X / LinkedIn / Google / OpenAI Ads**: status + budget only. Sending
+        - **Google**: status, budget, and KEYWORD edits via `targeting.keywords` /
+          `targeting.negativeKeywords` — each list you send becomes the FULL new set of its
+          kind on the ad group (criteria not in the list are removed); a kind left out is
+          untouched. Any other `targeting` field returns 400: Google cannot mutate broad
+          targeting post-create without recreating the campaign. `creative` returns 501.
+        - **Pinterest / X / LinkedIn / OpenAI Ads**: status + budget only. Sending
           `targeting` or `creative` returns 501 with code `unsupported_platform_operation`.
           OpenAI Ads budget is lifetime-only (see `budget.type` below).
       operationId: updateAd
@@ -76439,6 +76444,23 @@ components:
           - daily
           - lifetime
           type: string
+    updateAd_request_targeting_keywords_inner_oneOf:
+      properties:
+        text:
+          maxLength: 80
+          type: string
+        matchType:
+          enum:
+          - exact
+          - phrase
+          - broad
+          type: string
+      required:
+      - text
+    updateAd_request_targeting_keywords_inner:
+      oneOf:
+      - type: string
+      - $ref: "#/components/schemas/updateAd_request_targeting_keywords_inner_oneOf"
     updateAd_request_targeting_interests_inner:
       properties:
         id:
@@ -76450,8 +76472,23 @@ components:
       - name
     updateAd_request_targeting:
       description: |
-        Meta + TikTok only. Pinterest / X / LinkedIn / Google return 501.
+        Meta + TikTok (demographics/interests) and Google (keyword edits only).
+        Pinterest / X / LinkedIn return 501.
       properties:
+        keywords:
+          description: "Google only. The FULL new set of positive keywords for the\
+            \ ad group; live keywords not listed are removed. Entries are strings\
+            \ (BROAD) or { text, matchType } with matchType exact | phrase | broad.\
+            \ Mirrored to GET /v1/ads/keywords immediately."
+          items:
+            $ref: "#/components/schemas/updateAd_request_targeting_keywords_inner"
+          type: array
+        negativeKeywords:
+          description: "Google only. Same declarative contract as keywords, for the\
+            \ ad group's negative keywords."
+          items:
+            $ref: "#/components/schemas/updateAd_request_targeting_keywords_inner"
+          type: array
         ageMin:
           maximum: 65
           minimum: 13
@@ -80748,8 +80785,17 @@ components:
           - search
           type: string
         keywords:
-          description: Google Search only
+          description: Google Search only. BROAD-match keywords on the new ad group
+            (first 20).
           items:
+            type: string
+          type: array
+        negativeKeywords:
+          description: "Google Search only; other platforms return 400. BROAD-match\
+            \ negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId}\
+            \ targeting.negativeKeywords."
+          items:
+            maxLength: 80
             type: string
           type: array
         additionalHeadlines:

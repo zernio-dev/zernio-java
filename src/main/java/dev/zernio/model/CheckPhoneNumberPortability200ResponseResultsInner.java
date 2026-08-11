@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PHONE_NUMBER_TYPE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T11:17:15.380439678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T14:31:31.668183960Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
