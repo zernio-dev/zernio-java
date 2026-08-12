@@ -54,6 +54,13 @@ import dev.zernio.ApiClient;
   AdDailyMetrics.JSON_PROPERTY_ACTION_VALUES,
   AdDailyMetrics.JSON_PROPERTY_PURCHASE_VALUE,
   AdDailyMetrics.JSON_PROPERTY_ROAS,
+  AdDailyMetrics.JSON_PROPERTY_COST_PER_ACTION,
+  AdDailyMetrics.JSON_PROPERTY_OUTBOUND_CLICKS,
+  AdDailyMetrics.JSON_PROPERTY_OUTBOUND_CLICKS_CTR,
+  AdDailyMetrics.JSON_PROPERTY_INLINE_LINK_CLICKS,
+  AdDailyMetrics.JSON_PROPERTY_INLINE_LINK_CLICK_CTR,
+  AdDailyMetrics.JSON_PROPERTY_UNIQUE_CLICKS,
+  AdDailyMetrics.JSON_PROPERTY_UNIQUE_CTR,
   AdDailyMetrics.JSON_PROPERTY_VIDEO_PLAY_ACTIONS,
   AdDailyMetrics.JSON_PROPERTY_VIDEO30_SEC_WATCHED_ACTIONS,
   AdDailyMetrics.JSON_PROPERTY_VIDEO_THRUPLAY_WATCHED_ACTIONS,
@@ -69,7 +76,7 @@ import dev.zernio.ApiClient;
   AdDailyMetrics.JSON_PROPERTY_LAST_SYNCED_AT,
   AdDailyMetrics.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T09:03:28.077255040Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:08:50.283690955Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdDailyMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -126,6 +133,34 @@ public class AdDailyMetrics {
   public static final String JSON_PROPERTY_ROAS = "roas";
   @javax.annotation.Nullable
   private BigDecimal roas;
+
+  public static final String JSON_PROPERTY_COST_PER_ACTION = "costPerAction";
+  @javax.annotation.Nullable
+  private Map<String, BigDecimal> costPerAction = new HashMap<>();
+
+  public static final String JSON_PROPERTY_OUTBOUND_CLICKS = "outboundClicks";
+  @javax.annotation.Nullable
+  private Integer outboundClicks;
+
+  public static final String JSON_PROPERTY_OUTBOUND_CLICKS_CTR = "outboundClicksCtr";
+  @javax.annotation.Nullable
+  private BigDecimal outboundClicksCtr;
+
+  public static final String JSON_PROPERTY_INLINE_LINK_CLICKS = "inlineLinkClicks";
+  @javax.annotation.Nullable
+  private Integer inlineLinkClicks;
+
+  public static final String JSON_PROPERTY_INLINE_LINK_CLICK_CTR = "inlineLinkClickCtr";
+  @javax.annotation.Nullable
+  private BigDecimal inlineLinkClickCtr;
+
+  public static final String JSON_PROPERTY_UNIQUE_CLICKS = "uniqueClicks";
+  @javax.annotation.Nullable
+  private Integer uniqueClicks;
+
+  public static final String JSON_PROPERTY_UNIQUE_CTR = "uniqueCtr";
+  @javax.annotation.Nullable
+  private BigDecimal uniqueCtr;
 
   public static final String JSON_PROPERTY_VIDEO_PLAY_ACTIONS = "videoPlayActions";
   @javax.annotation.Nullable
@@ -538,6 +573,182 @@ public class AdDailyMetrics {
   }
 
 
+  public AdDailyMetrics costPerAction(@javax.annotation.Nullable Map<String, BigDecimal> costPerAction) {
+    this.costPerAction = costPerAction;
+    return this;
+  }
+
+  public AdDailyMetrics putCostPerActionItem(String key, BigDecimal costPerActionItem) {
+    if (this.costPerAction == null) {
+      this.costPerAction = new HashMap<>();
+    }
+    this.costPerAction.put(key, costPerActionItem);
+    return this;
+  }
+
+  /**
+   * Derived &#x60;spend / actions[type]&#x60; for every action type with a non-zero count, in ad-account native currency. Same keys as &#x60;actions&#x60;. Rounded to 4 decimals because cheap actions cost well under a cent. Recomputed from summed spend + counts at every rollup level. Empty object when spend is 0 or no actions are reported.
+   * @return costPerAction
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COST_PER_ACTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, BigDecimal> getCostPerAction() {
+    return costPerAction;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COST_PER_ACTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCostPerAction(@javax.annotation.Nullable Map<String, BigDecimal> costPerAction) {
+    this.costPerAction = costPerAction;
+  }
+
+
+  public AdDailyMetrics outboundClicks(@javax.annotation.Nullable Integer outboundClicks) {
+    this.outboundClicks = outboundClicks;
+    return this;
+  }
+
+  /**
+   * Clicks leading off Meta&#39;s surfaces to the advertiser&#39;s destination. Meta-only; other platforms report 0.
+   * @return outboundClicks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OUTBOUND_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getOutboundClicks() {
+    return outboundClicks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OUTBOUND_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOutboundClicks(@javax.annotation.Nullable Integer outboundClicks) {
+    this.outboundClicks = outboundClicks;
+  }
+
+
+  public AdDailyMetrics outboundClicksCtr(@javax.annotation.Nullable BigDecimal outboundClicksCtr) {
+    this.outboundClicksCtr = outboundClicksCtr;
+    return this;
+  }
+
+  /**
+   * Derived &#x60;outboundClicks / impressions * 100&#x60;, recomputed from sums at every rollup level.
+   * @return outboundClicksCtr
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OUTBOUND_CLICKS_CTR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getOutboundClicksCtr() {
+    return outboundClicksCtr;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OUTBOUND_CLICKS_CTR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOutboundClicksCtr(@javax.annotation.Nullable BigDecimal outboundClicksCtr) {
+    this.outboundClicksCtr = outboundClicksCtr;
+  }
+
+
+  public AdDailyMetrics inlineLinkClicks(@javax.annotation.Nullable Integer inlineLinkClicks) {
+    this.inlineLinkClicks = inlineLinkClicks;
+    return this;
+  }
+
+  /**
+   * In-session link clicks. Differs from the attributed &#x60;link_click&#x60; count in &#x60;actions&#x60;/&#x60;engagementBreakdown.linkClicks&#x60;, which uses the attribution window. Meta-only.
+   * @return inlineLinkClicks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INLINE_LINK_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getInlineLinkClicks() {
+    return inlineLinkClicks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INLINE_LINK_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInlineLinkClicks(@javax.annotation.Nullable Integer inlineLinkClicks) {
+    this.inlineLinkClicks = inlineLinkClicks;
+  }
+
+
+  public AdDailyMetrics inlineLinkClickCtr(@javax.annotation.Nullable BigDecimal inlineLinkClickCtr) {
+    this.inlineLinkClickCtr = inlineLinkClickCtr;
+    return this;
+  }
+
+  /**
+   * Derived &#x60;inlineLinkClicks / impressions * 100&#x60;, recomputed from sums at every rollup level.
+   * @return inlineLinkClickCtr
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INLINE_LINK_CLICK_CTR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getInlineLinkClickCtr() {
+    return inlineLinkClickCtr;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INLINE_LINK_CLICK_CTR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInlineLinkClickCtr(@javax.annotation.Nullable BigDecimal inlineLinkClickCtr) {
+    this.inlineLinkClickCtr = inlineLinkClickCtr;
+  }
+
+
+  public AdDailyMetrics uniqueClicks(@javax.annotation.Nullable Integer uniqueClicks) {
+    this.uniqueClicks = uniqueClicks;
+    return this;
+  }
+
+  /**
+   * People who clicked at least once. NOT additive: summed across days/children it overcounts people who clicked on multiple days or ads, so treat rollups as an upper bound (same caveat as &#x60;reach&#x60;). Meta-only.
+   * @return uniqueClicks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getUniqueClicks() {
+    return uniqueClicks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUniqueClicks(@javax.annotation.Nullable Integer uniqueClicks) {
+    this.uniqueClicks = uniqueClicks;
+  }
+
+
+  public AdDailyMetrics uniqueCtr(@javax.annotation.Nullable BigDecimal uniqueCtr) {
+    this.uniqueCtr = uniqueCtr;
+    return this;
+  }
+
+  /**
+   * Derived &#x60;uniqueClicks / impressions * 100&#x60; (NOT Meta&#39;s reach-based unique_ctr). Inherits the non-additivity caveat of &#x60;uniqueClicks&#x60;.
+   * @return uniqueCtr
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CTR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getUniqueCtr() {
+    return uniqueCtr;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CTR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUniqueCtr(@javax.annotation.Nullable BigDecimal uniqueCtr) {
+    this.uniqueCtr = uniqueCtr;
+  }
+
+
   public AdDailyMetrics videoPlayActions(@javax.annotation.Nullable Integer videoPlayActions) {
     this.videoPlayActions = videoPlayActions;
     return this;
@@ -900,6 +1111,13 @@ public class AdDailyMetrics {
         Objects.equals(this.actionValues, adDailyMetrics.actionValues) &&
         Objects.equals(this.purchaseValue, adDailyMetrics.purchaseValue) &&
         Objects.equals(this.roas, adDailyMetrics.roas) &&
+        Objects.equals(this.costPerAction, adDailyMetrics.costPerAction) &&
+        Objects.equals(this.outboundClicks, adDailyMetrics.outboundClicks) &&
+        Objects.equals(this.outboundClicksCtr, adDailyMetrics.outboundClicksCtr) &&
+        Objects.equals(this.inlineLinkClicks, adDailyMetrics.inlineLinkClicks) &&
+        Objects.equals(this.inlineLinkClickCtr, adDailyMetrics.inlineLinkClickCtr) &&
+        Objects.equals(this.uniqueClicks, adDailyMetrics.uniqueClicks) &&
+        Objects.equals(this.uniqueCtr, adDailyMetrics.uniqueCtr) &&
         Objects.equals(this.videoPlayActions, adDailyMetrics.videoPlayActions) &&
         Objects.equals(this.video30SecWatchedActions, adDailyMetrics.video30SecWatchedActions) &&
         Objects.equals(this.videoThruplayWatchedActions, adDailyMetrics.videoThruplayWatchedActions) &&
@@ -918,7 +1136,7 @@ public class AdDailyMetrics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt, date);
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, costPerAction, outboundClicks, outboundClicksCtr, inlineLinkClicks, inlineLinkClickCtr, uniqueClicks, uniqueCtr, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt, date);
   }
 
   @Override
@@ -939,6 +1157,13 @@ public class AdDailyMetrics {
     sb.append("    actionValues: ").append(toIndentedString(actionValues)).append("\n");
     sb.append("    purchaseValue: ").append(toIndentedString(purchaseValue)).append("\n");
     sb.append("    roas: ").append(toIndentedString(roas)).append("\n");
+    sb.append("    costPerAction: ").append(toIndentedString(costPerAction)).append("\n");
+    sb.append("    outboundClicks: ").append(toIndentedString(outboundClicks)).append("\n");
+    sb.append("    outboundClicksCtr: ").append(toIndentedString(outboundClicksCtr)).append("\n");
+    sb.append("    inlineLinkClicks: ").append(toIndentedString(inlineLinkClicks)).append("\n");
+    sb.append("    inlineLinkClickCtr: ").append(toIndentedString(inlineLinkClickCtr)).append("\n");
+    sb.append("    uniqueClicks: ").append(toIndentedString(uniqueClicks)).append("\n");
+    sb.append("    uniqueCtr: ").append(toIndentedString(uniqueCtr)).append("\n");
     sb.append("    videoPlayActions: ").append(toIndentedString(videoPlayActions)).append("\n");
     sb.append("    video30SecWatchedActions: ").append(toIndentedString(video30SecWatchedActions)).append("\n");
     sb.append("    videoThruplayWatchedActions: ").append(toIndentedString(videoThruplayWatchedActions)).append("\n");
@@ -1076,6 +1301,45 @@ public class AdDailyMetrics {
     // add `roas` to the URL query string
     if (getRoas() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroas%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoas()))));
+    }
+
+    // add `costPerAction` to the URL query string
+    if (getCostPerAction() != null) {
+      for (String _key : getCostPerAction().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scostPerAction%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCostPerAction().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCostPerAction().get(_key)))));
+      }
+    }
+
+    // add `outboundClicks` to the URL query string
+    if (getOutboundClicks() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soutboundClicks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOutboundClicks()))));
+    }
+
+    // add `outboundClicksCtr` to the URL query string
+    if (getOutboundClicksCtr() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soutboundClicksCtr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOutboundClicksCtr()))));
+    }
+
+    // add `inlineLinkClicks` to the URL query string
+    if (getInlineLinkClicks() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinlineLinkClicks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInlineLinkClicks()))));
+    }
+
+    // add `inlineLinkClickCtr` to the URL query string
+    if (getInlineLinkClickCtr() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinlineLinkClickCtr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInlineLinkClickCtr()))));
+    }
+
+    // add `uniqueClicks` to the URL query string
+    if (getUniqueClicks() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suniqueClicks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueClicks()))));
+    }
+
+    // add `uniqueCtr` to the URL query string
+    if (getUniqueCtr() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suniqueCtr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueCtr()))));
     }
 
     // add `videoPlayActions` to the URL query string

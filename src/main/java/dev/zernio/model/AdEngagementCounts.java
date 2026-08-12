@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AdEngagementCounts.JSON_PROPERTY_VIDEO_VIEWS,
   AdEngagementCounts.JSON_PROPERTY_LINK_CLICKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T09:03:28.077255040Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:08:50.283690955Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdEngagementCounts {
   public static final String JSON_PROPERTY_POST_ENGAGEMENT = "postEngagement";
   @javax.annotation.Nullable
@@ -282,7 +282,7 @@ public class AdEngagementCounts {
   }
 
   /**
-   * Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session &#x60;inline_link_clicks&#x60; reported by &#x60;GET /v1/ads/{adId}/analytics&#x60;.
+   * Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session count in the sibling &#x60;inlineLinkClicks&#x60; field.
    * @return linkClicks
    */
   @javax.annotation.Nullable

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.JSON_PROPERTY_VERIFICATION_METHOD,
   FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T09:03:28.077255040Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:08:50.283690955Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FetchGoogleBusinessVerificationOptions200ResponseOptionsInner {
   /**
    * Gets or Sets verificationMethod
