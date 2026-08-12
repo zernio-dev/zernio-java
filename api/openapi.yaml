@@ -46652,12 +46652,15 @@ components:
           description: "Per-action-type counts summed over the date range, keyed by\
             \ the platform's action-type names. Meta: raw Insights action_type keys\
             \ (link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped,\
-            \ ...) — both engagement and conversion events. X: conversion types (purchase,\
-            \ sign_up, site_visit, download, custom). LinkedIn: conversion types (post_click,\
-            \ post_view, lead_gen). Google returns {} (its per-action names aren't\
-            \ synced per ad). Empty object when no actions are reported. NOTE: keys\
-            \ differ by platform, so branch on the ad's platform when interpreting\
-            \ them."
+            \ ...) — both engagement and conversion events. TikTok: pixel conversions\
+            \ (purchase, add_to_cart, initiate_checkout, view_content, complete_payment,\
+            \ lead) plus the paid-engagement family (follow, post_reaction for paid\
+            \ likes, comment, share) — follow is how FOLLOWERS-goal campaigns report\
+            \ their result. X: conversion types (purchase, sign_up, site_visit, download,\
+            \ custom). LinkedIn: conversion types (post_click, post_view, lead_gen).\
+            \ Google returns {} (its per-action names aren't synced per ad). Empty\
+            \ object when no actions are reported. NOTE: keys differ by platform,\
+            \ so branch on the ad's platform when interpreting them."
           example:
             link_click: 160
             post_engagement: 300
@@ -46865,7 +46868,11 @@ components:
         Use these fields when you need a specific interaction, and `engagement`
         only as the coarse total it has always been.
 
-        Meta-only; other platforms leave these at 0.
+        Populated for Meta and, since 2026-08, TikTok (`reactions` = paid
+        likes, `comments`, `shares`; TikTok's `follow` count lives in
+        `actions.follow`, not here). Other platforms leave these at 0.
+        TikTok history note: paused TikTok ads are not re-synced, so
+        campaigns that ended before the rollout keep 0s here.
       example:
         shares: 3
         pageEngagement: 3
@@ -46878,20 +46885,21 @@ components:
         videoViews: 6
       properties:
         postEngagement:
-          description: Meta's own post-engagement total (`post_engagement`).
+          description: Meta's own post-engagement total (`post_engagement`). Meta-only.
           type: integer
         pageEngagement:
-          description: Meta's own page-engagement total (`page_engagement`).
+          description: Meta's own page-engagement total (`page_engagement`). Meta-only.
           type: integer
         reactions:
-          description: Reactions on the ad's post (`post_reaction`).
+          description: Reactions on the ad's post (`post_reaction`). For TikTok these
+            are its paid likes.
           type: integer
         comments:
           description: Comments on the ad's post.
           type: integer
         shares:
           description: Shares of the ad's post. Meta reports these under the action
-            type literally named `post`.
+            type literally named `post`; TikTok under `share`.
           type: integer
         saves:
           description: Saves of the ad's post (`onsite_conversion.post_save`).

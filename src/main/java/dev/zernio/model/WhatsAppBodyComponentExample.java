@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppBodyComponentExample.JSON_PROPERTY_BODY_TEXT,
   WhatsAppBodyComponentExample.JSON_PROPERTY_BODY_TEXT_NAMED_PARAMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T13:39:47.386947340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:15:22.012800908Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppBodyComponentExample {
   public static final String JSON_PROPERTY_BODY_TEXT = "body_text";
   @javax.annotation.Nullable

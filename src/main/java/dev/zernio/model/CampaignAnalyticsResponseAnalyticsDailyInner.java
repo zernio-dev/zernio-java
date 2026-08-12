@@ -76,7 +76,7 @@ import dev.zernio.ApiClient;
   CampaignAnalyticsResponseAnalyticsDailyInner.JSON_PROPERTY_LAST_SYNCED_AT,
   CampaignAnalyticsResponseAnalyticsDailyInner.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T13:39:47.386947340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:15:22.012800908Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignAnalyticsResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -475,7 +475,7 @@ public class CampaignAnalyticsResponseAnalyticsDailyInner {
   }
 
   /**
-   * Per-action-type counts summed over the date range, keyed by the platform&#39;s action-type names. Meta: raw Insights action_type keys (link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped, ...) — both engagement and conversion events. X: conversion types (purchase, sign_up, site_visit, download, custom). LinkedIn: conversion types (post_click, post_view, lead_gen). Google returns {} (its per-action names aren&#39;t synced per ad). Empty object when no actions are reported. NOTE: keys differ by platform, so branch on the ad&#39;s platform when interpreting them.
+   * Per-action-type counts summed over the date range, keyed by the platform&#39;s action-type names. Meta: raw Insights action_type keys (link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped, ...) — both engagement and conversion events. TikTok: pixel conversions (purchase, add_to_cart, initiate_checkout, view_content, complete_payment, lead) plus the paid-engagement family (follow, post_reaction for paid likes, comment, share) — follow is how FOLLOWERS-goal campaigns report their result. X: conversion types (purchase, sign_up, site_visit, download, custom). LinkedIn: conversion types (post_click, post_view, lead_gen). Google returns {} (its per-action names aren&#39;t synced per ad). Empty object when no actions are reported. NOTE: keys differ by platform, so branch on the ad&#39;s platform when interpreting them.
    * @return actions
    */
   @javax.annotation.Nullable
