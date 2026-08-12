@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest1.JSON_PROPERTY_REPLY_TO,
   SendInboxMessageRequest1.JSON_PROPERTY_VOICE_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T12:59:04.836940887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T13:09:39.921779592Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest1 {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -182,7 +182,7 @@ public class SendInboxMessageRequest1 {
   }
 
   /**
-   * File attachment (images, videos, documents). Supported formats: JPEG, PNG, GIF, MP4, AAC, WAV. Max 25MB.
+   * File attachment (images, videos, documents). Supported formats: JPEG, PNG, GIF, MP4, AAC, WAV. Max 25MB. On WhatsApp, combining an image, video, or document upload with buttons renders the upload as the interactive message header; audio plus buttons is rejected.
    * @return attachment
    */
   @javax.annotation.Nullable
@@ -230,7 +230,7 @@ public class SendInboxMessageRequest1 {
   }
 
   /**
-   * JSON string of buttons array (same schema as application/json body)
+   * JSON string of buttons array (same schema as application/json body). On WhatsApp, an accompanying image, video, or document attachment becomes the interactive message header.
    * @return buttons
    */
   @javax.annotation.Nullable
