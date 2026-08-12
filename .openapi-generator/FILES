@@ -864,6 +864,7 @@ docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md
 docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
+docs/LinkedInPlatformDataPoll.md
 docs/ListAccountGroups200Response.md
 docs/ListAccountGroups200ResponseGroupsInner.md
 docs/ListAdAccounts200Response.md
@@ -2605,6 +2606,7 @@ src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.j
 src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.java
 src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.java
 src/main/java/dev/zernio/model/LinkedInPlatformData.java
+src/main/java/dev/zernio/model/LinkedInPlatformDataPoll.java
 src/main/java/dev/zernio/model/ListAccountGroups200Response.java
 src/main/java/dev/zernio/model/ListAccountGroups200ResponseGroupsInner.java
 src/main/java/dev/zernio/model/ListAdAccounts200Response.java
@@ -3405,18 +3407,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdAnalyticsResponseAdTest.java
-src/test/java/dev/zernio/model/AdAnalyticsResponseTest.java
-src/test/java/dev/zernio/model/AdTreeResponseTest.java
-src/test/java/dev/zernio/model/AdsListResponseTest.java
-src/test/java/dev/zernio/model/AdsTimelineResponseRowsInnerTest.java
-src/test/java/dev/zernio/model/AdsTimelineResponseTest.java
-src/test/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsDailyInnerTest.java
-src/test/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsTest.java
-src/test/java/dev/zernio/model/CampaignAnalyticsResponseCampaignTest.java
-src/test/java/dev/zernio/model/CampaignAnalyticsResponseTest.java
-src/test/java/dev/zernio/model/GetAdAnalytics202ResponseTest.java
-src/test/java/dev/zernio/model/GetAdTree202ResponseTest.java
-src/test/java/dev/zernio/model/GetAdsTimeline202ResponseTest.java
-src/test/java/dev/zernio/model/GetCampaignAnalytics202ResponseTest.java
-src/test/java/dev/zernio/model/ListAds202ResponseTest.java
+src/test/java/dev/zernio/model/LinkedInPlatformDataPollTest.java

@@ -25,13 +25,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GeoRestriction;
+import dev.zernio.model.LinkedInPlatformDataPoll;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers. 
+ * Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers. Polls are supported via the poll object: 2-4 options, cannot be combined with media or reshareUrl, cannot be edited after publishing, and API-created polls are non-sponsored only. 
  */
 @JsonPropertyOrder({
   LinkedInPlatformData.JSON_PROPERTY_DOCUMENT_TITLE,
@@ -39,9 +40,10 @@ import dev.zernio.ApiClient;
   LinkedInPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   LinkedInPlatformData.JSON_PROPERTY_DISABLE_LINK_PREVIEW,
   LinkedInPlatformData.JSON_PROPERTY_RESHARE_URL,
-  LinkedInPlatformData.JSON_PROPERTY_GEO_RESTRICTION
+  LinkedInPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
+  LinkedInPlatformData.JSON_PROPERTY_POLL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:18:55.239934350Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T11:41:18.065905254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_DOCUMENT_TITLE = "documentTitle";
   @javax.annotation.Nullable
@@ -66,6 +68,10 @@ public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_GEO_RESTRICTION = "geoRestriction";
   @javax.annotation.Nullable
   private GeoRestriction geoRestriction;
+
+  public static final String JSON_PROPERTY_POLL = "poll";
+  @javax.annotation.Nullable
+  private LinkedInPlatformDataPoll poll;
 
   public LinkedInPlatformData() { 
   }
@@ -214,6 +220,30 @@ public class LinkedInPlatformData {
   }
 
 
+  public LinkedInPlatformData poll(@javax.annotation.Nullable LinkedInPlatformDataPoll poll) {
+    this.poll = poll;
+    return this;
+  }
+
+  /**
+   * Get poll
+   * @return poll
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_POLL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInPlatformDataPoll getPoll() {
+    return poll;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_POLL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPoll(@javax.annotation.Nullable LinkedInPlatformDataPoll poll) {
+    this.poll = poll;
+  }
+
+
   /**
    * Return true if this LinkedInPlatformData object is equal to o.
    */
@@ -231,12 +261,13 @@ public class LinkedInPlatformData {
         Objects.equals(this.firstComment, linkedInPlatformData.firstComment) &&
         Objects.equals(this.disableLinkPreview, linkedInPlatformData.disableLinkPreview) &&
         Objects.equals(this.reshareUrl, linkedInPlatformData.reshareUrl) &&
-        Objects.equals(this.geoRestriction, linkedInPlatformData.geoRestriction);
+        Objects.equals(this.geoRestriction, linkedInPlatformData.geoRestriction) &&
+        Objects.equals(this.poll, linkedInPlatformData.poll);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentTitle, organizationUrn, firstComment, disableLinkPreview, reshareUrl, geoRestriction);
+    return Objects.hash(documentTitle, organizationUrn, firstComment, disableLinkPreview, reshareUrl, geoRestriction, poll);
   }
 
   @Override
@@ -249,6 +280,7 @@ public class LinkedInPlatformData {
     sb.append("    disableLinkPreview: ").append(toIndentedString(disableLinkPreview)).append("\n");
     sb.append("    reshareUrl: ").append(toIndentedString(reshareUrl)).append("\n");
     sb.append("    geoRestriction: ").append(toIndentedString(geoRestriction)).append("\n");
+    sb.append("    poll: ").append(toIndentedString(poll)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -324,6 +356,11 @@ public class LinkedInPlatformData {
     // add `geoRestriction` to the URL query string
     if (getGeoRestriction() != null) {
       joiner.add(getGeoRestriction().toUrlQueryString(prefix + "geoRestriction" + suffix));
+    }
+
+    // add `poll` to the URL query string
+    if (getPoll() != null) {
+      joiner.add(getPoll().toUrlQueryString(prefix + "poll" + suffix));
     }
 
     return joiner.toString();

@@ -40275,7 +40275,7 @@ components:
           type: string
     LinkedInPlatformData:
       description: |
-        Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers.
+        Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers. Polls are supported via the poll object: 2-4 options, cannot be combined with media or reshareUrl, cannot be edited after publishing, and API-created polls are non-sponsored only.
       properties:
         documentTitle:
           description: "Title displayed on LinkedIn document (PDF/carousel) posts.\
@@ -40304,6 +40304,8 @@ components:
           type: string
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+        poll:
+          $ref: "#/components/schemas/LinkedInPlatformData_poll"
     MoneyAmount:
       example:
         amount: amount
@@ -89678,6 +89680,38 @@ components:
           type: integer
       required:
       - audioId
+    LinkedInPlatformData_poll:
+      description: "Create a LinkedIn poll with this post. Cannot be combined with\
+        \ media or reshareUrl. Polls cannot be edited after publishing on LinkedIn,\
+        \ and API-created polls are non-sponsored only (they cannot be promoted as\
+        \ ads)."
+      properties:
+        question:
+          description: Poll question (max 140 characters)
+          maxLength: 140
+          minLength: 1
+          type: string
+        options:
+          description: "Poll options (2-4 choices, max 30 characters each)"
+          items:
+            maxLength: 30
+            minLength: 1
+            type: string
+          maxItems: 4
+          minItems: 2
+          type: array
+        duration:
+          default: SEVEN_DAYS
+          description: How long the poll accepts votes. Defaults to SEVEN_DAYS.
+          enum:
+          - ONE_DAY
+          - THREE_DAYS
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          type: string
+      required:
+      - options
+      - question
     LinkedInAdsPlatformData_carousel_cards_inner:
       additionalProperties: false
       properties:

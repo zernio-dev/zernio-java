@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-12T10:18:55.239934350Z[Etc/UTC]
+- Build date: 2026-08-12T11:41:18.065905254Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2049,6 +2049,7 @@ Class | Method | HTTP request | Description
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md)
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md)
  - [LinkedInPlatformData](docs/LinkedInPlatformData.md)
+ - [LinkedInPlatformDataPoll](docs/LinkedInPlatformDataPoll.md)
  - [ListAccountGroups200Response](docs/ListAccountGroups200Response.md)
  - [ListAccountGroups200ResponseGroupsInner](docs/ListAccountGroups200ResponseGroupsInner.md)
  - [ListAdAccounts200Response](docs/ListAdAccounts200Response.md)
