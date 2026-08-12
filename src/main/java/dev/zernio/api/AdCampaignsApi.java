@@ -22,6 +22,7 @@ import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeResponse;
 import dev.zernio.model.AdsListResponse;
 import dev.zernio.model.AdsTimelineResponse;
+import java.math.BigDecimal;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
 import dev.zernio.model.BulkUpdateAdCampaignStatusRequest;
@@ -87,7 +88,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:43:56.186919915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:49:02.458937158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1658,16 +1659,18 @@ public class AdCampaignsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
-   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
    * @return AdTreeResponse
    * @throws ApiException if fails to make API call
    */
-  public AdTreeResponse getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
-    return getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
+  public AdTreeResponse getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
+    return getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, null);
   }
 
   /**
@@ -1683,8 +1686,10 @@ public class AdCampaignsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
-   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
@@ -1692,8 +1697,8 @@ public class AdCampaignsApi {
    * @return AdTreeResponse
    * @throws ApiException if fails to make API call
    */
-  public AdTreeResponse getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
-    ApiResponse<AdTreeResponse> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
+  public AdTreeResponse getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdTreeResponse> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, headers);
     return localVarResponse.getData();
   }
 
@@ -1710,16 +1715,18 @@ public class AdCampaignsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
-   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
    * @return ApiResponse&lt;AdTreeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<AdTreeResponse> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
-    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
+  public ApiResponse<AdTreeResponse> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
+    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, null);
   }
 
   /**
@@ -1735,8 +1742,10 @@ public class AdCampaignsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
-   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
@@ -1744,8 +1753,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;AdTreeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<AdTreeResponse> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
+  public ApiResponse<AdTreeResponse> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1792,7 +1801,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1825,6 +1834,10 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "hasDelivery";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("hasDelivery", hasDelivery));
+    localVarQueryParameterBaseName = "minSpend";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minSpend", minSpend));
     localVarQueryParameterBaseName = "sort";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("sort", sort));
     localVarQueryParameterBaseName = "timeIncrement";
@@ -2028,11 +2041,13 @@ public class AdCampaignsApi {
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend) throws ApiException {
+    return listAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, null);
   }
 
   /**
@@ -2050,12 +2065,14 @@ public class AdCampaignsApi {
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, headers);
     return localVarResponse.getData();
   }
 
@@ -2074,11 +2091,13 @@ public class AdCampaignsApi {
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, null);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend) throws ApiException {
+    return listAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, null);
   }
 
   /**
@@ -2096,12 +2115,14 @@ public class AdCampaignsApi {
    * @param profileId Profile ID (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
+   * @param hasDelivery Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)
+   * @param minSpend Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, headers);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2148,7 +2169,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Boolean includeEmpty, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Boolean hasDelivery, @javax.annotation.Nullable BigDecimal minSpend, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2181,6 +2202,10 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "hasDelivery";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("hasDelivery", hasDelivery));
+    localVarQueryParameterBaseName = "minSpend";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minSpend", minSpend));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

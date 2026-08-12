@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudienceMatchRulesInner.JSON_PROPERTY_MATCH_TYPE,
   UploadedOrDerivedAudienceMatchRulesInner.JSON_PROPERTY_MATCH_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:43:56.186919915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:49:02.458937158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudienceMatchRulesInner {
   /**
    * Gets or Sets matchType
