@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_USERNAME,
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_PICTURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T14:31:31.668183960Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T09:03:28.077255040Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -94,7 +94,7 @@ public class WebhookPayloadMessageSentMessageSender {
   }
 
   /**
-   * Zernio CRM Contact id for this sender, when one exists.
+   * Always omitted on this event: the sender is the business, not a contact. Use conversation.contactId to join back to the CRM Contact.
    * @return contactId
    */
   @javax.annotation.Nullable

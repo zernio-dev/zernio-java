@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-11T14:31:31.668183960Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T09:03:28.077255040Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContactsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -760,10 +760,10 @@ public class ContactsApi {
 
   /**
    * List contacts
-   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
    * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
    * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
-   * @param search  (optional)
+   * @param search Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
@@ -779,10 +779,10 @@ public class ContactsApi {
 
   /**
    * List contacts
-   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
    * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
    * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
-   * @param search  (optional)
+   * @param search Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
@@ -800,10 +800,10 @@ public class ContactsApi {
 
   /**
    * List contacts
-   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
    * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
    * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
-   * @param search  (optional)
+   * @param search Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
@@ -819,10 +819,10 @@ public class ContactsApi {
 
   /**
    * List contacts
-   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+   * List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
    * @param profileId Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)
    * @param accountId Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)
-   * @param search  (optional)
+   * @param search Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)
    * @param tag  (optional)
    * @param tags Comma-separated tags, matches contacts carrying any of them (optional)
    * @param platform  (optional)
