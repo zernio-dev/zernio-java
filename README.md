@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-12T16:49:02.458937158Z[Etc/UTC]
+- Build date: 2026-08-12T16:54:51.344793914Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2804,6 +2804,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageMetadataReferralAdsContextData](docs/WebhookPayloadMessageMetadataReferralAdsContextData.md)
  - [WebhookPayloadMessageMetadataReferredProduct](docs/WebhookPayloadMessageMetadataReferredProduct.md)
  - [WebhookPayloadMessageMetadataStoryReply](docs/WebhookPayloadMessageMetadataStoryReply.md)
+ - [WebhookPayloadMessageMetadataUnsupported](docs/WebhookPayloadMessageMetadataUnsupported.md)
  - [WebhookPayloadMessageSent](docs/WebhookPayloadMessageSent.md)
  - [WebhookPayloadMessageSentMessage](docs/WebhookPayloadMessageSentMessage.md)
  - [WebhookPayloadMessageSentMessageAttachmentsInner](docs/WebhookPayloadMessageSentMessageAttachmentsInner.md)

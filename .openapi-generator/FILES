@@ -1638,6 +1638,7 @@ docs/WebhookPayloadMessageMetadataReferral.md
 docs/WebhookPayloadMessageMetadataReferralAdsContextData.md
 docs/WebhookPayloadMessageMetadataReferredProduct.md
 docs/WebhookPayloadMessageMetadataStoryReply.md
+docs/WebhookPayloadMessageMetadataUnsupported.md
 docs/WebhookPayloadMessageSent.md
 docs/WebhookPayloadMessageSentMessage.md
 docs/WebhookPayloadMessageSentMessageAttachmentsInner.md
@@ -3364,6 +3365,7 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferral.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferralAdsContextData.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferredProduct.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataStoryReply.java
+src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataUnsupported.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSent.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessage.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessageAttachmentsInner.java
@@ -3421,3 +3423,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataUnsupportedTest.java

@@ -38293,6 +38293,10 @@ components:
             source_id: source_id
             ctwa_clid: ctwa_clid
             headline: headline
+          unsupported:
+            code: 5
+            details: details
+            title: title
           isStoryMention: true
           referredProduct:
             catalog_id: catalog_id
@@ -89321,6 +89325,28 @@ components:
           type: string
         ads_context_data:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral_ads_context_data"
+    WebhookPayloadMessage_metadata_unsupported:
+      description: |
+        WhatsApp only. Meta's own reason this message has no
+        renderable body. Present when Meta attached an error to the
+        inbound payload; in practice the `unsupported`, `errors` and
+        `unknown` types (code 131051: message type currently not
+        supported). `text` on those messages is the fixed
+        `[Unsupported message]` placeholder.
+      example:
+        code: 5
+        details: details
+        title: title
+      properties:
+        code:
+          description: Meta's numeric error code (e.g. 131051).
+          type: integer
+        title:
+          description: Meta's short error title.
+          type: string
+        details:
+          description: Meta's human-readable error detail string.
+          type: string
     WebhookPayloadMessage_metadata:
       description: "Platform-specific message context (present when the message is\
         \ a quick reply tap, postback button tap, inline keyboard callback, or a quote-reply\
@@ -89358,6 +89384,10 @@ components:
           source_id: source_id
           ctwa_clid: ctwa_clid
           headline: headline
+        unsupported:
+          code: 5
+          details: details
+          title: title
         isStoryMention: true
         referredProduct:
           catalog_id: catalog_id
@@ -89471,6 +89501,8 @@ components:
           type: boolean
         referral:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral"
+        unsupported:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_unsupported"
     WebhookPayloadMessageSent_message_attachments_inner:
       example:
         payload: "{}"

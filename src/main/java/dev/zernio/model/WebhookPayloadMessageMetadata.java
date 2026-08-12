@@ -28,6 +28,7 @@ import dev.zernio.model.WebhookPayloadMessageMetadataOrder;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferral;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferredProduct;
 import dev.zernio.model.WebhookPayloadMessageMetadataStoryReply;
+import dev.zernio.model.WebhookPayloadMessageMetadataUnsupported;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -57,9 +58,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_CONTACTS_ORIGIN,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_STORY_REPLY,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_IS_STORY_MENTION,
-  WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRAL
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRAL,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:49:02.458937158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:54:51.344793914Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
@@ -200,6 +202,10 @@ public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_REFERRAL = "referral";
   @javax.annotation.Nullable
   private WebhookPayloadMessageMetadataReferral referral;
+
+  public static final String JSON_PROPERTY_UNSUPPORTED = "unsupported";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageMetadataUnsupported unsupported;
 
   public WebhookPayloadMessageMetadata() { 
   }
@@ -628,6 +634,30 @@ public class WebhookPayloadMessageMetadata {
   }
 
 
+  public WebhookPayloadMessageMetadata unsupported(@javax.annotation.Nullable WebhookPayloadMessageMetadataUnsupported unsupported) {
+    this.unsupported = unsupported;
+    return this;
+  }
+
+  /**
+   * Get unsupported
+   * @return unsupported
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNSUPPORTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageMetadataUnsupported getUnsupported() {
+    return unsupported;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNSUPPORTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnsupported(@javax.annotation.Nullable WebhookPayloadMessageMetadataUnsupported unsupported) {
+    this.unsupported = unsupported;
+  }
+
+
   /**
    * Return true if this WebhookPayloadMessage_metadata object is equal to o.
    */
@@ -656,12 +686,13 @@ public class WebhookPayloadMessageMetadata {
         Objects.equals(this.contactsOrigin, webhookPayloadMessageMetadata.contactsOrigin) &&
         Objects.equals(this.storyReply, webhookPayloadMessageMetadata.storyReply) &&
         Objects.equals(this.isStoryMention, webhookPayloadMessageMetadata.isStoryMention) &&
-        Objects.equals(this.referral, webhookPayloadMessageMetadata.referral);
+        Objects.equals(this.referral, webhookPayloadMessageMetadata.referral) &&
+        Objects.equals(this.unsupported, webhookPayloadMessageMetadata.unsupported);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral);
+    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported);
   }
 
   @Override
@@ -685,6 +716,7 @@ public class WebhookPayloadMessageMetadata {
     sb.append("    storyReply: ").append(toIndentedString(storyReply)).append("\n");
     sb.append("    isStoryMention: ").append(toIndentedString(isStoryMention)).append("\n");
     sb.append("    referral: ").append(toIndentedString(referral)).append("\n");
+    sb.append("    unsupported: ").append(toIndentedString(unsupported)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -823,6 +855,11 @@ public class WebhookPayloadMessageMetadata {
     // add `referral` to the URL query string
     if (getReferral() != null) {
       joiner.add(getReferral().toUrlQueryString(prefix + "referral" + suffix));
+    }
+
+    // add `unsupported` to the URL query string
+    if (getUnsupported() != null) {
+      joiner.add(getUnsupported().toUrlQueryString(prefix + "unsupported" + suffix));
     }
 
     return joiner.toString();
