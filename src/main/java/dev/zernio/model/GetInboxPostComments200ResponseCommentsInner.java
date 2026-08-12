@@ -62,7 +62,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_URI,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T15:27:25.737832047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:43:56.186919915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -587,7 +587,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
   }
 
   /**
-   * Parent comment ID for nested replies
+   * ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X/Twitter. On X/Twitter it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting.
    * @return parentId
    */
   @javax.annotation.Nullable

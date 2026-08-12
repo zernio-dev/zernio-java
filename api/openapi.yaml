@@ -37349,6 +37349,10 @@ components:
         post:
           $ref: "#/components/schemas/WebhookPayloadPost_post"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37427,6 +37431,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadPostPlatform_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37459,6 +37467,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadAccountConnected_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37491,6 +37503,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadAccountDisconnected_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37541,6 +37557,10 @@ components:
         sync:
           $ref: "#/components/schemas/WebhookPayloadAccountAdsInitialSyncCompleted_sync"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37609,6 +37629,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadComment_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37654,6 +37678,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadLead_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37755,6 +37783,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadReviewNew_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37805,6 +37837,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadReviewNew_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -37935,6 +37971,10 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadReviewNew_account"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38153,6 +38193,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38289,6 +38333,10 @@ components:
         metadata:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38359,6 +38407,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38514,6 +38566,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38606,6 +38662,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38706,6 +38766,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -38761,6 +38825,10 @@ components:
           format: date-time
           type: string
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39014,6 +39082,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39069,6 +39141,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39116,6 +39192,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39158,6 +39238,10 @@ components:
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39214,7 +39298,10 @@ components:
         error:
           $ref: "#/components/schemas/WebhookPayloadAdStatusChanged_error"
         timestamp:
-          description: ISO-8601 timestamp the webhook was produced.
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39259,7 +39346,10 @@ components:
         template:
           $ref: "#/components/schemas/WebhookPayloadWhatsAppTemplateStatusUpdated_template"
         timestamp:
-          description: ISO-8601 timestamp the webhook was produced.
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
       required:
@@ -39287,6 +39377,9 @@ components:
           description: Human-readable test message
           type: string
         timestamp:
+          description: UTC time at which Zernio generated this test event (set once
+            when the payload is built). Test fires are sent synchronously as a single
+            attempt; a later redelivery of this event keeps the original value.
           format: date-time
           type: string
       required:
@@ -63637,7 +63730,12 @@ components:
           nullable: true
           type: string
         parentId:
-          description: Parent comment ID for nested replies
+          description: "ID of the parent comment. Present on entries inside replies[]\
+            \ for Facebook, Instagram and X/Twitter. On X/Twitter it is also present\
+            \ on top-level entries, where it holds the ID of the post replied to.\
+            \ Omitted entirely (key absent, not null) on top-level Facebook and Instagram\
+            \ entries and on every other platform, which express the parent relationship\
+            \ only through replies[] nesting."
           nullable: true
           type: string
         rootUri:
@@ -86821,6 +86919,10 @@ components:
           enum:
           - whatsapp.automatic_event
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         accountId:
@@ -86857,6 +86959,10 @@ components:
           enum:
           - whatsapp.number.activated
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86875,6 +86981,10 @@ components:
           enum:
           - whatsapp.number.declined
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86890,6 +87000,10 @@ components:
           enum:
           - whatsapp.number.action_required
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         reason:
@@ -86904,6 +87018,10 @@ components:
           enum:
           - whatsapp.number.verification_required
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86918,6 +87036,10 @@ components:
           enum:
           - whatsapp.number.suspended
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86933,6 +87055,10 @@ components:
           enum:
           - whatsapp.number.reactivated
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86945,6 +87071,10 @@ components:
           enum:
           - whatsapp.number.released
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86962,6 +87092,10 @@ components:
           - verification.approved
           - verification.failed
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         number:
@@ -86983,6 +87117,10 @@ components:
           enum:
           - verification.approved
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         verification:
@@ -87002,6 +87140,10 @@ components:
           enum:
           - verification.failed
         timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
           format: date-time
           type: string
         verification:

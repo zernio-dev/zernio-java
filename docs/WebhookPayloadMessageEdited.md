@@ -16,7 +16,7 @@ Webhook payload for message.edited events. Fires when the sender edits a previou
 |**editedAt** | **OffsetDateTime** | When the most recent edit happened. |  |
 |**conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  |  |
 |**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |
-|**timestamp** | **OffsetDateTime** |  |  |
+|**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. |  |
 
 
 

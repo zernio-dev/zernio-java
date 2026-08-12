@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdStatusChanged.JSON_PROPERTY_ERROR,
   WebhookPayloadAdStatusChanged.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T15:27:25.737832047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:43:56.186919915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdStatusChanged {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -262,7 +262,7 @@ public class WebhookPayloadAdStatusChanged {
   }
 
   /**
-   * ISO-8601 timestamp the webhook was produced.
+   * UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
    * @return timestamp
    */
   @javax.annotation.Nonnull

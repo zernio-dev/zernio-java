@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetCampaignAnalytics202Response.JSON_PROPERTY_CAMPAIGN,
   GetCampaignAnalytics202Response.JSON_PROPERTY_ANALYTICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T15:27:25.737832047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:43:56.186919915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignAnalytics202Response {
   /**
    * Gets or Sets backfillPending

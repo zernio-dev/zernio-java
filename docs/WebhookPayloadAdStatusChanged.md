@@ -14,7 +14,7 @@ Webhook payload for the `ad.status_changed` event. Currently emitted only for Me
 |**adObject** | [**WebhookPayloadAdStatusChangedAdObject**](WebhookPayloadAdStatusChangedAdObject.md) |  |  |
 |**status** | [**WebhookPayloadAdStatusChangedStatus**](WebhookPayloadAdStatusChangedStatus.md) |  |  |
 |**error** | [**WebhookPayloadAdStatusChangedError**](WebhookPayloadAdStatusChangedError.md) |  |  [optional] |
-|**timestamp** | **OffsetDateTime** | ISO-8601 timestamp the webhook was produced. |  |
+|**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. |  |
 
 
 

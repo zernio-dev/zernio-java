@@ -11,7 +11,7 @@ Webhook payload for test deliveries
 |**id** | **String** | Stable webhook event ID |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**message** | **String** | Human-readable test message |  |
-|**timestamp** | **OffsetDateTime** |  |  |
+|**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this test event (set once when the payload is built). Test fires are sent synchronously as a single attempt; a later redelivery of this event keeps the original value. |  |
 
 
 

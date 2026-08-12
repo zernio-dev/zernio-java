@@ -13,7 +13,7 @@ Webhook payload for comment received events (Instagram, Facebook, Twitter/X, You
 |**comment** | [**WebhookPayloadCommentComment**](WebhookPayloadCommentComment.md) |  |  |
 |**post** | [**WebhookPayloadCommentPost**](WebhookPayloadCommentPost.md) |  |  |
 |**account** | [**WebhookPayloadCommentAccount**](WebhookPayloadCommentAccount.md) |  |  |
-|**timestamp** | **OffsetDateTime** |  |  |
+|**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. |  |
 
 
 
