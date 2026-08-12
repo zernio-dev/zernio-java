@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-12T14:15:22.012800908Z[Etc/UTC]
+- Build date: 2026-08-12T14:28:11.105056012Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -292,6 +292,10 @@ Class | Method | HTTP request | Description
 *AdInsightsApi* | [**getAdsSearchTermsWithHttpInfo**](docs/AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report
 *AdInsightsApi* | [**getCampaignAnalytics**](docs/AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdInsightsApi* | [**getCampaignAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
+*AdInsightsApi* | [**listLocalServicesLeadConversations**](docs/AdInsightsApi.md#listLocalServicesLeadConversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead
+*AdInsightsApi* | [**listLocalServicesLeadConversationsWithHttpInfo**](docs/AdInsightsApi.md#listLocalServicesLeadConversationsWithHttpInfo) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead
+*AdInsightsApi* | [**listLocalServicesLeads**](docs/AdInsightsApi.md#listLocalServicesLeads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads
+*AdInsightsApi* | [**listLocalServicesLeadsWithHttpInfo**](docs/AdInsightsApi.md#listLocalServicesLeadsWithHttpInfo) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads
 *AdInsightsApi* | [**queryAdInsights**](docs/AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query
 *AdInsightsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdInsightsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query
 *AdTargetingApi* | [**estimateAdReach**](docs/AdTargetingApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
@@ -2143,6 +2147,13 @@ Class | Method | HTTP request | Description
  - [ListLeads200ResponseLeadsInner](docs/ListLeads200ResponseLeadsInner.md)
  - [ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
+ - [ListLocalServicesLeadConversations200Response](docs/ListLocalServicesLeadConversations200Response.md)
+ - [ListLocalServicesLeadConversations200ResponseDataInner](docs/ListLocalServicesLeadConversations200ResponseDataInner.md)
+ - [ListLocalServicesLeadConversations200ResponseDataInnerMessage](docs/ListLocalServicesLeadConversations200ResponseDataInnerMessage.md)
+ - [ListLocalServicesLeadConversations200ResponseDataInnerPhoneCall](docs/ListLocalServicesLeadConversations200ResponseDataInnerPhoneCall.md)
+ - [ListLocalServicesLeads200Response](docs/ListLocalServicesLeads200Response.md)
+ - [ListLocalServicesLeads200ResponseDataInner](docs/ListLocalServicesLeads200ResponseDataInner.md)
+ - [ListLocalServicesLeads200ResponseDataInnerContact](docs/ListLocalServicesLeads200ResponseDataInnerContact.md)
  - [ListLogs200Response](docs/ListLogs200Response.md)
  - [ListLogs200ResponseLogsInner](docs/ListLogs200ResponseLogsInner.md)
  - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)

@@ -33,6 +33,8 @@ import dev.zernio.model.GetAdsSearchTerms200Response;
 import dev.zernio.model.GetCampaignAnalytics202Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListLocalServicesLeadConversations200Response;
+import dev.zernio.model.ListLocalServicesLeads200Response;
 import java.time.LocalDate;
 import dev.zernio.model.QueryAdInsights200Response;
 
@@ -61,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:15:22.012800908Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:28:11.105056012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdInsightsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1146,6 +1148,333 @@ public class AdInsightsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "breakdowns";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdowns", breakdowns));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Conversations of a Local Services lead
+   * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+   * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @return ListLocalServicesLeadConversations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLocalServicesLeadConversations200Response listLocalServicesLeadConversations(@javax.annotation.Nonnull String leadId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listLocalServicesLeadConversations(leadId, accountId, customerId, pageToken, null);
+  }
+
+  /**
+   * Conversations of a Local Services lead
+   * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+   * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListLocalServicesLeadConversations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLocalServicesLeadConversations200Response listLocalServicesLeadConversations(@javax.annotation.Nonnull String leadId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Conversations of a Local Services lead
+   * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+   * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @return ApiResponse&lt;ListLocalServicesLeadConversations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLocalServicesLeadConversations200Response> listLocalServicesLeadConversationsWithHttpInfo(@javax.annotation.Nonnull String leadId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken, null);
+  }
+
+  /**
+   * Conversations of a Local Services lead
+   * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+   * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListLocalServicesLeadConversations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLocalServicesLeadConversations200Response> listLocalServicesLeadConversationsWithHttpInfo(@javax.annotation.Nonnull String leadId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLocalServicesLeadConversationsRequestBuilder(leadId, accountId, customerId, pageToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listLocalServicesLeadConversations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListLocalServicesLeadConversations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListLocalServicesLeadConversations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListLocalServicesLeadConversations200Response>() {});
+        
+
+        return new ApiResponse<ListLocalServicesLeadConversations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listLocalServicesLeadConversationsRequestBuilder(@javax.annotation.Nonnull String leadId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'leadId' is set
+    if (leadId == null) {
+      throw new ApiException(400, "Missing the required parameter 'leadId' when calling listLocalServicesLeadConversations");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listLocalServicesLeadConversations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/local-services/leads/{leadId}/conversations"
+        .replace("{leadId}", ApiClient.urlEncode(leadId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "pageToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageToken", pageToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Google Local Services Ads leads
+   * Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Leads created at/after this day. (optional)
+   * @param toDate Leads created at/before this day. (optional)
+   * @param leadType  (optional)
+   * @param leadStatus Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)
+   * @param chargedOnly true &#x3D; only leads Google charged for. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @return ListLocalServicesLeads200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLocalServicesLeads200Response listLocalServicesLeads(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String leadType, @javax.annotation.Nullable String leadStatus, @javax.annotation.Nullable Boolean chargedOnly, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, null);
+  }
+
+  /**
+   * Google Local Services Ads leads
+   * Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Leads created at/after this day. (optional)
+   * @param toDate Leads created at/before this day. (optional)
+   * @param leadType  (optional)
+   * @param leadStatus Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)
+   * @param chargedOnly true &#x3D; only leads Google charged for. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListLocalServicesLeads200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLocalServicesLeads200Response listLocalServicesLeads(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String leadType, @javax.annotation.Nullable String leadStatus, @javax.annotation.Nullable Boolean chargedOnly, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLocalServicesLeads200Response> localVarResponse = listLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Google Local Services Ads leads
+   * Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Leads created at/after this day. (optional)
+   * @param toDate Leads created at/before this day. (optional)
+   * @param leadType  (optional)
+   * @param leadStatus Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)
+   * @param chargedOnly true &#x3D; only leads Google charged for. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @return ApiResponse&lt;ListLocalServicesLeads200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLocalServicesLeads200Response> listLocalServicesLeadsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String leadType, @javax.annotation.Nullable String leadStatus, @javax.annotation.Nullable Boolean chargedOnly, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, null);
+  }
+
+  /**
+   * Google Local Services Ads leads
+   * Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Leads created at/after this day. (optional)
+   * @param toDate Leads created at/before this day. (optional)
+   * @param leadType  (optional)
+   * @param leadStatus Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)
+   * @param chargedOnly true &#x3D; only leads Google charged for. (optional)
+   * @param pageToken Cursor from paging.nextPageToken of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListLocalServicesLeads200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLocalServicesLeads200Response> listLocalServicesLeadsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String leadType, @javax.annotation.Nullable String leadStatus, @javax.annotation.Nullable Boolean chargedOnly, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLocalServicesLeadsRequestBuilder(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listLocalServicesLeads", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListLocalServicesLeads200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListLocalServicesLeads200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListLocalServicesLeads200Response>() {});
+        
+
+        return new ApiResponse<ListLocalServicesLeads200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listLocalServicesLeadsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String leadType, @javax.annotation.Nullable String leadStatus, @javax.annotation.Nullable Boolean chargedOnly, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listLocalServicesLeads");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/local-services/leads";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "leadType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("leadType", leadType));
+    localVarQueryParameterBaseName = "leadStatus";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("leadStatus", leadStatus));
+    localVarQueryParameterBaseName = "chargedOnly";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("chargedOnly", chargedOnly));
+    localVarQueryParameterBaseName = "pageToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageToken", pageToken));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

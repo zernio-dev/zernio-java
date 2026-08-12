@@ -18,6 +18,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdsSearchTermsWithHttpInfo**](AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**getCampaignAnalytics**](AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**getCampaignAnalyticsWithHttpInfo**](AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
+| [**listLocalServicesLeadConversations**](AdInsightsApi.md#listLocalServicesLeadConversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead |
+| [**listLocalServicesLeadConversationsWithHttpInfo**](AdInsightsApi.md#listLocalServicesLeadConversationsWithHttpInfo) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead |
+| [**listLocalServicesLeads**](AdInsightsApi.md#listLocalServicesLeads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
+| [**listLocalServicesLeadsWithHttpInfo**](AdInsightsApi.md#listLocalServicesLeadsWithHttpInfo) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
 | [**queryAdInsights**](AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query |
 | [**queryAdInsightsWithHttpInfo**](AdInsightsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query |
 
@@ -1153,6 +1157,350 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## listLocalServicesLeadConversations
+
+> ListLocalServicesLeadConversations200Response listLocalServicesLeadConversations(leadId, accountId, customerId, pageToken)
+
+Conversations of a Local Services lead
+
+Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String leadId = "leadId_example"; // String | Numeric lead id from /v1/ads/local-services/leads.
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
+        try {
+            ListLocalServicesLeadConversations200Response result = apiInstance.listLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#listLocalServicesLeadConversations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **leadId** | **String**| Numeric lead id from /v1/ads/local-services/leads. | |
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
+
+### Return type
+
+[**ListLocalServicesLeadConversations200Response**](ListLocalServicesLeadConversations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead conversations |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## listLocalServicesLeadConversationsWithHttpInfo
+
+> ApiResponse<ListLocalServicesLeadConversations200Response> listLocalServicesLeadConversations listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken)
+
+Conversations of a Local Services lead
+
+Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String leadId = "leadId_example"; // String | Numeric lead id from /v1/ads/local-services/leads.
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
+        try {
+            ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#listLocalServicesLeadConversations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **leadId** | **String**| Numeric lead id from /v1/ads/local-services/leads. | |
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListLocalServicesLeadConversations200Response**](ListLocalServicesLeadConversations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead conversations |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
+## listLocalServicesLeads
+
+> ListLocalServicesLeads200Response listLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken)
+
+Google Local Services Ads leads
+
+Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Leads created at/after this day.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Leads created at/before this day.
+        String leadType = "PHONE_CALL"; // String | 
+        String leadStatus = "leadStatus_example"; // String | Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT).
+        Boolean chargedOnly = true; // Boolean | true = only leads Google charged for.
+        String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
+        try {
+            ListLocalServicesLeads200Response result = apiInstance.listLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#listLocalServicesLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **fromDate** | **LocalDate**| Leads created at/after this day. | [optional] |
+| **toDate** | **LocalDate**| Leads created at/before this day. | [optional] |
+| **leadType** | **String**|  | [optional] [enum: PHONE_CALL, MESSAGE, BOOKING] |
+| **leadStatus** | **String**| Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). | [optional] |
+| **chargedOnly** | **Boolean**| true &#x3D; only leads Google charged for. | [optional] |
+| **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
+
+### Return type
+
+[**ListLocalServicesLeads200Response**](ListLocalServicesLeads200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Local Services leads |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## listLocalServicesLeadsWithHttpInfo
+
+> ApiResponse<ListLocalServicesLeads200Response> listLocalServicesLeads listLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken)
+
+Google Local Services Ads leads
+
+Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Leads created at/after this day.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Leads created at/before this day.
+        String leadType = "PHONE_CALL"; // String | 
+        String leadStatus = "leadStatus_example"; // String | Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT).
+        Boolean chargedOnly = true; // Boolean | true = only leads Google charged for.
+        String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
+        try {
+            ApiResponse<ListLocalServicesLeads200Response> response = apiInstance.listLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#listLocalServicesLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **fromDate** | **LocalDate**| Leads created at/after this day. | [optional] |
+| **toDate** | **LocalDate**| Leads created at/before this day. | [optional] |
+| **leadType** | **String**|  | [optional] [enum: PHONE_CALL, MESSAGE, BOOKING] |
+| **leadStatus** | **String**| Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). | [optional] |
+| **chargedOnly** | **Boolean**| true &#x3D; only leads Google charged for. | [optional] |
+| **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListLocalServicesLeads200Response**](ListLocalServicesLeads200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Local Services leads |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## queryAdInsights

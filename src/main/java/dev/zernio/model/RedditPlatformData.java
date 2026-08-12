@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   RedditPlatformData.JSON_PROPERTY_VIDEOGIF,
   RedditPlatformData.JSON_PROPERTY_VIDEO_POSTER_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:15:22.012800908Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:28:11.105056012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditPlatformData {
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
   @javax.annotation.Nullable

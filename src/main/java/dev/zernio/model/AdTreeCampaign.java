@@ -78,7 +78,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_AD_SETS,
   AdTreeCampaign.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:15:22.012800908Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:28:11.105056012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -787,7 +787,7 @@ public class AdTreeCampaign {
   }
 
   /**
-   * Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms.
+   * Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, LOCAL_SERVICES, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms.
    * @return advertisingChannelType
    */
   @javax.annotation.Nullable
