@@ -14,7 +14,6 @@ A post synced from a platform (published directly on the platform, not through Z
 |**content** | **String** | Post caption / text |  [optional] |
 |**publishedAt** | **OffsetDateTime** | When the post was published on the platform |  [optional] |
 |**mediaType** | **String** | Media type (e.g. image, video, carousel) |  [optional] |
-|**mediaUrl** | **String** | Primary media URL |  [optional] |
 |**thumbnailUrl** | **String** | Thumbnail URL |  [optional] |
 |**mediaItems** | **List&lt;Object&gt;** | Per-item media (for carousels / multi-media posts) |  [optional] |
 |**analytics** | [**ExternalPostSummaryAnalytics**](ExternalPostSummaryAnalytics.md) |  |  [optional] |

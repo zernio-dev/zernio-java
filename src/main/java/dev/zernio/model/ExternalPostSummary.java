@@ -43,12 +43,11 @@ import dev.zernio.ApiClient;
   ExternalPostSummary.JSON_PROPERTY_CONTENT,
   ExternalPostSummary.JSON_PROPERTY_PUBLISHED_AT,
   ExternalPostSummary.JSON_PROPERTY_MEDIA_TYPE,
-  ExternalPostSummary.JSON_PROPERTY_MEDIA_URL,
   ExternalPostSummary.JSON_PROPERTY_THUMBNAIL_URL,
   ExternalPostSummary.JSON_PROPERTY_MEDIA_ITEMS,
   ExternalPostSummary.JSON_PROPERTY_ANALYTICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T11:41:18.065905254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T12:59:04.836940887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostSummary {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -73,10 +72,6 @@ public class ExternalPostSummary {
   public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
   @javax.annotation.Nullable
   private String mediaType;
-
-  public static final String JSON_PROPERTY_MEDIA_URL = "mediaUrl";
-  @javax.annotation.Nullable
-  private String mediaUrl;
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -237,30 +232,6 @@ public class ExternalPostSummary {
   }
 
 
-  public ExternalPostSummary mediaUrl(@javax.annotation.Nullable String mediaUrl) {
-    this.mediaUrl = mediaUrl;
-    return this;
-  }
-
-  /**
-   * Primary media URL
-   * @return mediaUrl
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEDIA_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMediaUrl() {
-    return mediaUrl;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MEDIA_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaUrl(@javax.annotation.Nullable String mediaUrl) {
-    this.mediaUrl = mediaUrl;
-  }
-
-
   public ExternalPostSummary thumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
     return this;
@@ -359,7 +330,6 @@ public class ExternalPostSummary {
         Objects.equals(this.content, externalPostSummary.content) &&
         Objects.equals(this.publishedAt, externalPostSummary.publishedAt) &&
         Objects.equals(this.mediaType, externalPostSummary.mediaType) &&
-        Objects.equals(this.mediaUrl, externalPostSummary.mediaUrl) &&
         Objects.equals(this.thumbnailUrl, externalPostSummary.thumbnailUrl) &&
         Objects.equals(this.mediaItems, externalPostSummary.mediaItems) &&
         Objects.equals(this.analytics, externalPostSummary.analytics);
@@ -367,7 +337,7 @@ public class ExternalPostSummary {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, platformPostId, platformPostUrl, content, publishedAt, mediaType, mediaUrl, thumbnailUrl, mediaItems, analytics);
+    return Objects.hash(platform, platformPostId, platformPostUrl, content, publishedAt, mediaType, thumbnailUrl, mediaItems, analytics);
   }
 
   @Override
@@ -380,7 +350,6 @@ public class ExternalPostSummary {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
-    sb.append("    mediaUrl: ").append(toIndentedString(mediaUrl)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    mediaItems: ").append(toIndentedString(mediaItems)).append("\n");
     sb.append("    analytics: ").append(toIndentedString(analytics)).append("\n");
@@ -459,11 +428,6 @@ public class ExternalPostSummary {
     // add `mediaType` to the URL query string
     if (getMediaType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smediaType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaType()))));
-    }
-
-    // add `mediaUrl` to the URL query string
-    if (getMediaUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smediaUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaUrl()))));
     }
 
     // add `thumbnailUrl` to the URL query string

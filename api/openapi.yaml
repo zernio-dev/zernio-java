@@ -35169,7 +35169,6 @@ components:
           views: 3
           likes: 1
           sends: 7
-        mediaUrl: mediaUrl
         publishedAt: 2000-01-23T04:56:07.000+00:00
         mediaItems:
         - "{}"
@@ -35199,9 +35198,6 @@ components:
           type: string
         mediaType:
           description: "Media type (e.g. image, video, carousel)"
-          type: string
-        mediaUrl:
-          description: Primary media URL
           type: string
         thumbnailUrl:
           description: Thumbnail URL
@@ -52046,7 +52042,6 @@ components:
             views: 3
             likes: 1
             sends: 7
-          mediaUrl: mediaUrl
           publishedAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
           - "{}"
@@ -52069,7 +52064,6 @@ components:
             views: 3
             likes: 1
             sends: 7
-          mediaUrl: mediaUrl
           publishedAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
           - "{}"

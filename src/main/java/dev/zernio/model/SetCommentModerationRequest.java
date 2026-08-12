@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SetCommentModerationRequest.JSON_PROPERTY_MODERATION_STATUS,
   SetCommentModerationRequest.JSON_PROPERTY_BAN_AUTHOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T11:41:18.065905254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T12:59:04.836940887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetCommentModerationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
