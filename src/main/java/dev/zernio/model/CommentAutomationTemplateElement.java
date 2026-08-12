@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CommentAutomationTemplateElement.JSON_PROPERTY_IMAGE_URL,
   CommentAutomationTemplateElement.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:28:11.105056012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T15:27:25.737832047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationTemplateElement {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

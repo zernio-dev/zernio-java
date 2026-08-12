@@ -53,11 +53,11 @@ All URIs are relative to *https://zernio.com/api*
 
 ## boostPost
 
-> UpdateAd200Response boostPost(boostPostRequest)
+> UpdateAd200Response boostPost(boostPostRequest, idempotencyKey)
 
 Boost post as ad
 
-Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
 
 ### Example
 
@@ -81,8 +81,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         BoostPostRequest boostPostRequest = new BoostPostRequest(); // BoostPostRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            UpdateAd200Response result = apiInstance.boostPost(boostPostRequest);
+            UpdateAd200Response result = apiInstance.boostPost(boostPostRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#boostPost");
@@ -101,6 +102,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **boostPostRequest** | [**BoostPostRequest**](BoostPostRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -123,15 +125,16 @@ public class Example {
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
-| **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
+| **409** | An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
+| **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step. Also returned as &#x60;idempotency_key_reused&#x60; when an Idempotency-Key is reused with a different request body.  |  -  |
 
 ## boostPostWithHttpInfo
 
-> ApiResponse<UpdateAd200Response> boostPost boostPostWithHttpInfo(boostPostRequest)
+> ApiResponse<UpdateAd200Response> boostPost boostPostWithHttpInfo(boostPostRequest, idempotencyKey)
 
 Boost post as ad
 
-Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
 
 ### Example
 
@@ -156,8 +159,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         BoostPostRequest boostPostRequest = new BoostPostRequest(); // BoostPostRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<UpdateAd200Response> response = apiInstance.boostPostWithHttpInfo(boostPostRequest);
+            ApiResponse<UpdateAd200Response> response = apiInstance.boostPostWithHttpInfo(boostPostRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -178,6 +182,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **boostPostRequest** | [**BoostPostRequest**](BoostPostRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -200,7 +205,8 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
-| **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
+| **409** | An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
+| **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step. Also returned as &#x60;idempotency_key_reused&#x60; when an Idempotency-Key is reused with a different request body.  |  -  |
 
 
 ## bulkUpdateAdCampaignStatus

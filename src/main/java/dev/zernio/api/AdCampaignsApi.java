@@ -87,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T14:28:11.105056012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T15:27:25.737832047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -206,49 +206,53 @@ public class AdCampaignsApi {
 
   /**
    * Boost post as ad
-   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
    * @param boostPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return UpdateAd200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateAd200Response boostPost(@javax.annotation.Nonnull BoostPostRequest boostPostRequest) throws ApiException {
-    return boostPost(boostPostRequest, null);
+  public UpdateAd200Response boostPost(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return boostPost(boostPostRequest, idempotencyKey, null);
   }
 
   /**
    * Boost post as ad
-   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
    * @param boostPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return UpdateAd200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateAd200Response boostPost(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateAd200Response> localVarResponse = boostPostWithHttpInfo(boostPostRequest, headers);
+  public UpdateAd200Response boostPost(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAd200Response> localVarResponse = boostPostWithHttpInfo(boostPostRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Boost post as ad
-   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
    * @param boostPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;UpdateAd200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateAd200Response> boostPostWithHttpInfo(@javax.annotation.Nonnull BoostPostRequest boostPostRequest) throws ApiException {
-    return boostPostWithHttpInfo(boostPostRequest, null);
+  public ApiResponse<UpdateAd200Response> boostPostWithHttpInfo(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return boostPostWithHttpInfo(boostPostRequest, idempotencyKey, null);
   }
 
   /**
    * Boost post as ad
-   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+   * Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
    * @param boostPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateAd200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateAd200Response> boostPostWithHttpInfo(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = boostPostRequestBuilder(boostPostRequest, headers);
+  public ApiResponse<UpdateAd200Response> boostPostWithHttpInfo(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = boostPostRequestBuilder(boostPostRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -295,7 +299,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder boostPostRequestBuilder(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder boostPostRequestBuilder(@javax.annotation.Nonnull BoostPostRequest boostPostRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'boostPostRequest' is set
     if (boostPostRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'boostPostRequest' when calling boostPost");
@@ -307,6 +311,9 @@ public class AdCampaignsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 

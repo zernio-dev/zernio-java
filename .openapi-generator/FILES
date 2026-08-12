@@ -3421,10 +3421,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListLocalServicesLeadConversations200ResponseDataInnerMessageTest.java
-src/test/java/dev/zernio/model/ListLocalServicesLeadConversations200ResponseDataInnerPhoneCallTest.java
-src/test/java/dev/zernio/model/ListLocalServicesLeadConversations200ResponseDataInnerTest.java
-src/test/java/dev/zernio/model/ListLocalServicesLeadConversations200ResponseTest.java
-src/test/java/dev/zernio/model/ListLocalServicesLeads200ResponseDataInnerContactTest.java
-src/test/java/dev/zernio/model/ListLocalServicesLeads200ResponseDataInnerTest.java
-src/test/java/dev/zernio/model/ListLocalServicesLeads200ResponseTest.java
