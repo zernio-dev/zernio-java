@@ -143,9 +143,10 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_DSA_PAYOR,
   CreateStandaloneAdRequest.JSON_PROPERTY_BRAND_IDENTITY,
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T13:09:39.921779592Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T13:39:47.386947340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1058,6 +1059,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_IDENTITY_TYPE = "identityType";
   @javax.annotation.Nullable
   private IdentityTypeEnum identityType;
+
+  public static final String JSON_PROPERTY_SMART_PLUS = "smartPlus";
+  @javax.annotation.Nullable
+  private Boolean smartPlus;
 
   public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
   @javax.annotation.Nullable
@@ -3212,6 +3217,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest smartPlus(@javax.annotation.Nullable Boolean smartPlus) {
+    this.smartPlus = smartPlus;
+    return this;
+  }
+
+  /**
+   * TikTok only. Creates the ad as a TikTok Upgraded Smart+ campaign: TikTok automates targeting, bidding and delivery. Supports goals &#x60;conversions&#x60; (Smart+ Web Conversions), &#x60;lead_generation&#x60; (Smart+ Lead Generation with a website form on &#x60;linkUrl&#x60;; TikTok Instant Forms not supported) and &#x60;app_promotion&#x60; (Smart+ App installs; the ad&#39;s destination is the app store, so &#x60;linkUrl&#x60; is not used). The web goals require &#x60;promotedObject.pixelId&#x60; AND &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; instead. Targeting works like on any TikTok ad (defaults to &#x60;countries: [\&quot;US\&quot;]&#x60; when omitted); TikTok automates delivery within it. The budget lives on the Smart+ campaign (Campaign Budget Optimization); a &#x60;lifetime&#x60; budget additionally requires &#x60;endDate&#x60;. Cannot be combined with &#x60;adSetId&#x60;. 
+   * @return smartPlus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SMART_PLUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSmartPlus() {
+    return smartPlus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SMART_PLUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmartPlus(@javax.annotation.Nullable Boolean smartPlus) {
+    this.smartPlus = smartPlus;
+  }
+
+
   public CreateStandaloneAdRequest promotedObject(@javax.annotation.Nullable CreateStandaloneAdRequestPromotedObject promotedObject) {
     this.promotedObject = promotedObject;
     return this;
@@ -3330,12 +3359,13 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.dsaPayor, createStandaloneAdRequest.dsaPayor) &&
         Objects.equals(this.brandIdentity, createStandaloneAdRequest.brandIdentity) &&
         Objects.equals(this.identityType, createStandaloneAdRequest.identityType) &&
+        Objects.equals(this.smartPlus, createStandaloneAdRequest.smartPlus) &&
         Objects.equals(this.promotedObject, createStandaloneAdRequest.promotedObject);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3424,6 +3454,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("    brandIdentity: ").append(toIndentedString(brandIdentity)).append("\n");
     sb.append("    identityType: ").append(toIndentedString(identityType)).append("\n");
+    sb.append("    smartPlus: ").append(toIndentedString(smartPlus)).append("\n");
     sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -3975,6 +4006,11 @@ public class CreateStandaloneAdRequest {
     // add `identityType` to the URL query string
     if (getIdentityType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sidentityType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIdentityType()))));
+    }
+
+    // add `smartPlus` to the URL query string
+    if (getSmartPlus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssmartPlus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmartPlus()))));
     }
 
     // add `promotedObject` to the URL query string
