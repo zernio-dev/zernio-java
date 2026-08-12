@@ -481,7 +481,7 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 
 ## getAdAnalytics
 
-> GetAdAnalytics200Response getAdAnalytics(adId, fromDate, toDate, breakdowns)
+> AdAnalyticsResponse getAdAnalytics(adId, fromDate, toDate, breakdowns)
 
 Get ad analytics
 
@@ -513,7 +513,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String breakdowns = "breakdowns_example"; // String | Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot `value` plus a resolved `name`. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events. 
         try {
-            GetAdAnalytics200Response result = apiInstance.getAdAnalytics(adId, fromDate, toDate, breakdowns);
+            AdAnalyticsResponse result = apiInstance.getAdAnalytics(adId, fromDate, toDate, breakdowns);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#getAdAnalytics");
@@ -538,7 +538,7 @@ public class Example {
 
 ### Return type
 
-[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)
+[**AdAnalyticsResponse**](AdAnalyticsResponse.md)
 
 
 ### Authorization
@@ -554,7 +554,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
-| **202** | Part of the requested date range predates the ingested history; a background backfill job has been queued. The body has the same shape as the 200 response, carries the currently-available data, and includes &#x60;backfillPending: true&#x60;. A &#x60;Retry-After&#x60; header carries the recommended poll interval in seconds. Allow the job a short time to run (typically 1-3 minutes) and submit the request again; once ingestion completes the same request returns 200 with the full range. |  -  |
+| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -562,7 +562,7 @@ public class Example {
 
 ## getAdAnalyticsWithHttpInfo
 
-> ApiResponse<GetAdAnalytics200Response> getAdAnalytics getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns)
+> ApiResponse<AdAnalyticsResponse> getAdAnalytics getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns)
 
 Get ad analytics
 
@@ -595,7 +595,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String breakdowns = "breakdowns_example"; // String | Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot `value` plus a resolved `name`. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events. 
         try {
-            ApiResponse<GetAdAnalytics200Response> response = apiInstance.getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
+            ApiResponse<AdAnalyticsResponse> response = apiInstance.getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -622,7 +622,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)>
+ApiResponse<[**AdAnalyticsResponse**](AdAnalyticsResponse.md)>
 
 
 ### Authorization
@@ -638,7 +638,7 @@ ApiResponse<[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
-| **202** | Part of the requested date range predates the ingested history; a background backfill job has been queued. The body has the same shape as the 200 response, carries the currently-available data, and includes &#x60;backfillPending: true&#x60;. A &#x60;Retry-After&#x60; header carries the recommended poll interval in seconds. Allow the job a short time to run (typically 1-3 minutes) and submit the request again; once ingestion completes the same request returns 200 with the full range. |  -  |
+| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -987,7 +987,7 @@ ApiResponse<[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)>
 
 ## getCampaignAnalytics
 
-> GetCampaignAnalytics200Response getCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns)
+> CampaignAnalyticsResponse getCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns)
 
 Get campaign analytics
 
@@ -1020,7 +1020,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String breakdowns = "breakdowns_example"; // String | Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot `value` plus a resolved `name`. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events. 
         try {
-            GetCampaignAnalytics200Response result = apiInstance.getCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
+            CampaignAnalyticsResponse result = apiInstance.getCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#getCampaignAnalytics");
@@ -1046,7 +1046,7 @@ public class Example {
 
 ### Return type
 
-[**GetCampaignAnalytics200Response**](GetCampaignAnalytics200Response.md)
+[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)
 
 
 ### Authorization
@@ -1062,7 +1062,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign analytics |  -  |
-| **202** | Part of the requested date range predates the ingested history; a background backfill job has been queued. The body has the same shape as the 200 response, carries the currently-available data, and includes &#x60;backfillPending: true&#x60;. A &#x60;Retry-After&#x60; header carries the recommended poll interval in seconds. Allow the job a short time to run (typically 1-3 minutes) and submit the request again; once ingestion completes the same request returns 200 with the full range. |  -  |
+| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -1070,7 +1070,7 @@ public class Example {
 
 ## getCampaignAnalyticsWithHttpInfo
 
-> ApiResponse<GetCampaignAnalytics200Response> getCampaignAnalytics getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns)
+> ApiResponse<CampaignAnalyticsResponse> getCampaignAnalytics getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns)
 
 Get campaign analytics
 
@@ -1104,7 +1104,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String breakdowns = "breakdowns_example"; // String | Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot `value` plus a resolved `name`. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events. 
         try {
-            ApiResponse<GetCampaignAnalytics200Response> response = apiInstance.getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
+            ApiResponse<CampaignAnalyticsResponse> response = apiInstance.getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1132,7 +1132,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetCampaignAnalytics200Response**](GetCampaignAnalytics200Response.md)>
+ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 
 
 ### Authorization
@@ -1148,7 +1148,7 @@ ApiResponse<[**GetCampaignAnalytics200Response**](GetCampaignAnalytics200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign analytics |  -  |
-| **202** | Part of the requested date range predates the ingested history; a background backfill job has been queued. The body has the same shape as the 200 response, carries the currently-available data, and includes &#x60;backfillPending: true&#x60;. A &#x60;Retry-After&#x60; header carries the recommended poll interval in seconds. Allow the job a short time to run (typically 1-3 minutes) and submit the request again; once ingestion completes the same request returns 200 with the full range. |  -  |
+| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |

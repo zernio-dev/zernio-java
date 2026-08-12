@@ -26926,16 +26926,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/listAds_200_response"
+                $ref: "#/components/schemas/AdsListResponse"
           description: Paginated ads
         "202":
-          description: "Part of the requested date range predates the ingested history;\
-            \ a background backfill job has been queued. The body has the same shape\
-            \ as the 200 response, carries the currently-available data, and includes\
-            \ `backfillPending: true`. A `Retry-After` header carries the recommended\
-            \ poll interval in seconds. Allow the job a short time to run (typically\
-            \ 1-3 minutes) and submit the request again; once ingestion completes\
-            \ the same request returns 200 with the full range."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAds_202_response"
+          description: Historical data is incomplete and backfill remains pending.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/BackfillRetryAfter"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -28219,16 +28220,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getAdTree_200_response"
+                $ref: "#/components/schemas/AdTreeResponse"
           description: Nested campaign tree with pagination
         "202":
-          description: "Part of the requested date range predates the ingested history;\
-            \ a background backfill job has been queued. The body has the same shape\
-            \ as the 200 response, carries the currently-available data, and includes\
-            \ `backfillPending: true`. A `Retry-After` header carries the recommended\
-            \ poll interval in seconds. Allow the job a short time to run (typically\
-            \ 1-3 minutes) and submit the request again; once ingestion completes\
-            \ the same request returns 200 with the full range."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdTree_202_response"
+          description: Historical data is incomplete and backfill remains pending.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/BackfillRetryAfter"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -28330,17 +28332,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getAdsTimeline_200_response"
+                $ref: "#/components/schemas/AdsTimelineResponse"
           description: Daily time series of aggregate metrics. Empty `rows` means
             the account has no ad activity in the range.
         "202":
-          description: "Part of the requested date range predates the ingested history;\
-            \ a background backfill job has been queued. The body has the same shape\
-            \ as the 200 response, carries the currently-available data, and includes\
-            \ `backfillPending: true`. A `Retry-After` header carries the recommended\
-            \ poll interval in seconds. Allow the job a short time to run (typically\
-            \ 1-3 minutes) and submit the request again; once ingestion completes\
-            \ the same request returns 200 with the full range."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdsTimeline_202_response"
+          description: Historical data is incomplete and backfill remains pending.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/BackfillRetryAfter"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -28644,16 +28647,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getCampaignAnalytics_200_response"
+                $ref: "#/components/schemas/CampaignAnalyticsResponse"
           description: Campaign analytics
         "202":
-          description: "Part of the requested date range predates the ingested history;\
-            \ a background backfill job has been queued. The body has the same shape\
-            \ as the 200 response, carries the currently-available data, and includes\
-            \ `backfillPending: true`. A `Retry-After` header carries the recommended\
-            \ poll interval in seconds. Allow the job a short time to run (typically\
-            \ 1-3 minutes) and submit the request again; once ingestion completes\
-            \ the same request returns 200 with the full range."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignAnalytics_202_response"
+          description: Historical data is incomplete and backfill remains pending.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/BackfillRetryAfter"
         "400":
           content:
             application/json:
@@ -29246,16 +29250,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getAdAnalytics_200_response"
+                $ref: "#/components/schemas/AdAnalyticsResponse"
           description: Ad analytics
         "202":
-          description: "Part of the requested date range predates the ingested history;\
-            \ a background backfill job has been queued. The body has the same shape\
-            \ as the 200 response, carries the currently-available data, and includes\
-            \ `backfillPending: true`. A `Retry-After` header carries the recommended\
-            \ poll interval in seconds. Allow the job a short time to run (typically\
-            \ 1-3 minutes) and submit the request again; once ingestion completes\
-            \ the same request returns 200 with the full range."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdAnalytics_202_response"
+          description: Historical data is incomplete and backfill remains pending.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/BackfillRetryAfter"
         "400":
           content:
             application/json:
@@ -34210,6 +34215,14 @@ paths:
       x-accepts:
       - application/json
 components:
+  headers:
+    BackfillRetryAfter:
+      description: "Recommended delay before retrying, in seconds."
+      explode: false
+      schema:
+        example: 60
+        type: integer
+      style: simple
   parameters:
     PageParam:
       description: Page number (1-based)
@@ -43996,6 +44009,2516 @@ components:
       properties:
         user:
           $ref: "#/components/schemas/User"
+    AdsListResponse:
+      example:
+        ads:
+        - bidStrategy: ""
+          adSetName: adSetName
+          platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
+          platformAdId: platformAdId
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          costType: CPC
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          platformAdAccountName: Zernio - previously Late
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
+          goal: engagement
+          isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
+          bidAmount: 5
+          roasAverageFloor: 2.0
+          creative:
+            instagramPermalinkUrl: instagramPermalinkUrl
+            effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
+            instagramUserId: instagramUserId
+            videoId: videoId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            body: body
+            effectiveObjectStoryId: effectiveObjectStoryId
+            objectType: objectType
+            googleDescription: googleDescription
+            videoUrl: videoUrl
+            objectStoryId: objectStoryId
+            pinterestDescription: pinterestDescription
+            imageUrl: imageUrl
+            isServing: true
+            linkUrl: linkUrl
+            googleHeadline: googleHeadline
+            mediaUrls:
+            - mediaUrls
+            - mediaUrls
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
+          name: name
+          platformObjective: OUTCOME_SALES
+          platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
+          _id: _id
+          metrics: ""
+          rejectionReason: rejectionReason
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: ""
+        - bidStrategy: ""
+          adSetName: adSetName
+          platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
+          platformAdId: platformAdId
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          costType: CPC
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          platformAdAccountName: Zernio - previously Late
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
+          goal: engagement
+          isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
+          bidAmount: 5
+          roasAverageFloor: 2.0
+          creative:
+            instagramPermalinkUrl: instagramPermalinkUrl
+            effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
+            instagramUserId: instagramUserId
+            videoId: videoId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            body: body
+            effectiveObjectStoryId: effectiveObjectStoryId
+            objectType: objectType
+            googleDescription: googleDescription
+            videoUrl: videoUrl
+            objectStoryId: objectStoryId
+            pinterestDescription: pinterestDescription
+            imageUrl: imageUrl
+            isServing: true
+            linkUrl: linkUrl
+            googleHeadline: googleHeadline
+            mediaUrls:
+            - mediaUrls
+            - mediaUrls
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
+          name: name
+          platformObjective: OUTCOME_SALES
+          platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
+          _id: _id
+          metrics: ""
+          rejectionReason: rejectionReason
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: ""
+        pagination:
+          total: 3
+          pages: 2
+          limit: 9
+          page: 7
+        backfillPending: true
+      properties:
+        ads:
+          items:
+            $ref: "#/components/schemas/Ad"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+        backfillPending:
+          description: Present and true while historical data is being backfilled.
+          type: boolean
+    AdTreeResponse:
+      example:
+        pagination:
+          total: 3
+          pages: 2
+          limit: 9
+          page: 7
+        campaigns:
+        - bidStrategy: ""
+          platformCampaignId: platformCampaignId
+          optimizationGoal: optimizationGoal
+          platformCampaignStatus: platformCampaignStatus
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
+          isBudgetScheduleEnabled: false
+          advertisingChannelType: advertisingChannelType
+          currency: currency
+          budget:
+            amount: 1.4658129805029452
+            type: daily
+          platformAdAccountName: platformAdAccountName
+          budgetLevel: campaign
+          adCount: 0
+          bidAmount: 5.637376656633329
+          adSetCount: 6
+          roasAverageFloor: 2.3021358869347655
+          accountId: accountId
+          campaignBudget:
+            amount: 5.962133916683182
+            type: daily
+          profileId: profileId
+          daily:
+          - date: 2000-01-23
+            conversions: 5.025004791520295
+            videoAvgTimeWatchedActions: 0.8851374739011653
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            roas: 6.683562403749608
+            uniqueClicks: 6
+            outboundClicksCtr: 9.018348186070783
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            inlineLinkClickCtr: 3.5571952270680973
+            outboundClicks: 8
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 3
+            impressions: 1
+            videoP100WatchedActions: 7
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 2
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 6
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 6
+            clicks: 1
+            uniqueCtr: 1.284659006116532
+            costPerThruplay: 7.058770351582356
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - date: 2000-01-23
+            conversions: 5.025004791520295
+            videoAvgTimeWatchedActions: 0.8851374739011653
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            roas: 6.683562403749608
+            uniqueClicks: 6
+            outboundClicksCtr: 9.018348186070783
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            inlineLinkClickCtr: 3.5571952270680973
+            outboundClicks: 8
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 3
+            impressions: 1
+            videoP100WatchedActions: 7
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 2
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 6
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 6
+            clicks: 1
+            uniqueCtr: 1.284659006116532
+            costPerThruplay: 7.058770351582356
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          platformObjective: platformObjective
+          reviewStatus: ""
+          adSets:
+          - bidStrategy: ""
+            adSetName: adSetName
+            adCount: 7
+            bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
+            optimizationGoal: optimizationGoal
+            roasAverageFloor: 4.145608029883936
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
+            ads:
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            adSetBudget:
+              amount: 3.616076749251911
+              type: daily
+            costType: costType
+            daily:
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            platformAdSetId: platformAdSetId
+            metrics:
+              conversions: 7.386281948385884
+              videoAvgTimeWatchedActions: 2.8841621266687802
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 2
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 9
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              uniqueClicks: 5
+              outboundClicksCtr: 7.457744773683766
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              inlineLinkClickCtr: 4.965218492984954
+              outboundClicks: 6
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 6
+              impressions: 5
+              videoP100WatchedActions: 1
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 9
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 1
+              videoThruplayWatchedActions: 8
+              video30SecWatchedActions: 6
+              clicks: 7
+              uniqueCtr: 9.965781217890562
+              costPerThruplay: 6.778324963048013
+              costPerConversion: 1.2315135367772556
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            status: ""
+            budget:
+              amount: 9.301444243932576
+              type: daily
+          - bidStrategy: ""
+            adSetName: adSetName
+            adCount: 7
+            bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
+            optimizationGoal: optimizationGoal
+            roasAverageFloor: 4.145608029883936
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
+            ads:
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            adSetBudget:
+              amount: 3.616076749251911
+              type: daily
+            costType: costType
+            daily:
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            platformAdSetId: platformAdSetId
+            metrics:
+              conversions: 7.386281948385884
+              videoAvgTimeWatchedActions: 2.8841621266687802
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 2
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 9
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              uniqueClicks: 5
+              outboundClicksCtr: 7.457744773683766
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              inlineLinkClickCtr: 4.965218492984954
+              outboundClicks: 6
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 6
+              impressions: 5
+              videoP100WatchedActions: 1
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 9
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 1
+              videoThruplayWatchedActions: 8
+              video30SecWatchedActions: 6
+              clicks: 7
+              uniqueCtr: 9.965781217890562
+              costPerThruplay: 6.778324963048013
+              costPerConversion: 1.2315135367772556
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            status: ""
+            budget:
+              amount: 9.301444243932576
+              type: daily
+          metrics:
+            conversions: 7.386281948385884
+            videoAvgTimeWatchedActions: 2.8841621266687802
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 2
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            uniqueClicks: 5
+            outboundClicksCtr: 7.457744773683766
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            inlineLinkClickCtr: 4.965218492984954
+            outboundClicks: 6
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 6
+            impressions: 5
+            videoP100WatchedActions: 1
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 8
+            video30SecWatchedActions: 6
+            clicks: 7
+            uniqueCtr: 9.965781217890562
+            costPerThruplay: 6.778324963048013
+            costPerConversion: 1.2315135367772556
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: ""
+          campaignIssuesInfo:
+          - "{}"
+          - "{}"
+        - bidStrategy: ""
+          platformCampaignId: platformCampaignId
+          optimizationGoal: optimizationGoal
+          platformCampaignStatus: platformCampaignStatus
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
+          isBudgetScheduleEnabled: false
+          advertisingChannelType: advertisingChannelType
+          currency: currency
+          budget:
+            amount: 1.4658129805029452
+            type: daily
+          platformAdAccountName: platformAdAccountName
+          budgetLevel: campaign
+          adCount: 0
+          bidAmount: 5.637376656633329
+          adSetCount: 6
+          roasAverageFloor: 2.3021358869347655
+          accountId: accountId
+          campaignBudget:
+            amount: 5.962133916683182
+            type: daily
+          profileId: profileId
+          daily:
+          - date: 2000-01-23
+            conversions: 5.025004791520295
+            videoAvgTimeWatchedActions: 0.8851374739011653
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            roas: 6.683562403749608
+            uniqueClicks: 6
+            outboundClicksCtr: 9.018348186070783
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            inlineLinkClickCtr: 3.5571952270680973
+            outboundClicks: 8
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 3
+            impressions: 1
+            videoP100WatchedActions: 7
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 2
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 6
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 6
+            clicks: 1
+            uniqueCtr: 1.284659006116532
+            costPerThruplay: 7.058770351582356
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - date: 2000-01-23
+            conversions: 5.025004791520295
+            videoAvgTimeWatchedActions: 0.8851374739011653
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            roas: 6.683562403749608
+            uniqueClicks: 6
+            outboundClicksCtr: 9.018348186070783
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            inlineLinkClickCtr: 3.5571952270680973
+            outboundClicks: 8
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 3
+            impressions: 1
+            videoP100WatchedActions: 7
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 2
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 6
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 6
+            clicks: 1
+            uniqueCtr: 1.284659006116532
+            costPerThruplay: 7.058770351582356
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          platformObjective: platformObjective
+          reviewStatus: ""
+          adSets:
+          - bidStrategy: ""
+            adSetName: adSetName
+            adCount: 7
+            bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
+            optimizationGoal: optimizationGoal
+            roasAverageFloor: 4.145608029883936
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
+            ads:
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            adSetBudget:
+              amount: 3.616076749251911
+              type: daily
+            costType: costType
+            daily:
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            platformAdSetId: platformAdSetId
+            metrics:
+              conversions: 7.386281948385884
+              videoAvgTimeWatchedActions: 2.8841621266687802
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 2
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 9
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              uniqueClicks: 5
+              outboundClicksCtr: 7.457744773683766
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              inlineLinkClickCtr: 4.965218492984954
+              outboundClicks: 6
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 6
+              impressions: 5
+              videoP100WatchedActions: 1
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 9
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 1
+              videoThruplayWatchedActions: 8
+              video30SecWatchedActions: 6
+              clicks: 7
+              uniqueCtr: 9.965781217890562
+              costPerThruplay: 6.778324963048013
+              costPerConversion: 1.2315135367772556
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            status: ""
+            budget:
+              amount: 9.301444243932576
+              type: daily
+          - bidStrategy: ""
+            adSetName: adSetName
+            adCount: 7
+            bidAmount: 2.027123023002322
+            servingStatuses:
+            - RUNNABLE
+            optimizationGoal: optimizationGoal
+            roasAverageFloor: 4.145608029883936
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
+            ads:
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            - bidStrategy: ""
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              costType: CPC
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              platformAdAccountName: Zernio - previously Late
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
+              goal: engagement
+              isExternal: true
+              servingStatuses:
+              - ACCOUNT_TOTAL_BUDGET_HOLD
+              bidAmount: 5
+              roasAverageFloor: 2.0
+              creative:
+                instagramPermalinkUrl: instagramPermalinkUrl
+                effectiveInstagramMediaId: effectiveInstagramMediaId
+                servingHoldReasons:
+                - UNDER_REVIEW
+                instagramUserId: instagramUserId
+                videoId: videoId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                body: body
+                effectiveObjectStoryId: effectiveObjectStoryId
+                objectType: objectType
+                googleDescription: googleDescription
+                videoUrl: videoUrl
+                objectStoryId: objectStoryId
+                pinterestDescription: pinterestDescription
+                imageUrl: imageUrl
+                isServing: true
+                linkUrl: linkUrl
+                googleHeadline: googleHeadline
+                mediaUrls:
+                - mediaUrls
+                - mediaUrls
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              creativeType: video
+              name: name
+              platformObjective: OUTCOME_SALES
+              platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: ""
+            adSetBudget:
+              amount: 3.616076749251911
+              type: daily
+            costType: costType
+            daily:
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - date: 2000-01-23
+              conversions: 5.025004791520295
+              videoAvgTimeWatchedActions: 0.8851374739011653
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 1
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              roas: 6.683562403749608
+              uniqueClicks: 6
+              outboundClicksCtr: 9.018348186070783
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              inlineLinkClickCtr: 3.5571952270680973
+              outboundClicks: 8
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 3
+              impressions: 1
+              videoP100WatchedActions: 7
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 2
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 6
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 6
+              clicks: 1
+              uniqueCtr: 1.284659006116532
+              costPerThruplay: 7.058770351582356
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            platformAdSetId: platformAdSetId
+            metrics:
+              conversions: 7.386281948385884
+              videoAvgTimeWatchedActions: 2.8841621266687802
+              engagement: 4
+              funnel:
+                searches: 6
+                contentViews: 5
+                purchases: 7
+                registrationsCompleted: 0
+                cartAdds: 3
+                wishlistAdds: 3
+                messagingConversationsStarted: 8
+                messagingFirstReplies: 7
+                appInstalls: 4
+                leads: 6
+                paymentInfoAdds: 0
+                landingPageViews: 6
+                checkoutsInitiated: 7
+              reach: 2
+              videoP75WatchedActions: 3
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 9
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
+              roas: 1.4894159098541704
+              uniqueClicks: 5
+              outboundClicksCtr: 7.457744773683766
+              ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
+              cpm: 2.027123023002322
+              inlineLinkClickCtr: 4.965218492984954
+              outboundClicks: 6
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 6
+              impressions: 5
+              videoP100WatchedActions: 1
+              costPerAction:
+                link_click: 0.1052
+                offsite_conversion.fb_pixel_purchase: 4.0114
+              videoPlayActions: 9
+              engagementBreakdown:
+                shares: 3
+                pageEngagement: 3
+                comments: 5
+                pageLikes: 0
+                saves: 4
+                linkClicks: 4
+                reactions: 7
+                postEngagement: 3
+                videoViews: 6
+              inlineLinkClicks: 1
+              videoThruplayWatchedActions: 8
+              video30SecWatchedActions: 6
+              clicks: 7
+              uniqueCtr: 9.965781217890562
+              costPerThruplay: 6.778324963048013
+              costPerConversion: 1.2315135367772556
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            status: ""
+            budget:
+              amount: 9.301444243932576
+              type: daily
+          metrics:
+            conversions: 7.386281948385884
+            videoAvgTimeWatchedActions: 2.8841621266687802
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 2
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            uniqueClicks: 5
+            outboundClicksCtr: 7.457744773683766
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            inlineLinkClickCtr: 4.965218492984954
+            outboundClicks: 6
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 6
+            impressions: 5
+            videoP100WatchedActions: 1
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 8
+            video30SecWatchedActions: 6
+            clicks: 7
+            uniqueCtr: 9.965781217890562
+            costPerThruplay: 6.778324963048013
+            costPerConversion: 1.2315135367772556
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: ""
+          campaignIssuesInfo:
+          - "{}"
+          - "{}"
+        backfillPending: true
+      properties:
+        campaigns:
+          items:
+            $ref: "#/components/schemas/AdTreeCampaign"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+        backfillPending:
+          description: Present and true while historical data is being backfilled.
+          type: boolean
+    AdsTimelineResponse:
+      example:
+        backfillPending: true
+        rows:
+        - date: 2000-01-23
+          ctr: 2.3021358869347655
+          purchaseValue: 1.2315135367772556
+          cpm: 9.301444243932576
+          conversions: 3.616076749251911
+          engagement: 5
+          reach: 1
+          impressions: 6
+          actionValues:
+            key: 7.386281948385884
+          spend: 0.8008281904610115
+          cpc: 7.061401241503109
+          clicks: 5
+          roas: 1.0246457001441578
+          costPerConversion: 2.027123023002322
+          actions:
+            key: 4.145608029883936
+        - date: 2000-01-23
+          ctr: 2.3021358869347655
+          purchaseValue: 1.2315135367772556
+          cpm: 9.301444243932576
+          conversions: 3.616076749251911
+          engagement: 5
+          reach: 1
+          impressions: 6
+          actionValues:
+            key: 7.386281948385884
+          spend: 0.8008281904610115
+          cpc: 7.061401241503109
+          clicks: 5
+          roas: 1.0246457001441578
+          costPerConversion: 2.027123023002322
+          actions:
+            key: 4.145608029883936
+      properties:
+        backfillPending:
+          description: Present and true while historical data is being backfilled.
+          type: boolean
+        rows:
+          items:
+            $ref: "#/components/schemas/AdsTimelineResponse_rows_inner"
+          type: array
+    CampaignAnalyticsResponse:
+      example:
+        analytics:
+          summary:
+            conversions: 7.386281948385884
+            videoAvgTimeWatchedActions: 2.8841621266687802
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 2
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            uniqueClicks: 5
+            outboundClicksCtr: 7.457744773683766
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            inlineLinkClickCtr: 4.965218492984954
+            outboundClicks: 6
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 6
+            impressions: 5
+            videoP100WatchedActions: 1
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 8
+            video30SecWatchedActions: 6
+            clicks: 7
+            uniqueCtr: 9.965781217890562
+            costPerThruplay: 6.778324963048013
+            costPerConversion: 1.2315135367772556
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          daily:
+          - date: 2000-01-23
+            conversions: 3.616076749251911
+            videoAvgTimeWatchedActions: 3.5571952270680973
+            engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 8
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 0.8008281904610115
+            cpc: 2.3021358869347655
+            roas: 7.386281948385884
+            uniqueClicks: 7
+            outboundClicksCtr: 1.0246457001441578
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            inlineLinkClickCtr: 6.84685269835264
+            outboundClicks: 1
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 9
+            impressions: 6
+            videoP100WatchedActions: 6
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 4
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 9
+            video30SecWatchedActions: 5
+            clicks: 5
+            uniqueCtr: 1.1730742509559433
+            costPerThruplay: 6.965117697638846
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - date: 2000-01-23
+            conversions: 3.616076749251911
+            videoAvgTimeWatchedActions: 3.5571952270680973
+            engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 8
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 0.8008281904610115
+            cpc: 2.3021358869347655
+            roas: 7.386281948385884
+            uniqueClicks: 7
+            outboundClicksCtr: 1.0246457001441578
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            inlineLinkClickCtr: 6.84685269835264
+            outboundClicks: 1
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 9
+            impressions: 6
+            videoP100WatchedActions: 6
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 4
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 9
+            video30SecWatchedActions: 5
+            clicks: 5
+            uniqueCtr: 1.1730742509559433
+            costPerThruplay: 6.965117697638846
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          breakdowns:
+            key:
+            - "{}"
+            - "{}"
+        backfillPending: true
+        campaign:
+          name: name
+          currency: currency
+          id: id
+          platform: platform
+          status: status
+      properties:
+        backfillPending:
+          description: Present and true while historical data is being backfilled.
+          type: boolean
+        campaign:
+          $ref: "#/components/schemas/CampaignAnalyticsResponse_campaign"
+        analytics:
+          $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics"
+    AdAnalyticsResponse:
+      example:
+        analytics:
+          summary:
+            conversions: 7.386281948385884
+            videoAvgTimeWatchedActions: 2.8841621266687802
+            engagement: 4
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 2
+            videoP75WatchedActions: 3
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
+            roas: 1.4894159098541704
+            uniqueClicks: 5
+            outboundClicksCtr: 7.457744773683766
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            inlineLinkClickCtr: 4.965218492984954
+            outboundClicks: 6
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 6
+            impressions: 5
+            videoP100WatchedActions: 1
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 8
+            video30SecWatchedActions: 6
+            clicks: 7
+            uniqueCtr: 9.965781217890562
+            costPerThruplay: 6.778324963048013
+            costPerConversion: 1.2315135367772556
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          daily:
+          - date: 2000-01-23
+            conversions: 3.616076749251911
+            videoAvgTimeWatchedActions: 3.5571952270680973
+            engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 8
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 0.8008281904610115
+            cpc: 2.3021358869347655
+            roas: 7.386281948385884
+            uniqueClicks: 7
+            outboundClicksCtr: 1.0246457001441578
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            inlineLinkClickCtr: 6.84685269835264
+            outboundClicks: 1
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 9
+            impressions: 6
+            videoP100WatchedActions: 6
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 4
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 9
+            video30SecWatchedActions: 5
+            clicks: 5
+            uniqueCtr: 1.1730742509559433
+            costPerThruplay: 6.965117697638846
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - date: 2000-01-23
+            conversions: 3.616076749251911
+            videoAvgTimeWatchedActions: 3.5571952270680973
+            engagement: 9
+            funnel:
+              searches: 6
+              contentViews: 5
+              purchases: 7
+              registrationsCompleted: 0
+              cartAdds: 3
+              wishlistAdds: 3
+              messagingConversationsStarted: 8
+              messagingFirstReplies: 7
+              appInstalls: 4
+              leads: 6
+              paymentInfoAdds: 0
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 1
+            videoP75WatchedActions: 8
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 9
+            spend: 0.8008281904610115
+            cpc: 2.3021358869347655
+            roas: 7.386281948385884
+            uniqueClicks: 7
+            outboundClicksCtr: 1.0246457001441578
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            inlineLinkClickCtr: 6.84685269835264
+            outboundClicks: 1
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 9
+            impressions: 6
+            videoP100WatchedActions: 6
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 4
+            engagementBreakdown:
+              shares: 3
+              pageEngagement: 3
+              comments: 5
+              pageLikes: 0
+              saves: 4
+              linkClicks: 4
+              reactions: 7
+              postEngagement: 3
+              videoViews: 6
+            inlineLinkClicks: 1
+            videoThruplayWatchedActions: 9
+            video30SecWatchedActions: 5
+            clicks: 5
+            uniqueCtr: 1.1730742509559433
+            costPerThruplay: 6.965117697638846
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          breakdowns:
+            key:
+            - "{}"
+            - "{}"
+        ad:
+          name: name
+          currency: currency
+          id: id
+          platform: platform
+          status: status
+        backfillPending: true
+      properties:
+        backfillPending:
+          description: Present and true while historical data is being backfilled.
+          type: boolean
+        ad:
+          $ref: "#/components/schemas/AdAnalyticsResponse_ad"
+        analytics:
+          $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics"
     AdMetrics:
       example:
         conversions: 7.386281948385884
@@ -73420,7 +75943,16 @@ components:
           $ref: "#/components/schemas/listContacts_200_response_pagination"
         misses:
           $ref: "#/components/schemas/listCommentAutomationLogs_200_response_misses"
-    listAds_200_response:
+    listAds_202_response:
+      allOf:
+      - $ref: "#/components/schemas/AdsListResponse"
+      - properties:
+          backfillPending:
+            enum:
+            - true
+            type: boolean
+        required:
+        - backfillPending
       example:
         ads:
         - bidStrategy: ""
@@ -73565,19 +76097,6 @@ components:
           limit: 9
           page: 7
         backfillPending: true
-      properties:
-        ads:
-          items:
-            $ref: "#/components/schemas/Ad"
-          type: array
-        backfillPending:
-          description: "Present and true only on `202` responses: part of the requested\
-            \ date range is still being backfilled from the platform in the background.\
-            \ Retry the same request shortly; it returns 200 once the range is fully\
-            \ ingested."
-          type: boolean
-        pagination:
-          $ref: "#/components/schemas/Pagination"
     getAdsSearchTerms_200_response_data_inner:
       example:
         conversions: 5.962133916683182
@@ -74715,7 +77234,16 @@ components:
           type: integer
         skipped:
           type: integer
-    getAdTree_200_response:
+    getAdTree_202_response:
+      allOf:
+      - $ref: "#/components/schemas/AdTreeResponse"
+      - properties:
+          backfillPending:
+            enum:
+            - true
+            type: boolean
+        required:
+        - backfillPending
       example:
         pagination:
           total: 3
@@ -76584,90 +79112,16 @@ components:
           - "{}"
           - "{}"
         backfillPending: true
-      properties:
-        campaigns:
-          items:
-            $ref: "#/components/schemas/AdTreeCampaign"
-          type: array
-        backfillPending:
-          description: "Present and true only on `202` responses: part of the requested\
-            \ date range is still being backfilled from the platform in the background.\
-            \ Retry the same request shortly; it returns 200 once the range is fully\
-            \ ingested."
-          type: boolean
-        pagination:
-          $ref: "#/components/schemas/Pagination"
-    getAdsTimeline_200_response_rows_inner:
-      example:
-        date: 2000-01-23
-        ctr: 2.3021358869347655
-        purchaseValue: 1.2315135367772556
-        cpm: 9.301444243932576
-        conversions: 3.616076749251911
-        engagement: 5
-        reach: 1
-        impressions: 6
-        actionValues:
-          key: 7.386281948385884
-        spend: 0.8008281904610115
-        cpc: 7.061401241503109
-        clicks: 5
-        roas: 1.0246457001441578
-        costPerConversion: 2.027123023002322
-        actions:
-          key: 4.145608029883936
-      properties:
-        date:
-          format: date
-          type: string
-        spend:
-          description: Native currency units (matches /ads/tree convention).
-          type: number
-        impressions:
-          type: integer
-        reach:
-          description: "Reach summed across the account's ads for this single day.\
-            \ A person seen by two ads the same day counts twice, and reach is de-duplicated\
-            \ per day only: do NOT sum it across days (people reached on multiple\
-            \ days would be double-counted)."
-          type: integer
-        clicks:
-          type: integer
-        engagement:
-          type: integer
-        ctr:
-          description: Click-through rate as a percentage (0–100).
-          type: number
-        cpc:
-          description: Cost per click in native currency.
-          type: number
-        cpm:
-          description: Cost per 1000 impressions in native currency.
-          type: number
-        conversions:
-          description: "Sum of conversion events over the range. Fractional values\
-            \ are normal (attribution splitting + Google modeled conversions). Meta:\
-            \ events matching the campaign optimization goal. Google: tracked conversions.\
-            \ X / LinkedIn: reported website/lead conversions (added 2026-07)."
-          type: number
-        costPerConversion:
-          type: number
-        actions:
-          additionalProperties:
-            type: number
-          description: Per-action-type counts merged across all ads on this day. Keys
-            are platform-native action types.
-        actionValues:
-          additionalProperties:
-            type: number
-          description: Monetary mirror of `actions` in native currency.
-        purchaseValue:
-          description: "Sum of purchase-type action values on this day, native currency."
-          type: number
-        roas:
-          description: Derived purchaseValue / spend.
-          type: number
-    getAdsTimeline_200_response:
+    getAdsTimeline_202_response:
+      allOf:
+      - $ref: "#/components/schemas/AdsTimelineResponse"
+      - properties:
+          backfillPending:
+            enum:
+            - true
+            type: boolean
+        required:
+        - backfillPending
       example:
         backfillPending: true
         rows:
@@ -76705,17 +79159,6 @@ components:
           costPerConversion: 2.027123023002322
           actions:
             key: 4.145608029883936
-      properties:
-        rows:
-          items:
-            $ref: "#/components/schemas/getAdsTimeline_200_response_rows_inner"
-          type: array
-        backfillPending:
-          description: "Present and true only on `202` responses: part of the requested\
-            \ date range is still being backfilled from the platform in the background.\
-            \ Retry the same request shortly; it returns 200 once the range is fully\
-            \ ingested."
-          type: boolean
     getAd_200_response:
       example:
         ad:
@@ -77018,313 +79461,16 @@ components:
         message:
           description: Human-readable summary (present only when skipped)
           type: string
-    getCampaignAnalytics_200_response_campaign:
-      example:
-        name: name
-        currency: currency
-        id: id
-        platform: platform
-        status: status
-      properties:
-        id:
-          type: string
-        name:
-          nullable: true
-          type: string
-        platform:
-          type: string
-        status:
-          description: Effective campaign status (ACTIVE when any child ad is active).
-          nullable: true
-          type: string
-        currency:
-          description: "ISO 4217 code of the ad account (e.g. USD, THB). All money\
-            \ values in `summary` and `daily` are in this currency."
-          nullable: true
-          type: string
-    getCampaignAnalytics_200_response_analytics_daily_inner:
+    getCampaignAnalytics_202_response:
       allOf:
-      - $ref: "#/components/schemas/AdMetrics"
+      - $ref: "#/components/schemas/CampaignAnalyticsResponse"
       - properties:
-          date:
-            format: date
-            type: string
-      example:
-        date: 2000-01-23
-        conversions: 3.616076749251911
-        videoAvgTimeWatchedActions: 3.5571952270680973
-        engagement: 9
-        funnel:
-          searches: 6
-          contentViews: 5
-          purchases: 7
-          registrationsCompleted: 0
-          cartAdds: 3
-          wishlistAdds: 3
-          messagingConversationsStarted: 8
-          messagingFirstReplies: 7
-          appInstalls: 4
-          leads: 6
-          paymentInfoAdds: 0
-          landingPageViews: 6
-          checkoutsInitiated: 7
-        reach: 1
-        videoP75WatchedActions: 8
-        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-        actionValues:
-          offsite_conversion.fb_pixel_purchase: 2456.78
-          offsite_conversion.fb_pixel_add_to_cart: 980.5
-        videoP25WatchedActions: 9
-        spend: 0.8008281904610115
-        cpc: 2.3021358869347655
-        roas: 7.386281948385884
-        uniqueClicks: 7
-        outboundClicksCtr: 1.0246457001441578
-        ctr: 5.637376656633329
-        purchaseValue: 4.145608029883936
-        cpm: 7.061401241503109
-        inlineLinkClickCtr: 6.84685269835264
-        outboundClicks: 1
-        videoP50WatchedActions: 6
-        videoP95WatchedActions: 9
-        impressions: 6
-        videoP100WatchedActions: 6
-        costPerAction:
-          link_click: 0.1052
-          offsite_conversion.fb_pixel_purchase: 4.0114
-        videoPlayActions: 4
-        engagementBreakdown:
-          shares: 3
-          pageEngagement: 3
-          comments: 5
-          pageLikes: 0
-          saves: 4
-          linkClicks: 4
-          reactions: 7
-          postEngagement: 3
-          videoViews: 6
-        inlineLinkClicks: 1
-        videoThruplayWatchedActions: 9
-        video30SecWatchedActions: 5
-        clicks: 5
-        uniqueCtr: 1.1730742509559433
-        costPerThruplay: 6.965117697638846
-        costPerConversion: 2.027123023002322
-        actions:
-          link_click: 160
-          post_engagement: 300
-          offsite_conversion.fb_pixel_purchase: 42
-    getCampaignAnalytics_200_response_analytics:
-      example:
-        summary:
-          conversions: 7.386281948385884
-          videoAvgTimeWatchedActions: 2.8841621266687802
-          engagement: 4
-          funnel:
-            searches: 6
-            contentViews: 5
-            purchases: 7
-            registrationsCompleted: 0
-            cartAdds: 3
-            wishlistAdds: 3
-            messagingConversationsStarted: 8
-            messagingFirstReplies: 7
-            appInstalls: 4
-            leads: 6
-            paymentInfoAdds: 0
-            landingPageViews: 6
-            checkoutsInitiated: 7
-          reach: 2
-          videoP75WatchedActions: 3
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          actionValues:
-            offsite_conversion.fb_pixel_purchase: 2456.78
-            offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 9
-          spend: 5.962133916683182
-          cpc: 3.616076749251911
-          roas: 1.4894159098541704
-          uniqueClicks: 5
-          outboundClicksCtr: 7.457744773683766
-          ctr: 9.301444243932576
-          purchaseValue: 1.0246457001441578
-          cpm: 2.027123023002322
-          inlineLinkClickCtr: 4.965218492984954
-          outboundClicks: 6
-          videoP50WatchedActions: 6
-          videoP95WatchedActions: 6
-          impressions: 5
-          videoP100WatchedActions: 1
-          costPerAction:
-            link_click: 0.1052
-            offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 9
-          engagementBreakdown:
-            shares: 3
-            pageEngagement: 3
-            comments: 5
-            pageLikes: 0
-            saves: 4
-            linkClicks: 4
-            reactions: 7
-            postEngagement: 3
-            videoViews: 6
-          inlineLinkClicks: 1
-          videoThruplayWatchedActions: 8
-          video30SecWatchedActions: 6
-          clicks: 7
-          uniqueCtr: 9.965781217890562
-          costPerThruplay: 6.778324963048013
-          costPerConversion: 1.2315135367772556
-          actions:
-            link_click: 160
-            post_engagement: 300
-            offsite_conversion.fb_pixel_purchase: 42
-        daily:
-        - date: 2000-01-23
-          conversions: 3.616076749251911
-          videoAvgTimeWatchedActions: 3.5571952270680973
-          engagement: 9
-          funnel:
-            searches: 6
-            contentViews: 5
-            purchases: 7
-            registrationsCompleted: 0
-            cartAdds: 3
-            wishlistAdds: 3
-            messagingConversationsStarted: 8
-            messagingFirstReplies: 7
-            appInstalls: 4
-            leads: 6
-            paymentInfoAdds: 0
-            landingPageViews: 6
-            checkoutsInitiated: 7
-          reach: 1
-          videoP75WatchedActions: 8
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          actionValues:
-            offsite_conversion.fb_pixel_purchase: 2456.78
-            offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 9
-          spend: 0.8008281904610115
-          cpc: 2.3021358869347655
-          roas: 7.386281948385884
-          uniqueClicks: 7
-          outboundClicksCtr: 1.0246457001441578
-          ctr: 5.637376656633329
-          purchaseValue: 4.145608029883936
-          cpm: 7.061401241503109
-          inlineLinkClickCtr: 6.84685269835264
-          outboundClicks: 1
-          videoP50WatchedActions: 6
-          videoP95WatchedActions: 9
-          impressions: 6
-          videoP100WatchedActions: 6
-          costPerAction:
-            link_click: 0.1052
-            offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 4
-          engagementBreakdown:
-            shares: 3
-            pageEngagement: 3
-            comments: 5
-            pageLikes: 0
-            saves: 4
-            linkClicks: 4
-            reactions: 7
-            postEngagement: 3
-            videoViews: 6
-          inlineLinkClicks: 1
-          videoThruplayWatchedActions: 9
-          video30SecWatchedActions: 5
-          clicks: 5
-          uniqueCtr: 1.1730742509559433
-          costPerThruplay: 6.965117697638846
-          costPerConversion: 2.027123023002322
-          actions:
-            link_click: 160
-            post_engagement: 300
-            offsite_conversion.fb_pixel_purchase: 42
-        - date: 2000-01-23
-          conversions: 3.616076749251911
-          videoAvgTimeWatchedActions: 3.5571952270680973
-          engagement: 9
-          funnel:
-            searches: 6
-            contentViews: 5
-            purchases: 7
-            registrationsCompleted: 0
-            cartAdds: 3
-            wishlistAdds: 3
-            messagingConversationsStarted: 8
-            messagingFirstReplies: 7
-            appInstalls: 4
-            leads: 6
-            paymentInfoAdds: 0
-            landingPageViews: 6
-            checkoutsInitiated: 7
-          reach: 1
-          videoP75WatchedActions: 8
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          actionValues:
-            offsite_conversion.fb_pixel_purchase: 2456.78
-            offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 9
-          spend: 0.8008281904610115
-          cpc: 2.3021358869347655
-          roas: 7.386281948385884
-          uniqueClicks: 7
-          outboundClicksCtr: 1.0246457001441578
-          ctr: 5.637376656633329
-          purchaseValue: 4.145608029883936
-          cpm: 7.061401241503109
-          inlineLinkClickCtr: 6.84685269835264
-          outboundClicks: 1
-          videoP50WatchedActions: 6
-          videoP95WatchedActions: 9
-          impressions: 6
-          videoP100WatchedActions: 6
-          costPerAction:
-            link_click: 0.1052
-            offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 4
-          engagementBreakdown:
-            shares: 3
-            pageEngagement: 3
-            comments: 5
-            pageLikes: 0
-            saves: 4
-            linkClicks: 4
-            reactions: 7
-            postEngagement: 3
-            videoViews: 6
-          inlineLinkClicks: 1
-          videoThruplayWatchedActions: 9
-          video30SecWatchedActions: 5
-          clicks: 5
-          uniqueCtr: 1.1730742509559433
-          costPerThruplay: 6.965117697638846
-          costPerConversion: 2.027123023002322
-          actions:
-            link_click: 160
-            post_engagement: 300
-            offsite_conversion.fb_pixel_purchase: 42
-        breakdowns:
-          key:
-          - "{}"
-          - "{}"
-      properties:
-        summary:
-          $ref: "#/components/schemas/AdMetrics"
-        daily:
-          items:
-            $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics_daily_inner"
-          type: array
-        breakdowns:
-          additionalProperties:
-            items:
-              type: object
-    getCampaignAnalytics_200_response:
+          backfillPending:
+            enum:
+            - true
+            type: boolean
+        required:
+        - backfillPending
       example:
         analytics:
           summary:
@@ -77531,17 +79677,6 @@ components:
           id: id
           platform: platform
           status: status
-      properties:
-        campaign:
-          $ref: "#/components/schemas/getCampaignAnalytics_200_response_campaign"
-        backfillPending:
-          description: "Present and true only on `202` responses: part of the requested\
-            \ date range is still being backfilled from the platform in the background.\
-            \ Retry the same request shortly; it returns 200 once the range is fully\
-            \ ingested."
-          type: boolean
-        analytics:
-          $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics"
     generateAdPreviews_request:
       properties:
         accountId:
@@ -77922,35 +80057,16 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdInsightsReport_200_response_paging"
-    getAdAnalytics_200_response_ad:
-      example:
-        name: name
-        currency: currency
-        id: id
-        trigger: comment
-        platform: platform
-        status: status
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        platform:
-          type: string
-        trigger:
-          enum:
-          - comment
-          - story_reply
-          type: string
-        status:
-          type: string
-        currency:
-          description: "ISO 4217 code of the ad account that owns this ad (e.g. USD,\
-            \ THB, INR). All money values in `summary` and `daily` are in this currency.\
-            \ Null only on legacy ads synced before currency was persisted."
-          nullable: true
-          type: string
-    getAdAnalytics_200_response:
+    getAdAnalytics_202_response:
+      allOf:
+      - $ref: "#/components/schemas/AdAnalyticsResponse"
+      - properties:
+          backfillPending:
+            enum:
+            - true
+            type: boolean
+        required:
+        - backfillPending
       example:
         analytics:
           summary:
@@ -78154,21 +80270,9 @@ components:
           name: name
           currency: currency
           id: id
-          trigger: comment
           platform: platform
           status: status
         backfillPending: true
-      properties:
-        ad:
-          $ref: "#/components/schemas/getAdAnalytics_200_response_ad"
-        backfillPending:
-          description: "Present and true only on `202` responses: part of the requested\
-            \ date range is still being backfilled from the platform in the background.\
-            \ Retry the same request shortly; it returns 200 once the range is fully\
-            \ ingested."
-          type: boolean
-        analytics:
-          $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics"
     getAdTrackingTags_200_response:
       example:
         dynamicValueParameters: "{}"
@@ -88758,6 +90862,404 @@ components:
           type: string
         to:
           format: date-time
+          type: string
+    AdsTimelineResponse_rows_inner:
+      example:
+        date: 2000-01-23
+        ctr: 2.3021358869347655
+        purchaseValue: 1.2315135367772556
+        cpm: 9.301444243932576
+        conversions: 3.616076749251911
+        engagement: 5
+        reach: 1
+        impressions: 6
+        actionValues:
+          key: 7.386281948385884
+        spend: 0.8008281904610115
+        cpc: 7.061401241503109
+        clicks: 5
+        roas: 1.0246457001441578
+        costPerConversion: 2.027123023002322
+        actions:
+          key: 4.145608029883936
+      properties:
+        date:
+          format: date
+          type: string
+        spend:
+          description: Native currency units (matches /ads/tree convention).
+          type: number
+        impressions:
+          type: integer
+        reach:
+          description: "Reach summed across the account's ads for this single day.\
+            \ A person seen by two ads the same day counts twice, and reach is de-duplicated\
+            \ per day only: do NOT sum it across days (people reached on multiple\
+            \ days would be double-counted)."
+          type: integer
+        clicks:
+          type: integer
+        engagement:
+          type: integer
+        ctr:
+          description: Click-through rate as a percentage (0–100).
+          type: number
+        cpc:
+          description: Cost per click in native currency.
+          type: number
+        cpm:
+          description: Cost per 1000 impressions in native currency.
+          type: number
+        conversions:
+          description: "Sum of conversion events over the range. Fractional values\
+            \ are normal (attribution splitting + Google modeled conversions). Meta:\
+            \ events matching the campaign optimization goal. Google: tracked conversions.\
+            \ X / LinkedIn: reported website/lead conversions (added 2026-07)."
+          type: number
+        costPerConversion:
+          type: number
+        actions:
+          additionalProperties:
+            type: number
+          description: Per-action-type counts merged across all ads on this day. Keys
+            are platform-native action types.
+        actionValues:
+          additionalProperties:
+            type: number
+          description: Monetary mirror of `actions` in native currency.
+        purchaseValue:
+          description: "Sum of purchase-type action values on this day, native currency."
+          type: number
+        roas:
+          description: Derived purchaseValue / spend.
+          type: number
+    CampaignAnalyticsResponse_campaign:
+      example:
+        name: name
+        currency: currency
+        id: id
+        platform: platform
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          nullable: true
+          type: string
+        platform:
+          type: string
+        status:
+          description: Effective campaign status (ACTIVE when any child ad is active).
+          nullable: true
+          type: string
+        currency:
+          description: "ISO 4217 code of the ad account (e.g. USD, THB). All money\
+            \ values in `summary` and `daily` are in this currency."
+          nullable: true
+          type: string
+    CampaignAnalyticsResponse_analytics_daily_inner:
+      allOf:
+      - $ref: "#/components/schemas/AdMetrics"
+      - properties:
+          date:
+            format: date
+            type: string
+      example:
+        date: 2000-01-23
+        conversions: 3.616076749251911
+        videoAvgTimeWatchedActions: 3.5571952270680973
+        engagement: 9
+        funnel:
+          searches: 6
+          contentViews: 5
+          purchases: 7
+          registrationsCompleted: 0
+          cartAdds: 3
+          wishlistAdds: 3
+          messagingConversationsStarted: 8
+          messagingFirstReplies: 7
+          appInstalls: 4
+          leads: 6
+          paymentInfoAdds: 0
+          landingPageViews: 6
+          checkoutsInitiated: 7
+        reach: 1
+        videoP75WatchedActions: 8
+        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        actionValues:
+          offsite_conversion.fb_pixel_purchase: 2456.78
+          offsite_conversion.fb_pixel_add_to_cart: 980.5
+        videoP25WatchedActions: 9
+        spend: 0.8008281904610115
+        cpc: 2.3021358869347655
+        roas: 7.386281948385884
+        uniqueClicks: 7
+        outboundClicksCtr: 1.0246457001441578
+        ctr: 5.637376656633329
+        purchaseValue: 4.145608029883936
+        cpm: 7.061401241503109
+        inlineLinkClickCtr: 6.84685269835264
+        outboundClicks: 1
+        videoP50WatchedActions: 6
+        videoP95WatchedActions: 9
+        impressions: 6
+        videoP100WatchedActions: 6
+        costPerAction:
+          link_click: 0.1052
+          offsite_conversion.fb_pixel_purchase: 4.0114
+        videoPlayActions: 4
+        engagementBreakdown:
+          shares: 3
+          pageEngagement: 3
+          comments: 5
+          pageLikes: 0
+          saves: 4
+          linkClicks: 4
+          reactions: 7
+          postEngagement: 3
+          videoViews: 6
+        inlineLinkClicks: 1
+        videoThruplayWatchedActions: 9
+        video30SecWatchedActions: 5
+        clicks: 5
+        uniqueCtr: 1.1730742509559433
+        costPerThruplay: 6.965117697638846
+        costPerConversion: 2.027123023002322
+        actions:
+          link_click: 160
+          post_engagement: 300
+          offsite_conversion.fb_pixel_purchase: 42
+    CampaignAnalyticsResponse_analytics:
+      example:
+        summary:
+          conversions: 7.386281948385884
+          videoAvgTimeWatchedActions: 2.8841621266687802
+          engagement: 4
+          funnel:
+            searches: 6
+            contentViews: 5
+            purchases: 7
+            registrationsCompleted: 0
+            cartAdds: 3
+            wishlistAdds: 3
+            messagingConversationsStarted: 8
+            messagingFirstReplies: 7
+            appInstalls: 4
+            leads: 6
+            paymentInfoAdds: 0
+            landingPageViews: 6
+            checkoutsInitiated: 7
+          reach: 2
+          videoP75WatchedActions: 3
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 9
+          spend: 5.962133916683182
+          cpc: 3.616076749251911
+          roas: 1.4894159098541704
+          uniqueClicks: 5
+          outboundClicksCtr: 7.457744773683766
+          ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
+          cpm: 2.027123023002322
+          inlineLinkClickCtr: 4.965218492984954
+          outboundClicks: 6
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 6
+          impressions: 5
+          videoP100WatchedActions: 1
+          costPerAction:
+            link_click: 0.1052
+            offsite_conversion.fb_pixel_purchase: 4.0114
+          videoPlayActions: 9
+          engagementBreakdown:
+            shares: 3
+            pageEngagement: 3
+            comments: 5
+            pageLikes: 0
+            saves: 4
+            linkClicks: 4
+            reactions: 7
+            postEngagement: 3
+            videoViews: 6
+          inlineLinkClicks: 1
+          videoThruplayWatchedActions: 8
+          video30SecWatchedActions: 6
+          clicks: 7
+          uniqueCtr: 9.965781217890562
+          costPerThruplay: 6.778324963048013
+          costPerConversion: 1.2315135367772556
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+        daily:
+        - date: 2000-01-23
+          conversions: 3.616076749251911
+          videoAvgTimeWatchedActions: 3.5571952270680973
+          engagement: 9
+          funnel:
+            searches: 6
+            contentViews: 5
+            purchases: 7
+            registrationsCompleted: 0
+            cartAdds: 3
+            wishlistAdds: 3
+            messagingConversationsStarted: 8
+            messagingFirstReplies: 7
+            appInstalls: 4
+            leads: 6
+            paymentInfoAdds: 0
+            landingPageViews: 6
+            checkoutsInitiated: 7
+          reach: 1
+          videoP75WatchedActions: 8
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 9
+          spend: 0.8008281904610115
+          cpc: 2.3021358869347655
+          roas: 7.386281948385884
+          uniqueClicks: 7
+          outboundClicksCtr: 1.0246457001441578
+          ctr: 5.637376656633329
+          purchaseValue: 4.145608029883936
+          cpm: 7.061401241503109
+          inlineLinkClickCtr: 6.84685269835264
+          outboundClicks: 1
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 9
+          impressions: 6
+          videoP100WatchedActions: 6
+          costPerAction:
+            link_click: 0.1052
+            offsite_conversion.fb_pixel_purchase: 4.0114
+          videoPlayActions: 4
+          engagementBreakdown:
+            shares: 3
+            pageEngagement: 3
+            comments: 5
+            pageLikes: 0
+            saves: 4
+            linkClicks: 4
+            reactions: 7
+            postEngagement: 3
+            videoViews: 6
+          inlineLinkClicks: 1
+          videoThruplayWatchedActions: 9
+          video30SecWatchedActions: 5
+          clicks: 5
+          uniqueCtr: 1.1730742509559433
+          costPerThruplay: 6.965117697638846
+          costPerConversion: 2.027123023002322
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+        - date: 2000-01-23
+          conversions: 3.616076749251911
+          videoAvgTimeWatchedActions: 3.5571952270680973
+          engagement: 9
+          funnel:
+            searches: 6
+            contentViews: 5
+            purchases: 7
+            registrationsCompleted: 0
+            cartAdds: 3
+            wishlistAdds: 3
+            messagingConversationsStarted: 8
+            messagingFirstReplies: 7
+            appInstalls: 4
+            leads: 6
+            paymentInfoAdds: 0
+            landingPageViews: 6
+            checkoutsInitiated: 7
+          reach: 1
+          videoP75WatchedActions: 8
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 9
+          spend: 0.8008281904610115
+          cpc: 2.3021358869347655
+          roas: 7.386281948385884
+          uniqueClicks: 7
+          outboundClicksCtr: 1.0246457001441578
+          ctr: 5.637376656633329
+          purchaseValue: 4.145608029883936
+          cpm: 7.061401241503109
+          inlineLinkClickCtr: 6.84685269835264
+          outboundClicks: 1
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 9
+          impressions: 6
+          videoP100WatchedActions: 6
+          costPerAction:
+            link_click: 0.1052
+            offsite_conversion.fb_pixel_purchase: 4.0114
+          videoPlayActions: 4
+          engagementBreakdown:
+            shares: 3
+            pageEngagement: 3
+            comments: 5
+            pageLikes: 0
+            saves: 4
+            linkClicks: 4
+            reactions: 7
+            postEngagement: 3
+            videoViews: 6
+          inlineLinkClicks: 1
+          videoThruplayWatchedActions: 9
+          video30SecWatchedActions: 5
+          clicks: 5
+          uniqueCtr: 1.1730742509559433
+          costPerThruplay: 6.965117697638846
+          costPerConversion: 2.027123023002322
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+        breakdowns:
+          key:
+          - "{}"
+          - "{}"
+      properties:
+        summary:
+          $ref: "#/components/schemas/AdMetrics"
+        daily:
+          items:
+            $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics_daily_inner"
+          type: array
+        breakdowns:
+          additionalProperties:
+            items:
+              type: object
+    AdAnalyticsResponse_ad:
+      example:
+        name: name
+        currency: currency
+        id: id
+        platform: platform
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        status:
+          type: string
+        currency:
+          description: "ISO 4217 code of the ad account that owns this ad (e.g. USD,\
+            \ THB, INR). All money values in `summary` and `daily` are in this currency.\
+            \ Null only on legacy ads synced before currency was persisted."
+          nullable: true
           type: string
     TargetingSpec_cities_inner:
       properties:

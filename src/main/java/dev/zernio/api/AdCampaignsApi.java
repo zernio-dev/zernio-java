@@ -19,6 +19,9 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.AdStatus;
+import dev.zernio.model.AdTreeResponse;
+import dev.zernio.model.AdsListResponse;
+import dev.zernio.model.AdsTimelineResponse;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
 import dev.zernio.model.BulkUpdateAdCampaignStatusRequest;
@@ -39,13 +42,13 @@ import dev.zernio.model.DuplicateAdSetRequest;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdSetDetails200Response;
-import dev.zernio.model.GetAdTree200Response;
-import dev.zernio.model.GetAdsTimeline200Response;
+import dev.zernio.model.GetAdTree202Response;
+import dev.zernio.model.GetAdsTimeline202Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdCampaigns200Response;
 import dev.zernio.model.ListAdKeywords200Response;
-import dev.zernio.model.ListAds200Response;
+import dev.zernio.model.ListAds202Response;
 import java.time.LocalDate;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdCampaign200Response;
@@ -84,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:08:50.283690955Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:18:55.239934350Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1653,10 +1656,10 @@ public class AdCampaignsApi {
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
-   * @return GetAdTree200Response
+   * @return AdTreeResponse
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
+  public AdTreeResponse getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
     return getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
   }
 
@@ -1679,11 +1682,11 @@ public class AdCampaignsApi {
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
    * @param headers Optional headers to include in the request
-   * @return GetAdTree200Response
+   * @return AdTreeResponse
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
+  public AdTreeResponse getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdTreeResponse> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
     return localVarResponse.getData();
   }
 
@@ -1705,10 +1708,10 @@ public class AdCampaignsApi {
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
-   * @return ApiResponse&lt;GetAdTree200Response&gt;
+   * @return ApiResponse&lt;AdTreeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
+  public ApiResponse<AdTreeResponse> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel) throws ApiException {
     return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, null);
   }
 
@@ -1731,10 +1734,10 @@ public class AdCampaignsApi {
    * @param timeIncrement Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)
    * @param dailyLevel Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetAdTree200Response&gt;
+   * @return ApiResponse&lt;AdTreeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
+  public ApiResponse<AdTreeResponse> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer timeIncrement, @javax.annotation.Nullable String dailyLevel, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1750,7 +1753,7 @@ public class AdCampaignsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetAdTree200Response>(
+          return new ApiResponse<AdTreeResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1760,10 +1763,10 @@ public class AdCampaignsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetAdTree200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdTree200Response>() {});
+        AdTreeResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AdTreeResponse>() {});
         
 
-        return new ApiResponse<GetAdTree200Response>(
+        return new ApiResponse<AdTreeResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1855,10 +1858,10 @@ public class AdCampaignsApi {
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
-   * @return GetAdsTimeline200Response
+   * @return AdsTimelineResponse
    * @throws ApiException if fails to make API call
    */
-  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
+  public AdsTimelineResponse getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
     return getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, null);
   }
 
@@ -1871,11 +1874,11 @@ public class AdCampaignsApi {
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
    * @param headers Optional headers to include in the request
-   * @return GetAdsTimeline200Response
+   * @return AdsTimelineResponse
    * @throws ApiException if fails to make API call
    */
-  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdsTimeline200Response> localVarResponse = getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, headers);
+  public AdsTimelineResponse getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdsTimelineResponse> localVarResponse = getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, headers);
     return localVarResponse.getData();
   }
 
@@ -1887,10 +1890,10 @@ public class AdCampaignsApi {
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
-   * @return ApiResponse&lt;GetAdsTimeline200Response&gt;
+   * @return ApiResponse&lt;AdsTimelineResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
+  public ApiResponse<AdsTimelineResponse> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
     return getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, null);
   }
 
@@ -1903,10 +1906,10 @@ public class AdCampaignsApi {
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetAdsTimeline200Response&gt;
+   * @return ApiResponse&lt;AdsTimelineResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+  public ApiResponse<AdsTimelineResponse> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getAdsTimelineRequestBuilder(accountId, adAccountId, fromDate, toDate, platform, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1922,7 +1925,7 @@ public class AdCampaignsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetAdsTimeline200Response>(
+          return new ApiResponse<AdsTimelineResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1932,10 +1935,10 @@ public class AdCampaignsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetAdsTimeline200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdsTimeline200Response>() {});
+        AdsTimelineResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AdsTimelineResponse>() {});
         
 
-        return new ApiResponse<GetAdsTimeline200Response>(
+        return new ApiResponse<AdsTimelineResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -2403,10 +2406,10 @@ public class AdCampaignsApi {
    * @param effectiveInstagramMediaId Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @return ListAds200Response
+   * @return AdsListResponse
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+  public AdsListResponse listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
     return listAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
   }
 
@@ -2429,11 +2432,11 @@ public class AdCampaignsApi {
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
-   * @return ListAds200Response
+   * @return AdsListResponse
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
+  public AdsListResponse listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdsListResponse> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
@@ -2455,10 +2458,10 @@ public class AdCampaignsApi {
    * @param effectiveInstagramMediaId Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @return ApiResponse&lt;ListAds200Response&gt;
+   * @return ApiResponse&lt;AdsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+  public ApiResponse<AdsListResponse> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
     return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
   }
 
@@ -2481,10 +2484,10 @@ public class AdCampaignsApi {
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ListAds200Response&gt;
+   * @return ApiResponse&lt;AdsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  public ApiResponse<AdsListResponse> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String pageId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -2500,7 +2503,7 @@ public class AdCampaignsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<ListAds200Response>(
+          return new ApiResponse<AdsListResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -2510,10 +2513,10 @@ public class AdCampaignsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        ListAds200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAds200Response>() {});
+        AdsListResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AdsListResponse>() {});
         
 
-        return new ApiResponse<ListAds200Response>(
+        return new ApiResponse<AdsListResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

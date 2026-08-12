@@ -18,6 +18,8 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AdAnalyticsResponse;
+import dev.zernio.model.CampaignAnalyticsResponse;
 import dev.zernio.model.CreateAdInsightsReport202Response;
 import dev.zernio.model.CreateAdInsightsReportRequest;
 import dev.zernio.model.ErrorResponse;
@@ -25,10 +27,10 @@ import dev.zernio.model.GenerateKeywordHistoricalMetrics200Response;
 import dev.zernio.model.GenerateKeywordHistoricalMetricsRequest;
 import dev.zernio.model.GenerateKeywordIdeas200Response;
 import dev.zernio.model.GenerateKeywordIdeasRequest;
-import dev.zernio.model.GetAdAnalytics200Response;
+import dev.zernio.model.GetAdAnalytics202Response;
 import dev.zernio.model.GetAdInsightsReport200Response;
 import dev.zernio.model.GetAdsSearchTerms200Response;
-import dev.zernio.model.GetCampaignAnalytics200Response;
+import dev.zernio.model.GetCampaignAnalytics202Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import java.time.LocalDate;
@@ -59,7 +61,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:08:50.283690955Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T10:18:55.239934350Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdInsightsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -552,10 +554,10 @@ public class AdInsightsApi {
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
-   * @return GetAdAnalytics200Response
+   * @return AdAnalyticsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetAdAnalytics200Response getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+  public AdAnalyticsResponse getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
     return getAdAnalytics(adId, fromDate, toDate, breakdowns, null);
   }
 
@@ -567,11 +569,11 @@ public class AdInsightsApi {
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
-   * @return GetAdAnalytics200Response
+   * @return AdAnalyticsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetAdAnalytics200Response getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdAnalytics200Response> localVarResponse = getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns, headers);
+  public AdAnalyticsResponse getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdAnalyticsResponse> localVarResponse = getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns, headers);
     return localVarResponse.getData();
   }
 
@@ -582,10 +584,10 @@ public class AdInsightsApi {
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
-   * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
+   * @return ApiResponse&lt;AdAnalyticsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdAnalytics200Response> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+  public ApiResponse<AdAnalyticsResponse> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
     return getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns, null);
   }
 
@@ -597,10 +599,10 @@ public class AdInsightsApi {
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
+   * @return ApiResponse&lt;AdAnalyticsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdAnalytics200Response> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+  public ApiResponse<AdAnalyticsResponse> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getAdAnalyticsRequestBuilder(adId, fromDate, toDate, breakdowns, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -616,7 +618,7 @@ public class AdInsightsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetAdAnalytics200Response>(
+          return new ApiResponse<AdAnalyticsResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -626,10 +628,10 @@ public class AdInsightsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetAdAnalytics200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdAnalytics200Response>() {});
+        AdAnalyticsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AdAnalyticsResponse>() {});
         
 
-        return new ApiResponse<GetAdAnalytics200Response>(
+        return new ApiResponse<AdAnalyticsResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1023,10 +1025,10 @@ public class AdInsightsApi {
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
-   * @return GetCampaignAnalytics200Response
+   * @return CampaignAnalyticsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetCampaignAnalytics200Response getCampaignAnalytics(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+  public CampaignAnalyticsResponse getCampaignAnalytics(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
     return getCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns, null);
   }
 
@@ -1039,11 +1041,11 @@ public class AdInsightsApi {
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
-   * @return GetCampaignAnalytics200Response
+   * @return CampaignAnalyticsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetCampaignAnalytics200Response getCampaignAnalytics(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetCampaignAnalytics200Response> localVarResponse = getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns, headers);
+  public CampaignAnalyticsResponse getCampaignAnalytics(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    ApiResponse<CampaignAnalyticsResponse> localVarResponse = getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns, headers);
     return localVarResponse.getData();
   }
 
@@ -1055,10 +1057,10 @@ public class AdInsightsApi {
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
-   * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
+   * @return ApiResponse&lt;CampaignAnalyticsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetCampaignAnalytics200Response> getCampaignAnalyticsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+  public ApiResponse<CampaignAnalyticsResponse> getCampaignAnalyticsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
     return getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns, null);
   }
 
@@ -1071,10 +1073,10 @@ public class AdInsightsApi {
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
+   * @return ApiResponse&lt;CampaignAnalyticsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetCampaignAnalytics200Response> getCampaignAnalyticsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+  public ApiResponse<CampaignAnalyticsResponse> getCampaignAnalyticsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getCampaignAnalyticsRequestBuilder(campaignId, platform, fromDate, toDate, breakdowns, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1090,7 +1092,7 @@ public class AdInsightsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetCampaignAnalytics200Response>(
+          return new ApiResponse<CampaignAnalyticsResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1100,10 +1102,10 @@ public class AdInsightsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetCampaignAnalytics200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCampaignAnalytics200Response>() {});
+        CampaignAnalyticsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CampaignAnalyticsResponse>() {});
         
 
-        return new ApiResponse<GetCampaignAnalytics200Response>(
+        return new ApiResponse<CampaignAnalyticsResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
