@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateRfPrediction201Response.JSON_PROPERTY_CURRENCY,
   CreateRfPrediction201Response.JSON_PROPERTY_PREDICTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T09:05:51.990528191Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T10:30:50.367861738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateRfPrediction201Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

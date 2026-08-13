@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DeleteInboxReviewReply200Response.JSON_PROPERTY_MESSAGE,
   DeleteInboxReviewReply200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T09:05:51.990528191Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T10:30:50.367861738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteInboxReviewReply200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

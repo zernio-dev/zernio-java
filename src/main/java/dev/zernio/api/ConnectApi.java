@@ -111,7 +111,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T09:05:51.990528191Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T10:30:50.367861738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1431,11 +1431,12 @@ public class ConnectApi {
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
    * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)
+   * @param onboarding WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)
    * @return GetConnectUrl200Response
    * @throws ApiException if fails to make API call
    */
-  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod) throws ApiException {
-    return getConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, null);
+  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, @javax.annotation.Nullable String onboarding) throws ApiException {
+    return getConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, onboarding, null);
   }
 
   /**
@@ -1446,12 +1447,13 @@ public class ConnectApi {
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
    * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)
+   * @param onboarding WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)
    * @param headers Optional headers to include in the request
    * @return GetConnectUrl200Response
    * @throws ApiException if fails to make API call
    */
-  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetConnectUrl200Response> localVarResponse = getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, headers);
+  public GetConnectUrl200Response getConnectUrl(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, @javax.annotation.Nullable String onboarding, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConnectUrl200Response> localVarResponse = getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, onboarding, headers);
     return localVarResponse.getData();
   }
 
@@ -1463,11 +1465,12 @@ public class ConnectApi {
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
    * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)
+   * @param onboarding WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)
    * @return ApiResponse&lt;GetConnectUrl200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod) throws ApiException {
-    return getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, null);
+  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, @javax.annotation.Nullable String onboarding) throws ApiException {
+    return getConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, onboarding, null);
   }
 
   /**
@@ -1478,12 +1481,13 @@ public class ConnectApi {
    * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)
    * @param headless When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)
    * @param loginMethod Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)
+   * @param onboarding WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetConnectUrl200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectUrlRequestBuilder(platform, profileId, redirectUrl, headless, loginMethod, headers);
+  public ApiResponse<GetConnectUrl200Response> getConnectUrlWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, @javax.annotation.Nullable String onboarding, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getConnectUrlRequestBuilder(platform, profileId, redirectUrl, headless, loginMethod, onboarding, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1530,7 +1534,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder getConnectUrlRequestBuilder(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getConnectUrlRequestBuilder(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, @javax.annotation.Nullable String loginMethod, @javax.annotation.Nullable String onboarding, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'platform' is set
     if (platform == null) {
       throw new ApiException(400, "Missing the required parameter 'platform' when calling getConnectUrl");
@@ -1556,6 +1560,8 @@ public class ConnectApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("headless", headless));
     localVarQueryParameterBaseName = "loginMethod";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("loginMethod", loginMethod));
+    localVarQueryParameterBaseName = "onboarding";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("onboarding", onboarding));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -2480,6 +2486,154 @@ public class ConnectApi {
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Shopify OAuth connect URL
+   * Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60; and &#x60;write_content&#x60; (content only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place. 
+   * @param profileId Your Zernio profile ID (get from /v1/profiles). (required)
+   * @param shop The myshopify.com store domain to connect, e.g. &#x60;your-store.myshopify.com&#x60; (the bare &#x60;your-store&#x60; prefix is accepted too). (required)
+   * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. On failure an &#x60;error&#x60; query param is appended. (optional)
+   * @return GetConnectUrl200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetConnectUrl200Response getShopifyConnectUrl(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String shop, @javax.annotation.Nullable URI redirectUrl) throws ApiException {
+    return getShopifyConnectUrl(profileId, shop, redirectUrl, null);
+  }
+
+  /**
+   * Get Shopify OAuth connect URL
+   * Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60; and &#x60;write_content&#x60; (content only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place. 
+   * @param profileId Your Zernio profile ID (get from /v1/profiles). (required)
+   * @param shop The myshopify.com store domain to connect, e.g. &#x60;your-store.myshopify.com&#x60; (the bare &#x60;your-store&#x60; prefix is accepted too). (required)
+   * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. On failure an &#x60;error&#x60; query param is appended. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetConnectUrl200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetConnectUrl200Response getShopifyConnectUrl(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String shop, @javax.annotation.Nullable URI redirectUrl, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConnectUrl200Response> localVarResponse = getShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Shopify OAuth connect URL
+   * Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60; and &#x60;write_content&#x60; (content only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place. 
+   * @param profileId Your Zernio profile ID (get from /v1/profiles). (required)
+   * @param shop The myshopify.com store domain to connect, e.g. &#x60;your-store.myshopify.com&#x60; (the bare &#x60;your-store&#x60; prefix is accepted too). (required)
+   * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. On failure an &#x60;error&#x60; query param is appended. (optional)
+   * @return ApiResponse&lt;GetConnectUrl200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetConnectUrl200Response> getShopifyConnectUrlWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String shop, @javax.annotation.Nullable URI redirectUrl) throws ApiException {
+    return getShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl, null);
+  }
+
+  /**
+   * Get Shopify OAuth connect URL
+   * Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60; and &#x60;write_content&#x60; (content only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place. 
+   * @param profileId Your Zernio profile ID (get from /v1/profiles). (required)
+   * @param shop The myshopify.com store domain to connect, e.g. &#x60;your-store.myshopify.com&#x60; (the bare &#x60;your-store&#x60; prefix is accepted too). (required)
+   * @param redirectUrl Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. On failure an &#x60;error&#x60; query param is appended. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetConnectUrl200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetConnectUrl200Response> getShopifyConnectUrlWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String shop, @javax.annotation.Nullable URI redirectUrl, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getShopifyConnectUrlRequestBuilder(profileId, shop, redirectUrl, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getShopifyConnectUrl", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetConnectUrl200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetConnectUrl200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetConnectUrl200Response>() {});
+        
+
+        return new ApiResponse<GetConnectUrl200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getShopifyConnectUrlRequestBuilder(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String shop, @javax.annotation.Nullable URI redirectUrl, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'profileId' is set
+    if (profileId == null) {
+      throw new ApiException(400, "Missing the required parameter 'profileId' when calling getShopifyConnectUrl");
+    }
+    // verify the required parameter 'shop' is set
+    if (shop == null) {
+      throw new ApiException(400, "Missing the required parameter 'shop' when calling getShopifyConnectUrl");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/shopify";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "shop";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("shop", shop));
+    localVarQueryParameterBaseName = "redirect_url";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("redirect_url", redirectUrl));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-13T09:05:51.990528191Z[Etc/UTC]
+- Build date: 2026-08-13T10:30:50.367861738Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -366,6 +366,26 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**listApiKeysWithHttpInfo**](docs/ApiKeysApi.md#listApiKeysWithHttpInfo) | **GET** /v1/api-keys | List keys
 *ApiKeysApi* | [**verifyCredential**](docs/ApiKeysApi.md#verifyCredential) | **GET** /v1/auth/verify | Verify credential
 *ApiKeysApi* | [**verifyCredentialWithHttpInfo**](docs/ApiKeysApi.md#verifyCredentialWithHttpInfo) | **GET** /v1/auth/verify | Verify credential
+*BlogsApi* | [**createBlog**](docs/BlogsApi.md#createBlog) | **POST** /v1/accounts/{accountId}/blogs | Create a blog
+*BlogsApi* | [**createBlogWithHttpInfo**](docs/BlogsApi.md#createBlogWithHttpInfo) | **POST** /v1/accounts/{accountId}/blogs | Create a blog
+*BlogsApi* | [**createBlogArticle**](docs/BlogsApi.md#createBlogArticle) | **POST** /v1/accounts/{accountId}/blogs/{blogId}/articles | Create a blog article
+*BlogsApi* | [**createBlogArticleWithHttpInfo**](docs/BlogsApi.md#createBlogArticleWithHttpInfo) | **POST** /v1/accounts/{accountId}/blogs/{blogId}/articles | Create a blog article
+*BlogsApi* | [**deleteBlog**](docs/BlogsApi.md#deleteBlog) | **DELETE** /v1/accounts/{accountId}/blogs/{blogId} | Delete a blog
+*BlogsApi* | [**deleteBlogWithHttpInfo**](docs/BlogsApi.md#deleteBlogWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/blogs/{blogId} | Delete a blog
+*BlogsApi* | [**deleteBlogArticle**](docs/BlogsApi.md#deleteBlogArticle) | **DELETE** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Delete a blog article
+*BlogsApi* | [**deleteBlogArticleWithHttpInfo**](docs/BlogsApi.md#deleteBlogArticleWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Delete a blog article
+*BlogsApi* | [**getBlog**](docs/BlogsApi.md#getBlog) | **GET** /v1/accounts/{accountId}/blogs/{blogId} | Get a blog
+*BlogsApi* | [**getBlogWithHttpInfo**](docs/BlogsApi.md#getBlogWithHttpInfo) | **GET** /v1/accounts/{accountId}/blogs/{blogId} | Get a blog
+*BlogsApi* | [**getBlogArticle**](docs/BlogsApi.md#getBlogArticle) | **GET** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Get a blog article
+*BlogsApi* | [**getBlogArticleWithHttpInfo**](docs/BlogsApi.md#getBlogArticleWithHttpInfo) | **GET** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Get a blog article
+*BlogsApi* | [**listBlogArticles**](docs/BlogsApi.md#listBlogArticles) | **GET** /v1/accounts/{accountId}/blogs/{blogId}/articles | List blog articles
+*BlogsApi* | [**listBlogArticlesWithHttpInfo**](docs/BlogsApi.md#listBlogArticlesWithHttpInfo) | **GET** /v1/accounts/{accountId}/blogs/{blogId}/articles | List blog articles
+*BlogsApi* | [**listBlogs**](docs/BlogsApi.md#listBlogs) | **GET** /v1/accounts/{accountId}/blogs | List blogs
+*BlogsApi* | [**listBlogsWithHttpInfo**](docs/BlogsApi.md#listBlogsWithHttpInfo) | **GET** /v1/accounts/{accountId}/blogs | List blogs
+*BlogsApi* | [**updateBlog**](docs/BlogsApi.md#updateBlog) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId} | Update a blog
+*BlogsApi* | [**updateBlogWithHttpInfo**](docs/BlogsApi.md#updateBlogWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId} | Update a blog
+*BlogsApi* | [**updateBlogArticle**](docs/BlogsApi.md#updateBlogArticle) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Update a blog article
+*BlogsApi* | [**updateBlogArticleWithHttpInfo**](docs/BlogsApi.md#updateBlogArticleWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Update a blog article
 *BroadcastsApi* | [**addBroadcastRecipients**](docs/BroadcastsApi.md#addBroadcastRecipients) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**addBroadcastRecipientsWithHttpInfo**](docs/BroadcastsApi.md#addBroadcastRecipientsWithHttpInfo) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**cancelBroadcast**](docs/BroadcastsApi.md#cancelBroadcast) | **POST** /v1/broadcasts/{broadcastId}/cancel | Cancel broadcast
@@ -464,6 +484,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getRedditFlairsWithHttpInfo**](docs/ConnectApi.md#getRedditFlairsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs
 *ConnectApi* | [**getRedditSubreddits**](docs/ConnectApi.md#getRedditSubreddits) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
 *ConnectApi* | [**getRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
+*ConnectApi* | [**getShopifyConnectUrl**](docs/ConnectApi.md#getShopifyConnectUrl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
+*ConnectApi* | [**getShopifyConnectUrlWithHttpInfo**](docs/ConnectApi.md#getShopifyConnectUrlWithHttpInfo) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
 *ConnectApi* | [**getSubredditRules**](docs/ConnectApi.md#getSubredditRules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getSubredditRulesWithHttpInfo**](docs/ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getTelegramConnectStatus**](docs/ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code
@@ -1311,6 +1333,9 @@ Class | Method | HTTP request | Description
  - [BlockWhatsAppUsers200ResponseBlockedInner](docs/BlockWhatsAppUsers200ResponseBlockedInner.md)
  - [BlockWhatsAppUsers200ResponseFailedInner](docs/BlockWhatsAppUsers200ResponseFailedInner.md)
  - [BlockWhatsAppUsersRequest](docs/BlockWhatsAppUsersRequest.md)
+ - [Blog](docs/Blog.md)
+ - [BlogArticle](docs/BlogArticle.md)
+ - [BlogArticleImage](docs/BlogArticleImage.md)
  - [BlueskyPlatformData](docs/BlueskyPlatformData.md)
  - [BookmarkPost200Response](docs/BookmarkPost200Response.md)
  - [BookmarkPostRequest](docs/BookmarkPostRequest.md)
@@ -1400,6 +1425,12 @@ Class | Method | HTTP request | Description
  - [CreateAdInsightsReportRequestTimeIncrement](docs/CreateAdInsightsReportRequestTimeIncrement.md)
  - [CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
+ - [CreateBlog201Response](docs/CreateBlog201Response.md)
+ - [CreateBlogArticle201Response](docs/CreateBlogArticle201Response.md)
+ - [CreateBlogArticleRequest](docs/CreateBlogArticleRequest.md)
+ - [CreateBlogArticleRequestImage](docs/CreateBlogArticleRequestImage.md)
+ - [CreateBlogArticleRequestSeo](docs/CreateBlogArticleRequestSeo.md)
+ - [CreateBlogRequest](docs/CreateBlogRequest.md)
  - [CreateBroadcast200Response](docs/CreateBroadcast200Response.md)
  - [CreateBroadcast200ResponseBroadcast](docs/CreateBroadcast200ResponseBroadcast.md)
  - [CreateBroadcastRequest](docs/CreateBroadcastRequest.md)
@@ -2074,6 +2105,8 @@ Class | Method | HTTP request | Description
  - [ListAds202Response](docs/ListAds202Response.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)
+ - [ListBlogArticles200Response](docs/ListBlogArticles200Response.md)
+ - [ListBlogs200Response](docs/ListBlogs200Response.md)
  - [ListBroadcastRecipients200Response](docs/ListBroadcastRecipients200Response.md)
  - [ListBroadcastRecipients200ResponseRecipientsInner](docs/ListBroadcastRecipients200ResponseRecipientsInner.md)
  - [ListBroadcasts200Response](docs/ListBroadcasts200Response.md)
@@ -2588,6 +2621,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)
+ - [UpdateBlogArticleRequest](docs/UpdateBlogArticleRequest.md)
+ - [UpdateBlogRequest](docs/UpdateBlogRequest.md)
  - [UpdateBroadcast200Response](docs/UpdateBroadcast200Response.md)
  - [UpdateBroadcast200ResponseBroadcast](docs/UpdateBroadcast200ResponseBroadcast.md)
  - [UpdateBroadcastRequest](docs/UpdateBroadcastRequest.md)

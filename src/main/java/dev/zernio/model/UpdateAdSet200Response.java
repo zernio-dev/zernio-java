@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   UpdateAdSet200Response.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   UpdateAdSet200Response.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T09:05:51.990528191Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T10:30:50.367861738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSet200Response {
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
