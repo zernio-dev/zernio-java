@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SetRedditPostFlairRequest.JSON_PROPERTY_FLAIR_TEMPLATE_ID,
   SetRedditPostFlairRequest.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetRedditPostFlairRequest {
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
   @javax.annotation.Nonnull

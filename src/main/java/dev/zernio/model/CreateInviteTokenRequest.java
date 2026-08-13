@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateInviteTokenRequest.JSON_PROPERTY_ROLE,
   CreateInviteTokenRequest.JSON_PROPERTY_READ_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInviteTokenRequest {
   /**
    * &#39;all&#39; grants access to all profiles, &#39;profiles&#39; restricts to specific profiles

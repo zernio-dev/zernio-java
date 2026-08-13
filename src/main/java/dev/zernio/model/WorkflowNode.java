@@ -39,9 +39,10 @@ import dev.zernio.ApiClient;
   WorkflowNode.JSON_PROPERTY_ID,
   WorkflowNode.JSON_PROPERTY_TYPE,
   WorkflowNode.JSON_PROPERTY_CONFIG,
-  WorkflowNode.JSON_PROPERTY_POSITION
+  WorkflowNode.JSON_PROPERTY_POSITION,
+  WorkflowNode.JSON_PROPERTY_LABEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowNode {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -121,6 +122,10 @@ public class WorkflowNode {
   public static final String JSON_PROPERTY_POSITION = "position";
   @javax.annotation.Nullable
   private WorkflowNodePosition position;
+
+  public static final String JSON_PROPERTY_LABEL = "label";
+  @javax.annotation.Nullable
+  private String label;
 
   public WorkflowNode() { 
   }
@@ -229,6 +234,30 @@ public class WorkflowNode {
   }
 
 
+  public WorkflowNode label(@javax.annotation.Nullable String label) {
+    this.label = label;
+    return this;
+  }
+
+  /**
+   * Optional display name shown on the builder canvas and inspector, falling back to the node type when absent. The nodes array is replaced wholesale on update, so it must be resent to be kept.
+   * @return label
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LABEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLabel() {
+    return label;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LABEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLabel(@javax.annotation.Nullable String label) {
+    this.label = label;
+  }
+
+
   /**
    * Return true if this WorkflowNode object is equal to o.
    */
@@ -244,12 +273,13 @@ public class WorkflowNode {
     return Objects.equals(this.id, workflowNode.id) &&
         Objects.equals(this.type, workflowNode.type) &&
         Objects.equals(this.config, workflowNode.config) &&
-        Objects.equals(this.position, workflowNode.position);
+        Objects.equals(this.position, workflowNode.position) &&
+        Objects.equals(this.label, workflowNode.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, config, position);
+    return Objects.hash(id, type, config, position, label);
   }
 
   @Override
@@ -260,6 +290,7 @@ public class WorkflowNode {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -329,6 +360,11 @@ public class WorkflowNode {
     // add `position` to the URL query string
     if (getPosition() != null) {
       joiner.add(getPosition().toUrlQueryString(prefix + "position" + suffix));
+    }
+
+    // add `label` to the URL query string
+    if (getLabel() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLabel()))));
     }
 
     return joiner.toString();

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SearchInstagramAudio200Response.JSON_PROPERTY_AUDIO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchInstagramAudio200Response {
   public static final String JSON_PROPERTY_AUDIO = "audio";
   @javax.annotation.Nullable

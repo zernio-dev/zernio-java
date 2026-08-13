@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   EnrollContacts200ResponseResultsInner.JSON_PROPERTY_SUCCESS,
   EnrollContacts200ResponseResultsInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnrollContacts200ResponseResultsInner {
   public static final String JSON_PROPERTY_CONTACT_ID = "contactId";
   @javax.annotation.Nullable

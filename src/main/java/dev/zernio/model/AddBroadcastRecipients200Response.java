@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AddBroadcastRecipients200Response.JSON_PROPERTY_ADDED,
   AddBroadcastRecipients200Response.JSON_PROPERTY_SKIPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddBroadcastRecipients200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

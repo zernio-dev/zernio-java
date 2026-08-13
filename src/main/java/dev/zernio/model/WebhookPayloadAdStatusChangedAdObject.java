@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdStatusChangedAdObject.JSON_PROPERTY_PLATFORM_ID,
   WebhookPayloadAdStatusChangedAdObject.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T14:43:21.060311076Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdStatusChangedAdObject {
   /**
    * Hierarchy level the status applies to. Mirrors Meta&#39;s &#x60;level&#x60;. Creative-level events are not forwarded.

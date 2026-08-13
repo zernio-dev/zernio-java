@@ -35915,6 +35915,7 @@ components:
         position:
           x: 0.8008281904610115
           "y": 6.027456183070403
+        label: label
         type: trigger
         config:
           key: ""
@@ -35984,6 +35985,13 @@ components:
           type: object
         position:
           $ref: "#/components/schemas/WorkflowNode_position"
+        label:
+          description: "Optional display name shown on the builder canvas and inspector,\
+            \ falling back to the node type when absent. The nodes array is replaced\
+            \ wholesale on update, so it must be resent to be kept."
+          maxLength: 80
+          minLength: 1
+          type: string
       required:
       - id
       - type
@@ -74311,6 +74319,7 @@ components:
           position:
             x: 0.8008281904610115
             "y": 6.027456183070403
+          label: label
           type: trigger
           config:
             key: ""
@@ -74318,6 +74327,7 @@ components:
           position:
             x: 0.8008281904610115
             "y": 6.027456183070403
+          label: label
           type: trigger
           config:
             key: ""
@@ -74392,6 +74402,7 @@ components:
             position:
               x: 0.8008281904610115
               "y": 6.027456183070403
+            label: label
             type: trigger
             config:
               key: ""
@@ -74399,6 +74410,7 @@ components:
             position:
               x: 0.8008281904610115
               "y": 6.027456183070403
+            label: label
             type: trigger
             config:
               key: ""
@@ -74890,6 +74902,7 @@ components:
           position:
             x: 0.8008281904610115
             "y": 6.027456183070403
+          label: label
           type: trigger
           config:
             key: ""
@@ -74897,6 +74910,7 @@ components:
           position:
             x: 0.8008281904610115
             "y": 6.027456183070403
+          label: label
           type: trigger
           config:
             key: ""
@@ -74966,6 +74980,7 @@ components:
             position:
               x: 0.8008281904610115
               "y": 6.027456183070403
+            label: label
             type: trigger
             config:
               key: ""
@@ -74973,6 +74988,7 @@ components:
             position:
               x: 0.8008281904610115
               "y": 6.027456183070403
+            label: label
             type: trigger
             config:
               key: ""
