@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   LinkedInPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
   LinkedInPlatformData.JSON_PROPERTY_POLL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T16:02:48.413003712Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T19:53:18.463143951Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_DOCUMENT_TITLE = "documentTitle";
   @javax.annotation.Nullable
@@ -178,7 +178,7 @@ public class LinkedInPlatformData {
   }
 
   /**
-   * LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. The published post becomes a quote-reshare: your content is shown as the commentary and the original post is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Mutually exclusive with media. Works on personal profiles and organization pages.
+   * LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. With content, the published post is a quote-reshare: your text is the commentary and the original is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Leave content empty (and omit customContent) to publish a plain repost with no text, LinkedIn&#39;s one-click \&quot;Repost\&quot;. Mutually exclusive with media. Works on personal profiles and organization pages.
    * @return reshareUrl
    */
   @javax.annotation.Nullable
