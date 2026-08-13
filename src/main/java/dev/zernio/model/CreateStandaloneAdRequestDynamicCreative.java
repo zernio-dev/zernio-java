@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_CALL_TO_ACTION_TYPES,
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_AD_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T12:03:58.626033036Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T13:31:16.431877422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestDynamicCreative {
   public static final String JSON_PROPERTY_IMAGE_URLS = "imageUrls";
   @javax.annotation.Nullable

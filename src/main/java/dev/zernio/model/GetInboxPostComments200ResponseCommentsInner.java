@@ -50,6 +50,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_PLATFORM,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_URL,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_REPLIES,
+  GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_REPLIES_HAS_MORE,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_CAN_REPLY,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_CAN_DELETE,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_CAN_HIDE,
@@ -62,7 +63,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_URI,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T12:03:58.626033036Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T13:31:16.431877422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -98,6 +99,10 @@ public class GetInboxPostComments200ResponseCommentsInner {
   public static final String JSON_PROPERTY_REPLIES = "replies";
   @javax.annotation.Nullable
   private List<Object> replies = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REPLIES_HAS_MORE = "repliesHasMore";
+  @javax.annotation.Nullable
+  private Boolean repliesHasMore;
 
   public static final String JSON_PROPERTY_CAN_REPLY = "canReply";
   @javax.annotation.Nullable
@@ -267,7 +272,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
   }
 
   /**
-   * Get replyCount
+   * The platform&#39;s own reply count, which includes hidden and deleted replies. Can exceed replies[].length even when repliesHasMore is false or absent.
    * @return replyCount
    */
   @javax.annotation.Nullable
@@ -370,6 +375,30 @@ public class GetInboxPostComments200ResponseCommentsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReplies(@javax.annotation.Nullable List<Object> replies) {
     this.replies = replies;
+  }
+
+
+  public GetInboxPostComments200ResponseCommentsInner repliesHasMore(@javax.annotation.Nullable Boolean repliesHasMore) {
+    this.repliesHasMore = repliesHasMore;
+    return this;
+  }
+
+  /**
+   * Facebook only. True when replies[] (capped at 10) does not hold the comment&#39;s full reply thread; fetch the rest by passing the comment id as postId to GET /v1/inbox/comments/{postId}. Absent (not false) on every other platform, including Instagram, which has no equivalent signal.
+   * @return repliesHasMore
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REPLIES_HAS_MORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getRepliesHasMore() {
+    return repliesHasMore;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REPLIES_HAS_MORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRepliesHasMore(@javax.annotation.Nullable Boolean repliesHasMore) {
+    this.repliesHasMore = repliesHasMore;
   }
 
 
@@ -698,6 +727,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
         Objects.equals(this.platform, getInboxPostComments200ResponseCommentsInner.platform) &&
         equalsNullable(this.url, getInboxPostComments200ResponseCommentsInner.url) &&
         Objects.equals(this.replies, getInboxPostComments200ResponseCommentsInner.replies) &&
+        Objects.equals(this.repliesHasMore, getInboxPostComments200ResponseCommentsInner.repliesHasMore) &&
         Objects.equals(this.canReply, getInboxPostComments200ResponseCommentsInner.canReply) &&
         Objects.equals(this.canDelete, getInboxPostComments200ResponseCommentsInner.canDelete) &&
         Objects.equals(this.canHide, getInboxPostComments200ResponseCommentsInner.canHide) &&
@@ -717,7 +747,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, message, createdTime, from, likeCount, replyCount, platform, hashCodeNullable(url), replies, canReply, canDelete, canHide, canLike, isHidden, isLiked, hashCodeNullable(likeUri), hashCodeNullable(cid), hashCodeNullable(parentId), hashCodeNullable(rootUri), hashCodeNullable(rootCid));
+    return Objects.hash(id, message, createdTime, from, likeCount, replyCount, platform, hashCodeNullable(url), replies, repliesHasMore, canReply, canDelete, canHide, canLike, isHidden, isLiked, hashCodeNullable(likeUri), hashCodeNullable(cid), hashCodeNullable(parentId), hashCodeNullable(rootUri), hashCodeNullable(rootCid));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -740,6 +770,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    replies: ").append(toIndentedString(replies)).append("\n");
+    sb.append("    repliesHasMore: ").append(toIndentedString(repliesHasMore)).append("\n");
     sb.append("    canReply: ").append(toIndentedString(canReply)).append("\n");
     sb.append("    canDelete: ").append(toIndentedString(canDelete)).append("\n");
     sb.append("    canHide: ").append(toIndentedString(canHide)).append("\n");
@@ -845,6 +876,11 @@ public class GetInboxPostComments200ResponseCommentsInner {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getReplies().get(i)))));
       }
+    }
+
+    // add `repliesHasMore` to the URL query string
+    if (getRepliesHasMore() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srepliesHasMore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRepliesHasMore()))));
     }
 
     // add `canReply` to the URL query string
