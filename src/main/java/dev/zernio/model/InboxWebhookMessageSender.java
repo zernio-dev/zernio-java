@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   InboxWebhookMessageSender.JSON_PROPERTY_WHATSAPP_USERNAME,
   InboxWebhookMessageSender.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:58:00.377175222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T09:05:51.990528191Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

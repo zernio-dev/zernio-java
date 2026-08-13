@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   ListAdKeywords200ResponseKeywordsInner.JSON_PROPERTY_NEGATIVE,
   ListAdKeywords200ResponseKeywordsInner.JSON_PROPERTY_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-12T16:58:00.377175222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T09:05:51.990528191Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdKeywords200ResponseKeywordsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
