@@ -3451,17 +3451,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/BlogsApiTest.java
-src/test/java/dev/zernio/model/BlogArticleImageTest.java
-src/test/java/dev/zernio/model/BlogArticleTest.java
-src/test/java/dev/zernio/model/BlogTest.java
-src/test/java/dev/zernio/model/CreateBlog201ResponseTest.java
-src/test/java/dev/zernio/model/CreateBlogArticle201ResponseTest.java
-src/test/java/dev/zernio/model/CreateBlogArticleRequestImageTest.java
-src/test/java/dev/zernio/model/CreateBlogArticleRequestSeoTest.java
-src/test/java/dev/zernio/model/CreateBlogArticleRequestTest.java
-src/test/java/dev/zernio/model/CreateBlogRequestTest.java
-src/test/java/dev/zernio/model/ListBlogArticles200ResponseTest.java
-src/test/java/dev/zernio/model/ListBlogs200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateBlogArticleRequestTest.java
-src/test/java/dev/zernio/model/UpdateBlogRequestTest.java

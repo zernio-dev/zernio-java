@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetAdAccountFinance200ResponseFundingSource.JSON_PROPERTY_DISPLAY_STRING,
   GetAdAccountFinance200ResponseFundingSource.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T10:30:50.367861738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T11:32:04.152620175Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountFinance200ResponseFundingSource {
   public static final String JSON_PROPERTY_DISPLAY_STRING = "displayString";
   @javax.annotation.Nullable

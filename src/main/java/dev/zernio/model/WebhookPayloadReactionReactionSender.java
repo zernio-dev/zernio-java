@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Whoever added or removed the reaction. Usually the participant, but on Slack, Instagram and Facebook Messenger it is the business own platform id when the reaction was made from the native app: compare it with conversation.participantId.
+ * Whoever added or removed the reaction. Usually the participant, but on WhatsApp, Slack, Instagram and Facebook Messenger it is the business own platform id when the business reacted from the native app or via the reactions API: compare it with conversation.participantId.
  */
 @JsonPropertyOrder({
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_ID,
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_PICTURE,
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T10:30:50.367861738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T11:32:04.152620175Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadReactionReactionSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
