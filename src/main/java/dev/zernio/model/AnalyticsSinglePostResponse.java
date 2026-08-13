@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T11:32:04.152620175Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T12:03:58.626033036Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable

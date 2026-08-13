@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T11:32:04.152620175Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T12:03:58.626033036Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -190,7 +190,7 @@ public class CommentsApi {
    * Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn. Requires accountId and commentId query parameters. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param accountId  (required)
-   * @param commentId  (required)
+   * @param commentId For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) (required)
    * @return DeleteInboxComment200Response
    * @throws ApiException if fails to make API call
    */
@@ -203,7 +203,7 @@ public class CommentsApi {
    * Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn. Requires accountId and commentId query parameters. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param accountId  (required)
-   * @param commentId  (required)
+   * @param commentId For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) (required)
    * @param headers Optional headers to include in the request
    * @return DeleteInboxComment200Response
    * @throws ApiException if fails to make API call
@@ -218,7 +218,7 @@ public class CommentsApi {
    * Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn. Requires accountId and commentId query parameters. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param accountId  (required)
-   * @param commentId  (required)
+   * @param commentId For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) (required)
    * @return ApiResponse&lt;DeleteInboxComment200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -231,7 +231,7 @@ public class CommentsApi {
    * Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn. Requires accountId and commentId query parameters. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param accountId  (required)
-   * @param commentId  (required)
+   * @param commentId For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteInboxComment200Response&gt;
    * @throws ApiException if fails to make API call

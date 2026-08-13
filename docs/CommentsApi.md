@@ -64,7 +64,7 @@ public class Example {
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
         String accountId = "accountId_example"; // String | 
-        String commentId = "commentId_example"; // String | 
+        String commentId = "commentId_example"; // String | For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))
         try {
             DeleteInboxComment200Response result = apiInstance.deleteInboxComment(postId, accountId, commentId);
             System.out.println(result);
@@ -86,7 +86,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
 | **accountId** | **String**|  | |
-| **commentId** | **String**|  | |
+| **commentId** | **String**| For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) | |
 
 ### Return type
 
@@ -144,7 +144,7 @@ public class Example {
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
         String accountId = "accountId_example"; // String | 
-        String commentId = "commentId_example"; // String | 
+        String commentId = "commentId_example"; // String | For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))
         try {
             ApiResponse<DeleteInboxComment200Response> response = apiInstance.deleteInboxCommentWithHttpInfo(postId, accountId, commentId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -168,7 +168,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
 | **accountId** | **String**|  | |
-| **commentId** | **String**|  | |
+| **commentId** | **String**| For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) | |
 
 ### Return type
 
