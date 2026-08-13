@@ -32015,6 +32015,13 @@ paths:
         markets, and every id is usable in `regions`/`cities`/`metros` keys on
         `POST /v1/ads/create`.
 
+        LinkedIn geo searches also return every matching level in one list, and
+        neither `geoType` nor `countryCode` is applied: LinkedIn's typeahead only
+        returns a name and a URN per result, with no level or country field to
+        filter on. Every result has `type` set to `location`, and its id is a
+        `urn:li:geo:*` URN usable as a `regions[].key` on `POST /v1/ads/create`,
+        `POST /v1/ads/boost` and `POST /v1/ads/targeting/reach-estimate`.
+
         For geo queries, `q` should contain only the locality name (e.g. `"Amsterdam"`,
         not `"Amsterdam, NL"`). Use `countryCode` to disambiguate.
       operationId: searchAdTargeting
@@ -85756,7 +85763,7 @@ components:
           type: string
         type:
           description: "What the result is (e.g. city, region, country, zip, metro,\
-            \ interest, behavior, income)."
+            \ location, interest, behavior, income)."
           type: string
         path:
           description: "Optional breadcrumb of parent labels (e.g. ['United States',\

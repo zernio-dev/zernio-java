@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_PATH,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_AUDIENCE_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T13:31:16.431877422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T13:36:35.074011231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdTargeting200ResponseResultsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -123,7 +123,7 @@ public class SearchAdTargeting200ResponseResultsInner {
   }
 
   /**
-   * What the result is (e.g. city, region, country, zip, metro, interest, behavior, income).
+   * What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income).
    * @return type
    */
   @javax.annotation.Nonnull
