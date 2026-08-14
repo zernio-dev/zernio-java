@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:45:44.890579751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T14:25:27.680409747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -101,7 +101,7 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
   /**
-   * Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. To discover the pixels an ad account can use, call &#x60;GET /v1/accounts/{accountId}/tracking-tags?adAccountId&#x3D;act_...&#x60; (each entry carries &#x60;kind&#x60; and &#x60;ownerAdAccountId&#x60;), or &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Note this is a different resource from &#x60;GET /v1/ads/{adId}/tracking-tags&#x60;, which reads an ad&#39;s click-URL params (&#x60;url_tags&#x60;), not pixels. 
+   * Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. Requires &#x60;customEventType&#x60; alongside it; Meta rejects any promoted_object carrying &#x60;pixel_id&#x60; without &#x60;custom_event_type&#x60; (error_subcode 1885014), even when &#x60;customConversionId&#x60; is also present. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. To discover the pixels an ad account can use, call &#x60;GET /v1/accounts/{accountId}/tracking-tags?adAccountId&#x3D;act_...&#x60; (each entry carries &#x60;kind&#x60; and &#x60;ownerAdAccountId&#x60;), or &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Note this is a different resource from &#x60;GET /v1/ads/{adId}/tracking-tags&#x60;, which reads an ad&#39;s click-URL params (&#x60;url_tags&#x60;), not pixels. 
    * @return pixelId
    */
   @javax.annotation.Nullable
@@ -245,7 +245,7 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
   /**
-   * Custom Conversion ID, when optimising against one instead of a standard event.
+   * Custom Conversion ID, when optimising against one instead of a standard event. Accepted alone by this API, without &#x60;pixelId&#x60; or &#x60;customEventType&#x60;. If &#x60;pixelId&#x60; is also sent, &#x60;customEventType&#x60; is still required on the promoted_object (Meta rejects &#x60;pixel_id&#x60; without &#x60;custom_event_type&#x60;, error_subcode 1885014). 
    * @return customConversionId
    */
   @javax.annotation.Nullable

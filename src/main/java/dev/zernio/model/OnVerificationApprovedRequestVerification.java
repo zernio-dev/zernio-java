@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   OnVerificationApprovedRequestVerification.JSON_PROPERTY_CHANNEL,
   OnVerificationApprovedRequestVerification.JSON_PROPERTY_TO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:45:44.890579751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T14:25:27.680409747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnVerificationApprovedRequestVerification {
   public static final String JSON_PROPERTY_VERIFICATION_ID = "verificationId";
   @javax.annotation.Nullable

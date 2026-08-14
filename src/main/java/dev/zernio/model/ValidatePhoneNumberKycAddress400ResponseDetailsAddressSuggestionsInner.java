@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ValidatePhoneNumberKycAddress400ResponseDetailsAddressSuggestionsInner.JSON_PROPERTY_LABEL,
   ValidatePhoneNumberKycAddress400ResponseDetailsAddressSuggestionsInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:45:44.890579751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T14:25:27.680409747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePhoneNumberKycAddress400ResponseDetailsAddressSuggestionsInner {
   public static final String JSON_PROPERTY_FIELD = "field";
   @javax.annotation.Nullable
