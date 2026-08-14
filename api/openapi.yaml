@@ -70255,6 +70255,11 @@ components:
           type: string
         street_address:
           type: string
+        extended_address:
+          description: "Address complement: apartment, suite, unit, or the quadra/lote\
+            \ used in some countries. Optional. Does not substitute for a building\
+            \ number on street_address."
+          type: string
         locality:
           type: string
         administrative_area:
@@ -70405,6 +70410,11 @@ components:
           minLength: 2
           type: string
         street_address:
+          type: string
+        extended_address:
+          description: "Address complement: apartment, suite, unit, or the quadra/lote\
+            \ used in some countries. Optional. Does not substitute for a building\
+            \ number on street_address."
           type: string
         locality:
           description: City / town.

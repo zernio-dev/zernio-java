@@ -35,11 +35,12 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_COUNTRY,
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_STREET_ADDRESS,
+  ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_EXTENDED_ADDRESS,
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_LOCALITY,
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_ADMINISTRATIVE_AREA,
   ValidatePhoneNumberKycAddressRequest.JSON_PROPERTY_POSTAL_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:33:46.230453113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:06:47.043786045Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePhoneNumberKycAddressRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
@@ -48,6 +49,10 @@ public class ValidatePhoneNumberKycAddressRequest {
   public static final String JSON_PROPERTY_STREET_ADDRESS = "street_address";
   @javax.annotation.Nonnull
   private String streetAddress;
+
+  public static final String JSON_PROPERTY_EXTENDED_ADDRESS = "extended_address";
+  @javax.annotation.Nullable
+  private String extendedAddress;
 
   public static final String JSON_PROPERTY_LOCALITY = "locality";
   @javax.annotation.Nonnull
@@ -109,6 +114,30 @@ public class ValidatePhoneNumberKycAddressRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStreetAddress(@javax.annotation.Nonnull String streetAddress) {
     this.streetAddress = streetAddress;
+  }
+
+
+  public ValidatePhoneNumberKycAddressRequest extendedAddress(@javax.annotation.Nullable String extendedAddress) {
+    this.extendedAddress = extendedAddress;
+    return this;
+  }
+
+  /**
+   * Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address.
+   * @return extendedAddress
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXTENDED_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExtendedAddress() {
+    return extendedAddress;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXTENDED_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExtendedAddress(@javax.annotation.Nullable String extendedAddress) {
+    this.extendedAddress = extendedAddress;
   }
 
 
@@ -198,6 +227,7 @@ public class ValidatePhoneNumberKycAddressRequest {
     ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest = (ValidatePhoneNumberKycAddressRequest) o;
     return Objects.equals(this.country, validatePhoneNumberKycAddressRequest.country) &&
         Objects.equals(this.streetAddress, validatePhoneNumberKycAddressRequest.streetAddress) &&
+        Objects.equals(this.extendedAddress, validatePhoneNumberKycAddressRequest.extendedAddress) &&
         Objects.equals(this.locality, validatePhoneNumberKycAddressRequest.locality) &&
         Objects.equals(this.administrativeArea, validatePhoneNumberKycAddressRequest.administrativeArea) &&
         Objects.equals(this.postalCode, validatePhoneNumberKycAddressRequest.postalCode);
@@ -205,7 +235,7 @@ public class ValidatePhoneNumberKycAddressRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, streetAddress, locality, administrativeArea, postalCode);
+    return Objects.hash(country, streetAddress, extendedAddress, locality, administrativeArea, postalCode);
   }
 
   @Override
@@ -214,6 +244,7 @@ public class ValidatePhoneNumberKycAddressRequest {
     sb.append("class ValidatePhoneNumberKycAddressRequest {\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    streetAddress: ").append(toIndentedString(streetAddress)).append("\n");
+    sb.append("    extendedAddress: ").append(toIndentedString(extendedAddress)).append("\n");
     sb.append("    locality: ").append(toIndentedString(locality)).append("\n");
     sb.append("    administrativeArea: ").append(toIndentedString(administrativeArea)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
@@ -272,6 +303,11 @@ public class ValidatePhoneNumberKycAddressRequest {
     // add `street_address` to the URL query string
     if (getStreetAddress() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstreet_address%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStreetAddress()))));
+    }
+
+    // add `extended_address` to the URL query string
+    if (getExtendedAddress() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sextended_address%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExtendedAddress()))));
     }
 
     // add `locality` to the URL query string

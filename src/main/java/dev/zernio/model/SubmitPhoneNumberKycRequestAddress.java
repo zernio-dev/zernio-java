@@ -39,11 +39,12 @@ import dev.zernio.ApiClient;
   SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_FIRST_NAME,
   SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_LAST_NAME,
   SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_STREET_ADDRESS,
+  SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_EXTENDED_ADDRESS,
   SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_LOCALITY,
   SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_ADMINISTRATIVE_AREA,
   SubmitPhoneNumberKycRequestAddress.JSON_PROPERTY_POSTAL_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:33:46.230453113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:06:47.043786045Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKycRequestAddress {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable
@@ -68,6 +69,10 @@ public class SubmitPhoneNumberKycRequestAddress {
   public static final String JSON_PROPERTY_STREET_ADDRESS = "street_address";
   @javax.annotation.Nullable
   private String streetAddress;
+
+  public static final String JSON_PROPERTY_EXTENDED_ADDRESS = "extended_address";
+  @javax.annotation.Nullable
+  private String extendedAddress;
 
   public static final String JSON_PROPERTY_LOCALITY = "locality";
   @javax.annotation.Nullable
@@ -228,6 +233,30 @@ public class SubmitPhoneNumberKycRequestAddress {
   }
 
 
+  public SubmitPhoneNumberKycRequestAddress extendedAddress(@javax.annotation.Nullable String extendedAddress) {
+    this.extendedAddress = extendedAddress;
+    return this;
+  }
+
+  /**
+   * Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address.
+   * @return extendedAddress
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXTENDED_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExtendedAddress() {
+    return extendedAddress;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXTENDED_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExtendedAddress(@javax.annotation.Nullable String extendedAddress) {
+    this.extendedAddress = extendedAddress;
+  }
+
+
   public SubmitPhoneNumberKycRequestAddress locality(@javax.annotation.Nullable String locality) {
     this.locality = locality;
     return this;
@@ -318,6 +347,7 @@ public class SubmitPhoneNumberKycRequestAddress {
         Objects.equals(this.firstName, submitPhoneNumberKycRequestAddress.firstName) &&
         Objects.equals(this.lastName, submitPhoneNumberKycRequestAddress.lastName) &&
         Objects.equals(this.streetAddress, submitPhoneNumberKycRequestAddress.streetAddress) &&
+        Objects.equals(this.extendedAddress, submitPhoneNumberKycRequestAddress.extendedAddress) &&
         Objects.equals(this.locality, submitPhoneNumberKycRequestAddress.locality) &&
         Objects.equals(this.administrativeArea, submitPhoneNumberKycRequestAddress.administrativeArea) &&
         Objects.equals(this.postalCode, submitPhoneNumberKycRequestAddress.postalCode);
@@ -325,7 +355,7 @@ public class SubmitPhoneNumberKycRequestAddress {
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirementId, countryCode, businessName, firstName, lastName, streetAddress, locality, administrativeArea, postalCode);
+    return Objects.hash(requirementId, countryCode, businessName, firstName, lastName, streetAddress, extendedAddress, locality, administrativeArea, postalCode);
   }
 
   @Override
@@ -338,6 +368,7 @@ public class SubmitPhoneNumberKycRequestAddress {
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    streetAddress: ").append(toIndentedString(streetAddress)).append("\n");
+    sb.append("    extendedAddress: ").append(toIndentedString(extendedAddress)).append("\n");
     sb.append("    locality: ").append(toIndentedString(locality)).append("\n");
     sb.append("    administrativeArea: ").append(toIndentedString(administrativeArea)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
@@ -416,6 +447,11 @@ public class SubmitPhoneNumberKycRequestAddress {
     // add `street_address` to the URL query string
     if (getStreetAddress() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstreet_address%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStreetAddress()))));
+    }
+
+    // add `extended_address` to the URL query string
+    if (getExtendedAddress() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sextended_address%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExtendedAddress()))));
     }
 
     // add `locality` to the URL query string
