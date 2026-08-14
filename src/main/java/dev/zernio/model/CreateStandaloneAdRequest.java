@@ -146,7 +146,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T14:25:27.680409747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T15:45:03.057302879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -2561,7 +2561,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we auto-resolve the IG account linked to the connected Facebook Page (the existing default). Useful when a Page has more than one eligible IG account. 
+   * Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we use the Instagram actor Meta already runs the Page&#39;s other ads as, falling back to the Page&#39;s page-backed Instagram account. Useful when a Page has more than one eligible IG account. 
    * @return instagramAccountId
    */
   @javax.annotation.Nullable

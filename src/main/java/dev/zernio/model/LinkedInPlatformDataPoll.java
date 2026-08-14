@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   LinkedInPlatformDataPoll.JSON_PROPERTY_OPTIONS,
   LinkedInPlatformDataPoll.JSON_PROPERTY_DURATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T14:25:27.680409747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T15:45:03.057302879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformDataPoll {
   public static final String JSON_PROPERTY_QUESTION = "question";
   @javax.annotation.Nonnull

@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   InstagramAudioAsset.JSON_PROPERTY_IS_ADS_ELIGIBLE,
   InstagramAudioAsset.JSON_PROPERTY_ON_PLATFORM_AUDIO_PREVIEW_LINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T14:25:27.680409747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T15:45:03.057302879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramAudioAsset {
   public static final String JSON_PROPERTY_AUDIO_ID = "audioId";
   @javax.annotation.Nullable
