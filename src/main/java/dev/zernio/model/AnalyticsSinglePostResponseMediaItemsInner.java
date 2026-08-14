@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.net.URI;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,9 +41,11 @@ import dev.zernio.ApiClient;
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_TYPE,
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_URL,
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_THUMBNAIL,
-  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_ALT_TEXT
+  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_ALT_TEXT,
+  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_MEDIA_STATUS,
+  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_UNAVAILABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:33:46.230453113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponseMediaItemsInner {
   /**
    * Gets or Sets type
@@ -81,16 +87,88 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
   private TypeEnum type;
 
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nullable
-  private URI url;
+  private JsonNullable<URI> url = JsonNullable.<URI>undefined();
 
   public static final String JSON_PROPERTY_THUMBNAIL = "thumbnail";
-  @javax.annotation.Nullable
-  private URI thumbnail;
+  private JsonNullable<URI> thumbnail = JsonNullable.<URI>undefined();
 
   public static final String JSON_PROPERTY_ALT_TEXT = "altText";
   @javax.annotation.Nullable
   private String altText;
+
+  /**
+   * Present only when the media file could not be retrieved. Absent means the file is available at url.
+   */
+  public enum MediaStatusEnum {
+    UNAVAILABLE(String.valueOf("unavailable"));
+
+    private String value;
+
+    MediaStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MediaStatusEnum fromValue(String value) {
+      for (MediaStatusEnum b : MediaStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MEDIA_STATUS = "mediaStatus";
+  @javax.annotation.Nullable
+  private MediaStatusEnum mediaStatus;
+
+  /**
+   * Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.
+   */
+  public enum UnavailableReasonEnum {
+    PLATFORM_WITHHELD(String.valueOf("platform_withheld"));
+
+    private String value;
+
+    UnavailableReasonEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static UnavailableReasonEnum fromValue(String value) {
+      for (UnavailableReasonEnum b : UnavailableReasonEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_UNAVAILABLE_REASON = "unavailableReason";
+  @javax.annotation.Nullable
+  private UnavailableReasonEnum unavailableReason;
 
   public AnalyticsSinglePostResponseMediaItemsInner() { 
   }
@@ -120,50 +198,66 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
 
 
   public AnalyticsSinglePostResponseMediaItemsInner url(@javax.annotation.Nullable URI url) {
-    this.url = url;
+    this.url = JsonNullable.<URI>of(url);
     return this;
   }
 
   /**
-   * Direct URL to the media
+   * &#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable.&#39;
    * @return url
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public URI getUrl() {
-    return url;
+        return url.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrl(@javax.annotation.Nullable URI url) {
+
+  public JsonNullable<URI> getUrl_JsonNullable() {
+    return url;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_URL)
+  public void setUrl_JsonNullable(JsonNullable<URI> url) {
     this.url = url;
+  }
+
+  public void setUrl(@javax.annotation.Nullable URI url) {
+    this.url = JsonNullable.<URI>of(url);
   }
 
 
   public AnalyticsSinglePostResponseMediaItemsInner thumbnail(@javax.annotation.Nullable URI thumbnail) {
-    this.thumbnail = thumbnail;
+    this.thumbnail = JsonNullable.<URI>of(thumbnail);
     return this;
   }
 
   /**
-   * Thumbnail URL (same as url for images)
+   * Thumbnail URL (same as url for images). Still present when url is null.
    * @return thumbnail
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public URI getThumbnail() {
-    return thumbnail;
+        return thumbnail.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_THUMBNAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThumbnail(@javax.annotation.Nullable URI thumbnail) {
+
+  public JsonNullable<URI> getThumbnail_JsonNullable() {
+    return thumbnail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL)
+  public void setThumbnail_JsonNullable(JsonNullable<URI> thumbnail) {
     this.thumbnail = thumbnail;
+  }
+
+  public void setThumbnail(@javax.annotation.Nullable URI thumbnail) {
+    this.thumbnail = JsonNullable.<URI>of(thumbnail);
   }
 
 
@@ -191,6 +285,54 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
   }
 
 
+  public AnalyticsSinglePostResponseMediaItemsInner mediaStatus(@javax.annotation.Nullable MediaStatusEnum mediaStatus) {
+    this.mediaStatus = mediaStatus;
+    return this;
+  }
+
+  /**
+   * Present only when the media file could not be retrieved. Absent means the file is available at url.
+   * @return mediaStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MediaStatusEnum getMediaStatus() {
+    return mediaStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaStatus(@javax.annotation.Nullable MediaStatusEnum mediaStatus) {
+    this.mediaStatus = mediaStatus;
+  }
+
+
+  public AnalyticsSinglePostResponseMediaItemsInner unavailableReason(@javax.annotation.Nullable UnavailableReasonEnum unavailableReason) {
+    this.unavailableReason = unavailableReason;
+    return this;
+  }
+
+  /**
+   * Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.
+   * @return unavailableReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNAVAILABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UnavailableReasonEnum getUnavailableReason() {
+    return unavailableReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNAVAILABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnavailableReason(@javax.annotation.Nullable UnavailableReasonEnum unavailableReason) {
+    this.unavailableReason = unavailableReason;
+  }
+
+
   /**
    * Return true if this AnalyticsSinglePostResponse_mediaItems_inner object is equal to o.
    */
@@ -204,14 +346,27 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
     }
     AnalyticsSinglePostResponseMediaItemsInner analyticsSinglePostResponseMediaItemsInner = (AnalyticsSinglePostResponseMediaItemsInner) o;
     return Objects.equals(this.type, analyticsSinglePostResponseMediaItemsInner.type) &&
-        Objects.equals(this.url, analyticsSinglePostResponseMediaItemsInner.url) &&
-        Objects.equals(this.thumbnail, analyticsSinglePostResponseMediaItemsInner.thumbnail) &&
-        Objects.equals(this.altText, analyticsSinglePostResponseMediaItemsInner.altText);
+        equalsNullable(this.url, analyticsSinglePostResponseMediaItemsInner.url) &&
+        equalsNullable(this.thumbnail, analyticsSinglePostResponseMediaItemsInner.thumbnail) &&
+        Objects.equals(this.altText, analyticsSinglePostResponseMediaItemsInner.altText) &&
+        Objects.equals(this.mediaStatus, analyticsSinglePostResponseMediaItemsInner.mediaStatus) &&
+        Objects.equals(this.unavailableReason, analyticsSinglePostResponseMediaItemsInner.unavailableReason);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, url, thumbnail, altText);
+    return Objects.hash(type, hashCodeNullable(url), hashCodeNullable(thumbnail), altText, mediaStatus, unavailableReason);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -222,6 +377,8 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    thumbnail: ").append(toIndentedString(thumbnail)).append("\n");
     sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
+    sb.append("    mediaStatus: ").append(toIndentedString(mediaStatus)).append("\n");
+    sb.append("    unavailableReason: ").append(toIndentedString(unavailableReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +444,16 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
     // add `altText` to the URL query string
     if (getAltText() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saltText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAltText()))));
+    }
+
+    // add `mediaStatus` to the URL query string
+    if (getMediaStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaStatus()))));
+    }
+
+    // add `unavailableReason` to the URL query string
+    if (getUnavailableReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunavailableReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnavailableReason()))));
     }
 
     return joiner.toString();

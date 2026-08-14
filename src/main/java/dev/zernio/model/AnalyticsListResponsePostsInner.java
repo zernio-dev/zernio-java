@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.AnalyticsSinglePostResponseMediaItemsInner;
+import dev.zernio.model.AnalyticsListResponsePostsInnerMediaItemsInner;
 import dev.zernio.model.PlatformAnalytics;
 import dev.zernio.model.PostAnalytics;
 import java.net.URI;
@@ -60,7 +60,7 @@ import dev.zernio.ApiClient;
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:33:46.230453113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponsePostsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -161,7 +161,7 @@ public class AnalyticsListResponsePostsInner {
 
   public static final String JSON_PROPERTY_MEDIA_ITEMS = "mediaItems";
   @javax.annotation.Nullable
-  private List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = new ArrayList<>();
+  private List<AnalyticsListResponsePostsInnerMediaItemsInner> mediaItems = new ArrayList<>();
 
   public AnalyticsListResponsePostsInner() { 
   }
@@ -526,12 +526,12 @@ public class AnalyticsListResponsePostsInner {
   }
 
 
-  public AnalyticsListResponsePostsInner mediaItems(@javax.annotation.Nullable List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems) {
+  public AnalyticsListResponsePostsInner mediaItems(@javax.annotation.Nullable List<AnalyticsListResponsePostsInnerMediaItemsInner> mediaItems) {
     this.mediaItems = mediaItems;
     return this;
   }
 
-  public AnalyticsListResponsePostsInner addMediaItemsItem(AnalyticsSinglePostResponseMediaItemsInner mediaItemsItem) {
+  public AnalyticsListResponsePostsInner addMediaItemsItem(AnalyticsListResponsePostsInnerMediaItemsInner mediaItemsItem) {
     if (this.mediaItems == null) {
       this.mediaItems = new ArrayList<>();
     }
@@ -546,14 +546,14 @@ public class AnalyticsListResponsePostsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<AnalyticsSinglePostResponseMediaItemsInner> getMediaItems() {
+  public List<AnalyticsListResponsePostsInnerMediaItemsInner> getMediaItems() {
     return mediaItems;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaItems(@javax.annotation.Nullable List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems) {
+  public void setMediaItems(@javax.annotation.Nullable List<AnalyticsListResponsePostsInnerMediaItemsInner> mediaItems) {
     this.mediaItems = mediaItems;
   }
 

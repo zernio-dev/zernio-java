@@ -69,6 +69,7 @@ docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
 docs/AnalyticsListResponse.md
 docs/AnalyticsListResponsePostsInner.md
+docs/AnalyticsListResponsePostsInnerMediaItemsInner.md
 docs/AnalyticsOverview.md
 docs/AnalyticsOverviewDataStaleness.md
 docs/AnalyticsSinglePostResponse.md
@@ -1862,6 +1863,7 @@ src/main/java/dev/zernio/model/AdsTimelineResponse.java
 src/main/java/dev/zernio/model/AdsTimelineResponseRowsInner.java
 src/main/java/dev/zernio/model/AnalyticsListResponse.java
 src/main/java/dev/zernio/model/AnalyticsListResponsePostsInner.java
+src/main/java/dev/zernio/model/AnalyticsListResponsePostsInnerMediaItemsInner.java
 src/main/java/dev/zernio/model/AnalyticsOverview.java
 src/main/java/dev/zernio/model/AnalyticsOverviewDataStaleness.java
 src/main/java/dev/zernio/model/AnalyticsSinglePostResponse.java
@@ -3459,7 +3461,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadReferralReferralAdsContextDataTest.java
-src/test/java/dev/zernio/model/WebhookPayloadReferralReferralTest.java
-src/test/java/dev/zernio/model/WebhookPayloadReferralSenderTest.java
-src/test/java/dev/zernio/model/WebhookPayloadReferralTest.java
+src/test/java/dev/zernio/model/AnalyticsListResponsePostsInnerMediaItemsInnerTest.java

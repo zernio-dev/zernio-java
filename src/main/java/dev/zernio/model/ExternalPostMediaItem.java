@@ -30,14 +30,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published (url required) and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem. 
+ * A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem. 
  */
 @JsonPropertyOrder({
   ExternalPostMediaItem.JSON_PROPERTY_TYPE,
   ExternalPostMediaItem.JSON_PROPERTY_URL,
-  ExternalPostMediaItem.JSON_PROPERTY_THUMBNAIL
+  ExternalPostMediaItem.JSON_PROPERTY_THUMBNAIL,
+  ExternalPostMediaItem.JSON_PROPERTY_MEDIA_STATUS,
+  ExternalPostMediaItem.JSON_PROPERTY_UNAVAILABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:33:46.230453113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostMediaItem {
   /**
    * Gets or Sets type
@@ -79,12 +81,86 @@ public class ExternalPostMediaItem {
   private TypeEnum type;
 
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String url;
 
   public static final String JSON_PROPERTY_THUMBNAIL = "thumbnail";
   @javax.annotation.Nullable
   private String thumbnail;
+
+  /**
+   * Present only when the media file could not be retrieved. Absent means the file is available at url.
+   */
+  public enum MediaStatusEnum {
+    UNAVAILABLE(String.valueOf("unavailable"));
+
+    private String value;
+
+    MediaStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MediaStatusEnum fromValue(String value) {
+      for (MediaStatusEnum b : MediaStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MEDIA_STATUS = "mediaStatus";
+  @javax.annotation.Nullable
+  private MediaStatusEnum mediaStatus;
+
+  /**
+   * Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.
+   */
+  public enum UnavailableReasonEnum {
+    PLATFORM_WITHHELD(String.valueOf("platform_withheld"));
+
+    private String value;
+
+    UnavailableReasonEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static UnavailableReasonEnum fromValue(String value) {
+      for (UnavailableReasonEnum b : UnavailableReasonEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_UNAVAILABLE_REASON = "unavailableReason";
+  @javax.annotation.Nullable
+  private UnavailableReasonEnum unavailableReason;
 
   public ExternalPostMediaItem() { 
   }
@@ -113,26 +189,26 @@ public class ExternalPostMediaItem {
   }
 
 
-  public ExternalPostMediaItem url(@javax.annotation.Nonnull String url) {
+  public ExternalPostMediaItem url(@javax.annotation.Nullable String url) {
     this.url = url;
     return this;
   }
 
   /**
-   * Get url
+   * &#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable.&#39;
    * @return url
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(@javax.annotation.Nonnull String url) {
+  public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
   }
 
@@ -143,7 +219,7 @@ public class ExternalPostMediaItem {
   }
 
   /**
-   * Get thumbnail
+   * Cover image. Still present when url is null.
    * @return thumbnail
    */
   @javax.annotation.Nullable
@@ -161,6 +237,54 @@ public class ExternalPostMediaItem {
   }
 
 
+  public ExternalPostMediaItem mediaStatus(@javax.annotation.Nullable MediaStatusEnum mediaStatus) {
+    this.mediaStatus = mediaStatus;
+    return this;
+  }
+
+  /**
+   * Present only when the media file could not be retrieved. Absent means the file is available at url.
+   * @return mediaStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MediaStatusEnum getMediaStatus() {
+    return mediaStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaStatus(@javax.annotation.Nullable MediaStatusEnum mediaStatus) {
+    this.mediaStatus = mediaStatus;
+  }
+
+
+  public ExternalPostMediaItem unavailableReason(@javax.annotation.Nullable UnavailableReasonEnum unavailableReason) {
+    this.unavailableReason = unavailableReason;
+    return this;
+  }
+
+  /**
+   * Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.
+   * @return unavailableReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNAVAILABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UnavailableReasonEnum getUnavailableReason() {
+    return unavailableReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNAVAILABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnavailableReason(@javax.annotation.Nullable UnavailableReasonEnum unavailableReason) {
+    this.unavailableReason = unavailableReason;
+  }
+
+
   /**
    * Return true if this ExternalPostMediaItem object is equal to o.
    */
@@ -175,12 +299,14 @@ public class ExternalPostMediaItem {
     ExternalPostMediaItem externalPostMediaItem = (ExternalPostMediaItem) o;
     return Objects.equals(this.type, externalPostMediaItem.type) &&
         Objects.equals(this.url, externalPostMediaItem.url) &&
-        Objects.equals(this.thumbnail, externalPostMediaItem.thumbnail);
+        Objects.equals(this.thumbnail, externalPostMediaItem.thumbnail) &&
+        Objects.equals(this.mediaStatus, externalPostMediaItem.mediaStatus) &&
+        Objects.equals(this.unavailableReason, externalPostMediaItem.unavailableReason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, url, thumbnail);
+    return Objects.hash(type, url, thumbnail, mediaStatus, unavailableReason);
   }
 
   @Override
@@ -190,6 +316,8 @@ public class ExternalPostMediaItem {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    thumbnail: ").append(toIndentedString(thumbnail)).append("\n");
+    sb.append("    mediaStatus: ").append(toIndentedString(mediaStatus)).append("\n");
+    sb.append("    unavailableReason: ").append(toIndentedString(unavailableReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -250,6 +378,16 @@ public class ExternalPostMediaItem {
     // add `thumbnail` to the URL query string
     if (getThumbnail() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnail()))));
+    }
+
+    // add `mediaStatus` to the URL query string
+    if (getMediaStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaStatus()))));
+    }
+
+    // add `unavailableReason` to the URL query string
+    if (getUnavailableReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunavailableReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnavailableReason()))));
     }
 
     return joiner.toString();

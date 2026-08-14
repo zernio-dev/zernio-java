@@ -38725,9 +38725,13 @@ components:
         deletedAt: 2000-01-23T04:56:07.000+00:00
         mediaItems:
         - thumbnail: thumbnail
+          unavailableReason: platform_withheld
+          mediaStatus: unavailable
           type: image
           url: url
         - thumbnail: thumbnail
+          unavailableReason: platform_withheld
+          mediaStatus: unavailable
           type: image
           url: url
         publishedAt: 2000-01-23T04:56:07.000+00:00
@@ -38804,9 +38808,13 @@ components:
           deletedAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
           - thumbnail: thumbnail
+            unavailableReason: platform_withheld
+            mediaStatus: unavailable
             type: image
             url: url
           - thumbnail: thumbnail
+            unavailableReason: platform_withheld
+            mediaStatus: unavailable
             type: image
             url: url
           publishedAt: 2000-01-23T04:56:07.000+00:00
@@ -40493,9 +40501,11 @@ components:
           type: boolean
     ExternalPostMediaItem:
       description: |
-        A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published (url required) and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem.
+        A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem.
       example:
         thumbnail: thumbnail
+        unavailableReason: platform_withheld
+        mediaStatus: unavailable
         type: image
         url: url
       properties:
@@ -40505,8 +40515,27 @@ components:
           - video
           type: string
         url:
+          description: "'Direct URL to the media file. Null when the platform withholds\
+            \ it: check mediaStatus before downloading. Instagram omits the video\
+            \ file for Reels it flags as containing copyrighted material (its docs\
+            \ name audio as the usual cause), so type stays \"video\" while the file\
+            \ is permanently unreachable.'"
+          nullable: true
           type: string
         thumbnail:
+          description: Cover image. Still present when url is null.
+          type: string
+        mediaStatus:
+          description: Present only when the media file could not be retrieved. Absent
+            means the file is available at url.
+          enum:
+          - unavailable
+          type: string
+        unavailableReason:
+          description: Why the file is missing. platform_withheld means the platform
+            declined to return it and retrying will not help.
+          enum:
+          - platform_withheld
           type: string
       required:
       - type
@@ -42985,10 +43014,14 @@ components:
         mediaItems:
         - thumbnail: https://openapi-generator.tech
           altText: altText
+          unavailableReason: platform_withheld
+          mediaStatus: unavailable
           type: image
           url: https://openapi-generator.tech
         - thumbnail: https://openapi-generator.tech
           altText: altText
+          unavailableReason: platform_withheld
+          mediaStatus: unavailable
           type: image
           url: https://openapi-generator.tech
         scheduledFor: 2000-01-23T04:56:07.000+00:00
@@ -92758,8 +92791,47 @@ components:
       example:
         thumbnail: https://openapi-generator.tech
         altText: altText
+        unavailableReason: platform_withheld
+        mediaStatus: unavailable
         type: image
         url: https://openapi-generator.tech
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          type: string
+        url:
+          description: "'Direct URL to the media file. Null when the platform withholds\
+            \ it: check mediaStatus before downloading. Instagram omits the video\
+            \ file for Reels it flags as containing copyrighted material (its docs\
+            \ name audio as the usual cause), so type stays \"video\" while the file\
+            \ is permanently unreachable.'"
+          format: uri
+          nullable: true
+          type: string
+        thumbnail:
+          description: Thumbnail URL (same as url for images). Still present when
+            url is null.
+          format: uri
+          nullable: true
+          type: string
+        altText:
+          description: "Accessibility alt text set on the media, when present."
+          type: string
+        mediaStatus:
+          description: Present only when the media file could not be retrieved. Absent
+            means the file is available at url.
+          enum:
+          - unavailable
+          type: string
+        unavailableReason:
+          description: Why the file is missing. platform_withheld means the platform
+            declined to return it and retrying will not help.
+          enum:
+          - platform_withheld
+          type: string
+    AnalyticsListResponse_posts_inner_mediaItems_inner:
       properties:
         type:
           enum:
@@ -92827,7 +92899,7 @@ components:
           description: All media items for this post. Carousel posts contain one entry
             per slide.
           items:
-            $ref: "#/components/schemas/AnalyticsSinglePostResponse_mediaItems_inner"
+            $ref: "#/components/schemas/AnalyticsListResponse_posts_inner_mediaItems_inner"
           type: array
     LinkedInAggregateAnalyticsTotalResponse_analytics:
       example:
