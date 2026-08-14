@@ -28,6 +28,7 @@
 | FACEBOOK | &quot;facebook&quot; |
 | TELEGRAM | &quot;telegram&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
+| SMS | &quot;sms&quot; |
 
 
 

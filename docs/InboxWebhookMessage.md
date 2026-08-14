@@ -29,6 +29,7 @@ The message object included in inbox webhook payloads.
 | FACEBOOK | &quot;facebook&quot; |
 | TELEGRAM | &quot;telegram&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
+| SMS | &quot;sms&quot; |
 
 
 

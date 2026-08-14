@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Shared payload for message.delivered, message.read, and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.  Platform support:   * message.delivered — WhatsApp, Facebook Messenger.   * message.read      — WhatsApp, Facebook Messenger, Instagram.   * message.failed    — WhatsApp only (other platforms don&#39;t expose     per-message failure via webhook). 
+ * Shared payload for message.delivered, message.read, and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.  Platform support:   * message.delivered: WhatsApp, Facebook Messenger, SMS.   * message.read: WhatsApp, Facebook Messenger, Instagram. Not SMS     (carriers report delivery, never read).   * message.failed: WhatsApp and SMS (other platforms don&#39;t expose     per-message failure via webhook). On SMS, &#x60;error.code&#x60; is the     carrier&#39;s numeric code and &#x60;error.message&#x60; its reason. 
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageDeliveryStatus.JSON_PROPERTY_ID,
@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageDeliveryStatus.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadMessageDeliveryStatus.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:06:47.043786045Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T12:45:44.890579751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeliveryStatus {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

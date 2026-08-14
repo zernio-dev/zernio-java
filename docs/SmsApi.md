@@ -2445,7 +2445,7 @@ ApiResponse<[**ReuseSmsRegistrationForNumber200Response**](ReuseSmsRegistrationF
 
 Send an SMS/MMS
 
-Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Replies and delivery status arrive as webhooks**, not by polling: an inbound reply fires &#x60;message.received&#x60; with &#x60;platform: \&quot;sms\&quot;&#x60;, the first message of a new thread also fires &#x60;conversation.started&#x60;, and this message&#39;s own outcome fires &#x60;message.delivered&#x60; or &#x60;message.failed&#x60; (the latter carrying the carrier&#39;s error code).  **Opted-out recipients:** a send to a number that replied STOP is refused with &#x60;409&#x60;, never silently dropped.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
 
 ### Example
 
@@ -2512,7 +2512,7 @@ public class Example {
 | **200** | Message accepted for delivery. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
-| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
 | **422** | Idempotency-Key reused with a different body |  -  |
 | **502** | Carrier-side send failed |  -  |
 
@@ -2522,7 +2522,7 @@ public class Example {
 
 Send an SMS/MMS
 
-Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Replies and delivery status arrive as webhooks**, not by polling: an inbound reply fires &#x60;message.received&#x60; with &#x60;platform: \&quot;sms\&quot;&#x60;, the first message of a new thread also fires &#x60;conversation.started&#x60;, and this message&#39;s own outcome fires &#x60;message.delivered&#x60; or &#x60;message.failed&#x60; (the latter carrying the carrier&#39;s error code).  **Opted-out recipients:** a send to a number that replied STOP is refused with &#x60;409&#x60;, never silently dropped.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
 
 ### Example
 
@@ -2592,7 +2592,7 @@ ApiResponse<[**SendSms200Response**](SendSms200Response.md)>
 | **200** | Message accepted for delivery. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
-| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
 | **422** | Idempotency-Key reused with a different body |  -  |
 | **502** | Carrier-side send failed |  -  |
 
