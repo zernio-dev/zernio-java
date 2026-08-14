@@ -1677,6 +1677,8 @@ docs/WebhookPayloadReviewNew.md
 docs/WebhookPayloadReviewNewAccount.md
 docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadTest.md
+docs/WebhookPayloadWhatsAppTemplateCategoryUpdated.md
+docs/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md
@@ -3423,6 +3425,8 @@ src/main/java/dev/zernio/model/WebhookPayloadReviewNew.java
 src/main/java/dev/zernio/model/WebhookPayloadReviewNewAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadReviewUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadTest.java
+src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdated.java
+src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.java
@@ -3461,3 +3465,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplateTest.java
+src/test/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTest.java

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WhatsAppNamedParamExample.JSON_PROPERTY_PARAM_NAME,
   WhatsAppNamedParamExample.JSON_PROPERTY_EXAMPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T16:02:47.801880857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T17:15:24.697375454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppNamedParamExample {
   public static final String JSON_PROPERTY_PARAM_NAME = "param_name";
   @javax.annotation.Nonnull

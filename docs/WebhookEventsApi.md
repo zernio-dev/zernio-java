@@ -98,6 +98,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onWhatsAppNumberSuspendedWithHttpInfo**](WebhookEventsApi.md#onWhatsAppNumberSuspendedWithHttpInfo) | **POST** /whatsapp.number.suspended | WhatsApp number suspended event |
 | [**onWhatsAppNumberVerificationRequired**](WebhookEventsApi.md#onWhatsAppNumberVerificationRequired) | **POST** /whatsapp.number.verification_required | WhatsApp number verification-required event |
 | [**onWhatsAppNumberVerificationRequiredWithHttpInfo**](WebhookEventsApi.md#onWhatsAppNumberVerificationRequiredWithHttpInfo) | **POST** /whatsapp.number.verification_required | WhatsApp number verification-required event |
+| [**onWhatsAppTemplateCategoryUpdated**](WebhookEventsApi.md#onWhatsAppTemplateCategoryUpdated) | **POST** /whatsapp.template.category_updated | WhatsApp template category updated event |
+| [**onWhatsAppTemplateCategoryUpdatedWithHttpInfo**](WebhookEventsApi.md#onWhatsAppTemplateCategoryUpdatedWithHttpInfo) | **POST** /whatsapp.template.category_updated | WhatsApp template category updated event |
 | [**onWhatsAppTemplateStatusUpdated**](WebhookEventsApi.md#onWhatsAppTemplateStatusUpdated) | **POST** /whatsapp.template.status_updated | WhatsApp template status updated event |
 | [**onWhatsAppTemplateStatusUpdatedWithHttpInfo**](WebhookEventsApi.md#onWhatsAppTemplateStatusUpdatedWithHttpInfo) | **POST** /whatsapp.template.status_updated | WhatsApp template status updated event |
 
@@ -6756,6 +6758,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **onWhatsAppNumberVerificationRequiredRequest** | [**OnWhatsAppNumberVerificationRequiredRequest**](OnWhatsAppNumberVerificationRequiredRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onWhatsAppTemplateCategoryUpdated
+
+> void onWhatsAppTemplateCategoryUpdated(webhookPayloadWhatsAppTemplateCategoryUpdated)
+
+WhatsApp template category updated event
+
+Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval. Forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out. &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;; &#x60;template.category&#x60; is always the category right now. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated = new WebhookPayloadWhatsAppTemplateCategoryUpdated(); // WebhookPayloadWhatsAppTemplateCategoryUpdated | 
+        try {
+            apiInstance.onWhatsAppTemplateCategoryUpdated(webhookPayloadWhatsAppTemplateCategoryUpdated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onWhatsAppTemplateCategoryUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadWhatsAppTemplateCategoryUpdated** | [**WebhookPayloadWhatsAppTemplateCategoryUpdated**](WebhookPayloadWhatsAppTemplateCategoryUpdated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onWhatsAppTemplateCategoryUpdatedWithHttpInfo
+
+> ApiResponse<Void> onWhatsAppTemplateCategoryUpdated onWhatsAppTemplateCategoryUpdatedWithHttpInfo(webhookPayloadWhatsAppTemplateCategoryUpdated)
+
+WhatsApp template category updated event
+
+Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval. Forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out. &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;; &#x60;template.category&#x60; is always the category right now. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated = new WebhookPayloadWhatsAppTemplateCategoryUpdated(); // WebhookPayloadWhatsAppTemplateCategoryUpdated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onWhatsAppTemplateCategoryUpdatedWithHttpInfo(webhookPayloadWhatsAppTemplateCategoryUpdated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onWhatsAppTemplateCategoryUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadWhatsAppTemplateCategoryUpdated** | [**WebhookPayloadWhatsAppTemplateCategoryUpdated**](WebhookPayloadWhatsAppTemplateCategoryUpdated.md)|  | |
 
 ### Return type
 

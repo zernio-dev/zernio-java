@@ -53,6 +53,7 @@ import dev.zernio.model.WebhookPayloadReferral;
 import dev.zernio.model.WebhookPayloadReviewNew;
 import dev.zernio.model.WebhookPayloadReviewUpdated;
 import dev.zernio.model.WebhookPayloadTest;
+import dev.zernio.model.WebhookPayloadWhatsAppTemplateCategoryUpdated;
 import dev.zernio.model.WebhookPayloadWhatsAppTemplateStatusUpdated;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -86,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T16:02:47.801880857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T17:15:24.697375454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -5311,6 +5312,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberVerificationRequiredRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp template category updated event
+   * Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval. Forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out. &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;; &#x60;template.category&#x60; is always the category right now. 
+   * @param webhookPayloadWhatsAppTemplateCategoryUpdated  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppTemplateCategoryUpdated(@javax.annotation.Nonnull WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated) throws ApiException {
+    onWhatsAppTemplateCategoryUpdated(webhookPayloadWhatsAppTemplateCategoryUpdated, null);
+  }
+
+  /**
+   * WhatsApp template category updated event
+   * Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval. Forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out. &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;; &#x60;template.category&#x60; is always the category right now. 
+   * @param webhookPayloadWhatsAppTemplateCategoryUpdated  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppTemplateCategoryUpdated(@javax.annotation.Nonnull WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated, Map<String, String> headers) throws ApiException {
+    onWhatsAppTemplateCategoryUpdatedWithHttpInfo(webhookPayloadWhatsAppTemplateCategoryUpdated, headers);
+  }
+
+  /**
+   * WhatsApp template category updated event
+   * Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval. Forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out. &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;; &#x60;template.category&#x60; is always the category right now. 
+   * @param webhookPayloadWhatsAppTemplateCategoryUpdated  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppTemplateCategoryUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated) throws ApiException {
+    return onWhatsAppTemplateCategoryUpdatedWithHttpInfo(webhookPayloadWhatsAppTemplateCategoryUpdated, null);
+  }
+
+  /**
+   * WhatsApp template category updated event
+   * Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval. Forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out. &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;; &#x60;template.category&#x60; is always the category right now. 
+   * @param webhookPayloadWhatsAppTemplateCategoryUpdated  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppTemplateCategoryUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppTemplateCategoryUpdatedRequestBuilder(webhookPayloadWhatsAppTemplateCategoryUpdated, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppTemplateCategoryUpdated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppTemplateCategoryUpdatedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadWhatsAppTemplateCategoryUpdated' is set
+    if (webhookPayloadWhatsAppTemplateCategoryUpdated == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadWhatsAppTemplateCategoryUpdated' when calling onWhatsAppTemplateCategoryUpdated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.template.category_updated";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadWhatsAppTemplateCategoryUpdated);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

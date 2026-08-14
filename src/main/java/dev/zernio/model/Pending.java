@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   Pending.JSON_PROPERTY_EXPIRES_AT,
   Pending.JSON_PROPERTY_EXPIRES_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T16:02:47.801880857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T17:15:24.697375454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Pending {
   /**
    * Gets or Sets status

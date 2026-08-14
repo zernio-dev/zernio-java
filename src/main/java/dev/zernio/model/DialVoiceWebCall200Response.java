@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   DialVoiceWebCall200Response.JSON_PROPERTY_TO,
   DialVoiceWebCall200Response.JSON_PROPERTY_RECORDING_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T16:02:47.801880857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T17:15:24.697375454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DialVoiceWebCall200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

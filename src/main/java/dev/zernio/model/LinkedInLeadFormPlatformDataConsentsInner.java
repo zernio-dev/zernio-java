@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   LinkedInLeadFormPlatformDataConsentsInner.JSON_PROPERTY_DESCRIPTION,
   LinkedInLeadFormPlatformDataConsentsInner.JSON_PROPERTY_REQUIRED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T16:02:47.801880857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T17:15:24.697375454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInLeadFormPlatformDataConsentsInner {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nonnull
