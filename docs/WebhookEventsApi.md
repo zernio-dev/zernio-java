@@ -68,6 +68,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onPostTikTokUrlResolvedWithHttpInfo**](WebhookEventsApi.md#onPostTikTokUrlResolvedWithHttpInfo) | **POST** /post.tiktok.url_resolved | TikTok post URL resolved event |
 | [**onReactionReceived**](WebhookEventsApi.md#onReactionReceived) | **POST** /reaction.received | Reaction received event |
 | [**onReactionReceivedWithHttpInfo**](WebhookEventsApi.md#onReactionReceivedWithHttpInfo) | **POST** /reaction.received | Reaction received event |
+| [**onReferralReceived**](WebhookEventsApi.md#onReferralReceived) | **POST** /referral.received | Referral received event |
+| [**onReferralReceivedWithHttpInfo**](WebhookEventsApi.md#onReferralReceivedWithHttpInfo) | **POST** /referral.received | Referral received event |
 | [**onReviewNew**](WebhookEventsApi.md#onReviewNew) | **POST** /review.new | Review new event |
 | [**onReviewNewWithHttpInfo**](WebhookEventsApi.md#onReviewNewWithHttpInfo) | **POST** /review.new | Review new event |
 | [**onReviewUpdated**](WebhookEventsApi.md#onReviewUpdated) | **POST** /review.updated | Review updated event |
@@ -4624,6 +4626,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadReaction** | [**WebhookPayloadReaction**](WebhookPayloadReaction.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onReferralReceived
+
+> void onReferralReceived(webhookPayloadReferral)
+
+Referral received event
+
+Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a &#x60;ref&#x60; parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). Requires the Inbox add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadReferral webhookPayloadReferral = new WebhookPayloadReferral(); // WebhookPayloadReferral | 
+        try {
+            apiInstance.onReferralReceived(webhookPayloadReferral);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onReferralReceived");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadReferral** | [**WebhookPayloadReferral**](WebhookPayloadReferral.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onReferralReceivedWithHttpInfo
+
+> ApiResponse<Void> onReferralReceived onReferralReceivedWithHttpInfo(webhookPayloadReferral)
+
+Referral received event
+
+Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a &#x60;ref&#x60; parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). Requires the Inbox add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadReferral webhookPayloadReferral = new WebhookPayloadReferral(); // WebhookPayloadReferral | 
+        try {
+            ApiResponse<Void> response = apiInstance.onReferralReceivedWithHttpInfo(webhookPayloadReferral);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onReferralReceived");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadReferral** | [**WebhookPayloadReferral**](WebhookPayloadReferral.md)|  | |
 
 ### Return type
 

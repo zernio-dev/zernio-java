@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Ad-click attribution forwarded verbatim from Meta. Populated only on the FIRST inbound message after the click; absent on subsequent messages of the same conversation.  The populated subset identifies the source platform:   - &#x60;ctwa_clid&#x60; and &#x60;source_*&#x60; fields: WhatsApp CTWA     (Click-to-WhatsApp). Attribution window is 7 days from click.     Forward to Meta Conversions API for Business Messaging replay.   - &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60;: Facebook Messenger CTM     (Click-to-Message) or Instagram CTD (Click-to-Direct). Use     &#x60;ad_id&#x60; to attribute the conversation to a specific ad. 
+ * Click attribution forwarded verbatim from Meta. Populated only on the FIRST inbound message after the click; absent on subsequent messages of the same conversation. On Instagram and Messenger a RETURNING click also attaches it to the first message that follows, so read it on every &#x60;message.received&#x60; for per-click attribution; a click that opens an existing thread WITHOUT a message arrives as the separate &#x60;referral.received&#x60; event.  The populated subset identifies the source:   - &#x60;ctwa_clid&#x60; and &#x60;source_*&#x60; fields: WhatsApp CTWA     (Click-to-WhatsApp). Attribution window is 7 days from click.     Forward to Meta Conversions API for Business Messaging replay.   - &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60;: Facebook Messenger CTM     (Click-to-Message) or Instagram CTD (Click-to-Direct). Use     &#x60;ad_id&#x60; to attribute the conversation to a specific ad.   - &#x60;ref&#x60; without &#x60;ad_id&#x60;: an ig.me / m.me link carrying a     &#x60;?ref&#x3D;&#x60; parameter (&#x60;source&#x60; is &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or     &#x60;IGME-SOURCE-LINK&#x60; depending on surface - treat it as     opaque). Instagram delivers ig.me refs on new threads only     when the account has at least one Ice Breaker configured     (&#x60;PUT /v1/accounts/{accountId}/instagram-ice-breakers&#x60;). 
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_CTWA_CLID,
@@ -48,9 +48,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_REF,
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_SOURCE,
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_TYPE,
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_REFERER_URI,
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_ADS_CONTEXT_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T10:36:55.112235167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadataReferral {
   public static final String JSON_PROPERTY_CTWA_CLID = "ctwa_clid";
   @javax.annotation.Nullable
@@ -107,6 +108,10 @@ public class WebhookPayloadMessageMetadataReferral {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable
   private String type;
+
+  public static final String JSON_PROPERTY_REFERER_URI = "referer_uri";
+  @javax.annotation.Nullable
+  private String refererUri;
 
   public static final String JSON_PROPERTY_ADS_CONTEXT_DATA = "ads_context_data";
   @javax.annotation.Nullable
@@ -385,7 +390,7 @@ public class WebhookPayloadMessageMetadataReferral {
   }
 
   /**
-   * Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. 
+   * The &#x60;ref&#x60; parameter passed through from the Meta ad creative or from an ig.me / m.me link. Instagram / Facebook Messenger only. 
    * @return ref
    */
   @javax.annotation.Nullable
@@ -409,7 +414,7 @@ public class WebhookPayloadMessageMetadataReferral {
   }
 
   /**
-   * Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+   * Meta-supplied source identifier (&#x60;ADS&#x60; for ad clicks; &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or &#x60;IGME-SOURCE-LINK&#x60; for ref links). Instagram / Facebook Messenger only. 
    * @return source
    */
   @javax.annotation.Nullable
@@ -433,7 +438,7 @@ public class WebhookPayloadMessageMetadataReferral {
   }
 
   /**
-   * Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+   * Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Instagram / Facebook Messenger only. 
    * @return type
    */
   @javax.annotation.Nullable
@@ -448,6 +453,30 @@ public class WebhookPayloadMessageMetadataReferral {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+
+  public WebhookPayloadMessageMetadataReferral refererUri(@javax.annotation.Nullable String refererUri) {
+    this.refererUri = refererUri;
+    return this;
+  }
+
+  /**
+   * URI of the originating site, when Meta supplies one (m.me links opened from the web). Facebook Messenger only. 
+   * @return refererUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REFERER_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRefererUri() {
+    return refererUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REFERER_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRefererUri(@javax.annotation.Nullable String refererUri) {
+    this.refererUri = refererUri;
   }
 
 
@@ -501,12 +530,13 @@ public class WebhookPayloadMessageMetadataReferral {
         Objects.equals(this.ref, webhookPayloadMessageMetadataReferral.ref) &&
         Objects.equals(this.source, webhookPayloadMessageMetadataReferral.source) &&
         Objects.equals(this.type, webhookPayloadMessageMetadataReferral.type) &&
+        Objects.equals(this.refererUri, webhookPayloadMessageMetadataReferral.refererUri) &&
         Objects.equals(this.adsContextData, webhookPayloadMessageMetadataReferral.adsContextData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ctwaClid, sourceId, sourceType, sourceUrl, headline, body, mediaType, imageUrl, videoUrl, thumbnailUrl, adId, ref, source, type, adsContextData);
+    return Objects.hash(ctwaClid, sourceId, sourceType, sourceUrl, headline, body, mediaType, imageUrl, videoUrl, thumbnailUrl, adId, ref, source, type, refererUri, adsContextData);
   }
 
   @Override
@@ -527,6 +557,7 @@ public class WebhookPayloadMessageMetadataReferral {
     sb.append("    ref: ").append(toIndentedString(ref)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    refererUri: ").append(toIndentedString(refererUri)).append("\n");
     sb.append("    adsContextData: ").append(toIndentedString(adsContextData)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -643,6 +674,11 @@ public class WebhookPayloadMessageMetadataReferral {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `referer_uri` to the URL query string
+    if (getRefererUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreferer_uri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRefererUri()))));
     }
 
     // add `ads_context_data` to the URL query string

@@ -49,6 +49,7 @@ import dev.zernio.model.WebhookPayloadMessageSent;
 import dev.zernio.model.WebhookPayloadPost;
 import dev.zernio.model.WebhookPayloadPostPlatform;
 import dev.zernio.model.WebhookPayloadReaction;
+import dev.zernio.model.WebhookPayloadReferral;
 import dev.zernio.model.WebhookPayloadReviewNew;
 import dev.zernio.model.WebhookPayloadReviewUpdated;
 import dev.zernio.model.WebhookPayloadTest;
@@ -85,7 +86,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T10:36:55.112235167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3675,6 +3676,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadReaction);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Referral received event
+   * Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a &#x60;ref&#x60; parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). Requires the Inbox add-on. 
+   * @param webhookPayloadReferral  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onReferralReceived(@javax.annotation.Nonnull WebhookPayloadReferral webhookPayloadReferral) throws ApiException {
+    onReferralReceived(webhookPayloadReferral, null);
+  }
+
+  /**
+   * Referral received event
+   * Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a &#x60;ref&#x60; parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). Requires the Inbox add-on. 
+   * @param webhookPayloadReferral  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onReferralReceived(@javax.annotation.Nonnull WebhookPayloadReferral webhookPayloadReferral, Map<String, String> headers) throws ApiException {
+    onReferralReceivedWithHttpInfo(webhookPayloadReferral, headers);
+  }
+
+  /**
+   * Referral received event
+   * Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a &#x60;ref&#x60; parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). Requires the Inbox add-on. 
+   * @param webhookPayloadReferral  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReferralReceivedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReferral webhookPayloadReferral) throws ApiException {
+    return onReferralReceivedWithHttpInfo(webhookPayloadReferral, null);
+  }
+
+  /**
+   * Referral received event
+   * Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a &#x60;ref&#x60; parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). Requires the Inbox add-on. 
+   * @param webhookPayloadReferral  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReferralReceivedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReferral webhookPayloadReferral, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onReferralReceivedRequestBuilder(webhookPayloadReferral, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onReferralReceived", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onReferralReceivedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadReferral webhookPayloadReferral, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadReferral' is set
+    if (webhookPayloadReferral == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadReferral' when calling onReferralReceived");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/referral.received";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadReferral);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

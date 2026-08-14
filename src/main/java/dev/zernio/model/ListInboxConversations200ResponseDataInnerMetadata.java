@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Ad-click attribution for a conversation that started from a Meta ad. Absent when the conversation did not originate from an ad click.  Captured from the referral Meta attaches to the first inbound message after the click, which is the only message that carries it. If the same person later clicks a different ad, the original values are kept, so the first ad wins. One exception on WhatsApp: when Meta omits &#x60;ctwa_clid&#x60; from that referral, a later Meta automatic event can supply it and refresh &#x60;ctwa_captured_at&#x60;, so treat &#x60;ctwa_captured_at&#x60; as the time Zernio stored the value, not the time of the click.  Two families of keys, one per surface. They never appear together:    - &#x60;ctwa_*&#x60; is WhatsApp Click-to-WhatsApp. The ad ID is     &#x60;ctwa_source_id&#x60;. There is no &#x60;meta_ad_id&#x60; on WhatsApp.   - &#x60;meta_ad_*&#x60; is Instagram Click-to-Direct and Facebook Messenger     Click-to-Message. The ad ID is &#x60;meta_ad_id&#x60;. &#x60;ctwa_clid&#x60; never     appears on these platforms.  Every key is optional and only the keys Meta supplied are returned, so read defensively. Meta does not send a campaign or ad set ID, so none is exposed here. More keys may be added over time. Treat any key you do not recognise as an opaque string.  Key names differ from the &#x60;message.received&#x60; webhook on purpose. The webhook forwards Meta&#39;s referral verbatim (&#x60;ad_id&#x60;, &#x60;source&#x60;, &#x60;type&#x60;) while the stored conversation record uses the prefixed names below. Renaming either side would break existing integrations, so both spellings are kept. 
+ * Click attribution for a conversation that started from a Meta ad or a ref-tagged ig.me / m.me link. Absent when the conversation did not originate from an attributable click.  Captured from the referral Meta delivers for the click. If the same person later arrives through a different ad or link, the original values are kept, so the first referral wins; read the fresh referral per click on the &#x60;message.received&#x60; / &#x60;referral.received&#x60; webhooks instead. One exception on WhatsApp: when Meta omits &#x60;ctwa_clid&#x60; from that referral, a later Meta automatic event can supply it and refresh &#x60;ctwa_captured_at&#x60;, so treat &#x60;ctwa_captured_at&#x60; as the time Zernio stored the value, not the time of the click.  Two families of keys, one per surface. They never appear together:    - &#x60;ctwa_*&#x60; is WhatsApp Click-to-WhatsApp. The ad ID is     &#x60;ctwa_source_id&#x60;. There is no &#x60;meta_ad_id&#x60; on WhatsApp.   - &#x60;meta_ad_*&#x60; is Instagram Click-to-Direct, Facebook Messenger     Click-to-Message, and ig.me / m.me ref links. The ad ID is     &#x60;meta_ad_id&#x60; (ad clicks only; a link capture carries     &#x60;meta_ad_ref&#x60; without it). &#x60;ctwa_clid&#x60; never appears on these     platforms.  Every key is optional and only the keys Meta supplied are returned, so read defensively. Meta does not send a campaign or ad set ID, so none is exposed here. More keys may be added over time. Treat any key you do not recognise as an opaque string.  Key names differ from the &#x60;message.received&#x60; webhook on purpose. The webhook forwards Meta&#39;s referral verbatim (&#x60;ad_id&#x60;, &#x60;source&#x60;, &#x60;type&#x60;) while the stored conversation record uses the prefixed names below. Renaming either side would break existing integrations, so both spellings are kept. 
  */
 @JsonPropertyOrder({
   ListInboxConversations200ResponseDataInnerMetadata.JSON_PROPERTY_CTWA_CLID,
@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInnerMetadata.JSON_PROPERTY_META_AD_FLOW_ID,
   ListInboxConversations200ResponseDataInnerMetadata.JSON_PROPERTY_META_AD_CAPTURED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T10:36:55.112235167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInnerMetadata {
   public static final String JSON_PROPERTY_CTWA_CLID = "ctwa_clid";
   @javax.annotation.Nullable
@@ -275,7 +275,7 @@ public class ListInboxConversations200ResponseDataInnerMetadata {
   }
 
   /**
-   * Instagram and Facebook only. The Meta ad ID the user clicked. Always present when an Instagram or Facebook referral was captured.
+   * Instagram and Facebook only. The Meta ad ID the user clicked. Present for ad clicks; absent when the capture came from an ig.me / m.me ref link.
    * @return metaAdId
    */
   @javax.annotation.Nullable
@@ -299,7 +299,7 @@ public class ListInboxConversations200ResponseDataInnerMetadata {
   }
 
   /**
-   * Instagram and Facebook only. Meta-supplied source identifier, for example ADS.
+   * Instagram and Facebook only. Meta-supplied source identifier: ADS for ad clicks; SHORTLINK, SHORTLINKS or IGME-SOURCE-LINK for ref links (treat as opaque).
    * @return metaAdSource
    */
   @javax.annotation.Nullable
@@ -347,7 +347,7 @@ public class ListInboxConversations200ResponseDataInnerMetadata {
   }
 
   /**
-   * Instagram and Facebook only. The ref parameter passed through from the ad creative.
+   * Instagram and Facebook only. The ref parameter passed through from the ad creative or the ig.me / m.me link.
    * @return metaAdRef
    */
   @javax.annotation.Nullable

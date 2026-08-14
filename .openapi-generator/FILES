@@ -1668,6 +1668,10 @@ docs/WebhookPayloadPostPostPlatformsInner.md
 docs/WebhookPayloadReaction.md
 docs/WebhookPayloadReactionReaction.md
 docs/WebhookPayloadReactionReactionSender.md
+docs/WebhookPayloadReferral.md
+docs/WebhookPayloadReferralReferral.md
+docs/WebhookPayloadReferralReferralAdsContextData.md
+docs/WebhookPayloadReferralSender.md
 docs/WebhookPayloadReviewNew.md
 docs/WebhookPayloadReviewNewAccount.md
 docs/WebhookPayloadReviewUpdated.md
@@ -3409,6 +3413,10 @@ src/main/java/dev/zernio/model/WebhookPayloadPostPostPlatformsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadReaction.java
 src/main/java/dev/zernio/model/WebhookPayloadReactionReaction.java
 src/main/java/dev/zernio/model/WebhookPayloadReactionReactionSender.java
+src/main/java/dev/zernio/model/WebhookPayloadReferral.java
+src/main/java/dev/zernio/model/WebhookPayloadReferralReferral.java
+src/main/java/dev/zernio/model/WebhookPayloadReferralReferralAdsContextData.java
+src/main/java/dev/zernio/model/WebhookPayloadReferralSender.java
 src/main/java/dev/zernio/model/WebhookPayloadReviewNew.java
 src/main/java/dev/zernio/model/WebhookPayloadReviewNewAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadReviewUpdated.java
@@ -3451,3 +3459,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadReferralReferralAdsContextDataTest.java
+src/test/java/dev/zernio/model/WebhookPayloadReferralReferralTest.java
+src/test/java/dev/zernio/model/WebhookPayloadReferralSenderTest.java
+src/test/java/dev/zernio/model/WebhookPayloadReferralTest.java

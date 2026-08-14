@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner.JSON_PROPERTY_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T10:36:55.112235167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T11:14:35.115701409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner {
   public static final String JSON_PROPERTY_URI = "uri";
   @javax.annotation.Nonnull
