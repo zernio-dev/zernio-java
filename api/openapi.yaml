@@ -35773,8 +35773,11 @@ components:
         currency:
           description: |
             ISO 4217 currency code matching the ad account's currency
-            (e.g. `USD`). Optional; Meta infers from the ad account
-            when omitted.
+            (e.g. `USD`). Optional: Zernio resolves it from the ad account
+            when omitted. The value selects the minor-unit exponent Zernio
+            converts budget/bid amounts by before calling Meta (most
+            currencies are cents; zero-decimal currencies like JPY/KRW are
+            sent as-is).
           maxLength: 3
           minLength: 3
           type: string
@@ -83469,7 +83472,14 @@ components:
           - WHATSAPP
           type: string
         currency:
+          description: "ISO 4217 currency code matching the ad account's currency.\
+            \ Meta only. Optional: Zernio resolves it from the ad account when omitted.\
+            \ The value selects the minor-unit exponent Zernio converts budget/bid\
+            \ amounts by before calling Meta (most currencies are cents; zero-decimal\
+            \ currencies like JPY/KRW are sent as-is)."
           example: USD
+          maxLength: 3
+          minLength: 3
           type: string
         schedule:
           $ref: "#/components/schemas/boostPost_request_schedule"
@@ -84570,6 +84580,13 @@ components:
           - campaign
           type: string
         currency:
+          description: "ISO 4217 currency code matching the ad account's currency\
+            \ (e.g. `USD`). Meta only. Optional: Zernio resolves it from the ad account\
+            \ when omitted. The value selects the minor-unit exponent Zernio converts\
+            \ budget/bid amounts by before calling Meta (most currencies are cents;\
+            \ zero-decimal currencies like JPY/KRW are sent as-is)."
+          maxLength: 3
+          minLength: 3
           type: string
         headline:
           description: "Required for Meta, Google, Pinterest, LinkedIn, and OpenAI\
