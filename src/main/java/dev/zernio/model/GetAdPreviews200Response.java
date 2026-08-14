@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetAdPreviews200Response.JSON_PROPERTY_AD_ID,
   GetAdPreviews200Response.JSON_PROPERTY_PREVIEWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-13T19:53:18.463143951Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T10:36:55.112235167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdPreviews200Response {
   public static final String JSON_PROPERTY_AD_ID = "adId";
   @javax.annotation.Nullable
