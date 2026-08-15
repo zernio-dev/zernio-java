@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GeoRestriction.JSON_PROPERTY_COUNTRIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:30:02.012884959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:43:41.281104499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GeoRestriction {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nonnull

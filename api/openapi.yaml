@@ -6781,8 +6781,15 @@ paths:
       - application/json
   /v1/accounts/{accountId}/health:
     get:
-      description: "Returns detailed health info for a specific account including\
-        \ token status, permissions, and recommendations."
+      description: |
+        Returns detailed health info for a specific account including token status, permissions, and recommendations.
+
+        For WhatsApp accounts the response also includes `platformConnection`, a live probe of the
+        Meta link behind the channel (the same read as `GET /v1/whatsapp/number-info`). The OAuth
+        token can be perfectly valid while Meta refuses to serve the phone-number object (for
+        example after a phone-side coexistence disconnect), so `tokenStatus` alone is not a
+        liveness signal for WhatsApp. When the Meta link is dead, `platformConnection.status` is
+        `disconnected` and the overall `status` is `error`.
       operationId: getAccountHealth
       parameters:
       - description: The account ID to check
@@ -6829,6 +6836,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getAccountHealth_200_response"
           description: Account health details
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -54224,6 +54233,56 @@ components:
           items:
             type: string
           type: array
+    getAccountHealth_200_response_platformConnection_metaError:
+      description: Set only when status is `disconnected`
+      example:
+        code: 0
+        subcode: 6
+        message: message
+      properties:
+        code:
+          description: Meta Graph error code (100)
+          type: integer
+        subcode:
+          description: Meta Graph error subcode (33)
+          type: integer
+        message:
+          type: string
+    getAccountHealth_200_response_platformConnection:
+      description: "WhatsApp accounts only. Live probe of the Meta link behind the\
+        \ channel, performed at request time (the same read as GET /v1/whatsapp/number-info)."
+      example:
+        checkedAt: 2000-01-23T04:56:07.000+00:00
+        metaError:
+          code: 0
+          subcode: 6
+          message: message
+        phoneStatus: phoneStatus
+        status: connected
+      properties:
+        status:
+          description: "`connected` = Meta served the channel object. `disconnected`\
+            \ = Meta refused to serve it (Graph error 100, subcode 33), which is how\
+            \ a phone-side coexistence disconnect surfaces. `unknown` = the live read\
+            \ failed for another reason (timeout, transient Meta error), not evidence\
+            \ either way."
+          enum:
+          - connected
+          - disconnected
+          - unknown
+          type: string
+        checkedAt:
+          description: When this live probe ran (always the current request; never
+            cached)
+          format: date-time
+          type: string
+        phoneStatus:
+          description: "Meta's own `status` field from the phone-number node (for\
+            \ example CONNECTED), when the object was readable"
+          nullable: true
+          type: string
+        metaError:
+          $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection_metaError"
     getAccountHealth_200_response:
       example:
         accountId: accountId
@@ -54269,6 +54328,14 @@ components:
         platform: platform
         username: username
         status: healthy
+        platformConnection:
+          checkedAt: 2000-01-23T04:56:07.000+00:00
+          metaError:
+            code: 0
+            subcode: 6
+            message: message
+          phoneStatus: phoneStatus
+          status: connected
       properties:
         accountId:
           type: string
@@ -54299,6 +54366,8 @@ components:
           items:
             type: string
           type: array
+        platformConnection:
+          $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection"
     getInstagramFollowStatus_200_response:
       example:
         accountId: accountId

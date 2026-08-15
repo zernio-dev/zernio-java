@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:30:02.012884959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:43:41.281104499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -300,7 +300,7 @@ public class AccountsApi {
 
   /**
    * Check account health
-   * Returns detailed health info for a specific account including token status, permissions, and recommendations.
+   * Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
    * @param accountId The account ID to check (required)
    * @return GetAccountHealth200Response
    * @throws ApiException if fails to make API call
@@ -311,7 +311,7 @@ public class AccountsApi {
 
   /**
    * Check account health
-   * Returns detailed health info for a specific account including token status, permissions, and recommendations.
+   * Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
    * @param accountId The account ID to check (required)
    * @param headers Optional headers to include in the request
    * @return GetAccountHealth200Response
@@ -324,7 +324,7 @@ public class AccountsApi {
 
   /**
    * Check account health
-   * Returns detailed health info for a specific account including token status, permissions, and recommendations.
+   * Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
    * @param accountId The account ID to check (required)
    * @return ApiResponse&lt;GetAccountHealth200Response&gt;
    * @throws ApiException if fails to make API call
@@ -335,7 +335,7 @@ public class AccountsApi {
 
   /**
    * Check account health
-   * Returns detailed health info for a specific account including token status, permissions, and recommendations.
+   * Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
    * @param accountId The account ID to check (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAccountHealth200Response&gt;

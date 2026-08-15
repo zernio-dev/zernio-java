@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppNumberDeclinedRequest.JSON_PROPERTY_NUMBER,
   OnWhatsAppNumberDeclinedRequest.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:30:02.012884959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:43:41.281104499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppNumberDeclinedRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

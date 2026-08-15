@@ -16,6 +16,7 @@
 |**permissions** | [**GetAccountHealth200ResponsePermissions**](GetAccountHealth200ResponsePermissions.md) |  |  [optional] |
 |**issues** | **List&lt;String&gt;** | List of issues found |  [optional] |
 |**recommendations** | **List&lt;String&gt;** | Actionable recommendations to fix issues |  [optional] |
+|**platformConnection** | [**GetAccountHealth200ResponsePlatformConnection**](GetAccountHealth200ResponsePlatformConnection.md) |  |  [optional] |
 
 
 
