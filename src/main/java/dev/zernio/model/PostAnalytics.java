@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T08:41:37.550115963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -240,7 +240,7 @@ public class PostAnalytics {
   }
 
   /**
-   * Number of saves/bookmarks (Instagram, Pinterest)
+   * Number of saves/bookmarks (Instagram, Pinterest, X/Twitter)
    * @return saves
    */
   @javax.annotation.Nullable

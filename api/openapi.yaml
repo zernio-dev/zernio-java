@@ -42948,7 +42948,7 @@ components:
           example: 0
           type: integer
         saves:
-          description: "Number of saves/bookmarks (Instagram, Pinterest)"
+          description: "Number of saves/bookmarks (Instagram, Pinterest, X/Twitter)"
           example: 0
           type: integer
         clicks:

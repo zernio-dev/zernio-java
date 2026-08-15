@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetAdsTimeline202Response.JSON_PROPERTY_BACKFILL_PENDING,
   GetAdsTimeline202Response.JSON_PROPERTY_ROWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T08:41:37.550115963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdsTimeline202Response {
   /**
    * Gets or Sets backfillPending

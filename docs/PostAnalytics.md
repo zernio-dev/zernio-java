@@ -12,7 +12,7 @@
 |**likes** | **Integer** |  |  [optional] |
 |**comments** | **Integer** |  |  [optional] |
 |**shares** | **Integer** |  |  [optional] |
-|**saves** | **Integer** | Number of saves/bookmarks (Instagram, Pinterest) |  [optional] |
+|**saves** | **Integer** | Number of saves/bookmarks (Instagram, Pinterest, X/Twitter) |  [optional] |
 |**clicks** | **Integer** |  |  [optional] |
 |**views** | **Integer** |  |  [optional] |
 |**follows** | **Integer** | Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms. |  [optional] |
