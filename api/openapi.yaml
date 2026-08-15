@@ -15498,7 +15498,8 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Pagination cursor for next page
+      - description: Opaque pagination cursor. Pass back pagination.nextCursor verbatim;
+          do not construct one.
         explode: true
         in: query
         name: cursor
@@ -15514,7 +15515,7 @@ paths:
                 $ref: "#/components/schemas/searchInboxConversations_200_response"
           description: "Conversations containing the query, most recent match first"
         "400":
-          description: Invalid query or unsupported platform
+          description: "Invalid query, unsupported platform, or malformed cursor"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":

@@ -1680,7 +1680,7 @@ public class Example {
         String platform = "facebook"; // String | Filter by platform (searchable platforms only)
         String accountId = "accountId_example"; // String | Filter by specific social account ID
         Integer limit = 20; // Integer | Maximum number of conversations to return
-        String cursor = "cursor_example"; // String | Pagination cursor for next page
+        String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one.
         try {
             SearchInboxConversations200Response result = apiInstance.searchInboxConversations(query, direction, profileId, platform, accountId, limit, cursor);
             System.out.println(result);
@@ -1706,7 +1706,7 @@ public class Example {
 | **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack] |
 | **accountId** | **String**| Filter by specific social account ID | [optional] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
-| **cursor** | **String**| Pagination cursor for next page | [optional] |
+| **cursor** | **String**| Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional] |
 
 ### Return type
 
@@ -1726,7 +1726,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversations containing the query, most recent match first |  -  |
-| **400** | Invalid query or unsupported platform |  -  |
+| **400** | Invalid query, unsupported platform, or malformed cursor |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1766,7 +1766,7 @@ public class Example {
         String platform = "facebook"; // String | Filter by platform (searchable platforms only)
         String accountId = "accountId_example"; // String | Filter by specific social account ID
         Integer limit = 20; // Integer | Maximum number of conversations to return
-        String cursor = "cursor_example"; // String | Pagination cursor for next page
+        String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one.
         try {
             ApiResponse<SearchInboxConversations200Response> response = apiInstance.searchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1794,7 +1794,7 @@ public class Example {
 | **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack] |
 | **accountId** | **String**| Filter by specific social account ID | [optional] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
-| **cursor** | **String**| Pagination cursor for next page | [optional] |
+| **cursor** | **String**| Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional] |
 
 ### Return type
 
@@ -1814,7 +1814,7 @@ ApiResponse<[**SearchInboxConversations200Response**](SearchInboxConversations20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversations containing the query, most recent match first |  -  |
-| **400** | Invalid query or unsupported platform |  -  |
+| **400** | Invalid query, unsupported platform, or malformed cursor |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 

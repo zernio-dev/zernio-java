@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CtwaSingleResponse.JSON_PROPERTY_AD,
   CtwaSingleResponse.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:43:41.281104499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T08:41:37.550115963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaSingleResponse {
   /**
    * Gets or Sets adType

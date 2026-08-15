@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:43:41.281104499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T08:41:37.550115963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1668,7 +1668,7 @@ public class MessagesApi {
    * @param platform Filter by platform (searchable platforms only) (optional)
    * @param accountId Filter by specific social account ID (optional)
    * @param limit Maximum number of conversations to return (optional, default to 20)
-   * @param cursor Pagination cursor for next page (optional)
+   * @param cursor Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)
    * @return SearchInboxConversations200Response
    * @throws ApiException if fails to make API call
    */
@@ -1685,7 +1685,7 @@ public class MessagesApi {
    * @param platform Filter by platform (searchable platforms only) (optional)
    * @param accountId Filter by specific social account ID (optional)
    * @param limit Maximum number of conversations to return (optional, default to 20)
-   * @param cursor Pagination cursor for next page (optional)
+   * @param cursor Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)
    * @param headers Optional headers to include in the request
    * @return SearchInboxConversations200Response
    * @throws ApiException if fails to make API call
@@ -1704,7 +1704,7 @@ public class MessagesApi {
    * @param platform Filter by platform (searchable platforms only) (optional)
    * @param accountId Filter by specific social account ID (optional)
    * @param limit Maximum number of conversations to return (optional, default to 20)
-   * @param cursor Pagination cursor for next page (optional)
+   * @param cursor Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)
    * @return ApiResponse&lt;SearchInboxConversations200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1721,7 +1721,7 @@ public class MessagesApi {
    * @param platform Filter by platform (searchable platforms only) (optional)
    * @param accountId Filter by specific social account ID (optional)
    * @param limit Maximum number of conversations to return (optional, default to 20)
-   * @param cursor Pagination cursor for next page (optional)
+   * @param cursor Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SearchInboxConversations200Response&gt;
    * @throws ApiException if fails to make API call
