@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppBodyComponent.JSON_PROPERTY_ADD_SECURITY_RECOMMENDATION,
   WhatsAppBodyComponent.JSON_PROPERTY_EXAMPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T17:15:24.697375454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T06:30:02.012884959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppBodyComponent {
   /**
    * Gets or Sets type

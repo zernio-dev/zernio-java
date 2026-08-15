@@ -42367,6 +42367,9 @@ components:
           - xads
           - googleads
           - openaiads
+          - sms
+          - phone
+          - rcs
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
