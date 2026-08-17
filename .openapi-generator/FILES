@@ -505,6 +505,7 @@ docs/GetAnalytics402Response.md
 docs/GetBestTimeToPost200Response.md
 docs/GetBestTimeToPost200ResponseSlotsInner.md
 docs/GetBestTimeToPost403Response.md
+docs/GetBlueskySettings200Response.md
 docs/GetBroadcast200Response.md
 docs/GetBroadcast200ResponseBroadcast.md
 docs/GetBroadcast200ResponseBroadcastMessage.md
@@ -1433,6 +1434,7 @@ docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
 docs/UpdateBlogArticleRequest.md
 docs/UpdateBlogRequest.md
+docs/UpdateBlueskySettingsRequest.md
 docs/UpdateBroadcast200Response.md
 docs/UpdateBroadcast200ResponseBroadcast.md
 docs/UpdateBroadcastRequest.md
@@ -2291,6 +2293,7 @@ src/main/java/dev/zernio/model/GetAnalytics402Response.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200Response.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200ResponseSlotsInner.java
 src/main/java/dev/zernio/model/GetBestTimeToPost403Response.java
+src/main/java/dev/zernio/model/GetBlueskySettings200Response.java
 src/main/java/dev/zernio/model/GetBroadcast200Response.java
 src/main/java/dev/zernio/model/GetBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/GetBroadcast200ResponseBroadcastMessage.java
@@ -3189,6 +3192,7 @@ src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreative.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInner.java
 src/main/java/dev/zernio/model/UpdateBlogArticleRequest.java
 src/main/java/dev/zernio/model/UpdateBlogRequest.java
+src/main/java/dev/zernio/model/UpdateBlueskySettingsRequest.java
 src/main/java/dev/zernio/model/UpdateBroadcast200Response.java
 src/main/java/dev/zernio/model/UpdateBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/UpdateBroadcastRequest.java
@@ -3469,3 +3473,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetBlueskySettings200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateBlueskySettingsRequestTest.java

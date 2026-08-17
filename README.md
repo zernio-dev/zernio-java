@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-17T15:14:37.333116846Z[Etc/UTC]
+- Build date: 2026-08-17T19:12:50.773272587Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -144,6 +144,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getAccountHealthWithHttpInfo**](docs/AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAllAccountsHealth**](docs/AccountsApi.md#getAllAccountsHealth) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getAllAccountsHealthWithHttpInfo**](docs/AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health
+*AccountsApi* | [**getBlueskySettings**](docs/AccountsApi.md#getBlueskySettings) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings
+*AccountsApi* | [**getBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#getBlueskySettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings
 *AccountsApi* | [**getFollowerStats**](docs/AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**getFollowerStatsWithHttpInfo**](docs/AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**getInstagramFollowStatus**](docs/AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
@@ -158,6 +160,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
+*AccountsApi* | [**updateBlueskySettings**](docs/AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
+*AccountsApi* | [**updateBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#updateBlueskySettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AdAccountsApi* | [**createCustomConversion**](docs/AdAccountsApi.md#createCustomConversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion
@@ -1728,6 +1732,7 @@ Class | Method | HTTP request | Description
  - [GetBestTimeToPost200Response](docs/GetBestTimeToPost200Response.md)
  - [GetBestTimeToPost200ResponseSlotsInner](docs/GetBestTimeToPost200ResponseSlotsInner.md)
  - [GetBestTimeToPost403Response](docs/GetBestTimeToPost403Response.md)
+ - [GetBlueskySettings200Response](docs/GetBlueskySettings200Response.md)
  - [GetBroadcast200Response](docs/GetBroadcast200Response.md)
  - [GetBroadcast200ResponseBroadcast](docs/GetBroadcast200ResponseBroadcast.md)
  - [GetBroadcast200ResponseBroadcastMessage](docs/GetBroadcast200ResponseBroadcastMessage.md)
@@ -2626,6 +2631,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)
  - [UpdateBlogArticleRequest](docs/UpdateBlogArticleRequest.md)
  - [UpdateBlogRequest](docs/UpdateBlogRequest.md)
+ - [UpdateBlueskySettingsRequest](docs/UpdateBlueskySettingsRequest.md)
  - [UpdateBroadcast200Response](docs/UpdateBroadcast200Response.md)
  - [UpdateBroadcast200ResponseBroadcast](docs/UpdateBroadcast200ResponseBroadcast.md)
  - [UpdateBroadcastRequest](docs/UpdateBroadcastRequest.md)

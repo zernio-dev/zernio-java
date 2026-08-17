@@ -4929,7 +4929,7 @@ paths:
                     draft: true
               facebookCarousel:
                 description: |
-                  Posts a 2-5 card carousel where each image has its own click-through link
+                  Posts a 2-10 card carousel where each image has its own click-through link
                   and optional headline. mediaItems and carouselCards must have the same
                   length, in the same order. Images only (no video cards).
                 summary: Facebook multi-link carousel post
@@ -12861,6 +12861,76 @@ paths:
         "404":
           description: Account not found
       summary: Update Slack account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/bluesky-settings:
+    get:
+      description: "Returns the account's default post languages (defaultLangs), applied\
+        \ at publish time whenever a post's platformSpecificData.langs is absent.\
+        \ Null when no default is set."
+      operationId: getBlueskySettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getBlueskySettings_200_response"
+          description: Bluesky account settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get Bluesky account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    patch:
+      description: "Set or clear the account's default post languages. 1-3 BCP-47\
+        \ codes (e.g. \"pt\", \"en-US\"), the same validation as per-post langs; explicit\
+        \ null clears the default. Per-post platformSpecificData.langs always overrides\
+        \ this default. Applies to posts published after the change; already-published\
+        \ posts cannot be retagged (Bluesky has no post edit)."
+      operationId: updateBlueskySettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateBlueskySettings_request"
+        required: true
+      responses:
+        "200":
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update Bluesky account settings
       tags:
       - Accounts
       x-resource-group: accounts
@@ -40115,6 +40185,7 @@ components:
           endReason: hangup
           startedAt: 2000-01-23T04:56:07.000+00:00
           phoneNumberId: phoneNumberId
+          hangupCause: hangupCause
           billing:
             metaCostUSD: 6.027456183070403
             billableCostUSD: 5.637376656633329
@@ -40125,6 +40196,7 @@ components:
           recordingExpiresAt: 2000-01-23T04:56:07.000+00:00
           metaCallId: metaCallId
           endedAt: 2000-01-23T04:56:07.000+00:00
+          sipHangupCause: sipHangupCause
           recordingUrl: recordingUrl
           from: from
           id: id
@@ -41506,7 +41578,7 @@ components:
             Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType=story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render.
           items:
             $ref: "#/components/schemas/FacebookSettings_carouselCards_inner"
-          maxItems: 5
+          maxItems: 10
           minItems: 2
           type: array
         carouselLink:
@@ -42102,8 +42174,19 @@ components:
           type: string
     BlueskyPlatformData:
       description: |
-        Bluesky post settings. Supports text posts with up to 4 images or a single video. threadItems creates a reply chain (Bluesky thread). Images exceeding 1MB are automatically compressed. Alt text supported via mediaItem properties.
+        Bluesky post settings. Supports text posts with up to 4 images or a single video. threadItems creates a reply chain (Bluesky thread). Images exceeding 1MB are automatically compressed. Alt text supported via mediaItem properties. Use langs to tag post language for feed-generator filtering.
       properties:
+        langs:
+          description: |
+            Language(s) of the post text as 1-3 BCP-47 codes (e.g. "pt", "en-US"), written to the post record's langs field. Bluesky feed generators filter on this field, so posts without it never appear in language-scoped feeds. Can only be set at creation (Bluesky has no post editing). When threadItems is used, every item in the thread carries the same langs. When omitted, the account's default (set via PATCH /v1/accounts/{accountId}/bluesky-settings) applies; with no default either, the field is absent from the record.
+          example:
+          - pt
+          - en
+          items:
+            type: string
+          maxItems: 3
+          minItems: 1
+          type: array
         threadItems:
           description: |
             Complete sequence of posts in a Bluesky thread. The first item becomes the root post, subsequent items are chained as replies. When threadItems is provided, the top-level content field is used only for display and search purposes, it is NOT published. You must include your first post as threadItems[0].
@@ -60641,6 +60724,31 @@ components:
         defaultIconUrl:
           description: Author avatar image URL. Empty string clears it.
           type: string
+    getBlueskySettings_200_response:
+      example:
+        defaultLangs:
+        - pt
+      properties:
+        defaultLangs:
+          example:
+          - pt
+          items:
+            type: string
+          nullable: true
+          type: array
+    updateBlueskySettings_request:
+      properties:
+        defaultLangs:
+          example:
+          - pt
+          items:
+            type: string
+          maxItems: 3
+          minItems: 1
+          nullable: true
+          type: array
+      required:
+      - defaultLangs
     getDiscordSettings_200_response_account:
       example:
         profilePicture: profilePicture
@@ -70366,6 +70474,7 @@ components:
       example:
         country: country
         numberType: numberType
+        pendingReview: true
         fields:
         - kind: text
           description: description
@@ -70419,6 +70528,16 @@ components:
           type: array
         reusable:
           $ref: "#/components/schemas/getPhoneNumberKycForm_200_response_reusable"
+        pendingReview:
+          description: "true when this account already has a number for this country\
+            \ in regulatory review (status pending_regulatory). Scope is the whole\
+            \ account across all profiles, and the country only (any number type),\
+            \ so it is not a per-end-client signal on a multi-tenant setup. Informational\
+            \ only: it never blocks a submission, and several same-country numbers\
+            \ may sit in review at once. For a per-end-client view, call GET /v1/phone-numbers\
+            \ with `profileId` and `status=pending_regulatory`; that view also lists\
+            \ numbers declined in the last 30 days."
+          type: boolean
     submitPhoneNumberKyc_request_documents_inner_oneOf:
       properties:
         requirementId:
@@ -71576,6 +71695,7 @@ components:
       example:
         country: country
         numberType: numberType
+        pendingReview: true
         fields:
         - audience: business
           kind: text
@@ -71631,6 +71751,16 @@ components:
           type: array
         reusable:
           $ref: "#/components/schemas/getPhoneNumberKycForm_200_response_reusable"
+        pendingReview:
+          description: "true when this account already has a number for this country\
+            \ in regulatory review (status pending_regulatory). Scope is the whole\
+            \ account across all profiles, and the country only (any number type),\
+            \ so it is not a per-end-client signal on a multi-tenant setup. Informational\
+            \ only: it never blocks a submission, and several same-country numbers\
+            \ may sit in review at once. For a per-end-client view, call GET /v1/phone-numbers\
+            \ with `profileId` and `status=pending_regulatory`; that view also lists\
+            \ numbers declined in the last 30 days."
+          type: boolean
     submitWhatsAppNumberKyc_request_documents_inner_oneOf:
       properties:
         requirementId:
@@ -91552,6 +91682,7 @@ components:
         endReason: hangup
         startedAt: 2000-01-23T04:56:07.000+00:00
         phoneNumberId: phoneNumberId
+        hangupCause: hangupCause
         billing:
           metaCostUSD: 6.027456183070403
           billableCostUSD: 5.637376656633329
@@ -91562,6 +91693,7 @@ components:
         recordingExpiresAt: 2000-01-23T04:56:07.000+00:00
         metaCallId: metaCallId
         endedAt: 2000-01-23T04:56:07.000+00:00
+        sipHangupCause: sipHangupCause
         recordingUrl: recordingUrl
         from: from
         id: id
@@ -91600,6 +91732,18 @@ components:
           - no_answer
           - rejected
           - error
+          type: string
+        hangupCause:
+          description: "Raw carrier hangup cause behind endReason (e.g. normal_clearing,\
+            \ call_rejected, not_found). Null when the carrier reported none."
+          nullable: true
+          type: string
+        sipHangupCause:
+          description: "SIP response code that ended the call when SIP-signalled (e.g.\
+            \ '403', '486', '603'). endReason collapses all three to 'rejected', so\
+            \ this is what separates a refused destination from a busy line. Null\
+            \ on non-SIP legs."
+          nullable: true
           type: string
         recordingUrl:
           type: string

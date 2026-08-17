@@ -18,6 +18,8 @@
 |**endedAt** | **OffsetDateTime** |  |  [optional] |
 |**durationSeconds** | **Integer** |  |  [optional] |
 |**endReason** | [**EndReasonEnum**](#EndReasonEnum) |  |  [optional] |
+|**hangupCause** | **String** | Raw carrier hangup cause behind endReason (e.g. normal_clearing, call_rejected, not_found). Null when the carrier reported none. |  [optional] |
+|**sipHangupCause** | **String** | SIP response code that ended the call when SIP-signalled (e.g. &#39;403&#39;, &#39;486&#39;, &#39;603&#39;). endReason collapses all three to &#39;rejected&#39;, so this is what separates a refused destination from a busy line. Null on non-SIP legs. |  [optional] |
 |**recordingUrl** | **String** |  |  [optional] |
 |**recordingExpiresAt** | **OffsetDateTime** |  |  [optional] |
 |**billing** | [**WebhookPayloadCallEndedCallBilling**](WebhookPayloadCallEndedCallBilling.md) |  |  [optional] |

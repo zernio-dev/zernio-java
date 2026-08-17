@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   LikePostRequest.JSON_PROPERTY_REACTION_TYPE,
   LikePostRequest.JSON_PROPERTY_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T15:14:37.333116846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T19:12:50.773272587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LikePostRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

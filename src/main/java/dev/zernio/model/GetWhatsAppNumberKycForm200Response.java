@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_COUNTRY,
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_NUMBER_TYPE,
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_FIELDS,
-  GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_REUSABLE
+  GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_REUSABLE,
+  GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_PENDING_REVIEW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T15:14:37.333116846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T19:12:50.773272587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -59,6 +60,10 @@ public class GetWhatsAppNumberKycForm200Response {
   public static final String JSON_PROPERTY_REUSABLE = "reusable";
   @javax.annotation.Nullable
   private GetPhoneNumberKycForm200ResponseReusable reusable;
+
+  public static final String JSON_PROPERTY_PENDING_REVIEW = "pendingReview";
+  @javax.annotation.Nullable
+  private Boolean pendingReview;
 
   public GetWhatsAppNumberKycForm200Response() { 
   }
@@ -167,6 +172,30 @@ public class GetWhatsAppNumberKycForm200Response {
   }
 
 
+  public GetWhatsAppNumberKycForm200Response pendingReview(@javax.annotation.Nullable Boolean pendingReview) {
+    this.pendingReview = pendingReview;
+    return this;
+  }
+
+  /**
+   * true when this account already has a number for this country in regulatory review (status pending_regulatory). Scope is the whole account across all profiles, and the country only (any number type), so it is not a per-end-client signal on a multi-tenant setup. Informational only: it never blocks a submission, and several same-country numbers may sit in review at once. For a per-end-client view, call GET /v1/phone-numbers with &#x60;profileId&#x60; and &#x60;status&#x3D;pending_regulatory&#x60;; that view also lists numbers declined in the last 30 days.
+   * @return pendingReview
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PENDING_REVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPendingReview() {
+    return pendingReview;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PENDING_REVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPendingReview(@javax.annotation.Nullable Boolean pendingReview) {
+    this.pendingReview = pendingReview;
+  }
+
+
   /**
    * Return true if this getWhatsAppNumberKycForm_200_response object is equal to o.
    */
@@ -182,12 +211,13 @@ public class GetWhatsAppNumberKycForm200Response {
     return Objects.equals(this.country, getWhatsAppNumberKycForm200Response.country) &&
         Objects.equals(this.numberType, getWhatsAppNumberKycForm200Response.numberType) &&
         Objects.equals(this.fields, getWhatsAppNumberKycForm200Response.fields) &&
-        Objects.equals(this.reusable, getWhatsAppNumberKycForm200Response.reusable);
+        Objects.equals(this.reusable, getWhatsAppNumberKycForm200Response.reusable) &&
+        Objects.equals(this.pendingReview, getWhatsAppNumberKycForm200Response.pendingReview);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, numberType, fields, reusable);
+    return Objects.hash(country, numberType, fields, reusable, pendingReview);
   }
 
   @Override
@@ -198,6 +228,7 @@ public class GetWhatsAppNumberKycForm200Response {
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    reusable: ").append(toIndentedString(reusable)).append("\n");
+    sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -268,6 +299,11 @@ public class GetWhatsAppNumberKycForm200Response {
     // add `reusable` to the URL query string
     if (getReusable() != null) {
       joiner.add(getReusable().toUrlQueryString(prefix + "reusable" + suffix));
+    }
+
+    // add `pendingReview` to the URL query string
+    if (getPendingReview() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spendingReview%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPendingReview()))));
     }
 
     return joiner.toString();

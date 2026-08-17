@@ -50,11 +50,13 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallEndedCall.JSON_PROPERTY_ENDED_AT,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_DURATION_SECONDS,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_END_REASON,
+  WebhookPayloadCallEndedCall.JSON_PROPERTY_HANGUP_CAUSE,
+  WebhookPayloadCallEndedCall.JSON_PROPERTY_SIP_HANGUP_CAUSE,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_RECORDING_URL,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_RECORDING_EXPIRES_AT,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_BILLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T15:14:37.333116846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T19:12:50.773272587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallEndedCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -172,6 +174,12 @@ public class WebhookPayloadCallEndedCall {
   public static final String JSON_PROPERTY_END_REASON = "endReason";
   @javax.annotation.Nullable
   private EndReasonEnum endReason;
+
+  public static final String JSON_PROPERTY_HANGUP_CAUSE = "hangupCause";
+  private JsonNullable<String> hangupCause = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SIP_HANGUP_CAUSE = "sipHangupCause";
+  private JsonNullable<String> sipHangupCause = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RECORDING_URL = "recordingUrl";
   @javax.annotation.Nullable
@@ -460,6 +468,70 @@ public class WebhookPayloadCallEndedCall {
   }
 
 
+  public WebhookPayloadCallEndedCall hangupCause(@javax.annotation.Nullable String hangupCause) {
+    this.hangupCause = JsonNullable.<String>of(hangupCause);
+    return this;
+  }
+
+  /**
+   * Raw carrier hangup cause behind endReason (e.g. normal_clearing, call_rejected, not_found). Null when the carrier reported none.
+   * @return hangupCause
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getHangupCause() {
+        return hangupCause.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_HANGUP_CAUSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getHangupCause_JsonNullable() {
+    return hangupCause;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HANGUP_CAUSE)
+  public void setHangupCause_JsonNullable(JsonNullable<String> hangupCause) {
+    this.hangupCause = hangupCause;
+  }
+
+  public void setHangupCause(@javax.annotation.Nullable String hangupCause) {
+    this.hangupCause = JsonNullable.<String>of(hangupCause);
+  }
+
+
+  public WebhookPayloadCallEndedCall sipHangupCause(@javax.annotation.Nullable String sipHangupCause) {
+    this.sipHangupCause = JsonNullable.<String>of(sipHangupCause);
+    return this;
+  }
+
+  /**
+   * SIP response code that ended the call when SIP-signalled (e.g. &#39;403&#39;, &#39;486&#39;, &#39;603&#39;). endReason collapses all three to &#39;rejected&#39;, so this is what separates a refused destination from a busy line. Null on non-SIP legs.
+   * @return sipHangupCause
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSipHangupCause() {
+        return sipHangupCause.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SIP_HANGUP_CAUSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSipHangupCause_JsonNullable() {
+    return sipHangupCause;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIP_HANGUP_CAUSE)
+  public void setSipHangupCause_JsonNullable(JsonNullable<String> sipHangupCause) {
+    this.sipHangupCause = sipHangupCause;
+  }
+
+  public void setSipHangupCause(@javax.annotation.Nullable String sipHangupCause) {
+    this.sipHangupCause = JsonNullable.<String>of(sipHangupCause);
+  }
+
+
   public WebhookPayloadCallEndedCall recordingUrl(@javax.annotation.Nullable String recordingUrl) {
     this.recordingUrl = recordingUrl;
     return this;
@@ -555,6 +627,8 @@ public class WebhookPayloadCallEndedCall {
         Objects.equals(this.endedAt, webhookPayloadCallEndedCall.endedAt) &&
         Objects.equals(this.durationSeconds, webhookPayloadCallEndedCall.durationSeconds) &&
         Objects.equals(this.endReason, webhookPayloadCallEndedCall.endReason) &&
+        equalsNullable(this.hangupCause, webhookPayloadCallEndedCall.hangupCause) &&
+        equalsNullable(this.sipHangupCause, webhookPayloadCallEndedCall.sipHangupCause) &&
         Objects.equals(this.recordingUrl, webhookPayloadCallEndedCall.recordingUrl) &&
         Objects.equals(this.recordingExpiresAt, webhookPayloadCallEndedCall.recordingExpiresAt) &&
         Objects.equals(this.billing, webhookPayloadCallEndedCall.billing);
@@ -566,7 +640,7 @@ public class WebhookPayloadCallEndedCall {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, hashCodeNullable(metaCallId), accountId, phoneNumberId, direction, from, to, startedAt, endedAt, durationSeconds, endReason, recordingUrl, recordingExpiresAt, billing);
+    return Objects.hash(id, hashCodeNullable(metaCallId), accountId, phoneNumberId, direction, from, to, startedAt, endedAt, durationSeconds, endReason, hashCodeNullable(hangupCause), hashCodeNullable(sipHangupCause), recordingUrl, recordingExpiresAt, billing);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -591,6 +665,8 @@ public class WebhookPayloadCallEndedCall {
     sb.append("    endedAt: ").append(toIndentedString(endedAt)).append("\n");
     sb.append("    durationSeconds: ").append(toIndentedString(durationSeconds)).append("\n");
     sb.append("    endReason: ").append(toIndentedString(endReason)).append("\n");
+    sb.append("    hangupCause: ").append(toIndentedString(hangupCause)).append("\n");
+    sb.append("    sipHangupCause: ").append(toIndentedString(sipHangupCause)).append("\n");
     sb.append("    recordingUrl: ").append(toIndentedString(recordingUrl)).append("\n");
     sb.append("    recordingExpiresAt: ").append(toIndentedString(recordingExpiresAt)).append("\n");
     sb.append("    billing: ").append(toIndentedString(billing)).append("\n");
@@ -694,6 +770,16 @@ public class WebhookPayloadCallEndedCall {
     // add `endReason` to the URL query string
     if (getEndReason() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sendReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndReason()))));
+    }
+
+    // add `hangupCause` to the URL query string
+    if (getHangupCause() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shangupCause%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHangupCause()))));
+    }
+
+    // add `sipHangupCause` to the URL query string
+    if (getSipHangupCause() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssipHangupCause%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSipHangupCause()))));
     }
 
     // add `recordingUrl` to the URL query string

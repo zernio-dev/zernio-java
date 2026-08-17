@@ -33,19 +33,56 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Bluesky post settings. Supports text posts with up to 4 images or a single video. threadItems creates a reply chain (Bluesky thread). Images exceeding 1MB are automatically compressed. Alt text supported via mediaItem properties. 
+ * Bluesky post settings. Supports text posts with up to 4 images or a single video. threadItems creates a reply chain (Bluesky thread). Images exceeding 1MB are automatically compressed. Alt text supported via mediaItem properties. Use langs to tag post language for feed-generator filtering. 
  */
 @JsonPropertyOrder({
+  BlueskyPlatformData.JSON_PROPERTY_LANGS,
   BlueskyPlatformData.JSON_PROPERTY_THREAD_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T15:14:37.333116846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T19:12:50.773272587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BlueskyPlatformData {
+  public static final String JSON_PROPERTY_LANGS = "langs";
+  @javax.annotation.Nullable
+  private List<String> langs = new ArrayList<>();
+
   public static final String JSON_PROPERTY_THREAD_ITEMS = "threadItems";
   @javax.annotation.Nullable
   private List<TwitterPlatformDataThreadItemsInner> threadItems = new ArrayList<>();
 
   public BlueskyPlatformData() { 
   }
+
+  public BlueskyPlatformData langs(@javax.annotation.Nullable List<String> langs) {
+    this.langs = langs;
+    return this;
+  }
+
+  public BlueskyPlatformData addLangsItem(String langsItem) {
+    if (this.langs == null) {
+      this.langs = new ArrayList<>();
+    }
+    this.langs.add(langsItem);
+    return this;
+  }
+
+  /**
+   * Language(s) of the post text as 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), written to the post record&#39;s langs field. Bluesky feed generators filter on this field, so posts without it never appear in language-scoped feeds. Can only be set at creation (Bluesky has no post editing). When threadItems is used, every item in the thread carries the same langs. When omitted, the account&#39;s default (set via PATCH /v1/accounts/{accountId}/bluesky-settings) applies; with no default either, the field is absent from the record. 
+   * @return langs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getLangs() {
+    return langs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLangs(@javax.annotation.Nullable List<String> langs) {
+    this.langs = langs;
+  }
+
 
   public BlueskyPlatformData threadItems(@javax.annotation.Nullable List<TwitterPlatformDataThreadItemsInner> threadItems) {
     this.threadItems = threadItems;
@@ -91,18 +128,20 @@ public class BlueskyPlatformData {
       return false;
     }
     BlueskyPlatformData blueskyPlatformData = (BlueskyPlatformData) o;
-    return Objects.equals(this.threadItems, blueskyPlatformData.threadItems);
+    return Objects.equals(this.langs, blueskyPlatformData.langs) &&
+        Objects.equals(this.threadItems, blueskyPlatformData.threadItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(threadItems);
+    return Objects.hash(langs, threadItems);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BlueskyPlatformData {\n");
+    sb.append("    langs: ").append(toIndentedString(langs)).append("\n");
     sb.append("    threadItems: ").append(toIndentedString(threadItems)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -150,6 +189,15 @@ public class BlueskyPlatformData {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `langs` to the URL query string
+    if (getLangs() != null) {
+      for (int i = 0; i < getLangs().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%slangs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getLangs().get(i)))));
+      }
+    }
 
     // add `threadItems` to the URL query string
     if (getThreadItems() != null) {
