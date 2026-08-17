@@ -857,7 +857,7 @@ public class Example {
         String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
         String accountId = "accountId_example"; // String | Social account ID
         Integer limit = 100; // Integer | Number of messages to return per page. Default 100, max 100.
-        String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response.
+        String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page.
         String sortOrder = "asc"; // String | Order of returned messages. Default `asc` (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See `sortOrderApplied` in the response. 
         try {
             GetInboxConversationMessages200Response result = apiInstance.getInboxConversationMessages(conversationId, accountId, limit, cursor, sortOrder);
@@ -881,7 +881,7 @@ public class Example {
 | **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
 | **accountId** | **String**| Social account ID | |
 | **limit** | **Integer**| Number of messages to return per page. Default 100, max 100. | [optional] [default to 100] |
-| **cursor** | **String**| Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. | [optional] |
+| **cursor** | **String**| Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. | [optional] |
 | **sortOrder** | **String**| Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  | [optional] [default to asc] [enum: asc, desc] |
 
 ### Return type
@@ -902,6 +902,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Messages in conversation |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -938,7 +939,7 @@ public class Example {
         String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
         String accountId = "accountId_example"; // String | Social account ID
         Integer limit = 100; // Integer | Number of messages to return per page. Default 100, max 100.
-        String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response.
+        String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page.
         String sortOrder = "asc"; // String | Order of returned messages. Default `asc` (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See `sortOrderApplied` in the response. 
         try {
             ApiResponse<GetInboxConversationMessages200Response> response = apiInstance.getInboxConversationMessagesWithHttpInfo(conversationId, accountId, limit, cursor, sortOrder);
@@ -964,7 +965,7 @@ public class Example {
 | **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
 | **accountId** | **String**| Social account ID | |
 | **limit** | **Integer**| Number of messages to return per page. Default 100, max 100. | [optional] [default to 100] |
-| **cursor** | **String**| Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. | [optional] |
+| **cursor** | **String**| Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. | [optional] |
 | **sortOrder** | **String**| Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  | [optional] [default to asc] [enum: asc, desc] |
 
 ### Return type
@@ -985,6 +986,7 @@ ApiResponse<[**GetInboxConversationMessages200Response**](GetInboxConversationMe
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Messages in conversation |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 

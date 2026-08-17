@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformDataJobsButtonLabel.JSON_PROPERTY_PRE_APPROVED,
   LinkedInAdsPlatformDataJobsButtonLabel.JSON_PROPERTY_CUSTOM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:12:44.147430975Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:31:18.776813735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataJobsButtonLabel {
   public static final String JSON_PROPERTY_PRE_APPROVED = "preApproved";
   @javax.annotation.Nullable
