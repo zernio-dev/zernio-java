@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   LinkedInAggregateAnalyticsTotalResponseAnalytics.JSON_PROPERTY_SENDS,
   LinkedInAggregateAnalyticsTotalResponseAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T09:29:06.346294447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAggregateAnalyticsTotalResponseAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -254,7 +254,7 @@ public class LinkedInAggregateAnalyticsTotalResponseAnalytics {
   }
 
   /**
-   * Overall engagement rate as percentage
+   * Overall engagement rate, as a percentage rounded to 2 decimals: (reactions + comments + shares + saves + sends) / impressions * 100. Clicks are not counted, and there is no fallback denominator, so this is 0 whenever impressions is 0. This is NOT the same formula as PostAnalytics.engagementRate on GET /v1/analytics.
    * @return engagementRate
    */
   @javax.annotation.Nullable

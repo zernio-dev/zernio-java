@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   ExternalPostSummaryAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   ExternalPostSummaryAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T09:29:06.346294447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostSummaryAnalytics {
   public static final String JSON_PROPERTY_LIKES = "likes";
   @javax.annotation.Nullable
@@ -318,7 +318,7 @@ public class ExternalPostSummaryAnalytics {
   }
 
   /**
-   * Get engagementRate
+   * Percentage, rounded to 2 decimals. Same definition as PostAnalytics.engagementRate: (likes + comments + shares + saves) / (impressions or reach or views) * 100, where the denominator is the first of the three that is non-zero. Clicks and follows are never counted.
    * @return engagementRate
    */
   @javax.annotation.Nullable

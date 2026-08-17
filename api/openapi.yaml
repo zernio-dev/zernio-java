@@ -42953,7 +42953,7 @@ components:
         impressions: 0
         videoDurationSeconds: 30
         shares: 0
-        engagementRate: 0
+        engagementRate: 6.59
         lastUpdated: 2000-01-23T04:56:07.000+00:00
         saves: 0
         igReelsAvgWatchTime: 0
@@ -43010,7 +43010,15 @@ components:
           nullable: true
           type: integer
         engagementRate:
-          example: 0
+          description: "Percentage, rounded to 2 decimals: (likes + comments + shares\
+            \ + saves) / (impressions or reach or views) * 100. Clicks and follows\
+            \ are never counted. The denominator is the FIRST of impressions, reach,\
+            \ views that is non-zero, so it is not the same basis on every post: a\
+            \ post with impressions divides by impressions, one without falls back\
+            \ to reach, then to views. If you need a single consistent basis (e.g.\
+            \ interactions / reach), compute it from the raw fields above. The engagementRate\
+            \ on the LinkedIn account endpoints is a different formula."
+          example: 6.59
           type: number
         lastUpdated:
           format: date-time
@@ -43113,7 +43121,7 @@ components:
           impressions: 0
           videoDurationSeconds: 30
           shares: 0
-          engagementRate: 0
+          engagementRate: 6.59
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           saves: 0
           igReelsAvgWatchTime: 0
@@ -59503,7 +59511,12 @@ components:
           description: Video views (video posts only)
           type: integer
         engagementRate:
-          description: Engagement rate as percentage
+          description: "Engagement rate, as a percentage rounded to 2 decimals: (likes\
+            \ + comments + shares + clicks + saves + sends) / impressions * 100. Unlike\
+            \ PostAnalytics.engagementRate on GET /v1/analytics, this one DOES count\
+            \ clicks and has no fallback denominator, so it is 0 whenever impressions\
+            \ is 0. For organization accounts the value is the rate LinkedIn returns,\
+            \ not one computed here."
           type: number
     getLinkedInPostAnalytics_200_response:
       example:
@@ -89064,6 +89077,10 @@ components:
         impressions:
           type: integer
         engagementRate:
+          description: "Percentage, rounded to 2 decimals. Same definition as PostAnalytics.engagementRate:\
+            \ (likes + comments + shares + saves) / (impressions or reach or views)\
+            \ * 100, where the denominator is the first of the three that is non-zero.\
+            \ Clicks and follows are never counted."
           type: number
         lastUpdated:
           description: When these metrics were last refreshed
@@ -93255,7 +93272,11 @@ components:
             accounts only)
           type: integer
         engagementRate:
-          description: Overall engagement rate as percentage
+          description: "Overall engagement rate, as a percentage rounded to 2 decimals:\
+            \ (reactions + comments + shares + saves + sends) / impressions * 100.\
+            \ Clicks are not counted, and there is no fallback denominator, so this\
+            \ is 0 whenever impressions is 0. This is NOT the same formula as PostAnalytics.engagementRate\
+            \ on GET /v1/analytics."
           type: number
     LinkedInAggregateAnalyticsDailyResponse_analytics_impressions_inner:
       properties:
