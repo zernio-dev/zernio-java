@@ -35,13 +35,52 @@ import dev.zernio.ApiClient;
  * UpdateAdCampaignStatus200Response
  */
 @JsonPropertyOrder({
+  UpdateAdCampaignStatus200Response.JSON_PROPERTY_STATUS,
   UpdateAdCampaignStatus200Response.JSON_PROPERTY_UPDATED,
   UpdateAdCampaignStatus200Response.JSON_PROPERTY_SKIPPED,
-  UpdateAdCampaignStatus200Response.JSON_PROPERTY_SKIPPED_REASONS,
-  UpdateAdCampaignStatus200Response.JSON_PROPERTY_MESSAGE
+  UpdateAdCampaignStatus200Response.JSON_PROPERTY_SKIPPED_REASONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignStatus200Response {
+  /**
+   * The status written to the campaign
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("active")),
+    
+    PAUSED(String.valueOf("paused"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nullable
+  private StatusEnum status;
+
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
   private Integer updated;
@@ -54,12 +93,32 @@ public class UpdateAdCampaignStatus200Response {
   @javax.annotation.Nullable
   private List<String> skippedReasons = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
-  private String message;
-
   public UpdateAdCampaignStatus200Response() { 
   }
+
+  public UpdateAdCampaignStatus200Response status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * The status written to the campaign
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
 
   public UpdateAdCampaignStatus200Response updated(@javax.annotation.Nullable Integer updated) {
     this.updated = updated;
@@ -67,7 +126,7 @@ public class UpdateAdCampaignStatus200Response {
   }
 
   /**
-   * Number of ads updated
+   * Number of ads whose own stored status changed too. 0 is normal on a resume whose ads are all awaiting the platform.
    * @return updated
    */
   @javax.annotation.Nullable
@@ -91,7 +150,7 @@ public class UpdateAdCampaignStatus200Response {
   }
 
   /**
-   * Number of ads skipped
+   * Number of ads whose own status was left as it was
    * @return skipped
    */
   @javax.annotation.Nullable
@@ -123,7 +182,7 @@ public class UpdateAdCampaignStatus200Response {
   }
 
   /**
-   * Get skippedReasons
+   * Why each group of ads was skipped
    * @return skippedReasons
    */
   @javax.annotation.Nullable
@@ -141,30 +200,6 @@ public class UpdateAdCampaignStatus200Response {
   }
 
 
-  public UpdateAdCampaignStatus200Response message(@javax.annotation.Nullable String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Human-readable summary (present when no ads were actionable)
-   * @return message
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMessage() {
-    return message;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
-  }
-
-
   /**
    * Return true if this updateAdCampaignStatus_200_response object is equal to o.
    */
@@ -177,25 +212,25 @@ public class UpdateAdCampaignStatus200Response {
       return false;
     }
     UpdateAdCampaignStatus200Response updateAdCampaignStatus200Response = (UpdateAdCampaignStatus200Response) o;
-    return Objects.equals(this.updated, updateAdCampaignStatus200Response.updated) &&
+    return Objects.equals(this.status, updateAdCampaignStatus200Response.status) &&
+        Objects.equals(this.updated, updateAdCampaignStatus200Response.updated) &&
         Objects.equals(this.skipped, updateAdCampaignStatus200Response.skipped) &&
-        Objects.equals(this.skippedReasons, updateAdCampaignStatus200Response.skippedReasons) &&
-        Objects.equals(this.message, updateAdCampaignStatus200Response.message);
+        Objects.equals(this.skippedReasons, updateAdCampaignStatus200Response.skippedReasons);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updated, skipped, skippedReasons, message);
+    return Objects.hash(status, updated, skipped, skippedReasons);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdCampaignStatus200Response {\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    skipped: ").append(toIndentedString(skipped)).append("\n");
     sb.append("    skippedReasons: ").append(toIndentedString(skippedReasons)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -243,6 +278,11 @@ public class UpdateAdCampaignStatus200Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
     // add `updated` to the URL query string
     if (getUpdated() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%supdated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpdated()))));
@@ -260,11 +300,6 @@ public class UpdateAdCampaignStatus200Response {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSkippedReasons().get(i)))));
       }
-    }
-
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
     return joiner.toString();

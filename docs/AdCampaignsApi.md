@@ -3059,7 +3059,7 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 
 Pause or resume a campaign
 
-Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
 
 ### Example
 
@@ -3134,7 +3134,7 @@ public class Example {
 
 Pause or resume a campaign
 
-Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
 
 ### Example
 
@@ -3373,7 +3373,7 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 
 Pause or resume a single ad set
 
-Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
 
 ### Example
 
@@ -3448,7 +3448,7 @@ public class Example {
 
 Pause or resume a single ad set
 
-Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
 
 ### Example
 

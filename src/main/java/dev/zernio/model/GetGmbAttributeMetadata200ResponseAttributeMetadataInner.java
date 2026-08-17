@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetGmbAttributeMetadata200ResponseAttributeMetadataInner.JSON_PROPERTY_DEPRECATED,
   GetGmbAttributeMetadata200ResponseAttributeMetadataInner.JSON_PROPERTY_VALUE_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbAttributeMetadata200ResponseAttributeMetadataInner {
   public static final String JSON_PROPERTY_PARENT = "parent";
   @javax.annotation.Nullable

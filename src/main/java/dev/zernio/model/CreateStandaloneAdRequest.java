@@ -146,7 +146,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -408,7 +408,7 @@ public class CreateStandaloneAdRequest {
   private BudgetTypeEnum budgetType;
 
   /**
-   * Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
+   * Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
    */
   public enum StatusEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -1493,7 +1493,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
+   * Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
    * @return status
    */
   @javax.annotation.Nullable

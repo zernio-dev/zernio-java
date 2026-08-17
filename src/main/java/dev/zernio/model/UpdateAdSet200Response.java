@@ -27,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdBudget;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -45,12 +47,14 @@ import dev.zernio.ApiClient;
   UpdateAdSet200Response.JSON_PROPERTY_STATUS,
   UpdateAdSet200Response.JSON_PROPERTY_STATUS_UPDATED,
   UpdateAdSet200Response.JSON_PROPERTY_STATUS_SKIPPED,
+  UpdateAdSet200Response.JSON_PROPERTY_STATUS_SKIPPED_REASONS,
+  UpdateAdSet200Response.JSON_PROPERTY_STATUS_MESSAGE,
   UpdateAdSet200Response.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdSet200Response.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdSet200Response.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   UpdateAdSet200Response.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSet200Response {
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
@@ -94,7 +98,7 @@ public class UpdateAdSet200Response {
   private BudgetLevelEnum budgetLevel;
 
   /**
-   * Gets or Sets status
+   * The status written to the ad set. Absent when nothing was written (see statusMessage).
    */
   public enum StatusEnum {
     ACTIVE(String.valueOf("active")),
@@ -139,6 +143,14 @@ public class UpdateAdSet200Response {
   public static final String JSON_PROPERTY_STATUS_SKIPPED = "statusSkipped";
   @javax.annotation.Nullable
   private Integer statusSkipped;
+
+  public static final String JSON_PROPERTY_STATUS_SKIPPED_REASONS = "statusSkippedReasons";
+  @javax.annotation.Nullable
+  private List<String> statusSkippedReasons = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_STATUS_MESSAGE = "statusMessage";
+  @javax.annotation.Nullable
+  private String statusMessage;
 
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
@@ -211,7 +223,7 @@ public class UpdateAdSet200Response {
   }
 
   /**
-   * Get status
+   * The status written to the ad set. Absent when nothing was written (see statusMessage).
    * @return status
    */
   @javax.annotation.Nullable
@@ -235,7 +247,7 @@ public class UpdateAdSet200Response {
   }
 
   /**
-   * Get statusUpdated
+   * Number of ads whose own stored status changed alongside the ad set switch
    * @return statusUpdated
    */
   @javax.annotation.Nullable
@@ -259,7 +271,7 @@ public class UpdateAdSet200Response {
   }
 
   /**
-   * Get statusSkipped
+   * Number of ads whose own status was left as it was
    * @return statusSkipped
    */
   @javax.annotation.Nullable
@@ -274,6 +286,62 @@ public class UpdateAdSet200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatusSkipped(@javax.annotation.Nullable Integer statusSkipped) {
     this.statusSkipped = statusSkipped;
+  }
+
+
+  public UpdateAdSet200Response statusSkippedReasons(@javax.annotation.Nullable List<String> statusSkippedReasons) {
+    this.statusSkippedReasons = statusSkippedReasons;
+    return this;
+  }
+
+  public UpdateAdSet200Response addStatusSkippedReasonsItem(String statusSkippedReasonsItem) {
+    if (this.statusSkippedReasons == null) {
+      this.statusSkippedReasons = new ArrayList<>();
+    }
+    this.statusSkippedReasons.add(statusSkippedReasonsItem);
+    return this;
+  }
+
+  /**
+   * Why each group of ads was skipped
+   * @return statusSkippedReasons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS_SKIPPED_REASONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getStatusSkippedReasons() {
+    return statusSkippedReasons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS_SKIPPED_REASONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatusSkippedReasons(@javax.annotation.Nullable List<String> statusSkippedReasons) {
+    this.statusSkippedReasons = statusSkippedReasons;
+  }
+
+
+  public UpdateAdSet200Response statusMessage(@javax.annotation.Nullable String statusMessage) {
+    this.statusMessage = statusMessage;
+    return this;
+  }
+
+  /**
+   * Present only where the platform has no ad-set switch and no child ad was actionable; &#x60;status&#x60; is then absent because nothing was written
+   * @return statusMessage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getStatusMessage() {
+    return statusMessage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatusMessage(@javax.annotation.Nullable String statusMessage) {
+    this.statusMessage = statusMessage;
   }
 
 
@@ -406,6 +474,8 @@ public class UpdateAdSet200Response {
         Objects.equals(this.status, updateAdSet200Response.status) &&
         Objects.equals(this.statusUpdated, updateAdSet200Response.statusUpdated) &&
         Objects.equals(this.statusSkipped, updateAdSet200Response.statusSkipped) &&
+        Objects.equals(this.statusSkippedReasons, updateAdSet200Response.statusSkippedReasons) &&
+        Objects.equals(this.statusMessage, updateAdSet200Response.statusMessage) &&
         Objects.equals(this.bidStrategy, updateAdSet200Response.bidStrategy) &&
         equalsNullable(this.bidAmount, updateAdSet200Response.bidAmount) &&
         equalsNullable(this.roasAverageFloor, updateAdSet200Response.roasAverageFloor) &&
@@ -418,7 +488,7 @@ public class UpdateAdSet200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(budget, budgetLevel, status, statusUpdated, statusSkipped, bidStrategy, hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), platformSpecificData);
+    return Objects.hash(budget, budgetLevel, status, statusUpdated, statusSkipped, statusSkippedReasons, statusMessage, bidStrategy, hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), platformSpecificData);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -437,6 +507,8 @@ public class UpdateAdSet200Response {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusUpdated: ").append(toIndentedString(statusUpdated)).append("\n");
     sb.append("    statusSkipped: ").append(toIndentedString(statusSkipped)).append("\n");
+    sb.append("    statusSkippedReasons: ").append(toIndentedString(statusSkippedReasons)).append("\n");
+    sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
@@ -511,6 +583,20 @@ public class UpdateAdSet200Response {
     // add `statusSkipped` to the URL query string
     if (getStatusSkipped() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatusSkipped%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatusSkipped()))));
+    }
+
+    // add `statusSkippedReasons` to the URL query string
+    if (getStatusSkippedReasons() != null) {
+      for (int i = 0; i < getStatusSkippedReasons().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sstatusSkippedReasons%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getStatusSkippedReasons().get(i)))));
+      }
+    }
+
+    // add `statusMessage` to the URL query string
+    if (getStatusMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatusMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatusMessage()))));
     }
 
     // add `bidStrategy` to the URL query string

@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,11 +35,53 @@ import dev.zernio.ApiClient;
  * UpdateAdSetStatus200Response
  */
 @JsonPropertyOrder({
+  UpdateAdSetStatus200Response.JSON_PROPERTY_STATUS,
   UpdateAdSetStatus200Response.JSON_PROPERTY_UPDATED,
-  UpdateAdSetStatus200Response.JSON_PROPERTY_SKIPPED
+  UpdateAdSetStatus200Response.JSON_PROPERTY_SKIPPED,
+  UpdateAdSetStatus200Response.JSON_PROPERTY_SKIPPED_REASONS,
+  UpdateAdSetStatus200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T14:15:30.234500561Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T03:59:55.664143686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetStatus200Response {
+  /**
+   * The status written to the ad set. Absent when nothing was written (see message).
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("active")),
+    
+    PAUSED(String.valueOf("paused"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nullable
+  private StatusEnum status;
+
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
   private Integer updated;
@@ -46,8 +90,40 @@ public class UpdateAdSetStatus200Response {
   @javax.annotation.Nullable
   private Integer skipped;
 
+  public static final String JSON_PROPERTY_SKIPPED_REASONS = "skippedReasons";
+  @javax.annotation.Nullable
+  private List<String> skippedReasons = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGE = "message";
+  @javax.annotation.Nullable
+  private String message;
+
   public UpdateAdSetStatus200Response() { 
   }
+
+  public UpdateAdSetStatus200Response status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * The status written to the ad set. Absent when nothing was written (see message).
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
 
   public UpdateAdSetStatus200Response updated(@javax.annotation.Nullable Integer updated) {
     this.updated = updated;
@@ -55,7 +131,7 @@ public class UpdateAdSetStatus200Response {
   }
 
   /**
-   * Get updated
+   * Number of ads whose own stored status changed too. 0 is normal on a resume whose ads are all awaiting the platform.
    * @return updated
    */
   @javax.annotation.Nullable
@@ -79,7 +155,7 @@ public class UpdateAdSetStatus200Response {
   }
 
   /**
-   * Get skipped
+   * Number of ads whose own status was left as it was
    * @return skipped
    */
   @javax.annotation.Nullable
@@ -97,6 +173,62 @@ public class UpdateAdSetStatus200Response {
   }
 
 
+  public UpdateAdSetStatus200Response skippedReasons(@javax.annotation.Nullable List<String> skippedReasons) {
+    this.skippedReasons = skippedReasons;
+    return this;
+  }
+
+  public UpdateAdSetStatus200Response addSkippedReasonsItem(String skippedReasonsItem) {
+    if (this.skippedReasons == null) {
+      this.skippedReasons = new ArrayList<>();
+    }
+    this.skippedReasons.add(skippedReasonsItem);
+    return this;
+  }
+
+  /**
+   * Why each group of ads was skipped
+   * @return skippedReasons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SKIPPED_REASONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getSkippedReasons() {
+    return skippedReasons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SKIPPED_REASONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSkippedReasons(@javax.annotation.Nullable List<String> skippedReasons) {
+    this.skippedReasons = skippedReasons;
+  }
+
+
+  public UpdateAdSetStatus200Response message(@javax.annotation.Nullable String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Present only where the platform has no ad-set switch and no child ad was actionable
+   * @return message
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMessage() {
+    return message;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = message;
+  }
+
+
   /**
    * Return true if this updateAdSetStatus_200_response object is equal to o.
    */
@@ -109,21 +241,27 @@ public class UpdateAdSetStatus200Response {
       return false;
     }
     UpdateAdSetStatus200Response updateAdSetStatus200Response = (UpdateAdSetStatus200Response) o;
-    return Objects.equals(this.updated, updateAdSetStatus200Response.updated) &&
-        Objects.equals(this.skipped, updateAdSetStatus200Response.skipped);
+    return Objects.equals(this.status, updateAdSetStatus200Response.status) &&
+        Objects.equals(this.updated, updateAdSetStatus200Response.updated) &&
+        Objects.equals(this.skipped, updateAdSetStatus200Response.skipped) &&
+        Objects.equals(this.skippedReasons, updateAdSetStatus200Response.skippedReasons) &&
+        Objects.equals(this.message, updateAdSetStatus200Response.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updated, skipped);
+    return Objects.hash(status, updated, skipped, skippedReasons, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdSetStatus200Response {\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    skipped: ").append(toIndentedString(skipped)).append("\n");
+    sb.append("    skippedReasons: ").append(toIndentedString(skippedReasons)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,6 +309,11 @@ public class UpdateAdSetStatus200Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
     // add `updated` to the URL query string
     if (getUpdated() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%supdated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpdated()))));
@@ -179,6 +322,20 @@ public class UpdateAdSetStatus200Response {
     // add `skipped` to the URL query string
     if (getSkipped() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sskipped%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkipped()))));
+    }
+
+    // add `skippedReasons` to the URL query string
+    if (getSkippedReasons() != null) {
+      for (int i = 0; i < getSkippedReasons().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sskippedReasons%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getSkippedReasons().get(i)))));
+      }
+    }
+
+    // add `message` to the URL query string
+    if (getMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
     return joiner.toString();
