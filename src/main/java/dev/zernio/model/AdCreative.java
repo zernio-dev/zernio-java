@@ -43,6 +43,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_IMAGE_URL,
   AdCreative.JSON_PROPERTY_VIDEO_ID,
   AdCreative.JSON_PROPERTY_VIDEO_URL,
+  AdCreative.JSON_PROPERTY_CREATIVE_ID,
   AdCreative.JSON_PROPERTY_OBJECT_TYPE,
   AdCreative.JSON_PROPERTY_OBJECT_STORY_ID,
   AdCreative.JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID,
@@ -61,7 +62,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:37:33.032864769Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T15:14:37.333116846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();
@@ -75,6 +76,9 @@ public class AdCreative {
 
   public static final String JSON_PROPERTY_VIDEO_URL = "videoUrl";
   private JsonNullable<String> videoUrl = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CREATIVE_ID = "creativeId";
+  private JsonNullable<String> creativeId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OBJECT_TYPE = "objectType";
   @javax.annotation.Nullable
@@ -257,6 +261,38 @@ public class AdCreative {
 
   public void setVideoUrl(@javax.annotation.Nullable String videoUrl) {
     this.videoUrl = JsonNullable.<String>of(videoUrl);
+  }
+
+
+  public AdCreative creativeId(@javax.annotation.Nullable String creativeId) {
+    this.creativeId = JsonNullable.<String>of(creativeId);
+    return this;
+  }
+
+  /**
+   * Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create.
+   * @return creativeId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCreativeId() {
+        return creativeId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCreativeId_JsonNullable() {
+    return creativeId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATIVE_ID)
+  public void setCreativeId_JsonNullable(JsonNullable<String> creativeId) {
+    this.creativeId = creativeId;
+  }
+
+  public void setCreativeId(@javax.annotation.Nullable String creativeId) {
+    this.creativeId = JsonNullable.<String>of(creativeId);
   }
 
 
@@ -756,6 +792,7 @@ public class AdCreative {
         Objects.equals(this.imageUrl, adCreative.imageUrl) &&
         equalsNullable(this.videoId, adCreative.videoId) &&
         equalsNullable(this.videoUrl, adCreative.videoUrl) &&
+        equalsNullable(this.creativeId, adCreative.creativeId) &&
         Objects.equals(this.objectType, adCreative.objectType) &&
         equalsNullable(this.objectStoryId, adCreative.objectStoryId) &&
         equalsNullable(this.effectiveObjectStoryId, adCreative.effectiveObjectStoryId) &&
@@ -781,7 +818,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), hashCodeNullable(creativeId), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -799,6 +836,7 @@ public class AdCreative {
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
+    sb.append("    creativeId: ").append(toIndentedString(creativeId)).append("\n");
     sb.append("    objectType: ").append(toIndentedString(objectType)).append("\n");
     sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
     sb.append("    effectiveObjectStoryId: ").append(toIndentedString(effectiveObjectStoryId)).append("\n");
@@ -881,6 +919,11 @@ public class AdCreative {
     // add `videoUrl` to the URL query string
     if (getVideoUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoUrl()))));
+    }
+
+    // add `creativeId` to the URL query string
+    if (getCreativeId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%screativeId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreativeId()))));
     }
 
     // add `objectType` to the URL query string

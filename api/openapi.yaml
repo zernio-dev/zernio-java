@@ -45456,6 +45456,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -45524,6 +45525,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -45787,6 +45789,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -45855,6 +45858,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -46138,6 +46142,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -46206,6 +46211,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -46717,6 +46723,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -46785,6 +46792,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -47068,6 +47076,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -47136,6 +47145,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -48907,6 +48917,7 @@ components:
           pageId: pageId
           body: body
           effectiveObjectStoryId: effectiveObjectStoryId
+          creativeId: creativeId
           objectType: objectType
           googleDescription: googleDescription
           videoUrl: videoUrl
@@ -49223,6 +49234,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -49291,6 +49303,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -49814,6 +49827,7 @@ components:
               pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
+              creativeId: creativeId
               objectType: objectType
               googleDescription: googleDescription
               videoUrl: videoUrl
@@ -49882,6 +49896,7 @@ components:
               pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
+              creativeId: creativeId
               objectType: objectType
               googleDescription: googleDescription
               videoUrl: videoUrl
@@ -50165,6 +50180,7 @@ components:
               pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
+              creativeId: creativeId
               objectType: objectType
               googleDescription: googleDescription
               videoUrl: videoUrl
@@ -50233,6 +50249,7 @@ components:
               pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
+              creativeId: creativeId
               objectType: objectType
               googleDescription: googleDescription
               videoUrl: videoUrl
@@ -77629,6 +77646,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -77697,6 +77715,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -79354,6 +79373,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -79422,6 +79442,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -79705,6 +79726,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -79773,6 +79795,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -80284,6 +80307,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -80352,6 +80376,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -80635,6 +80660,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -80703,6 +80729,7 @@ components:
                 pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
+                creativeId: creativeId
                 objectType: objectType
                 googleDescription: googleDescription
                 videoUrl: videoUrl
@@ -81094,6 +81121,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -81294,6 +81322,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -84795,6 +84824,14 @@ components:
           - ACTIVE
           - PAUSED
           type: string
+        campaignStatus:
+          description: "Meta only. Overrides `status` for the campaign level alone,\
+            \ so you can create a live campaign whose ad set and ad stay paused, or\
+            \ the reverse. Omitted, it follows `status`."
+          enum:
+          - ACTIVE
+          - PAUSED
+          type: string
         budgetLevel:
           default: adset
           description: |
@@ -85525,6 +85562,7 @@ components:
             pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
             objectType: objectType
             googleDescription: googleDescription
             videoUrl: videoUrl
@@ -93905,6 +93943,7 @@ components:
         pageId: pageId
         body: body
         effectiveObjectStoryId: effectiveObjectStoryId
+        creativeId: creativeId
         objectType: objectType
         googleDescription: googleDescription
         videoUrl: videoUrl
@@ -93936,6 +93975,11 @@ components:
         videoUrl:
           description: "Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v={videoId}).\
             \ Null for non-video ads."
+          nullable: true
+          type: string
+        creativeId:
+          description: Meta ad creative id backing this ad. Reusable via existingCreativeId
+            on POST /v1/ads/create.
           nullable: true
           type: string
         objectType:
