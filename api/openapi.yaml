@@ -74323,6 +74323,7 @@ components:
         platformIdentifier:
           type: string
         contactName:
+          nullable: true
           type: string
         status:
           enum:
@@ -75900,14 +75901,17 @@ components:
           - paused
           type: string
         exitReason:
+          nullable: true
           type: string
         nextStepAt:
           format: date-time
+          nullable: true
           type: string
         stepsSent:
           type: integer
         lastStepSentAt:
           format: date-time
+          nullable: true
           type: string
         createdAt:
           format: date-time

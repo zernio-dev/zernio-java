@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -47,7 +51,7 @@ import dev.zernio.ApiClient;
   ListSequenceEnrollments200ResponseEnrollmentsInner.JSON_PROPERTY_LAST_STEP_SENT_AT,
   ListSequenceEnrollments200ResponseEnrollmentsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T09:29:06.346294447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:12:44.147430975Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSequenceEnrollments200ResponseEnrollmentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -117,20 +121,17 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
   private StatusEnum status;
 
   public static final String JSON_PROPERTY_EXIT_REASON = "exitReason";
-  @javax.annotation.Nullable
-  private String exitReason;
+  private JsonNullable<String> exitReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NEXT_STEP_AT = "nextStepAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime nextStepAt;
+  private JsonNullable<OffsetDateTime> nextStepAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_STEPS_SENT = "stepsSent";
   @javax.annotation.Nullable
   private Integer stepsSent;
 
   public static final String JSON_PROPERTY_LAST_STEP_SENT_AT = "lastStepSentAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastStepSentAt;
+  private JsonNullable<OffsetDateTime> lastStepSentAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -308,7 +309,7 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
 
 
   public ListSequenceEnrollments200ResponseEnrollmentsInner exitReason(@javax.annotation.Nullable String exitReason) {
-    this.exitReason = exitReason;
+    this.exitReason = JsonNullable.<String>of(exitReason);
     return this;
   }
 
@@ -317,22 +318,30 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
    * @return exitReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXIT_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExitReason() {
-    return exitReason;
+        return exitReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXIT_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExitReason(@javax.annotation.Nullable String exitReason) {
+
+  public JsonNullable<String> getExitReason_JsonNullable() {
+    return exitReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXIT_REASON)
+  public void setExitReason_JsonNullable(JsonNullable<String> exitReason) {
     this.exitReason = exitReason;
+  }
+
+  public void setExitReason(@javax.annotation.Nullable String exitReason) {
+    this.exitReason = JsonNullable.<String>of(exitReason);
   }
 
 
   public ListSequenceEnrollments200ResponseEnrollmentsInner nextStepAt(@javax.annotation.Nullable OffsetDateTime nextStepAt) {
-    this.nextStepAt = nextStepAt;
+    this.nextStepAt = JsonNullable.<OffsetDateTime>of(nextStepAt);
     return this;
   }
 
@@ -341,17 +350,25 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
    * @return nextStepAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_STEP_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getNextStepAt() {
-    return nextStepAt;
+        return nextStepAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_STEP_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextStepAt(@javax.annotation.Nullable OffsetDateTime nextStepAt) {
+
+  public JsonNullable<OffsetDateTime> getNextStepAt_JsonNullable() {
+    return nextStepAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_STEP_AT)
+  public void setNextStepAt_JsonNullable(JsonNullable<OffsetDateTime> nextStepAt) {
     this.nextStepAt = nextStepAt;
+  }
+
+  public void setNextStepAt(@javax.annotation.Nullable OffsetDateTime nextStepAt) {
+    this.nextStepAt = JsonNullable.<OffsetDateTime>of(nextStepAt);
   }
 
 
@@ -380,7 +397,7 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
 
 
   public ListSequenceEnrollments200ResponseEnrollmentsInner lastStepSentAt(@javax.annotation.Nullable OffsetDateTime lastStepSentAt) {
-    this.lastStepSentAt = lastStepSentAt;
+    this.lastStepSentAt = JsonNullable.<OffsetDateTime>of(lastStepSentAt);
     return this;
   }
 
@@ -389,17 +406,25 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
    * @return lastStepSentAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_STEP_SENT_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastStepSentAt() {
-    return lastStepSentAt;
+        return lastStepSentAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_STEP_SENT_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastStepSentAt(@javax.annotation.Nullable OffsetDateTime lastStepSentAt) {
+
+  public JsonNullable<OffsetDateTime> getLastStepSentAt_JsonNullable() {
+    return lastStepSentAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_STEP_SENT_AT)
+  public void setLastStepSentAt_JsonNullable(JsonNullable<OffsetDateTime> lastStepSentAt) {
     this.lastStepSentAt = lastStepSentAt;
+  }
+
+  public void setLastStepSentAt(@javax.annotation.Nullable OffsetDateTime lastStepSentAt) {
+    this.lastStepSentAt = JsonNullable.<OffsetDateTime>of(lastStepSentAt);
   }
 
 
@@ -446,16 +471,27 @@ public class ListSequenceEnrollments200ResponseEnrollmentsInner {
         Objects.equals(this.contactName, listSequenceEnrollments200ResponseEnrollmentsInner.contactName) &&
         Objects.equals(this.currentStepIndex, listSequenceEnrollments200ResponseEnrollmentsInner.currentStepIndex) &&
         Objects.equals(this.status, listSequenceEnrollments200ResponseEnrollmentsInner.status) &&
-        Objects.equals(this.exitReason, listSequenceEnrollments200ResponseEnrollmentsInner.exitReason) &&
-        Objects.equals(this.nextStepAt, listSequenceEnrollments200ResponseEnrollmentsInner.nextStepAt) &&
+        equalsNullable(this.exitReason, listSequenceEnrollments200ResponseEnrollmentsInner.exitReason) &&
+        equalsNullable(this.nextStepAt, listSequenceEnrollments200ResponseEnrollmentsInner.nextStepAt) &&
         Objects.equals(this.stepsSent, listSequenceEnrollments200ResponseEnrollmentsInner.stepsSent) &&
-        Objects.equals(this.lastStepSentAt, listSequenceEnrollments200ResponseEnrollmentsInner.lastStepSentAt) &&
+        equalsNullable(this.lastStepSentAt, listSequenceEnrollments200ResponseEnrollmentsInner.lastStepSentAt) &&
         Objects.equals(this.createdAt, listSequenceEnrollments200ResponseEnrollmentsInner.createdAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, currentStepIndex, status, exitReason, nextStepAt, stepsSent, lastStepSentAt, createdAt);
+    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, currentStepIndex, status, hashCodeNullable(exitReason), hashCodeNullable(nextStepAt), stepsSent, hashCodeNullable(lastStepSentAt), createdAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

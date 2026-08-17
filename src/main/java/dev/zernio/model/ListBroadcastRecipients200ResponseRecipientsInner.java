@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_DELIVERED_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T09:29:06.346294447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:12:44.147430975Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -72,8 +72,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   private String platformIdentifier;
 
   public static final String JSON_PROPERTY_CONTACT_NAME = "contactName";
-  @javax.annotation.Nullable
-  private String contactName;
+  private JsonNullable<String> contactName = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets status
@@ -249,7 +248,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
 
   public ListBroadcastRecipients200ResponseRecipientsInner contactName(@javax.annotation.Nullable String contactName) {
-    this.contactName = contactName;
+    this.contactName = JsonNullable.<String>of(contactName);
     return this;
   }
 
@@ -258,17 +257,25 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
    * @return contactName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTACT_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContactName() {
-    return contactName;
+        return contactName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTACT_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContactName(@javax.annotation.Nullable String contactName) {
+
+  public JsonNullable<String> getContactName_JsonNullable() {
+    return contactName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTACT_NAME)
+  public void setContactName_JsonNullable(JsonNullable<String> contactName) {
     this.contactName = contactName;
+  }
+
+  public void setContactName(@javax.annotation.Nullable String contactName) {
+    this.contactName = JsonNullable.<String>of(contactName);
   }
 
 
@@ -528,7 +535,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
         Objects.equals(this.contactId, listBroadcastRecipients200ResponseRecipientsInner.contactId) &&
         Objects.equals(this.channelId, listBroadcastRecipients200ResponseRecipientsInner.channelId) &&
         Objects.equals(this.platformIdentifier, listBroadcastRecipients200ResponseRecipientsInner.platformIdentifier) &&
-        Objects.equals(this.contactName, listBroadcastRecipients200ResponseRecipientsInner.contactName) &&
+        equalsNullable(this.contactName, listBroadcastRecipients200ResponseRecipientsInner.contactName) &&
         Objects.equals(this.status, listBroadcastRecipients200ResponseRecipientsInner.status) &&
         Objects.equals(this.messageId, listBroadcastRecipients200ResponseRecipientsInner.messageId) &&
         Objects.equals(this.error, listBroadcastRecipients200ResponseRecipientsInner.error) &&
@@ -546,7 +553,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, hashCodeNullable(errorCode), hashCodeNullable(errorExplanation), hashCodeNullable(errorTraceId), sentAt, deliveredAt, readAt);
+    return Objects.hash(id, contactId, channelId, platformIdentifier, hashCodeNullable(contactName), status, messageId, error, hashCodeNullable(errorCode), hashCodeNullable(errorExplanation), hashCodeNullable(errorTraceId), sentAt, deliveredAt, readAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
