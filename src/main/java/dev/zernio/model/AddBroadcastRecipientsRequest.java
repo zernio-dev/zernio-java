@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AddBroadcastRecipientsRequest.JSON_PROPERTY_PHONES,
   AddBroadcastRecipientsRequest.JSON_PROPERTY_USE_SEGMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:31:18.776813735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-17T13:37:33.032864769Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddBroadcastRecipientsRequest {
   public static final String JSON_PROPERTY_CONTACT_IDS = "contactIds";
   @javax.annotation.Nullable
@@ -70,7 +70,7 @@ public class AddBroadcastRecipientsRequest {
   }
 
   /**
-   * Specific contact IDs to add
+   * Specific contact IDs to add. Zernio contact ids (24-character hex), as returned by the list-contacts endpoint. A platform identifier such as a WhatsApp wa_id is rejected with 400; use phones for raw numbers.
    * @return contactIds
    */
   @javax.annotation.Nullable
