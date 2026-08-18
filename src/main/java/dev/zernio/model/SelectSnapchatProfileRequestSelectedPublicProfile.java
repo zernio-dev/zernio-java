@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SelectSnapchatProfileRequestSelectedPublicProfile.JSON_PROPERTY_PROFILE_IMAGE_URL,
   SelectSnapchatProfileRequestSelectedPublicProfile.JSON_PROPERTY_SUBSCRIBER_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:37:15.566441649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:45:04.803274501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectSnapchatProfileRequestSelectedPublicProfile {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

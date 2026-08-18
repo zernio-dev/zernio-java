@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_MESSAGE,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_URL,
   SendInboxMessageRequest.JSON_PROPERTY_CATEGORY,
+  SendInboxMessageRequest.JSON_PROPERTY_LINK_PREVIEW,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_TYPE,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_NAME,
   SendInboxMessageRequest.JSON_PROPERTY_VOICE_NOTE,
@@ -60,7 +61,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
   SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:37:15.566441649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:45:04.803274501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -110,6 +111,10 @@ public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nullable
   private CategoryEnum category;
+
+  public static final String JSON_PROPERTY_LINK_PREVIEW = "linkPreview";
+  @javax.annotation.Nullable
+  private Boolean linkPreview = true;
 
   /**
    * Type of attachment. Defaults to file if not specified.
@@ -374,6 +379,30 @@ public class SendInboxMessageRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCategory(@javax.annotation.Nullable CategoryEnum category) {
     this.category = category;
+  }
+
+
+  public SendInboxMessageRequest linkPreview(@javax.annotation.Nullable Boolean linkPreview) {
+    this.linkPreview = linkPreview;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Set false to send the message without a link-preview thumbnail for the first URL in the text. Defaults to true, which is how every WhatsApp text has been sent to date. Ignored on other platforms. Accepted on the JSON body only, not on multipart requests.
+   * @return linkPreview
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINK_PREVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getLinkPreview() {
+    return linkPreview;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINK_PREVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkPreview(@javax.annotation.Nullable Boolean linkPreview) {
+    this.linkPreview = linkPreview;
   }
 
 
@@ -729,6 +758,7 @@ public class SendInboxMessageRequest {
         Objects.equals(this.message, sendInboxMessageRequest.message) &&
         Objects.equals(this.attachmentUrl, sendInboxMessageRequest.attachmentUrl) &&
         Objects.equals(this.category, sendInboxMessageRequest.category) &&
+        Objects.equals(this.linkPreview, sendInboxMessageRequest.linkPreview) &&
         Objects.equals(this.attachmentType, sendInboxMessageRequest.attachmentType) &&
         Objects.equals(this.attachmentName, sendInboxMessageRequest.attachmentName) &&
         Objects.equals(this.voiceNote, sendInboxMessageRequest.voiceNote) &&
@@ -746,7 +776,7 @@ public class SendInboxMessageRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, attachmentUrl, category, attachmentType, attachmentName, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
+    return Objects.hash(accountId, message, attachmentUrl, category, linkPreview, attachmentType, attachmentName, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
   }
 
   @Override
@@ -757,6 +787,7 @@ public class SendInboxMessageRequest {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    attachmentUrl: ").append(toIndentedString(attachmentUrl)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    linkPreview: ").append(toIndentedString(linkPreview)).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
     sb.append("    attachmentName: ").append(toIndentedString(attachmentName)).append("\n");
     sb.append("    voiceNote: ").append(toIndentedString(voiceNote)).append("\n");
@@ -835,6 +866,11 @@ public class SendInboxMessageRequest {
     // add `category` to the URL query string
     if (getCategory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scategory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCategory()))));
+    }
+
+    // add `linkPreview` to the URL query string
+    if (getLinkPreview() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slinkPreview%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkPreview()))));
     }
 
     // add `attachmentType` to the URL query string

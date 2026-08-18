@@ -62746,6 +62746,14 @@ components:
           enum:
           - utility
           type: string
+        linkPreview:
+          default: true
+          description: "WhatsApp only. Set false to send the Direct Send (category:\
+            \ 'utility') text message without a link-preview thumbnail for the first\
+            \ URL in the text. Defaults to true, which is how every WhatsApp text\
+            \ has been sent to date. Does not apply to template sends. Accepted on\
+            \ the JSON body only, not on multipart requests."
+          type: boolean
         templateLanguage:
           description: WhatsApp only. Template language code (e.g. en_US).
           type: string
@@ -64431,6 +64439,13 @@ components:
           enum:
           - utility
           type: string
+        linkPreview:
+          default: true
+          description: "WhatsApp only. Set false to send the message without a link-preview\
+            \ thumbnail for the first URL in the text. Defaults to true, which is\
+            \ how every WhatsApp text has been sent to date. Ignored on other platforms.\
+            \ Accepted on the JSON body only, not on multipart requests."
+          type: boolean
         attachmentType:
           description: Type of attachment. Defaults to file if not specified.
           enum:

@@ -43,11 +43,12 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_SKIP_DM_CHECK,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_NAME,
   CreateInboxConversationRequest.JSON_PROPERTY_CATEGORY,
+  CreateInboxConversationRequest.JSON_PROPERTY_LINK_PREVIEW,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:37:15.566441649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:45:04.803274501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -109,6 +110,10 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nullable
   private CategoryEnum category;
+
+  public static final String JSON_PROPERTY_LINK_PREVIEW = "linkPreview";
+  @javax.annotation.Nullable
+  private Boolean linkPreview = true;
 
   public static final String JSON_PROPERTY_TEMPLATE_LANGUAGE = "templateLanguage";
   @javax.annotation.Nullable
@@ -293,6 +298,30 @@ public class CreateInboxConversationRequest {
   }
 
 
+  public CreateInboxConversationRequest linkPreview(@javax.annotation.Nullable Boolean linkPreview) {
+    this.linkPreview = linkPreview;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Set false to send the Direct Send (category: &#39;utility&#39;) text message without a link-preview thumbnail for the first URL in the text. Defaults to true, which is how every WhatsApp text has been sent to date. Does not apply to template sends. Accepted on the JSON body only, not on multipart requests.
+   * @return linkPreview
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINK_PREVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getLinkPreview() {
+    return linkPreview;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINK_PREVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkPreview(@javax.annotation.Nullable Boolean linkPreview) {
+    this.linkPreview = linkPreview;
+  }
+
+
   public CreateInboxConversationRequest templateLanguage(@javax.annotation.Nullable String templateLanguage) {
     this.templateLanguage = templateLanguage;
     return this;
@@ -392,6 +421,7 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.skipDmCheck, createInboxConversationRequest.skipDmCheck) &&
         Objects.equals(this.templateName, createInboxConversationRequest.templateName) &&
         Objects.equals(this.category, createInboxConversationRequest.category) &&
+        Objects.equals(this.linkPreview, createInboxConversationRequest.linkPreview) &&
         Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
         Objects.equals(this.templateParams, createInboxConversationRequest.templateParams) &&
         Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia);
@@ -399,7 +429,7 @@ public class CreateInboxConversationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, templateLanguage, templateParams, headerMedia);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, headerMedia);
   }
 
   @Override
@@ -413,6 +443,7 @@ public class CreateInboxConversationRequest {
     sb.append("    skipDmCheck: ").append(toIndentedString(skipDmCheck)).append("\n");
     sb.append("    templateName: ").append(toIndentedString(templateName)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    linkPreview: ").append(toIndentedString(linkPreview)).append("\n");
     sb.append("    templateLanguage: ").append(toIndentedString(templateLanguage)).append("\n");
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
     sb.append("    headerMedia: ").append(toIndentedString(headerMedia)).append("\n");
@@ -496,6 +527,11 @@ public class CreateInboxConversationRequest {
     // add `category` to the URL query string
     if (getCategory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scategory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCategory()))));
+    }
+
+    // add `linkPreview` to the URL query string
+    if (getLinkPreview() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slinkPreview%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkPreview()))));
     }
 
     // add `templateLanguage` to the URL query string
