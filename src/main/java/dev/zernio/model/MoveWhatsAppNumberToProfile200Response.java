@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   MoveWhatsAppNumberToProfile200Response.JSON_PROPERTY_PROFILE_ID,
   MoveWhatsAppNumberToProfile200Response.JSON_PROPERTY_MOVED_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T09:58:33.046945884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:37:15.566441649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MoveWhatsAppNumberToProfile200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

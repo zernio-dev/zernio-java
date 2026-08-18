@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_USERNAME,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_NAME,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_PICTURE,
+  WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_IS_OWN_ACCOUNT,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T09:58:33.046945884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T10:37:15.566441649Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAuthor {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -60,6 +61,10 @@ public class WebhookPayloadCommentCommentAuthor {
 
   public static final String JSON_PROPERTY_PICTURE = "picture";
   private JsonNullable<String> picture = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_IS_OWN_ACCOUNT = "isOwnAccount";
+  @javax.annotation.Nullable
+  private Boolean isOwnAccount;
 
   public static final String JSON_PROPERTY_INSTAGRAM_PROFILE = "instagramProfile";
   @javax.annotation.Nullable
@@ -172,6 +177,30 @@ public class WebhookPayloadCommentCommentAuthor {
   }
 
 
+  public WebhookPayloadCommentCommentAuthor isOwnAccount(@javax.annotation.Nullable Boolean isOwnAccount) {
+    this.isOwnAccount = isOwnAccount;
+    return this;
+  }
+
+  /**
+   * True when this comment was authored by the connected account itself (Meta re-delivers the account&#39;s own replies as comments events). Populated on the Instagram and Facebook realtime webhooks only; absent means not evaluated, never \&quot;not the account\&quot;.
+   * @return isOwnAccount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_OWN_ACCOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsOwnAccount() {
+    return isOwnAccount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_OWN_ACCOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsOwnAccount(@javax.annotation.Nullable Boolean isOwnAccount) {
+    this.isOwnAccount = isOwnAccount;
+  }
+
+
   public WebhookPayloadCommentCommentAuthor instagramProfile(@javax.annotation.Nullable WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile) {
     this.instagramProfile = instagramProfile;
     return this;
@@ -212,6 +241,7 @@ public class WebhookPayloadCommentCommentAuthor {
         Objects.equals(this.username, webhookPayloadCommentCommentAuthor.username) &&
         Objects.equals(this.name, webhookPayloadCommentCommentAuthor.name) &&
         equalsNullable(this.picture, webhookPayloadCommentCommentAuthor.picture) &&
+        Objects.equals(this.isOwnAccount, webhookPayloadCommentCommentAuthor.isOwnAccount) &&
         Objects.equals(this.instagramProfile, webhookPayloadCommentCommentAuthor.instagramProfile);
   }
 
@@ -221,7 +251,7 @@ public class WebhookPayloadCommentCommentAuthor {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, name, hashCodeNullable(picture), instagramProfile);
+    return Objects.hash(id, username, name, hashCodeNullable(picture), isOwnAccount, instagramProfile);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -239,6 +269,7 @@ public class WebhookPayloadCommentCommentAuthor {
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
+    sb.append("    isOwnAccount: ").append(toIndentedString(isOwnAccount)).append("\n");
     sb.append("    instagramProfile: ").append(toIndentedString(instagramProfile)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -305,6 +336,11 @@ public class WebhookPayloadCommentCommentAuthor {
     // add `picture` to the URL query string
     if (getPicture() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPicture()))));
+    }
+
+    // add `isOwnAccount` to the URL query string
+    if (getIsOwnAccount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisOwnAccount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsOwnAccount()))));
     }
 
     // add `instagramProfile` to the URL query string
