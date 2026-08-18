@@ -40906,8 +40906,10 @@ components:
           description: "Error category for programmatic handling: auth_expired (token\
             \ expired/revoked), user_content (wrong format/too long), user_abuse (rate\
             \ limits/spam), account_issue (config problems), platform_rejected (policy\
-            \ violation), platform_error (5xx/maintenance), system_error (Zernio infra),\
-            \ unknown"
+            \ violation), platform_error (5xx/maintenance), platform_rate_limit (platform\
+            \ throttling, retried automatically), quota_exhausted (shared daily API\
+            \ quota empty, resumes at the platform's reset), system_error (Zernio\
+            \ infra), unknown"
           enum:
           - auth_expired
           - user_content
@@ -40915,6 +40917,8 @@ components:
           - account_issue
           - platform_rejected
           - platform_error
+          - platform_rate_limit
+          - quota_exhausted
           - system_error
           - unknown
           type: string

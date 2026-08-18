@@ -21,7 +21,7 @@
 |**isTrialReel** | **Boolean** | Present and true only when this Instagram reel was launched as a Trial through Zernio (created with platformSpecificData.trialParams). Use it to segment trial reels in analytics. Note: Instagram&#39;s Graph API exposes no readable trial field, so this reflects creation-time intent only. It indicates the reel STARTED as a trial, not whether or when it graduated. |  [optional] |
 |**trialGraduationStrategy** | [**TrialGraduationStrategyEnum**](#TrialGraduationStrategyEnum) | Graduation strategy the trial reel was launched with. Present only when isTrialReel is true. |  [optional] |
 |**errorMessage** | **String** | Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed. |  [optional] |
-|**errorCategory** | [**ErrorCategoryEnum**](#ErrorCategoryEnum) | Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown |  [optional] |
+|**errorCategory** | [**ErrorCategoryEnum**](#ErrorCategoryEnum) | Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown |  [optional] |
 |**errorSource** | [**ErrorSourceEnum**](#ErrorSourceEnum) | Who caused the error: user (fix content/reconnect), platform (outage/API change), system (Zernio issue, rare) |  [optional] |
 
 
@@ -45,6 +45,8 @@
 | ACCOUNT_ISSUE | &quot;account_issue&quot; |
 | PLATFORM_REJECTED | &quot;platform_rejected&quot; |
 | PLATFORM_ERROR | &quot;platform_error&quot; |
+| PLATFORM_RATE_LIMIT | &quot;platform_rate_limit&quot; |
+| QUOTA_EXHAUSTED | &quot;quota_exhausted&quot; |
 | SYSTEM_ERROR | &quot;system_error&quot; |
 | UNKNOWN | &quot;unknown&quot; |
 
