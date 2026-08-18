@@ -59,9 +59,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_STORY_REPLY,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_IS_STORY_MENTION,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRAL,
-  WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T08:04:10.404726165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T09:58:33.046945884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
@@ -206,6 +207,10 @@ public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_UNSUPPORTED = "unsupported";
   @javax.annotation.Nullable
   private WebhookPayloadMessageMetadataUnsupported unsupported;
+
+  public static final String JSON_PROPERTY_NO_RENDERABLE_CONTENT = "noRenderableContent";
+  @javax.annotation.Nullable
+  private Boolean noRenderableContent;
 
   public WebhookPayloadMessageMetadata() { 
   }
@@ -658,6 +663,30 @@ public class WebhookPayloadMessageMetadata {
   }
 
 
+  public WebhookPayloadMessageMetadata noRenderableContent(@javax.annotation.Nullable Boolean noRenderableContent) {
+    this.noRenderableContent = noRenderableContent;
+    return this;
+  }
+
+  /**
+   * Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, just the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;. 
+   * @return noRenderableContent
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NO_RENDERABLE_CONTENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getNoRenderableContent() {
+    return noRenderableContent;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NO_RENDERABLE_CONTENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNoRenderableContent(@javax.annotation.Nullable Boolean noRenderableContent) {
+    this.noRenderableContent = noRenderableContent;
+  }
+
+
   /**
    * Return true if this WebhookPayloadMessage_metadata object is equal to o.
    */
@@ -687,12 +716,13 @@ public class WebhookPayloadMessageMetadata {
         Objects.equals(this.storyReply, webhookPayloadMessageMetadata.storyReply) &&
         Objects.equals(this.isStoryMention, webhookPayloadMessageMetadata.isStoryMention) &&
         Objects.equals(this.referral, webhookPayloadMessageMetadata.referral) &&
-        Objects.equals(this.unsupported, webhookPayloadMessageMetadata.unsupported);
+        Objects.equals(this.unsupported, webhookPayloadMessageMetadata.unsupported) &&
+        Objects.equals(this.noRenderableContent, webhookPayloadMessageMetadata.noRenderableContent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported);
+    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
   }
 
   @Override
@@ -717,6 +747,7 @@ public class WebhookPayloadMessageMetadata {
     sb.append("    isStoryMention: ").append(toIndentedString(isStoryMention)).append("\n");
     sb.append("    referral: ").append(toIndentedString(referral)).append("\n");
     sb.append("    unsupported: ").append(toIndentedString(unsupported)).append("\n");
+    sb.append("    noRenderableContent: ").append(toIndentedString(noRenderableContent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -860,6 +891,11 @@ public class WebhookPayloadMessageMetadata {
     // add `unsupported` to the URL query string
     if (getUnsupported() != null) {
       joiner.add(getUnsupported().toUrlQueryString(prefix + "unsupported" + suffix));
+    }
+
+    // add `noRenderableContent` to the URL query string
+    if (getNoRenderableContent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snoRenderableContent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNoRenderableContent()))));
     }
 
     return joiner.toString();

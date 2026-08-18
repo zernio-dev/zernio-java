@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   QueueSlot.JSON_PROPERTY_DAY_OF_WEEK,
   QueueSlot.JSON_PROPERTY_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T08:04:10.404726165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T09:58:33.046945884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueSlot {
   public static final String JSON_PROPERTY_DAY_OF_WEEK = "dayOfWeek";
   @javax.annotation.Nullable

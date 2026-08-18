@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetCallsUsage200ResponseTotals.JSON_PROPERTY_BILLABLE_U_S_D,
   GetCallsUsage200ResponseTotals.JSON_PROPERTY_META_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T08:04:10.404726165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T09:58:33.046945884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCallsUsage200ResponseTotals {
   public static final String JSON_PROPERTY_CALLS = "calls";
   @javax.annotation.Nullable
