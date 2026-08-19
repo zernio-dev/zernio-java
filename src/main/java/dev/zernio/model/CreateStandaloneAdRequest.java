@@ -147,7 +147,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T11:46:27.453656901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T12:07:52.224299570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -3041,7 +3041,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Meta bid strategy applied to the ad set. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Meta bid strategy applied to the ad set.  OpenAI Ads: required on every ad group via this flat field, the only channel it supports (&#x60;platformSpecificData&#x60; is Meta/LinkedIn-only and returns 400 for OpenAI). No auto-bid option exists; send &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60; together with &#x60;bidAmount&#x60;, omitting it returns 400. 
    * @return bidStrategy
    * @deprecated
    */

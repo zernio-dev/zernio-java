@@ -27,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.MediaItem;
 import dev.zernio.model.PlatformTargetAccountId;
 import dev.zernio.model.PlatformTargetPlatformSpecificData;
-import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,7 +60,7 @@ import dev.zernio.ApiClient;
   PlatformTarget.JSON_PROPERTY_ERROR_CATEGORY,
   PlatformTarget.JSON_PROPERTY_ERROR_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T11:46:27.453656901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T12:07:52.224299570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformTarget {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -96,8 +95,7 @@ public class PlatformTarget {
   private String platformPostId;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_URL = "platformPostUrl";
-  @javax.annotation.Nullable
-  private URI platformPostUrl;
+  private JsonNullable<String> platformPostUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
   @javax.annotation.Nullable
@@ -452,27 +450,35 @@ public class PlatformTarget {
   }
 
 
-  public PlatformTarget platformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
-    this.platformPostUrl = platformPostUrl;
+  public PlatformTarget platformPostUrl(@javax.annotation.Nullable String platformPostUrl) {
+    this.platformPostUrl = JsonNullable.<String>of(platformPostUrl);
     return this;
   }
 
   /**
-   * Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time.
+   * Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads); the TikTok reconcile cron backfills it later.
    * @return platformPostUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getPlatformPostUrl() {
-    return platformPostUrl;
+  @JsonIgnore
+  public String getPlatformPostUrl() {
+        return platformPostUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
+
+  public JsonNullable<String> getPlatformPostUrl_JsonNullable() {
+    return platformPostUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_POST_URL)
+  public void setPlatformPostUrl_JsonNullable(JsonNullable<String> platformPostUrl) {
     this.platformPostUrl = platformPostUrl;
+  }
+
+  public void setPlatformPostUrl(@javax.annotation.Nullable String platformPostUrl) {
+    this.platformPostUrl = JsonNullable.<String>of(platformPostUrl);
   }
 
 
@@ -672,7 +678,7 @@ public class PlatformTarget {
         Objects.equals(this.platformSpecificData, platformTarget.platformSpecificData) &&
         Objects.equals(this.status, platformTarget.status) &&
         Objects.equals(this.platformPostId, platformTarget.platformPostId) &&
-        Objects.equals(this.platformPostUrl, platformTarget.platformPostUrl) &&
+        equalsNullable(this.platformPostUrl, platformTarget.platformPostUrl) &&
         Objects.equals(this.publishedAt, platformTarget.publishedAt) &&
         equalsNullable(this.removedFromPlatformAt, platformTarget.removedFromPlatformAt) &&
         Objects.equals(this.isTrialReel, platformTarget.isTrialReel) &&
@@ -688,7 +694,7 @@ public class PlatformTarget {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, accountId, customContent, customMedia, scheduledFor, platformSpecificData, status, platformPostId, platformPostUrl, publishedAt, hashCodeNullable(removedFromPlatformAt), isTrialReel, trialGraduationStrategy, errorMessage, errorCategory, errorSource);
+    return Objects.hash(platform, accountId, customContent, customMedia, scheduledFor, platformSpecificData, status, platformPostId, hashCodeNullable(platformPostUrl), publishedAt, hashCodeNullable(removedFromPlatformAt), isTrialReel, trialGraduationStrategy, errorMessage, errorCategory, errorSource);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
