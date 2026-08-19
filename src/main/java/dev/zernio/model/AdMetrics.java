@@ -74,7 +74,7 @@ import dev.zernio.ApiClient;
   AdMetrics.JSON_PROPERTY_ENGAGEMENT_BREAKDOWN,
   AdMetrics.JSON_PROPERTY_LAST_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T16:41:00.235782763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T17:18:36.821836377Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable

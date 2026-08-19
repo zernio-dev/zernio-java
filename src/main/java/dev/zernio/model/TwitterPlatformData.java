@@ -28,6 +28,7 @@ import dev.zernio.model.GeoRestriction;
 import dev.zernio.model.TwitterPlatformDataPoll;
 import dev.zernio.model.TwitterPlatformDataSensitiveMedia;
 import dev.zernio.model.TwitterPlatformDataThreadItemsInner;
+import dev.zernio.model.XArticle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,9 +37,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * X (Twitter) geo-restriction applies at the media level. Media in geo-restricted tweets will be hidden for users outside the specified countries; the tweet text itself remains visible globally. Requires media to be attached (ignored for text-only tweets). 
+ * X-specific post options. The article field creates a long-form X Article and is mutually exclusive with tweet media and tweet-only options. Geo-restriction applies at the media level: media is hidden outside the specified countries while tweet text remains visible. 
  */
 @JsonPropertyOrder({
+  TwitterPlatformData.JSON_PROPERTY_ARTICLE,
   TwitterPlatformData.JSON_PROPERTY_REPLY_TO_TWEET_ID,
   TwitterPlatformData.JSON_PROPERTY_QUOTE_TWEET_ID,
   TwitterPlatformData.JSON_PROPERTY_REPLY_SETTINGS,
@@ -50,8 +52,12 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_MADE_WITH_AI,
   TwitterPlatformData.JSON_PROPERTY_SENSITIVE_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T16:41:00.235782763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T17:18:36.821836377Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
+  public static final String JSON_PROPERTY_ARTICLE = "article";
+  @javax.annotation.Nullable
+  private XArticle article;
+
   public static final String JSON_PROPERTY_REPLY_TO_TWEET_ID = "replyToTweetId";
   @javax.annotation.Nullable
   private String replyToTweetId;
@@ -133,6 +139,30 @@ public class TwitterPlatformData {
 
   public TwitterPlatformData() { 
   }
+
+  public TwitterPlatformData article(@javax.annotation.Nullable XArticle article) {
+    this.article = article;
+    return this;
+  }
+
+  /**
+   * Get article
+   * @return article
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ARTICLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public XArticle getArticle() {
+    return article;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ARTICLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setArticle(@javax.annotation.Nullable XArticle article) {
+    this.article = article;
+  }
+
 
   public TwitterPlatformData replyToTweetId(@javax.annotation.Nullable String replyToTweetId) {
     this.replyToTweetId = replyToTweetId;
@@ -394,7 +424,8 @@ public class TwitterPlatformData {
       return false;
     }
     TwitterPlatformData twitterPlatformData = (TwitterPlatformData) o;
-    return Objects.equals(this.replyToTweetId, twitterPlatformData.replyToTweetId) &&
+    return Objects.equals(this.article, twitterPlatformData.article) &&
+        Objects.equals(this.replyToTweetId, twitterPlatformData.replyToTweetId) &&
         Objects.equals(this.quoteTweetId, twitterPlatformData.quoteTweetId) &&
         Objects.equals(this.replySettings, twitterPlatformData.replySettings) &&
         Objects.equals(this.threadItems, twitterPlatformData.threadItems) &&
@@ -408,13 +439,14 @@ public class TwitterPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(replyToTweetId, quoteTweetId, replySettings, threadItems, poll, longVideo, geoRestriction, paidPartnership, madeWithAi, sensitiveMedia);
+    return Objects.hash(article, replyToTweetId, quoteTweetId, replySettings, threadItems, poll, longVideo, geoRestriction, paidPartnership, madeWithAi, sensitiveMedia);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TwitterPlatformData {\n");
+    sb.append("    article: ").append(toIndentedString(article)).append("\n");
     sb.append("    replyToTweetId: ").append(toIndentedString(replyToTweetId)).append("\n");
     sb.append("    quoteTweetId: ").append(toIndentedString(quoteTweetId)).append("\n");
     sb.append("    replySettings: ").append(toIndentedString(replySettings)).append("\n");
@@ -471,6 +503,11 @@ public class TwitterPlatformData {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `article` to the URL query string
+    if (getArticle() != null) {
+      joiner.add(getArticle().toUrlQueryString(prefix + "article" + suffix));
+    }
 
     // add `replyToTweetId` to the URL query string
     if (getReplyToTweetId() != null) {

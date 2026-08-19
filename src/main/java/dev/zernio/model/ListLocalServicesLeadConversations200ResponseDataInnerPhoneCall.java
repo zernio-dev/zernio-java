@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListLocalServicesLeadConversations200ResponseDataInnerPhoneCall.JSON_PROPERTY_CALL_DURATION_MILLIS,
   ListLocalServicesLeadConversations200ResponseDataInnerPhoneCall.JSON_PROPERTY_CALL_RECORDING_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T16:41:00.235782763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T17:18:36.821836377Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLocalServicesLeadConversations200ResponseDataInnerPhoneCall {
   public static final String JSON_PROPERTY_CALL_DURATION_MILLIS = "callDurationMillis";
   private JsonNullable<Integer> callDurationMillis = JsonNullable.<Integer>undefined();

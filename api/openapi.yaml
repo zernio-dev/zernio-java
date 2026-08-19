@@ -4239,7 +4239,7 @@ paths:
                   operationCount: 13
                 - tier: x_api_010
                   pricePerCallUsd: 0.01
-                  operationCount: 8
+                  operationCount: 10
                 - tier: x_api_015
                   pricePerCallUsd: 0.015
                   operationCount: 3
@@ -4277,6 +4277,24 @@ paths:
                   tier: x_api_200
                   triggeredBy:
                   - method: publishPost
+                    metering: always
+                - operation: article_draft
+                  eventType: x_article_draft
+                  displayName: "X API: Article Draft"
+                  pricePerCallUsd: 0.01
+                  pricePerCallCents: 1.0
+                  tier: x_api_010
+                  triggeredBy:
+                  - method: createArticleDraft
+                    metering: always
+                - operation: article_publish
+                  eventType: x_article_publish
+                  displayName: "X API: Article Publish"
+                  pricePerCallUsd: 0.01
+                  pricePerCallCents: 1.0
+                  tier: x_api_010
+                  triggeredBy:
+                  - method: publishArticle
                     metering: always
               schema:
                 $ref: "#/components/schemas/XApiPricing"
@@ -4884,7 +4902,7 @@ paths:
     post:
       description: |
         Create and optionally publish a post. Immediate posts (`publishNow: true`) include `platformPostUrl` in the response.
-        Content is optional when media is attached, all platforms have `customContent`, or every platform entry is a LinkedIn plain repost (`platformSpecificData.reshareUrl` with no text). See each platform's schema for media constraints.
+        Content is optional when media is attached, all platforms have `customContent`, every platform entry is an X Article (`platformSpecificData.article`), or every platform entry is a LinkedIn plain repost (`platformSpecificData.reshareUrl` with no text). See each platform's schema for media constraints.
 
         ## Idempotency
 
@@ -4917,6 +4935,77 @@ paths:
         content:
           application/json:
             examples:
+              twitterArticle:
+                description: |
+                  Creates an X Article draft and publishes it. This normally makes two
+                  billable X API calls at $0.010 each ($0.020 total). The account must
+                  be eligible for X Articles (X Premium+). Article media is supplied as
+                  public URLs; Zernio uploads it to X and builds the native media shape.
+                summary: Publish a long-form X Article
+                value:
+                  platforms:
+                  - platform: twitter
+                    accountId: 64e1f0a9e2b5af0012ab34cd
+                    platformSpecificData:
+                      article:
+                        title: Building a better publishing workflow
+                        mode: publish
+                        cover:
+                          url: https://cdn.example.com/article-cover.jpg
+                        content_state:
+                          blocks:
+                          - type: header-one
+                            text: A reliable publishing workflow
+                          - type: unstyled
+                            text: Long-form publishing should be observable. Read
+                              the implementation notes.
+                            inline_style_ranges:
+                            - offset: 0
+                              length: 9
+                              style: bold
+                            entity_ranges:
+                            - key: 0
+                              offset: 52
+                              length: 20
+                          - type: atomic
+                            text: ' '
+                            entity_ranges:
+                            - key: 1
+                              offset: 0
+                              length: 1
+                          entities:
+                          - key: "0"
+                            value:
+                              type: link
+                              mutability: mutable
+                              data:
+                                url: https://example.com/implementation-notes
+                          - key: "1"
+                            value:
+                              type: image
+                              mutability: immutable
+                              data:
+                                url: https://cdn.example.com/workflow.png
+                                caption: The publishing stages
+                  publishNow: true
+              twitterArticleDraft:
+                description: Creates only the X Article draft ($0.010) and does not
+                  publish it publicly.
+                summary: Save an X Article as a platform draft
+                value:
+                  platforms:
+                  - platform: twitter
+                    accountId: 64e1f0a9e2b5af0012ab34cd
+                    platformSpecificData:
+                      article:
+                        title: Draft product update
+                        mode: draft
+                        content_state:
+                          blocks:
+                          - type: unstyled
+                            text: This Article is ready for final review.
+                          entities: []
+                  publishNow: true
               facebookDraft:
                 summary: Facebook draft post (visible in Publishing Tools)
                 value:
@@ -40815,12 +40904,125 @@ components:
             - GB
           quoteTweetId: quoteTweetId
           poll:
-            duration_minutes: 6077
+            duration_minutes: 3648
             options:
             - options
             - options
             - options
             - options
+          article:
+            mode: publish
+            cover:
+              altText: altText
+              url: https://openapi-generator.tech
+            content_state:
+              entities:
+              - value:
+                  data:
+                    post_id: post_id
+                  mutability: immutable
+                  type: post
+                key: key
+              - value:
+                  data:
+                    post_id: post_id
+                  mutability: immutable
+                  type: post
+                key: key
+              blocks:
+              - data:
+                  cashtags:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  urls:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  hashtags:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  mentions:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                entity_ranges:
+                - offset: 0
+                  length: 0
+                  key: 0
+                - offset: 0
+                  length: 0
+                  key: 0
+                inline_style_ranges:
+                - offset: 0
+                  length: 0
+                  style: bold
+                - offset: 0
+                  length: 0
+                  style: bold
+                text: text
+                type: unstyled
+                key: key
+              - data:
+                  cashtags:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  urls:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  hashtags:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  mentions:
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                  - from_index: 0
+                    text: text
+                    to_index: 0
+                entity_ranges:
+                - offset: 0
+                  length: 0
+                  key: 0
+                - offset: 0
+                  length: 0
+                  key: 0
+                inline_style_ranges:
+                - offset: 0
+                  length: 0
+                  style: bold
+                - offset: 0
+                  length: 0
+                  style: bold
+                text: text
+                type: unstyled
+                key: key
+            title: title
         publishedAt: 2000-01-23T04:56:07.000+00:00
         errorSource: user
         errorMessage: errorMessage
@@ -40971,13 +41173,13 @@ components:
         visibility: public
         timezone: timezone
         recycling:
-          recycleCount: 2
-          gap: 1
-          expireCount: 5
+          recycleCount: 1
+          gap: 2
+          expireCount: 4
           lastRecycledAt: 2000-01-23T04:56:07.000+00:00
           expireDate: 2000-01-23T04:56:07.000+00:00
           nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-          contentVariationIndex: 5
+          contentVariationIndex: 7
           gapFreq: week
           enabled: true
           startDate: 2000-01-23T04:56:07.000+00:00
@@ -41051,12 +41253,125 @@ components:
               - GB
             quoteTweetId: quoteTweetId
             poll:
-              duration_minutes: 6077
+              duration_minutes: 3648
               options:
               - options
               - options
               - options
               - options
+            article:
+              mode: publish
+              cover:
+                altText: altText
+                url: https://openapi-generator.tech
+              content_state:
+                entities:
+                - value:
+                    data:
+                      post_id: post_id
+                    mutability: immutable
+                    type: post
+                  key: key
+                - value:
+                    data:
+                      post_id: post_id
+                    mutability: immutable
+                    type: post
+                  key: key
+                blocks:
+                - data:
+                    cashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    urls:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    hashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    mentions:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                  entity_ranges:
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  inline_style_ranges:
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  text: text
+                  type: unstyled
+                  key: key
+                - data:
+                    cashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    urls:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    hashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    mentions:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                  entity_ranges:
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  inline_style_ranges:
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  text: text
+                  type: unstyled
+                  key: key
+              title: title
           publishedAt: 2000-01-23T04:56:07.000+00:00
           errorSource: user
           errorMessage: errorMessage
@@ -41154,12 +41469,125 @@ components:
               - GB
             quoteTweetId: quoteTweetId
             poll:
-              duration_minutes: 6077
+              duration_minutes: 3648
               options:
               - options
               - options
               - options
               - options
+            article:
+              mode: publish
+              cover:
+                altText: altText
+                url: https://openapi-generator.tech
+              content_state:
+                entities:
+                - value:
+                    data:
+                      post_id: post_id
+                    mutability: immutable
+                    type: post
+                  key: key
+                - value:
+                    data:
+                      post_id: post_id
+                    mutability: immutable
+                    type: post
+                  key: key
+                blocks:
+                - data:
+                    cashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    urls:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    hashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    mentions:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                  entity_ranges:
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  inline_style_ranges:
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  text: text
+                  type: unstyled
+                  key: key
+                - data:
+                    cashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    urls:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    hashtags:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    mentions:
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                    - from_index: 0
+                      text: text
+                      to_index: 0
+                  entity_ranges:
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  - offset: 0
+                    length: 0
+                    key: 0
+                  inline_style_ranges:
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  - offset: 0
+                    length: 0
+                    style: bold
+                  text: text
+                  type: unstyled
+                  key: key
+              title: title
           publishedAt: 2000-01-23T04:56:07.000+00:00
           errorSource: user
           errorMessage: errorMessage
@@ -41364,13 +41792,13 @@ components:
     RecyclingState:
       description: Current recycling configuration and state on a post
       example:
-        recycleCount: 2
-        gap: 1
-        expireCount: 5
+        recycleCount: 1
+        gap: 2
+        expireCount: 4
         lastRecycledAt: 2000-01-23T04:56:07.000+00:00
         expireDate: 2000-01-23T04:56:07.000+00:00
         nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-        contentVariationIndex: 5
+        contentVariationIndex: 7
         gapFreq: week
         enabled: true
         startDate: 2000-01-23T04:56:07.000+00:00
@@ -41417,9 +41845,439 @@ components:
           description: When the last recycled copy was created (read-only)
           format: date-time
           type: string
+    XArticleTextRange:
+      additionalProperties: false
+      example:
+        from_index: 0
+        text: text
+        to_index: 0
+      properties:
+        from_index:
+          description: Inclusive start index in the block text.
+          minimum: 0
+          type: integer
+        to_index:
+          description: Exclusive end index in the block text. Must be greater than
+            or equal to from_index and no greater than the block text length.
+          minimum: 0
+          type: integer
+        text:
+          description: Text represented by this metadata range.
+          type: string
+      required:
+      - from_index
+      - text
+      - to_index
+    XArticleInlineStyleRange:
+      additionalProperties: false
+      description: The offset plus length must not exceed the containing block's text
+        length.
+      example:
+        offset: 0
+        length: 0
+        style: bold
+      properties:
+        offset:
+          minimum: 0
+          type: integer
+        length:
+          minimum: 0
+          type: integer
+        style:
+          enum:
+          - bold
+          - italic
+          - strikethrough
+          type: string
+      required:
+      - length
+      - offset
+      - style
+    XArticleEntityRange:
+      additionalProperties: false
+      description: "The referenced entity must exist, and offset plus length must\
+        \ not exceed the containing block's text length."
+      example:
+        offset: 0
+        length: 0
+        key: 0
+      properties:
+        key:
+          description: Zero-based index into content_state.entities.
+          minimum: 0
+          type: integer
+        offset:
+          minimum: 0
+          type: integer
+        length:
+          minimum: 0
+          type: integer
+      required:
+      - key
+      - length
+      - offset
+    XArticleBlock:
+      additionalProperties: {}
+      example:
+        data:
+          cashtags:
+          - from_index: 0
+            text: text
+            to_index: 0
+          - from_index: 0
+            text: text
+            to_index: 0
+          urls:
+          - from_index: 0
+            text: text
+            to_index: 0
+          - from_index: 0
+            text: text
+            to_index: 0
+          hashtags:
+          - from_index: 0
+            text: text
+            to_index: 0
+          - from_index: 0
+            text: text
+            to_index: 0
+          mentions:
+          - from_index: 0
+            text: text
+            to_index: 0
+          - from_index: 0
+            text: text
+            to_index: 0
+        entity_ranges:
+        - offset: 0
+          length: 0
+          key: 0
+        - offset: 0
+          length: 0
+          key: 0
+        inline_style_ranges:
+        - offset: 0
+          length: 0
+          style: bold
+        - offset: 0
+          length: 0
+          style: bold
+        text: text
+        type: unstyled
+        key: key
+      properties:
+        type:
+          enum:
+          - unstyled
+          - header-one
+          - header-two
+          - header-three
+          - unordered-list-item
+          - ordered-list-item
+          - blockquote
+          - atomic
+          type: string
+        text:
+          type: string
+        key:
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/XArticleBlock_data"
+        inline_style_ranges:
+          items:
+            $ref: "#/components/schemas/XArticleInlineStyleRange"
+          type: array
+        entity_ranges:
+          items:
+            $ref: "#/components/schemas/XArticleEntityRange"
+          type: array
+      required:
+      - text
+      - type
+    XArticleEntity:
+      description: "Entity keys must be unique decimal strings matching their zero-based\
+        \ array index (`\"0\"`, `\"1\"`, ...)."
+      oneOf:
+      - $ref: "#/components/schemas/XArticleEntity_oneOf"
+      - $ref: "#/components/schemas/XArticleEntity_oneOf_1"
+      - $ref: "#/components/schemas/XArticleEntity_oneOf_2"
+      - $ref: "#/components/schemas/XArticleEntity_oneOf_3"
+      - $ref: "#/components/schemas/XArticleEntity_oneOf_4"
+      - $ref: "#/components/schemas/XArticleEntity_oneOf_5"
+    XArticleContentState:
+      additionalProperties: false
+      description: "X's snake_case content-state shape. Standard DraftJS camelCase\
+        \ fields such as entityMap, inlineStyleRanges, and entityRanges are rejected."
+      example:
+        entities:
+        - value:
+            data:
+              post_id: post_id
+            mutability: immutable
+            type: post
+          key: key
+        - value:
+            data:
+              post_id: post_id
+            mutability: immutable
+            type: post
+          key: key
+        blocks:
+        - data:
+            cashtags:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+            urls:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+            hashtags:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+            mentions:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+          entity_ranges:
+          - offset: 0
+            length: 0
+            key: 0
+          - offset: 0
+            length: 0
+            key: 0
+          inline_style_ranges:
+          - offset: 0
+            length: 0
+            style: bold
+          - offset: 0
+            length: 0
+            style: bold
+          text: text
+          type: unstyled
+          key: key
+        - data:
+            cashtags:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+            urls:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+            hashtags:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+            mentions:
+            - from_index: 0
+              text: text
+              to_index: 0
+            - from_index: 0
+              text: text
+              to_index: 0
+          entity_ranges:
+          - offset: 0
+            length: 0
+            key: 0
+          - offset: 0
+            length: 0
+            key: 0
+          inline_style_ranges:
+          - offset: 0
+            length: 0
+            style: bold
+          - offset: 0
+            length: 0
+            style: bold
+          text: text
+          type: unstyled
+          key: key
+      externalDocs:
+        description: Official X Article content format reference
+        url: https://docs.x.com/x-api/articles/create-draft-article
+      properties:
+        blocks:
+          items:
+            $ref: "#/components/schemas/XArticleBlock"
+          minItems: 1
+          type: array
+        entities:
+          items:
+            $ref: "#/components/schemas/XArticleEntity"
+          type: array
+      required:
+      - blocks
+      - entities
+    XArticle:
+      additionalProperties: {}
+      description: |
+        Long-form X Article payload. X Articles require an eligible X Premium+ account.
+        Articles are mutually exclusive with top-level/custom tweet media and with threadItems,
+        poll, quoteTweetId, replyToTweetId, inReplyToTweetId, replySettings, sensitiveMedia,
+        paidPartnership, and madeWithAi. Publishing normally performs two billable X API
+        requests at $0.010 each (draft + publish, $0.020 total); mode `draft` performs only
+        the $0.010 draft request. `articleDraftId` is an internal recovery checkpoint and
+        must not be supplied by API clients.
+      example:
+        mode: publish
+        cover:
+          altText: altText
+          url: https://openapi-generator.tech
+        content_state:
+          entities:
+          - value:
+              data:
+                post_id: post_id
+              mutability: immutable
+              type: post
+            key: key
+          - value:
+              data:
+                post_id: post_id
+              mutability: immutable
+              type: post
+            key: key
+          blocks:
+          - data:
+              cashtags:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+              urls:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+              hashtags:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+              mentions:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+            entity_ranges:
+            - offset: 0
+              length: 0
+              key: 0
+            - offset: 0
+              length: 0
+              key: 0
+            inline_style_ranges:
+            - offset: 0
+              length: 0
+              style: bold
+            - offset: 0
+              length: 0
+              style: bold
+            text: text
+            type: unstyled
+            key: key
+          - data:
+              cashtags:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+              urls:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+              hashtags:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+              mentions:
+              - from_index: 0
+                text: text
+                to_index: 0
+              - from_index: 0
+                text: text
+                to_index: 0
+            entity_ranges:
+            - offset: 0
+              length: 0
+              key: 0
+            - offset: 0
+              length: 0
+              key: 0
+            inline_style_ranges:
+            - offset: 0
+              length: 0
+              style: bold
+            - offset: 0
+              length: 0
+              style: bold
+            text: text
+            type: unstyled
+            key: key
+        title: title
+      properties:
+        title:
+          minLength: 1
+          type: string
+        content_state:
+          $ref: "#/components/schemas/XArticleContentState"
+        mode:
+          default: publish
+          description: Publish creates an X Article draft and then publishes it. Draft
+            stops after draft creation and returns the X draft ID without a public
+            URL.
+          enum:
+          - publish
+          - draft
+          type: string
+        cover:
+          $ref: "#/components/schemas/XArticle_cover"
+      required:
+      - content_state
+      - title
     TwitterPlatformData:
       description: |
-        X (Twitter) geo-restriction applies at the media level. Media in geo-restricted tweets will be hidden for users outside the specified countries; the tweet text itself remains visible globally. Requires media to be attached (ignored for text-only tweets).
+        X-specific post options. The article field creates a long-form X Article and is mutually exclusive with tweet media and tweet-only options. Geo-restriction applies at the media level: media is hidden outside the specified countries while tweet text remains visible.
       example:
         longVideo: false
         paidPartnership: false
@@ -41482,13 +42340,128 @@ components:
           - GB
         quoteTweetId: quoteTweetId
         poll:
-          duration_minutes: 6077
+          duration_minutes: 3648
           options:
           - options
           - options
           - options
           - options
+        article:
+          mode: publish
+          cover:
+            altText: altText
+            url: https://openapi-generator.tech
+          content_state:
+            entities:
+            - value:
+                data:
+                  post_id: post_id
+                mutability: immutable
+                type: post
+              key: key
+            - value:
+                data:
+                  post_id: post_id
+                mutability: immutable
+                type: post
+              key: key
+            blocks:
+            - data:
+                cashtags:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                urls:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                hashtags:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                mentions:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+              entity_ranges:
+              - offset: 0
+                length: 0
+                key: 0
+              - offset: 0
+                length: 0
+                key: 0
+              inline_style_ranges:
+              - offset: 0
+                length: 0
+                style: bold
+              - offset: 0
+                length: 0
+                style: bold
+              text: text
+              type: unstyled
+              key: key
+            - data:
+                cashtags:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                urls:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                hashtags:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                mentions:
+                - from_index: 0
+                  text: text
+                  to_index: 0
+                - from_index: 0
+                  text: text
+                  to_index: 0
+              entity_ranges:
+              - offset: 0
+                length: 0
+                key: 0
+              - offset: 0
+                length: 0
+                key: 0
+              inline_style_ranges:
+              - offset: 0
+                length: 0
+                style: bold
+              - offset: 0
+                length: 0
+                style: bold
+              text: text
+              type: unstyled
+              key: key
+          title: title
       properties:
+        article:
+          $ref: "#/components/schemas/XArticle"
         replyToTweetId:
           description: "ID of an existing tweet to reply to. The published tweet will\
             \ appear as a reply in that tweet's thread. For threads, only the first\
@@ -42441,10 +43414,10 @@ components:
           type: string
     Pagination:
       example:
-        total: 3
-        pages: 2
-        limit: 9
-        page: 7
+        total: 6
+        pages: 7
+        limit: 1
+        page: 1
       properties:
         page:
           type: integer
@@ -43437,10 +44410,10 @@ components:
     PostsListResponse:
       example:
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         posts:
         - queueId: queueId
           metadata:
@@ -43451,13 +44424,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
+            recycleCount: 1
+            gap: 2
+            expireCount: 4
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 7
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -43531,12 +44504,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -43634,12 +44720,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -43717,13 +44916,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
+            recycleCount: 1
+            gap: 2
+            expireCount: 4
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 7
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -43797,12 +44996,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -43900,12 +45212,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -43993,13 +45418,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
+            recycleCount: 1
+            gap: 2
+            expireCount: 4
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 7
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -44073,12 +45498,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -44176,12 +45714,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -44265,13 +45916,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
+            recycleCount: 1
+            gap: 2
+            expireCount: 4
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 7
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -44345,12 +45996,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -44448,12 +46212,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -44540,13 +46417,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
+            recycleCount: 1
+            gap: 2
+            expireCount: 4
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 7
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -44620,12 +46497,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -44723,12 +46713,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -44828,13 +46931,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
+            recycleCount: 1
+            gap: 2
+            expireCount: 4
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 7
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -44908,12 +47011,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -45011,12 +47227,125 @@ components:
                 - GB
               quoteTweetId: quoteTweetId
               poll:
-                duration_minutes: 6077
+                duration_minutes: 3648
                 options:
                 - options
                 - options
                 - options
                 - options
+              article:
+                mode: publish
+                cover:
+                  altText: altText
+                  url: https://openapi-generator.tech
+                content_state:
+                  entities:
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  - value:
+                      data:
+                        post_id: post_id
+                      mutability: immutable
+                      type: post
+                    key: key
+                  blocks:
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                  - data:
+                      cashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      urls:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      hashtags:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      mentions:
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                      - from_index: 0
+                        text: text
+                        to_index: 0
+                    entity_ranges:
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    - offset: 0
+                      length: 0
+                      key: 0
+                    inline_style_ranges:
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    - offset: 0
+                      length: 0
+                      style: bold
+                    text: text
+                    type: unstyled
+                    key: key
+                title: title
             publishedAt: 2000-01-23T04:56:07.000+00:00
             errorSource: user
             errorMessage: errorMessage
@@ -45674,10 +48003,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         backfillPending: true
       properties:
         ads:
@@ -45692,10 +48021,10 @@ components:
     AdTreeResponse:
       example:
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -53499,9 +55828,9 @@ components:
           type: string
         content:
           description: "Post caption/text. Optional when media is attached, all platforms\
-            \ have customContent, or every platform entry is a LinkedIn plain repost\
-            \ (platformSpecificData.reshareUrl with no text). Required for text-only\
-            \ posts."
+            \ have customContent, every platform entry is an X Article (platformSpecificData.article),\
+            \ or every platform entry is a LinkedIn plain repost (platformSpecificData.reshareUrl\
+            \ with no text). Required for other text-only posts."
           type: string
         mediaItems:
           items:
@@ -77930,10 +80259,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         backfillPending: true
     getAdsSearchTerms_200_response_data_inner:
       example:
@@ -78314,10 +80643,10 @@ components:
     listAdKeywords_200_response:
       example:
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         keywords:
         - adSetName: adSetName
           adAccountId: adAccountId
@@ -78361,10 +80690,10 @@ components:
     listAdCampaigns_200_response:
       example:
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -79342,10 +81671,10 @@ components:
         - backfillPending
       example:
         pagination:
-          total: 3
-          pages: 2
-          limit: 9
-          page: 7
+          total: 6
+          pages: 7
+          limit: 1
+          page: 1
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -92187,6 +94516,316 @@ components:
       oneOf:
       - type: string
       - $ref: "#/components/schemas/User"
+    XArticleBlock_data:
+      additionalProperties: false
+      example:
+        cashtags:
+        - from_index: 0
+          text: text
+          to_index: 0
+        - from_index: 0
+          text: text
+          to_index: 0
+        urls:
+        - from_index: 0
+          text: text
+          to_index: 0
+        - from_index: 0
+          text: text
+          to_index: 0
+        hashtags:
+        - from_index: 0
+          text: text
+          to_index: 0
+        - from_index: 0
+          text: text
+          to_index: 0
+        mentions:
+        - from_index: 0
+          text: text
+          to_index: 0
+        - from_index: 0
+          text: text
+          to_index: 0
+      properties:
+        cashtags:
+          items:
+            $ref: "#/components/schemas/XArticleTextRange"
+          type: array
+        hashtags:
+          items:
+            $ref: "#/components/schemas/XArticleTextRange"
+          type: array
+        mentions:
+          items:
+            $ref: "#/components/schemas/XArticleTextRange"
+          type: array
+        urls:
+          items:
+            $ref: "#/components/schemas/XArticleTextRange"
+          type: array
+    XArticleEntity_oneOf_value_data:
+      additionalProperties: false
+      example:
+        post_id: post_id
+      properties:
+        post_id:
+          minLength: 1
+          type: string
+      required:
+      - post_id
+    XArticleEntity_oneOf_value:
+      additionalProperties: false
+      example:
+        data:
+          post_id: post_id
+        mutability: immutable
+        type: post
+      properties:
+        type:
+          enum:
+          - post
+          type: string
+        mutability:
+          enum:
+          - immutable
+          - mutable
+          - segmented
+          type: string
+        data:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_value_data"
+      required:
+      - data
+      - mutability
+      - type
+    XArticleEntity_oneOf:
+      additionalProperties: false
+      example:
+        value:
+          data:
+            post_id: post_id
+          mutability: immutable
+          type: post
+        key: key
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_value"
+      required:
+      - key
+      - value
+    XArticleEntity_oneOf_1_value_data:
+      additionalProperties: false
+      properties:
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+    XArticleEntity_oneOf_1_value:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - link
+          type: string
+        mutability:
+          enum:
+          - immutable
+          - mutable
+          - segmented
+          type: string
+        data:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_1_value_data"
+      required:
+      - data
+      - mutability
+      - type
+    XArticleEntity_oneOf_1:
+      additionalProperties: false
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_1_value"
+      required:
+      - key
+      - value
+    XArticleEntity_oneOf_2_value_data:
+      additionalProperties: false
+      properties:
+        url:
+          description: "Public image, GIF, or MP4 URL. Zernio uploads it to X and\
+            \ replaces it with native media metadata. Caller-supplied media IDs are\
+            \ rejected."
+          format: uri
+          pattern: "^https?://.+\\.(?:[jJ][pP][eE]?[gG]|[pP][nN][gG]|[wW][eE][bB][pP]|[gG][iI][fF]|[mM][pP]4)(?:[?#].*)?$"
+          type: string
+        caption:
+          type: string
+        altText:
+          description: Supported for image and GIF URLs; rejected for MP4 media.
+          maxLength: 1000
+          type: string
+      required:
+      - url
+    XArticleEntity_oneOf_2_value:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - image
+          type: string
+        mutability:
+          enum:
+          - immutable
+          - mutable
+          - segmented
+          type: string
+        data:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_2_value_data"
+      required:
+      - data
+      - mutability
+      - type
+    XArticleEntity_oneOf_2:
+      additionalProperties: false
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_2_value"
+      required:
+      - key
+      - value
+    XArticleEntity_oneOf_3_value_data:
+      additionalProperties: false
+      properties:
+        entity_key:
+          minLength: 1
+          type: string
+      required:
+      - entity_key
+    XArticleEntity_oneOf_3_value:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - emoji
+          type: string
+        mutability:
+          enum:
+          - immutable
+          - mutable
+          - segmented
+          type: string
+        data:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_3_value_data"
+      required:
+      - data
+      - mutability
+      - type
+    XArticleEntity_oneOf_3:
+      additionalProperties: false
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_3_value"
+      required:
+      - key
+      - value
+    XArticleEntity_oneOf_4_value_data:
+      additionalProperties: false
+      properties:
+        markdown:
+          type: string
+      required:
+      - markdown
+    XArticleEntity_oneOf_4_value:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - markdown
+          type: string
+        mutability:
+          enum:
+          - immutable
+          - mutable
+          - segmented
+          type: string
+        data:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_4_value_data"
+      required:
+      - data
+      - mutability
+      - type
+    XArticleEntity_oneOf_4:
+      additionalProperties: false
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_4_value"
+      required:
+      - key
+      - value
+    XArticleEntity_oneOf_5_value:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - divider
+          - latex
+          type: string
+        mutability:
+          enum:
+          - immutable
+          - mutable
+          - segmented
+          type: string
+        data:
+          additionalProperties: false
+          type: object
+      required:
+      - data
+      - mutability
+      - type
+    XArticleEntity_oneOf_5:
+      additionalProperties: false
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          $ref: "#/components/schemas/XArticleEntity_oneOf_5_value"
+      required:
+      - key
+      - value
+    XArticle_cover:
+      additionalProperties: false
+      example:
+        altText: altText
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          description: "Public JPG, JPEG, PNG, or WebP URL. GIF, MP4, AVIF, extensionless\
+            \ URLs, and caller-supplied native media IDs are rejected."
+          format: uri
+          pattern: "^https?://.+\\.(?:[jJ][pP][eE]?[gG]|[pP][nN][gG]|[wW][eE][bB][pP])(?:[?#].*)?$"
+          type: string
+        altText:
+          maxLength: 1000
+          type: string
+      required:
+      - url
     TwitterPlatformData_threadItems_inner:
       example:
         mediaItems:
@@ -92222,7 +94861,7 @@ components:
       description: Create a poll with this tweet. Mutually exclusive with media attachments
         and threads.
       example:
-        duration_minutes: 6077
+        duration_minutes: 3648
         options:
         - options
         - options
