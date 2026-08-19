@@ -73,7 +73,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-18T11:02:17.777232023Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T10:17:52.184125029Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -879,7 +879,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: validated against the Meta CTA enum (same values as POST /v1/ads/create), e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;SIGN_UP&#x60;.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
+   * CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
    * @return callToAction
    */
   @javax.annotation.Nullable
