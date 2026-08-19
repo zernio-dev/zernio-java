@@ -34134,6 +34134,9 @@ paths:
           description: Account not found or not accessible.
         "405":
           description: Platform does not support listing tracking tags.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: List tracking tags
@@ -34212,6 +34215,11 @@ paths:
         "422":
           description: "OpenAI Ads only: the ad account is not enabled for pixel management.\
             \ Contact your OpenAI partner representative."
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Creating\
+            \ a pixel is NOT idempotent, so before retrying confirm with GET /v1/accounts/{accountId}/tracking-tags\
+            \ that no pixel was created."
       security:
       - bearerAuth: []
       summary: Create a tracking tag
@@ -34265,6 +34273,9 @@ paths:
           description: Account or tracking tag not found.
         "405":
           description: Platform does not support fetching a tracking tag.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: Get a tracking tag
@@ -34329,6 +34340,9 @@ paths:
           description: Account or tracking tag not found.
         "405":
           description: Platform does not support updating tracking tags.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: Update a tracking tag
@@ -34388,6 +34402,9 @@ paths:
           description: Account or tracking tag not found.
         "405":
           description: Platform does not support shared accounts.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: Stop sharing with an account
@@ -34434,6 +34451,9 @@ paths:
           description: Account or tracking tag not found.
         "405":
           description: Platform does not support shared accounts.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: List accounts it is shared with
@@ -34494,6 +34514,9 @@ paths:
           description: Account or tracking tag not found.
         "405":
           description: Platform does not support shared accounts.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: Share with an ad account
@@ -34590,6 +34613,9 @@ paths:
           description: Account or tracking tag not found.
         "405":
           description: Platform does not support tracking-tag stats.
+        "502":
+          description: "Meta was unreachable or returned an unclassified error (type:\
+            \ platform_error; the raw Meta payload is in platformError). Retryable."
       security:
       - bearerAuth: []
       summary: Get aggregated event stats

@@ -105,6 +105,7 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## addTrackingTagSharedAccountWithHttpInfo
 
@@ -187,6 +188,7 @@ ApiResponse<[**AddTrackingTagSharedAccount201Response**](AddTrackingTagSharedAcc
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
 ## createTrackingTag
@@ -266,6 +268,7 @@ public class Example {
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support creating tracking tags. |  -  |
 | **422** | OpenAI Ads only: the ad account is not enabled for pixel management. Contact your OpenAI partner representative. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Creating a pixel is NOT idempotent, so before retrying confirm with GET /v1/accounts/{accountId}/tracking-tags that no pixel was created. |  -  |
 
 ## createTrackingTagWithHttpInfo
 
@@ -347,6 +350,7 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support creating tracking tags. |  -  |
 | **422** | OpenAI Ads only: the ad account is not enabled for pixel management. Contact your OpenAI partner representative. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Creating a pixel is NOT idempotent, so before retrying confirm with GET /v1/accounts/{accountId}/tracking-tags that no pixel was created. |  -  |
 
 
 ## getAdTrackingTags
@@ -574,6 +578,7 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support fetching a tracking tag. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## getTrackingTagWithHttpInfo
 
@@ -653,6 +658,7 @@ ApiResponse<[**GetTrackingTag200Response**](GetTrackingTag200Response.md)>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support fetching a tracking tag. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
 ## getTrackingTagStats
@@ -737,6 +743,7 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support tracking-tag stats. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## getTrackingTagStatsWithHttpInfo
 
@@ -823,6 +830,7 @@ ApiResponse<[**GetTrackingTagStats200Response**](GetTrackingTagStats200Response.
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support tracking-tag stats. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
 ## listTrackingTagSharedAccounts
@@ -900,6 +908,7 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## listTrackingTagSharedAccountsWithHttpInfo
 
@@ -979,6 +988,7 @@ ApiResponse<[**ListTrackingTagSharedAccounts200Response**](ListTrackingTagShared
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
 ## listTrackingTags
@@ -1057,6 +1067,7 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support listing tracking tags. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## listTrackingTagsWithHttpInfo
 
@@ -1137,6 +1148,7 @@ ApiResponse<[**ListTrackingTags200Response**](ListTrackingTags200Response.md)>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support listing tracking tags. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
 ## removeTrackingTagSharedAccount
@@ -1216,6 +1228,7 @@ null (empty response body)
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## removeTrackingTagSharedAccountWithHttpInfo
 
@@ -1297,6 +1310,7 @@ ApiResponse<Void>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
 ## updateAdTrackingTags
@@ -1531,6 +1545,7 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support updating tracking tags. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 ## updateTrackingTagWithHttpInfo
 
@@ -1613,4 +1628,5 @@ ApiResponse<[**GetTrackingTag200Response**](GetTrackingTag200Response.md)>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support updating tracking tags. |  -  |
+| **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 

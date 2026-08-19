@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GenerateKeywordHistoricalMetrics200Response.JSON_PROPERTY_DATA,
   GenerateKeywordHistoricalMetrics200Response.JSON_PROPERTY_AGGREGATE_METRIC_RESULTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T13:11:41.755995604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T13:18:41.276798509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GenerateKeywordHistoricalMetrics200Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable
