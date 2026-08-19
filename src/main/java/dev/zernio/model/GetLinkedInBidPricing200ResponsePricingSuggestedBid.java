@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetLinkedInBidPricing200ResponsePricingSuggestedBid.JSON_PROPERTY_DEFAULT,
   GetLinkedInBidPricing200ResponsePricingSuggestedBid.JSON_PROPERTY_MAX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T12:07:52.224299570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T13:11:41.755995604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInBidPricing200ResponsePricingSuggestedBid {
   public static final String JSON_PROPERTY_MIN = "min";
   @javax.annotation.Nullable

@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   ListLeads200ResponseLeadsInner.JSON_PROPERTY_FIELDS,
   ListLeads200ResponseLeadsInner.JSON_PROPERTY_FIELD_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T12:07:52.224299570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T13:11:41.755995604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLeads200ResponseLeadsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -132,7 +132,7 @@ public class ListLeads200ResponseLeadsInner {
   }
 
   /**
-   * Meta lead id.
+   * Meta lead id. On LinkedIn, the leadFormResponse id.
    * @return leadgenId
    */
   @javax.annotation.Nullable
@@ -300,7 +300,7 @@ public class ListLeads200ResponseLeadsInner {
   }
 
   /**
-   * Get campaignId
+   * On LinkedIn, this is the LinkedIn Campaign id, which corresponds to platformAdSetId on GET /v1/ads (LinkedIn&#39;s Campaign Group is Zernio&#39;s campaign).
    * @return campaignId
    */
   @javax.annotation.Nullable
@@ -396,7 +396,7 @@ public class ListLeads200ResponseLeadsInner {
   }
 
   /**
-   * Question key → answer.
+   * Question key → answer. On LinkedIn, the key is the lowercased predefinedField, else the question name, else the numeric questionId; multiple-choice values are option labels (unlike Meta, which returns the option key).
    * @return fields
    */
   @javax.annotation.Nullable

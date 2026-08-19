@@ -85798,7 +85798,7 @@ components:
           description: Zernio lead id.
           type: string
         leadgenId:
-          description: Meta lead id.
+          description: "Meta lead id. On LinkedIn, the leadFormResponse id."
           type: string
         formId:
           type: string
@@ -85814,6 +85814,9 @@ components:
           nullable: true
           type: string
         campaignId:
+          description: "On LinkedIn, this is the LinkedIn Campaign id, which corresponds\
+            \ to platformAdSetId on GET /v1/ads (LinkedIn's Campaign Group is Zernio's\
+            \ campaign)."
           nullable: true
           type: string
         isOrganic:
@@ -85825,7 +85828,10 @@ components:
         fields:
           additionalProperties:
             type: string
-          description: Question key → answer.
+          description: "Question key → answer. On LinkedIn, the key is the lowercased\
+            \ predefinedField, else the question name, else the numeric questionId;\
+            \ multiple-choice values are option labels (unlike Meta, which returns\
+            \ the option key)."
         fieldData:
           description: Raw Meta field_data.
           items:
