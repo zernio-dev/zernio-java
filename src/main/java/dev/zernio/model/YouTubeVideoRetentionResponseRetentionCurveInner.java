@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   YouTubeVideoRetentionResponseRetentionCurveInner.JSON_PROPERTY_STOPPED_WATCHING,
   YouTubeVideoRetentionResponseRetentionCurveInner.JSON_PROPERTY_TOTAL_SEGMENT_IMPRESSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T13:18:41.276798509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T16:41:00.235782763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeVideoRetentionResponseRetentionCurveInner {
   public static final String JSON_PROPERTY_ELAPSED_VIDEO_TIME_RATIO = "elapsedVideoTimeRatio";
   @javax.annotation.Nullable
@@ -148,7 +148,7 @@ public class YouTubeVideoRetentionResponseRetentionCurveInner {
   }
 
   /**
-   * Viewers who started watching in this segment
+   * Viewers who started watching in this segment. 0 when YouTube has no segment-level data for the video.
    * @return startedWatching
    */
   @javax.annotation.Nullable
@@ -172,7 +172,7 @@ public class YouTubeVideoRetentionResponseRetentionCurveInner {
   }
 
   /**
-   * Viewers who stopped watching in this segment
+   * Viewers who stopped watching in this segment. 0 when YouTube has no segment-level data for the video.
    * @return stoppedWatching
    */
   @javax.annotation.Nullable

@@ -37847,7 +37847,8 @@ components:
           type: string
         retentionCurve:
           description: "Up to 100 points covering the video timeline, aggregated over\
-            \ the date range. Empty for videos with very few views."
+            \ the date range. Can be empty when YouTube has no retention data for\
+            \ the video in the given range."
           items:
             $ref: "#/components/schemas/YouTubeVideoRetentionResponse_retentionCurve_inner"
           type: array
@@ -89531,10 +89532,12 @@ components:
             \ 1 = best)"
           type: number
         startedWatching:
-          description: Viewers who started watching in this segment
+          description: Viewers who started watching in this segment. 0 when YouTube
+            has no segment-level data for the video.
           type: integer
         stoppedWatching:
-          description: Viewers who stopped watching in this segment
+          description: Viewers who stopped watching in this segment. 0 when YouTube
+            has no segment-level data for the video.
           type: integer
         totalSegmentImpressions:
           description: "Total views of this segment, including rewatches"

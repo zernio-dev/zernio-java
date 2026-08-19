@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   YouTubeVideoRetentionResponse.JSON_PROPERTY_NOTE,
   YouTubeVideoRetentionResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T13:18:41.276798509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T16:41:00.235782763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeVideoRetentionResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -332,7 +332,7 @@ public class YouTubeVideoRetentionResponse {
   }
 
   /**
-   * Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views.
+   * Up to 100 points covering the video timeline, aggregated over the date range. Can be empty when YouTube has no retention data for the video in the given range.
    * @return retentionCurve
    */
   @javax.annotation.Nullable
