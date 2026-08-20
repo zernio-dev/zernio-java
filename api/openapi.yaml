@@ -40819,15 +40819,18 @@ components:
             \ it: check mediaStatus before downloading. Instagram omits the video\
             \ file for Reels it flags as containing copyrighted material (its docs\
             \ name audio as the usual cause), so type stays \"video\" while the file\
-            \ is permanently unreachable.'"
+            \ is permanently unreachable. For LinkedIn videos where the platform returns\
+            \ no file, url falls back to the cover image and the item carries mediaStatus:\
+            \ unavailable.'"
           nullable: true
           type: string
         thumbnail:
           description: Cover image. Still present when url is null.
           type: string
         mediaStatus:
-          description: Present only when the media file could not be retrieved. Absent
-            means the file is available at url.
+          description: "'Present only when the media file could not be retrieved (url\
+            \ is null or, for LinkedIn videos, a cover image standing in for the file).\
+            \ Absent means the file is available at url.'"
           enum:
           - unavailable
           type: string

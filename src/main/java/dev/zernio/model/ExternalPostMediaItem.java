@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ExternalPostMediaItem.JSON_PROPERTY_MEDIA_STATUS,
   ExternalPostMediaItem.JSON_PROPERTY_UNAVAILABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T17:18:36.821836377Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T00:32:41.799885463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostMediaItem {
   /**
    * Gets or Sets type
@@ -89,7 +89,7 @@ public class ExternalPostMediaItem {
   private String thumbnail;
 
   /**
-   * Present only when the media file could not be retrieved. Absent means the file is available at url.
+   * &#39;Present only when the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). Absent means the file is available at url.&#39;
    */
   public enum MediaStatusEnum {
     UNAVAILABLE(String.valueOf("unavailable"));
@@ -195,7 +195,7 @@ public class ExternalPostMediaItem {
   }
 
   /**
-   * &#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable.&#39;
+   * &#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable. For LinkedIn videos where the platform returns no file, url falls back to the cover image and the item carries mediaStatus: unavailable.&#39;
    * @return url
    */
   @javax.annotation.Nullable
@@ -243,7 +243,7 @@ public class ExternalPostMediaItem {
   }
 
   /**
-   * Present only when the media file could not be retrieved. Absent means the file is available at url.
+   * &#39;Present only when the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). Absent means the file is available at url.&#39;
    * @return mediaStatus
    */
   @javax.annotation.Nullable

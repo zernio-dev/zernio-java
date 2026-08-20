@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_NEXT_DUE_AT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-19T17:18:36.821836377Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T00:32:41.799885463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
