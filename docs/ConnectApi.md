@@ -480,7 +480,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
-| **409** | The phone number is a Zernio-provisioned number pinned to a different profile. Connect it from that profile, or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile. |  -  |
+| **409** | Conflict with an existing connection. Either the phone number is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE, connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile), or the number is already actively connected on another profile or workspace (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first). A number can only be live on one profile. |  -  |
 | **500** | Failed to bind phone number |  -  |
 
 ## completeWhatsAppPhoneSelectionWithHttpInfo
@@ -561,7 +561,7 @@ ApiResponse<[**CompleteWhatsAppPhoneSelection200Response**](CompleteWhatsAppPhon
 | **401** | Unauthorized |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
-| **409** | The phone number is a Zernio-provisioned number pinned to a different profile. Connect it from that profile, or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile. |  -  |
+| **409** | Conflict with an existing connection. Either the phone number is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE, connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile), or the number is already actively connected on another profile or workspace (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first). A number can only be live on one profile. |  -  |
 | **500** | Failed to bind phone number |  -  |
 
 
@@ -1271,7 +1271,7 @@ public class Example {
 | **400** | Invalid request. Missing fields, a &#x60;pin&#x60; that is not 6 digits, or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
 | **401** | Invalid or expired access token |  -  |
 | **403** | Profile limit exceeded for this plan |  -  |
-| **409** | The phone number is a Zernio-provisioned number pinned to a different profile. Connect it from that profile, or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile. |  -  |
+| **409** | Conflict with an existing connection. Either the phone number is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE, connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile), or the number is already actively connected on another profile or workspace (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first). A number can only be live on one profile. |  -  |
 
 ## connectWhatsAppCredentialsWithHttpInfo
 
@@ -1348,7 +1348,7 @@ ApiResponse<[**ConnectWhatsAppCredentials200Response**](ConnectWhatsAppCredentia
 | **400** | Invalid request. Missing fields, a &#x60;pin&#x60; that is not 6 digits, or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
 | **401** | Invalid or expired access token |  -  |
 | **403** | Profile limit exceeded for this plan |  -  |
-| **409** | The phone number is a Zernio-provisioned number pinned to a different profile. Connect it from that profile, or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile. |  -  |
+| **409** | Conflict with an existing connection. Either the phone number is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE, connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile), or the number is already actively connected on another profile or workspace (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first). A number can only be live on one profile. |  -  |
 
 
 ## createPinterestBoard

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload.JSON_PROPERTY_SCREEN,
   SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T01:07:44.864757924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T10:24:22.967699073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload {
   public static final String JSON_PROPERTY_SCREEN = "screen";
   @javax.annotation.Nullable

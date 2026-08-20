@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_LANGUAGE,
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_COMPONENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T01:07:44.864757924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T10:24:22.967699073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestTemplateElementsInner {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
