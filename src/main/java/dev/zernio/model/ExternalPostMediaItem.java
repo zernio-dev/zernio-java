@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ExternalPostMediaItem.JSON_PROPERTY_MEDIA_STATUS,
   ExternalPostMediaItem.JSON_PROPERTY_UNAVAILABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T00:32:41.799885463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T01:07:44.864757924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostMediaItem {
   /**
    * Gets or Sets type
@@ -89,9 +89,11 @@ public class ExternalPostMediaItem {
   private String thumbnail;
 
   /**
-   * &#39;Present only when the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). Absent means the file is available at url.&#39;
+   * unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field).
    */
   public enum MediaStatusEnum {
+    AVAILABLE(String.valueOf("available")),
+    
     UNAVAILABLE(String.valueOf("unavailable"));
 
     private String value;
@@ -243,7 +245,7 @@ public class ExternalPostMediaItem {
   }
 
   /**
-   * &#39;Present only when the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). Absent means the file is available at url.&#39;
+   * unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field).
    * @return mediaStatus
    */
   @javax.annotation.Nullable

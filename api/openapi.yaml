@@ -38970,12 +38970,12 @@ components:
         mediaItems:
         - thumbnail: thumbnail
           unavailableReason: platform_withheld
-          mediaStatus: unavailable
+          mediaStatus: available
           type: image
           url: url
         - thumbnail: thumbnail
           unavailableReason: platform_withheld
-          mediaStatus: unavailable
+          mediaStatus: available
           type: image
           url: url
         publishedAt: 2000-01-23T04:56:07.000+00:00
@@ -39053,12 +39053,12 @@ components:
           mediaItems:
           - thumbnail: thumbnail
             unavailableReason: platform_withheld
-            mediaStatus: unavailable
+            mediaStatus: available
             type: image
             url: url
           - thumbnail: thumbnail
             unavailableReason: platform_withheld
-            mediaStatus: unavailable
+            mediaStatus: available
             type: image
             url: url
           publishedAt: 2000-01-23T04:56:07.000+00:00
@@ -40805,7 +40805,7 @@ components:
       example:
         thumbnail: thumbnail
         unavailableReason: platform_withheld
-        mediaStatus: unavailable
+        mediaStatus: available
         type: image
         url: url
       properties:
@@ -40828,10 +40828,12 @@ components:
           description: Cover image. Still present when url is null.
           type: string
         mediaStatus:
-          description: "'Present only when the media file could not be retrieved (url\
+          description: "unavailable means the media file could not be retrieved (url\
             \ is null or, for LinkedIn videos, a cover image standing in for the file).\
-            \ Absent means the file is available at url.'"
+            \ available or absent means the file is available at url (older synced\
+            \ items omit the field)."
           enum:
+          - available
           - unavailable
           type: string
         unavailableReason:
@@ -44230,13 +44232,13 @@ components:
         - thumbnail: https://openapi-generator.tech
           altText: altText
           unavailableReason: platform_withheld
-          mediaStatus: unavailable
+          mediaStatus: available
           type: image
           url: https://openapi-generator.tech
         - thumbnail: https://openapi-generator.tech
           altText: altText
           unavailableReason: platform_withheld
-          mediaStatus: unavailable
+          mediaStatus: available
           type: image
           url: https://openapi-generator.tech
         scheduledFor: 2000-01-23T04:56:07.000+00:00
@@ -96047,7 +96049,7 @@ components:
         thumbnail: https://openapi-generator.tech
         altText: altText
         unavailableReason: platform_withheld
-        mediaStatus: unavailable
+        mediaStatus: available
         type: image
         url: https://openapi-generator.tech
       properties:
@@ -96075,9 +96077,12 @@ components:
           description: "Accessibility alt text set on the media, when present."
           type: string
         mediaStatus:
-          description: Present only when the media file could not be retrieved. Absent
-            means the file is available at url.
+          description: "unavailable means the media file could not be retrieved (url\
+            \ is null or, for LinkedIn videos, a cover image standing in for the file).\
+            \ available or absent means the file is available at url (older synced\
+            \ items omit the field)."
           enum:
+          - available
           - unavailable
           type: string
         unavailableReason:
