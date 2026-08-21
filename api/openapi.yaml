@@ -80376,8 +80376,8 @@ components:
       - $ref: "#/components/schemas/AdsListResponse"
       - properties:
           backfillPending:
-            enum:
-            - true
+            description: Always true on this response. Part of the requested range
+              is still being backfilled; retry until the request returns 200.
             type: boolean
         required:
         - backfillPending
@@ -81927,8 +81927,8 @@ components:
       - $ref: "#/components/schemas/AdTreeResponse"
       - properties:
           backfillPending:
-            enum:
-            - true
+            description: Always true on this response. Part of the requested range
+              is still being backfilled; retry until the request returns 200.
             type: boolean
         required:
         - backfillPending
@@ -83813,8 +83813,8 @@ components:
       - $ref: "#/components/schemas/AdsTimelineResponse"
       - properties:
           backfillPending:
-            enum:
-            - true
+            description: Always true on this response. Part of the requested range
+              is still being backfilled; retry until the request returns 200.
             type: boolean
         required:
         - backfillPending
@@ -84164,8 +84164,8 @@ components:
       - $ref: "#/components/schemas/CampaignAnalyticsResponse"
       - properties:
           backfillPending:
-            enum:
-            - true
+            description: Always true on this response. Part of the requested range
+              is still being backfilled; retry until the request returns 200.
             type: boolean
         required:
         - backfillPending
@@ -84760,8 +84760,8 @@ components:
       - $ref: "#/components/schemas/AdAnalyticsResponse"
       - properties:
           backfillPending:
-            enum:
-            - true
+            description: Always true on this response. Part of the requested range
+              is still being backfilled; retry until the request returns 200.
             type: boolean
         required:
         - backfillPending

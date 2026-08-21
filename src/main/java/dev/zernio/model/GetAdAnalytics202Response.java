@@ -39,44 +39,11 @@ import dev.zernio.ApiClient;
   GetAdAnalytics202Response.JSON_PROPERTY_AD,
   GetAdAnalytics202Response.JSON_PROPERTY_ANALYTICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T11:15:57.383116596Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T11:42:23.900415234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAnalytics202Response {
-  /**
-   * Gets or Sets backfillPending
-   */
-  public enum BackfillPendingEnum {
-    TRUE(Boolean.valueOf("true"));
-
-    private Boolean value;
-
-    BackfillPendingEnum(Boolean value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Boolean getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static BackfillPendingEnum fromValue(Boolean value) {
-      for (BackfillPendingEnum b : BackfillPendingEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_BACKFILL_PENDING = "backfillPending";
   @javax.annotation.Nonnull
-  private BackfillPendingEnum backfillPending;
+  private Boolean backfillPending;
 
   public static final String JSON_PROPERTY_AD = "ad";
   @javax.annotation.Nullable
@@ -89,26 +56,26 @@ public class GetAdAnalytics202Response {
   public GetAdAnalytics202Response() { 
   }
 
-  public GetAdAnalytics202Response backfillPending(@javax.annotation.Nonnull BackfillPendingEnum backfillPending) {
+  public GetAdAnalytics202Response backfillPending(@javax.annotation.Nonnull Boolean backfillPending) {
     this.backfillPending = backfillPending;
     return this;
   }
 
   /**
-   * Get backfillPending
+   * Always true on this response. Part of the requested range is still being backfilled; retry until the request returns 200.
    * @return backfillPending
    */
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_BACKFILL_PENDING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public BackfillPendingEnum getBackfillPending() {
+  public Boolean getBackfillPending() {
     return backfillPending;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_BACKFILL_PENDING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBackfillPending(@javax.annotation.Nonnull BackfillPendingEnum backfillPending) {
+  public void setBackfillPending(@javax.annotation.Nonnull Boolean backfillPending) {
     this.backfillPending = backfillPending;
   }
 

@@ -7,16 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**backfillPending** | [**BackfillPendingEnum**](#BackfillPendingEnum) |  |  |
+|**backfillPending** | **Boolean** | Always true on this response. Part of the requested range is still being backfilled; retry until the request returns 200. |  |
 |**rows** | [**List&lt;AdsTimelineResponseRowsInner&gt;**](AdsTimelineResponseRowsInner.md) |  |  [optional] |
-
-
-
-## Enum: BackfillPendingEnum
-
-| Name | Value |
-|---- | -----|
-| TRUE | &quot;true&quot; |
 
 
 
