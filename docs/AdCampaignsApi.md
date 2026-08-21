@@ -587,6 +587,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
+| **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502.  |  -  |
 
 ## createStandaloneAdWithHttpInfo
 
@@ -667,6 +668,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
+| **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502.  |  -  |
 
 
 ## deleteAd
@@ -2814,6 +2816,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## updateAdWithHttpInfo
 
@@ -2893,6 +2896,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 
 ## updateAdCampaign

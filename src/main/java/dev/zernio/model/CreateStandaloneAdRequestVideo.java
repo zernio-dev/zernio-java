@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_ID,
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:28:23.719094324Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:45:15.376826523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestVideo {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable
@@ -109,7 +109,7 @@ public class CreateStandaloneAdRequestVideo {
   }
 
   /**
-   * Public URL of a still-image thumbnail for the video. OPTIONAL: when omitted on Meta, the poster is auto-generated from Meta&#39;s own preferred video thumbnail (the same candidates Ads Manager shows), so video ads publish without supplying one. Provide it to control the poster frame exactly (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).
+   * Public URL of a still-image thumbnail for the video. OPTIONAL: when omitted on Meta, the poster is auto-generated from Meta&#39;s own preferred video thumbnail (the same candidates Ads Manager shows), so video ads usually publish without supplying one. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field. Provide it to control the poster frame exactly (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).
    * @return thumbnailUrl
    */
   @javax.annotation.Nullable

@@ -102,6 +102,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **422** | No Facebook Page found to act as the story actor |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## createAdCreativeWithHttpInfo
 
@@ -179,6 +180,7 @@ ApiResponse<[**CreateAdCreative201Response**](CreateAdCreative201Response.md)>
 | **401** | Unauthorized |  -  |
 | **422** | No Facebook Page found to act as the story actor |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 
 ## deleteAdCreative
@@ -1669,6 +1671,7 @@ public class Example {
 | **400** | Invalid input, or Meta rejected the image |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## uploadAdImageWithHttpInfo
 
@@ -1745,4 +1748,5 @@ ApiResponse<[**UploadAdImage201Response**](UploadAdImage201Response.md)>
 | **400** | Invalid input, or Meta rejected the image |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 

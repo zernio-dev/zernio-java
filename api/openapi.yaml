@@ -29082,6 +29082,10 @@ paths:
         "501":
           description: targeting or creative not supported on the platform (Meta +
             TikTok only)
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no image hash). Inspect `platformError.reason`."
       security:
       - bearerAuth: []
       summary: Update ad
@@ -29956,6 +29960,10 @@ paths:
         "422":
           description: Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark
             creative)
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no image hash). Inspect `platformError.reason`."
       security:
       - bearerAuth: []
       summary: Set ad tracking tags
@@ -30820,6 +30828,10 @@ paths:
           description: No Facebook Page found to act as the story actor
         "501":
           description: Only supported on Meta (facebook/instagram)
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no image hash). Inspect `platformError.reason`."
       security:
       - bearerAuth: []
       summary: Create a standalone creative
@@ -31672,6 +31684,16 @@ paths:
         "422":
           description: "Platform ads connection required (TikTok Ads, X Ads) or missing\
             \ linked account"
+        "502":
+          description: |
+            The platform rejected the request, or failed to produce media the ad
+            needs (e.g. Meta generated no poster for an uploaded video when no
+            `video.thumbnailUrl` was supplied). Inspect `platformError` for the
+            upstream payload. Failures we raise carry a `reason`; a payload
+            forwarded verbatim from Meta may not. On the `creatives[]` shape a
+            missing poster also carries `creativeIndex` and `videoUrl` to
+            identify the entry. An upstream 4xx status is forwarded instead
+            of 502.
       security:
       - bearerAuth: []
       summary: Create standalone ad
@@ -32154,6 +32176,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "501":
           description: Only supported on Meta (facebook/instagram)
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no image hash). Inspect `platformError.reason`."
       security:
       - bearerAuth: []
       summary: Upload an ad image from base64
@@ -33952,6 +33978,10 @@ paths:
           description: Account not found
         "422":
           description: No Facebook Page resolved for the account
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no image hash). Inspect `platformError.reason`."
       security:
       - bearerAuth: []
       summary: Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
@@ -33988,6 +34018,10 @@ paths:
           description: Account not found
         "422":
           description: No Facebook Page resolved for the account
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no image hash). Inspect `platformError.reason`."
       security:
       - bearerAuth: []
       summary: Create Click-to-Call ad
@@ -86483,15 +86517,18 @@ components:
           description: "Public URL of a still-image thumbnail for the video. OPTIONAL:\
             \ when omitted on Meta, the poster is auto-generated from Meta's own preferred\
             \ video thumbnail (the same candidates Ads Manager shows), so video ads\
-            \ publish without supplying one. Provide it to control the poster frame\
+            \ usually publish without supplying one. When Meta produces no candidate\
+            \ the request fails with a 502 platform_error (reason: video_thumbnail_unavailable)\
+            \ — retry, or supply this field. Provide it to control the poster frame\
             \ exactly (uploaded as an ad image and referenced in object_story_spec.video_data).\
             \ Ignored by LinkedIn (auto-generated poster frame)."
           format: uri
           type: string
     createStandaloneAd_request_creatives_inner_video:
       description: "Video creative for this entry. Mutually exclusive with `imageUrl`.\
-        \ thumbnailUrl is optional — when omitted, the poster is auto-generated from\
-        \ Meta's preferred video thumbnail."
+        \ thumbnailUrl is optional: when omitted, the poster is auto-generated from\
+        \ Meta's preferred video thumbnail, and the request fails with a 502 platform_error\
+        \ (reason: video_thumbnail_unavailable) if Meta produces no candidate."
       properties:
         url:
           format: uri

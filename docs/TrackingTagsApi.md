@@ -1387,6 +1387,7 @@ null (empty response body)
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
 | **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## updateAdTrackingTagsWithHttpInfo
 
@@ -1465,6 +1466,7 @@ ApiResponse<Void>
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
 | **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 
 ## updateTrackingTag

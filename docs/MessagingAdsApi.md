@@ -85,6 +85,7 @@ null (empty response body)
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## createCallAdWithHttpInfo
 
@@ -161,6 +162,7 @@ ApiResponse<Void>
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 
 ## createCtwaAd
@@ -391,6 +393,7 @@ null (empty response body)
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## createMessagingAdWithHttpInfo
 
@@ -467,4 +470,5 @@ ApiResponse<Void>
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
