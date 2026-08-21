@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-21T10:28:48.012811498Z[Etc/UTC]
+- Build date: 2026-08-21T10:40:21.772898981Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1098,6 +1098,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username | Get business username
 *WhatsAppApi* | [**getWhatsappBusinessUsernameSuggestions**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameSuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions
 *WhatsAppApi* | [**getWhatsappBusinessUsernameSuggestionsWithHttpInfo**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameSuggestionsWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions
+*WhatsAppApi* | [**listWhatsAppAccountEvents**](docs/WhatsAppApi.md#listWhatsAppAccountEvents) | **GET** /v1/whatsapp/account-events | List account notifications
+*WhatsAppApi* | [**listWhatsAppAccountEventsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppAccountEventsWithHttpInfo) | **GET** /v1/whatsapp/account-events | List account notifications
 *WhatsAppApi* | [**listWhatsAppConversions**](docs/WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppGroupChats**](docs/WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups
@@ -2242,6 +2244,8 @@ Class | Method | HTTP request | Description
  - [ListValueRuleSets200Response](docs/ListValueRuleSets200Response.md)
  - [ListValueRuleSets200ResponsePaging](docs/ListValueRuleSets200ResponsePaging.md)
  - [ListVoiceCalls200Response](docs/ListVoiceCalls200Response.md)
+ - [ListWhatsAppAccountEvents200Response](docs/ListWhatsAppAccountEvents200Response.md)
+ - [ListWhatsAppAccountEvents200ResponseEventsInner](docs/ListWhatsAppAccountEvents200ResponseEventsInner.md)
  - [ListWhatsAppCalls200Response](docs/ListWhatsAppCalls200Response.md)
  - [ListWhatsAppCalls200ResponseCallsInner](docs/ListWhatsAppCalls200ResponseCallsInner.md)
  - [ListWhatsAppCalls200ResponseCallsInnerBilling](docs/ListWhatsAppCalls200ResponseCallsInnerBilling.md)

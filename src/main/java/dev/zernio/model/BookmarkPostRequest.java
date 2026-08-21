@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BookmarkPostRequest.JSON_PROPERTY_ACCOUNT_ID,
   BookmarkPostRequest.JSON_PROPERTY_TWEET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:28:48.012811498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:40:21.772898981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BookmarkPostRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

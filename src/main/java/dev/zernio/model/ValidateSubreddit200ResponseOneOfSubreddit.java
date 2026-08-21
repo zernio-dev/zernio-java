@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ValidateSubreddit200ResponseOneOfSubreddit.JSON_PROPERTY_ALLOW_IMAGES,
   ValidateSubreddit200ResponseOneOfSubreddit.JSON_PROPERTY_ALLOW_VIDEOS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:28:48.012811498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:40:21.772898981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateSubreddit200ResponseOneOfSubreddit {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

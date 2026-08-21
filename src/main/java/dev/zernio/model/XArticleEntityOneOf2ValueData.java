@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   XArticleEntityOneOf2ValueData.JSON_PROPERTY_CAPTION,
   XArticleEntityOneOf2ValueData.JSON_PROPERTY_ALT_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:28:48.012811498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:40:21.772898981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticleEntityOneOf2ValueData {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

@@ -43,6 +43,7 @@ import dev.zernio.model.GetWhatsappBusinessUsername200Response;
 import dev.zernio.model.GetWhatsappBusinessUsernameSuggestions200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListWhatsAppAccountEvents200Response;
 import dev.zernio.model.ListWhatsAppConversions200Response;
 import dev.zernio.model.ListWhatsAppGroupChats200Response;
 import dev.zernio.model.ListWhatsAppGroupJoinRequests200Response;
@@ -96,7 +97,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:28:48.012811498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:40:21.772898981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3035,6 +3036,144 @@ public class WhatsAppApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List account notifications
+   * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Maximum events to return (optional, default to 50)
+   * @return ListWhatsAppAccountEvents200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppAccountEvents200Response listWhatsAppAccountEvents(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppAccountEvents(accountId, limit, null);
+  }
+
+  /**
+   * List account notifications
+   * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Maximum events to return (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ListWhatsAppAccountEvents200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppAccountEvents200Response listWhatsAppAccountEvents(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWhatsAppAccountEvents200Response> localVarResponse = listWhatsAppAccountEventsWithHttpInfo(accountId, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List account notifications
+   * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Maximum events to return (optional, default to 50)
+   * @return ApiResponse&lt;ListWhatsAppAccountEvents200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppAccountEvents200Response> listWhatsAppAccountEventsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppAccountEventsWithHttpInfo(accountId, limit, null);
+  }
+
+  /**
+   * List account notifications
+   * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Maximum events to return (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWhatsAppAccountEvents200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppAccountEvents200Response> listWhatsAppAccountEventsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWhatsAppAccountEventsRequestBuilder(accountId, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWhatsAppAccountEvents", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWhatsAppAccountEvents200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWhatsAppAccountEvents200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWhatsAppAccountEvents200Response>() {});
+        
+
+        return new ApiResponse<ListWhatsAppAccountEvents200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWhatsAppAccountEventsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listWhatsAppAccountEvents");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/account-events";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

@@ -21319,6 +21319,58 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/account-events:
+    get:
+      description: |
+        Returns Meta-originated events recorded for a WhatsApp account, newest
+        first: template review outcomes (approved, rejected, paused, category
+        changes) and WABA status changes (restricted, disabled, reinstated,
+        disconnected). Events are captured from Meta webhooks as they happen;
+        the feed starts at the account's first recorded event and is not
+        backfilled. Complements the push events `whatsapp.template.status_updated`
+        and `account.disconnected` with a pollable history.
+      operationId: listWhatsAppAccountEvents
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Maximum events to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppAccountEvents_200_response"
+          description: "Recorded events, newest first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: List account notifications
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
   /v1/whatsapp/dataset:
     get:
       description: |
@@ -71985,6 +72037,56 @@ components:
           description: "Users that could not be unblocked, with reasons."
           items:
             $ref: "#/components/schemas/blockWhatsAppUsers_200_response_failed_inner"
+          type: array
+    listWhatsAppAccountEvents_200_response_events_inner:
+      example:
+        severity: info
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        detail: detail
+        type: type
+        title: title
+      properties:
+        id:
+          type: string
+        type:
+          description: "Event kind, e.g. template_approved, template_rejected, account_restricted,\
+            \ account_disconnected"
+          type: string
+        severity:
+          enum:
+          - info
+          - success
+          - warning
+          - critical
+          type: string
+        title:
+          type: string
+        detail:
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    listWhatsAppAccountEvents_200_response:
+      example:
+        events:
+        - severity: info
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          detail: detail
+          type: type
+          title: title
+        - severity: info
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          detail: detail
+          type: type
+          title: title
+      properties:
+        events:
+          items:
+            $ref: "#/components/schemas/listWhatsAppAccountEvents_200_response_events_inner"
           type: array
     getWhatsAppDataset_200_response:
       example:

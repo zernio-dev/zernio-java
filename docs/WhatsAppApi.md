@@ -46,6 +46,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#getWhatsappBusinessUsernameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username | Get business username |
 | [**getWhatsappBusinessUsernameSuggestions**](WhatsAppApi.md#getWhatsappBusinessUsernameSuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
 | [**getWhatsappBusinessUsernameSuggestionsWithHttpInfo**](WhatsAppApi.md#getWhatsappBusinessUsernameSuggestionsWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
+| [**listWhatsAppAccountEvents**](WhatsAppApi.md#listWhatsAppAccountEvents) | **GET** /v1/whatsapp/account-events | List account notifications |
+| [**listWhatsAppAccountEventsWithHttpInfo**](WhatsAppApi.md#listWhatsAppAccountEventsWithHttpInfo) | **GET** /v1/whatsapp/account-events | List account notifications |
 | [**listWhatsAppConversions**](WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppConversionsWithHttpInfo**](WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppGroupChats**](WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups |
@@ -3261,6 +3263,160 @@ ApiResponse<[**GetWhatsappBusinessUsernameSuggestions200Response**](GetWhatsappB
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Username suggestions retrieved successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+
+## listWhatsAppAccountEvents
+
+> ListWhatsAppAccountEvents200Response listWhatsAppAccountEvents(accountId, limit)
+
+List account notifications
+
+Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        Integer limit = 50; // Integer | Maximum events to return
+        try {
+            ListWhatsAppAccountEvents200Response result = apiInstance.listWhatsAppAccountEvents(accountId, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#listWhatsAppAccountEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+| **limit** | **Integer**| Maximum events to return | [optional] [default to 50] |
+
+### Return type
+
+[**ListWhatsAppAccountEvents200Response**](ListWhatsAppAccountEvents200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recorded events, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## listWhatsAppAccountEventsWithHttpInfo
+
+> ApiResponse<ListWhatsAppAccountEvents200Response> listWhatsAppAccountEvents listWhatsAppAccountEventsWithHttpInfo(accountId, limit)
+
+List account notifications
+
+Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        Integer limit = 50; // Integer | Maximum events to return
+        try {
+            ApiResponse<ListWhatsAppAccountEvents200Response> response = apiInstance.listWhatsAppAccountEventsWithHttpInfo(accountId, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#listWhatsAppAccountEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+| **limit** | **Integer**| Maximum events to return | [optional] [default to 50] |
+
+### Return type
+
+ApiResponse<[**ListWhatsAppAccountEvents200Response**](ListWhatsAppAccountEvents200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recorded events, newest first |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 

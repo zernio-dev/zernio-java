@@ -1026,6 +1026,8 @@ docs/ListUsers200ResponseUsersInner.md
 docs/ListValueRuleSets200Response.md
 docs/ListValueRuleSets200ResponsePaging.md
 docs/ListVoiceCalls200Response.md
+docs/ListWhatsAppAccountEvents200Response.md
+docs/ListWhatsAppAccountEvents200ResponseEventsInner.md
 docs/ListWhatsAppCalls200Response.md
 docs/ListWhatsAppCalls200ResponseCallsInner.md
 docs/ListWhatsAppCalls200ResponseCallsInnerBilling.md
@@ -2830,6 +2832,8 @@ src/main/java/dev/zernio/model/ListUsers200ResponseUsersInner.java
 src/main/java/dev/zernio/model/ListValueRuleSets200Response.java
 src/main/java/dev/zernio/model/ListValueRuleSets200ResponsePaging.java
 src/main/java/dev/zernio/model/ListVoiceCalls200Response.java
+src/main/java/dev/zernio/model/ListWhatsAppAccountEvents200Response.java
+src/main/java/dev/zernio/model/ListWhatsAppAccountEvents200ResponseEventsInner.java
 src/main/java/dev/zernio/model/ListWhatsAppCalls200Response.java
 src/main/java/dev/zernio/model/ListWhatsAppCalls200ResponseCallsInner.java
 src/main/java/dev/zernio/model/ListWhatsAppCalls200ResponseCallsInnerBilling.java
@@ -3531,3 +3535,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListWhatsAppAccountEvents200ResponseEventsInnerTest.java
+src/test/java/dev/zernio/model/ListWhatsAppAccountEvents200ResponseTest.java
