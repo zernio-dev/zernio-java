@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-21T08:45:15.376826523Z[Etc/UTC]
+- Build date: 2026-08-21T09:20:56.626255796Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -468,6 +468,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectOpenAIAdsCredentials**](docs/ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectOpenAIAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
+*ConnectApi* | [**connectShopifyWithToken**](docs/ConnectApi.md#connectShopifyWithToken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
+*ConnectApi* | [**connectShopifyWithTokenWithHttpInfo**](docs/ConnectApi.md#connectShopifyWithTokenWithHttpInfo) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
@@ -1403,6 +1405,9 @@ Class | Method | HTTP request | Description
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
  - [ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
  - [ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
+ - [ConnectShopifyWithToken200Response](docs/ConnectShopifyWithToken200Response.md)
+ - [ConnectShopifyWithToken200ResponseAccount](docs/ConnectShopifyWithToken200ResponseAccount.md)
+ - [ConnectShopifyWithTokenRequest](docs/ConnectShopifyWithTokenRequest.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)
  - [ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)

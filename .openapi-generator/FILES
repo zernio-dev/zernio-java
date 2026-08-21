@@ -171,6 +171,9 @@ docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
 docs/ConnectOpenAIAdsCredentials200Response.md
 docs/ConnectOpenAIAdsCredentialsRequest.md
+docs/ConnectShopifyWithToken200Response.md
+docs/ConnectShopifyWithToken200ResponseAccount.md
+docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
@@ -1990,6 +1993,9 @@ src/main/java/dev/zernio/model/ConnectBlueskyCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectOpenAIAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectOpenAIAdsCredentialsRequest.java
+src/main/java/dev/zernio/model/ConnectShopifyWithToken200Response.java
+src/main/java/dev/zernio/model/ConnectShopifyWithToken200ResponseAccount.java
+src/main/java/dev/zernio/model/ConnectShopifyWithTokenRequest.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
@@ -3525,3 +3531,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectShopifyWithToken200ResponseAccountTest.java
+src/test/java/dev/zernio/model/ConnectShopifyWithToken200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectShopifyWithTokenRequestTest.java

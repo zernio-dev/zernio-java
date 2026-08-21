@@ -30,6 +30,8 @@ import dev.zernio.model.ConnectBlueskyCredentials200Response;
 import dev.zernio.model.ConnectBlueskyCredentialsRequest;
 import dev.zernio.model.ConnectOpenAIAdsCredentials200Response;
 import dev.zernio.model.ConnectOpenAIAdsCredentialsRequest;
+import dev.zernio.model.ConnectShopifyWithToken200Response;
+import dev.zernio.model.ConnectShopifyWithTokenRequest;
 import dev.zernio.model.ConnectWhatsAppCredentials200Response;
 import dev.zernio.model.ConnectWhatsAppCredentialsRequest;
 import dev.zernio.model.CreatePinterestBoard201Response;
@@ -111,7 +113,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:45:15.376826523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T09:20:56.626255796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1153,6 +1155,129 @@ public class ConnectApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectOpenAIAdsCredentialsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Connect a Shopify store with a custom-app Admin token
+   * Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;/&#x60;write_content&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
+   * @param connectShopifyWithTokenRequest  (required)
+   * @return ConnectShopifyWithToken200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ConnectShopifyWithToken200Response connectShopifyWithToken(@javax.annotation.Nonnull ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest) throws ApiException {
+    return connectShopifyWithToken(connectShopifyWithTokenRequest, null);
+  }
+
+  /**
+   * Connect a Shopify store with a custom-app Admin token
+   * Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;/&#x60;write_content&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
+   * @param connectShopifyWithTokenRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ConnectShopifyWithToken200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ConnectShopifyWithToken200Response connectShopifyWithToken(@javax.annotation.Nonnull ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ConnectShopifyWithToken200Response> localVarResponse = connectShopifyWithTokenWithHttpInfo(connectShopifyWithTokenRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Connect a Shopify store with a custom-app Admin token
+   * Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;/&#x60;write_content&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
+   * @param connectShopifyWithTokenRequest  (required)
+   * @return ApiResponse&lt;ConnectShopifyWithToken200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ConnectShopifyWithToken200Response> connectShopifyWithTokenWithHttpInfo(@javax.annotation.Nonnull ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest) throws ApiException {
+    return connectShopifyWithTokenWithHttpInfo(connectShopifyWithTokenRequest, null);
+  }
+
+  /**
+   * Connect a Shopify store with a custom-app Admin token
+   * Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;/&#x60;write_content&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
+   * @param connectShopifyWithTokenRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ConnectShopifyWithToken200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ConnectShopifyWithToken200Response> connectShopifyWithTokenWithHttpInfo(@javax.annotation.Nonnull ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectShopifyWithTokenRequestBuilder(connectShopifyWithTokenRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("connectShopifyWithToken", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ConnectShopifyWithToken200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ConnectShopifyWithToken200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ConnectShopifyWithToken200Response>() {});
+        
+
+        return new ApiResponse<ConnectShopifyWithToken200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder connectShopifyWithTokenRequestBuilder(@javax.annotation.Nonnull ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'connectShopifyWithTokenRequest' is set
+    if (connectShopifyWithTokenRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectShopifyWithTokenRequest' when calling connectShopifyWithToken");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/shopify/token";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectShopifyWithTokenRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

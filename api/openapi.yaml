@@ -7817,6 +7817,50 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+  /v1/connect/shopify/token:
+    post:
+      description: |
+        Token-paste alternative to the OAuth flow: connect a store using the
+        Admin API access token of a custom app the merchant created in their
+        own Shopify admin (Settings → Apps and sales channels → Develop apps,
+        with the `read_content`/`write_content` scopes). Use this when the
+        one-click OAuth connect is unavailable or when your users prefer not
+        to install a third-party app on their store. The token is validated
+        against the store before anything is saved; custom-app tokens do not
+        expire. Connecting the same profile to a store again replaces the
+        stored token in place.
+      operationId: connectShopifyWithToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/connectShopifyWithToken_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/connectShopifyWithToken_200_response"
+          description: Store connected as a platform account
+        "400":
+          description: "Invalid `profileId` format, `shop` is not a myshopify.com\
+            \ store domain, or Shopify rejected the access token for that store."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: API key does not have access to this profile.
+      security:
+      - bearerAuth: []
+      summary: Connect a Shopify store with a custom-app Admin token
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/connect/tiktok-ads:
     patch:
       description: |
@@ -57399,6 +57443,55 @@ components:
       oneOf:
       - $ref: "#/components/schemas/connectAds_200_response_oneOf"
       - $ref: "#/components/schemas/connectAds_200_response_oneOf_1"
+    connectShopifyWithToken_request:
+      properties:
+        profileId:
+          description: Your Zernio profile ID (get from /v1/profiles).
+          type: string
+        shop:
+          description: "The myshopify.com store domain, e.g. `your-store.myshopify.com`\
+            \ (the bare `your-store` prefix is accepted too)."
+          type: string
+        accessToken:
+          description: Admin API access token of the merchant-created custom app (starts
+            with `shpat_`).
+          type: string
+      required:
+      - accessToken
+      - profileId
+      - shop
+    connectShopifyWithToken_200_response_account:
+      example:
+        displayName: displayName
+        profileId: profileId
+        _id: _id
+        platform: shopify
+        username: username
+      properties:
+        _id:
+          type: string
+        platform:
+          enum:
+          - shopify
+          type: string
+        username:
+          description: The myshopify.com domain of the connected store.
+          type: string
+        displayName:
+          type: string
+        profileId:
+          type: string
+    connectShopifyWithToken_200_response:
+      example:
+        account:
+          displayName: displayName
+          profileId: profileId
+          _id: _id
+          platform: shopify
+          username: username
+      properties:
+        account:
+          $ref: "#/components/schemas/connectShopifyWithToken_200_response_account"
     configureTikTokAdsBrandIdentity_request:
       properties:
         accountId:

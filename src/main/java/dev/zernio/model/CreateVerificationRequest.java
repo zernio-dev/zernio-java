@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateVerificationRequest.JSON_PROPERTY_CODE_LENGTH,
   CreateVerificationRequest.JSON_PROPERTY_TTL_MINUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:45:15.376826523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T09:20:56.626255796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateVerificationRequest {
   /**
    * SMS-only for now.
