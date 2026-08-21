@@ -14884,6 +14884,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: "^[a-fA-F0-9]{24}$"
           type: string
         style: form
       responses:
@@ -14894,7 +14895,7 @@ paths:
                 $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Webhook deleted successfully
         "400":
-          description: Webhook ID required
+          description: Webhook ID missing or not a valid ID
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
