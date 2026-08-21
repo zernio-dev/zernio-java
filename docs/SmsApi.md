@@ -2510,6 +2510,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Message accepted for delivery. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
@@ -2590,6 +2591,7 @@ ApiResponse<[**SendSms200Response**](SendSms200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Message accepted for delivery. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |

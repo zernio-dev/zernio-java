@@ -3531,6 +3531,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectShopifyWithToken200ResponseAccountTest.java
-src/test/java/dev/zernio/model/ConnectShopifyWithToken200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectShopifyWithTokenRequestTest.java
