@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   DeactivateSmsRegistration200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T10:24:22.967699073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:28:23.719094324Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeactivateSmsRegistration200Response {
   /**
    * Gets or Sets status

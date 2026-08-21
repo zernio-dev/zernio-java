@@ -43782,7 +43782,9 @@ components:
           creditsRemainingCents: 1
           accruedThisPeriodCents: 6
         billingSystem: metronome
+        shopifyShopDomain: shopifyShopDomain
         plan:
+          isPaid: true
           name: name
           isUsageBased: true
         caps:
@@ -43801,9 +43803,15 @@ components:
           enum:
           - metronome
           - stripe
+          - shopify
           type: string
         plan:
           $ref: "#/components/schemas/BillingSnapshot_plan"
+        shopifyShopDomain:
+          description: myshopify.com domain owning the subscription; present only
+            when billingSystem is shopify.
+          nullable: true
+          type: string
         period:
           $ref: "#/components/schemas/BillingSnapshot_period"
         balance:
@@ -95665,12 +95673,18 @@ components:
           type: string
     BillingSnapshot_plan:
       example:
+        isPaid: true
         name: name
         isUsageBased: true
       properties:
         name:
           type: string
         isUsageBased:
+          type: boolean
+        isPaid:
+          description: "True when the key belongs to an account with an active paid\
+            \ billing relationship (Stripe subscription, Metronome enrollment, or\
+            \ Shopify-managed billing)."
           type: boolean
     BillingSnapshot_period:
       description: Current billing cycle. `start`/`end` are resolved for usage-based

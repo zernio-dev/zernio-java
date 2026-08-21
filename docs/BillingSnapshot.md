@@ -10,6 +10,7 @@ Account billing state — plan, cycle, balance, spend caps, and payment / access
 |------------ | ------------- | ------------- | -------------|
 |**billingSystem** | [**BillingSystemEnum**](#BillingSystemEnum) |  |  [optional] |
 |**plan** | [**BillingSnapshotPlan**](BillingSnapshotPlan.md) |  |  [optional] |
+|**shopifyShopDomain** | **String** | myshopify.com domain owning the subscription; present only when billingSystem is shopify. |  [optional] |
 |**period** | [**BillingSnapshotPeriod**](BillingSnapshotPeriod.md) |  |  [optional] |
 |**balance** | [**BillingSnapshotBalance**](BillingSnapshotBalance.md) |  |  [optional] |
 |**caps** | [**BillingSnapshotCaps**](BillingSnapshotCaps.md) |  |  [optional] |
@@ -24,6 +25,7 @@ Account billing state — plan, cycle, balance, spend caps, and payment / access
 |---- | -----|
 | METRONOME | &quot;metronome&quot; |
 | STRIPE | &quot;stripe&quot; |
+| SHOPIFY | &quot;shopify&quot; |
 
 
 

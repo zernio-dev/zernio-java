@@ -31,6 +31,10 @@ import dev.zernio.model.BillingSnapshotPeriod;
 import dev.zernio.model.BillingSnapshotPlan;
 import dev.zernio.model.BillingSnapshotStatus;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,13 +45,14 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   BillingSnapshot.JSON_PROPERTY_BILLING_SYSTEM,
   BillingSnapshot.JSON_PROPERTY_PLAN,
+  BillingSnapshot.JSON_PROPERTY_SHOPIFY_SHOP_DOMAIN,
   BillingSnapshot.JSON_PROPERTY_PERIOD,
   BillingSnapshot.JSON_PROPERTY_BALANCE,
   BillingSnapshot.JSON_PROPERTY_CAPS,
   BillingSnapshot.JSON_PROPERTY_STATUS,
   BillingSnapshot.JSON_PROPERTY_LEGACY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T10:24:22.967699073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:28:23.719094324Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshot {
   /**
    * Gets or Sets billingSystem
@@ -55,7 +60,9 @@ public class BillingSnapshot {
   public enum BillingSystemEnum {
     METRONOME(String.valueOf("metronome")),
     
-    STRIPE(String.valueOf("stripe"));
+    STRIPE(String.valueOf("stripe")),
+    
+    SHOPIFY(String.valueOf("shopify"));
 
     private String value;
 
@@ -91,6 +98,9 @@ public class BillingSnapshot {
   public static final String JSON_PROPERTY_PLAN = "plan";
   @javax.annotation.Nullable
   private BillingSnapshotPlan plan;
+
+  public static final String JSON_PROPERTY_SHOPIFY_SHOP_DOMAIN = "shopifyShopDomain";
+  private JsonNullable<String> shopifyShopDomain = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PERIOD = "period";
   @javax.annotation.Nullable
@@ -160,6 +170,38 @@ public class BillingSnapshot {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlan(@javax.annotation.Nullable BillingSnapshotPlan plan) {
     this.plan = plan;
+  }
+
+
+  public BillingSnapshot shopifyShopDomain(@javax.annotation.Nullable String shopifyShopDomain) {
+    this.shopifyShopDomain = JsonNullable.<String>of(shopifyShopDomain);
+    return this;
+  }
+
+  /**
+   * myshopify.com domain owning the subscription; present only when billingSystem is shopify.
+   * @return shopifyShopDomain
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getShopifyShopDomain() {
+        return shopifyShopDomain.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SHOPIFY_SHOP_DOMAIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getShopifyShopDomain_JsonNullable() {
+    return shopifyShopDomain;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SHOPIFY_SHOP_DOMAIN)
+  public void setShopifyShopDomain_JsonNullable(JsonNullable<String> shopifyShopDomain) {
+    this.shopifyShopDomain = shopifyShopDomain;
+  }
+
+  public void setShopifyShopDomain(@javax.annotation.Nullable String shopifyShopDomain) {
+    this.shopifyShopDomain = JsonNullable.<String>of(shopifyShopDomain);
   }
 
 
@@ -297,6 +339,7 @@ public class BillingSnapshot {
     BillingSnapshot billingSnapshot = (BillingSnapshot) o;
     return Objects.equals(this.billingSystem, billingSnapshot.billingSystem) &&
         Objects.equals(this.plan, billingSnapshot.plan) &&
+        equalsNullable(this.shopifyShopDomain, billingSnapshot.shopifyShopDomain) &&
         Objects.equals(this.period, billingSnapshot.period) &&
         Objects.equals(this.balance, billingSnapshot.balance) &&
         Objects.equals(this.caps, billingSnapshot.caps) &&
@@ -304,9 +347,20 @@ public class BillingSnapshot {
         Objects.equals(this.legacy, billingSnapshot.legacy);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(billingSystem, plan, period, balance, caps, status, legacy);
+    return Objects.hash(billingSystem, plan, hashCodeNullable(shopifyShopDomain), period, balance, caps, status, legacy);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -315,6 +369,7 @@ public class BillingSnapshot {
     sb.append("class BillingSnapshot {\n");
     sb.append("    billingSystem: ").append(toIndentedString(billingSystem)).append("\n");
     sb.append("    plan: ").append(toIndentedString(plan)).append("\n");
+    sb.append("    shopifyShopDomain: ").append(toIndentedString(shopifyShopDomain)).append("\n");
     sb.append("    period: ").append(toIndentedString(period)).append("\n");
     sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
     sb.append("    caps: ").append(toIndentedString(caps)).append("\n");
@@ -375,6 +430,11 @@ public class BillingSnapshot {
     // add `plan` to the URL query string
     if (getPlan() != null) {
       joiner.add(getPlan().toUrlQueryString(prefix + "plan" + suffix));
+    }
+
+    // add `shopifyShopDomain` to the URL query string
+    if (getShopifyShopDomain() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sshopifyShopDomain%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShopifyShopDomain()))));
     }
 
     // add `period` to the URL query string

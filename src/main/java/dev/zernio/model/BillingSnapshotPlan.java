@@ -34,9 +34,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   BillingSnapshotPlan.JSON_PROPERTY_NAME,
-  BillingSnapshotPlan.JSON_PROPERTY_IS_USAGE_BASED
+  BillingSnapshotPlan.JSON_PROPERTY_IS_USAGE_BASED,
+  BillingSnapshotPlan.JSON_PROPERTY_IS_PAID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-20T10:24:22.967699073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T08:28:23.719094324Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotPlan {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -45,6 +46,10 @@ public class BillingSnapshotPlan {
   public static final String JSON_PROPERTY_IS_USAGE_BASED = "isUsageBased";
   @javax.annotation.Nullable
   private Boolean isUsageBased;
+
+  public static final String JSON_PROPERTY_IS_PAID = "isPaid";
+  @javax.annotation.Nullable
+  private Boolean isPaid;
 
   public BillingSnapshotPlan() { 
   }
@@ -97,6 +102,30 @@ public class BillingSnapshotPlan {
   }
 
 
+  public BillingSnapshotPlan isPaid(@javax.annotation.Nullable Boolean isPaid) {
+    this.isPaid = isPaid;
+    return this;
+  }
+
+  /**
+   * True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing).
+   * @return isPaid
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_PAID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsPaid() {
+    return isPaid;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_PAID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsPaid(@javax.annotation.Nullable Boolean isPaid) {
+    this.isPaid = isPaid;
+  }
+
+
   /**
    * Return true if this BillingSnapshot_plan object is equal to o.
    */
@@ -110,12 +139,13 @@ public class BillingSnapshotPlan {
     }
     BillingSnapshotPlan billingSnapshotPlan = (BillingSnapshotPlan) o;
     return Objects.equals(this.name, billingSnapshotPlan.name) &&
-        Objects.equals(this.isUsageBased, billingSnapshotPlan.isUsageBased);
+        Objects.equals(this.isUsageBased, billingSnapshotPlan.isUsageBased) &&
+        Objects.equals(this.isPaid, billingSnapshotPlan.isPaid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, isUsageBased);
+    return Objects.hash(name, isUsageBased, isPaid);
   }
 
   @Override
@@ -124,6 +154,7 @@ public class BillingSnapshotPlan {
     sb.append("class BillingSnapshotPlan {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    isUsageBased: ").append(toIndentedString(isUsageBased)).append("\n");
+    sb.append("    isPaid: ").append(toIndentedString(isPaid)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +210,11 @@ public class BillingSnapshotPlan {
     // add `isUsageBased` to the URL query string
     if (getIsUsageBased() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisUsageBased%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsUsageBased()))));
+    }
+
+    // add `isPaid` to the URL query string
+    if (getIsPaid() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisPaid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsPaid()))));
     }
 
     return joiner.toString();
