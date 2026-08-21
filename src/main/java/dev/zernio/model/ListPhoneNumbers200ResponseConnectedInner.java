@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_PHONE_NUMBER,
   ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_DISPLAY_NAME,
   ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_PROFILE_ID,
-  ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_CONNECTED_AT
+  ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_CONNECTED_AT,
+  ListPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_CALLING_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:40:21.772898981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T11:15:57.383116596Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseConnectedInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -61,6 +62,10 @@ public class ListPhoneNumbers200ResponseConnectedInner {
 
   public static final String JSON_PROPERTY_CONNECTED_AT = "connectedAt";
   private JsonNullable<OffsetDateTime> connectedAt = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_CALLING_ENABLED = "callingEnabled";
+  @javax.annotation.Nullable
+  private Boolean callingEnabled;
 
   public ListPhoneNumbers200ResponseConnectedInner() { 
   }
@@ -217,6 +222,30 @@ public class ListPhoneNumbers200ResponseConnectedInner {
   }
 
 
+  public ListPhoneNumbers200ResponseConnectedInner callingEnabled(@javax.annotation.Nullable Boolean callingEnabled) {
+    this.callingEnabled = callingEnabled;
+    return this;
+  }
+
+  /**
+   * Whether WhatsApp Business Calling is enabled on this number.
+   * @return callingEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALLING_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCallingEnabled() {
+    return callingEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALLING_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallingEnabled(@javax.annotation.Nullable Boolean callingEnabled) {
+    this.callingEnabled = callingEnabled;
+  }
+
+
   /**
    * Return true if this listPhoneNumbers_200_response_connected_inner object is equal to o.
    */
@@ -233,7 +262,8 @@ public class ListPhoneNumbers200ResponseConnectedInner {
         equalsNullable(this.phoneNumber, listPhoneNumbers200ResponseConnectedInner.phoneNumber) &&
         equalsNullable(this.displayName, listPhoneNumbers200ResponseConnectedInner.displayName) &&
         equalsNullable(this.profileId, listPhoneNumbers200ResponseConnectedInner.profileId) &&
-        equalsNullable(this.connectedAt, listPhoneNumbers200ResponseConnectedInner.connectedAt);
+        equalsNullable(this.connectedAt, listPhoneNumbers200ResponseConnectedInner.connectedAt) &&
+        Objects.equals(this.callingEnabled, listPhoneNumbers200ResponseConnectedInner.callingEnabled);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -242,7 +272,7 @@ public class ListPhoneNumbers200ResponseConnectedInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, hashCodeNullable(phoneNumber), hashCodeNullable(displayName), hashCodeNullable(profileId), hashCodeNullable(connectedAt));
+    return Objects.hash(accountId, hashCodeNullable(phoneNumber), hashCodeNullable(displayName), hashCodeNullable(profileId), hashCodeNullable(connectedAt), callingEnabled);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -261,6 +291,7 @@ public class ListPhoneNumbers200ResponseConnectedInner {
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    connectedAt: ").append(toIndentedString(connectedAt)).append("\n");
+    sb.append("    callingEnabled: ").append(toIndentedString(callingEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -331,6 +362,11 @@ public class ListPhoneNumbers200ResponseConnectedInner {
     // add `connectedAt` to the URL query string
     if (getConnectedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconnectedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectedAt()))));
+    }
+
+    // add `callingEnabled` to the URL query string
+    if (getCallingEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scallingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallingEnabled()))));
     }
 
     return joiner.toString();

@@ -72112,6 +72112,7 @@ components:
     listPhoneNumbers_200_response_numbers_inner:
       example:
         country: country
+        callingEnabled: true
         endUserFirstName: endUserFirstName
         regulatoryDeclineReason: regulatoryDeclineReason
         provisionedAt: 2000-01-23T04:56:07.000+00:00
@@ -72190,12 +72191,17 @@ components:
           description: Reviewer rejection reason when status is regulatory_declined.
           nullable: true
           type: string
+        callingEnabled:
+          description: "Whether WhatsApp Business Calling is enabled on this number\
+            \ (manage via /v1/whatsapp/phone-numbers/{id}/calling)."
+          type: boolean
         createdAt:
           format: date-time
           type: string
     listPhoneNumbers_200_response_connected_inner:
       example:
         accountId: accountId
+        callingEnabled: true
         phoneNumber: phoneNumber
         connectedAt: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
@@ -72216,6 +72222,9 @@ components:
           format: date-time
           nullable: true
           type: string
+        callingEnabled:
+          description: Whether WhatsApp Business Calling is enabled on this number.
+          type: boolean
     listPhoneNumbers_200_response_sandbox_template:
       example:
         name: sandbox_start
@@ -72255,17 +72264,20 @@ components:
       example:
         connected:
         - accountId: accountId
+          callingEnabled: true
           phoneNumber: phoneNumber
           connectedAt: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
           profileId: profileId
         - accountId: accountId
+          callingEnabled: true
           phoneNumber: phoneNumber
           connectedAt: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
           profileId: profileId
         numbers:
         - country: country
+          callingEnabled: true
           endUserFirstName: endUserFirstName
           regulatoryDeclineReason: regulatoryDeclineReason
           provisionedAt: 2000-01-23T04:56:07.000+00:00
@@ -72283,6 +72295,7 @@ components:
           telnyxOrderId: telnyxOrderId
           status: pending_payment
         - country: country
+          callingEnabled: true
           endUserFirstName: endUserFirstName
           regulatoryDeclineReason: regulatoryDeclineReason
           provisionedAt: 2000-01-23T04:56:07.000+00:00

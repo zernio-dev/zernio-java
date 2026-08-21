@@ -54,9 +54,10 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_END_USER_FIRST_NAME,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_END_USER_LAST_NAME,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_REGULATORY_DECLINE_REASON,
+  ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CALLING_ENABLED,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T10:40:21.772898981Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T11:15:57.383116596Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -164,6 +165,10 @@ public class ListPhoneNumbers200ResponseNumbersInner {
 
   public static final String JSON_PROPERTY_REGULATORY_DECLINE_REASON = "regulatoryDeclineReason";
   private JsonNullable<String> regulatoryDeclineReason = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CALLING_ENABLED = "callingEnabled";
+  @javax.annotation.Nullable
+  private Boolean callingEnabled;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -604,6 +609,30 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   }
 
 
+  public ListPhoneNumbers200ResponseNumbersInner callingEnabled(@javax.annotation.Nullable Boolean callingEnabled) {
+    this.callingEnabled = callingEnabled;
+    return this;
+  }
+
+  /**
+   * Whether WhatsApp Business Calling is enabled on this number (manage via /v1/whatsapp/phone-numbers/{id}/calling).
+   * @return callingEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALLING_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCallingEnabled() {
+    return callingEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALLING_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallingEnabled(@javax.annotation.Nullable Boolean callingEnabled) {
+    this.callingEnabled = callingEnabled;
+  }
+
+
   public ListPhoneNumbers200ResponseNumbersInner createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -656,6 +685,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
         equalsNullable(this.endUserFirstName, listPhoneNumbers200ResponseNumbersInner.endUserFirstName) &&
         equalsNullable(this.endUserLastName, listPhoneNumbers200ResponseNumbersInner.endUserLastName) &&
         equalsNullable(this.regulatoryDeclineReason, listPhoneNumbers200ResponseNumbersInner.regulatoryDeclineReason) &&
+        Objects.equals(this.callingEnabled, listPhoneNumbers200ResponseNumbersInner.callingEnabled) &&
         Objects.equals(this.createdAt, listPhoneNumbers200ResponseNumbersInner.createdAt);
   }
 
@@ -665,7 +695,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, country, status, hashCodeNullable(registrantName), hashCodeNullable(telnyxOrderId), monthlyCents, hostedByZernio, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), createdAt);
+    return Objects.hash(id, phoneNumber, country, status, hashCodeNullable(registrantName), hashCodeNullable(telnyxOrderId), monthlyCents, hostedByZernio, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), callingEnabled, createdAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -695,6 +725,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
     sb.append("    regulatoryDeclineReason: ").append(toIndentedString(regulatoryDeclineReason)).append("\n");
+    sb.append("    callingEnabled: ").append(toIndentedString(callingEnabled)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -821,6 +852,11 @@ public class ListPhoneNumbers200ResponseNumbersInner {
     // add `regulatoryDeclineReason` to the URL query string
     if (getRegulatoryDeclineReason() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sregulatoryDeclineReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRegulatoryDeclineReason()))));
+    }
+
+    // add `callingEnabled` to the URL query string
+    if (getCallingEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scallingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallingEnabled()))));
     }
 
     // add `createdAt` to the URL query string

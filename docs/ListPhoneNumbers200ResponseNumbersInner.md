@@ -23,6 +23,7 @@
 |**endUserFirstName** | **String** |  |  [optional] |
 |**endUserLastName** | **String** |  |  [optional] |
 |**regulatoryDeclineReason** | **String** | Reviewer rejection reason when status is regulatory_declined. |  [optional] |
+|**callingEnabled** | **Boolean** | Whether WhatsApp Business Calling is enabled on this number (manage via /v1/whatsapp/phone-numbers/{id}/calling). |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 
 
