@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AddUsersToAdAudience200Response.JSON_PROPERTY_NUM_RECEIVED,
   AddUsersToAdAudience200Response.JSON_PROPERTY_NUM_INVALID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T09:47:07.262038607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:02:42.901585056Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddUsersToAdAudience200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

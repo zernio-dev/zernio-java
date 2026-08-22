@@ -15658,15 +15658,26 @@ paths:
         "403":
           description: Inbox addon required or profile limit reached
         "404":
-          description: Account or recipient user not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createInboxConversation_404_response"
+          description: "Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND\
+            \ when the u/username does not exist)"
         "422":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/createInboxConversation_422_response"
-          description: Recipient does not accept DMs from this account
+          description: "Recipient does not accept DMs from this account (X/Twitter),\
+            \ or does not accept private messages from you (Reddit)"
         "429":
-          description: X API rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createInboxConversation_429_response"
+          description: "X API rate limit exceeded, or Reddit rate limit reached for\
+            \ this account"
       security:
       - bearerAuth: []
       summary: Create conversation
@@ -65550,6 +65561,18 @@ components:
           enum:
           - PLATFORM_NOT_SUPPORTED
           type: string
+    createInboxConversation_404_response:
+      example:
+        code: account_not_found
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - account_not_found
+          - PARTICIPANT_NOT_FOUND
+          type: string
     createInboxConversation_422_response:
       example:
         code: DM_NOT_ALLOWED
@@ -65560,6 +65583,17 @@ components:
         code:
           enum:
           - DM_NOT_ALLOWED
+          type: string
+    createInboxConversation_429_response:
+      example:
+        code: rate_limited
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - rate_limited
           type: string
     searchInboxConversations_200_response_data_inner_conversation:
       example:

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-22T09:47:07.262038607Z[Etc/UTC]
+- Build date: 2026-08-22T11:02:42.901585056Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1487,7 +1487,9 @@ Class | Method | HTTP request | Description
  - [CreateInboxConversation201Response](docs/CreateInboxConversation201Response.md)
  - [CreateInboxConversation201ResponseData](docs/CreateInboxConversation201ResponseData.md)
  - [CreateInboxConversation400Response](docs/CreateInboxConversation400Response.md)
+ - [CreateInboxConversation404Response](docs/CreateInboxConversation404Response.md)
  - [CreateInboxConversation422Response](docs/CreateInboxConversation422Response.md)
+ - [CreateInboxConversation429Response](docs/CreateInboxConversation429Response.md)
  - [CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
  - [CreateInboxConversationRequest1](docs/CreateInboxConversationRequest1.md)
  - [CreateInboxConversationRequestHeaderMedia](docs/CreateInboxConversationRequestHeaderMedia.md)

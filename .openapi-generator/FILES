@@ -254,7 +254,9 @@ docs/CreateHighDemandPeriodRequest.md
 docs/CreateInboxConversation201Response.md
 docs/CreateInboxConversation201ResponseData.md
 docs/CreateInboxConversation400Response.md
+docs/CreateInboxConversation404Response.md
 docs/CreateInboxConversation422Response.md
+docs/CreateInboxConversation429Response.md
 docs/CreateInboxConversationRequest.md
 docs/CreateInboxConversationRequest1.md
 docs/CreateInboxConversationRequestHeaderMedia.md
@@ -2075,7 +2077,9 @@ src/main/java/dev/zernio/model/CreateHighDemandPeriodRequest.java
 src/main/java/dev/zernio/model/CreateInboxConversation201Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation201ResponseData.java
 src/main/java/dev/zernio/model/CreateInboxConversation400Response.java
+src/main/java/dev/zernio/model/CreateInboxConversation404Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation422Response.java
+src/main/java/dev/zernio/model/CreateInboxConversation429Response.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequest.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequest1.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequestHeaderMedia.java
@@ -3535,3 +3539,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateInboxConversation404ResponseTest.java
+src/test/java/dev/zernio/model/CreateInboxConversation429ResponseTest.java

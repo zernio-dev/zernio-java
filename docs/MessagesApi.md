@@ -269,9 +269,9 @@ public class Example {
 | **400** | Validation error, platform not supported, category combined with templateName or used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
-| **404** | Account or recipient user not found |  -  |
-| **422** | Recipient does not accept DMs from this account |  -  |
-| **429** | X API rate limit exceeded |  -  |
+| **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
+| **422** | Recipient does not accept DMs from this account (X/Twitter), or does not accept private messages from you (Reddit) |  -  |
+| **429** | X API rate limit exceeded, or Reddit rate limit reached for this account |  -  |
 
 ## createInboxConversationWithHttpInfo
 
@@ -348,9 +348,9 @@ ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201R
 | **400** | Validation error, platform not supported, category combined with templateName or used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
-| **404** | Account or recipient user not found |  -  |
-| **422** | Recipient does not accept DMs from this account |  -  |
-| **429** | X API rate limit exceeded |  -  |
+| **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
+| **422** | Recipient does not accept DMs from this account (X/Twitter), or does not accept private messages from you (Reddit) |  -  |
+| **429** | X API rate limit exceeded, or Reddit rate limit reached for this account |  -  |
 
 
 ## deleteInboxMessage
