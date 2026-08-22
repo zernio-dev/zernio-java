@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-22T11:21:01.589016650Z[Etc/UTC]
+- Build date: 2026-08-22T11:34:24.654131394Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -214,6 +214,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**getAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#getAdAudienceWithHttpInfo) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
 *AdAudiencesApi* | [**listAdAudiences**](docs/AdAudiencesApi.md#listAdAudiences) | **GET** /v1/ads/audiences | List custom audiences
 *AdAudiencesApi* | [**listAdAudiencesWithHttpInfo**](docs/AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences
+*AdAudiencesApi* | [**replaceAdAudienceCompanies**](docs/AdAudiencesApi.md#replaceAdAudienceCompanies) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
+*AdAudiencesApi* | [**replaceAdAudienceCompaniesWithHttpInfo**](docs/AdAudiencesApi.md#replaceAdAudienceCompaniesWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdCampaignsApi* | [**boostPost**](docs/AdCampaignsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
@@ -2379,6 +2381,9 @@ Class | Method | HTTP request | Description
  - [RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
+ - [ReplaceAdAudienceCompanies200Response](docs/ReplaceAdAudienceCompanies200Response.md)
+ - [ReplaceAdAudienceCompaniesRequest](docs/ReplaceAdAudienceCompaniesRequest.md)
+ - [ReplaceAdAudienceCompaniesRequestCompaniesInner](docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md)
  - [ReplyToGoogleBusinessReview200Response](docs/ReplyToGoogleBusinessReview200Response.md)
  - [ReplyToGoogleBusinessReviewRequest](docs/ReplyToGoogleBusinessReviewRequest.md)
  - [ReplyToInboxPost200Response](docs/ReplyToInboxPost200Response.md)

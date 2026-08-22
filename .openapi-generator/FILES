@@ -1170,6 +1170,9 @@ docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
+docs/ReplaceAdAudienceCompanies200Response.md
+docs/ReplaceAdAudienceCompaniesRequest.md
+docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md
 docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
@@ -2968,6 +2971,9 @@ src/main/java/dev/zernio/model/RemoveBookmark200Response.java
 src/main/java/dev/zernio/model/RemoveConversionAssociations200Response.java
 src/main/java/dev/zernio/model/RemoveDiscordMemberRole200Response.java
 src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
+src/main/java/dev/zernio/model/ReplaceAdAudienceCompanies200Response.java
+src/main/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequest.java
+src/main/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequestCompaniesInner.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReview200Response.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200Response.java
@@ -3541,4 +3547,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListAdVideos200ResponseTest.java
+src/test/java/dev/zernio/model/ReplaceAdAudienceCompanies200ResponseTest.java
+src/test/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTest.java
+src/test/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequestTest.java

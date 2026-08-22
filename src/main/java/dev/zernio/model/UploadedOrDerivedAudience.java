@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_RULE,
   UploadedOrDerivedAudience.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:21:01.589016650Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:34:24.654131394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -588,7 +588,7 @@ public class UploadedOrDerivedAudience {
   }
 
   /**
-   * Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. 
+   * Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. Not hashed, LinkedIn matches these against its own company graph. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. Replace the list later with POST /v1/ads/audiences/{audienceId}/companies. 
    * @return companies
    */
   @javax.annotation.Nullable
