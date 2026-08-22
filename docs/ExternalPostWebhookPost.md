@@ -17,6 +17,10 @@ Native (external) post data shared by all post.external.* payloads.
 |**mediaItems** | [**List&lt;ExternalPostMediaItem&gt;**](ExternalPostMediaItem.md) |  |  |
 |**thumbnailUrl** | **String** |  |  |
 |**publishedAt** | **OffsetDateTime** |  |  |
+|**mediaProductType** | **String** | Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it. |  [optional] |
+|**isAiGenerated** | **Boolean** | Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it. |  [optional] |
+|**isSharedToFeed** | **Boolean** | Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it. |  [optional] |
+|**mediaAudioType** | **String** | Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it. |  [optional] |
 |**source** | [**SourceEnum**](#SourceEnum) | Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events. |  |
 |**deletedAt** | **OffsetDateTime** | Detection time of deletion. Present on post.external.deleted; null/absent otherwise. |  [optional] |
 

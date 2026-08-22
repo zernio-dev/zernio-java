@@ -39,17 +39,22 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_ID,
+  ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_ACCOUNT_ID,
   ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_TYPE,
   ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_SEVERITY,
   ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_TITLE,
   ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_DETAIL,
   ListWhatsAppAccountEvents200ResponseEventsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T16:06:12.361792233Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppAccountEvents200ResponseEventsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
   private String id;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable
@@ -133,6 +138,30 @@ public class ListWhatsAppAccountEvents200ResponseEventsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
+  }
+
+
+  public ListWhatsAppAccountEvents200ResponseEventsInner accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * WhatsApp social account the event belongs to
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
   }
 
 
@@ -277,6 +306,7 @@ public class ListWhatsAppAccountEvents200ResponseEventsInner {
     }
     ListWhatsAppAccountEvents200ResponseEventsInner listWhatsAppAccountEvents200ResponseEventsInner = (ListWhatsAppAccountEvents200ResponseEventsInner) o;
     return Objects.equals(this.id, listWhatsAppAccountEvents200ResponseEventsInner.id) &&
+        Objects.equals(this.accountId, listWhatsAppAccountEvents200ResponseEventsInner.accountId) &&
         Objects.equals(this.type, listWhatsAppAccountEvents200ResponseEventsInner.type) &&
         Objects.equals(this.severity, listWhatsAppAccountEvents200ResponseEventsInner.severity) &&
         Objects.equals(this.title, listWhatsAppAccountEvents200ResponseEventsInner.title) &&
@@ -290,7 +320,7 @@ public class ListWhatsAppAccountEvents200ResponseEventsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, severity, title, hashCodeNullable(detail), createdAt);
+    return Objects.hash(id, accountId, type, severity, title, hashCodeNullable(detail), createdAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -305,6 +335,7 @@ public class ListWhatsAppAccountEvents200ResponseEventsInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListWhatsAppAccountEvents200ResponseEventsInner {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
@@ -360,6 +391,11 @@ public class ListWhatsAppAccountEvents200ResponseEventsInner {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `type` to the URL query string

@@ -59,9 +59,13 @@ import dev.zernio.ApiClient;
   AnalyticsSinglePostResponse.JSON_PROPERTY_MESSAGE,
   AnalyticsSinglePostResponse.JSON_PROPERTY_THUMBNAIL_URL,
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_TYPE,
-  AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_ITEMS
+  AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_ITEMS,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_PRODUCT_TYPE,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_IS_AI_GENERATED,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_IS_SHARED_TO_FEED,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_AUDIO_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T16:06:12.361792233Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -235,6 +239,22 @@ public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_MEDIA_ITEMS = "mediaItems";
   @javax.annotation.Nullable
   private List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MEDIA_PRODUCT_TYPE = "mediaProductType";
+  @javax.annotation.Nullable
+  private String mediaProductType;
+
+  public static final String JSON_PROPERTY_IS_AI_GENERATED = "isAiGenerated";
+  @javax.annotation.Nullable
+  private Boolean isAiGenerated;
+
+  public static final String JSON_PROPERTY_IS_SHARED_TO_FEED = "isSharedToFeed";
+  @javax.annotation.Nullable
+  private Boolean isSharedToFeed;
+
+  public static final String JSON_PROPERTY_MEDIA_AUDIO_TYPE = "mediaAudioType";
+  @javax.annotation.Nullable
+  private String mediaAudioType;
 
   public AnalyticsSinglePostResponse() { 
   }
@@ -687,6 +707,102 @@ public class AnalyticsSinglePostResponse {
   }
 
 
+  public AnalyticsSinglePostResponse mediaProductType(@javax.annotation.Nullable String mediaProductType) {
+    this.mediaProductType = mediaProductType;
+    return this;
+  }
+
+  /**
+   * Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it.
+   * @return mediaProductType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_PRODUCT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMediaProductType() {
+    return mediaProductType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_PRODUCT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaProductType(@javax.annotation.Nullable String mediaProductType) {
+    this.mediaProductType = mediaProductType;
+  }
+
+
+  public AnalyticsSinglePostResponse isAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+    return this;
+  }
+
+  /**
+   * Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it.
+   * @return isAiGenerated
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAiGenerated() {
+    return isAiGenerated;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+  }
+
+
+  public AnalyticsSinglePostResponse isSharedToFeed(@javax.annotation.Nullable Boolean isSharedToFeed) {
+    this.isSharedToFeed = isSharedToFeed;
+    return this;
+  }
+
+  /**
+   * Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it.
+   * @return isSharedToFeed
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_SHARED_TO_FEED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsSharedToFeed() {
+    return isSharedToFeed;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_SHARED_TO_FEED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsSharedToFeed(@javax.annotation.Nullable Boolean isSharedToFeed) {
+    this.isSharedToFeed = isSharedToFeed;
+  }
+
+
+  public AnalyticsSinglePostResponse mediaAudioType(@javax.annotation.Nullable String mediaAudioType) {
+    this.mediaAudioType = mediaAudioType;
+    return this;
+  }
+
+  /**
+   * Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it.
+   * @return mediaAudioType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_AUDIO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMediaAudioType() {
+    return mediaAudioType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_AUDIO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaAudioType(@javax.annotation.Nullable String mediaAudioType) {
+    this.mediaAudioType = mediaAudioType;
+  }
+
+
   /**
    * Return true if this AnalyticsSinglePostResponse object is equal to o.
    */
@@ -714,7 +830,11 @@ public class AnalyticsSinglePostResponse {
         equalsNullable(this.message, analyticsSinglePostResponse.message) &&
         equalsNullable(this.thumbnailUrl, analyticsSinglePostResponse.thumbnailUrl) &&
         equalsNullable(this.mediaType, analyticsSinglePostResponse.mediaType) &&
-        Objects.equals(this.mediaItems, analyticsSinglePostResponse.mediaItems);
+        Objects.equals(this.mediaItems, analyticsSinglePostResponse.mediaItems) &&
+        Objects.equals(this.mediaProductType, analyticsSinglePostResponse.mediaProductType) &&
+        Objects.equals(this.isAiGenerated, analyticsSinglePostResponse.isAiGenerated) &&
+        Objects.equals(this.isSharedToFeed, analyticsSinglePostResponse.isSharedToFeed) &&
+        Objects.equals(this.mediaAudioType, analyticsSinglePostResponse.mediaAudioType);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -723,7 +843,7 @@ public class AnalyticsSinglePostResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, hashCodeNullable(latePostId), status, content, scheduledFor, hashCodeNullable(publishedAt), analytics, platformAnalytics, platform, hashCodeNullable(platformPostUrl), isExternal, syncStatus, hashCodeNullable(message), hashCodeNullable(thumbnailUrl), hashCodeNullable(mediaType), mediaItems);
+    return Objects.hash(postId, hashCodeNullable(latePostId), status, content, scheduledFor, hashCodeNullable(publishedAt), analytics, platformAnalytics, platform, hashCodeNullable(platformPostUrl), isExternal, syncStatus, hashCodeNullable(message), hashCodeNullable(thumbnailUrl), hashCodeNullable(mediaType), mediaItems, mediaProductType, isAiGenerated, isSharedToFeed, mediaAudioType);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -753,6 +873,10 @@ public class AnalyticsSinglePostResponse {
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    mediaItems: ").append(toIndentedString(mediaItems)).append("\n");
+    sb.append("    mediaProductType: ").append(toIndentedString(mediaProductType)).append("\n");
+    sb.append("    isAiGenerated: ").append(toIndentedString(isAiGenerated)).append("\n");
+    sb.append("    isSharedToFeed: ").append(toIndentedString(isSharedToFeed)).append("\n");
+    sb.append("    mediaAudioType: ").append(toIndentedString(mediaAudioType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -888,6 +1012,26 @@ public class AnalyticsSinglePostResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `mediaProductType` to the URL query string
+    if (getMediaProductType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaProductType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaProductType()))));
+    }
+
+    // add `isAiGenerated` to the URL query string
+    if (getIsAiGenerated() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAiGenerated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAiGenerated()))));
+    }
+
+    // add `isSharedToFeed` to the URL query string
+    if (getIsSharedToFeed() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisSharedToFeed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsSharedToFeed()))));
+    }
+
+    // add `mediaAudioType` to the URL query string
+    if (getMediaAudioType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaAudioType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaAudioType()))));
     }
 
     return joiner.toString();

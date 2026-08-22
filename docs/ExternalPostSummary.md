@@ -16,6 +16,10 @@ A post synced from a platform (published directly on the platform, not through Z
 |**mediaType** | **String** | Media type (e.g. image, video, carousel) |  [optional] |
 |**thumbnailUrl** | **String** | Thumbnail URL |  [optional] |
 |**mediaItems** | **List&lt;Object&gt;** | Per-item media (for carousels / multi-media posts) |  [optional] |
+|**mediaProductType** | **String** | Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it. |  [optional] |
+|**isAiGenerated** | **Boolean** | Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it. |  [optional] |
+|**isSharedToFeed** | **Boolean** | Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it. |  [optional] |
+|**mediaAudioType** | **String** | Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it. |  [optional] |
 |**analytics** | [**ExternalPostSummaryAnalytics**](ExternalPostSummaryAnalytics.md) |  |  [optional] |
 
 

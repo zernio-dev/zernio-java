@@ -50,10 +50,14 @@ import dev.zernio.ApiClient;
   ExternalPostWebhookPost.JSON_PROPERTY_MEDIA_ITEMS,
   ExternalPostWebhookPost.JSON_PROPERTY_THUMBNAIL_URL,
   ExternalPostWebhookPost.JSON_PROPERTY_PUBLISHED_AT,
+  ExternalPostWebhookPost.JSON_PROPERTY_MEDIA_PRODUCT_TYPE,
+  ExternalPostWebhookPost.JSON_PROPERTY_IS_AI_GENERATED,
+  ExternalPostWebhookPost.JSON_PROPERTY_IS_SHARED_TO_FEED,
+  ExternalPostWebhookPost.JSON_PROPERTY_MEDIA_AUDIO_TYPE,
   ExternalPostWebhookPost.JSON_PROPERTY_SOURCE,
   ExternalPostWebhookPost.JSON_PROPERTY_DELETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T16:06:12.361792233Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostWebhookPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -90,6 +94,22 @@ public class ExternalPostWebhookPost {
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
   @javax.annotation.Nonnull
   private OffsetDateTime publishedAt;
+
+  public static final String JSON_PROPERTY_MEDIA_PRODUCT_TYPE = "mediaProductType";
+  @javax.annotation.Nullable
+  private String mediaProductType;
+
+  public static final String JSON_PROPERTY_IS_AI_GENERATED = "isAiGenerated";
+  @javax.annotation.Nullable
+  private Boolean isAiGenerated;
+
+  public static final String JSON_PROPERTY_IS_SHARED_TO_FEED = "isSharedToFeed";
+  @javax.annotation.Nullable
+  private Boolean isSharedToFeed;
+
+  public static final String JSON_PROPERTY_MEDIA_AUDIO_TYPE = "mediaAudioType";
+  @javax.annotation.Nullable
+  private String mediaAudioType;
 
   /**
    * Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.
@@ -358,6 +378,102 @@ public class ExternalPostWebhookPost {
   }
 
 
+  public ExternalPostWebhookPost mediaProductType(@javax.annotation.Nullable String mediaProductType) {
+    this.mediaProductType = mediaProductType;
+    return this;
+  }
+
+  /**
+   * Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it.
+   * @return mediaProductType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_PRODUCT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMediaProductType() {
+    return mediaProductType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_PRODUCT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaProductType(@javax.annotation.Nullable String mediaProductType) {
+    this.mediaProductType = mediaProductType;
+  }
+
+
+  public ExternalPostWebhookPost isAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+    return this;
+  }
+
+  /**
+   * Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it.
+   * @return isAiGenerated
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAiGenerated() {
+    return isAiGenerated;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+  }
+
+
+  public ExternalPostWebhookPost isSharedToFeed(@javax.annotation.Nullable Boolean isSharedToFeed) {
+    this.isSharedToFeed = isSharedToFeed;
+    return this;
+  }
+
+  /**
+   * Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it.
+   * @return isSharedToFeed
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_SHARED_TO_FEED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsSharedToFeed() {
+    return isSharedToFeed;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_SHARED_TO_FEED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsSharedToFeed(@javax.annotation.Nullable Boolean isSharedToFeed) {
+    this.isSharedToFeed = isSharedToFeed;
+  }
+
+
+  public ExternalPostWebhookPost mediaAudioType(@javax.annotation.Nullable String mediaAudioType) {
+    this.mediaAudioType = mediaAudioType;
+    return this;
+  }
+
+  /**
+   * Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it.
+   * @return mediaAudioType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_AUDIO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMediaAudioType() {
+    return mediaAudioType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_AUDIO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaAudioType(@javax.annotation.Nullable String mediaAudioType) {
+    this.mediaAudioType = mediaAudioType;
+  }
+
+
   public ExternalPostWebhookPost source(@javax.annotation.Nonnull SourceEnum source) {
     this.source = source;
     return this;
@@ -435,6 +551,10 @@ public class ExternalPostWebhookPost {
         Objects.equals(this.mediaItems, externalPostWebhookPost.mediaItems) &&
         Objects.equals(this.thumbnailUrl, externalPostWebhookPost.thumbnailUrl) &&
         Objects.equals(this.publishedAt, externalPostWebhookPost.publishedAt) &&
+        Objects.equals(this.mediaProductType, externalPostWebhookPost.mediaProductType) &&
+        Objects.equals(this.isAiGenerated, externalPostWebhookPost.isAiGenerated) &&
+        Objects.equals(this.isSharedToFeed, externalPostWebhookPost.isSharedToFeed) &&
+        Objects.equals(this.mediaAudioType, externalPostWebhookPost.mediaAudioType) &&
         Objects.equals(this.source, externalPostWebhookPost.source) &&
         equalsNullable(this.deletedAt, externalPostWebhookPost.deletedAt);
   }
@@ -445,7 +565,7 @@ public class ExternalPostWebhookPost {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, url, content, mediaType, mediaItems, thumbnailUrl, publishedAt, source, hashCodeNullable(deletedAt));
+    return Objects.hash(id, platform, accountId, url, content, mediaType, mediaItems, thumbnailUrl, publishedAt, mediaProductType, isAiGenerated, isSharedToFeed, mediaAudioType, source, hashCodeNullable(deletedAt));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -468,6 +588,10 @@ public class ExternalPostWebhookPost {
     sb.append("    mediaItems: ").append(toIndentedString(mediaItems)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
+    sb.append("    mediaProductType: ").append(toIndentedString(mediaProductType)).append("\n");
+    sb.append("    isAiGenerated: ").append(toIndentedString(isAiGenerated)).append("\n");
+    sb.append("    isSharedToFeed: ").append(toIndentedString(isSharedToFeed)).append("\n");
+    sb.append("    mediaAudioType: ").append(toIndentedString(mediaAudioType)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    deletedAt: ").append(toIndentedString(deletedAt)).append("\n");
     sb.append("}");
@@ -565,6 +689,26 @@ public class ExternalPostWebhookPost {
     // add `publishedAt` to the URL query string
     if (getPublishedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spublishedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublishedAt()))));
+    }
+
+    // add `mediaProductType` to the URL query string
+    if (getMediaProductType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaProductType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaProductType()))));
+    }
+
+    // add `isAiGenerated` to the URL query string
+    if (getIsAiGenerated() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAiGenerated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAiGenerated()))));
+    }
+
+    // add `isSharedToFeed` to the URL query string
+    if (getIsSharedToFeed() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisSharedToFeed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsSharedToFeed()))));
+    }
+
+    // add `mediaAudioType` to the URL query string
+    if (getMediaAudioType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaAudioType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaAudioType()))));
     }
 
     // add `source` to the URL query string

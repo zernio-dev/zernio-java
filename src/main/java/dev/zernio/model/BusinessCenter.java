@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   BusinessCenter.JSON_PROPERTY_NAME,
   BusinessCenter.JSON_PROPERTY_ADVERTISER_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T16:06:12.361792233Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessCenter {
   public static final String JSON_PROPERTY_BC_ID = "bcId";
   @javax.annotation.Nullable

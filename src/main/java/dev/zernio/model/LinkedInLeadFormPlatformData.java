@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   LinkedInLeadFormPlatformData.JSON_PROPERTY_CONSENTS,
   LinkedInLeadFormPlatformData.JSON_PROPERTY_QUESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T16:06:12.361792233Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInLeadFormPlatformData {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull

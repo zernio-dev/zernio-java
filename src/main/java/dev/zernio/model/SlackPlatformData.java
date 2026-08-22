@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SlackPlatformData.JSON_PROPERTY_USERNAME,
   SlackPlatformData.JSON_PROPERTY_ICON_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-21T16:06:12.361792233Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SlackPlatformData {
   public static final String JSON_PROPERTY_THREAD_TS = "threadTs";
   @javax.annotation.Nullable
