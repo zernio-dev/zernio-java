@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-22T11:34:24.654131394Z[Etc/UTC]
+- Build date: 2026-08-22T11:48:59.399614436Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2482,6 +2482,7 @@ Class | Method | HTTP request | Description
  - [SendDiscordDirectMessageRequestAttachmentsInner](docs/SendDiscordDirectMessageRequestAttachmentsInner.md)
  - [SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
+ - [SendInboxMessage200ResponseDataAttachmentsInner](docs/SendInboxMessage200ResponseDataAttachmentsInner.md)
  - [SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
  - [SendInboxMessage400ResponsePlatformError](docs/SendInboxMessage400ResponsePlatformError.md)
  - [SendInboxMessageRequest](docs/SendInboxMessageRequest.md)

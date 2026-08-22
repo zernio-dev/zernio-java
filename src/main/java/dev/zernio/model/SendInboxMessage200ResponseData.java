@@ -24,12 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
+import dev.zernio.model.SendInboxMessage200ResponseDataAttachmentsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,23 +38,21 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SendInboxMessage200ResponseData.JSON_PROPERTY_MESSAGE_ID,
   SendInboxMessage200ResponseData.JSON_PROPERTY_CONVERSATION_ID,
-  SendInboxMessage200ResponseData.JSON_PROPERTY_SENT_AT,
-  SendInboxMessage200ResponseData.JSON_PROPERTY_MESSAGE
+  SendInboxMessage200ResponseData.JSON_PROPERTY_ATTACHMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:34:24.654131394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:48:59.399614436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable
   private String messageId;
 
   public static final String JSON_PROPERTY_CONVERSATION_ID = "conversationId";
-  private JsonNullable<String> conversationId = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String conversationId;
 
-  public static final String JSON_PROPERTY_SENT_AT = "sentAt";
-  private JsonNullable<OffsetDateTime> sentAt = JsonNullable.<OffsetDateTime>undefined();
-
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  private JsonNullable<String> message = JsonNullable.<String>undefined();
+  public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
+  @javax.annotation.Nullable
+  private List<SendInboxMessage200ResponseDataAttachmentsInner> attachments = new ArrayList<>();
 
   public SendInboxMessage200ResponseData() { 
   }
@@ -67,7 +63,7 @@ public class SendInboxMessage200ResponseData {
   }
 
   /**
-   * ID of the sent message (not returned for Reddit)
+   * Platform id of the sent message (not returned for Reddit). For WhatsApp this is the raw Meta wamid, the same id delivered as message.platformMessageId on webhooks and delivery-status updates, and the value to pass as replyTo to quote-reply.
    * @return messageId
    */
   @javax.annotation.Nullable
@@ -86,98 +82,58 @@ public class SendInboxMessage200ResponseData {
 
 
   public SendInboxMessage200ResponseData conversationId(@javax.annotation.Nullable String conversationId) {
-    this.conversationId = JsonNullable.<String>of(conversationId);
+    this.conversationId = conversationId;
     return this;
   }
 
   /**
-   * Twitter conversation ID
+   * Zernio conversation id, echoed so the thread can be read back or replied to. It equals the id the list-conversations endpoint returns for Telegram, WhatsApp, SMS and Slack; for Facebook, Instagram, Bluesky and Reddit that endpoint returns the platform thread id instead, so do not correlate the two by equality. For X (Twitter), when the request addressed the conversation by its Twitter dm_conversation_id, that platform id is echoed back instead. Omitted when the send succeeded but the conversation could not be resolved to a stored record.
    * @return conversationId
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getConversationId() {
-        return conversationId.orElse(null);
+    return conversationId;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getConversationId_JsonNullable() {
-    return conversationId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CONVERSATION_ID)
-  public void setConversationId_JsonNullable(JsonNullable<String> conversationId) {
+  public void setConversationId(@javax.annotation.Nullable String conversationId) {
     this.conversationId = conversationId;
   }
 
-  public void setConversationId(@javax.annotation.Nullable String conversationId) {
-    this.conversationId = JsonNullable.<String>of(conversationId);
+
+  public SendInboxMessage200ResponseData attachments(@javax.annotation.Nullable List<SendInboxMessage200ResponseDataAttachmentsInner> attachments) {
+    this.attachments = attachments;
+    return this;
   }
 
-
-  public SendInboxMessage200ResponseData sentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
-    this.sentAt = JsonNullable.<OffsetDateTime>of(sentAt);
+  public SendInboxMessage200ResponseData addAttachmentsItem(SendInboxMessage200ResponseDataAttachmentsInner attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
+    }
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
   /**
-   * Bluesky sent timestamp
-   * @return sentAt
+   * Echo of the sent attachment with its resolved public URL, when one is available (Facebook, Instagram, Telegram, WhatsApp).
+   * @return attachments
    */
   @javax.annotation.Nullable
-  @JsonIgnore
-  public OffsetDateTime getSentAt() {
-        return sentAt.orElse(null);
-  }
-
-  @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = false)
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<OffsetDateTime> getSentAt_JsonNullable() {
-    return sentAt;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SENT_AT)
-  public void setSentAt_JsonNullable(JsonNullable<OffsetDateTime> sentAt) {
-    this.sentAt = sentAt;
-  }
-
-  public void setSentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
-    this.sentAt = JsonNullable.<OffsetDateTime>of(sentAt);
+  public List<SendInboxMessage200ResponseDataAttachmentsInner> getAttachments() {
+    return attachments;
   }
 
 
-  public SendInboxMessage200ResponseData message(@javax.annotation.Nullable String message) {
-    this.message = JsonNullable.<String>of(message);
-    return this;
-  }
-
-  /**
-   * Success message (Reddit only)
-   * @return message
-   */
-  @javax.annotation.Nullable
-  @JsonIgnore
-  public String getMessage() {
-        return message.orElse(null);
-  }
-
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getMessage_JsonNullable() {
-    return message;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
-  public void setMessage_JsonNullable(JsonNullable<String> message) {
-    this.message = message;
-  }
-
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = JsonNullable.<String>of(message);
+  public void setAttachments(@javax.annotation.Nullable List<SendInboxMessage200ResponseDataAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
 
@@ -194,25 +150,13 @@ public class SendInboxMessage200ResponseData {
     }
     SendInboxMessage200ResponseData sendInboxMessage200ResponseData = (SendInboxMessage200ResponseData) o;
     return Objects.equals(this.messageId, sendInboxMessage200ResponseData.messageId) &&
-        equalsNullable(this.conversationId, sendInboxMessage200ResponseData.conversationId) &&
-        equalsNullable(this.sentAt, sendInboxMessage200ResponseData.sentAt) &&
-        equalsNullable(this.message, sendInboxMessage200ResponseData.message);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.conversationId, sendInboxMessage200ResponseData.conversationId) &&
+        Objects.equals(this.attachments, sendInboxMessage200ResponseData.attachments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, hashCodeNullable(conversationId), hashCodeNullable(sentAt), hashCodeNullable(message));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(messageId, conversationId, attachments);
   }
 
   @Override
@@ -221,8 +165,7 @@ public class SendInboxMessage200ResponseData {
     sb.append("class SendInboxMessage200ResponseData {\n");
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    conversationId: ").append(toIndentedString(conversationId)).append("\n");
-    sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -280,14 +223,14 @@ public class SendInboxMessage200ResponseData {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconversationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConversationId()))));
     }
 
-    // add `sentAt` to the URL query string
-    if (getSentAt() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%ssentAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSentAt()))));
-    }
-
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    // add `attachments` to the URL query string
+    if (getAttachments() != null) {
+      for (int i = 0; i < getAttachments().size(); i++) {
+        if (getAttachments().get(i) != null) {
+          joiner.add(getAttachments().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sattachments%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

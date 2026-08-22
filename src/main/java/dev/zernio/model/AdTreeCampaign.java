@@ -78,7 +78,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_AD_SETS,
   AdTreeCampaign.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:34:24.654131394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:48:59.399614436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable

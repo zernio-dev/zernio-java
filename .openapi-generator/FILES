@@ -1272,6 +1272,7 @@ docs/SendDiscordDirectMessageRequest.md
 docs/SendDiscordDirectMessageRequestAttachmentsInner.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
+docs/SendInboxMessage200ResponseDataAttachmentsInner.md
 docs/SendInboxMessage400Response.md
 docs/SendInboxMessage400ResponsePlatformError.md
 docs/SendInboxMessageRequest.md
@@ -3072,6 +3073,7 @@ src/main/java/dev/zernio/model/SendDiscordDirectMessageRequest.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessageRequestAttachmentsInner.java
 src/main/java/dev/zernio/model/SendInboxMessage200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseData.java
+src/main/java/dev/zernio/model/SendInboxMessage200ResponseDataAttachmentsInner.java
 src/main/java/dev/zernio/model/SendInboxMessage400Response.java
 src/main/java/dev/zernio/model/SendInboxMessage400ResponsePlatformError.java
 src/main/java/dev/zernio/model/SendInboxMessageRequest.java
@@ -3547,6 +3549,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ReplaceAdAudienceCompanies200ResponseTest.java
-src/test/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTest.java
-src/test/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequestTest.java
+src/test/java/dev/zernio/model/SendInboxMessage200ResponseDataAttachmentsInnerTest.java
