@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   PostsListResponse.JSON_PROPERTY_POSTS,
   PostsListResponse.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:02:42.901585056Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:21:01.589016650Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsListResponse {
   public static final String JSON_PROPERTY_POSTS = "posts";
   @javax.annotation.Nullable

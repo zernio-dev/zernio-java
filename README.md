@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-22T11:02:42.901585056Z[Etc/UTC]
+- Build date: 2026-08-22T11:21:01.589016650Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -278,6 +278,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**listAdCreativesWithHttpInfo**](docs/AdCreativesApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library
 *AdCreativesApi* | [**listAdImages**](docs/AdCreativesApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library
 *AdCreativesApi* | [**listAdImagesWithHttpInfo**](docs/AdCreativesApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library
+*AdCreativesApi* | [**listAdVideos**](docs/AdCreativesApi.md#listAdVideos) | **GET** /v1/ads/videos | Ad video library
+*AdCreativesApi* | [**listAdVideosWithHttpInfo**](docs/AdCreativesApi.md#listAdVideosWithHttpInfo) | **GET** /v1/ads/videos | Ad video library
 *AdCreativesApi* | [**updateAdCreative**](docs/AdCreativesApi.md#updateAdCreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
 *AdCreativesApi* | [**updateAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
 *AdCreativesApi* | [**uploadAdImage**](docs/AdCreativesApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64
@@ -2119,6 +2121,7 @@ Class | Method | HTTP request | Description
  - [ListAdKeywords200ResponseKeywordsInner](docs/ListAdKeywords200ResponseKeywordsInner.md)
  - [ListAdLabels200Response](docs/ListAdLabels200Response.md)
  - [ListAdStudies200Response](docs/ListAdStudies200Response.md)
+ - [ListAdVideos200Response](docs/ListAdVideos200Response.md)
  - [ListAds202Response](docs/ListAds202Response.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)

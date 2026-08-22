@@ -901,6 +901,7 @@ docs/ListAdKeywords200Response.md
 docs/ListAdKeywords200ResponseKeywordsInner.md
 docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
+docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
@@ -2709,6 +2710,7 @@ src/main/java/dev/zernio/model/ListAdKeywords200Response.java
 src/main/java/dev/zernio/model/ListAdKeywords200ResponseKeywordsInner.java
 src/main/java/dev/zernio/model/ListAdLabels200Response.java
 src/main/java/dev/zernio/model/ListAdStudies200Response.java
+src/main/java/dev/zernio/model/ListAdVideos200Response.java
 src/main/java/dev/zernio/model/ListAds202Response.java
 src/main/java/dev/zernio/model/ListAdsBusinessCenters200Response.java
 src/main/java/dev/zernio/model/ListApiKeys200Response.java
@@ -3539,5 +3541,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateInboxConversation404ResponseTest.java
-src/test/java/dev/zernio/model/CreateInboxConversation429ResponseTest.java
+src/test/java/dev/zernio/model/ListAdVideos200ResponseTest.java

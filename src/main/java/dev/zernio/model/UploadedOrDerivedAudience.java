@@ -57,10 +57,11 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_SOURCE_AUDIENCE_ID,
   UploadedOrDerivedAudience.JSON_PROPERTY_COUNTRY,
   UploadedOrDerivedAudience.JSON_PROPERTY_RATIO,
+  UploadedOrDerivedAudience.JSON_PROPERTY_URL_CONTAINS,
   UploadedOrDerivedAudience.JSON_PROPERTY_RULE,
   UploadedOrDerivedAudience.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:02:42.901585056Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:21:01.589016650Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -301,6 +302,10 @@ public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_RATIO = "ratio";
   @javax.annotation.Nullable
   private BigDecimal ratio;
+
+  public static final String JSON_PROPERTY_URL_CONTAINS = "urlContains";
+  @javax.annotation.Nullable
+  private String urlContains;
 
   public static final String JSON_PROPERTY_RULE = "rule";
   @javax.annotation.Nullable
@@ -797,13 +802,37 @@ public class UploadedOrDerivedAudience {
   }
 
 
+  public UploadedOrDerivedAudience urlContains(@javax.annotation.Nullable String urlContains) {
+    this.urlContains = urlContains;
+    return this;
+  }
+
+  /**
+   * website only. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. 
+   * @return urlContains
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_URL_CONTAINS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getUrlContains() {
+    return urlContains;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_URL_CONTAINS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUrlContains(@javax.annotation.Nullable String urlContains) {
+    this.urlContains = urlContains;
+  }
+
+
   public UploadedOrDerivedAudience rule(@javax.annotation.Nullable Object rule) {
     this.rule = rule;
     return this;
   }
 
   /**
-   * Optional raw Meta rule, forwarded verbatim: pixel event rule for website audiences, or the engagement rule for meta_engagement (overrides the built rule, e.g. for event/canvas/lead-form sources).
+   * Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. 
    * @return rule
    */
   @javax.annotation.Nullable
@@ -876,13 +905,14 @@ public class UploadedOrDerivedAudience {
         Objects.equals(this.sourceAudienceId, uploadedOrDerivedAudience.sourceAudienceId) &&
         Objects.equals(this.country, uploadedOrDerivedAudience.country) &&
         Objects.equals(this.ratio, uploadedOrDerivedAudience.ratio) &&
+        Objects.equals(this.urlContains, uploadedOrDerivedAudience.urlContains) &&
         Objects.equals(this.rule, uploadedOrDerivedAudience.rule) &&
         Objects.equals(this.customerFileSource, uploadedOrDerivedAudience.customerFileSource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, description, type, matchRules, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, engagementSource, sourceId, event, sourceAudienceId, country, ratio, rule, customerFileSource);
+    return Objects.hash(accountId, adAccountId, name, description, type, matchRules, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, engagementSource, sourceId, event, sourceAudienceId, country, ratio, urlContains, rule, customerFileSource);
   }
 
   @Override
@@ -908,6 +938,7 @@ public class UploadedOrDerivedAudience {
     sb.append("    sourceAudienceId: ").append(toIndentedString(sourceAudienceId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    ratio: ").append(toIndentedString(ratio)).append("\n");
+    sb.append("    urlContains: ").append(toIndentedString(urlContains)).append("\n");
     sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
     sb.append("    customerFileSource: ").append(toIndentedString(customerFileSource)).append("\n");
     sb.append("}");
@@ -1064,6 +1095,11 @@ public class UploadedOrDerivedAudience {
     // add `ratio` to the URL query string
     if (getRatio() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sratio%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRatio()))));
+    }
+
+    // add `urlContains` to the URL query string
+    if (getUrlContains() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%surlContains%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrlContains()))));
     }
 
     // add `rule` to the URL query string
