@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   Pagination.JSON_PROPERTY_TOTAL,
   Pagination.JSON_PROPERTY_PAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T09:47:07.262038607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Pagination {
   public static final String JSON_PROPERTY_PAGE = "page";
   @javax.annotation.Nullable

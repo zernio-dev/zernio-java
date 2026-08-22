@@ -34,9 +34,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   EditPostRequest.JSON_PROPERTY_PLATFORM,
-  EditPostRequest.JSON_PROPERTY_CONTENT
+  EditPostRequest.JSON_PROPERTY_CONTENT,
+  EditPostRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T09:47:07.262038607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditPostRequest {
   /**
    * The platform to edit the post on.
@@ -48,7 +49,19 @@ public class EditPostRequest {
     
     FACEBOOK(String.valueOf("facebook")),
     
-    REDDIT(String.valueOf("reddit"));
+    REDDIT(String.valueOf("reddit")),
+    
+    LINKEDIN(String.valueOf("linkedin")),
+    
+    TELEGRAM(String.valueOf("telegram")),
+    
+    PINTEREST(String.valueOf("pinterest")),
+    
+    GOOGLEBUSINESS(String.valueOf("googlebusiness")),
+    
+    YOUTUBE(String.valueOf("youtube")),
+    
+    SLACK(String.valueOf("slack"));
 
     private String value;
 
@@ -84,6 +97,10 @@ public class EditPostRequest {
   public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nonnull
   private String content;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public EditPostRequest() { 
   }
@@ -136,6 +153,30 @@ public class EditPostRequest {
   }
 
 
+  public EditPostRequest accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Which account&#39;s copy of the post to edit when the post was published to several accounts on the same platform; defaults to the first. 
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+  }
+
+
   /**
    * Return true if this editPost_request object is equal to o.
    */
@@ -149,12 +190,13 @@ public class EditPostRequest {
     }
     EditPostRequest editPostRequest = (EditPostRequest) o;
     return Objects.equals(this.platform, editPostRequest.platform) &&
-        Objects.equals(this.content, editPostRequest.content);
+        Objects.equals(this.content, editPostRequest.content) &&
+        Objects.equals(this.accountId, editPostRequest.accountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, content);
+    return Objects.hash(platform, content, accountId);
   }
 
   @Override
@@ -163,6 +205,7 @@ public class EditPostRequest {
     sb.append("class EditPostRequest {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -218,6 +261,11 @@ public class EditPostRequest {
     // add `content` to the URL query string
     if (getContent() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContent()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     return joiner.toString();

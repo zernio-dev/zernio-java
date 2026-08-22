@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetConversionMetrics200ResponseRowsInner.JSON_PROPERTY_END,
   GetConversionMetrics200ResponseRowsInner.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T04:41:23.748271876Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T09:47:07.262038607Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetConversionMetrics200ResponseRowsInner {
   public static final String JSON_PROPERTY_START = "start";
   @javax.annotation.Nullable
