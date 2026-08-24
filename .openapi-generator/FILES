@@ -3573,15 +3573,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AttachNumberToSipTrunk200ResponseTest.java
-src/test/java/dev/zernio/model/AttachNumberToSipTrunkRequestTest.java
-src/test/java/dev/zernio/model/CreateSipTrunk201ResponseTerminationTest.java
-src/test/java/dev/zernio/model/CreateSipTrunk201ResponseTest.java
-src/test/java/dev/zernio/model/CreateSipTrunkRequestTest.java
-src/test/java/dev/zernio/model/DetachNumberFromSipTrunk200ResponseTest.java
-src/test/java/dev/zernio/model/GetSipTrunk200ResponseNumbersInnerTest.java
-src/test/java/dev/zernio/model/GetSipTrunk200ResponseTest.java
-src/test/java/dev/zernio/model/ListSipTrunks200ResponseTest.java
-src/test/java/dev/zernio/model/ListSipTrunks200ResponseTrunksInnerTerminationTest.java
-src/test/java/dev/zernio/model/ListSipTrunks200ResponseTrunksInnerTest.java
-src/test/java/dev/zernio/model/RotateSipTrunkCredentials200ResponseTest.java

@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GenerateAdPreviews200ResponsePreviewsInner.JSON_PROPERTY_FORMAT,
   GenerateAdPreviews200ResponsePreviewsInner.JSON_PROPERTY_HTML
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T07:53:44.157662287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T08:08:45.634830312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GenerateAdPreviews200ResponsePreviewsInner {
   public static final String JSON_PROPERTY_FORMAT = "format";
   @javax.annotation.Nullable

@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   LinkedInPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
   LinkedInPlatformData.JSON_PROPERTY_POLL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T07:53:44.157662287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T08:08:45.634830312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_DOCUMENT_TITLE = "documentTitle";
   @javax.annotation.Nullable
@@ -178,7 +178,7 @@ public class LinkedInPlatformData {
   }
 
   /**
-   * LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. With content, the published post is a quote-reshare: your text is the commentary and the original is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Leave content empty (and omit customContent) to publish a plain repost with no text, LinkedIn&#39;s one-click \&quot;Repost\&quot;. Mutually exclusive with media. Works on personal profiles and organization pages.
+   * LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. The published post is always a reshare authored by your account with the original embedded underneath: with content your text is the commentary (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;), and with no content it publishes as a text-free reshare. Note that a text-free reshare is NOT LinkedIn&#39;s one-click \&quot;Repost\&quot; (the feed treatment where the original author stays the author); LinkedIn&#39;s API exposes no way to create that, so the post still appears authored by you with the original embedded. Mutually exclusive with media. Works on personal profiles and organization pages.
    * @return reshareUrl
    */
   @javax.annotation.Nullable

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppGroupChat200ResponseGroup.JSON_PROPERTY_CREATED_AT,
   GetWhatsAppGroupChat200ResponseGroup.JSON_PROPERTY_IS_SUSPENDED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T07:53:44.157662287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T08:08:45.634830312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppGroupChat200ResponseGroup {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
