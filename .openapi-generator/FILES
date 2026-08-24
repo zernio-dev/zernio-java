@@ -84,6 +84,8 @@ docs/ArchiveLeadForm200Response.md
 docs/AssignGoogleBusinessLocation200Response.md
 docs/AssignGoogleBusinessLocation200ResponseAccount.md
 docs/AssignGoogleBusinessLocationRequest.md
+docs/AttachNumberToSipTrunk200Response.md
+docs/AttachNumberToSipTrunkRequest.md
 docs/BatchGetGoogleBusinessReviews200Response.md
 docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md
 docs/BatchGetGoogleBusinessReviewsRequest.md
@@ -296,6 +298,9 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateSipTrunk201Response.md
+docs/CreateSipTrunk201ResponseTermination.md
+docs/CreateSipTrunkRequest.md
 docs/CreateSmsSenderId200Response.md
 docs/CreateSmsSenderIdRequest.md
 docs/CreateStandaloneAd200Response.md
@@ -384,6 +389,7 @@ docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteValueRuleSet200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
+docs/DetachNumberFromSipTrunk200Response.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
 docs/DisableSmsOnNumber200Response.md
@@ -707,6 +713,8 @@ docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
 docs/GetSequence200ResponseSequenceStepsInnerTemplate.md
+docs/GetSipTrunk200Response.md
+docs/GetSipTrunk200ResponseNumbersInner.md
 docs/GetSlackSettings200Response.md
 docs/GetSlackSettings200ResponseAccount.md
 docs/GetSmsRegistration200Response.md
@@ -1009,6 +1017,9 @@ docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
+docs/ListSipTrunks200Response.md
+docs/ListSipTrunks200ResponseTrunksInner.md
+docs/ListSipTrunks200ResponseTrunksInnerTermination.md
 docs/ListSlackMembers200Response.md
 docs/ListSlackMembers200ResponseMembersInner.md
 docs/ListSmsOptOuts200Response.md
@@ -1209,6 +1220,7 @@ docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
 docs/RevokeConnectedApp200Response.md
 docs/RfPrediction.md
+docs/RotateSipTrunkCredentials200Response.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
 docs/ScheduleBroadcast200ResponseBroadcast.md
@@ -1921,6 +1933,8 @@ src/main/java/dev/zernio/model/ArchiveLeadForm200Response.java
 src/main/java/dev/zernio/model/AssignGoogleBusinessLocation200Response.java
 src/main/java/dev/zernio/model/AssignGoogleBusinessLocation200ResponseAccount.java
 src/main/java/dev/zernio/model/AssignGoogleBusinessLocationRequest.java
+src/main/java/dev/zernio/model/AttachNumberToSipTrunk200Response.java
+src/main/java/dev/zernio/model/AttachNumberToSipTrunkRequest.java
 src/main/java/dev/zernio/model/BatchGetGoogleBusinessReviews200Response.java
 src/main/java/dev/zernio/model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.java
 src/main/java/dev/zernio/model/BatchGetGoogleBusinessReviewsRequest.java
@@ -2124,6 +2138,9 @@ src/main/java/dev/zernio/model/CreateSequenceRequest.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInner.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInnerTemplate.java
 src/main/java/dev/zernio/model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.java
+src/main/java/dev/zernio/model/CreateSipTrunk201Response.java
+src/main/java/dev/zernio/model/CreateSipTrunk201ResponseTermination.java
+src/main/java/dev/zernio/model/CreateSipTrunkRequest.java
 src/main/java/dev/zernio/model/CreateSmsSenderId200Response.java
 src/main/java/dev/zernio/model/CreateSmsSenderIdRequest.java
 src/main/java/dev/zernio/model/CreateStandaloneAd200Response.java
@@ -2211,6 +2228,7 @@ src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
 src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteValueRuleSet200Response.java
 src/main/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequest.java
+src/main/java/dev/zernio/model/DetachNumberFromSipTrunk200Response.java
 src/main/java/dev/zernio/model/DialVoiceWebCall200Response.java
 src/main/java/dev/zernio/model/DialVoiceWebCallRequest.java
 src/main/java/dev/zernio/model/DisableSmsOnNumber200Response.java
@@ -2533,6 +2551,8 @@ src/main/java/dev/zernio/model/GetSequence200Response.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequence.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequenceStepsInner.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequenceStepsInnerTemplate.java
+src/main/java/dev/zernio/model/GetSipTrunk200Response.java
+src/main/java/dev/zernio/model/GetSipTrunk200ResponseNumbersInner.java
 src/main/java/dev/zernio/model/GetSlackSettings200Response.java
 src/main/java/dev/zernio/model/GetSlackSettings200ResponseAccount.java
 src/main/java/dev/zernio/model/GetSmsRegistration200Response.java
@@ -2822,6 +2842,9 @@ src/main/java/dev/zernio/model/ListSequenceEnrollments200Response.java
 src/main/java/dev/zernio/model/ListSequenceEnrollments200ResponseEnrollmentsInner.java
 src/main/java/dev/zernio/model/ListSequences200Response.java
 src/main/java/dev/zernio/model/ListSequences200ResponseSequencesInner.java
+src/main/java/dev/zernio/model/ListSipTrunks200Response.java
+src/main/java/dev/zernio/model/ListSipTrunks200ResponseTrunksInner.java
+src/main/java/dev/zernio/model/ListSipTrunks200ResponseTrunksInnerTermination.java
 src/main/java/dev/zernio/model/ListSlackMembers200Response.java
 src/main/java/dev/zernio/model/ListSlackMembers200ResponseMembersInner.java
 src/main/java/dev/zernio/model/ListSmsOptOuts200Response.java
@@ -3010,6 +3033,7 @@ src/main/java/dev/zernio/model/ReviewWebhookReviewReply.java
 src/main/java/dev/zernio/model/ReviewWebhookReviewReviewer.java
 src/main/java/dev/zernio/model/RevokeConnectedApp200Response.java
 src/main/java/dev/zernio/model/RfPrediction.java
+src/main/java/dev/zernio/model/RotateSipTrunkCredentials200Response.java
 src/main/java/dev/zernio/model/SavedTargetingAudience.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200Response.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200ResponseBroadcast.java
@@ -3549,4 +3573,15 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SendInboxMessage200ResponseDataAttachmentsInnerTest.java
+src/test/java/dev/zernio/model/AttachNumberToSipTrunk200ResponseTest.java
+src/test/java/dev/zernio/model/AttachNumberToSipTrunkRequestTest.java
+src/test/java/dev/zernio/model/CreateSipTrunk201ResponseTerminationTest.java
+src/test/java/dev/zernio/model/CreateSipTrunk201ResponseTest.java
+src/test/java/dev/zernio/model/CreateSipTrunkRequestTest.java
+src/test/java/dev/zernio/model/DetachNumberFromSipTrunk200ResponseTest.java
+src/test/java/dev/zernio/model/GetSipTrunk200ResponseNumbersInnerTest.java
+src/test/java/dev/zernio/model/GetSipTrunk200ResponseTest.java
+src/test/java/dev/zernio/model/ListSipTrunks200ResponseTest.java
+src/test/java/dev/zernio/model/ListSipTrunks200ResponseTrunksInnerTerminationTest.java
+src/test/java/dev/zernio/model/ListSipTrunks200ResponseTrunksInnerTest.java
+src/test/java/dev/zernio/model/RotateSipTrunkCredentials200ResponseTest.java

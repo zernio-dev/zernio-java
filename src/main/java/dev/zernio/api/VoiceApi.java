@@ -18,21 +18,31 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AttachNumberToSipTrunk200Response;
+import dev.zernio.model.AttachNumberToSipTrunkRequest;
+import dev.zernio.model.CreateSipTrunk201Response;
+import dev.zernio.model.CreateSipTrunkRequest;
 import dev.zernio.model.CreateVoiceCall200Response;
 import dev.zernio.model.CreateVoiceCallRequest;
 import dev.zernio.model.CreateVoiceWebSession200Response;
+import dev.zernio.model.DeleteSmsSenderId200Response;
+import dev.zernio.model.DetachNumberFromSipTrunk200Response;
 import dev.zernio.model.DialVoiceWebCall200Response;
 import dev.zernio.model.DialVoiceWebCallRequest;
 import dev.zernio.model.DisableVoiceOnNumber200Response;
 import dev.zernio.model.EnableVoiceOnNumber200Response;
 import dev.zernio.model.EnableVoiceOnNumberRequest;
 import dev.zernio.model.EndVoiceCall200Response;
+import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.GetSipTrunk200Response;
 import dev.zernio.model.GetVoiceCall200Response;
 import dev.zernio.model.GetVoiceCallEstimate200Response;
 import dev.zernio.model.GetWhatsAppCallRecording200Response;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.ListSipTrunks200Response;
 import dev.zernio.model.ListVoiceCalls200Response;
 import java.time.OffsetDateTime;
+import dev.zernio.model.RotateSipTrunkCredentials200Response;
 import dev.zernio.model.TransferVoiceCall200Response;
 import dev.zernio.model.TransferVoiceCallRequest;
 
@@ -67,7 +77,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:48:59.399614436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T07:53:44.157662287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VoiceApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -182,6 +192,261 @@ public class VoiceApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Attach a number to a SIP trunk
+   * Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param attachNumberToSipTrunkRequest  (required)
+   * @return AttachNumberToSipTrunk200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AttachNumberToSipTrunk200Response attachNumberToSipTrunk(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest) throws ApiException {
+    return attachNumberToSipTrunk(id, attachNumberToSipTrunkRequest, null);
+  }
+
+  /**
+   * Attach a number to a SIP trunk
+   * Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param attachNumberToSipTrunkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AttachNumberToSipTrunk200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AttachNumberToSipTrunk200Response attachNumberToSipTrunk(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AttachNumberToSipTrunk200Response> localVarResponse = attachNumberToSipTrunkWithHttpInfo(id, attachNumberToSipTrunkRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Attach a number to a SIP trunk
+   * Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param attachNumberToSipTrunkRequest  (required)
+   * @return ApiResponse&lt;AttachNumberToSipTrunk200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AttachNumberToSipTrunk200Response> attachNumberToSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest) throws ApiException {
+    return attachNumberToSipTrunkWithHttpInfo(id, attachNumberToSipTrunkRequest, null);
+  }
+
+  /**
+   * Attach a number to a SIP trunk
+   * Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param attachNumberToSipTrunkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AttachNumberToSipTrunk200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AttachNumberToSipTrunk200Response> attachNumberToSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = attachNumberToSipTrunkRequestBuilder(id, attachNumberToSipTrunkRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("attachNumberToSipTrunk", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AttachNumberToSipTrunk200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AttachNumberToSipTrunk200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AttachNumberToSipTrunk200Response>() {});
+        
+
+        return new ApiResponse<AttachNumberToSipTrunk200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder attachNumberToSipTrunkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling attachNumberToSipTrunk");
+    }
+    // verify the required parameter 'attachNumberToSipTrunkRequest' is set
+    if (attachNumberToSipTrunkRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'attachNumberToSipTrunkRequest' when calling attachNumberToSipTrunk");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/sip-trunk"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(attachNumberToSipTrunkRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a SIP trunk
+   * Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+   * @param createSipTrunkRequest  (required)
+   * @return CreateSipTrunk201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateSipTrunk201Response createSipTrunk(@javax.annotation.Nonnull CreateSipTrunkRequest createSipTrunkRequest) throws ApiException {
+    return createSipTrunk(createSipTrunkRequest, null);
+  }
+
+  /**
+   * Create a SIP trunk
+   * Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+   * @param createSipTrunkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateSipTrunk201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateSipTrunk201Response createSipTrunk(@javax.annotation.Nonnull CreateSipTrunkRequest createSipTrunkRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateSipTrunk201Response> localVarResponse = createSipTrunkWithHttpInfo(createSipTrunkRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a SIP trunk
+   * Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+   * @param createSipTrunkRequest  (required)
+   * @return ApiResponse&lt;CreateSipTrunk201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateSipTrunk201Response> createSipTrunkWithHttpInfo(@javax.annotation.Nonnull CreateSipTrunkRequest createSipTrunkRequest) throws ApiException {
+    return createSipTrunkWithHttpInfo(createSipTrunkRequest, null);
+  }
+
+  /**
+   * Create a SIP trunk
+   * Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+   * @param createSipTrunkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateSipTrunk201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateSipTrunk201Response> createSipTrunkWithHttpInfo(@javax.annotation.Nonnull CreateSipTrunkRequest createSipTrunkRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createSipTrunkRequestBuilder(createSipTrunkRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createSipTrunk", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateSipTrunk201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateSipTrunk201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateSipTrunk201Response>() {});
+        
+
+        return new ApiResponse<CreateSipTrunk201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createSipTrunkRequestBuilder(@javax.annotation.Nonnull CreateSipTrunkRequest createSipTrunkRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createSipTrunkRequest' is set
+    if (createSipTrunkRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createSipTrunkRequest' when calling createSipTrunk");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/sip-trunks";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createSipTrunkRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -412,6 +677,242 @@ public class VoiceApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a SIP trunk
+   * Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+   * @param id  (required)
+   * @return DeleteSmsSenderId200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteSmsSenderId200Response deleteSipTrunk(@javax.annotation.Nonnull String id) throws ApiException {
+    return deleteSipTrunk(id, null);
+  }
+
+  /**
+   * Delete a SIP trunk
+   * Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteSmsSenderId200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteSmsSenderId200Response deleteSipTrunk(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteSmsSenderId200Response> localVarResponse = deleteSipTrunkWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a SIP trunk
+   * Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+   * @param id  (required)
+   * @return ApiResponse&lt;DeleteSmsSenderId200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteSmsSenderId200Response> deleteSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return deleteSipTrunkWithHttpInfo(id, null);
+  }
+
+  /**
+   * Delete a SIP trunk
+   * Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteSmsSenderId200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteSmsSenderId200Response> deleteSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteSipTrunkRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteSipTrunk", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteSmsSenderId200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteSmsSenderId200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteSmsSenderId200Response>() {});
+        
+
+        return new ApiResponse<DeleteSmsSenderId200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteSipTrunkRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling deleteSipTrunk");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/sip-trunks/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Detach a number from its SIP trunk
+   * Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+   * @param id  (required)
+   * @return DetachNumberFromSipTrunk200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DetachNumberFromSipTrunk200Response detachNumberFromSipTrunk(@javax.annotation.Nonnull String id) throws ApiException {
+    return detachNumberFromSipTrunk(id, null);
+  }
+
+  /**
+   * Detach a number from its SIP trunk
+   * Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return DetachNumberFromSipTrunk200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DetachNumberFromSipTrunk200Response detachNumberFromSipTrunk(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<DetachNumberFromSipTrunk200Response> localVarResponse = detachNumberFromSipTrunkWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Detach a number from its SIP trunk
+   * Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+   * @param id  (required)
+   * @return ApiResponse&lt;DetachNumberFromSipTrunk200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DetachNumberFromSipTrunk200Response> detachNumberFromSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return detachNumberFromSipTrunkWithHttpInfo(id, null);
+  }
+
+  /**
+   * Detach a number from its SIP trunk
+   * Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DetachNumberFromSipTrunk200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DetachNumberFromSipTrunk200Response> detachNumberFromSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = detachNumberFromSipTrunkRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("detachNumberFromSipTrunk", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DetachNumberFromSipTrunk200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DetachNumberFromSipTrunk200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DetachNumberFromSipTrunk200Response>() {});
+        
+
+        return new ApiResponse<DetachNumberFromSipTrunk200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder detachNumberFromSipTrunkRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling detachNumberFromSipTrunk");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/sip-trunk"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -911,6 +1412,124 @@ public class VoiceApi {
   }
 
   /**
+   * Get a SIP trunk
+   * 
+   * @param id  (required)
+   * @return GetSipTrunk200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSipTrunk200Response getSipTrunk(@javax.annotation.Nonnull String id) throws ApiException {
+    return getSipTrunk(id, null);
+  }
+
+  /**
+   * Get a SIP trunk
+   * 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetSipTrunk200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSipTrunk200Response getSipTrunk(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetSipTrunk200Response> localVarResponse = getSipTrunkWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a SIP trunk
+   * 
+   * @param id  (required)
+   * @return ApiResponse&lt;GetSipTrunk200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSipTrunk200Response> getSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return getSipTrunkWithHttpInfo(id, null);
+  }
+
+  /**
+   * Get a SIP trunk
+   * 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetSipTrunk200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSipTrunk200Response> getSipTrunkWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSipTrunkRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getSipTrunk", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetSipTrunk200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetSipTrunk200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetSipTrunk200Response>() {});
+        
+
+        return new ApiResponse<GetSipTrunk200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getSipTrunkRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getSipTrunk");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/sip-trunks/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get a phone call
    * Full call detail, including the transcript segments when transcription was on.
    * @param id  (required)
@@ -1316,6 +1935,115 @@ public class VoiceApi {
   }
 
   /**
+   * List SIP trunks
+   * 
+   * @return ListSipTrunks200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSipTrunks200Response listSipTrunks() throws ApiException {
+    return listSipTrunks(null);
+  }
+
+  /**
+   * List SIP trunks
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ListSipTrunks200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSipTrunks200Response listSipTrunks(Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSipTrunks200Response> localVarResponse = listSipTrunksWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List SIP trunks
+   * 
+   * @return ApiResponse&lt;ListSipTrunks200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSipTrunks200Response> listSipTrunksWithHttpInfo() throws ApiException {
+    return listSipTrunksWithHttpInfo(null);
+  }
+
+  /**
+   * List SIP trunks
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListSipTrunks200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSipTrunks200Response> listSipTrunksWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listSipTrunksRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listSipTrunks", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListSipTrunks200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListSipTrunks200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSipTrunks200Response>() {});
+        
+
+        return new ApiResponse<ListSipTrunks200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listSipTrunksRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/sip-trunks";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List phone calls
    * Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; for the next page. For a history that also includes WhatsApp calls, use &#x60;GET /v1/calls&#x60;. 
    * @param status  (optional)
@@ -1456,6 +2184,124 @@ public class VoiceApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Rotate a SIP trunk&#39;s password
+   * Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+   * @param id  (required)
+   * @return RotateSipTrunkCredentials200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RotateSipTrunkCredentials200Response rotateSipTrunkCredentials(@javax.annotation.Nonnull String id) throws ApiException {
+    return rotateSipTrunkCredentials(id, null);
+  }
+
+  /**
+   * Rotate a SIP trunk&#39;s password
+   * Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return RotateSipTrunkCredentials200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RotateSipTrunkCredentials200Response rotateSipTrunkCredentials(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<RotateSipTrunkCredentials200Response> localVarResponse = rotateSipTrunkCredentialsWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Rotate a SIP trunk&#39;s password
+   * Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+   * @param id  (required)
+   * @return ApiResponse&lt;RotateSipTrunkCredentials200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RotateSipTrunkCredentials200Response> rotateSipTrunkCredentialsWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return rotateSipTrunkCredentialsWithHttpInfo(id, null);
+  }
+
+  /**
+   * Rotate a SIP trunk&#39;s password
+   * Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RotateSipTrunkCredentials200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RotateSipTrunkCredentials200Response> rotateSipTrunkCredentialsWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = rotateSipTrunkCredentialsRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("rotateSipTrunkCredentials", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RotateSipTrunkCredentials200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RotateSipTrunkCredentials200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RotateSipTrunkCredentials200Response>() {});
+        
+
+        return new ApiResponse<RotateSipTrunkCredentials200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder rotateSipTrunkCredentialsRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling rotateSipTrunkCredentials");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/sip-trunks/{id}/rotate-credentials"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_TELNYX_ORDER_ID,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_MONTHLY_CENTS,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_HOSTED_BY_ZERNIO,
+  ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_SIP_TRUNK_ID,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PROFILE_ID,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PROVISIONED_AT,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_META_PREVERIFIED_ID,
@@ -57,7 +58,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CALLING_ENABLED,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:48:59.399614436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T07:53:44.157662287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -137,6 +138,9 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_HOSTED_BY_ZERNIO = "hostedByZernio";
   @javax.annotation.Nullable
   private Boolean hostedByZernio;
+
+  public static final String JSON_PROPERTY_SIP_TRUNK_ID = "sipTrunkId";
+  private JsonNullable<String> sipTrunkId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
@@ -382,6 +386,38 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostedByZernio(@javax.annotation.Nullable Boolean hostedByZernio) {
     this.hostedByZernio = hostedByZernio;
+  }
+
+
+  public ListPhoneNumbers200ResponseNumbersInner sipTrunkId(@javax.annotation.Nullable String sipTrunkId) {
+    this.sipTrunkId = JsonNullable.<String>of(sipTrunkId);
+    return this;
+  }
+
+  /**
+   * SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409.
+   * @return sipTrunkId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSipTrunkId() {
+        return sipTrunkId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SIP_TRUNK_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSipTrunkId_JsonNullable() {
+    return sipTrunkId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIP_TRUNK_ID)
+  public void setSipTrunkId_JsonNullable(JsonNullable<String> sipTrunkId) {
+    this.sipTrunkId = sipTrunkId;
+  }
+
+  public void setSipTrunkId(@javax.annotation.Nullable String sipTrunkId) {
+    this.sipTrunkId = JsonNullable.<String>of(sipTrunkId);
   }
 
 
@@ -677,6 +713,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
         equalsNullable(this.telnyxOrderId, listPhoneNumbers200ResponseNumbersInner.telnyxOrderId) &&
         Objects.equals(this.monthlyCents, listPhoneNumbers200ResponseNumbersInner.monthlyCents) &&
         Objects.equals(this.hostedByZernio, listPhoneNumbers200ResponseNumbersInner.hostedByZernio) &&
+        equalsNullable(this.sipTrunkId, listPhoneNumbers200ResponseNumbersInner.sipTrunkId) &&
         Objects.equals(this.profileId, listPhoneNumbers200ResponseNumbersInner.profileId) &&
         Objects.equals(this.provisionedAt, listPhoneNumbers200ResponseNumbersInner.provisionedAt) &&
         Objects.equals(this.metaPreverifiedId, listPhoneNumbers200ResponseNumbersInner.metaPreverifiedId) &&
@@ -695,7 +732,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, country, status, hashCodeNullable(registrantName), hashCodeNullable(telnyxOrderId), monthlyCents, hostedByZernio, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), callingEnabled, createdAt);
+    return Objects.hash(id, phoneNumber, country, status, hashCodeNullable(registrantName), hashCodeNullable(telnyxOrderId), monthlyCents, hostedByZernio, hashCodeNullable(sipTrunkId), profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), callingEnabled, createdAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -717,6 +754,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
     sb.append("    telnyxOrderId: ").append(toIndentedString(telnyxOrderId)).append("\n");
     sb.append("    monthlyCents: ").append(toIndentedString(monthlyCents)).append("\n");
     sb.append("    hostedByZernio: ").append(toIndentedString(hostedByZernio)).append("\n");
+    sb.append("    sipTrunkId: ").append(toIndentedString(sipTrunkId)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    provisionedAt: ").append(toIndentedString(provisionedAt)).append("\n");
     sb.append("    metaPreverifiedId: ").append(toIndentedString(metaPreverifiedId)).append("\n");
@@ -812,6 +850,11 @@ public class ListPhoneNumbers200ResponseNumbersInner {
     // add `hostedByZernio` to the URL query string
     if (getHostedByZernio() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shostedByZernio%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostedByZernio()))));
+    }
+
+    // add `sipTrunkId` to the URL query string
+    if (getSipTrunkId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssipTrunkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSipTrunkId()))));
     }
 
     // add `profileId` to the URL query string

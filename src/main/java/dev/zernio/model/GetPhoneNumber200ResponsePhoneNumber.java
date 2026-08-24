@@ -48,9 +48,10 @@ import dev.zernio.ApiClient;
   GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_END_USER_FIRST_NAME,
   GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_END_USER_LAST_NAME,
   GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_REGULATORY_DECLINE_REASON,
-  GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_PROVISIONED_AT
+  GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_PROVISIONED_AT,
+  GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_SIP_TRUNK_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-22T11:48:59.399614436Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T07:53:44.157662287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumber200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -140,6 +141,9 @@ public class GetPhoneNumber200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_PROVISIONED_AT = "provisionedAt";
   @javax.annotation.Nullable
   private OffsetDateTime provisionedAt;
+
+  public static final String JSON_PROPERTY_SIP_TRUNK_ID = "sipTrunkId";
+  private JsonNullable<String> sipTrunkId = JsonNullable.<String>undefined();
 
   public GetPhoneNumber200ResponsePhoneNumber() { 
   }
@@ -440,6 +444,38 @@ public class GetPhoneNumber200ResponsePhoneNumber {
   }
 
 
+  public GetPhoneNumber200ResponsePhoneNumber sipTrunkId(@javax.annotation.Nullable String sipTrunkId) {
+    this.sipTrunkId = JsonNullable.<String>of(sipTrunkId);
+    return this;
+  }
+
+  /**
+   * SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409.
+   * @return sipTrunkId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSipTrunkId() {
+        return sipTrunkId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SIP_TRUNK_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSipTrunkId_JsonNullable() {
+    return sipTrunkId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIP_TRUNK_ID)
+  public void setSipTrunkId_JsonNullable(JsonNullable<String> sipTrunkId) {
+    this.sipTrunkId = sipTrunkId;
+  }
+
+  public void setSipTrunkId(@javax.annotation.Nullable String sipTrunkId) {
+    this.sipTrunkId = JsonNullable.<String>of(sipTrunkId);
+  }
+
+
   /**
    * Return true if this getPhoneNumber_200_response_phoneNumber object is equal to o.
    */
@@ -462,7 +498,8 @@ public class GetPhoneNumber200ResponsePhoneNumber {
         equalsNullable(this.endUserFirstName, getPhoneNumber200ResponsePhoneNumber.endUserFirstName) &&
         equalsNullable(this.endUserLastName, getPhoneNumber200ResponsePhoneNumber.endUserLastName) &&
         equalsNullable(this.regulatoryDeclineReason, getPhoneNumber200ResponsePhoneNumber.regulatoryDeclineReason) &&
-        Objects.equals(this.provisionedAt, getPhoneNumber200ResponsePhoneNumber.provisionedAt);
+        Objects.equals(this.provisionedAt, getPhoneNumber200ResponsePhoneNumber.provisionedAt) &&
+        equalsNullable(this.sipTrunkId, getPhoneNumber200ResponsePhoneNumber.sipTrunkId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -471,7 +508,7 @@ public class GetPhoneNumber200ResponsePhoneNumber {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, status, country, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), provisionedAt);
+    return Objects.hash(id, phoneNumber, status, country, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), provisionedAt, hashCodeNullable(sipTrunkId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -496,6 +533,7 @@ public class GetPhoneNumber200ResponsePhoneNumber {
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
     sb.append("    regulatoryDeclineReason: ").append(toIndentedString(regulatoryDeclineReason)).append("\n");
     sb.append("    provisionedAt: ").append(toIndentedString(provisionedAt)).append("\n");
+    sb.append("    sipTrunkId: ").append(toIndentedString(sipTrunkId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -596,6 +634,11 @@ public class GetPhoneNumber200ResponsePhoneNumber {
     // add `provisionedAt` to the URL query string
     if (getProvisionedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprovisionedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProvisionedAt()))));
+    }
+
+    // add `sipTrunkId` to the URL query string
+    if (getSipTrunkId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssipTrunkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSipTrunkId()))));
     }
 
     return joiner.toString();

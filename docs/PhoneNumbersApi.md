@@ -2221,6 +2221,7 @@ public class Example {
 | **400** | Phone number is already released or being released |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **409** | The number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 
 ## releasePhoneNumberWithHttpInfo
 
@@ -2297,6 +2298,7 @@ ApiResponse<[**ReleasePhoneNumber200Response**](ReleasePhoneNumber200Response.md
 | **400** | Phone number is already released or being released |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **409** | The number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 
 
 ## remediatePhoneNumber

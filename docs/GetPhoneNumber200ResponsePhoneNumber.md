@@ -18,6 +18,7 @@
 |**endUserLastName** | **String** |  |  [optional] |
 |**regulatoryDeclineReason** | **String** | Reviewer rejection reason when status is regulatory_declined. |  [optional] |
 |**provisionedAt** | **OffsetDateTime** |  |  [optional] |
+|**sipTrunkId** | **String** | SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409. |  [optional] |
 
 
 

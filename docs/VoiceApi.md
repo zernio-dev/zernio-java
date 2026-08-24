@@ -4,10 +4,18 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**attachNumberToSipTrunk**](VoiceApi.md#attachNumberToSipTrunk) | **POST** /v1/phone-numbers/{id}/sip-trunk | Attach a number to a SIP trunk |
+| [**attachNumberToSipTrunkWithHttpInfo**](VoiceApi.md#attachNumberToSipTrunkWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sip-trunk | Attach a number to a SIP trunk |
+| [**createSipTrunk**](VoiceApi.md#createSipTrunk) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk |
+| [**createSipTrunkWithHttpInfo**](VoiceApi.md#createSipTrunkWithHttpInfo) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk |
 | [**createVoiceCall**](VoiceApi.md#createVoiceCall) | **POST** /v1/voice/calls | Place an outbound phone call |
 | [**createVoiceCallWithHttpInfo**](VoiceApi.md#createVoiceCallWithHttpInfo) | **POST** /v1/voice/calls | Place an outbound phone call |
 | [**createVoiceWebSession**](VoiceApi.md#createVoiceWebSession) | **POST** /v1/voice/calls/web | Mint a browser softphone session |
 | [**createVoiceWebSessionWithHttpInfo**](VoiceApi.md#createVoiceWebSessionWithHttpInfo) | **POST** /v1/voice/calls/web | Mint a browser softphone session |
+| [**deleteSipTrunk**](VoiceApi.md#deleteSipTrunk) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk |
+| [**deleteSipTrunkWithHttpInfo**](VoiceApi.md#deleteSipTrunkWithHttpInfo) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk |
+| [**detachNumberFromSipTrunk**](VoiceApi.md#detachNumberFromSipTrunk) | **DELETE** /v1/phone-numbers/{id}/sip-trunk | Detach a number from its SIP trunk |
+| [**detachNumberFromSipTrunkWithHttpInfo**](VoiceApi.md#detachNumberFromSipTrunkWithHttpInfo) | **DELETE** /v1/phone-numbers/{id}/sip-trunk | Detach a number from its SIP trunk |
 | [**dialVoiceWebCall**](VoiceApi.md#dialVoiceWebCall) | **POST** /v1/voice/calls/web/dial | Dial from the browser softphone |
 | [**dialVoiceWebCallWithHttpInfo**](VoiceApi.md#dialVoiceWebCallWithHttpInfo) | **POST** /v1/voice/calls/web/dial | Dial from the browser softphone |
 | [**disableVoiceOnNumber**](VoiceApi.md#disableVoiceOnNumber) | **DELETE** /v1/phone-numbers/{id}/voice | Disable phone calling on a number |
@@ -16,17 +24,337 @@ All URIs are relative to *https://zernio.com/api*
 | [**enableVoiceOnNumberWithHttpInfo**](VoiceApi.md#enableVoiceOnNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/voice | Enable phone calling on a number |
 | [**endVoiceCall**](VoiceApi.md#endVoiceCall) | **POST** /v1/voice/calls/{id}/end | Hang up a live call |
 | [**endVoiceCallWithHttpInfo**](VoiceApi.md#endVoiceCallWithHttpInfo) | **POST** /v1/voice/calls/{id}/end | Hang up a live call |
+| [**getSipTrunk**](VoiceApi.md#getSipTrunk) | **GET** /v1/phone-numbers/sip-trunks/{id} | Get a SIP trunk |
+| [**getSipTrunkWithHttpInfo**](VoiceApi.md#getSipTrunkWithHttpInfo) | **GET** /v1/phone-numbers/sip-trunks/{id} | Get a SIP trunk |
 | [**getVoiceCall**](VoiceApi.md#getVoiceCall) | **GET** /v1/voice/calls/{id} | Get a phone call |
 | [**getVoiceCallWithHttpInfo**](VoiceApi.md#getVoiceCallWithHttpInfo) | **GET** /v1/voice/calls/{id} | Get a phone call |
 | [**getVoiceCallEstimate**](VoiceApi.md#getVoiceCallEstimate) | **GET** /v1/voice/calls/estimate | Estimate call cost |
 | [**getVoiceCallEstimateWithHttpInfo**](VoiceApi.md#getVoiceCallEstimateWithHttpInfo) | **GET** /v1/voice/calls/estimate | Estimate call cost |
 | [**getVoiceCallRecording**](VoiceApi.md#getVoiceCallRecording) | **GET** /v1/voice/calls/{id}/recording | Get a call recording |
 | [**getVoiceCallRecordingWithHttpInfo**](VoiceApi.md#getVoiceCallRecordingWithHttpInfo) | **GET** /v1/voice/calls/{id}/recording | Get a call recording |
+| [**listSipTrunks**](VoiceApi.md#listSipTrunks) | **GET** /v1/phone-numbers/sip-trunks | List SIP trunks |
+| [**listSipTrunksWithHttpInfo**](VoiceApi.md#listSipTrunksWithHttpInfo) | **GET** /v1/phone-numbers/sip-trunks | List SIP trunks |
 | [**listVoiceCalls**](VoiceApi.md#listVoiceCalls) | **GET** /v1/voice/calls | List phone calls |
 | [**listVoiceCallsWithHttpInfo**](VoiceApi.md#listVoiceCallsWithHttpInfo) | **GET** /v1/voice/calls | List phone calls |
+| [**rotateSipTrunkCredentials**](VoiceApi.md#rotateSipTrunkCredentials) | **POST** /v1/phone-numbers/sip-trunks/{id}/rotate-credentials | Rotate a SIP trunk&#39;s password |
+| [**rotateSipTrunkCredentialsWithHttpInfo**](VoiceApi.md#rotateSipTrunkCredentialsWithHttpInfo) | **POST** /v1/phone-numbers/sip-trunks/{id}/rotate-credentials | Rotate a SIP trunk&#39;s password |
 | [**transferVoiceCall**](VoiceApi.md#transferVoiceCall) | **POST** /v1/voice/calls/{id}/transfer | Blind-transfer a live call |
 | [**transferVoiceCallWithHttpInfo**](VoiceApi.md#transferVoiceCallWithHttpInfo) | **POST** /v1/voice/calls/{id}/transfer | Blind-transfer a live call |
 
+
+
+## attachNumberToSipTrunk
+
+> AttachNumberToSipTrunk200Response attachNumberToSipTrunk(id, attachNumberToSipTrunkRequest)
+
+Attach a number to a SIP trunk
+
+Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest = new AttachNumberToSipTrunkRequest(); // AttachNumberToSipTrunkRequest | 
+        try {
+            AttachNumberToSipTrunk200Response result = apiInstance.attachNumberToSipTrunk(id, attachNumberToSipTrunkRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#attachNumberToSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **attachNumberToSipTrunkRequest** | [**AttachNumberToSipTrunkRequest**](AttachNumberToSipTrunkRequest.md)|  | |
+
+### Return type
+
+[**AttachNumberToSipTrunk200Response**](AttachNumberToSipTrunk200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number attached (idempotent for the same trunk). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **404** | Number or trunk not found |  -  |
+| **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
+| **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
+
+## attachNumberToSipTrunkWithHttpInfo
+
+> ApiResponse<AttachNumberToSipTrunk200Response> attachNumberToSipTrunk attachNumberToSipTrunkWithHttpInfo(id, attachNumberToSipTrunkRequest)
+
+Attach a number to a SIP trunk
+
+Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest = new AttachNumberToSipTrunkRequest(); // AttachNumberToSipTrunkRequest | 
+        try {
+            ApiResponse<AttachNumberToSipTrunk200Response> response = apiInstance.attachNumberToSipTrunkWithHttpInfo(id, attachNumberToSipTrunkRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#attachNumberToSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **attachNumberToSipTrunkRequest** | [**AttachNumberToSipTrunkRequest**](AttachNumberToSipTrunkRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AttachNumberToSipTrunk200Response**](AttachNumberToSipTrunk200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number attached (idempotent for the same trunk). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **404** | Number or trunk not found |  -  |
+| **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
+| **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
+
+
+## createSipTrunk
+
+> CreateSipTrunk201Response createSipTrunk(createSipTrunkRequest)
+
+Create a SIP trunk
+
+Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        CreateSipTrunkRequest createSipTrunkRequest = new CreateSipTrunkRequest(); // CreateSipTrunkRequest | 
+        try {
+            CreateSipTrunk201Response result = apiInstance.createSipTrunk(createSipTrunkRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#createSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createSipTrunkRequest** | [**CreateSipTrunkRequest**](CreateSipTrunkRequest.md)|  | |
+
+### Return type
+
+[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **409** | The workspace trunk limit was reached (code invalid_resource_state). |  -  |
+| **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
+
+## createSipTrunkWithHttpInfo
+
+> ApiResponse<CreateSipTrunk201Response> createSipTrunk createSipTrunkWithHttpInfo(createSipTrunkRequest)
+
+Create a SIP trunk
+
+Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        CreateSipTrunkRequest createSipTrunkRequest = new CreateSipTrunkRequest(); // CreateSipTrunkRequest | 
+        try {
+            ApiResponse<CreateSipTrunk201Response> response = apiInstance.createSipTrunkWithHttpInfo(createSipTrunkRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#createSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createSipTrunkRequest** | [**CreateSipTrunkRequest**](CreateSipTrunkRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **409** | The workspace trunk limit was reached (code invalid_resource_state). |  -  |
+| **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
 
 
 ## createVoiceCall
@@ -323,6 +651,308 @@ ApiResponse<[**CreateVoiceWebSession200Response**](CreateVoiceWebSession200Respo
 | **200** | WebRTC session minted. |  -  |
 | **401** | Unauthorized |  -  |
 | **502** | Failed to mint the WebRTC session |  -  |
+
+
+## deleteSipTrunk
+
+> DeleteSmsSenderId200Response deleteSipTrunk(id)
+
+Delete a SIP trunk
+
+Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            DeleteSmsSenderId200Response result = apiInstance.deleteSipTrunk(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#deleteSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trunk deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
+| **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
+
+## deleteSipTrunkWithHttpInfo
+
+> ApiResponse<DeleteSmsSenderId200Response> deleteSipTrunk deleteSipTrunkWithHttpInfo(id)
+
+Delete a SIP trunk
+
+Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.deleteSipTrunkWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#deleteSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trunk deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
+| **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
+
+
+## detachNumberFromSipTrunk
+
+> DetachNumberFromSipTrunk200Response detachNumberFromSipTrunk(id)
+
+Detach a number from its SIP trunk
+
+Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            DetachNumberFromSipTrunk200Response result = apiInstance.detachNumberFromSipTrunk(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#detachNumberFromSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+[**DetachNumberFromSipTrunk200Response**](DetachNumberFromSipTrunk200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number detached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+## detachNumberFromSipTrunkWithHttpInfo
+
+> ApiResponse<DetachNumberFromSipTrunk200Response> detachNumberFromSipTrunk detachNumberFromSipTrunkWithHttpInfo(id)
+
+Detach a number from its SIP trunk
+
+Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ApiResponse<DetachNumberFromSipTrunk200Response> response = apiInstance.detachNumberFromSipTrunkWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#detachNumberFromSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**DetachNumberFromSipTrunk200Response**](DetachNumberFromSipTrunk200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number detached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
 
 
 ## dialVoiceWebCall
@@ -698,6 +1328,7 @@ public class Example {
 | **200** | Voice enabled; the full effective voice config is echoed back. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
+| **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
 
 ## enableVoiceOnNumberWithHttpInfo
@@ -776,6 +1407,7 @@ ApiResponse<[**EnableVoiceOnNumber200Response**](EnableVoiceOnNumber200Response.
 | **200** | Voice enabled; the full effective voice config is echoed back. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
+| **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
 
 
@@ -927,6 +1559,152 @@ ApiResponse<[**EndVoiceCall200Response**](EndVoiceCall200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Call not found |  -  |
 | **502** | Carrier-side hangup failed |  -  |
+
+
+## getSipTrunk
+
+> GetSipTrunk200Response getSipTrunk(id)
+
+Get a SIP trunk
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            GetSipTrunk200Response result = apiInstance.getSipTrunk(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#getSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+[**GetSipTrunk200Response**](GetSipTrunk200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trunk detail, including the attached numbers. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
+
+## getSipTrunkWithHttpInfo
+
+> ApiResponse<GetSipTrunk200Response> getSipTrunk getSipTrunkWithHttpInfo(id)
+
+Get a SIP trunk
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ApiResponse<GetSipTrunk200Response> response = apiInstance.getSipTrunkWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#getSipTrunk");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetSipTrunk200Response**](GetSipTrunk200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trunk detail, including the attached numbers. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
 
 
 ## getVoiceCall
@@ -1391,6 +2169,140 @@ ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording20
 | **502** | Recording provider lookup failed |  -  |
 
 
+## listSipTrunks
+
+> ListSipTrunks200Response listSipTrunks()
+
+List SIP trunks
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        try {
+            ListSipTrunks200Response result = apiInstance.listSipTrunks();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#listSipTrunks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListSipTrunks200Response**](ListSipTrunks200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s trunks. Passwords are never included. |  -  |
+| **401** | Unauthorized |  -  |
+
+## listSipTrunksWithHttpInfo
+
+> ApiResponse<ListSipTrunks200Response> listSipTrunks listSipTrunksWithHttpInfo()
+
+List SIP trunks
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        try {
+            ApiResponse<ListSipTrunks200Response> response = apiInstance.listSipTrunksWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#listSipTrunks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**ListSipTrunks200Response**](ListSipTrunks200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s trunks. Passwords are never included. |  -  |
+| **401** | Unauthorized |  -  |
+
+
 ## listVoiceCalls
 
 > ListVoiceCalls200Response listVoiceCalls(status, direction, number, before, limit)
@@ -1551,6 +2463,156 @@ ApiResponse<[**ListVoiceCalls200Response**](ListVoiceCalls200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## rotateSipTrunkCredentials
+
+> RotateSipTrunkCredentials200Response rotateSipTrunkCredentials(id)
+
+Rotate a SIP trunk&#39;s password
+
+Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            RotateSipTrunkCredentials200Response result = apiInstance.rotateSipTrunkCredentials(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#rotateSipTrunkCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+[**RotateSipTrunkCredentials200Response**](RotateSipTrunkCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | New credentials. The password is shown only here. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
+
+## rotateSipTrunkCredentialsWithHttpInfo
+
+> ApiResponse<RotateSipTrunkCredentials200Response> rotateSipTrunkCredentials rotateSipTrunkCredentialsWithHttpInfo(id)
+
+Rotate a SIP trunk&#39;s password
+
+Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ApiResponse<RotateSipTrunkCredentials200Response> response = apiInstance.rotateSipTrunkCredentialsWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#rotateSipTrunkCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**RotateSipTrunkCredentials200Response**](RotateSipTrunkCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | New credentials. The password is shown only here. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
 
 
 ## transferVoiceCall
