@@ -708,7 +708,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request, including a body that carries none of name, description, color or isDefault (code: missing_required_field). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
@@ -787,7 +787,7 @@ ApiResponse<[**ProfileUpdateResponse**](ProfileUpdateResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request, including a body that carries none of name, description, color or isDefault (code: missing_required_field). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |

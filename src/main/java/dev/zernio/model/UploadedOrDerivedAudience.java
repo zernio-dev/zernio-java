@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_RULE,
   UploadedOrDerivedAudience.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T10:50:07.781055026Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T11:41:21.961421559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -243,7 +243,7 @@ public class UploadedOrDerivedAudience {
   private Integer retentionDays;
 
   /**
-   * Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+   * Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. 
    */
   public enum EngagementSourceEnum {
     PAGE(String.valueOf("page")),
@@ -662,7 +662,7 @@ public class UploadedOrDerivedAudience {
   }
 
   /**
-   * Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+   * Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. 
    * @return engagementSource
    */
   @javax.annotation.Nullable

@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_PAGE_TOKEN,
   BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_ORDER_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T10:50:07.781055026Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T11:41:21.961421559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchGetGoogleBusinessReviewsRequest {
   public static final String JSON_PROPERTY_LOCATION_NAMES = "locationNames";
   @javax.annotation.Nonnull

@@ -6418,7 +6418,8 @@ paths:
                 $ref: "#/components/schemas/ProfileUpdateResponse"
           description: Updated
         "400":
-          description: Invalid request
+          description: "Invalid request, including a body that carries none of name,\
+            \ description, color or isDefault (code: missing_required_field)."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -57165,10 +57166,14 @@ components:
       required:
       - name
     updateProfile_request:
+      minProperties: 1
       properties:
         name:
+          minLength: 1
           type: string
         description:
+          description: Set to null to clear the description.
+          nullable: true
           type: string
         color:
           type: string
@@ -90648,9 +90653,7 @@ components:
           description: |
             Required for meta_engagement audiences (Meta only): what people
             engaged with. `page` = a Facebook Page, `instagram` = an IG
-            professional account, `video` = a video. The source object must be
-            eligible for engagement audiences or Meta rejects with subcode
-            1713151 ("Invalid Event Name"), surfaced verbatim.
+            professional account, `video` = a video.
           enum:
           - page
           - instagram
