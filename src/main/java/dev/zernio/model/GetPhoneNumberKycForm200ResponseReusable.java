@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberKycForm200ResponseReusable.JSON_PROPERTY_DETAILS,
   GetPhoneNumberKycForm200ResponseReusable.JSON_PROPERTY_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:55:53.183960082Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T16:15:23.841756521Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable
