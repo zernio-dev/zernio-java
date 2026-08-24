@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessPerformance200ResponseDateRange.JSON_PROPERTY_START_DATE,
   GetGoogleBusinessPerformance200ResponseDateRange.JSON_PROPERTY_END_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T08:08:45.634830312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T10:50:07.781055026Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessPerformance200ResponseDateRange {
   public static final String JSON_PROPERTY_START_DATE = "startDate";
   @javax.annotation.Nullable

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_FILENAME,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_PREVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T08:08:45.634830312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T10:50:07.781055026Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
