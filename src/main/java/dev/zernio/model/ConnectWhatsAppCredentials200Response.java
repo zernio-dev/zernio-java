@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_MESSAGE,
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_REGISTRATION_WARNING,
+  ConnectWhatsAppCredentials200Response.JSON_PROPERTY_WEBHOOK_NOTICE,
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:28:55.545647961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:40:16.024462616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppCredentials200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -47,6 +48,10 @@ public class ConnectWhatsAppCredentials200Response {
   public static final String JSON_PROPERTY_REGISTRATION_WARNING = "registrationWarning";
   @javax.annotation.Nullable
   private String registrationWarning;
+
+  public static final String JSON_PROPERTY_WEBHOOK_NOTICE = "webhookNotice";
+  @javax.annotation.Nullable
+  private String webhookNotice;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   @javax.annotation.Nullable
@@ -103,6 +108,30 @@ public class ConnectWhatsAppCredentials200Response {
   }
 
 
+  public ConnectWhatsAppCredentials200Response webhookNotice(@javax.annotation.Nullable String webhookNotice) {
+    this.webhookNotice = webhookNotice;
+    return this;
+  }
+
+  /**
+   * Present when the WABA webhook subscription (with the Zernio override callback) succeeded. Explains the delivery cutover and warns against unsubscribing the app from the WABA afterward.
+   * @return webhookNotice
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WEBHOOK_NOTICE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWebhookNotice() {
+    return webhookNotice;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WEBHOOK_NOTICE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWebhookNotice(@javax.annotation.Nullable String webhookNotice) {
+    this.webhookNotice = webhookNotice;
+  }
+
+
   public ConnectWhatsAppCredentials200Response account(@javax.annotation.Nullable ConnectWhatsAppCredentials200ResponseAccount account) {
     this.account = account;
     return this;
@@ -141,12 +170,13 @@ public class ConnectWhatsAppCredentials200Response {
     ConnectWhatsAppCredentials200Response connectWhatsAppCredentials200Response = (ConnectWhatsAppCredentials200Response) o;
     return Objects.equals(this.message, connectWhatsAppCredentials200Response.message) &&
         Objects.equals(this.registrationWarning, connectWhatsAppCredentials200Response.registrationWarning) &&
+        Objects.equals(this.webhookNotice, connectWhatsAppCredentials200Response.webhookNotice) &&
         Objects.equals(this.account, connectWhatsAppCredentials200Response.account);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, registrationWarning, account);
+    return Objects.hash(message, registrationWarning, webhookNotice, account);
   }
 
   @Override
@@ -155,6 +185,7 @@ public class ConnectWhatsAppCredentials200Response {
     sb.append("class ConnectWhatsAppCredentials200Response {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    registrationWarning: ").append(toIndentedString(registrationWarning)).append("\n");
+    sb.append("    webhookNotice: ").append(toIndentedString(webhookNotice)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -211,6 +242,11 @@ public class ConnectWhatsAppCredentials200Response {
     // add `registrationWarning` to the URL query string
     if (getRegistrationWarning() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sregistrationWarning%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRegistrationWarning()))));
+    }
+
+    // add `webhookNotice` to the URL query string
+    if (getWebhookNotice() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swebhookNotice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWebhookNotice()))));
     }
 
     // add `account` to the URL query string

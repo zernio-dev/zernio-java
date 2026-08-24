@@ -12,7 +12,9 @@
 |**username** | **String** | Display phone number |  [optional] |
 |**displayName** | **String** | Meta-verified business name |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
-|**selectedPhoneNumber** | **String** | The connected phone number |  [optional] |
+|**phoneNumber** | **String** | The connected phone number |  [optional] |
+|**verifiedName** | **String** | Meta-verified business name for the phone number |  [optional] |
+|**qualityRating** | **String** | Meta quality rating for the phone number (e.g. GREEN, YELLOW, RED, UNKNOWN) |  [optional] |
 
 
 

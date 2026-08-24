@@ -38,9 +38,11 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_USERNAME,
   ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_DISPLAY_NAME,
   ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_IS_ACTIVE,
-  ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_SELECTED_PHONE_NUMBER
+  ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_PHONE_NUMBER,
+  ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_VERIFIED_NAME,
+  ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_QUALITY_RATING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:28:55.545647961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:40:16.024462616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppCredentials200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -95,9 +97,17 @@ public class ConnectWhatsAppCredentials200ResponseAccount {
   @javax.annotation.Nullable
   private Boolean isActive;
 
-  public static final String JSON_PROPERTY_SELECTED_PHONE_NUMBER = "selectedPhoneNumber";
+  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
-  private String selectedPhoneNumber;
+  private String phoneNumber;
+
+  public static final String JSON_PROPERTY_VERIFIED_NAME = "verifiedName";
+  @javax.annotation.Nullable
+  private String verifiedName;
+
+  public static final String JSON_PROPERTY_QUALITY_RATING = "qualityRating";
+  @javax.annotation.Nullable
+  private String qualityRating;
 
   public ConnectWhatsAppCredentials200ResponseAccount() { 
   }
@@ -222,27 +232,75 @@ public class ConnectWhatsAppCredentials200ResponseAccount {
   }
 
 
-  public ConnectWhatsAppCredentials200ResponseAccount selectedPhoneNumber(@javax.annotation.Nullable String selectedPhoneNumber) {
-    this.selectedPhoneNumber = selectedPhoneNumber;
+  public ConnectWhatsAppCredentials200ResponseAccount phoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
     return this;
   }
 
   /**
    * The connected phone number
-   * @return selectedPhoneNumber
+   * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SELECTED_PHONE_NUMBER, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSelectedPhoneNumber() {
-    return selectedPhoneNumber;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SELECTED_PHONE_NUMBER, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSelectedPhoneNumber(@javax.annotation.Nullable String selectedPhoneNumber) {
-    this.selectedPhoneNumber = selectedPhoneNumber;
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+
+  public ConnectWhatsAppCredentials200ResponseAccount verifiedName(@javax.annotation.Nullable String verifiedName) {
+    this.verifiedName = verifiedName;
+    return this;
+  }
+
+  /**
+   * Meta-verified business name for the phone number
+   * @return verifiedName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VERIFIED_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getVerifiedName() {
+    return verifiedName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VERIFIED_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVerifiedName(@javax.annotation.Nullable String verifiedName) {
+    this.verifiedName = verifiedName;
+  }
+
+
+  public ConnectWhatsAppCredentials200ResponseAccount qualityRating(@javax.annotation.Nullable String qualityRating) {
+    this.qualityRating = qualityRating;
+    return this;
+  }
+
+  /**
+   * Meta quality rating for the phone number (e.g. GREEN, YELLOW, RED, UNKNOWN)
+   * @return qualityRating
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUALITY_RATING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQualityRating() {
+    return qualityRating;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUALITY_RATING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQualityRating(@javax.annotation.Nullable String qualityRating) {
+    this.qualityRating = qualityRating;
   }
 
 
@@ -263,12 +321,14 @@ public class ConnectWhatsAppCredentials200ResponseAccount {
         Objects.equals(this.username, connectWhatsAppCredentials200ResponseAccount.username) &&
         Objects.equals(this.displayName, connectWhatsAppCredentials200ResponseAccount.displayName) &&
         Objects.equals(this.isActive, connectWhatsAppCredentials200ResponseAccount.isActive) &&
-        Objects.equals(this.selectedPhoneNumber, connectWhatsAppCredentials200ResponseAccount.selectedPhoneNumber);
+        Objects.equals(this.phoneNumber, connectWhatsAppCredentials200ResponseAccount.phoneNumber) &&
+        Objects.equals(this.verifiedName, connectWhatsAppCredentials200ResponseAccount.verifiedName) &&
+        Objects.equals(this.qualityRating, connectWhatsAppCredentials200ResponseAccount.qualityRating);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, platform, username, displayName, isActive, selectedPhoneNumber);
+    return Objects.hash(accountId, platform, username, displayName, isActive, phoneNumber, verifiedName, qualityRating);
   }
 
   @Override
@@ -280,7 +340,9 @@ public class ConnectWhatsAppCredentials200ResponseAccount {
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
-    sb.append("    selectedPhoneNumber: ").append(toIndentedString(selectedPhoneNumber)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    verifiedName: ").append(toIndentedString(verifiedName)).append("\n");
+    sb.append("    qualityRating: ").append(toIndentedString(qualityRating)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -353,9 +415,19 @@ public class ConnectWhatsAppCredentials200ResponseAccount {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisActive%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsActive()))));
     }
 
-    // add `selectedPhoneNumber` to the URL query string
-    if (getSelectedPhoneNumber() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sselectedPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSelectedPhoneNumber()))));
+    // add `phoneNumber` to the URL query string
+    if (getPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
+    }
+
+    // add `verifiedName` to the URL query string
+    if (getVerifiedName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sverifiedName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVerifiedName()))));
+    }
+
+    // add `qualityRating` to the URL query string
+    if (getQualityRating() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squalityRating%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQualityRating()))));
     }
 
     return joiner.toString();
