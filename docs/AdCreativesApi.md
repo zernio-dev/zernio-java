@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createAdCreativeWithHttpInfo**](AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative |
 | [**deleteAdCreative**](AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative |
 | [**deleteAdCreativeWithHttpInfo**](AdCreativesApi.md#deleteAdCreativeWithHttpInfo) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative |
+| [**deleteAdVideo**](AdCreativesApi.md#deleteAdVideo) | **DELETE** /v1/ads/videos/{videoId} | Delete an ad video |
+| [**deleteAdVideoWithHttpInfo**](AdCreativesApi.md#deleteAdVideoWithHttpInfo) | **DELETE** /v1/ads/videos/{videoId} | Delete an ad video |
 | [**generateAdPreviews**](AdCreativesApi.md#generateAdPreviews) | **POST** /v1/ads/preview | Render pre-create ad previews |
 | [**generateAdPreviewsWithHttpInfo**](AdCreativesApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews |
 | [**getAdCreative**](AdCreativesApi.md#getAdCreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details |
@@ -28,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdCreativeWithHttpInfo**](AdCreativesApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative |
 | [**uploadAdImage**](AdCreativesApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64 |
 | [**uploadAdImageWithHttpInfo**](AdCreativesApi.md#uploadAdImageWithHttpInfo) | **POST** /v1/ads/images | Upload an ad image from base64 |
+| [**uploadAdVideo**](AdCreativesApi.md#uploadAdVideo) | **POST** /v1/ads/videos | Upload an ad video |
+| [**uploadAdVideoWithHttpInfo**](AdCreativesApi.md#uploadAdVideoWithHttpInfo) | **POST** /v1/ads/videos | Upload an ad video |
 
 
 
@@ -335,6 +339,164 @@ ApiResponse<[**DeleteAdCreative200Response**](DeleteAdCreative200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Creative deleted |  -  |
 | **400** | Invalid input, the creative is in use, or Meta rejected the delete |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## deleteAdVideo
+
+> DeleteAdVideo200Response deleteAdVideo(videoId, accountId, adAccountId)
+
+Delete an ad video
+
+Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String videoId = "videoId_example"; // String | Meta ad video id (numeric).
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) that owns the video.
+        try {
+            DeleteAdVideo200Response result = apiInstance.deleteAdVideo(videoId, accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#deleteAdVideo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **videoId** | **String**| Meta ad video id (numeric). | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) that owns the video. | |
+
+### Return type
+
+[**DeleteAdVideo200Response**](DeleteAdVideo200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Video deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## deleteAdVideoWithHttpInfo
+
+> ApiResponse<DeleteAdVideo200Response> deleteAdVideo deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId)
+
+Delete an ad video
+
+Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String videoId = "videoId_example"; // String | Meta ad video id (numeric).
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) that owns the video.
+        try {
+            ApiResponse<DeleteAdVideo200Response> response = apiInstance.deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#deleteAdVideo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **videoId** | **String**| Meta ad video id (numeric). | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) that owns the video. | |
+
+### Return type
+
+ApiResponse<[**DeleteAdVideo200Response**](DeleteAdVideo200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Video deleted |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -1453,7 +1615,7 @@ ApiResponse<[**ListAdImages200Response**](ListAdImages200Response.md)>
 
 Ad video library
 
-Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
 
 ### Example
 
@@ -1534,7 +1696,7 @@ public class Example {
 
 Ad video library
 
-Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
 
 ### Example
 
@@ -1917,4 +2079,156 @@ ApiResponse<[**UploadAdImage201Response**](UploadAdImage201Response.md)>
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
+
+
+## uploadAdVideo
+
+> UploadAdVideo201Response uploadAdVideo(uploadAdVideoRequest)
+
+Upload an ad video
+
+Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit — around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        UploadAdVideoRequest uploadAdVideoRequest = new UploadAdVideoRequest(); // UploadAdVideoRequest | 
+        try {
+            UploadAdVideo201Response result = apiInstance.uploadAdVideo(uploadAdVideoRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#uploadAdVideo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uploadAdVideoRequest** | [**UploadAdVideoRequest**](UploadAdVideoRequest.md)|  | |
+
+### Return type
+
+[**UploadAdVideo201Response**](UploadAdVideo201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Video uploaded and ready |  -  |
+| **400** | Invalid input, or Meta rejected the upload |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no video id). Inspect &#x60;platformError.reason&#x60;. |  -  |
+
+## uploadAdVideoWithHttpInfo
+
+> ApiResponse<UploadAdVideo201Response> uploadAdVideo uploadAdVideoWithHttpInfo(uploadAdVideoRequest)
+
+Upload an ad video
+
+Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit — around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        UploadAdVideoRequest uploadAdVideoRequest = new UploadAdVideoRequest(); // UploadAdVideoRequest | 
+        try {
+            ApiResponse<UploadAdVideo201Response> response = apiInstance.uploadAdVideoWithHttpInfo(uploadAdVideoRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#uploadAdVideo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uploadAdVideoRequest** | [**UploadAdVideoRequest**](UploadAdVideoRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UploadAdVideo201Response**](UploadAdVideo201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Video uploaded and ready |  -  |
+| **400** | Invalid input, or Meta rejected the upload |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no video id). Inspect &#x60;platformError.reason&#x60;. |  -  |
 

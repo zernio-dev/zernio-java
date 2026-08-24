@@ -35,6 +35,7 @@ import dev.zernio.model.AdTreeCampaignOptimizationGoal;
 import dev.zernio.model.AdTreeCampaignPromotedObject;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,6 +54,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_PLATFORM_CAMPAIGN_ID,
   AdTreeCampaign.JSON_PROPERTY_PLATFORM,
   AdTreeCampaign.JSON_PROPERTY_CAMPAIGN_NAME,
+  AdTreeCampaign.JSON_PROPERTY_CREATED_TIME,
   AdTreeCampaign.JSON_PROPERTY_STATUS,
   AdTreeCampaign.JSON_PROPERTY_REVIEW_STATUS,
   AdTreeCampaign.JSON_PROPERTY_PLATFORM_CAMPAIGN_STATUS,
@@ -79,7 +81,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_AD_SETS,
   AdTreeCampaign.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:36:11.314058467Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:40:55.360330612Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -139,6 +141,9 @@ public class AdTreeCampaign {
   public static final String JSON_PROPERTY_CAMPAIGN_NAME = "campaignName";
   @javax.annotation.Nullable
   private String campaignName;
+
+  public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
+  private JsonNullable<OffsetDateTime> createdTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -336,6 +341,38 @@ public class AdTreeCampaign {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCampaignName(@javax.annotation.Nullable String campaignName) {
     this.campaignName = campaignName;
+  }
+
+
+  public AdTreeCampaign createdTime(@javax.annotation.Nullable OffsetDateTime createdTime) {
+    this.createdTime = JsonNullable.<OffsetDateTime>of(createdTime);
+    return this;
+  }
+
+  /**
+   * Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced) — a campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.
+   * @return createdTime
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getCreatedTime() {
+        return createdTime.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getCreatedTime_JsonNullable() {
+    return createdTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  public void setCreatedTime_JsonNullable(JsonNullable<OffsetDateTime> createdTime) {
+    this.createdTime = createdTime;
+  }
+
+  public void setCreatedTime(@javax.annotation.Nullable OffsetDateTime createdTime) {
+    this.createdTime = JsonNullable.<OffsetDateTime>of(createdTime);
   }
 
 
@@ -1070,6 +1107,7 @@ public class AdTreeCampaign {
     return Objects.equals(this.platformCampaignId, adTreeCampaign.platformCampaignId) &&
         Objects.equals(this.platform, adTreeCampaign.platform) &&
         Objects.equals(this.campaignName, adTreeCampaign.campaignName) &&
+        equalsNullable(this.createdTime, adTreeCampaign.createdTime) &&
         Objects.equals(this.status, adTreeCampaign.status) &&
         equalsNullable(this.reviewStatus, adTreeCampaign.reviewStatus) &&
         equalsNullable(this.platformCampaignStatus, adTreeCampaign.platformCampaignStatus) &&
@@ -1103,7 +1141,7 @@ public class AdTreeCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, adSetCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), optimizationGoal, hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, adSets, daily);
+    return Objects.hash(platformCampaignId, platform, campaignName, hashCodeNullable(createdTime), status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, adSetCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), optimizationGoal, hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, adSets, daily);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1120,6 +1158,7 @@ public class AdTreeCampaign {
     sb.append("    platformCampaignId: ").append(toIndentedString(platformCampaignId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    campaignName: ").append(toIndentedString(campaignName)).append("\n");
+    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
     sb.append("    platformCampaignStatus: ").append(toIndentedString(platformCampaignStatus)).append("\n");
@@ -1205,6 +1244,11 @@ public class AdTreeCampaign {
     // add `campaignName` to the URL query string
     if (getCampaignName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scampaignName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignName()))));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%screatedTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedTime()))));
     }
 
     // add `status` to the URL query string

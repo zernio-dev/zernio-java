@@ -11,6 +11,7 @@ Ad set (or ad group/line item depending on platform) with rolled-up metrics and 
 |**platformAdSetId** | **String** |  |  [optional] |
 |**adSetName** | **String** |  |  [optional] |
 |**status** | **AdStatus** | Derived from child ad statuses |  [optional] |
+|**createdTime** | **OffsetDateTime** | Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting. |  [optional] |
 |**adCount** | **Integer** |  |  [optional] |
 |**budget** | [**AdTreeAdSetBudget**](AdTreeAdSetBudget.md) |  |  [optional] |
 |**adSetBudget** | [**AdTreeAdSetAdSetBudget**](AdTreeAdSetAdSetBudget.md) |  |  [optional] |

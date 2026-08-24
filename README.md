@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-24T15:36:11.314058467Z[Etc/UTC]
+- Build date: 2026-08-24T15:40:55.360330612Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -275,6 +275,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**createAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**deleteAdCreative**](docs/AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
 *AdCreativesApi* | [**deleteAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#deleteAdCreativeWithHttpInfo) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
+*AdCreativesApi* | [**deleteAdVideo**](docs/AdCreativesApi.md#deleteAdVideo) | **DELETE** /v1/ads/videos/{videoId} | Delete an ad video
+*AdCreativesApi* | [**deleteAdVideoWithHttpInfo**](docs/AdCreativesApi.md#deleteAdVideoWithHttpInfo) | **DELETE** /v1/ads/videos/{videoId} | Delete an ad video
 *AdCreativesApi* | [**generateAdPreviews**](docs/AdCreativesApi.md#generateAdPreviews) | **POST** /v1/ads/preview | Render pre-create ad previews
 *AdCreativesApi* | [**generateAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews
 *AdCreativesApi* | [**getAdCreative**](docs/AdCreativesApi.md#getAdCreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details
@@ -295,6 +297,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**updateAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
 *AdCreativesApi* | [**uploadAdImage**](docs/AdCreativesApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64
 *AdCreativesApi* | [**uploadAdImageWithHttpInfo**](docs/AdCreativesApi.md#uploadAdImageWithHttpInfo) | **POST** /v1/ads/images | Upload an ad image from base64
+*AdCreativesApi* | [**uploadAdVideo**](docs/AdCreativesApi.md#uploadAdVideo) | **POST** /v1/ads/videos | Upload an ad video
+*AdCreativesApi* | [**uploadAdVideoWithHttpInfo**](docs/AdCreativesApi.md#uploadAdVideoWithHttpInfo) | **POST** /v1/ads/videos | Upload an ad video
 *AdInsightsApi* | [**createAdInsightsReport**](docs/AdInsightsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run
 *AdInsightsApi* | [**createAdInsightsReportWithHttpInfo**](docs/AdInsightsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run
 *AdInsightsApi* | [**generateKeywordHistoricalMetrics**](docs/AdInsightsApi.md#generateKeywordHistoricalMetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner)
@@ -1639,6 +1643,7 @@ Class | Method | HTTP request | Description
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
  - [DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
+ - [DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
@@ -2785,6 +2790,9 @@ Class | Method | HTTP request | Description
  - [UploadAdImage201Response](docs/UploadAdImage201Response.md)
  - [UploadAdImage201ResponseImage](docs/UploadAdImage201ResponseImage.md)
  - [UploadAdImageRequest](docs/UploadAdImageRequest.md)
+ - [UploadAdVideo201Response](docs/UploadAdVideo201Response.md)
+ - [UploadAdVideo201ResponseVideo](docs/UploadAdVideo201ResponseVideo.md)
+ - [UploadAdVideoRequest](docs/UploadAdVideoRequest.md)
  - [UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [UploadMediaDirectRequest](docs/UploadMediaDirectRequest.md)
  - [UploadPhoneNumberKycDocument200Response](docs/UploadPhoneNumberKycDocument200Response.md)

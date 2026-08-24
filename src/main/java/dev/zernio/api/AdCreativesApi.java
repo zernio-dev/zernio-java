@@ -21,6 +21,7 @@ import dev.zernio.Pair;
 import dev.zernio.model.CreateAdCreative201Response;
 import dev.zernio.model.CreateAdCreativeRequest;
 import dev.zernio.model.DeleteAdCreative200Response;
+import dev.zernio.model.DeleteAdVideo200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GenerateAdPreviews200Response;
 import dev.zernio.model.GenerateAdPreviewsRequest;
@@ -36,6 +37,8 @@ import dev.zernio.model.UpdateAdCreative200Response;
 import dev.zernio.model.UpdateAdCreativeRequest;
 import dev.zernio.model.UploadAdImage201Response;
 import dev.zernio.model.UploadAdImageRequest;
+import dev.zernio.model.UploadAdVideo201Response;
+import dev.zernio.model.UploadAdVideoRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,7 +65,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:36:11.314058467Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:40:55.360330612Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreativesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -417,6 +420,157 @@ public class AdCreativesApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete an ad video
+   * Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+   * @param videoId Meta ad video id (numeric). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;) that owns the video. (required)
+   * @return DeleteAdVideo200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdVideo200Response deleteAdVideo(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return deleteAdVideo(videoId, accountId, adAccountId, null);
+  }
+
+  /**
+   * Delete an ad video
+   * Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+   * @param videoId Meta ad video id (numeric). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;) that owns the video. (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteAdVideo200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdVideo200Response deleteAdVideo(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteAdVideo200Response> localVarResponse = deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete an ad video
+   * Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+   * @param videoId Meta ad video id (numeric). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;) that owns the video. (required)
+   * @return ApiResponse&lt;DeleteAdVideo200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdVideo200Response> deleteAdVideoWithHttpInfo(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId, null);
+  }
+
+  /**
+   * Delete an ad video
+   * Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+   * @param videoId Meta ad video id (numeric). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;) that owns the video. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteAdVideo200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdVideo200Response> deleteAdVideoWithHttpInfo(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAdVideoRequestBuilder(videoId, accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteAdVideo", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteAdVideo200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteAdVideo200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteAdVideo200Response>() {});
+        
+
+        return new ApiResponse<DeleteAdVideo200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteAdVideoRequestBuilder(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'videoId' is set
+    if (videoId == null) {
+      throw new ApiException(400, "Missing the required parameter 'videoId' when calling deleteAdVideo");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAdVideo");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling deleteAdVideo");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/videos/{videoId}"
+        .replace("{videoId}", ApiClient.urlEncode(videoId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -1455,7 +1609,7 @@ public class AdCreativesApi {
 
   /**
    * Ad video library
-   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
    * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
@@ -1470,7 +1624,7 @@ public class AdCreativesApi {
 
   /**
    * Ad video library
-   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
    * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
@@ -1487,7 +1641,7 @@ public class AdCreativesApi {
 
   /**
    * Ad video library
-   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
    * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
@@ -1502,7 +1656,7 @@ public class AdCreativesApi {
 
   /**
    * Ad video library
-   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+   * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
    * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
@@ -1853,6 +2007,129 @@ public class AdCreativesApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(uploadAdImageRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Upload an ad video
+   * Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit — around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+   * @param uploadAdVideoRequest  (required)
+   * @return UploadAdVideo201Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadAdVideo201Response uploadAdVideo(@javax.annotation.Nonnull UploadAdVideoRequest uploadAdVideoRequest) throws ApiException {
+    return uploadAdVideo(uploadAdVideoRequest, null);
+  }
+
+  /**
+   * Upload an ad video
+   * Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit — around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+   * @param uploadAdVideoRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UploadAdVideo201Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadAdVideo201Response uploadAdVideo(@javax.annotation.Nonnull UploadAdVideoRequest uploadAdVideoRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UploadAdVideo201Response> localVarResponse = uploadAdVideoWithHttpInfo(uploadAdVideoRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Upload an ad video
+   * Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit — around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+   * @param uploadAdVideoRequest  (required)
+   * @return ApiResponse&lt;UploadAdVideo201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadAdVideo201Response> uploadAdVideoWithHttpInfo(@javax.annotation.Nonnull UploadAdVideoRequest uploadAdVideoRequest) throws ApiException {
+    return uploadAdVideoWithHttpInfo(uploadAdVideoRequest, null);
+  }
+
+  /**
+   * Upload an ad video
+   * Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit — around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+   * @param uploadAdVideoRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UploadAdVideo201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadAdVideo201Response> uploadAdVideoWithHttpInfo(@javax.annotation.Nonnull UploadAdVideoRequest uploadAdVideoRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = uploadAdVideoRequestBuilder(uploadAdVideoRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("uploadAdVideo", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UploadAdVideo201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UploadAdVideo201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadAdVideo201Response>() {});
+        
+
+        return new ApiResponse<UploadAdVideo201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder uploadAdVideoRequestBuilder(@javax.annotation.Nonnull UploadAdVideoRequest uploadAdVideoRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'uploadAdVideoRequest' is set
+    if (uploadAdVideoRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'uploadAdVideoRequest' when calling uploadAdVideo");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/videos";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(uploadAdVideoRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -380,6 +380,7 @@ docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
 docs/DeleteAdCreative200Response.md
+docs/DeleteAdVideo200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
@@ -1557,6 +1558,9 @@ docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadAdImage201Response.md
 docs/UploadAdImage201ResponseImage.md
 docs/UploadAdImageRequest.md
+docs/UploadAdVideo201Response.md
+docs/UploadAdVideo201ResponseVideo.md
+docs/UploadAdVideoRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadMediaDirectRequest.md
 docs/UploadPhoneNumberKycDocument200Response.md
@@ -2221,6 +2225,7 @@ src/main/java/dev/zernio/model/DeleteAccountGroup200Response.java
 src/main/java/dev/zernio/model/DeleteAdCampaign200Response.java
 src/main/java/dev/zernio/model/DeleteAdCampaignRequest.java
 src/main/java/dev/zernio/model/DeleteAdCreative200Response.java
+src/main/java/dev/zernio/model/DeleteAdVideo200Response.java
 src/main/java/dev/zernio/model/DeleteDiscordScheduledEvent200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessMedia200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessPlaceAction200Response.java
@@ -3367,6 +3372,9 @@ src/main/java/dev/zernio/model/UpdateYoutubeDefaultPlaylistRequest.java
 src/main/java/dev/zernio/model/UploadAdImage201Response.java
 src/main/java/dev/zernio/model/UploadAdImage201ResponseImage.java
 src/main/java/dev/zernio/model/UploadAdImageRequest.java
+src/main/java/dev/zernio/model/UploadAdVideo201Response.java
+src/main/java/dev/zernio/model/UploadAdVideo201ResponseVideo.java
+src/main/java/dev/zernio/model/UploadAdVideoRequest.java
 src/main/java/dev/zernio/model/UploadMediaDirect200Response.java
 src/main/java/dev/zernio/model/UploadMediaDirectRequest.java
 src/main/java/dev/zernio/model/UploadPhoneNumberKycDocument200Response.java
@@ -3577,4 +3585,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListBroadcastRecipients200ResponseSummaryTest.java
+src/test/java/dev/zernio/model/DeleteAdVideo200ResponseTest.java
+src/test/java/dev/zernio/model/UploadAdVideo201ResponseTest.java
+src/test/java/dev/zernio/model/UploadAdVideo201ResponseVideoTest.java
+src/test/java/dev/zernio/model/UploadAdVideoRequestTest.java

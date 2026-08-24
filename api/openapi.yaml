@@ -32665,7 +32665,7 @@ paths:
         tool); videos we uploaded also come back as `creative.videoId` on GET /v1/ads.
 
         Meta transcodes asynchronously, so a row is only usable once `status.video_status`
-        reads `ready`. There is no upload operation here: upload by URL inline via `video.url`
+        reads `ready`. Upload a new video via POST /v1/ads/videos, or inline via `video.url`
         on POST /v1/ads/create.
       operationId: listAdVideos
       parameters:
@@ -32729,6 +32729,114 @@ paths:
       security:
       - bearerAuth: []
       summary: Ad video library
+      tags:
+      - Ad Creatives
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can
+        be rendered via POST /v1/ads/preview or attached via `video.id` on POST /v1/ads/create
+        before an ad exists.
+
+        Accepts either an https `videoUrl` we download server-side (SSRF-guarded) or raw
+        `videoBase64` bytes; exactly one is required. `videoBase64` is capped by Vercel's body
+        limit — around 4.5 MB payload in practice, so larger videos must come via `videoUrl`.
+
+        Returns the Meta `video.id` (reusable wherever `video.id` is accepted) plus Meta's
+        auto-generated poster URL when available. The endpoint waits until Meta reports the
+        video ready (chunked upload + transcode can take minutes; the handler runs up to
+        800 s).
+      operationId: uploadAdVideo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/uploadAdVideo_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/uploadAdVideo_201_response"
+          description: Video uploaded and ready
+        "400":
+          description: "Invalid input, or Meta rejected the upload"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+        "502":
+          description: "Meta accepted the request then failed to produce the media\
+            \ (upload session, chunk transfer, processing timeout, or a response with\
+            \ no video id). Inspect `platformError.reason`."
+      security:
+      - bearerAuth: []
+      summary: Upload an ad video
+      tags:
+      - Ad Creatives
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/videos/{videoId}:
+    delete:
+      description: |-
+        Removes a video from the ad account's video library. Meta's canonical
+        `DELETE /{video_id}` fails with code 10 / subcode 1363055 for videos uploaded via
+        `/act_X/advideos` even with `ads_management`; this endpoint uses the working
+        account-scoped shape `DELETE /act_X/advideos?video_id=<id>` and returns Meta's
+        `{success: true}` verbatim. Deleting a video that lives in a different ad account,
+        or that Meta has already removed, returns Meta's error verbatim as a 4xx.
+      operationId: deleteAdVideo
+      parameters:
+      - description: Meta ad video id (numeric).
+        explode: false
+        in: path
+        name: videoId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>) that owns the video.
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteAdVideo_200_response"
+          description: Video deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Delete an ad video
       tags:
       - Ad Creatives
       x-resource-group: ads
@@ -36637,9 +36745,11 @@ components:
             Multi-creative shape: N CTWA ads under one campaign + one
             ad set, sharing budget and targeting. Mutually exclusive
             with the top-level single-creative fields (`headline` /
-            `body` / `imageUrl` / `video`). Each entry must supply its
-            own headline, body, and exactly one of `imageUrl` /
-            `video`.
+            `body` / `imageUrl` / `video`): setting both is a 400,
+            unlike `POST /v1/ads/create` where the top-level fields
+            are silently ignored in multi-creative mode. Each entry
+            must supply its own headline, body, and exactly one of
+            `imageUrl` / `video`.
           items:
             $ref: "#/components/schemas/CtwaAdRequestBody_creatives_inner"
           minItems: 1
@@ -48811,6 +48921,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -49243,6 +49354,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -49596,6 +49708,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -49745,6 +49858,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -50177,6 +50291,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -50530,6 +50645,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -52688,6 +52804,7 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         platformAdSetId: platformAdSetId
+        createdTime: 2000-01-23T04:56:07.000+00:00
         metrics:
           conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 2.8841621266687802
@@ -52765,6 +52882,14 @@ components:
           allOf:
           - $ref: "#/components/schemas/AdStatus"
           description: Derived from child ad statuses
+        createdTime:
+          description: "Earliest `platformCreatedAt` (platform ad creation time; falls\
+            \ back to `createdAt`, Zernio's sync time, for ads synced before that\
+            \ field existed) across this ad set's ads. Not the ad set's own creation\
+            \ time on the platform — a proxy usable for sorting."
+          format: date-time
+          nullable: true
+          type: string
         adCount:
           type: integer
         budget:
@@ -52849,6 +52974,7 @@ components:
           pixel_id: pixel_id
         isBudgetScheduleEnabled: false
         advertisingChannelType: advertisingChannelType
+        createdTime: 2000-01-23T04:56:07.000+00:00
         currency: currency
         budget:
           amount: 1.4658129805029452
@@ -53281,6 +53407,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
+          createdTime: 2000-01-23T04:56:07.000+00:00
           metrics:
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 2.8841621266687802
@@ -53634,6 +53761,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
+          createdTime: 2000-01-23T04:56:07.000+00:00
           metrics:
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 2.8841621266687802
@@ -53787,6 +53915,18 @@ components:
           - openai
           type: string
         campaignName:
+          type: string
+        createdTime:
+          description: "Earliest `platformCreatedAt` (platform ad creation time; falls\
+            \ back to `createdAt`, Zernio's sync time, for ads synced before that\
+            \ field existed) across every ad in the campaign. Not the platform campaign's\
+            \ own creation time (Meta's `Campaign.created_time` etc. is not synced)\
+            \ — a campaign created empty and populated later will show its first ad's\
+            \ time, not the campaign's. Usable for sorting \"most recently created\"\
+            \ without the numeric-campaign-id heuristic. Same source as `AdTreeAdSet.createdTime`\
+            \ and `Ad.platformCreatedAt`; mirrors `AdCampaign.earliestAd`."
+          format: date-time
+          nullable: true
           type: string
         status:
           allOf:
@@ -82958,6 +83098,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -83390,6 +83531,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -83743,6 +83885,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -83892,6 +84035,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -84324,6 +84468,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -84677,6 +84822,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -90006,6 +90152,68 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
+    uploadAdVideo_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant) used to resolve
+            the Meta token.
+          type: string
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        videoUrl:
+          description: Public https URL of the video; downloaded server-side (SSRF-guarded)
+            before chunked upload. Provide exactly one of videoUrl or videoBase64.
+          type: string
+        videoBase64:
+          description: "Raw base64 video bytes, or a full data URL (the data:video/...;base64,\
+            \ prefix is stripped). Capped by Vercel's body limit (~4.5 MB payload).\
+            \ Provide exactly one of videoUrl or videoBase64."
+          type: string
+        filename:
+          description: Optional filename shown alongside the upload session. Applied
+            only when uploading via videoBase64.
+          type: string
+      required:
+      - accountId
+      - adAccountId
+    uploadAdVideo_201_response_video:
+      example:
+        id: id
+        thumbnailUrl: thumbnailUrl
+      properties:
+        id:
+          description: "Meta video id, reusable as video.id on POST /v1/ads/create\
+            \ and inside POST /v1/ads/preview creativeSpec."
+          type: string
+        thumbnailUrl:
+          description: Meta-hosted poster URL if available; null when Meta has not
+            produced a poster yet.
+          nullable: true
+          type: string
+    uploadAdVideo_201_response:
+      example:
+        adAccountId: adAccountId
+        video:
+          id: id
+          thumbnailUrl: thumbnailUrl
+      properties:
+        adAccountId:
+          type: string
+        video:
+          $ref: "#/components/schemas/uploadAdVideo_201_response_video"
+    deleteAdVideo_200_response:
+      example:
+        adAccountId: adAccountId
+        success: true
+        videoId: videoId
+      properties:
+        adAccountId:
+          type: string
+        videoId:
+          type: string
+        success:
+          type: boolean
     searchAdInterests_200_response_interests_inner:
       example:
         name: name

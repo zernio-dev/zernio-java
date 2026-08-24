@@ -33,6 +33,7 @@ import dev.zernio.model.AdTreeAdSetBudget;
 import dev.zernio.model.AdTreeAdSetPromotedObject;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,6 +52,7 @@ import dev.zernio.ApiClient;
   AdTreeAdSet.JSON_PROPERTY_PLATFORM_AD_SET_ID,
   AdTreeAdSet.JSON_PROPERTY_AD_SET_NAME,
   AdTreeAdSet.JSON_PROPERTY_STATUS,
+  AdTreeAdSet.JSON_PROPERTY_CREATED_TIME,
   AdTreeAdSet.JSON_PROPERTY_AD_COUNT,
   AdTreeAdSet.JSON_PROPERTY_BUDGET,
   AdTreeAdSet.JSON_PROPERTY_AD_SET_BUDGET,
@@ -65,7 +67,7 @@ import dev.zernio.ApiClient;
   AdTreeAdSet.JSON_PROPERTY_ADS,
   AdTreeAdSet.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:36:11.314058467Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:40:55.360330612Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSet {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable
@@ -78,6 +80,9 @@ public class AdTreeAdSet {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private AdStatus status;
+
+  public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
+  private JsonNullable<OffsetDateTime> createdTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_AD_COUNT = "adCount";
   @javax.annotation.Nullable
@@ -198,6 +203,38 @@ public class AdTreeAdSet {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable AdStatus status) {
     this.status = status;
+  }
+
+
+  public AdTreeAdSet createdTime(@javax.annotation.Nullable OffsetDateTime createdTime) {
+    this.createdTime = JsonNullable.<OffsetDateTime>of(createdTime);
+    return this;
+  }
+
+  /**
+   * Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting.
+   * @return createdTime
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getCreatedTime() {
+        return createdTime.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getCreatedTime_JsonNullable() {
+    return createdTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  public void setCreatedTime_JsonNullable(JsonNullable<OffsetDateTime> createdTime) {
+    this.createdTime = createdTime;
+  }
+
+  public void setCreatedTime(@javax.annotation.Nullable OffsetDateTime createdTime) {
+    this.createdTime = JsonNullable.<OffsetDateTime>of(createdTime);
   }
 
 
@@ -592,6 +629,7 @@ public class AdTreeAdSet {
     return Objects.equals(this.platformAdSetId, adTreeAdSet.platformAdSetId) &&
         Objects.equals(this.adSetName, adTreeAdSet.adSetName) &&
         Objects.equals(this.status, adTreeAdSet.status) &&
+        equalsNullable(this.createdTime, adTreeAdSet.createdTime) &&
         Objects.equals(this.adCount, adTreeAdSet.adCount) &&
         Objects.equals(this.budget, adTreeAdSet.budget) &&
         Objects.equals(this.adSetBudget, adTreeAdSet.adSetBudget) &&
@@ -613,7 +651,7 @@ public class AdTreeAdSet {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, adSetBudget, metrics, hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), hashCodeNullable(costType), servingStatuses, promotedObject, ads, daily);
+    return Objects.hash(platformAdSetId, adSetName, status, hashCodeNullable(createdTime), adCount, budget, adSetBudget, metrics, hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), hashCodeNullable(costType), servingStatuses, promotedObject, ads, daily);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -630,6 +668,7 @@ public class AdTreeAdSet {
     sb.append("    platformAdSetId: ").append(toIndentedString(platformAdSetId)).append("\n");
     sb.append("    adSetName: ").append(toIndentedString(adSetName)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    adCount: ").append(toIndentedString(adCount)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    adSetBudget: ").append(toIndentedString(adSetBudget)).append("\n");
@@ -703,6 +742,11 @@ public class AdTreeAdSet {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%screatedTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedTime()))));
     }
 
     // add `adCount` to the URL query string
