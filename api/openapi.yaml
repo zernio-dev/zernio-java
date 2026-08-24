@@ -48753,7 +48753,7 @@ components:
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
-          optimizationGoal: optimizationGoal
+          optimizationGoal: AdTreeCampaign_optimizationGoal
           platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
@@ -49687,7 +49687,7 @@ components:
           - "{}"
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
-          optimizationGoal: optimizationGoal
+          optimizationGoal: AdTreeCampaign_optimizationGoal
           platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
@@ -52791,7 +52791,7 @@ components:
       example:
         bidStrategy: ""
         platformCampaignId: platformCampaignId
-        optimizationGoal: optimizationGoal
+        optimizationGoal: AdTreeCampaign_optimizationGoal
         platformCampaignStatus: platformCampaignStatus
         platform: facebook
         promotedObject:
@@ -53817,13 +53817,7 @@ components:
           nullable: true
           type: string
         optimizationGoal:
-          description: "Optimization goal shared across ad sets, or comma-separated\
-            \ values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION.\
-            \ LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION,\
-            \ NONE); `NONE` with a manual costType is a campaign LinkedIn will not\
-            \ deliver."
-          nullable: true
-          type: string
+          $ref: "#/components/schemas/AdTreeCampaign_optimizationGoal"
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
@@ -53860,7 +53854,7 @@ components:
       example:
         bidStrategy: ""
         platformCampaignId: platformCampaignId
-        optimizationGoal: optimizationGoal
+        optimizationGoal: AdTreeCampaign_optimizationGoal
         platformCampaignStatus: platformCampaignStatus
         platform: facebook
         promotedObject:
@@ -54037,13 +54031,7 @@ components:
           nullable: true
           type: string
         optimizationGoal:
-          description: "Optimization goal shared across ad sets, or comma-separated\
-            \ values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION.\
-            \ LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION,\
-            \ NONE); `NONE` with a manual costType is a campaign LinkedIn will not\
-            \ deliver."
-          nullable: true
-          type: string
+          $ref: "#/components/schemas/AdTreeCampaign_optimizationGoal"
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
@@ -81870,7 +81858,7 @@ components:
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
-          optimizationGoal: optimizationGoal
+          optimizationGoal: AdTreeCampaign_optimizationGoal
           platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
@@ -81969,7 +81957,7 @@ components:
           - "{}"
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
-          optimizationGoal: optimizationGoal
+          optimizationGoal: AdTreeCampaign_optimizationGoal
           platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
@@ -82851,7 +82839,7 @@ components:
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
-          optimizationGoal: optimizationGoal
+          optimizationGoal: AdTreeCampaign_optimizationGoal
           platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
@@ -83785,7 +83773,7 @@ components:
           - "{}"
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
-          optimizationGoal: optimizationGoal
+          optimizationGoal: AdTreeCampaign_optimizationGoal
           platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
@@ -98301,6 +98289,17 @@ components:
           - daily
           - lifetime
           type: string
+    AdTreeCampaign_optimizationGoal:
+      anyOf:
+      - type: string
+      description: "A single string when every ad set shares one optimization goal;\
+        \ a JSON array of the distinct goals when ad sets differ (never a comma-joined\
+        \ string); array element order is not guaranteed, treat it as an unordered\
+        \ set; the key is absent when no ad set carries a goal. Meta: e.g. OFFSITE_CONVERSIONS,\
+        \ VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g.\
+        \ MAX_CLICK, MAX_IMPRESSION, NONE); `NONE` with a manual costType is a campaign\
+        \ LinkedIn will not deliver."
+      items: {}
     AdTreeCampaign_promotedObject:
       description: Meta promoted object at campaign level (conversion event details)
       example:

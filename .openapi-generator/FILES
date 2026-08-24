@@ -43,6 +43,7 @@ docs/AdTreeAdSetPromotedObject.md
 docs/AdTreeCampaign.md
 docs/AdTreeCampaignBudget.md
 docs/AdTreeCampaignCampaignBudget.md
+docs/AdTreeCampaignOptimizationGoal.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
 docs/AddBroadcastRecipients200Response.md
@@ -1894,6 +1895,7 @@ src/main/java/dev/zernio/model/AdTreeAdSetPromotedObject.java
 src/main/java/dev/zernio/model/AdTreeCampaign.java
 src/main/java/dev/zernio/model/AdTreeCampaignBudget.java
 src/main/java/dev/zernio/model/AdTreeCampaignCampaignBudget.java
+src/main/java/dev/zernio/model/AdTreeCampaignOptimizationGoal.java
 src/main/java/dev/zernio/model/AdTreeCampaignPromotedObject.java
 src/main/java/dev/zernio/model/AdTreeResponse.java
 src/main/java/dev/zernio/model/AddBroadcastRecipients200Response.java
@@ -3573,3 +3575,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdTreeCampaignOptimizationGoalTest.java

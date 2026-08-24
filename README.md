@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-24T11:41:21.961421559Z[Etc/UTC]
+- Build date: 2026-08-24T11:45:53.137862521Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1305,6 +1305,7 @@ Class | Method | HTTP request | Description
  - [AdTreeCampaign](docs/AdTreeCampaign.md)
  - [AdTreeCampaignBudget](docs/AdTreeCampaignBudget.md)
  - [AdTreeCampaignCampaignBudget](docs/AdTreeCampaignCampaignBudget.md)
+ - [AdTreeCampaignOptimizationGoal](docs/AdTreeCampaignOptimizationGoal.md)
  - [AdTreeCampaignPromotedObject](docs/AdTreeCampaignPromotedObject.md)
  - [AdTreeResponse](docs/AdTreeResponse.md)
  - [AddBroadcastRecipients200Response](docs/AddBroadcastRecipients200Response.md)
