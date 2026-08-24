@@ -35,65 +35,94 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CtwaAdRequestBodyCreativesInnerVideo.JSON_PROPERTY_URL,
+  CtwaAdRequestBodyCreativesInnerVideo.JSON_PROPERTY_ID,
   CtwaAdRequestBodyCreativesInnerVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:40:16.024462616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:43:22.175747796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyCreativesInnerVideo {
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI url;
 
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nullable
+  private String id;
+
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI thumbnailUrl;
 
   public CtwaAdRequestBodyCreativesInnerVideo() { 
   }
 
-  public CtwaAdRequestBodyCreativesInnerVideo url(@javax.annotation.Nonnull URI url) {
+  public CtwaAdRequestBodyCreativesInnerVideo url(@javax.annotation.Nullable URI url) {
     this.url = url;
     return this;
   }
 
   /**
-   * Get url
+   * Public URL of the video to upload. Provide either &#x60;url&#x60; or &#x60;id&#x60;.
    * @return url
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getUrl() {
     return url;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(@javax.annotation.Nonnull URI url) {
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUrl(@javax.annotation.Nullable URI url) {
     this.url = url;
   }
 
 
-  public CtwaAdRequestBodyCreativesInnerVideo thumbnailUrl(@javax.annotation.Nonnull URI thumbnailUrl) {
+  public CtwaAdRequestBodyCreativesInnerVideo id(@javax.annotation.Nullable String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Reuse a video already uploaded to this ad account (list them with GET /v1/ads/videos) instead of re-uploading. Wins over &#x60;url&#x60;. Provide either &#x60;url&#x60; or &#x60;id&#x60;.
+   * @return id
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = id;
+  }
+
+
+  public CtwaAdRequestBodyCreativesInnerVideo thumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
     return this;
   }
 
   /**
-   * Required by Meta for every video creative. Used as the ad thumbnail. 
+   * OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable). 
    * @return thumbnailUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getThumbnailUrl() {
     return thumbnailUrl;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setThumbnailUrl(@javax.annotation.Nonnull URI thumbnailUrl) {
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
   }
 
@@ -111,12 +140,13 @@ public class CtwaAdRequestBodyCreativesInnerVideo {
     }
     CtwaAdRequestBodyCreativesInnerVideo ctwaAdRequestBodyCreativesInnerVideo = (CtwaAdRequestBodyCreativesInnerVideo) o;
     return Objects.equals(this.url, ctwaAdRequestBodyCreativesInnerVideo.url) &&
+        Objects.equals(this.id, ctwaAdRequestBodyCreativesInnerVideo.id) &&
         Objects.equals(this.thumbnailUrl, ctwaAdRequestBodyCreativesInnerVideo.thumbnailUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, thumbnailUrl);
+    return Objects.hash(url, id, thumbnailUrl);
   }
 
   @Override
@@ -124,6 +154,7 @@ public class CtwaAdRequestBodyCreativesInnerVideo {
     StringBuilder sb = new StringBuilder();
     sb.append("class CtwaAdRequestBodyCreativesInnerVideo {\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -175,6 +206,11 @@ public class CtwaAdRequestBodyCreativesInnerVideo {
     // add `url` to the URL query string
     if (getUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+    }
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `thumbnailUrl` to the URL query string

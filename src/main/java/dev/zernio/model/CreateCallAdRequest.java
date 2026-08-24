@@ -72,6 +72,8 @@ import dev.zernio.ApiClient;
   CreateCallAdRequest.JSON_PROPERTY_PLACEMENTS,
   CreateCallAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
   CreateCallAdRequest.JSON_PROPERTY_OBJECTIVE,
+  CreateCallAdRequest.JSON_PROPERTY_STATUS,
+  CreateCallAdRequest.JSON_PROPERTY_CAMPAIGN_STATUS,
   CreateCallAdRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateCallAdRequest.JSON_PROPERTY_BID_AMOUNT,
   CreateCallAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
@@ -80,7 +82,7 @@ import dev.zernio.ApiClient;
   CreateCallAdRequest.JSON_PROPERTY_PHONE_NUMBER,
   CreateCallAdRequest.JSON_PROPERTY_LINK_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:40:16.024462616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:43:22.175747796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -292,6 +294,84 @@ public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_OBJECTIVE = "objective";
   @javax.annotation.Nullable
   private ObjectiveEnum objective;
+
+  /**
+   * Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. 
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PAUSED(String.valueOf("PAUSED"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nullable
+  private StatusEnum status;
+
+  /**
+   * Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). 
+   */
+  public enum CampaignStatusEnum {
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PAUSED(String.valueOf("PAUSED"));
+
+    private String value;
+
+    CampaignStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CampaignStatusEnum fromValue(String value) {
+      for (CampaignStatusEnum b : CampaignStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CAMPAIGN_STATUS = "campaignStatus";
+  @javax.annotation.Nullable
+  private CampaignStatusEnum campaignStatus;
 
   /**
    * Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. 
@@ -569,7 +649,7 @@ public class CreateCallAdRequest {
   }
 
   /**
-   * Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. 
+   * Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. 
    * @return adSetId
    */
   @javax.annotation.Nullable
@@ -1055,6 +1135,54 @@ public class CreateCallAdRequest {
   }
 
 
+  public CreateCallAdRequest status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. 
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public CreateCallAdRequest campaignStatus(@javax.annotation.Nullable CampaignStatusEnum campaignStatus) {
+    this.campaignStatus = campaignStatus;
+    return this;
+  }
+
+  /**
+   * Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). 
+   * @return campaignStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CampaignStatusEnum getCampaignStatus() {
+    return campaignStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignStatus(@javax.annotation.Nullable CampaignStatusEnum campaignStatus) {
+    this.campaignStatus = campaignStatus;
+  }
+
+
   public CreateCallAdRequest bidStrategy(@javax.annotation.Nullable BidStrategyEnum bidStrategy) {
     this.bidStrategy = bidStrategy;
     return this;
@@ -1261,6 +1389,8 @@ public class CreateCallAdRequest {
         Objects.equals(this.placements, createCallAdRequest.placements) &&
         Objects.equals(this.advantageAudience, createCallAdRequest.advantageAudience) &&
         Objects.equals(this.objective, createCallAdRequest.objective) &&
+        Objects.equals(this.status, createCallAdRequest.status) &&
+        Objects.equals(this.campaignStatus, createCallAdRequest.campaignStatus) &&
         Objects.equals(this.bidStrategy, createCallAdRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, createCallAdRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, createCallAdRequest.roasAverageFloor) &&
@@ -1272,7 +1402,7 @@ public class CreateCallAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, phoneNumber, linkUrl);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, phoneNumber, linkUrl);
   }
 
   @Override
@@ -1305,6 +1435,8 @@ public class CreateCallAdRequest {
     sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    objective: ").append(toIndentedString(objective)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    campaignStatus: ").append(toIndentedString(campaignStatus)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
@@ -1526,6 +1658,16 @@ public class CreateCallAdRequest {
     // add `objective` to the URL query string
     if (getObjective() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjective%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjective()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `campaignStatus` to the URL query string
+    if (getCampaignStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scampaignStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignStatus()))));
     }
 
     // add `bidStrategy` to the URL query string

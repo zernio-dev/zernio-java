@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetInboxHeatmap200ResponseBucketsInner.JSON_PROPERTY_SENT,
   GetInboxHeatmap200ResponseBucketsInner.JSON_PROPERTY_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:40:16.024462616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:43:22.175747796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxHeatmap200ResponseBucketsInner {
   public static final String JSON_PROPERTY_DOW = "dow";
   @javax.annotation.Nullable

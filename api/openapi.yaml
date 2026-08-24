@@ -36496,12 +36496,14 @@ components:
         creatives:
         - imageUrl: https://openapi-generator.tech
           video:
+            id: id
             url: https://openapi-generator.tech
             thumbnailUrl: https://openapi-generator.tech
           body: body
           headline: headline
         - imageUrl: https://openapi-generator.tech
           video:
+            id: id
             url: https://openapi-generator.tech
             thumbnailUrl: https://openapi-generator.tech
           body: body
@@ -36533,6 +36535,7 @@ components:
           - feed
         advantageAudience: 9
         video:
+          id: id
           url: https://openapi-generator.tech
           thumbnailUrl: https://openapi-generator.tech
         zips:
@@ -36544,6 +36547,7 @@ components:
         objective: OUTCOME_ENGAGEMENT
         imageUrl: https://openapi-generator.tech
         adSetId: adSetId
+        campaignStatus: ACTIVE
         currency: currency
         dsaBeneficiary: dsaBeneficiary
         headline: headline
@@ -36588,6 +36592,7 @@ components:
           key: key
         - name: name
           key: key
+        status: ACTIVE
       properties:
         accountId:
           description: Facebook or Instagram SocialAccount ID.
@@ -36644,9 +36649,9 @@ components:
             Attach the creatives to this EXISTING messaging ad set instead of
             building a campaign, so the ad set keeps its learning phase. It then
             owns budget, targeting and schedule, so `budgetAmount`, `budgetType`,
-            `endDate`, `objective`, `countries`, `interests` and `audienceId` are
-            rejected with a 400 alongside it. Its `destination_type` must match
-            the ad's destination.
+            `endDate`, `objective`, `countries`, `interests`, `audienceId` and
+            `campaignStatus` are rejected with a 400 alongside it. Its
+            `destination_type` must match the ad's destination.
           type: string
         budgetAmount:
           description: |
@@ -36763,6 +36768,26 @@ components:
           - OUTCOME_ENGAGEMENT
           - OUTCOME_SALES
           - OUTCOME_LEADS
+          type: string
+        status:
+          description: |
+            Ad-level status. Defaults to `ACTIVE`. `PAUSED` skips activating the
+            newly created ad(s) after Meta accepts them.
+          enum:
+          - ACTIVE
+          - PAUSED
+          type: string
+        campaignStatus:
+          description: |
+            Campaign-level status, same semantics as `POST /v1/ads/create`. Defaults
+            to `ACTIVE`. `PAUSED` holds activation at the campaign so it never
+            spends before the advertiser reviews it, while the ad set and ad still
+            switch on (one resume call brings the whole hierarchy live). Only
+            meaningful when a new campaign is being created; rejected with a 400
+            alongside `adSetId` (the attach shape reuses an existing campaign).
+          enum:
+          - ACTIVE
+          - PAUSED
           type: string
         bidStrategy:
           description: |
@@ -92635,41 +92660,56 @@ components:
         exclusive with `imageUrl` and with `creatives[]`. Required
         on the single-creative shape if `imageUrl` is not supplied.
       example:
+        id: id
         url: https://openapi-generator.tech
         thumbnailUrl: https://openapi-generator.tech
       properties:
         url:
+          description: Public URL of the video to upload. Provide either `url` or
+            `id`.
           format: uri
+          type: string
+        id:
+          description: Reuse a video already uploaded to this ad account (list them
+            with GET /v1/ads/videos) instead of re-uploading. Wins over `url`. Provide
+            either `url` or `id`.
           type: string
         thumbnailUrl:
           description: |
-            Required by Meta for every video creative. Used as the
-            ad thumbnail.
+            OPTIONAL: when omitted, the poster is auto-generated from
+            Meta's own preferred video thumbnail. When Meta produces no
+            candidate the request fails with a 502 platform_error
+            (reason: video_thumbnail_unavailable) — retry, or supply
+            this field to control the poster frame exactly.
           format: uri
           type: string
-      required:
-      - thumbnailUrl
-      - url
     CtwaAdRequestBody_creatives_inner_video:
       description: |
         Video creative. Mutually exclusive with this entry's
         `imageUrl`. Required if `imageUrl` is not supplied.
       example:
+        id: id
         url: https://openapi-generator.tech
         thumbnailUrl: https://openapi-generator.tech
       properties:
         url:
+          description: Public URL of the video to upload. Provide either `url` or
+            `id`.
           format: uri
+          type: string
+        id:
+          description: Reuse a video already uploaded to this ad account (list them
+            with GET /v1/ads/videos) instead of re-uploading. Wins over `url`. Provide
+            either `url` or `id`.
           type: string
         thumbnailUrl:
           description: |
-            Required by Meta for every video creative. Used
-            as the ad thumbnail.
+            OPTIONAL: when omitted, the poster is auto-generated
+            from Meta's own preferred video thumbnail. When Meta
+            produces no candidate the request fails with a 502
+            platform_error (reason: video_thumbnail_unavailable).
           format: uri
           type: string
-      required:
-      - thumbnailUrl
-      - url
     CtwaAdRequestBody_creatives_inner:
       description: |
         Each entry must also include exactly one of `imageUrl`
@@ -92677,6 +92717,7 @@ components:
       example:
         imageUrl: https://openapi-generator.tech
         video:
+          id: id
           url: https://openapi-generator.tech
           thumbnailUrl: https://openapi-generator.tech
         body: body
