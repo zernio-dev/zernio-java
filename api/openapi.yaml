@@ -48442,6 +48442,7 @@ components:
           type: string
         completedAt:
           format: date-time
+          nullable: true
           type: string
     QueueSlotsResponse:
       description: Single queue response (default behavior)

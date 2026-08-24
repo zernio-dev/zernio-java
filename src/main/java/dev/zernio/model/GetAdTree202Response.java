@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetAdTree202Response.JSON_PROPERTY_PAGINATION,
   GetAdTree202Response.JSON_PROPERTY_BACKFILL_PENDING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:35:23.767108419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:50:09.234577509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdTree202Response {
   public static final String JSON_PROPERTY_CAMPAIGNS = "campaigns";
   @javax.annotation.Nullable

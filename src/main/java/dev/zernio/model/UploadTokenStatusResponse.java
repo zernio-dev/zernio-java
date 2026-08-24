@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,7 +48,7 @@ import dev.zernio.ApiClient;
   UploadTokenStatusResponse.JSON_PROPERTY_EXPIRES_AT,
   UploadTokenStatusResponse.JSON_PROPERTY_COMPLETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:35:23.767108419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:50:09.234577509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadTokenStatusResponse {
   public static final String JSON_PROPERTY_TOKEN = "token";
   @javax.annotation.Nullable
@@ -104,8 +108,7 @@ public class UploadTokenStatusResponse {
   private OffsetDateTime expiresAt;
 
   public static final String JSON_PROPERTY_COMPLETED_AT = "completedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime completedAt;
+  private JsonNullable<OffsetDateTime> completedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public UploadTokenStatusResponse() { 
   }
@@ -239,7 +242,7 @@ public class UploadTokenStatusResponse {
 
 
   public UploadTokenStatusResponse completedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
-    this.completedAt = completedAt;
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
     return this;
   }
 
@@ -248,17 +251,25 @@ public class UploadTokenStatusResponse {
    * @return completedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCompletedAt() {
-    return completedAt;
+        return completedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+
+  public JsonNullable<OffsetDateTime> getCompletedAt_JsonNullable() {
+    return completedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COMPLETED_AT)
+  public void setCompletedAt_JsonNullable(JsonNullable<OffsetDateTime> completedAt) {
     this.completedAt = completedAt;
+  }
+
+  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
   }
 
 
@@ -279,12 +290,23 @@ public class UploadTokenStatusResponse {
         Objects.equals(this.files, uploadTokenStatusResponse.files) &&
         Objects.equals(this.createdAt, uploadTokenStatusResponse.createdAt) &&
         Objects.equals(this.expiresAt, uploadTokenStatusResponse.expiresAt) &&
-        Objects.equals(this.completedAt, uploadTokenStatusResponse.completedAt);
+        equalsNullable(this.completedAt, uploadTokenStatusResponse.completedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(token, status, files, createdAt, expiresAt, completedAt);
+    return Objects.hash(token, status, files, createdAt, expiresAt, hashCodeNullable(completedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
