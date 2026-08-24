@@ -10,6 +10,7 @@
 |**success** | **Boolean** |  |  [optional] |
 |**recipients** | [**List&lt;ListBroadcastRecipients200ResponseRecipientsInner&gt;**](ListBroadcastRecipients200ResponseRecipientsInner.md) |  |  [optional] |
 |**pagination** | [**ListContacts200ResponsePagination**](ListContacts200ResponsePagination.md) |  |  [optional] |
+|**summary** | [**ListBroadcastRecipients200ResponseSummary**](ListBroadcastRecipients200ResponseSummary.md) |  |  [optional] |
 
 
 

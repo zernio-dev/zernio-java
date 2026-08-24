@@ -78137,8 +78137,38 @@ components:
         readAt:
           format: date-time
           type: string
+    listBroadcastRecipients_200_response_summary:
+      description: "Delivery totals across all recipients in the broadcast, independent\
+        \ of pagination and status filtering."
+      example:
+        total: 6
+        read: 2
+        pending: 1
+        delivered: 5
+        failed: 7
+        sent: 5
+      properties:
+        total:
+          type: integer
+        pending:
+          type: integer
+        sent:
+          type: integer
+        delivered:
+          type: integer
+        read:
+          type: integer
+        failed:
+          type: integer
     listBroadcastRecipients_200_response:
       example:
+        summary:
+          total: 6
+          read: 2
+          pending: 1
+          delivered: 5
+          failed: 7
+          sent: 5
         pagination:
           total: 1
           limit: 5
@@ -78183,6 +78213,8 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/listContacts_200_response_pagination"
+        summary:
+          $ref: "#/components/schemas/listBroadcastRecipients_200_response_summary"
     addBroadcastRecipients_request:
       properties:
         contactIds:

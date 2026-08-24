@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.ListBroadcastRecipients200ResponseRecipientsInner;
+import dev.zernio.model.ListBroadcastRecipients200ResponseSummary;
 import dev.zernio.model.ListContacts200ResponsePagination;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,9 +40,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListBroadcastRecipients200Response.JSON_PROPERTY_SUCCESS,
   ListBroadcastRecipients200Response.JSON_PROPERTY_RECIPIENTS,
-  ListBroadcastRecipients200Response.JSON_PROPERTY_PAGINATION
+  ListBroadcastRecipients200Response.JSON_PROPERTY_PAGINATION,
+  ListBroadcastRecipients200Response.JSON_PROPERTY_SUMMARY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:43:22.175747796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T15:36:11.314058467Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -54,6 +56,10 @@ public class ListBroadcastRecipients200Response {
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
   private ListContacts200ResponsePagination pagination;
+
+  public static final String JSON_PROPERTY_SUMMARY = "summary";
+  @javax.annotation.Nullable
+  private ListBroadcastRecipients200ResponseSummary summary;
 
   public ListBroadcastRecipients200Response() { 
   }
@@ -138,6 +144,30 @@ public class ListBroadcastRecipients200Response {
   }
 
 
+  public ListBroadcastRecipients200Response summary(@javax.annotation.Nullable ListBroadcastRecipients200ResponseSummary summary) {
+    this.summary = summary;
+    return this;
+  }
+
+  /**
+   * Get summary
+   * @return summary
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUMMARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ListBroadcastRecipients200ResponseSummary getSummary() {
+    return summary;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUMMARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSummary(@javax.annotation.Nullable ListBroadcastRecipients200ResponseSummary summary) {
+    this.summary = summary;
+  }
+
+
   /**
    * Return true if this listBroadcastRecipients_200_response object is equal to o.
    */
@@ -152,12 +182,13 @@ public class ListBroadcastRecipients200Response {
     ListBroadcastRecipients200Response listBroadcastRecipients200Response = (ListBroadcastRecipients200Response) o;
     return Objects.equals(this.success, listBroadcastRecipients200Response.success) &&
         Objects.equals(this.recipients, listBroadcastRecipients200Response.recipients) &&
-        Objects.equals(this.pagination, listBroadcastRecipients200Response.pagination);
+        Objects.equals(this.pagination, listBroadcastRecipients200Response.pagination) &&
+        Objects.equals(this.summary, listBroadcastRecipients200Response.summary);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, recipients, pagination);
+    return Objects.hash(success, recipients, pagination, summary);
   }
 
   @Override
@@ -167,6 +198,7 @@ public class ListBroadcastRecipients200Response {
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    recipients: ").append(toIndentedString(recipients)).append("\n");
     sb.append("    pagination: ").append(toIndentedString(pagination)).append("\n");
+    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -232,6 +264,11 @@ public class ListBroadcastRecipients200Response {
     // add `pagination` to the URL query string
     if (getPagination() != null) {
       joiner.add(getPagination().toUrlQueryString(prefix + "pagination" + suffix));
+    }
+
+    // add `summary` to the URL query string
+    if (getSummary() != null) {
+      joiner.add(getSummary().toUrlQueryString(prefix + "summary" + suffix));
     }
 
     return joiner.toString();

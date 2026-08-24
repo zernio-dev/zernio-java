@@ -918,6 +918,7 @@ docs/ListBlogArticles200Response.md
 docs/ListBlogs200Response.md
 docs/ListBroadcastRecipients200Response.md
 docs/ListBroadcastRecipients200ResponseRecipientsInner.md
+docs/ListBroadcastRecipients200ResponseSummary.md
 docs/ListBroadcasts200Response.md
 docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCalls200Response.md
@@ -2744,6 +2745,7 @@ src/main/java/dev/zernio/model/ListBlogArticles200Response.java
 src/main/java/dev/zernio/model/ListBlogs200Response.java
 src/main/java/dev/zernio/model/ListBroadcastRecipients200Response.java
 src/main/java/dev/zernio/model/ListBroadcastRecipients200ResponseRecipientsInner.java
+src/main/java/dev/zernio/model/ListBroadcastRecipients200ResponseSummary.java
 src/main/java/dev/zernio/model/ListBroadcasts200Response.java
 src/main/java/dev/zernio/model/ListBroadcasts200ResponseBroadcastsInner.java
 src/main/java/dev/zernio/model/ListCalls200Response.java
@@ -3575,3 +3577,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListBroadcastRecipients200ResponseSummaryTest.java
