@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,9 +38,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateWhatsAppFlowRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateWhatsAppFlowRequest.JSON_PROPERTY_NAME,
-  UpdateWhatsAppFlowRequest.JSON_PROPERTY_CATEGORIES
+  UpdateWhatsAppFlowRequest.JSON_PROPERTY_CATEGORIES,
+  UpdateWhatsAppFlowRequest.JSON_PROPERTY_ENDPOINT_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:23:18.738972911Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:35:23.767108419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppFlowRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -99,6 +101,10 @@ public class UpdateWhatsAppFlowRequest {
   public static final String JSON_PROPERTY_CATEGORIES = "categories";
   @javax.annotation.Nullable
   private List<CategoriesEnum> categories = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ENDPOINT_URI = "endpointUri";
+  @javax.annotation.Nullable
+  private URI endpointUri;
 
   public UpdateWhatsAppFlowRequest() { 
   }
@@ -183,6 +189,30 @@ public class UpdateWhatsAppFlowRequest {
   }
 
 
+  public UpdateWhatsAppFlowRequest endpointUri(@javax.annotation.Nullable URI endpointUri) {
+    this.endpointUri = endpointUri;
+    return this;
+  }
+
+  /**
+   * HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used.
+   * @return endpointUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ENDPOINT_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getEndpointUri() {
+    return endpointUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ENDPOINT_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEndpointUri(@javax.annotation.Nullable URI endpointUri) {
+    this.endpointUri = endpointUri;
+  }
+
+
   /**
    * Return true if this updateWhatsAppFlow_request object is equal to o.
    */
@@ -197,12 +227,13 @@ public class UpdateWhatsAppFlowRequest {
     UpdateWhatsAppFlowRequest updateWhatsAppFlowRequest = (UpdateWhatsAppFlowRequest) o;
     return Objects.equals(this.accountId, updateWhatsAppFlowRequest.accountId) &&
         Objects.equals(this.name, updateWhatsAppFlowRequest.name) &&
-        Objects.equals(this.categories, updateWhatsAppFlowRequest.categories);
+        Objects.equals(this.categories, updateWhatsAppFlowRequest.categories) &&
+        Objects.equals(this.endpointUri, updateWhatsAppFlowRequest.endpointUri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, name, categories);
+    return Objects.hash(accountId, name, categories, endpointUri);
   }
 
   @Override
@@ -212,6 +243,7 @@ public class UpdateWhatsAppFlowRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+    sb.append("    endpointUri: ").append(toIndentedString(endpointUri)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -276,6 +308,11 @@ public class UpdateWhatsAppFlowRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCategories().get(i)))));
       }
+    }
+
+    // add `endpointUri` to the URL query string
+    if (getEndpointUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sendpointUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndpointUri()))));
     }
 
     return joiner.toString();

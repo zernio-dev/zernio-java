@@ -1723,7 +1723,7 @@ ApiResponse<[**SendWhatsAppFlowMessage200Response**](SendWhatsAppFlowMessage200R
 
 Update flow
 
-Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
 
 ### Example
 
@@ -1788,7 +1788,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow updated |  -  |
-| **400** | At least one of name or categories is required, or flow is not in DRAFT status |  -  |
+| **400** | At least one of name, categories or endpointUri is required, or flow is not in DRAFT status |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account or flow not found |  -  |
 
@@ -1798,7 +1798,7 @@ public class Example {
 
 Update flow
 
-Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
 
 ### Example
 
@@ -1866,7 +1866,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow updated |  -  |
-| **400** | At least one of name or categories is required, or flow is not in DRAFT status |  -  |
+| **400** | At least one of name, categories or endpointUri is required, or flow is not in DRAFT status |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account or flow not found |  -  |
 

@@ -25051,7 +25051,7 @@ paths:
       - application/json
     patch:
       description: |
-        Update metadata (name, categories) of a DRAFT flow. Published flows are immutable.
+        Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable.
       operationId: updateWhatsAppFlow
       parameters:
       - description: Flow ID
@@ -25076,8 +25076,8 @@ paths:
                 $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Flow updated
         "400":
-          description: "At least one of name or categories is required, or flow is\
-            \ not in DRAFT status"
+          description: "At least one of name, categories or endpointUri is required,\
+            \ or flow is not in DRAFT status"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -76266,6 +76266,12 @@ components:
             \ lineage (auto-numbered next version); false/absent creates an independent\
             \ flow. Ignored without cloneFlowId."
           type: boolean
+        endpointUri:
+          description: "HTTPS-only data exchange endpoint for the flow. Settable only\
+            \ while the flow is in DRAFT, and the flow's uploaded Flow JSON must declare\
+            \ data_api_version \"3.0\" for the endpoint to be used."
+          format: uri
+          type: string
       required:
       - accountId
       - categories
@@ -76403,6 +76409,12 @@ components:
             type: string
           minItems: 1
           type: array
+        endpointUri:
+          description: "HTTPS-only data exchange endpoint for the flow. Settable only\
+            \ while the flow is in DRAFT, and the flow's uploaded Flow JSON must declare\
+            \ data_api_version \"3.0\" for the endpoint to be used."
+          format: uri
+          type: string
       required:
       - accountId
     getWhatsAppFlowJson_200_response_assets_inner:
