@@ -4,12 +4,21 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-24T11:45:53.137862521Z[Etc/UTC]
+- Build date: 2026-08-24T12:23:18.738972911Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
 API reference for Zernio. Authenticate with a Bearer API key.
 Base URL: https://zernio.com/api
+
+Versioning and deprecation: all endpoints are versioned in the URL path
+(current version: /v1). Breaking changes only ship in a new path version;
+existing versions keep working. Deprecated operations are marked
+'deprecated: true' in this spec and announced in the changelog
+(https://zernio.com/changelog) before removal.
+
+Errors: every 4xx/5xx response is application/json with a machine-readable
+'code' and a human-readable 'error' message (see the ErrorResponse schema).
 
 
   For more information, please visit [https://zernio.com](https://zernio.com)
