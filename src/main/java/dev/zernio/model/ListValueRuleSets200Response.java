@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListValueRuleSets200Response.JSON_PROPERTY_DATA,
   ListValueRuleSets200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:50:09.234577509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:28:55.545647961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListValueRuleSets200Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

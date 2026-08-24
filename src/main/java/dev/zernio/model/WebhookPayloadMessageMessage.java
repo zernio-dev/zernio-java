@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessage.JSON_PROPERTY_SENT_AT,
   WebhookPayloadMessageMessage.JSON_PROPERTY_IS_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T12:50:09.234577509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T14:28:55.545647961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -376,7 +376,7 @@ public class WebhookPayloadMessageMessage {
   }
 
   /**
-   * Get sentAt
+   * When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order.
    * @return sentAt
    */
   @javax.annotation.Nonnull
