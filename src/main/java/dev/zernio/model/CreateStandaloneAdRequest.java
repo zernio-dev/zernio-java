@@ -40,6 +40,7 @@ import dev.zernio.model.CreateStandaloneAdRequestPlacements;
 import dev.zernio.model.CreateStandaloneAdRequestPlatformSpecificData;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
+import dev.zernio.model.CreateStandaloneAdRequestSitelinksInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
@@ -131,6 +132,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_NEGATIVE_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_SITELINKS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
   CreateStandaloneAdRequest.JSON_PROPERTY_ATTRIBUTION_SPEC,
   CreateStandaloneAdRequest.JSON_PROPERTY_GENDER,
@@ -147,7 +149,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:34:27.291673942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:45:47.644403912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -942,6 +944,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS = "additionalDescriptions";
   @javax.annotation.Nullable
   private List<String> additionalDescriptions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SITELINKS = "sitelinks";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestSitelinksInner> sitelinks = new ArrayList<>();
 
   /**
    * Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests.
@@ -2957,6 +2963,38 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest sitelinks(@javax.annotation.Nullable List<CreateStandaloneAdRequestSitelinksInner> sitelinks) {
+    this.sitelinks = sitelinks;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addSitelinksItem(CreateStandaloneAdRequestSitelinksInner sitelinksItem) {
+    if (this.sitelinks == null) {
+      this.sitelinks = new ArrayList<>();
+    }
+    this.sitelinks.add(sitelinksItem);
+    return this;
+  }
+
+  /**
+   * Google Search only. Sitelink assets to create and attach at the campaign level. Each entry becomes an Asset (with sitelink_asset + Asset.final_urls) plus a CampaignAsset link (field_type SITELINK). Approval is async — Google reviews assets after creation; poll asset.policy_summary later to read the verdict. Google requires at least two sitelinks to surface them on an ad; four or more is Google&#39;s own recommendation for maximum visibility. The response&#39;s creative.sitelinks[] echoes each input plus its Google resourceName. 
+   * @return sitelinks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SITELINKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestSitelinksInner> getSitelinks() {
+    return sitelinks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SITELINKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSitelinks(@javax.annotation.Nullable List<CreateStandaloneAdRequestSitelinksInner> sitelinks) {
+    this.sitelinks = sitelinks;
+  }
+
+
   public CreateStandaloneAdRequest advantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
     this.advantageAudience = advantageAudience;
     return this;
@@ -3413,6 +3451,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.negativeKeywords, createStandaloneAdRequest.negativeKeywords) &&
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
         Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
+        Objects.equals(this.sitelinks, createStandaloneAdRequest.sitelinks) &&
         Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience) &&
         Objects.equals(this.attributionSpec, createStandaloneAdRequest.attributionSpec) &&
         Objects.equals(this.gender, createStandaloneAdRequest.gender) &&
@@ -3432,7 +3471,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3509,6 +3548,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    negativeKeywords: ").append(toIndentedString(negativeKeywords)).append("\n");
     sb.append("    additionalHeadlines: ").append(toIndentedString(additionalHeadlines)).append("\n");
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
+    sb.append("    sitelinks: ").append(toIndentedString(sitelinks)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    attributionSpec: ").append(toIndentedString(attributionSpec)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
@@ -4008,6 +4048,16 @@ public class CreateStandaloneAdRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sadditionalDescriptions%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAdditionalDescriptions().get(i)))));
+      }
+    }
+
+    // add `sitelinks` to the URL query string
+    if (getSitelinks() != null) {
+      for (int i = 0; i < getSitelinks().size(); i++) {
+        if (getSitelinks().get(i) != null) {
+          joiner.add(getSitelinks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%ssitelinks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

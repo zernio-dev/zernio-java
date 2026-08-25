@@ -330,6 +330,7 @@ docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
+docs/CreateStandaloneAdRequestSitelinksInner.md
 docs/CreateStandaloneAdRequestTracking.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
@@ -2187,6 +2188,7 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestSitelinksInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTracking.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTranslationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
@@ -3607,6 +3609,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectDiscordChannelRequestTest.java
-src/test/java/dev/zernio/model/ConnectSlackChannelRequestTest.java
-src/test/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignupRequestTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestSitelinksInnerTest.java
