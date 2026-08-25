@@ -53,6 +53,7 @@ import dev.zernio.model.WebhookPayloadReferral;
 import dev.zernio.model.WebhookPayloadReviewNew;
 import dev.zernio.model.WebhookPayloadReviewUpdated;
 import dev.zernio.model.WebhookPayloadTest;
+import dev.zernio.model.WebhookPayloadWhatsAppAccountNameStatusUpdated;
 import dev.zernio.model.WebhookPayloadWhatsAppTemplateCategoryUpdated;
 import dev.zernio.model.WebhookPayloadWhatsAppTemplateStatusUpdated;
 
@@ -87,7 +88,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:10:41.268400874Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:30:25.485309413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4331,6 +4332,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadTest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp display-name review outcome event
+   * Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account. Fires only on a review outcome (&#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW); a name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead and produces no event here. &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;. Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+   * @param webhookPayloadWhatsAppAccountNameStatusUpdated  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppAccountNameStatusUpdated(@javax.annotation.Nonnull WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated) throws ApiException {
+    onWhatsAppAccountNameStatusUpdated(webhookPayloadWhatsAppAccountNameStatusUpdated, null);
+  }
+
+  /**
+   * WhatsApp display-name review outcome event
+   * Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account. Fires only on a review outcome (&#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW); a name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead and produces no event here. &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;. Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+   * @param webhookPayloadWhatsAppAccountNameStatusUpdated  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppAccountNameStatusUpdated(@javax.annotation.Nonnull WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated, Map<String, String> headers) throws ApiException {
+    onWhatsAppAccountNameStatusUpdatedWithHttpInfo(webhookPayloadWhatsAppAccountNameStatusUpdated, headers);
+  }
+
+  /**
+   * WhatsApp display-name review outcome event
+   * Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account. Fires only on a review outcome (&#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW); a name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead and produces no event here. &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;. Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+   * @param webhookPayloadWhatsAppAccountNameStatusUpdated  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppAccountNameStatusUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated) throws ApiException {
+    return onWhatsAppAccountNameStatusUpdatedWithHttpInfo(webhookPayloadWhatsAppAccountNameStatusUpdated, null);
+  }
+
+  /**
+   * WhatsApp display-name review outcome event
+   * Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account. Fires only on a review outcome (&#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW); a name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead and produces no event here. &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;. Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+   * @param webhookPayloadWhatsAppAccountNameStatusUpdated  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppAccountNameStatusUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppAccountNameStatusUpdatedRequestBuilder(webhookPayloadWhatsAppAccountNameStatusUpdated, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppAccountNameStatusUpdated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppAccountNameStatusUpdatedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadWhatsAppAccountNameStatusUpdated' is set
+    if (webhookPayloadWhatsAppAccountNameStatusUpdated == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadWhatsAppAccountNameStatusUpdated' when calling onWhatsAppAccountNameStatusUpdated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.account.name_status_updated";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadWhatsAppAccountNameStatusUpdated);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

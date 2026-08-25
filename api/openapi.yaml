@@ -283,10 +283,10 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
 
-    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.* and whatsapp.template.* to accounts, whatsapp.number.* and verification.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
+    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, whatsapp.number.* and verification.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
   name: Webhooks
 - description: |
     Incoming webhook deliveries sent by Zernio to your configured endpoint URL.
@@ -39191,6 +39191,7 @@ components:
             - ad.status_changed
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
+            - whatsapp.account.name_status_updated
             - whatsapp.automatic_event
             - whatsapp.number.activated
             - whatsapp.number.declined
@@ -41533,6 +41534,55 @@ components:
       - event
       - id
       - template
+      - timestamp
+    WebhookPayloadWhatsAppAccountNameStatusUpdated:
+      description: |
+        Webhook payload for the `whatsapp.account.name_status_updated` event.
+        Fired when Meta finishes reviewing a WhatsApp display-name change on a
+        connected number. Maps Meta's `phone_number_name_update` WABA webhook
+        field onto our event envelope. Fires only for a review outcome
+        (APPROVED, DECLINED, PENDING_REVIEW); a name applied without review
+        reports `name_status: AVAILABLE_WITHOUT_REVIEW` on the phone node
+        instead, and Meta never sends this webhook field for that case.
+      example:
+        name:
+          requestedName: requestedName
+          rejectionReason: rejectionReason
+          displayPhoneNumber: displayPhoneNumber
+          status: APPROVED
+        id: id
+        event: whatsapp.account.name_status_updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: whatsapp
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - whatsapp.account.name_status_updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppTemplateStatusUpdated_account"
+        name:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountNameStatusUpdated_name"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - name
       - timestamp
     WebhookPayloadTest:
       description: Webhook payload for test deliveries
@@ -65271,6 +65321,7 @@ components:
             - ad.status_changed
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
+            - whatsapp.account.name_status_updated
             - whatsapp.automatic_event
             - whatsapp.number.activated
             - whatsapp.number.declined
@@ -65396,6 +65447,7 @@ components:
             - ad.status_changed
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
+            - whatsapp.account.name_status_updated
             - whatsapp.automatic_event
             - whatsapp.number.activated
             - whatsapp.number.declined
@@ -96310,6 +96362,39 @@ components:
       - language
       - name
       - templateId
+    WebhookPayloadWhatsAppAccountNameStatusUpdated_name:
+      example:
+        requestedName: requestedName
+        rejectionReason: rejectionReason
+        displayPhoneNumber: displayPhoneNumber
+        status: APPROVED
+      properties:
+        status:
+          description: "Normalized from Meta's `decision` (REJECTED -> DECLINED, DEFERRED\
+            \ -> PENDING_REVIEW; the review is still open on DEFERRED, not a rejection)."
+          enum:
+          - APPROVED
+          - DECLINED
+          - PENDING_REVIEW
+          type: string
+        requestedName:
+          description: The display name Meta reviewed. Null if Meta did not send one.
+          nullable: true
+          type: string
+        rejectionReason:
+          description: "Meta's free-form decline reason. Null on approval, or when\
+            \ Meta sends the literal string \"NONE\"."
+          nullable: true
+          type: string
+        displayPhoneNumber:
+          description: "The phone number this review is for, as Meta reported it."
+          nullable: true
+          type: string
+      required:
+      - displayPhoneNumber
+      - rejectionReason
+      - requestedName
+      - status
     DiscordGuildMember_user:
       example:
         global_name: global_name
@@ -99306,6 +99391,7 @@ x-documentation:
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.
+    - `whatsapp.account.name_status_updated` - Meta finished reviewing a WhatsApp display-name change. `name.status` carries the outcome (APPROVED, DECLINED, PENDING_REVIEW). Fires only on a review outcome; a name applied without review (`name_status: AVAILABLE_WITHOUT_REVIEW`) produces no event.
     - `call.received` - An inbound call (phone/PSTN or WhatsApp) reached one of your numbers and was routed to its destination
     - `call.ended` - A call ended; carries duration, end reason, cost breakdown, and the recording when enabled
     - `call.failed` - A call failed with a hard error before or during bridging

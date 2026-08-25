@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_VIDEO,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_WELCOME_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:10:41.268400874Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:30:25.485309413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyCreativesInner {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nonnull

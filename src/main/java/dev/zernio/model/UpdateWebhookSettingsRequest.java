@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:10:41.268400874Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:30:25.485309413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -142,6 +142,8 @@ public class UpdateWebhookSettingsRequest {
     WHATSAPP_TEMPLATE_STATUS_UPDATED(String.valueOf("whatsapp.template.status_updated")),
     
     WHATSAPP_TEMPLATE_CATEGORY_UPDATED(String.valueOf("whatsapp.template.category_updated")),
+    
+    WHATSAPP_ACCOUNT_NAME_STATUS_UPDATED(String.valueOf("whatsapp.account.name_status_updated")),
     
     WHATSAPP_AUTOMATIC_EVENT(String.valueOf("whatsapp.automatic_event")),
     

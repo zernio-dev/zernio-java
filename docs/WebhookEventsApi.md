@@ -80,6 +80,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onVerificationFailedWithHttpInfo**](WebhookEventsApi.md#onVerificationFailedWithHttpInfo) | **POST** /verification.failed | Verification failed event |
 | [**onWebhookTest**](WebhookEventsApi.md#onWebhookTest) | **POST** /webhook.test | Webhook test event |
 | [**onWebhookTestWithHttpInfo**](WebhookEventsApi.md#onWebhookTestWithHttpInfo) | **POST** /webhook.test | Webhook test event |
+| [**onWhatsAppAccountNameStatusUpdated**](WebhookEventsApi.md#onWhatsAppAccountNameStatusUpdated) | **POST** /whatsapp.account.name_status_updated | WhatsApp display-name review outcome event |
+| [**onWhatsAppAccountNameStatusUpdatedWithHttpInfo**](WebhookEventsApi.md#onWhatsAppAccountNameStatusUpdatedWithHttpInfo) | **POST** /whatsapp.account.name_status_updated | WhatsApp display-name review outcome event |
 | [**onWhatsAppAutomaticEvent**](WebhookEventsApi.md#onWhatsAppAutomaticEvent) | **POST** /whatsapp.automatic_event | WhatsApp automatic event detected |
 | [**onWhatsAppAutomaticEventWithHttpInfo**](WebhookEventsApi.md#onWhatsAppAutomaticEventWithHttpInfo) | **POST** /whatsapp.automatic_event | WhatsApp automatic event detected |
 | [**onWhatsAppNumberActionRequired**](WebhookEventsApi.md#onWhatsAppNumberActionRequired) | **POST** /whatsapp.number.action_required | WhatsApp number action required event |
@@ -5480,6 +5482,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadTest** | [**WebhookPayloadTest**](WebhookPayloadTest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onWhatsAppAccountNameStatusUpdated
+
+> void onWhatsAppAccountNameStatusUpdated(webhookPayloadWhatsAppAccountNameStatusUpdated)
+
+WhatsApp display-name review outcome event
+
+Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account. Fires only on a review outcome (&#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW); a name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead and produces no event here. &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;. Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated = new WebhookPayloadWhatsAppAccountNameStatusUpdated(); // WebhookPayloadWhatsAppAccountNameStatusUpdated | 
+        try {
+            apiInstance.onWhatsAppAccountNameStatusUpdated(webhookPayloadWhatsAppAccountNameStatusUpdated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onWhatsAppAccountNameStatusUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadWhatsAppAccountNameStatusUpdated** | [**WebhookPayloadWhatsAppAccountNameStatusUpdated**](WebhookPayloadWhatsAppAccountNameStatusUpdated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onWhatsAppAccountNameStatusUpdatedWithHttpInfo
+
+> ApiResponse<Void> onWhatsAppAccountNameStatusUpdated onWhatsAppAccountNameStatusUpdatedWithHttpInfo(webhookPayloadWhatsAppAccountNameStatusUpdated)
+
+WhatsApp display-name review outcome event
+
+Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account. Fires only on a review outcome (&#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW); a name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead and produces no event here. &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;. Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated = new WebhookPayloadWhatsAppAccountNameStatusUpdated(); // WebhookPayloadWhatsAppAccountNameStatusUpdated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onWhatsAppAccountNameStatusUpdatedWithHttpInfo(webhookPayloadWhatsAppAccountNameStatusUpdated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onWhatsAppAccountNameStatusUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadWhatsAppAccountNameStatusUpdated** | [**WebhookPayloadWhatsAppAccountNameStatusUpdated**](WebhookPayloadWhatsAppAccountNameStatusUpdated.md)|  | |
 
 ### Return type
 
