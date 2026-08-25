@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-25T15:02:41.730570438Z[Etc/UTC]
+- Build date: 2026-08-25T15:34:27.291673942Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -485,12 +485,18 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectBlueskyCredentials**](docs/ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
+*ConnectApi* | [**connectDiscordChannel**](docs/ConnectApi.md#connectDiscordChannel) | **POST** /v1/connect/discord | Connect a Discord channel
+*ConnectApi* | [**connectDiscordChannelWithHttpInfo**](docs/ConnectApi.md#connectDiscordChannelWithHttpInfo) | **POST** /v1/connect/discord | Connect a Discord channel
 *ConnectApi* | [**connectOpenAIAdsCredentials**](docs/ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectOpenAIAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectShopifyWithToken**](docs/ConnectApi.md#connectShopifyWithToken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
 *ConnectApi* | [**connectShopifyWithTokenWithHttpInfo**](docs/ConnectApi.md#connectShopifyWithTokenWithHttpInfo) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
+*ConnectApi* | [**connectSlackChannel**](docs/ConnectApi.md#connectSlackChannel) | **POST** /v1/connect/slack | Connect a Slack channel
+*ConnectApi* | [**connectSlackChannelWithHttpInfo**](docs/ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
+*ConnectApi* | [**connectWhatsAppEmbeddedSignup**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
+*ConnectApi* | [**connectWhatsAppEmbeddedSignupWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignupWithHttpInfo) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
@@ -1441,14 +1447,17 @@ Class | Method | HTTP request | Description
  - [ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
+ - [ConnectDiscordChannelRequest](docs/ConnectDiscordChannelRequest.md)
  - [ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
  - [ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
  - [ConnectShopifyWithToken200Response](docs/ConnectShopifyWithToken200Response.md)
  - [ConnectShopifyWithToken200ResponseAccount](docs/ConnectShopifyWithToken200ResponseAccount.md)
  - [ConnectShopifyWithTokenRequest](docs/ConnectShopifyWithTokenRequest.md)
+ - [ConnectSlackChannelRequest](docs/ConnectSlackChannelRequest.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)
  - [ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)
+ - [ConnectWhatsAppEmbeddedSignupRequest](docs/ConnectWhatsAppEmbeddedSignupRequest.md)
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)

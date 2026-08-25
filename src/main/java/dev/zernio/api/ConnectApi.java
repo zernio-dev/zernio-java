@@ -28,12 +28,15 @@ import dev.zernio.model.ConfigureTikTokAdsBrandIdentityRequest;
 import dev.zernio.model.ConnectAds200Response;
 import dev.zernio.model.ConnectBlueskyCredentials200Response;
 import dev.zernio.model.ConnectBlueskyCredentialsRequest;
+import dev.zernio.model.ConnectDiscordChannelRequest;
 import dev.zernio.model.ConnectOpenAIAdsCredentials200Response;
 import dev.zernio.model.ConnectOpenAIAdsCredentialsRequest;
 import dev.zernio.model.ConnectShopifyWithToken200Response;
 import dev.zernio.model.ConnectShopifyWithTokenRequest;
+import dev.zernio.model.ConnectSlackChannelRequest;
 import dev.zernio.model.ConnectWhatsAppCredentials200Response;
 import dev.zernio.model.ConnectWhatsAppCredentialsRequest;
+import dev.zernio.model.ConnectWhatsAppEmbeddedSignupRequest;
 import dev.zernio.model.CreatePinterestBoard201Response;
 import dev.zernio.model.CreatePinterestBoardRequest;
 import dev.zernio.model.ErrorResponse;
@@ -113,7 +116,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:02:41.730570438Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:34:27.291673942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1048,6 +1051,115 @@ public class ConnectApi {
   }
 
   /**
+   * Connect a Discord channel
+   * Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+   * @param connectDiscordChannelRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void connectDiscordChannel(@javax.annotation.Nonnull ConnectDiscordChannelRequest connectDiscordChannelRequest) throws ApiException {
+    connectDiscordChannel(connectDiscordChannelRequest, null);
+  }
+
+  /**
+   * Connect a Discord channel
+   * Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+   * @param connectDiscordChannelRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void connectDiscordChannel(@javax.annotation.Nonnull ConnectDiscordChannelRequest connectDiscordChannelRequest, Map<String, String> headers) throws ApiException {
+    connectDiscordChannelWithHttpInfo(connectDiscordChannelRequest, headers);
+  }
+
+  /**
+   * Connect a Discord channel
+   * Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+   * @param connectDiscordChannelRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> connectDiscordChannelWithHttpInfo(@javax.annotation.Nonnull ConnectDiscordChannelRequest connectDiscordChannelRequest) throws ApiException {
+    return connectDiscordChannelWithHttpInfo(connectDiscordChannelRequest, null);
+  }
+
+  /**
+   * Connect a Discord channel
+   * Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+   * @param connectDiscordChannelRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> connectDiscordChannelWithHttpInfo(@javax.annotation.Nonnull ConnectDiscordChannelRequest connectDiscordChannelRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectDiscordChannelRequestBuilder(connectDiscordChannelRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("connectDiscordChannel", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder connectDiscordChannelRequestBuilder(@javax.annotation.Nonnull ConnectDiscordChannelRequest connectDiscordChannelRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'connectDiscordChannelRequest' is set
+    if (connectDiscordChannelRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectDiscordChannelRequest' when calling connectDiscordChannel");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/discord";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectDiscordChannelRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Connect an OpenAI Ads account
    * Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
    * @param connectOpenAIAdsCredentialsRequest  (required)
@@ -1294,6 +1406,115 @@ public class ConnectApi {
   }
 
   /**
+   * Connect a Slack channel
+   * Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+   * @param connectSlackChannelRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void connectSlackChannel(@javax.annotation.Nonnull ConnectSlackChannelRequest connectSlackChannelRequest) throws ApiException {
+    connectSlackChannel(connectSlackChannelRequest, null);
+  }
+
+  /**
+   * Connect a Slack channel
+   * Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+   * @param connectSlackChannelRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void connectSlackChannel(@javax.annotation.Nonnull ConnectSlackChannelRequest connectSlackChannelRequest, Map<String, String> headers) throws ApiException {
+    connectSlackChannelWithHttpInfo(connectSlackChannelRequest, headers);
+  }
+
+  /**
+   * Connect a Slack channel
+   * Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+   * @param connectSlackChannelRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> connectSlackChannelWithHttpInfo(@javax.annotation.Nonnull ConnectSlackChannelRequest connectSlackChannelRequest) throws ApiException {
+    return connectSlackChannelWithHttpInfo(connectSlackChannelRequest, null);
+  }
+
+  /**
+   * Connect a Slack channel
+   * Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+   * @param connectSlackChannelRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> connectSlackChannelWithHttpInfo(@javax.annotation.Nonnull ConnectSlackChannelRequest connectSlackChannelRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectSlackChannelRequestBuilder(connectSlackChannelRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("connectSlackChannel", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder connectSlackChannelRequestBuilder(@javax.annotation.Nonnull ConnectSlackChannelRequest connectSlackChannelRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'connectSlackChannelRequest' is set
+    if (connectSlackChannelRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectSlackChannelRequest' when calling connectSlackChannel");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/slack";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectSlackChannelRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Connect WhatsApp via credentials
    * Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the whatsapp_business_management and whatsapp_business_messaging permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number)  Warning: connecting subscribes your own Meta app to this WABA with an override callback that redirects its webhook delivery to Zernio. This WABA&#39;s events stop reaching any callback URL you had configured before, immediately and with no overlap window. Do not unsubscribe your app from the WABA afterward: that also cuts off Zernio&#39;s delivery, and recovery requires calling this endpoint again. 
    * @param connectWhatsAppCredentialsRequest  (required)
@@ -1401,6 +1622,115 @@ public class ConnectApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectWhatsAppCredentialsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Connect WhatsApp from Embedded Signup
+   * Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+   * @param connectWhatsAppEmbeddedSignupRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void connectWhatsAppEmbeddedSignup(@javax.annotation.Nonnull ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest) throws ApiException {
+    connectWhatsAppEmbeddedSignup(connectWhatsAppEmbeddedSignupRequest, null);
+  }
+
+  /**
+   * Connect WhatsApp from Embedded Signup
+   * Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+   * @param connectWhatsAppEmbeddedSignupRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void connectWhatsAppEmbeddedSignup(@javax.annotation.Nonnull ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, Map<String, String> headers) throws ApiException {
+    connectWhatsAppEmbeddedSignupWithHttpInfo(connectWhatsAppEmbeddedSignupRequest, headers);
+  }
+
+  /**
+   * Connect WhatsApp from Embedded Signup
+   * Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+   * @param connectWhatsAppEmbeddedSignupRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> connectWhatsAppEmbeddedSignupWithHttpInfo(@javax.annotation.Nonnull ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest) throws ApiException {
+    return connectWhatsAppEmbeddedSignupWithHttpInfo(connectWhatsAppEmbeddedSignupRequest, null);
+  }
+
+  /**
+   * Connect WhatsApp from Embedded Signup
+   * Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+   * @param connectWhatsAppEmbeddedSignupRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> connectWhatsAppEmbeddedSignupWithHttpInfo(@javax.annotation.Nonnull ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectWhatsAppEmbeddedSignupRequestBuilder(connectWhatsAppEmbeddedSignupRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("connectWhatsAppEmbeddedSignup", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder connectWhatsAppEmbeddedSignupRequestBuilder(@javax.annotation.Nonnull ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'connectWhatsAppEmbeddedSignupRequest' is set
+    if (connectWhatsAppEmbeddedSignupRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectWhatsAppEmbeddedSignupRequest' when calling connectWhatsAppEmbeddedSignup");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/whatsapp/embedded-signup";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectWhatsAppEmbeddedSignupRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3153,8 +3483,8 @@ public class ConnectApi {
 
   /**
    * Complete OAuth callback
-   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
-   * @param platform  (required)
+   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+   * @param platform Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately.  (required)
    * @param handleOAuthCallbackRequest  (required)
    * @throws ApiException if fails to make API call
    */
@@ -3164,8 +3494,8 @@ public class ConnectApi {
 
   /**
    * Complete OAuth callback
-   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
-   * @param platform  (required)
+   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+   * @param platform Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately.  (required)
    * @param handleOAuthCallbackRequest  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -3176,8 +3506,8 @@ public class ConnectApi {
 
   /**
    * Complete OAuth callback
-   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
-   * @param platform  (required)
+   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+   * @param platform Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately.  (required)
    * @param handleOAuthCallbackRequest  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -3188,8 +3518,8 @@ public class ConnectApi {
 
   /**
    * Complete OAuth callback
-   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
-   * @param platform  (required)
+   * Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+   * @param platform Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately.  (required)
    * @param handleOAuthCallbackRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestQuickRepliesInner.JSON_PROPERTY_PAYLOAD,
   SendInboxMessageRequestQuickRepliesInner.JSON_PROPERTY_IMAGE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:02:41.730570438Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:34:27.291673942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestQuickRepliesInner {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

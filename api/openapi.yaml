@@ -7601,15 +7601,29 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: Exchange the OAuth authorization code for tokens and connect the
-        account to the specified profile.
+      description: |
+        Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+
+        Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from `GET /v1/connect/{platform}`, or, for WhatsApp Embedded Signup, through `POST /v1/connect/whatsapp/embedded-signup`.
       operationId: handleOAuthCallback
       parameters:
-      - explode: false
+      - description: |
+          Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are
+          served by their own dedicated routes, documented separately.
+        explode: false
         in: path
         name: platform
         required: true
         schema:
+          enum:
+          - instagram
+          - twitter
+          - threads
+          - linkedin
+          - youtube
+          - tiktok
+          - reddit
+          - pinterest
           type: string
         style: simple
       requestBody:
@@ -7622,16 +7636,24 @@ paths:
         "200":
           description: Account connected
         "400":
-          description: Invalid params
+          description: "Invalid params, or the platform requires choosing a destination\
+            \ (code: platform_requires_destination)"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
         "403":
-          description: BYOK required for AppSumo Twitter
+          description: "No access to the profile, or BYOK required for AppSumo Twitter"
+        "404":
+          description: Profile not found
         "500":
           description: Internal error while connecting the account
         "502":
           description: "The platform rejected the token exchange (type: platform_error;\
             \ an upstream 4xx status is forwarded instead of 502)"
+        "503":
+          description: "Connections for this platform are temporarily disabled (code:\
+            \ platform_disabled)"
       summary: Complete OAuth callback
       tags:
       - Connect
@@ -11021,6 +11043,101 @@ paths:
       security:
       - bearerAuth: []
       summary: Complete number selection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/whatsapp/embedded-signup:
+    post:
+      description: "Exchange the authorization code Meta Embedded Signup returns to\
+        \ your browser SDK. This is the headless completion path for WhatsApp: the\
+        \ code never passes through a redirect_uri, so POST /v1/connect/{platform}\
+        \ cannot accept it."
+      operationId: connectWhatsAppEmbeddedSignup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/connectWhatsAppEmbeddedSignup_request"
+        required: true
+      responses:
+        "200":
+          description: Number connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "409":
+          description: The number is already connected on another profile or workspace
+      summary: Connect WhatsApp from Embedded Signup
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/discord:
+    post:
+      description: "Finalize a Discord connect by binding one channel to a profile.\
+        \ Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}.\
+        \ One connected account per channel: repeat the call with a different channelId\
+        \ to add another."
+      operationId: connectDiscordChannel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/connectDiscordChannel_request"
+        required: true
+      responses:
+        "200":
+          description: Channel connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "404":
+          description: Profile not found
+      summary: Connect a Discord channel
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/slack:
+    post:
+      description: "Finalize a Slack connect by creating the per-channel account.\
+        \ Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}.\
+        \ Send pendingDataToken for a first connect (the nonce from the OAuth redirect)\
+        \ or accountId to add another channel to a workspace already connected."
+      operationId: connectSlackChannel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/connectSlackChannel_request"
+        required: true
+      responses:
+        "200":
+          description: Channel connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Slack connections are temporarily unavailable
+        "404":
+          description: Profile not found
+      summary: Connect a Slack channel
       tags:
       - Connect
       x-resource-group: accounts
@@ -62775,6 +62892,60 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/completeWhatsAppPhoneSelection_200_response_account"
+    connectWhatsAppEmbeddedSignup_request:
+      properties:
+        code:
+          description: Authorization code from the WA_EMBEDDED_SIGNUP postMessage
+          type: string
+        profileId:
+          type: string
+        wabaId:
+          description: "WhatsApp Business Account id, when the SDK reported one"
+          type: string
+        phoneNumberId:
+          type: string
+        isCoexistence:
+          description: Number is also live in the WhatsApp Business app
+          type: boolean
+        expectedPhoneNumber:
+          description: Rejects the connect when Meta returns a different number
+          type: string
+      required:
+      - code
+      - profileId
+    connectDiscordChannel_request:
+      properties:
+        guildId:
+          description: Discord server (guild) the channel belongs to
+          type: string
+        channelId:
+          description: "Text, announcement or forum channel to publish to"
+          type: string
+        profileId:
+          description: Profile to connect the channel to
+          type: string
+      required:
+      - channelId
+      - guildId
+      - profileId
+    connectSlackChannel_request:
+      properties:
+        profileId:
+          type: string
+        channelId:
+          description: "Slack channel id, C... or G..."
+          type: string
+        pendingDataToken:
+          description: Nonce from the OAuth redirect. Required unless accountId is
+            sent.
+          type: string
+        accountId:
+          description: Existing Slack account whose workspace token is reused. Required
+            unless pendingDataToken is sent.
+          type: string
+      required:
+      - channelId
+      - profileId
     getTelegramConnectStatus_200_response:
       example:
         expiresIn: 900
