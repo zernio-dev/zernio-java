@@ -26,6 +26,7 @@ import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GenerateAdPreviews200Response;
 import dev.zernio.model.GenerateAdPreviewsRequest;
 import dev.zernio.model.GetAdCreative200Response;
+import dev.zernio.model.GetAdMedia200Response;
 import dev.zernio.model.GetAdPreviews200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListAdCatalogProductSets200Response;
@@ -65,7 +66,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:35:25.824049277Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:48:49.213688987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreativesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -852,6 +853,124 @@ public class AdCreativesApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Direct video and image URLs for an ad
+   * Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+   * @param adId Zernio ad id (24-char hex) or platform ad id. (required)
+   * @return GetAdMedia200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdMedia200Response getAdMedia(@javax.annotation.Nonnull String adId) throws ApiException {
+    return getAdMedia(adId, null);
+  }
+
+  /**
+   * Direct video and image URLs for an ad
+   * Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+   * @param adId Zernio ad id (24-char hex) or platform ad id. (required)
+   * @param headers Optional headers to include in the request
+   * @return GetAdMedia200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdMedia200Response getAdMedia(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdMedia200Response> localVarResponse = getAdMediaWithHttpInfo(adId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Direct video and image URLs for an ad
+   * Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+   * @param adId Zernio ad id (24-char hex) or platform ad id. (required)
+   * @return ApiResponse&lt;GetAdMedia200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdMedia200Response> getAdMediaWithHttpInfo(@javax.annotation.Nonnull String adId) throws ApiException {
+    return getAdMediaWithHttpInfo(adId, null);
+  }
+
+  /**
+   * Direct video and image URLs for an ad
+   * Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+   * @param adId Zernio ad id (24-char hex) or platform ad id. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdMedia200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdMedia200Response> getAdMediaWithHttpInfo(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdMediaRequestBuilder(adId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdMedia", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdMedia200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdMedia200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdMedia200Response>() {});
+        
+
+        return new ApiResponse<GetAdMedia200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdMediaRequestBuilder(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling getAdMedia");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/media"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 

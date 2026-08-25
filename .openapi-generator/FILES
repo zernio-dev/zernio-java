@@ -501,6 +501,8 @@ docs/GetAdComments200ResponsePagination.md
 docs/GetAdCreative200Response.md
 docs/GetAdInsightsReport200Response.md
 docs/GetAdInsightsReport200ResponsePaging.md
+docs/GetAdMedia200Response.md
+docs/GetAdMedia200ResponseMediaInner.md
 docs/GetAdPreviews200Response.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
@@ -2347,6 +2349,8 @@ src/main/java/dev/zernio/model/GetAdComments200ResponsePagination.java
 src/main/java/dev/zernio/model/GetAdCreative200Response.java
 src/main/java/dev/zernio/model/GetAdInsightsReport200Response.java
 src/main/java/dev/zernio/model/GetAdInsightsReport200ResponsePaging.java
+src/main/java/dev/zernio/model/GetAdMedia200Response.java
+src/main/java/dev/zernio/model/GetAdMedia200ResponseMediaInner.java
 src/main/java/dev/zernio/model/GetAdPreviews200Response.java
 src/main/java/dev/zernio/model/GetAdSetDetails200Response.java
 src/main/java/dev/zernio/model/GetAdTrackingTags200Response.java
@@ -3589,5 +3593,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CtwaAdRequestBodyCreativesInnerWelcomeMessageTest.java
-src/test/java/dev/zernio/model/CtwaAdRequestBodyWelcomeMessageTest.java
+src/test/java/dev/zernio/model/GetAdMedia200ResponseMediaInnerTest.java
+src/test/java/dev/zernio/model/GetAdMedia200ResponseTest.java

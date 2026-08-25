@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-25T08:35:25.824049277Z[Etc/UTC]
+- Build date: 2026-08-25T08:48:49.213688987Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -281,6 +281,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**generateAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews
 *AdCreativesApi* | [**getAdCreative**](docs/AdCreativesApi.md#getAdCreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details
 *AdCreativesApi* | [**getAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#getAdCreativeWithHttpInfo) | **GET** /v1/ads/creatives/{creativeId} | Creative details
+*AdCreativesApi* | [**getAdMedia**](docs/AdCreativesApi.md#getAdMedia) | **GET** /v1/ads/{adId}/media | Direct video and image URLs for an ad
+*AdCreativesApi* | [**getAdMediaWithHttpInfo**](docs/AdCreativesApi.md#getAdMediaWithHttpInfo) | **GET** /v1/ads/{adId}/media | Direct video and image URLs for an ad
 *AdCreativesApi* | [**getAdPreviews**](docs/AdCreativesApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
 *AdCreativesApi* | [**getAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
 *AdCreativesApi* | [**listAdCatalogProductSets**](docs/AdCreativesApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
@@ -1763,6 +1765,8 @@ Class | Method | HTTP request | Description
  - [GetAdCreative200Response](docs/GetAdCreative200Response.md)
  - [GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
  - [GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
+ - [GetAdMedia200Response](docs/GetAdMedia200Response.md)
+ - [GetAdMedia200ResponseMediaInner](docs/GetAdMedia200ResponseMediaInner.md)
  - [GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
  - [GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)
  - [GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)

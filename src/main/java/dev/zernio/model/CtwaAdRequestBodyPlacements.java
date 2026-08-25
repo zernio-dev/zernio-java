@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBodyPlacements.JSON_PROPERTY_WHATSAPP_POSITIONS,
   CtwaAdRequestBodyPlacements.JSON_PROPERTY_DEVICE_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:35:25.824049277Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:48:49.213688987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyPlacements {
   /**
    * Gets or Sets publisherPlatforms
