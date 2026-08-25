@@ -97,7 +97,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:48:49.213688987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T09:37:46.343593296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4833,7 +4833,7 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated. 
+   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
    * @param templateName Template name (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @return UpdateWhatsAppTemplate200Response
@@ -4845,7 +4845,7 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated. 
+   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
    * @param templateName Template name (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4859,7 +4859,7 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated. 
+   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
    * @param templateName Template name (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @return ApiResponse&lt;UpdateWhatsAppTemplate200Response&gt;
@@ -4871,7 +4871,7 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated. 
+   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
    * @param templateName Template name (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @param headers Optional headers to include in the request

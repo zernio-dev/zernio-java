@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_NAME,
   UpdateWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:48:49.213688987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T09:37:46.343593296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -108,7 +108,7 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
   }
 
   /**
-   * Get status
+   * Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.
    * @return status
    */
   @javax.annotation.Nullable

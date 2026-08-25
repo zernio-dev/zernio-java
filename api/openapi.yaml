@@ -18829,6 +18829,11 @@ paths:
       description: |
         Update a message template's components. Only certain fields can be updated depending on
         the template's current approval state. Approved templates can only have components updated.
+
+        A successful update sends the template back to Meta for review, so the `status` returned
+        here is normally `PENDING`. The final outcome arrives later on the
+        `whatsapp.template.status_updated` webhook. A template already in `PENDING` cannot be
+        edited again until Meta finishes reviewing it.
       operationId: updateWhatsAppTemplate
       parameters:
       - description: Template name
@@ -70243,20 +70248,24 @@ components:
       example:
         name: name
         id: id
-        status: status
+        status: PENDING
       properties:
         id:
           type: string
         name:
           type: string
         status:
+          description: "Approval state read back from Meta after the update, normally\
+            \ PENDING. If the state cannot be read back, the last known status is\
+            \ returned instead."
+          example: PENDING
           type: string
     updateWhatsAppTemplate_200_response:
       example:
         template:
           name: name
           id: id
-          status: status
+          status: PENDING
         success: true
       properties:
         success:

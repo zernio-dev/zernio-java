@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetMessageAttachment200Response.JSON_PROPERTY_URL,
   GetMessageAttachment200Response.JSON_PROPERTY_REFRESHED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:48:49.213688987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T09:37:46.343593296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMessageAttachment200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
