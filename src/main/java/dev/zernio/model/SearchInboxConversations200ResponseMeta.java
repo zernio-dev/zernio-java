@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SearchInboxConversations200ResponseMetaAccountsSkippedInner;
+import dev.zernio.model.ListInboxConversations200ResponseMetaAccountsSkippedInner;
 import dev.zernio.model.SearchInboxConversations200ResponseMetaFailedAccountsInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   SearchInboxConversations200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
   SearchInboxConversations200ResponseMeta.JSON_PROPERTY_ACCOUNTS_SKIPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:26:30.204178811Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:29:31.029900882Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchInboxConversations200ResponseMeta {
   public static final String JSON_PROPERTY_ACCOUNTS_QUERIED = "accountsQueried";
   @javax.annotation.Nullable
@@ -64,7 +64,7 @@ public class SearchInboxConversations200ResponseMeta {
 
   public static final String JSON_PROPERTY_ACCOUNTS_SKIPPED = "accountsSkipped";
   @javax.annotation.Nullable
-  private List<SearchInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped = new ArrayList<>();
+  private List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped = new ArrayList<>();
 
   public SearchInboxConversations200ResponseMeta() { 
   }
@@ -173,12 +173,12 @@ public class SearchInboxConversations200ResponseMeta {
   }
 
 
-  public SearchInboxConversations200ResponseMeta accountsSkipped(@javax.annotation.Nullable List<SearchInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped) {
+  public SearchInboxConversations200ResponseMeta accountsSkipped(@javax.annotation.Nullable List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped) {
     this.accountsSkipped = accountsSkipped;
     return this;
   }
 
-  public SearchInboxConversations200ResponseMeta addAccountsSkippedItem(SearchInboxConversations200ResponseMetaAccountsSkippedInner accountsSkippedItem) {
+  public SearchInboxConversations200ResponseMeta addAccountsSkippedItem(ListInboxConversations200ResponseMetaAccountsSkippedInner accountsSkippedItem) {
     if (this.accountsSkipped == null) {
       this.accountsSkipped = new ArrayList<>();
     }
@@ -193,14 +193,14 @@ public class SearchInboxConversations200ResponseMeta {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ACCOUNTS_SKIPPED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<SearchInboxConversations200ResponseMetaAccountsSkippedInner> getAccountsSkipped() {
+  public List<ListInboxConversations200ResponseMetaAccountsSkippedInner> getAccountsSkipped() {
     return accountsSkipped;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ACCOUNTS_SKIPPED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountsSkipped(@javax.annotation.Nullable List<SearchInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped) {
+  public void setAccountsSkipped(@javax.annotation.Nullable List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped) {
     this.accountsSkipped = accountsSkipped;
   }
 

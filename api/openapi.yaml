@@ -66030,6 +66030,15 @@ components:
           description: Seconds to wait before retry (rate limits)
           nullable: true
           type: integer
+    listInboxConversations_200_response_meta_accountsSkipped_inner:
+      example:
+        accountId: accountId
+        platform: platform
+      properties:
+        accountId:
+          type: string
+        platform:
+          type: string
     listInboxConversations_200_response_meta:
       example:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -66047,6 +66056,11 @@ components:
           accountUsername: accountUsername
           error: error
           platform: platform
+        accountsSkipped:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
         accountsQueried: 1
       properties:
         accountsQueried:
@@ -66060,6 +66074,12 @@ components:
         lastUpdated:
           format: date-time
           type: string
+        accountsSkipped:
+          description: "Connected accounts that were not queried: their platform does\
+            \ not support this feature, or the account is not enabled for it"
+          items:
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
+          type: array
     listInboxConversations_200_response:
       example:
         pagination:
@@ -66155,6 +66175,11 @@ components:
             retryAfter: 5
             accountUsername: accountUsername
             error: error
+            platform: platform
+          accountsSkipped:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
             platform: platform
           accountsQueried: 1
       properties:
@@ -66498,15 +66523,6 @@ components:
           type: string
         error:
           type: string
-    searchInboxConversations_200_response_meta_accountsSkipped_inner:
-      example:
-        accountId: accountId
-        platform: platform
-      properties:
-        accountId:
-          type: string
-        platform:
-          type: string
     searchInboxConversations_200_response_meta:
       example:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -66542,7 +66558,7 @@ components:
           description: Connected messaging accounts that cannot be searched (live-fetched
             platforms)
           items:
-            $ref: "#/components/schemas/searchInboxConversations_200_response_meta_accountsSkipped_inner"
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
           type: array
     searchInboxConversations_200_response:
       example:
@@ -68612,6 +68628,11 @@ components:
             accountUsername: accountUsername
             error: error
             platform: platform
+          accountsSkipped:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
+            platform: platform
           accountsQueried: 1
       properties:
         data:
@@ -70075,6 +70096,11 @@ components:
             retryAfter: 5
             accountUsername: accountUsername
             error: error
+            platform: platform
+          accountsSkipped:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
             platform: platform
           accountsQueried: 1
         status: status

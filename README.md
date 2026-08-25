@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-25T12:26:30.204178811Z[Etc/UTC]
+- Build date: 2026-08-25T12:29:31.029900882Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2226,6 +2226,7 @@ Class | Method | HTTP request | Description
  - [ListInboxConversations200ResponseDataInnerInstagramProfile](docs/ListInboxConversations200ResponseDataInnerInstagramProfile.md)
  - [ListInboxConversations200ResponseDataInnerMetadata](docs/ListInboxConversations200ResponseDataInnerMetadata.md)
  - [ListInboxConversations200ResponseMeta](docs/ListInboxConversations200ResponseMeta.md)
+ - [ListInboxConversations200ResponseMetaAccountsSkippedInner](docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [ListInboxConversations200ResponsePagination](docs/ListInboxConversations200ResponsePagination.md)
  - [ListInboxMentions200Response](docs/ListInboxMentions200Response.md)
@@ -2485,7 +2486,6 @@ Class | Method | HTTP request | Description
  - [SearchInboxConversations200ResponseDataInnerConversation](docs/SearchInboxConversations200ResponseDataInnerConversation.md)
  - [SearchInboxConversations200ResponseDataInnerMatchesInner](docs/SearchInboxConversations200ResponseDataInnerMatchesInner.md)
  - [SearchInboxConversations200ResponseMeta](docs/SearchInboxConversations200ResponseMeta.md)
- - [SearchInboxConversations200ResponseMetaAccountsSkippedInner](docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [SearchInstagramAudio200Response](docs/SearchInstagramAudio200Response.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)

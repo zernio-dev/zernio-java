@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.ListInboxConversations200ResponseMetaAccountsSkippedInner;
 import dev.zernio.model.ListInboxConversations200ResponseMetaFailedAccountsInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -40,9 +41,10 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_ACCOUNTS_QUERIED,
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_ACCOUNTS_FAILED,
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_FAILED_ACCOUNTS,
-  ListInboxConversations200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
+  ListInboxConversations200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
+  ListInboxConversations200ResponseMeta.JSON_PROPERTY_ACCOUNTS_SKIPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:26:30.204178811Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:29:31.029900882Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseMeta {
   public static final String JSON_PROPERTY_ACCOUNTS_QUERIED = "accountsQueried";
   @javax.annotation.Nullable
@@ -59,6 +61,10 @@ public class ListInboxConversations200ResponseMeta {
   public static final String JSON_PROPERTY_LAST_UPDATED = "lastUpdated";
   @javax.annotation.Nullable
   private OffsetDateTime lastUpdated;
+
+  public static final String JSON_PROPERTY_ACCOUNTS_SKIPPED = "accountsSkipped";
+  @javax.annotation.Nullable
+  private List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped = new ArrayList<>();
 
   public ListInboxConversations200ResponseMeta() { 
   }
@@ -167,6 +173,38 @@ public class ListInboxConversations200ResponseMeta {
   }
 
 
+  public ListInboxConversations200ResponseMeta accountsSkipped(@javax.annotation.Nullable List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped) {
+    this.accountsSkipped = accountsSkipped;
+    return this;
+  }
+
+  public ListInboxConversations200ResponseMeta addAccountsSkippedItem(ListInboxConversations200ResponseMetaAccountsSkippedInner accountsSkippedItem) {
+    if (this.accountsSkipped == null) {
+      this.accountsSkipped = new ArrayList<>();
+    }
+    this.accountsSkipped.add(accountsSkippedItem);
+    return this;
+  }
+
+  /**
+   * Connected accounts that were not queried: their platform does not support this feature, or the account is not enabled for it
+   * @return accountsSkipped
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS_SKIPPED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<ListInboxConversations200ResponseMetaAccountsSkippedInner> getAccountsSkipped() {
+    return accountsSkipped;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS_SKIPPED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountsSkipped(@javax.annotation.Nullable List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped) {
+    this.accountsSkipped = accountsSkipped;
+  }
+
+
   /**
    * Return true if this listInboxConversations_200_response_meta object is equal to o.
    */
@@ -182,12 +220,13 @@ public class ListInboxConversations200ResponseMeta {
     return Objects.equals(this.accountsQueried, listInboxConversations200ResponseMeta.accountsQueried) &&
         Objects.equals(this.accountsFailed, listInboxConversations200ResponseMeta.accountsFailed) &&
         Objects.equals(this.failedAccounts, listInboxConversations200ResponseMeta.failedAccounts) &&
-        Objects.equals(this.lastUpdated, listInboxConversations200ResponseMeta.lastUpdated);
+        Objects.equals(this.lastUpdated, listInboxConversations200ResponseMeta.lastUpdated) &&
+        Objects.equals(this.accountsSkipped, listInboxConversations200ResponseMeta.accountsSkipped);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountsQueried, accountsFailed, failedAccounts, lastUpdated);
+    return Objects.hash(accountsQueried, accountsFailed, failedAccounts, lastUpdated, accountsSkipped);
   }
 
   @Override
@@ -198,6 +237,7 @@ public class ListInboxConversations200ResponseMeta {
     sb.append("    accountsFailed: ").append(toIndentedString(accountsFailed)).append("\n");
     sb.append("    failedAccounts: ").append(toIndentedString(failedAccounts)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
+    sb.append("    accountsSkipped: ").append(toIndentedString(accountsSkipped)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -268,6 +308,16 @@ public class ListInboxConversations200ResponseMeta {
     // add `lastUpdated` to the URL query string
     if (getLastUpdated() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slastUpdated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastUpdated()))));
+    }
+
+    // add `accountsSkipped` to the URL query string
+    if (getAccountsSkipped() != null) {
+      for (int i = 0; i < getAccountsSkipped().size(); i++) {
+        if (getAccountsSkipped().get(i) != null) {
+          joiner.add(getAccountsSkipped().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%saccountsSkipped%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

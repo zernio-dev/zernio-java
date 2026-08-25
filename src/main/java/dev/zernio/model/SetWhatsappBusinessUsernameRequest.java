@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SetWhatsappBusinessUsernameRequest.JSON_PROPERTY_USERNAME,
   SetWhatsappBusinessUsernameRequest.JSON_PROPERTY_TRANSFER_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:26:30.204178811Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:29:31.029900882Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetWhatsappBusinessUsernameRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

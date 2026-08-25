@@ -975,6 +975,7 @@ docs/ListInboxConversations200ResponseDataInner.md
 docs/ListInboxConversations200ResponseDataInnerInstagramProfile.md
 docs/ListInboxConversations200ResponseDataInnerMetadata.md
 docs/ListInboxConversations200ResponseMeta.md
+docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/ListInboxConversations200ResponsePagination.md
 docs/ListInboxMentions200Response.md
@@ -1246,7 +1247,6 @@ docs/SearchInboxConversations200ResponseDataInner.md
 docs/SearchInboxConversations200ResponseDataInnerConversation.md
 docs/SearchInboxConversations200ResponseDataInnerMatchesInner.md
 docs/SearchInboxConversations200ResponseMeta.md
-docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
@@ -2814,6 +2814,7 @@ src/main/java/dev/zernio/model/ListInboxConversations200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseDataInnerInstagramProfile.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseDataInnerMetadata.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseMeta.java
+src/main/java/dev/zernio/model/ListInboxConversations200ResponseMetaAccountsSkippedInner.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/ListInboxConversations200ResponsePagination.java
 src/main/java/dev/zernio/model/ListInboxMentions200Response.java
@@ -3073,7 +3074,6 @@ src/main/java/dev/zernio/model/SearchInboxConversations200ResponseDataInner.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerConversation.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerMatchesInner.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMeta.java
-src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaAccountsSkippedInner.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/SearchInstagramAudio200Response.java
 src/main/java/dev/zernio/model/SearchReddit200Response.java
@@ -3601,3 +3601,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListInboxConversations200ResponseMetaAccountsSkippedInnerTest.java
