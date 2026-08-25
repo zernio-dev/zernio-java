@@ -40335,6 +40335,7 @@ components:
           contactsOrigin: contact_request
           postbackPayload: postbackPayload
           interactiveId: interactiveId
+          nfmReplyName: nfmReplyName
           interactiveType: button_reply
           referral:
             referer_uri: referer_uri
@@ -67678,6 +67679,46 @@ components:
           type: array
       required:
       - cards
+    sendInboxMessage_request_interactive_action_oneOf_10_parameters:
+      properties:
+        country:
+          description: "ISO 3166-1 alpha-2 country code Meta should localize the address\
+            \ form for (e.g. IN). Required: Meta rejects the send without it."
+          type: string
+        values:
+          additionalProperties: {}
+          description: Optional pre-filled address field values.
+        saved_addresses:
+          description: Optional list of the recipient's previously saved addresses
+            to offer as quick picks.
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+        validation_errors:
+          additionalProperties:
+            type: string
+          description: Optional per-field error messages to show when re-prompting
+            after a failed validation.
+      required:
+      - country
+    sendInboxMessage_request_interactive_action_oneOf_10:
+      description: |
+        Address-request action. `type` on the parent must be
+        `address_message`. Renders Meta's native structured
+        address form in-chat (generally available in India as
+        of 2026-08; check Meta's documentation for current
+        country availability).
+      properties:
+        name:
+          enum:
+          - address_message
+          type: string
+        parameters:
+          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_10_parameters"
+      required:
+      - name
+      - parameters
     sendInboxMessage_request_interactive_action:
       oneOf:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf"
@@ -67690,6 +67731,7 @@ components:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_8"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_9"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_10"
     sendInboxMessage_request_interactive:
       description: |
         WhatsApp-only. Rich interactive payload for list messages, CTA URL
@@ -67697,8 +67739,7 @@ components:
         commerce messages (single product, product list, catalog, and
         carousel). When set, takes priority over `buttons` and
         `quickReplies`. The shape mirrors Meta's Cloud API `interactive`
-        object verbatim, so any payload that works against Meta directly
-        will also work here.
+        object for the types in the enum below.
 
         Use `buttons` / `quickReplies` for simple button replies
         (WhatsApp's `interactive.type: "button"`): the abstraction caps at
@@ -67744,6 +67785,18 @@ components:
         For `catalog_message`, `action` may also be omitted (we default it
         to `{ "name": "catalog_message" }`).
 
+        For `address_message`, `parameters.country` is required (Meta
+        rejects the whole send without it); everything else in
+        `parameters` (`values`, `saved_addresses`, `validation_errors`)
+        is forwarded to Meta as-is. This is Meta's native structured
+        shipping-address capture, generally available in India as of
+        2026-08; check Meta's documentation for current country
+        availability before relying on it elsewhere. The submitted
+        address arrives as an `nfm_reply` on the `message.received`
+        webhook, same as a Flow submission, but with
+        `metadata.nfmReplyName` set to `address_message` so you can
+        tell the two apart.
+
         Tap events come back via the `message.received` webhook with
         `metadata.interactiveType` set to `list_reply` or `nfm_reply`.
         Carts submitted from commerce messages arrive as `metadata.order`;
@@ -67762,6 +67815,7 @@ components:
           - product_list
           - catalog_message
           - carousel
+          - address_message
           type: string
         header:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_header"
@@ -95367,6 +95421,7 @@ components:
         contactsOrigin: contact_request
         postbackPayload: postbackPayload
         interactiveId: interactiveId
+        nfmReplyName: nfmReplyName
         interactiveType: button_reply
         referral:
           referer_uri: referer_uri
@@ -95443,7 +95498,8 @@ components:
           description: |
             WhatsApp only. Which kind of interactive reply the user sent:
             `button_reply` (tap on an interactive button), `list_reply` (tap on a
-            list row), or `nfm_reply` (a WhatsApp Flow submission).
+            list row), or `nfm_reply` (a WhatsApp Flow submission or an
+            `address_message` submission, see `nfmReplyName`).
           enum:
           - button_reply
           - list_reply
@@ -95471,8 +95527,18 @@ components:
           description: |
             WhatsApp only. Parsed Flow response JSON. Populated when
             `flowResponseJson` is valid JSON; otherwise omitted. Keys and
-            value types depend on the specific Flow that was submitted.
+            value types depend on the specific Flow that was submitted. An
+            `address_message` submission (`nfmReplyName: address_message`) carries
+            the address fields (`name`, `address`, `city`, `state`, `in_pin_code`,
+            ...), either at the top level or nested under `values`; read both.
           type: object
+        nfmReplyName:
+          description: |
+            WhatsApp only. `nfm_reply.name` as Meta sent it, e.g. `flow` or
+            `address_message`. Address submissions share the `nfm_reply`
+            envelope with Flow submissions and are otherwise indistinguishable
+            in `flowResponseData`; use this field to tell them apart.
+          type: string
         order:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_order"
         referredProduct:

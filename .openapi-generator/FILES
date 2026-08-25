@@ -1305,6 +1305,8 @@ docs/SendInboxMessageRequestInteractive.md
 docs/SendInboxMessageRequestInteractiveAction.md
 docs/SendInboxMessageRequestInteractiveActionOneOf.md
 docs/SendInboxMessageRequestInteractiveActionOneOf1.md
+docs/SendInboxMessageRequestInteractiveActionOneOf10.md
+docs/SendInboxMessageRequestInteractiveActionOneOf10Parameters.md
 docs/SendInboxMessageRequestInteractiveActionOneOf1Parameters.md
 docs/SendInboxMessageRequestInteractiveActionOneOf2.md
 docs/SendInboxMessageRequestInteractiveActionOneOf2Parameters.md
@@ -3128,6 +3130,8 @@ src/main/java/dev/zernio/model/SendInboxMessageRequestInteractive.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveAction.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf1.java
+src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf10.java
+src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf10Parameters.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf1Parameters.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf2.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf2Parameters.java
@@ -3593,3 +3597,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf10ParametersTest.java
+src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf10Test.java

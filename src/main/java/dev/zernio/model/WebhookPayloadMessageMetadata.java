@@ -52,6 +52,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_BUTTON_PAYLOAD,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_FLOW_RESPONSE_JSON,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_FLOW_RESPONSE_DATA,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_NFM_REPLY_NAME,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_ORDER,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRED_PRODUCT,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_CONTACTS,
@@ -62,7 +63,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T09:37:46.343593296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:10:41.268400874Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
@@ -85,7 +86,7 @@ public class WebhookPayloadMessageMetadata {
   private String callbackData;
 
   /**
-   * WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). 
+   * WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). 
    */
   public enum InteractiveTypeEnum {
     BUTTON_REPLY(String.valueOf("button_reply")),
@@ -140,6 +141,10 @@ public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_FLOW_RESPONSE_DATA = "flowResponseData";
   @javax.annotation.Nullable
   private Map<String, Object> flowResponseData = new HashMap<>();
+
+  public static final String JSON_PROPERTY_NFM_REPLY_NAME = "nfmReplyName";
+  @javax.annotation.Nullable
+  private String nfmReplyName;
 
   public static final String JSON_PROPERTY_ORDER = "order";
   @javax.annotation.Nullable
@@ -341,7 +346,7 @@ public class WebhookPayloadMessageMetadata {
   }
 
   /**
-   * WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). 
+   * WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). 
    * @return interactiveType
    */
   @javax.annotation.Nullable
@@ -445,7 +450,7 @@ public class WebhookPayloadMessageMetadata {
   }
 
   /**
-   * WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. 
+   * WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. An &#x60;address_message&#x60; submission (&#x60;nfmReplyName: address_message&#x60;) carries the address fields (&#x60;name&#x60;, &#x60;address&#x60;, &#x60;city&#x60;, &#x60;state&#x60;, &#x60;in_pin_code&#x60;, ...), either at the top level or nested under &#x60;values&#x60;; read both. 
    * @return flowResponseData
    */
   @javax.annotation.Nullable
@@ -460,6 +465,30 @@ public class WebhookPayloadMessageMetadata {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setFlowResponseData(@javax.annotation.Nullable Map<String, Object> flowResponseData) {
     this.flowResponseData = flowResponseData;
+  }
+
+
+  public WebhookPayloadMessageMetadata nfmReplyName(@javax.annotation.Nullable String nfmReplyName) {
+    this.nfmReplyName = nfmReplyName;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. &#x60;nfm_reply.name&#x60; as Meta sent it, e.g. &#x60;flow&#x60; or &#x60;address_message&#x60;. Address submissions share the &#x60;nfm_reply&#x60; envelope with Flow submissions and are otherwise indistinguishable in &#x60;flowResponseData&#x60;; use this field to tell them apart. 
+   * @return nfmReplyName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NFM_REPLY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getNfmReplyName() {
+    return nfmReplyName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NFM_REPLY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNfmReplyName(@javax.annotation.Nullable String nfmReplyName) {
+    this.nfmReplyName = nfmReplyName;
   }
 
 
@@ -709,6 +738,7 @@ public class WebhookPayloadMessageMetadata {
         Objects.equals(this.buttonPayload, webhookPayloadMessageMetadata.buttonPayload) &&
         Objects.equals(this.flowResponseJson, webhookPayloadMessageMetadata.flowResponseJson) &&
         Objects.equals(this.flowResponseData, webhookPayloadMessageMetadata.flowResponseData) &&
+        Objects.equals(this.nfmReplyName, webhookPayloadMessageMetadata.nfmReplyName) &&
         Objects.equals(this.order, webhookPayloadMessageMetadata.order) &&
         Objects.equals(this.referredProduct, webhookPayloadMessageMetadata.referredProduct) &&
         Objects.equals(this.contacts, webhookPayloadMessageMetadata.contacts) &&
@@ -722,7 +752,7 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
+    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
   }
 
   @Override
@@ -739,6 +769,7 @@ public class WebhookPayloadMessageMetadata {
     sb.append("    buttonPayload: ").append(toIndentedString(buttonPayload)).append("\n");
     sb.append("    flowResponseJson: ").append(toIndentedString(flowResponseJson)).append("\n");
     sb.append("    flowResponseData: ").append(toIndentedString(flowResponseData)).append("\n");
+    sb.append("    nfmReplyName: ").append(toIndentedString(nfmReplyName)).append("\n");
     sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    referredProduct: ").append(toIndentedString(referredProduct)).append("\n");
     sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
@@ -847,6 +878,11 @@ public class WebhookPayloadMessageMetadata {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getFlowResponseData().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getFlowResponseData().get(_key)))));
       }
+    }
+
+    // add `nfmReplyName` to the URL query string
+    if (getNfmReplyName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snfmReplyName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNfmReplyName()))));
     }
 
     // add `order` to the URL query string

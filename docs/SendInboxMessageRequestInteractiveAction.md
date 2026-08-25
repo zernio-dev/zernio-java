@@ -5,6 +5,7 @@
 ## oneOf schemas
 * [SendInboxMessageRequestInteractiveActionOneOf](SendInboxMessageRequestInteractiveActionOneOf.md)
 * [SendInboxMessageRequestInteractiveActionOneOf1](SendInboxMessageRequestInteractiveActionOneOf1.md)
+* [SendInboxMessageRequestInteractiveActionOneOf10](SendInboxMessageRequestInteractiveActionOneOf10.md)
 * [SendInboxMessageRequestInteractiveActionOneOf2](SendInboxMessageRequestInteractiveActionOneOf2.md)
 * [SendInboxMessageRequestInteractiveActionOneOf3](SendInboxMessageRequestInteractiveActionOneOf3.md)
 * [SendInboxMessageRequestInteractiveActionOneOf4](SendInboxMessageRequestInteractiveActionOneOf4.md)
@@ -20,6 +21,7 @@
 import dev.zernio.model.SendInboxMessageRequestInteractiveAction;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf1;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf10;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf2;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf3;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf4;
@@ -46,6 +48,13 @@ public class Example {
         exampleSendInboxMessageRequestInteractiveAction.setActualInstance(exampleSendInboxMessageRequestInteractiveActionOneOf1);
         // to get back the SendInboxMessageRequestInteractiveActionOneOf1 set earlier
         SendInboxMessageRequestInteractiveActionOneOf1 testSendInboxMessageRequestInteractiveActionOneOf1 = (SendInboxMessageRequestInteractiveActionOneOf1) exampleSendInboxMessageRequestInteractiveAction.getActualInstance();
+
+        // create a new SendInboxMessageRequestInteractiveActionOneOf10
+        SendInboxMessageRequestInteractiveActionOneOf10 exampleSendInboxMessageRequestInteractiveActionOneOf10 = new SendInboxMessageRequestInteractiveActionOneOf10();
+        // set SendInboxMessageRequestInteractiveAction to SendInboxMessageRequestInteractiveActionOneOf10
+        exampleSendInboxMessageRequestInteractiveAction.setActualInstance(exampleSendInboxMessageRequestInteractiveActionOneOf10);
+        // to get back the SendInboxMessageRequestInteractiveActionOneOf10 set earlier
+        SendInboxMessageRequestInteractiveActionOneOf10 testSendInboxMessageRequestInteractiveActionOneOf10 = (SendInboxMessageRequestInteractiveActionOneOf10) exampleSendInboxMessageRequestInteractiveAction.getActualInstance();
 
         // create a new SendInboxMessageRequestInteractiveActionOneOf2
         SendInboxMessageRequestInteractiveActionOneOf2 exampleSendInboxMessageRequestInteractiveActionOneOf2 = new SendInboxMessageRequestInteractiveActionOneOf2();
