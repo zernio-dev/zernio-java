@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadWhatsAppAccountNameStatusUpdatedName.JSON_PROPERTY_REJECTION_REASON,
   WebhookPayloadWhatsAppAccountNameStatusUpdatedName.JSON_PROPERTY_DISPLAY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T12:29:31.029900882Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T14:43:18.392290409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadWhatsAppAccountNameStatusUpdatedName {
   /**
    * Normalized from Meta&#39;s &#x60;decision&#x60; (REJECTED -&gt; DECLINED, DEFERRED -&gt; PENDING_REVIEW; the review is still open on DEFERRED, not a rejection).
