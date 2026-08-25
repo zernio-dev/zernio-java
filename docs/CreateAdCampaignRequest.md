@@ -35,6 +35,7 @@
 | CONVERSIONS | &quot;conversions&quot; |
 | APP_PROMOTION | &quot;app_promotion&quot; |
 | CATALOG_SALES | &quot;catalog_sales&quot; |
+| PAGE_LIKES | &quot;page_likes&quot; |
 
 
 

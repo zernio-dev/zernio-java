@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   BillingSnapshot.JSON_PROPERTY_STATUS,
   BillingSnapshot.JSON_PROPERTY_LEGACY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T14:43:18.392290409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:02:41.730570438Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshot {
   /**
    * Gets or Sets billingSystem

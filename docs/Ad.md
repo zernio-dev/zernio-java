@@ -15,7 +15,7 @@
 |**reviewStatus** | **AdReviewStatus** | Platform review state of this ad, independent of delivery &#x60;status&#x60; / &#x60;configuredStatus&#x60;. Absent when the platform reports no review signal. |  [optional] |
 |**adType** | [**AdTypeEnum**](#AdTypeEnum) |  |  [optional] |
 |**creativeType** | [**CreativeTypeEnum**](#CreativeTypeEnum) | Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;. |  [optional] |
-|**goal** | [**GoalEnum**](#GoalEnum) | Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. |  [optional] |
+|**goal** | [**GoalEnum**](#GoalEnum) | Available goals vary by platform. Meta (Facebook/Instagram) supports all 10 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization, &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads and &#x60;page_likes&#x60; &#x3D; Page Likes conversion location under Engagement). TikTok supports engagement, traffic, awareness, video_views, lead_generation, conversions, app_promotion. LinkedIn supports all Meta goals except app_promotion / lead_conversion / catalog_sales / page_likes. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. |  [optional] |
 |**isExternal** | **Boolean** | True for ads synced from platform ad managers |  [optional] |
 |**budget** | [**AdBudget**](AdBudget.md) |  |  [optional] |
 |**metrics** | [**AdMetrics**](AdMetrics.md) |  |  [optional] |
@@ -92,6 +92,7 @@
 | CONVERSIONS | &quot;conversions&quot; |
 | APP_PROMOTION | &quot;app_promotion&quot; |
 | CATALOG_SALES | &quot;catalog_sales&quot; |
+| PAGE_LIKES | &quot;page_likes&quot; |
 | JOB_APPLICANTS | &quot;job_applicants&quot; |
 
 

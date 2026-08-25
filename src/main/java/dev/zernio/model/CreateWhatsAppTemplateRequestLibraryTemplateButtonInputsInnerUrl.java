@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.JSON_PROPERTY_BASE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T14:43:18.392290409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:02:41.730570438Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl {
   public static final String JSON_PROPERTY_BASE_URL = "base_url";
   @javax.annotation.Nullable

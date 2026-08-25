@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetContentDecay200ResponseBucketsInner.JSON_PROPERTY_AVG_PCT_OF_FINAL,
   GetContentDecay200ResponseBucketsInner.JSON_PROPERTY_POST_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T14:43:18.392290409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T15:02:41.730570438Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetContentDecay200ResponseBucketsInner {
   public static final String JSON_PROPERTY_BUCKET_ORDER = "bucket_order";
   @javax.annotation.Nullable
