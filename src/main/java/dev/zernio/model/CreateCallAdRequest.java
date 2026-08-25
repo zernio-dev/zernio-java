@@ -31,6 +31,7 @@ import dev.zernio.model.CtwaAdRequestBodyCreativesInner;
 import dev.zernio.model.CtwaAdRequestBodyPlacements;
 import dev.zernio.model.CtwaAdRequestBodyRegionsInner;
 import dev.zernio.model.CtwaAdRequestBodyVideo;
+import dev.zernio.model.CtwaAdRequestBodyWelcomeMessage;
 import dev.zernio.model.CtwaAdRequestBodyZipsInner;
 import java.math.BigDecimal;
 import java.net.URI;
@@ -53,6 +54,7 @@ import dev.zernio.ApiClient;
   CreateCallAdRequest.JSON_PROPERTY_BODY,
   CreateCallAdRequest.JSON_PROPERTY_IMAGE_URL,
   CreateCallAdRequest.JSON_PROPERTY_VIDEO,
+  CreateCallAdRequest.JSON_PROPERTY_WELCOME_MESSAGE,
   CreateCallAdRequest.JSON_PROPERTY_CREATIVES,
   CreateCallAdRequest.JSON_PROPERTY_AD_SET_ID,
   CreateCallAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
@@ -82,7 +84,7 @@ import dev.zernio.ApiClient;
   CreateCallAdRequest.JSON_PROPERTY_PHONE_NUMBER,
   CreateCallAdRequest.JSON_PROPERTY_LINK_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T16:15:23.841756521Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:35:25.824049277Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -111,6 +113,10 @@ public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_VIDEO = "video";
   @javax.annotation.Nullable
   private CtwaAdRequestBodyVideo video;
+
+  public static final String JSON_PROPERTY_WELCOME_MESSAGE = "welcomeMessage";
+  @javax.annotation.Nullable
+  private CtwaAdRequestBodyWelcomeMessage welcomeMessage;
 
   public static final String JSON_PROPERTY_CREATIVES = "creatives";
   @javax.annotation.Nullable
@@ -608,6 +614,30 @@ public class CreateCallAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVideo(@javax.annotation.Nullable CtwaAdRequestBodyVideo video) {
     this.video = video;
+  }
+
+
+  public CreateCallAdRequest welcomeMessage(@javax.annotation.Nullable CtwaAdRequestBodyWelcomeMessage welcomeMessage) {
+    this.welcomeMessage = welcomeMessage;
+    return this;
+  }
+
+  /**
+   * Get welcomeMessage
+   * @return welcomeMessage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CtwaAdRequestBodyWelcomeMessage getWelcomeMessage() {
+    return welcomeMessage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWelcomeMessage(@javax.annotation.Nullable CtwaAdRequestBodyWelcomeMessage welcomeMessage) {
+    this.welcomeMessage = welcomeMessage;
   }
 
 
@@ -1370,6 +1400,7 @@ public class CreateCallAdRequest {
         Objects.equals(this.body, createCallAdRequest.body) &&
         Objects.equals(this.imageUrl, createCallAdRequest.imageUrl) &&
         Objects.equals(this.video, createCallAdRequest.video) &&
+        Objects.equals(this.welcomeMessage, createCallAdRequest.welcomeMessage) &&
         Objects.equals(this.creatives, createCallAdRequest.creatives) &&
         Objects.equals(this.adSetId, createCallAdRequest.adSetId) &&
         Objects.equals(this.budgetAmount, createCallAdRequest.budgetAmount) &&
@@ -1402,7 +1433,7 @@ public class CreateCallAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, phoneNumber, linkUrl);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, phoneNumber, linkUrl);
   }
 
   @Override
@@ -1416,6 +1447,7 @@ public class CreateCallAdRequest {
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    welcomeMessage: ").append(toIndentedString(welcomeMessage)).append("\n");
     sb.append("    creatives: ").append(toIndentedString(creatives)).append("\n");
     sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
@@ -1524,6 +1556,11 @@ public class CreateCallAdRequest {
     // add `video` to the URL query string
     if (getVideo() != null) {
       joiner.add(getVideo().toUrlQueryString(prefix + "video" + suffix));
+    }
+
+    // add `welcomeMessage` to the URL query string
+    if (getWelcomeMessage() != null) {
+      joiner.add(getWelcomeMessage().toUrlQueryString(prefix + "welcomeMessage" + suffix));
     }
 
     // add `creatives` to the URL query string

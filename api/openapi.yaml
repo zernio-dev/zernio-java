@@ -36613,6 +36613,9 @@ components:
         ageMax: 49
         creatives:
         - imageUrl: https://openapi-generator.tech
+          welcomeMessage:
+            text: text
+            prefillText: prefillText
           video:
             id: id
             url: https://openapi-generator.tech
@@ -36620,6 +36623,9 @@ components:
           body: body
           headline: headline
         - imageUrl: https://openapi-generator.tech
+          welcomeMessage:
+            text: text
+            prefillText: prefillText
           video:
             id: id
             url: https://openapi-generator.tech
@@ -36677,6 +36683,9 @@ components:
           distance_unit: mile
           key: key
         adAccountId: adAccountId
+        welcomeMessage:
+          text: text
+          prefillText: prefillText
         bidAmount: 3.616076749251911
         countries:
         - countries
@@ -36750,6 +36759,8 @@ components:
           type: string
         video:
           $ref: "#/components/schemas/CtwaAdRequestBody_video"
+        welcomeMessage:
+          $ref: "#/components/schemas/CtwaAdRequestBody_welcomeMessage"
         creatives:
           description: |
             Multi-creative shape: N CTWA ads under one campaign + one
@@ -92933,6 +92944,29 @@ components:
             this field to control the poster frame exactly.
           format: uri
           type: string
+    CtwaAdRequestBody_welcomeMessage:
+      description: |
+        Custom chat welcome message (Meta's `page_welcome_message`,
+        "Mensaje de bienvenida" / "Mensaje predefinido" in Ads Manager).
+        Single-creative shape only; for `creatives[]` set it per entry.
+      example:
+        text: text
+        prefillText: prefillText
+      properties:
+        text:
+          description: Greeting shown when the chat opens. Replaces Meta's default
+            ("Hi! Can we help you?").
+          minLength: 1
+          type: string
+        prefillText:
+          description: "Message put into the user's text input, ready to send. Replaces\
+            \ Meta's default (\"Hi! I want more info.\"). Lets one ad steer the opening\
+            \ message toward what it promotes (e.g. a specific product)."
+          minLength: 1
+          type: string
+      required:
+      - prefillText
+      - text
     CtwaAdRequestBody_creatives_inner_video:
       description: |
         Video creative. Mutually exclusive with this entry's
@@ -92960,12 +92994,34 @@ components:
             platform_error (reason: video_thumbnail_unavailable).
           format: uri
           type: string
+    CtwaAdRequestBody_creatives_inner_welcomeMessage:
+      description: Custom chat welcome message for this entry. See the top-level `welcomeMessage`
+        for the single-creative shape.
+      example:
+        text: text
+        prefillText: prefillText
+      properties:
+        text:
+          description: Greeting shown when the chat opens. Replaces Meta's default.
+          minLength: 1
+          type: string
+        prefillText:
+          description: "Message put into the user's text input, ready to send. Replaces\
+            \ Meta's default."
+          minLength: 1
+          type: string
+      required:
+      - prefillText
+      - text
     CtwaAdRequestBody_creatives_inner:
       description: |
         Each entry must also include exactly one of `imageUrl`
         or `video`.
       example:
         imageUrl: https://openapi-generator.tech
+        welcomeMessage:
+          text: text
+          prefillText: prefillText
         video:
           id: id
           url: https://openapi-generator.tech
@@ -92989,6 +93045,8 @@ components:
           type: string
         video:
           $ref: "#/components/schemas/CtwaAdRequestBody_creatives_inner_video"
+        welcomeMessage:
+          $ref: "#/components/schemas/CtwaAdRequestBody_creatives_inner_welcomeMessage"
       required:
       - body
       - headline

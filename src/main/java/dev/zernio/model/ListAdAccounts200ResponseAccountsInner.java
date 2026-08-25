@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T16:15:23.841756521Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:35:25.824049277Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

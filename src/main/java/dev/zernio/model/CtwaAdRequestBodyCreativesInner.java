@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CtwaAdRequestBodyCreativesInnerVideo;
+import dev.zernio.model.CtwaAdRequestBodyCreativesInnerWelcomeMessage;
 import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -38,9 +39,10 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_HEADLINE,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_BODY,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_IMAGE_URL,
-  CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_VIDEO
+  CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_VIDEO,
+  CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_WELCOME_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-24T16:15:23.841756521Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T08:35:25.824049277Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyCreativesInner {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nonnull
@@ -57,6 +59,10 @@ public class CtwaAdRequestBodyCreativesInner {
   public static final String JSON_PROPERTY_VIDEO = "video";
   @javax.annotation.Nullable
   private CtwaAdRequestBodyCreativesInnerVideo video;
+
+  public static final String JSON_PROPERTY_WELCOME_MESSAGE = "welcomeMessage";
+  @javax.annotation.Nullable
+  private CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage;
 
   public CtwaAdRequestBodyCreativesInner() { 
   }
@@ -157,6 +163,30 @@ public class CtwaAdRequestBodyCreativesInner {
   }
 
 
+  public CtwaAdRequestBodyCreativesInner welcomeMessage(@javax.annotation.Nullable CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage) {
+    this.welcomeMessage = welcomeMessage;
+    return this;
+  }
+
+  /**
+   * Get welcomeMessage
+   * @return welcomeMessage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CtwaAdRequestBodyCreativesInnerWelcomeMessage getWelcomeMessage() {
+    return welcomeMessage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWelcomeMessage(@javax.annotation.Nullable CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage) {
+    this.welcomeMessage = welcomeMessage;
+  }
+
+
   /**
    * Return true if this CtwaAdRequestBody_creatives_inner object is equal to o.
    */
@@ -172,12 +202,13 @@ public class CtwaAdRequestBodyCreativesInner {
     return Objects.equals(this.headline, ctwaAdRequestBodyCreativesInner.headline) &&
         Objects.equals(this.body, ctwaAdRequestBodyCreativesInner.body) &&
         Objects.equals(this.imageUrl, ctwaAdRequestBodyCreativesInner.imageUrl) &&
-        Objects.equals(this.video, ctwaAdRequestBodyCreativesInner.video);
+        Objects.equals(this.video, ctwaAdRequestBodyCreativesInner.video) &&
+        Objects.equals(this.welcomeMessage, ctwaAdRequestBodyCreativesInner.welcomeMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headline, body, imageUrl, video);
+    return Objects.hash(headline, body, imageUrl, video, welcomeMessage);
   }
 
   @Override
@@ -188,6 +219,7 @@ public class CtwaAdRequestBodyCreativesInner {
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    welcomeMessage: ").append(toIndentedString(welcomeMessage)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -253,6 +285,11 @@ public class CtwaAdRequestBodyCreativesInner {
     // add `video` to the URL query string
     if (getVideo() != null) {
       joiner.add(getVideo().toUrlQueryString(prefix + "video" + suffix));
+    }
+
+    // add `welcomeMessage` to the URL query string
+    if (getWelcomeMessage() != null) {
+      joiner.add(getWelcomeMessage().toUrlQueryString(prefix + "welcomeMessage" + suffix));
     }
 
     return joiner.toString();

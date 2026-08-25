@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-24T16:15:23.841756521Z[Etc/UTC]
+- Build date: 2026-08-25T08:35:25.824049277Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1630,9 +1630,11 @@ Class | Method | HTTP request | Description
  - [CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)
  - [CtwaAdRequestBodyCreativesInner](docs/CtwaAdRequestBodyCreativesInner.md)
  - [CtwaAdRequestBodyCreativesInnerVideo](docs/CtwaAdRequestBodyCreativesInnerVideo.md)
+ - [CtwaAdRequestBodyCreativesInnerWelcomeMessage](docs/CtwaAdRequestBodyCreativesInnerWelcomeMessage.md)
  - [CtwaAdRequestBodyPlacements](docs/CtwaAdRequestBodyPlacements.md)
  - [CtwaAdRequestBodyRegionsInner](docs/CtwaAdRequestBodyRegionsInner.md)
  - [CtwaAdRequestBodyVideo](docs/CtwaAdRequestBodyVideo.md)
+ - [CtwaAdRequestBodyWelcomeMessage](docs/CtwaAdRequestBodyWelcomeMessage.md)
  - [CtwaAdRequestBodyZipsInner](docs/CtwaAdRequestBodyZipsInner.md)
  - [CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [CtwaSingleResponse](docs/CtwaSingleResponse.md)
