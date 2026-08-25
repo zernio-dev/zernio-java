@@ -147,7 +147,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:26:46.694282363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:35:22.098339009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -2681,7 +2681,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Hand-built carousel: 2-10 authored cards in DETERMINISTIC order, mapped to the creative&#39;s &#x60;link_data.child_attachments&#x60;. Unlike &#x60;dynamicCreative&#x60;, you control the card order and per-card copy/link. Requires top-level &#x60;body&#x60;, &#x60;linkUrl&#x60; and &#x60;callToAction&#x60;. Mutually exclusive with &#x60;imageUrl&#x60;/&#x60;video&#x60;, &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;existingCreativeId&#x60;, &#x60;adSetId&#x60;, &#x60;leadGenFormId&#x60; and goal &#x60;catalog_sales&#x60;. 
+   * Meta only. Hand-built carousel: 2-10 authored cards in DETERMINISTIC order, mapped to the creative&#39;s &#x60;link_data.child_attachments&#x60;. Unlike &#x60;dynamicCreative&#x60;, you control the card order and per-card copy/link. Requires top-level &#x60;body&#x60;, &#x60;linkUrl&#x60; and &#x60;callToAction&#x60;. Those become the ad&#39;s own Destination and button (&#x60;link_data.link&#x60; / &#x60;link_data.call_to_action&#x60;), and double as the per-card fallback when a card omits its own. Mutually exclusive with &#x60;imageUrl&#x60;/&#x60;video&#x60;, &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;existingCreativeId&#x60;, &#x60;adSetId&#x60;, &#x60;leadGenFormId&#x60; and goal &#x60;catalog_sales&#x60;. 
    * @return carouselCards
    */
   @javax.annotation.Nullable

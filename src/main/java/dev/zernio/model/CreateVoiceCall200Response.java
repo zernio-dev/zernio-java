@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   CreateVoiceCall200Response.JSON_PROPERTY_TRANSCRIPTION_ENABLED,
   CreateVoiceCall200Response.JSON_PROPERTY_TRANSCRIPTION_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:26:46.694282363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:35:22.098339009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateVoiceCall200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
