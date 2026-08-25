@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   BookmarkPost200Response.JSON_PROPERTY_BOOKMARKED,
   BookmarkPost200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:35:22.098339009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:37:38.604238945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BookmarkPost200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
