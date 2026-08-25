@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseCategoriesAdditionalCategoriesInner.JSON_PROPERTY_NAME,
   GetGoogleBusinessLocationDetails200ResponseCategoriesAdditionalCategoriesInner.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:30:25.485309413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:26:46.694282363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseCategoriesAdditionalCategoriesInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

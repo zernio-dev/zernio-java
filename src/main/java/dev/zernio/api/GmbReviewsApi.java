@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T10:30:25.485309413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:26:46.694282363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -579,7 +579,7 @@ public class GmbReviewsApi {
 
   /**
    * Reply to a review
-   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
    * @param replyToGoogleBusinessReviewRequest  (required)
@@ -592,7 +592,7 @@ public class GmbReviewsApi {
 
   /**
    * Reply to a review
-   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
    * @param replyToGoogleBusinessReviewRequest  (required)
@@ -607,7 +607,7 @@ public class GmbReviewsApi {
 
   /**
    * Reply to a review
-   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
    * @param replyToGoogleBusinessReviewRequest  (required)
@@ -620,7 +620,7 @@ public class GmbReviewsApi {
 
   /**
    * Reply to a review
-   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
    * @param replyToGoogleBusinessReviewRequest  (required)
