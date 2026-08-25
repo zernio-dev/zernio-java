@@ -1793,7 +1793,7 @@ public class Example {
         String source = "zernio"; // String | `all` (default) returns both Zernio-created ads and those discovered from the platform's ad manager — matches the web UI's default view. Pass `zernio` to restrict to isExternal=false only. Status is NOT filtered by default — use the `status` param for that.
         String platform = "facebook"; // String | 
         AdStatus status = AdStatus.fromValue("active"); // AdStatus | Filter by derived campaign status (post-aggregation)
-        String adAccountId = "adAccountId_example"; // String | Platform ad account ID
+        String adAccountId = "adAccountId_example"; // String | One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (`?adAccountId=act_1,act_2,act_3`); single value keeps its old shape. Max 50 accounts per request; the plural aliases `adAccountIds` and `platformAdAccountIds` are rejected with a 400 to stop them from silently returning the unfiltered fleet.
         String pageId = "pageId_example"; // String | Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page's ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns.
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
@@ -1829,7 +1829,7 @@ public class Example {
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **status** | [**AdStatus**](.md)| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
-| **adAccountId** | **String**| Platform ad account ID | [optional] |
+| **adAccountId** | **String**| One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (&#x60;?adAccountId&#x3D;act_1,act_2,act_3&#x60;); single value keeps its old shape. Max 50 accounts per request; the plural aliases &#x60;adAccountIds&#x60; and &#x60;platformAdAccountIds&#x60; are rejected with a 400 to stop them from silently returning the unfiltered fleet. | [optional] |
 | **pageId** | **String**| Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
@@ -1899,7 +1899,7 @@ public class Example {
         String source = "zernio"; // String | `all` (default) returns both Zernio-created ads and those discovered from the platform's ad manager — matches the web UI's default view. Pass `zernio` to restrict to isExternal=false only. Status is NOT filtered by default — use the `status` param for that.
         String platform = "facebook"; // String | 
         AdStatus status = AdStatus.fromValue("active"); // AdStatus | Filter by derived campaign status (post-aggregation)
-        String adAccountId = "adAccountId_example"; // String | Platform ad account ID
+        String adAccountId = "adAccountId_example"; // String | One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (`?adAccountId=act_1,act_2,act_3`); single value keeps its old shape. Max 50 accounts per request; the plural aliases `adAccountIds` and `platformAdAccountIds` are rejected with a 400 to stop them from silently returning the unfiltered fleet.
         String pageId = "pageId_example"; // String | Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page's ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns.
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
@@ -1937,7 +1937,7 @@ public class Example {
 | **source** | **String**| &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] [enum: zernio, all] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 | **status** | [**AdStatus**](.md)| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
-| **adAccountId** | **String**| Platform ad account ID | [optional] |
+| **adAccountId** | **String**| One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (&#x60;?adAccountId&#x3D;act_1,act_2,act_3&#x60;); single value keeps its old shape. Max 50 accounts per request; the plural aliases &#x60;adAccountIds&#x60; and &#x60;platformAdAccountIds&#x60; are rejected with a 400 to stop them from silently returning the unfiltered fleet. | [optional] |
 | **pageId** | **String**| Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |

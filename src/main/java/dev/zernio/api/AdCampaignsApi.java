@@ -88,7 +88,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:37:38.604238945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-25T11:45:52.648843439Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1654,7 +1654,7 @@ public class AdCampaignsApi {
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
-   * @param adAccountId Platform ad account ID (optional)
+   * @param adAccountId One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (&#x60;?adAccountId&#x3D;act_1,act_2,act_3&#x60;); single value keeps its old shape. Max 50 accounts per request; the plural aliases &#x60;adAccountIds&#x60; and &#x60;platformAdAccountIds&#x60; are rejected with a 400 to stop them from silently returning the unfiltered fleet. (optional)
    * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
@@ -1681,7 +1681,7 @@ public class AdCampaignsApi {
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
-   * @param adAccountId Platform ad account ID (optional)
+   * @param adAccountId One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (&#x60;?adAccountId&#x3D;act_1,act_2,act_3&#x60;); single value keeps its old shape. Max 50 accounts per request; the plural aliases &#x60;adAccountIds&#x60; and &#x60;platformAdAccountIds&#x60; are rejected with a 400 to stop them from silently returning the unfiltered fleet. (optional)
    * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
@@ -1710,7 +1710,7 @@ public class AdCampaignsApi {
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
-   * @param adAccountId Platform ad account ID (optional)
+   * @param adAccountId One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (&#x60;?adAccountId&#x3D;act_1,act_2,act_3&#x60;); single value keeps its old shape. Max 50 accounts per request; the plural aliases &#x60;adAccountIds&#x60; and &#x60;platformAdAccountIds&#x60; are rejected with a 400 to stop them from silently returning the unfiltered fleet. (optional)
    * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
@@ -1737,7 +1737,7 @@ public class AdCampaignsApi {
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
-   * @param adAccountId Platform ad account ID (optional)
+   * @param adAccountId One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager but a workspace usually cares about a subset). Comma-separate for multiple (&#x60;?adAccountId&#x3D;act_1,act_2,act_3&#x60;); single value keeps its old shape. Max 50 accounts per request; the plural aliases &#x60;adAccountIds&#x60; and &#x60;platformAdAccountIds&#x60; are rejected with a 400 to stop them from silently returning the unfiltered fleet. (optional)
    * @param pageId Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
