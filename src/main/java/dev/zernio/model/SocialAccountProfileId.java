@@ -54,7 +54,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:01:58.453601449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = SocialAccountProfileId.SocialAccountProfileIdDeserializer.class)
 @JsonSerialize(using = SocialAccountProfileId.SocialAccountProfileIdSerializer.class)
 public class SocialAccountProfileId extends AbstractOpenApiSchema {

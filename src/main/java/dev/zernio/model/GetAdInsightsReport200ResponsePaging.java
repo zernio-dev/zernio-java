@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetAdInsightsReport200ResponsePaging.JSON_PROPERTY_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:01:58.453601449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdInsightsReport200ResponsePaging {
   public static final String JSON_PROPERTY_AFTER = "after";
   private JsonNullable<String> after = JsonNullable.<String>undefined();

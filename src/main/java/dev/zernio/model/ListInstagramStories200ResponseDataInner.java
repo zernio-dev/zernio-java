@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListInstagramStories200ResponseDataInner.JSON_PROPERTY_THUMBNAIL_URL,
   ListInstagramStories200ResponseDataInner.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:01:58.453601449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInstagramStories200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

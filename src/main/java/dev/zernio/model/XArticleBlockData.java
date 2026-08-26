@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   XArticleBlockData.JSON_PROPERTY_MENTIONS,
   XArticleBlockData.JSON_PROPERTY_URLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:01:58.453601449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticleBlockData {
   public static final String JSON_PROPERTY_CASHTAGS = "cashtags";
   @javax.annotation.Nullable
