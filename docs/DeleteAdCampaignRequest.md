@@ -18,6 +18,7 @@
 |---- | -----|
 | FACEBOOK | &quot;facebook&quot; |
 | INSTAGRAM | &quot;instagram&quot; |
+| GOOGLE | &quot;google&quot; |
 
 
 

@@ -28753,6 +28753,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -83181,6 +83182,7 @@ components:
           enum:
           - facebook
           - instagram
+          - google
           type: string
         accountId:
           description: "Zernio SocialAccount id owning the ad account. Required only\
