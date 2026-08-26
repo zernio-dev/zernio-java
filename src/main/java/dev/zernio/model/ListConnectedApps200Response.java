@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListConnectedApps200Response.JSON_PROPERTY_CONNECTED_APPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:56:02.123986180Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListConnectedApps200Response {
   public static final String JSON_PROPERTY_CONNECTED_APPS = "connectedApps";
   @javax.annotation.Nullable
