@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   ReviewWebhookReview.JSON_PROPERTY_HAS_REPLY,
   ReviewWebhookReview.JSON_PROPERTY_REPLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T08:48:38.671036786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewWebhookReview {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

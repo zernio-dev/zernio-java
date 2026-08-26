@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseMetaAccountsSkippedInner.JSON_PROPERTY_ACCOUNT_ID,
   ListInboxConversations200ResponseMetaAccountsSkippedInner.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T08:48:38.671036786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseMetaAccountsSkippedInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

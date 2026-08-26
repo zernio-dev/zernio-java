@@ -36,11 +36,13 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   PinterestPlatformData.JSON_PROPERTY_TITLE,
   PinterestPlatformData.JSON_PROPERTY_BOARD_ID,
+  PinterestPlatformData.JSON_PROPERTY_BOARD_SECTION_ID,
   PinterestPlatformData.JSON_PROPERTY_LINK,
   PinterestPlatformData.JSON_PROPERTY_COVER_IMAGE_URL,
-  PinterestPlatformData.JSON_PROPERTY_COVER_IMAGE_KEY_FRAME_TIME
+  PinterestPlatformData.JSON_PROPERTY_COVER_IMAGE_KEY_FRAME_TIME,
+  PinterestPlatformData.JSON_PROPERTY_IS_AI_GENERATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T08:48:38.671036786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PinterestPlatformData {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -49,6 +51,10 @@ public class PinterestPlatformData {
   public static final String JSON_PROPERTY_BOARD_ID = "boardId";
   @javax.annotation.Nullable
   private String boardId;
+
+  public static final String JSON_PROPERTY_BOARD_SECTION_ID = "boardSectionId";
+  @javax.annotation.Nullable
+  private String boardSectionId;
 
   public static final String JSON_PROPERTY_LINK = "link";
   @javax.annotation.Nullable
@@ -61,6 +67,10 @@ public class PinterestPlatformData {
   public static final String JSON_PROPERTY_COVER_IMAGE_KEY_FRAME_TIME = "coverImageKeyFrameTime";
   @javax.annotation.Nullable
   private Integer coverImageKeyFrameTime;
+
+  public static final String JSON_PROPERTY_IS_AI_GENERATED = "isAiGenerated";
+  @javax.annotation.Nullable
+  private Boolean isAiGenerated = false;
 
   public PinterestPlatformData() { 
   }
@@ -110,6 +120,30 @@ public class PinterestPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBoardId(@javax.annotation.Nullable String boardId) {
     this.boardId = boardId;
+  }
+
+
+  public PinterestPlatformData boardSectionId(@javax.annotation.Nullable String boardSectionId) {
+    this.boardSectionId = boardSectionId;
+    return this;
+  }
+
+  /**
+   * Target section inside the board. Optional; the pin lands on the board itself when omitted. Pinterest rejects the pin if the section does not belong to boardId, so send both together.
+   * @return boardSectionId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BOARD_SECTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBoardSectionId() {
+    return boardSectionId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BOARD_SECTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBoardSectionId(@javax.annotation.Nullable String boardSectionId) {
+    this.boardSectionId = boardSectionId;
   }
 
 
@@ -185,6 +219,30 @@ public class PinterestPlatformData {
   }
 
 
+  public PinterestPlatformData isAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+    return this;
+  }
+
+  /**
+   * When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection.
+   * @return isAiGenerated
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAiGenerated() {
+    return isAiGenerated;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+  }
+
+
   /**
    * Return true if this PinterestPlatformData object is equal to o.
    */
@@ -199,14 +257,16 @@ public class PinterestPlatformData {
     PinterestPlatformData pinterestPlatformData = (PinterestPlatformData) o;
     return Objects.equals(this.title, pinterestPlatformData.title) &&
         Objects.equals(this.boardId, pinterestPlatformData.boardId) &&
+        Objects.equals(this.boardSectionId, pinterestPlatformData.boardSectionId) &&
         Objects.equals(this.link, pinterestPlatformData.link) &&
         Objects.equals(this.coverImageUrl, pinterestPlatformData.coverImageUrl) &&
-        Objects.equals(this.coverImageKeyFrameTime, pinterestPlatformData.coverImageKeyFrameTime);
+        Objects.equals(this.coverImageKeyFrameTime, pinterestPlatformData.coverImageKeyFrameTime) &&
+        Objects.equals(this.isAiGenerated, pinterestPlatformData.isAiGenerated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, boardId, link, coverImageUrl, coverImageKeyFrameTime);
+    return Objects.hash(title, boardId, boardSectionId, link, coverImageUrl, coverImageKeyFrameTime, isAiGenerated);
   }
 
   @Override
@@ -215,9 +275,11 @@ public class PinterestPlatformData {
     sb.append("class PinterestPlatformData {\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
+    sb.append("    boardSectionId: ").append(toIndentedString(boardSectionId)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");
     sb.append("    coverImageUrl: ").append(toIndentedString(coverImageUrl)).append("\n");
     sb.append("    coverImageKeyFrameTime: ").append(toIndentedString(coverImageKeyFrameTime)).append("\n");
+    sb.append("    isAiGenerated: ").append(toIndentedString(isAiGenerated)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -275,6 +337,11 @@ public class PinterestPlatformData {
       joiner.add(String.format(java.util.Locale.ROOT, "%sboardId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBoardId()))));
     }
 
+    // add `boardSectionId` to the URL query string
+    if (getBoardSectionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sboardSectionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBoardSectionId()))));
+    }
+
     // add `link` to the URL query string
     if (getLink() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLink()))));
@@ -288,6 +355,11 @@ public class PinterestPlatformData {
     // add `coverImageKeyFrameTime` to the URL query string
     if (getCoverImageKeyFrameTime() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scoverImageKeyFrameTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCoverImageKeyFrameTime()))));
+    }
+
+    // add `isAiGenerated` to the URL query string
+    if (getIsAiGenerated() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAiGenerated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAiGenerated()))));
     }
 
     return joiner.toString();

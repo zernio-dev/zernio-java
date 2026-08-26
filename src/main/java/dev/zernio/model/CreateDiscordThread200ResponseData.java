@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateDiscordThread200ResponseData.JSON_PROPERTY_ID,
   CreateDiscordThread200ResponseData.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T08:48:38.671036786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateDiscordThread200ResponseData {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

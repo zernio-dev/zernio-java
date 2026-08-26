@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetInboxSourceBreakdown200ResponseSourcesInner.JSON_PROPERTY_READ,
   GetInboxSourceBreakdown200ResponseSourcesInner.JSON_PROPERTY_BY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T08:48:38.671036786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T10:56:45.445197836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxSourceBreakdown200ResponseSourcesInner {
   public static final String JSON_PROPERTY_SOURCE = "source";
   @javax.annotation.Nullable

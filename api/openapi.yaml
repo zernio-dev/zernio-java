@@ -44005,6 +44005,11 @@ components:
           description: "Target Pinterest board ID. If omitted, the first available\
             \ board is used."
           type: string
+        boardSectionId:
+          description: "Target section inside the board. Optional; the pin lands on\
+            \ the board itself when omitted. Pinterest rejects the pin if the section\
+            \ does not belong to boardId, so send both together."
+          type: string
         link:
           description: Destination link (pin URL)
           format: uri
@@ -44016,6 +44021,14 @@ components:
         coverImageKeyFrameTime:
           description: Optional key frame time in seconds for derived video cover
           type: integer
+        isAiGenerated:
+          default: false
+          description: "When true, the Pin is created with Pinterest's AI_MODIFIED\
+            \ disclosure (ai_disclosures), which shows an \"AI modified\" label. Applies\
+            \ to image and video Pins. Pinterest offers no \"not AI\" value, so false\
+            \ simply omits the disclosure. Pinterest may still label a Pin on its\
+            \ own detection."
+          type: boolean
     YouTubePlatformData:
       description: Videos under 3 min auto-detected as Shorts. Custom thumbnails for
         regular videos only. Scheduled videos are uploaded immediately with the specified
