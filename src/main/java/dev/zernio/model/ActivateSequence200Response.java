@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ActivateSequence200Response.JSON_PROPERTY_SUCCESS,
   ActivateSequence200Response.JSON_PROPERTY_SEQUENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ActivateSequence200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

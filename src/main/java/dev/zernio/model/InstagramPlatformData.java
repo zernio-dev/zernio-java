@@ -47,12 +47,13 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_USER_TAGS,
   InstagramPlatformData.JSON_PROPERTY_AUDIO_NAME,
   InstagramPlatformData.JSON_PROPERTY_AUDIO_CONFIGURATION,
+  InstagramPlatformData.JSON_PROPERTY_MUTE_AUDIO,
   InstagramPlatformData.JSON_PROPERTY_THUMB_OFFSET,
   InstagramPlatformData.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
   InstagramPlatformData.JSON_PROPERTY_REEL_COVER,
   InstagramPlatformData.JSON_PROPERTY_IS_AI_GENERATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.
@@ -118,6 +119,10 @@ public class InstagramPlatformData {
   public static final String JSON_PROPERTY_AUDIO_CONFIGURATION = "audioConfiguration";
   @javax.annotation.Nullable
   private InstagramPlatformDataAudioConfiguration audioConfiguration;
+
+  public static final String JSON_PROPERTY_MUTE_AUDIO = "muteAudio";
+  @javax.annotation.Nullable
+  private Boolean muteAudio = false;
 
   public static final String JSON_PROPERTY_THUMB_OFFSET = "thumbOffset";
   @javax.annotation.Nullable
@@ -346,6 +351,30 @@ public class InstagramPlatformData {
   }
 
 
+  public InstagramPlatformData muteAudio(@javax.annotation.Nullable Boolean muteAudio) {
+    this.muteAudio = muteAudio;
+    return this;
+  }
+
+  /**
+   * Publish the video without sound. Applies to Reels, Stories, and video carousel slides; ignored for images. Instagram has no mute parameter, so we strip the audio track from the file before handing it to Instagram: the published video is permanently silent and the original audio cannot be restored from Instagram. If the audio cannot be stripped the post fails rather than publishing with sound; videos above 200MB cannot be muted at all, so mute them before uploading. Unrelated to audioConfiguration.videoVolume, which only lowers the original sound when a catalog track is attached.
+   * @return muteAudio
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MUTE_AUDIO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getMuteAudio() {
+    return muteAudio;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MUTE_AUDIO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMuteAudio(@javax.annotation.Nullable Boolean muteAudio) {
+    this.muteAudio = muteAudio;
+  }
+
+
   public InstagramPlatformData thumbOffset(@javax.annotation.Nullable Integer thumbOffset) {
     this.thumbOffset = thumbOffset;
     return this;
@@ -463,6 +492,7 @@ public class InstagramPlatformData {
         Objects.equals(this.userTags, instagramPlatformData.userTags) &&
         Objects.equals(this.audioName, instagramPlatformData.audioName) &&
         Objects.equals(this.audioConfiguration, instagramPlatformData.audioConfiguration) &&
+        Objects.equals(this.muteAudio, instagramPlatformData.muteAudio) &&
         Objects.equals(this.thumbOffset, instagramPlatformData.thumbOffset) &&
         Objects.equals(this.instagramThumbnail, instagramPlatformData.instagramThumbnail) &&
         Objects.equals(this.reelCover, instagramPlatformData.reelCover) &&
@@ -471,7 +501,7 @@ public class InstagramPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, audioConfiguration, thumbOffset, instagramThumbnail, reelCover, isAiGenerated);
+    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, audioConfiguration, muteAudio, thumbOffset, instagramThumbnail, reelCover, isAiGenerated);
   }
 
   @Override
@@ -486,6 +516,7 @@ public class InstagramPlatformData {
     sb.append("    userTags: ").append(toIndentedString(userTags)).append("\n");
     sb.append("    audioName: ").append(toIndentedString(audioName)).append("\n");
     sb.append("    audioConfiguration: ").append(toIndentedString(audioConfiguration)).append("\n");
+    sb.append("    muteAudio: ").append(toIndentedString(muteAudio)).append("\n");
     sb.append("    thumbOffset: ").append(toIndentedString(thumbOffset)).append("\n");
     sb.append("    instagramThumbnail: ").append(toIndentedString(instagramThumbnail)).append("\n");
     sb.append("    reelCover: ").append(toIndentedString(reelCover)).append("\n");
@@ -584,6 +615,11 @@ public class InstagramPlatformData {
     // add `audioConfiguration` to the URL query string
     if (getAudioConfiguration() != null) {
       joiner.add(getAudioConfiguration().toUrlQueryString(prefix + "audioConfiguration" + suffix));
+    }
+
+    // add `muteAudio` to the URL query string
+    if (getMuteAudio() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smuteAudio%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMuteAudio()))));
     }
 
     // add `thumbOffset` to the URL query string

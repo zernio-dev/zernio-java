@@ -600,11 +600,8 @@ docs/GetGoogleBusinessPerformance200ResponseDateRange.md
 docs/GetGoogleBusinessPerformance200ResponseMetricsValue.md
 docs/GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner.md
 docs/GetGoogleBusinessPerformance400Response.md
+docs/GetGoogleBusinessReview200Response.md
 docs/GetGoogleBusinessReviews200Response.md
-docs/GetGoogleBusinessReviews200ResponseReviewsInner.md
-docs/GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.md
-docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.md
-docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.md
 docs/GetGoogleBusinessSearchKeywords200Response.md
 docs/GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.md
 docs/GetGoogleBusinessSearchKeywords200ResponseMonthRange.md
@@ -828,6 +825,9 @@ docs/GoogleBusinessPlatformDataEventScheduleEndTime.md
 docs/GoogleBusinessPlatformDataEventScheduleStartDate.md
 docs/GoogleBusinessPlatformDataEventScheduleStartTime.md
 docs/GoogleBusinessPlatformDataOffer.md
+docs/GoogleBusinessReview.md
+docs/GoogleBusinessReviewReviewReply.md
+docs/GoogleBusinessReviewReviewer.md
 docs/HandleOAuthCallbackRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
@@ -987,6 +987,7 @@ docs/ListInboxMentions200ResponseDataInner.md
 docs/ListInboxMentions200ResponseMeta.md
 docs/ListInboxReviews200Response.md
 docs/ListInboxReviews200ResponseDataInner.md
+docs/ListInboxReviews200ResponseDataInnerPhotosInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
@@ -2456,11 +2457,8 @@ src/main/java/dev/zernio/model/GetGoogleBusinessPerformance200ResponseDateRange.
 src/main/java/dev/zernio/model/GetGoogleBusinessPerformance200ResponseMetricsValue.java
 src/main/java/dev/zernio/model/GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner.java
 src/main/java/dev/zernio/model/GetGoogleBusinessPerformance400Response.java
+src/main/java/dev/zernio/model/GetGoogleBusinessReview200Response.java
 src/main/java/dev/zernio/model/GetGoogleBusinessReviews200Response.java
-src/main/java/dev/zernio/model/GetGoogleBusinessReviews200ResponseReviewsInner.java
-src/main/java/dev/zernio/model/GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.java
-src/main/java/dev/zernio/model/GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.java
-src/main/java/dev/zernio/model/GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.java
 src/main/java/dev/zernio/model/GetGoogleBusinessSearchKeywords200Response.java
 src/main/java/dev/zernio/model/GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.java
 src/main/java/dev/zernio/model/GetGoogleBusinessSearchKeywords200ResponseMonthRange.java
@@ -2676,6 +2674,9 @@ src/main/java/dev/zernio/model/GoogleBusinessPlatformDataEventScheduleEndTime.ja
 src/main/java/dev/zernio/model/GoogleBusinessPlatformDataEventScheduleStartDate.java
 src/main/java/dev/zernio/model/GoogleBusinessPlatformDataEventScheduleStartTime.java
 src/main/java/dev/zernio/model/GoogleBusinessPlatformDataOffer.java
+src/main/java/dev/zernio/model/GoogleBusinessReview.java
+src/main/java/dev/zernio/model/GoogleBusinessReviewReviewReply.java
+src/main/java/dev/zernio/model/GoogleBusinessReviewReviewer.java
 src/main/java/dev/zernio/model/HandleOAuthCallbackRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
@@ -2830,6 +2831,7 @@ src/main/java/dev/zernio/model/ListInboxMentions200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxMentions200ResponseMeta.java
 src/main/java/dev/zernio/model/ListInboxReviews200Response.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInner.java
+src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerPhotosInner.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReply.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReviewer.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseSummary.java
@@ -3609,3 +3611,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetGoogleBusinessReview200ResponseTest.java
+src/test/java/dev/zernio/model/GoogleBusinessReviewReviewReplyTest.java
+src/test/java/dev/zernio/model/GoogleBusinessReviewReviewerTest.java
+src/test/java/dev/zernio/model/GoogleBusinessReviewTest.java
+src/test/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerPhotosInnerTest.java

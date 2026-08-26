@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner;
+import dev.zernio.model.ListInboxReviews200ResponseDataInnerPhotosInner;
 import dev.zernio.model.ListInboxReviews200ResponseDataInnerReply;
 import dev.zernio.model.ListInboxReviews200ResponseDataInnerReviewer;
 import java.time.OffsetDateTime;
@@ -60,7 +60,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REPLY,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -115,7 +115,7 @@ public class ListInboxReviews200ResponseDataInner {
 
   public static final String JSON_PROPERTY_PHOTOS = "photos";
   @javax.annotation.Nullable
-  private List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = new ArrayList<>();
+  private List<ListInboxReviews200ResponseDataInnerPhotosInner> photos = new ArrayList<>();
 
   public static final String JSON_PROPERTY_REPLY = "reply";
   @javax.annotation.Nullable
@@ -447,12 +447,12 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
 
-  public ListInboxReviews200ResponseDataInner photos(@javax.annotation.Nullable List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos) {
+  public ListInboxReviews200ResponseDataInner photos(@javax.annotation.Nullable List<ListInboxReviews200ResponseDataInnerPhotosInner> photos) {
     this.photos = photos;
     return this;
   }
 
-  public ListInboxReviews200ResponseDataInner addPhotosItem(GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner photosItem) {
+  public ListInboxReviews200ResponseDataInner addPhotosItem(ListInboxReviews200ResponseDataInnerPhotosInner photosItem) {
     if (this.photos == null) {
       this.photos = new ArrayList<>();
     }
@@ -467,14 +467,14 @@ public class ListInboxReviews200ResponseDataInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PHOTOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> getPhotos() {
+  public List<ListInboxReviews200ResponseDataInnerPhotosInner> getPhotos() {
     return photos;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PHOTOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhotos(@javax.annotation.Nullable List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos) {
+  public void setPhotos(@javax.annotation.Nullable List<ListInboxReviews200ResponseDataInnerPhotosInner> photos) {
     this.photos = photos;
   }
 

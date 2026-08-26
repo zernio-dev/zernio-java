@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**batchGetGoogleBusinessReviewsWithHttpInfo**](GmbReviewsApi.md#batchGetGoogleBusinessReviewsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews |
 | [**deleteGoogleBusinessReviewReply**](GmbReviewsApi.md#deleteGoogleBusinessReviewReply) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply |
 | [**deleteGoogleBusinessReviewReplyWithHttpInfo**](GmbReviewsApi.md#deleteGoogleBusinessReviewReplyWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply |
+| [**getGoogleBusinessReview**](GmbReviewsApi.md#getGoogleBusinessReview) | **GET** /v1/accounts/{accountId}/gmb-reviews/{reviewId} | Get a review |
+| [**getGoogleBusinessReviewWithHttpInfo**](GmbReviewsApi.md#getGoogleBusinessReviewWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-reviews/{reviewId} | Get a review |
 | [**getGoogleBusinessReviews**](GmbReviewsApi.md#getGoogleBusinessReviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews |
 | [**getGoogleBusinessReviewsWithHttpInfo**](GmbReviewsApi.md#getGoogleBusinessReviewsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews |
 | [**replyToGoogleBusinessReview**](GmbReviewsApi.md#replyToGoogleBusinessReview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review |
@@ -321,6 +323,166 @@ ApiResponse<[**DeleteGoogleBusinessReviewReply200Response**](DeleteGoogleBusines
 | **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to delete reply |  -  |
+
+
+## getGoogleBusinessReview
+
+> GetGoogleBusinessReview200Response getGoogleBusinessReview(accountId, reviewId, locationId)
+
+Get a review
+
+Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
+        String reviewId = "reviewId_example"; // String | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+        String locationId = "locationId_example"; // String | Override which location to read the review from. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
+        try {
+            GetGoogleBusinessReview200Response result = apiInstance.getGoogleBusinessReview(accountId, reviewId, locationId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GmbReviewsApi#getGoogleBusinessReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
+| **reviewId** | **String**| The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name | |
+| **locationId** | **String**| Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
+
+### Return type
+
+[**GetGoogleBusinessReview200Response**](GetGoogleBusinessReview200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Review fetched successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Account not found, or no such review on this location |  -  |
+| **500** | Failed to fetch the review |  -  |
+
+## getGoogleBusinessReviewWithHttpInfo
+
+> ApiResponse<GetGoogleBusinessReview200Response> getGoogleBusinessReview getGoogleBusinessReviewWithHttpInfo(accountId, reviewId, locationId)
+
+Get a review
+
+Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
+        String reviewId = "reviewId_example"; // String | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+        String locationId = "locationId_example"; // String | Override which location to read the review from. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
+        try {
+            ApiResponse<GetGoogleBusinessReview200Response> response = apiInstance.getGoogleBusinessReviewWithHttpInfo(accountId, reviewId, locationId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GmbReviewsApi#getGoogleBusinessReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
+| **reviewId** | **String**| The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name | |
+| **locationId** | **String**| Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetGoogleBusinessReview200Response**](GetGoogleBusinessReview200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Review fetched successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Account not found, or no such review on this location |  -  |
+| **500** | Failed to fetch the review |  -  |
 
 
 ## getGoogleBusinessReviews

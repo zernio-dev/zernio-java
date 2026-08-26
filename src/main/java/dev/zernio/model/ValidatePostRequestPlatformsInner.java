@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   ValidatePostRequestPlatformsInner.JSON_PROPERTY_CUSTOM_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePostRequestPlatformsInner {
   /**
    * Gets or Sets platform

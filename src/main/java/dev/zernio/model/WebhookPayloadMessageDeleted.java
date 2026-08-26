@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Webhook payload for message.deleted events. Fires when the sender deletes (unsends) a message. Supported platforms: Instagram (incoming unsend) and WhatsApp (when the business deletes an outgoing message via the Cloud API).  The message.text and message.attachments fields retain the content that existed before the delete. The Zernio dashboard UI does not show this content, but authorized API consumers may access it for moderation, compliance, or archival use cases. 
+ * Webhook payload for message.deleted events. Fires when the sender deletes (unsends) a message. Supported platforms: Instagram (incoming unsend) and WhatsApp, in both directions: an outgoing message the business deleted (via the Cloud API, or from the WhatsApp Business app on a Coexistence number) and an incoming message the customer deleted. Read &#x60;message.direction&#x60; to tell the two apart.  The message.text and message.attachments fields retain the content that existed before the delete. The Zernio dashboard UI does not show this content, but authorized API consumers may access it for moderation, compliance, or archival use cases. 
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageDeleted.JSON_PROPERTY_ID,
@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageDeleted.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadMessageDeleted.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeleted {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-26T11:34:59.353023234Z[Etc/UTC]
+- Build date: 2026-08-26T11:54:03.023989703Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -703,6 +703,8 @@ Class | Method | HTTP request | Description
 *GmbReviewsApi* | [**batchGetGoogleBusinessReviewsWithHttpInfo**](docs/GmbReviewsApi.md#batchGetGoogleBusinessReviewsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews
 *GmbReviewsApi* | [**deleteGoogleBusinessReviewReply**](docs/GmbReviewsApi.md#deleteGoogleBusinessReviewReply) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply
 *GmbReviewsApi* | [**deleteGoogleBusinessReviewReplyWithHttpInfo**](docs/GmbReviewsApi.md#deleteGoogleBusinessReviewReplyWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply
+*GmbReviewsApi* | [**getGoogleBusinessReview**](docs/GmbReviewsApi.md#getGoogleBusinessReview) | **GET** /v1/accounts/{accountId}/gmb-reviews/{reviewId} | Get a review
+*GmbReviewsApi* | [**getGoogleBusinessReviewWithHttpInfo**](docs/GmbReviewsApi.md#getGoogleBusinessReviewWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-reviews/{reviewId} | Get a review
 *GmbReviewsApi* | [**getGoogleBusinessReviews**](docs/GmbReviewsApi.md#getGoogleBusinessReviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews
 *GmbReviewsApi* | [**getGoogleBusinessReviewsWithHttpInfo**](docs/GmbReviewsApi.md#getGoogleBusinessReviewsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews
 *GmbReviewsApi* | [**replyToGoogleBusinessReview**](docs/GmbReviewsApi.md#replyToGoogleBusinessReview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review
@@ -1870,11 +1872,8 @@ Class | Method | HTTP request | Description
  - [GetGoogleBusinessPerformance200ResponseMetricsValue](docs/GetGoogleBusinessPerformance200ResponseMetricsValue.md)
  - [GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner](docs/GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner.md)
  - [GetGoogleBusinessPerformance400Response](docs/GetGoogleBusinessPerformance400Response.md)
+ - [GetGoogleBusinessReview200Response](docs/GetGoogleBusinessReview200Response.md)
  - [GetGoogleBusinessReviews200Response](docs/GetGoogleBusinessReviews200Response.md)
- - [GetGoogleBusinessReviews200ResponseReviewsInner](docs/GetGoogleBusinessReviews200ResponseReviewsInner.md)
- - [GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner](docs/GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.md)
- - [GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply](docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.md)
- - [GetGoogleBusinessReviews200ResponseReviewsInnerReviewer](docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.md)
  - [GetGoogleBusinessSearchKeywords200Response](docs/GetGoogleBusinessSearchKeywords200Response.md)
  - [GetGoogleBusinessSearchKeywords200ResponseKeywordsInner](docs/GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.md)
  - [GetGoogleBusinessSearchKeywords200ResponseMonthRange](docs/GetGoogleBusinessSearchKeywords200ResponseMonthRange.md)
@@ -2090,6 +2089,9 @@ Class | Method | HTTP request | Description
  - [GoogleBusinessPlatformDataEventScheduleStartDate](docs/GoogleBusinessPlatformDataEventScheduleStartDate.md)
  - [GoogleBusinessPlatformDataEventScheduleStartTime](docs/GoogleBusinessPlatformDataEventScheduleStartTime.md)
  - [GoogleBusinessPlatformDataOffer](docs/GoogleBusinessPlatformDataOffer.md)
+ - [GoogleBusinessReview](docs/GoogleBusinessReview.md)
+ - [GoogleBusinessReviewReviewReply](docs/GoogleBusinessReviewReviewReply.md)
+ - [GoogleBusinessReviewReviewer](docs/GoogleBusinessReviewReviewer.md)
  - [HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
@@ -2244,6 +2246,7 @@ Class | Method | HTTP request | Description
  - [ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)
  - [ListInboxReviews200Response](docs/ListInboxReviews200Response.md)
  - [ListInboxReviews200ResponseDataInner](docs/ListInboxReviews200ResponseDataInner.md)
+ - [ListInboxReviews200ResponseDataInnerPhotosInner](docs/ListInboxReviews200ResponseDataInnerPhotosInner.md)
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
  - [ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)

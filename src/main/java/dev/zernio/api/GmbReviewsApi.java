@@ -22,6 +22,7 @@ import dev.zernio.model.BatchGetGoogleBusinessReviews200Response;
 import dev.zernio.model.BatchGetGoogleBusinessReviewsRequest;
 import dev.zernio.model.DeleteGoogleBusinessReviewReply200Response;
 import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.GetGoogleBusinessReview200Response;
 import dev.zernio.model.GetGoogleBusinessReviews200Response;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ReplyToGoogleBusinessReview200Response;
@@ -52,7 +53,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -417,6 +418,152 @@ public class GmbReviewsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get a review
+   * Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param locationId Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
+   * @return GetGoogleBusinessReview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetGoogleBusinessReview200Response getGoogleBusinessReview(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return getGoogleBusinessReview(accountId, reviewId, locationId, null);
+  }
+
+  /**
+   * Get a review
+   * Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param locationId Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetGoogleBusinessReview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetGoogleBusinessReview200Response getGoogleBusinessReview(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessReview200Response> localVarResponse = getGoogleBusinessReviewWithHttpInfo(accountId, reviewId, locationId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a review
+   * Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param locationId Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
+   * @return ApiResponse&lt;GetGoogleBusinessReview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetGoogleBusinessReview200Response> getGoogleBusinessReviewWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return getGoogleBusinessReviewWithHttpInfo(accountId, reviewId, locationId, null);
+  }
+
+  /**
+   * Get a review
+   * Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param locationId Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetGoogleBusinessReview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetGoogleBusinessReview200Response> getGoogleBusinessReviewWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessReviewRequestBuilder(accountId, reviewId, locationId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getGoogleBusinessReview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetGoogleBusinessReview200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetGoogleBusinessReview200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetGoogleBusinessReview200Response>() {});
+        
+
+        return new ApiResponse<GetGoogleBusinessReview200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getGoogleBusinessReviewRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessReview");
+    }
+    // verify the required parameter 'reviewId' is set
+    if (reviewId == null) {
+      throw new ApiException(400, "Missing the required parameter 'reviewId' when calling getGoogleBusinessReview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/gmb-reviews/{reviewId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{reviewId}", ApiClient.urlEncode(reviewId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

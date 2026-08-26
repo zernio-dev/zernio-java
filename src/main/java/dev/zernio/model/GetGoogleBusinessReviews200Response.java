@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetGoogleBusinessReviews200ResponseReviewsInner;
+import dev.zernio.model.GoogleBusinessReview;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessReviews200Response.JSON_PROPERTY_TOTAL_REVIEW_COUNT,
   GetGoogleBusinessReviews200Response.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -65,7 +65,7 @@ public class GetGoogleBusinessReviews200Response {
 
   public static final String JSON_PROPERTY_REVIEWS = "reviews";
   @javax.annotation.Nullable
-  private List<GetGoogleBusinessReviews200ResponseReviewsInner> reviews = new ArrayList<>();
+  private List<GoogleBusinessReview> reviews = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AVERAGE_RATING = "averageRating";
   @javax.annotation.Nullable
@@ -153,12 +153,12 @@ public class GetGoogleBusinessReviews200Response {
   }
 
 
-  public GetGoogleBusinessReviews200Response reviews(@javax.annotation.Nullable List<GetGoogleBusinessReviews200ResponseReviewsInner> reviews) {
+  public GetGoogleBusinessReviews200Response reviews(@javax.annotation.Nullable List<GoogleBusinessReview> reviews) {
     this.reviews = reviews;
     return this;
   }
 
-  public GetGoogleBusinessReviews200Response addReviewsItem(GetGoogleBusinessReviews200ResponseReviewsInner reviewsItem) {
+  public GetGoogleBusinessReviews200Response addReviewsItem(GoogleBusinessReview reviewsItem) {
     if (this.reviews == null) {
       this.reviews = new ArrayList<>();
     }
@@ -173,14 +173,14 @@ public class GetGoogleBusinessReviews200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_REVIEWS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<GetGoogleBusinessReviews200ResponseReviewsInner> getReviews() {
+  public List<GoogleBusinessReview> getReviews() {
     return reviews;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_REVIEWS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReviews(@javax.annotation.Nullable List<GetGoogleBusinessReviews200ResponseReviewsInner> reviews) {
+  public void setReviews(@javax.annotation.Nullable List<GoogleBusinessReview> reviews) {
     this.reviews = reviews;
   }
 

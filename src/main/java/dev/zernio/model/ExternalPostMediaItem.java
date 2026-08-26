@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ExternalPostMediaItem.JSON_PROPERTY_MEDIA_STATUS,
   ExternalPostMediaItem.JSON_PROPERTY_UNAVAILABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:54:03.023989703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostMediaItem {
   /**
    * Gets or Sets type

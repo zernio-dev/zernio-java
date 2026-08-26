@@ -10092,6 +10092,101 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/gmb-reviews/{reviewId}:
+    get:
+      description: |
+        Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews.
+        The review is read from the account's selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location.
+        Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history.
+      operationId: getGoogleBusinessReview
+      parameters:
+      - description: The Zernio account ID (from /v1/accounts)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the\
+          \ full resource name"
+        explode: false
+        in: path
+        name: reviewId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Override which location to read the review from. If omitted,\
+          \ uses the account's selected location. Use GET /gmb-locations to list valid\
+          \ IDs."
+        explode: true
+        in: query
+        name: locationId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                accountId: 64e1f0a9e2b5af0012ab34cd
+                locationId: "9281089117903930794"
+                review:
+                  id: AIe9_BGx1234567890
+                  name: accounts/123456789/locations/9281089117903930794/reviews/AIe9_BGx1234567890
+                  reviewer:
+                    displayName: John Smith
+                    profilePhotoUrl: https://lh3.googleusercontent.com/a/...
+                    isAnonymous: false
+                  rating: 5
+                  starRating: FIVE
+                  comment: Great service and friendly staff! Highly recommend.
+                  createTime: 2024-01-15T10:30:00Z
+                  updateTime: 2024-01-15T10:30:00Z
+                  reviewReply:
+                    comment: Thank you for your kind words! We appreciate your support.
+                    updateTime: 2024-01-16T08:00:00Z
+                  photoCount: 0
+                  photos: []
+              schema:
+                $ref: "#/components/schemas/getGoogleBusinessReview_200_response"
+          description: Review fetched successfully
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          content:
+            application/json:
+              example:
+                error: Access token invalid. Please reconnect your Google Business
+                  Profile account.
+                code: token_invalid
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized or token invalid (account must be reconnected)
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Account not found, or no such review on this location"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Failed to fetch the review
+      security:
+      - bearerAuth: []
+      summary: Get a review
+      tags:
+      - GMB Reviews
+      x-resource-group: engagement
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply:
     delete:
       description: Removes the business owner reply from a Google Business review.
@@ -36664,6 +36759,71 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) to adjust the contract's limit.
   schemas:
+    GoogleBusinessReview:
+      description: "A Google Business Profile review, as returned by every gmb-reviews\
+        \ read endpoint."
+      example:
+        reviewReply:
+          comment: comment
+          updateTime: 2000-01-23T04:56:07.000+00:00
+        createTime: 2000-01-23T04:56:07.000+00:00
+        name: name
+        rating: 0
+        comment: comment
+        updateTime: 2000-01-23T04:56:07.000+00:00
+        id: id
+        reviewer:
+          isAnonymous: true
+          displayName: displayName
+          profilePhotoUrl: profilePhotoUrl
+        starRating: ONE
+        photos:
+        - url: https://openapi-generator.tech
+        - url: https://openapi-generator.tech
+        photoCount: 6
+      properties:
+        id:
+          description: Review ID
+          type: string
+        name:
+          description: Full resource name
+          type: string
+        reviewer:
+          $ref: "#/components/schemas/GoogleBusinessReview_reviewer"
+        rating:
+          description: Numeric star rating (0 when Google sends no rating)
+          maximum: 5
+          minimum: 0
+          type: integer
+        starRating:
+          description: Google's string rating
+          enum:
+          - ONE
+          - TWO
+          - THREE
+          - FOUR
+          - FIVE
+          type: string
+        comment:
+          description: Review text
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        updateTime:
+          format: date-time
+          type: string
+        reviewReply:
+          $ref: "#/components/schemas/GoogleBusinessReview_reviewReply"
+        photoCount:
+          description: "Number of photos attached to the review (photos only, videos\
+            \ are not counted)"
+          type: integer
+        photos:
+          description: Photos attached to the review by the reviewer
+          items:
+            $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_photos_inner"
+          type: array
     Verification:
       description: A managed OTP verification. The code itself is never returned or
         stored (hash only).
@@ -40845,8 +41005,10 @@ components:
       description: |
         Webhook payload for message.deleted events. Fires when the sender
         deletes (unsends) a message. Supported platforms: Instagram (incoming
-        unsend) and WhatsApp (when the business deletes an outgoing message
-        via the Cloud API).
+        unsend) and WhatsApp, in both directions: an outgoing message the
+        business deleted (via the Cloud API, or from the WhatsApp Business app
+        on a Coexistence number) and an incoming message the customer deleted.
+        Read `message.direction` to tell the two apart.
 
         The message.text and message.attachments fields retain the content
         that existed before the delete. The Zernio dashboard UI does not show
@@ -43770,6 +43932,19 @@ components:
           type: string
         audioConfiguration:
           $ref: "#/components/schemas/InstagramPlatformData_audioConfiguration"
+        muteAudio:
+          default: false
+          description: "Publish the video without sound. Applies to Reels, Stories,\
+            \ and video carousel slides; ignored for images. Instagram has no mute\
+            \ parameter, so we strip the audio track from the file before handing\
+            \ it to Instagram: the published video is permanently silent and the original\
+            \ audio cannot be restored from Instagram. If the audio cannot be stripped\
+            \ the post fails rather than publishing with sound; videos above 200MB\
+            \ cannot be muted at all, so mute them before uploading. Unrelated to\
+            \ audioConfiguration.videoVolume, which only lowers the original sound\
+            \ when a catalog track is attached."
+          example: true
+          type: boolean
         thumbOffset:
           description: Millisecond offset from video start for the Reel cover frame.
             Ignored when instagramThumbnail or reelCover is provided. Defaults to
@@ -59045,100 +59220,6 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/selectGoogleBusinessLocation_200_response_account"
-    getGoogleBusinessReviews_200_response_reviews_inner_reviewer:
-      example:
-        isAnonymous: true
-        displayName: displayName
-        profilePhotoUrl: profilePhotoUrl
-      properties:
-        displayName:
-          type: string
-        profilePhotoUrl:
-          nullable: true
-          type: string
-        isAnonymous:
-          type: boolean
-    getGoogleBusinessReviews_200_response_reviews_inner_reviewReply:
-      example:
-        comment: comment
-        updateTime: 2000-01-23T04:56:07.000+00:00
-      properties:
-        comment:
-          description: Business owner reply
-          type: string
-        updateTime:
-          format: date-time
-          type: string
-    getGoogleBusinessReviews_200_response_reviews_inner_photos_inner:
-      example:
-        url: https://openapi-generator.tech
-      properties:
-        url:
-          format: uri
-          type: string
-    getGoogleBusinessReviews_200_response_reviews_inner:
-      example:
-        reviewReply:
-          comment: comment
-          updateTime: 2000-01-23T04:56:07.000+00:00
-        createTime: 2000-01-23T04:56:07.000+00:00
-        name: name
-        rating: 1
-        comment: comment
-        updateTime: 2000-01-23T04:56:07.000+00:00
-        id: id
-        reviewer:
-          isAnonymous: true
-          displayName: displayName
-          profilePhotoUrl: profilePhotoUrl
-        starRating: ONE
-        photos:
-        - url: https://openapi-generator.tech
-        - url: https://openapi-generator.tech
-        photoCount: 6
-      properties:
-        id:
-          description: Review ID
-          type: string
-        name:
-          description: Full resource name
-          type: string
-        reviewer:
-          $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_reviewer"
-        rating:
-          description: Numeric star rating
-          maximum: 5
-          minimum: 1
-          type: integer
-        starRating:
-          description: Google's string rating
-          enum:
-          - ONE
-          - TWO
-          - THREE
-          - FOUR
-          - FIVE
-          type: string
-        comment:
-          description: Review text
-          type: string
-        createTime:
-          format: date-time
-          type: string
-        updateTime:
-          format: date-time
-          type: string
-        reviewReply:
-          $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_reviewReply"
-        photoCount:
-          description: "Number of photos attached to the review (photos only, videos\
-            \ are not counted)"
-          type: integer
-        photos:
-          description: Photos attached to the review by the reviewer
-          items:
-            $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_photos_inner"
-          type: array
     getGoogleBusinessReviews_200_response:
       example:
         accountId: accountId
@@ -59148,7 +59229,7 @@ components:
             updateTime: 2000-01-23T04:56:07.000+00:00
           createTime: 2000-01-23T04:56:07.000+00:00
           name: name
-          rating: 1
+          rating: 0
           comment: comment
           updateTime: 2000-01-23T04:56:07.000+00:00
           id: id
@@ -59166,7 +59247,7 @@ components:
             updateTime: 2000-01-23T04:56:07.000+00:00
           createTime: 2000-01-23T04:56:07.000+00:00
           name: name
-          rating: 1
+          rating: 0
           comment: comment
           updateTime: 2000-01-23T04:56:07.000+00:00
           id: id
@@ -59193,7 +59274,7 @@ components:
           type: string
         reviews:
           items:
-            $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner"
+            $ref: "#/components/schemas/GoogleBusinessReview"
           type: array
         averageRating:
           description: Overall average rating
@@ -62119,6 +62200,39 @@ components:
           type: array
         nextPageToken:
           type: string
+    getGoogleBusinessReview_200_response:
+      example:
+        accountId: accountId
+        success: true
+        locationId: locationId
+        review:
+          reviewReply:
+            comment: comment
+            updateTime: 2000-01-23T04:56:07.000+00:00
+          createTime: 2000-01-23T04:56:07.000+00:00
+          name: name
+          rating: 0
+          comment: comment
+          updateTime: 2000-01-23T04:56:07.000+00:00
+          id: id
+          reviewer:
+            isAnonymous: true
+            displayName: displayName
+            profilePhotoUrl: profilePhotoUrl
+          starRating: ONE
+          photos:
+          - url: https://openapi-generator.tech
+          - url: https://openapi-generator.tech
+          photoCount: 6
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        locationId:
+          type: string
+        review:
+          $ref: "#/components/schemas/GoogleBusinessReview"
     replyToGoogleBusinessReview_request:
       properties:
         comment:
@@ -70127,6 +70241,13 @@ components:
         profileImage:
           nullable: true
           type: string
+    listInboxReviews_200_response_data_inner_photos_inner:
+      example:
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          format: uri
+          type: string
     listInboxReviews_200_response_data_inner_reply:
       example:
         created: 2000-01-23T04:56:07.000+00:00
@@ -70210,7 +70331,7 @@ components:
           description: Photos attached to the review. Google Business only; always
             an empty array for other platforms.
           items:
-            $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_photos_inner"
+            $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_photos_inner"
           type: array
         reply:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reply"
@@ -93422,6 +93543,30 @@ components:
         reason:
           enum:
           - max_attempts_reached
+    GoogleBusinessReview_reviewer:
+      example:
+        isAnonymous: true
+        displayName: displayName
+        profilePhotoUrl: profilePhotoUrl
+      properties:
+        displayName:
+          type: string
+        profilePhotoUrl:
+          nullable: true
+          type: string
+        isAnonymous:
+          type: boolean
+    GoogleBusinessReview_reviewReply:
+      example:
+        comment: comment
+        updateTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        comment:
+          description: Business owner reply
+          type: string
+        updateTime:
+          format: date-time
+          type: string
     CtwaAdRequestBody_video:
       description: |
         Video creative for single-creative shape. Mutually
@@ -99662,7 +99807,7 @@ x-documentation:
     - `conversation.started` - A new conversation opened between one of your accounts and a contact, in either direction (any DM platform, and SMS); fires only the first time the thread appears
     - `message.sent` - DM sent via the API
     - `message.edited` - A sender edited a message (Instagram, Messenger, Telegram)
-    - `message.deleted` - A sender deleted ("unsent") a message (Instagram; WhatsApp when the business deletes a sent message)
+    - `message.deleted` - A sender deleted ("unsent") a message (Instagram; WhatsApp in both directions, whether the business deleted a message it sent or the customer deleted one they sent). `message.direction` tells the two apart.
     - `message.delivered` - An outgoing message was delivered (WhatsApp, Messenger, SMS)
     - `message.read` - An outgoing message was read by the recipient (WhatsApp, Messenger, Instagram)
     - `message.failed` - An outgoing message failed delivery (WhatsApp, SMS; on SMS the carrier's error code rides in `error`)
