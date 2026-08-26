@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_INSTANT,
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:11:12.560030797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

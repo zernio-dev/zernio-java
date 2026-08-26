@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd201ResponseOneOf1.JSON_PROPERTY_PLATFORM_AD_SET_ID,
   CreateStandaloneAd201ResponseOneOf1.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:11:12.560030797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd201ResponseOneOf1 {
   public static final String JSON_PROPERTY_ADS = "ads";
   @javax.annotation.Nullable

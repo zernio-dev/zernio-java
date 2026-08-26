@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GenerateAdPreviewsRequest.JSON_PROPERTY_EXISTING_CREATIVE_ID,
   GenerateAdPreviewsRequest.JSON_PROPERTY_CREATIVE_SPEC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:11:12.560030797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GenerateAdPreviewsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
