@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_MADE_WITH_AI,
   TwitterPlatformData.JSON_PROPERTY_SENSITIVE_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:48:26.966198637Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_ARTICLE = "article";
   @javax.annotation.Nullable

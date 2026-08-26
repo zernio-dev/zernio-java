@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppHeaderComponent.JSON_PROPERTY_TEXT,
   WhatsAppHeaderComponent.JSON_PROPERTY_EXAMPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:48:26.966198637Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppHeaderComponent {
   /**
    * Gets or Sets type

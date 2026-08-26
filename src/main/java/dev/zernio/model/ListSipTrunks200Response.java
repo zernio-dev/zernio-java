@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListSipTrunks200Response.JSON_PROPERTY_TRUNKS,
   ListSipTrunks200Response.JSON_PROPERTY_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:48:26.966198637Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSipTrunks200Response {
   public static final String JSON_PROPERTY_TRUNKS = "trunks";
   @javax.annotation.Nullable
