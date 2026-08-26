@@ -37,13 +37,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ThreadsPlatformData.JSON_PROPERTY_TOPIC_TAG,
+  ThreadsPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   ThreadsPlatformData.JSON_PROPERTY_THREAD_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:01:58.453601449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:34:59.353023234Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ThreadsPlatformData {
   public static final String JSON_PROPERTY_TOPIC_TAG = "topic_tag";
   @javax.annotation.Nullable
   private String topicTag;
+
+  public static final String JSON_PROPERTY_FIRST_COMMENT = "firstComment";
+  @javax.annotation.Nullable
+  private String firstComment;
 
   public static final String JSON_PROPERTY_THREAD_ITEMS = "threadItems";
   @javax.annotation.Nullable
@@ -73,6 +78,30 @@ public class ThreadsPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTopicTag(@javax.annotation.Nullable String topicTag) {
     this.topicTag = topicTag;
+  }
+
+
+  public ThreadsPlatformData firstComment(@javax.annotation.Nullable String firstComment) {
+    this.firstComment = firstComment;
+    return this;
+  }
+
+  /**
+   * Optional first comment to post immediately after publishing, as a reply to the published post. With threadItems, it replies to the root post. Up to 500 characters (the Threads post limit). The reply is itself a Threads post, so it consumes one of the 250 posts a profile may publish per 24 hours.
+   * @return firstComment
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FIRST_COMMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getFirstComment() {
+    return firstComment;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FIRST_COMMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFirstComment(@javax.annotation.Nullable String firstComment) {
+    this.firstComment = firstComment;
   }
 
 
@@ -121,12 +150,13 @@ public class ThreadsPlatformData {
     }
     ThreadsPlatformData threadsPlatformData = (ThreadsPlatformData) o;
     return Objects.equals(this.topicTag, threadsPlatformData.topicTag) &&
+        Objects.equals(this.firstComment, threadsPlatformData.firstComment) &&
         Objects.equals(this.threadItems, threadsPlatformData.threadItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(topicTag, threadItems);
+    return Objects.hash(topicTag, firstComment, threadItems);
   }
 
   @Override
@@ -134,6 +164,7 @@ public class ThreadsPlatformData {
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreadsPlatformData {\n");
     sb.append("    topicTag: ").append(toIndentedString(topicTag)).append("\n");
+    sb.append("    firstComment: ").append(toIndentedString(firstComment)).append("\n");
     sb.append("    threadItems: ").append(toIndentedString(threadItems)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -185,6 +216,11 @@ public class ThreadsPlatformData {
     // add `topic_tag` to the URL query string
     if (getTopicTag() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stopic_tag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTopicTag()))));
+    }
+
+    // add `firstComment` to the URL query string
+    if (getFirstComment() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfirstComment%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFirstComment()))));
     }
 
     // add `threadItems` to the URL query string
