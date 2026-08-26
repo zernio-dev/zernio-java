@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AddMessageReaction200Response;
 import dev.zernio.model.AddMessageReactionRequest;
 import dev.zernio.model.CreateInboxConversation201Response;
 import dev.zernio.model.CreateInboxConversation400Response;
@@ -36,6 +37,7 @@ import dev.zernio.model.GetMessageAttachment200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListInboxConversations200Response;
 import dev.zernio.model.MarkConversationRead200Response;
+import dev.zernio.model.RemoveMessageReaction200Response;
 import dev.zernio.model.SearchInboxConversations200Response;
 import dev.zernio.model.SendInboxMessage200Response;
 import dev.zernio.model.SendInboxMessage400Response;
@@ -78,7 +80,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:56:02.123986180Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:58:13.589053156Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -199,12 +201,12 @@ public class MessagesApi {
    * Add reaction
    * Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID to react to (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param addMessageReactionRequest  (required)
-   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @return AddMessageReaction200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
+  public AddMessageReaction200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
     return addMessageReaction(conversationId, messageId, addMessageReactionRequest, null);
   }
 
@@ -212,14 +214,14 @@ public class MessagesApi {
    * Add reaction
    * Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID to react to (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param addMessageReactionRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @return AddMessageReaction200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, headers);
+  public AddMessageReaction200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AddMessageReaction200Response> localVarResponse = addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -227,12 +229,12 @@ public class MessagesApi {
    * Add reaction
    * Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID to react to (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param addMessageReactionRequest  (required)
-   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @return ApiResponse&lt;AddMessageReaction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
+  public ApiResponse<AddMessageReaction200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
     return addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, null);
   }
 
@@ -240,13 +242,13 @@ public class MessagesApi {
    * Add reaction
    * Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID to react to (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param addMessageReactionRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @return ApiResponse&lt;AddMessageReaction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<AddMessageReaction200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = addMessageReactionRequestBuilder(conversationId, messageId, addMessageReactionRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -262,7 +264,7 @@ public class MessagesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+          return new ApiResponse<AddMessageReaction200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -272,10 +274,10 @@ public class MessagesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        AddMessageReaction200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AddMessageReaction200Response>() {});
         
 
-        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+        return new ApiResponse<AddMessageReaction200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1515,12 +1517,12 @@ public class MessagesApi {
    * Remove reaction
    * Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param accountId Social account ID (required)
-   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @return RemoveMessageReaction200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+  public RemoveMessageReaction200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
     return removeMessageReaction(conversationId, messageId, accountId, null);
   }
 
@@ -1528,14 +1530,14 @@ public class MessagesApi {
    * Remove reaction
    * Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @return RemoveMessageReaction200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, headers);
+  public RemoveMessageReaction200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveMessageReaction200Response> localVarResponse = removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, headers);
     return localVarResponse.getData();
   }
 
@@ -1543,12 +1545,12 @@ public class MessagesApi {
    * Remove reaction
    * Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param accountId Social account ID (required)
-   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @return ApiResponse&lt;RemoveMessageReaction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+  public ApiResponse<RemoveMessageReaction200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
     return removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, null);
   }
 
@@ -1556,13 +1558,13 @@ public class MessagesApi {
    * Remove reaction
    * Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
    * @param conversationId The conversation ID (required)
-   * @param messageId The platform message ID (required)
+   * @param messageId The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @return ApiResponse&lt;RemoveMessageReaction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<RemoveMessageReaction200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = removeMessageReactionRequestBuilder(conversationId, messageId, accountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1578,7 +1580,7 @@ public class MessagesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+          return new ApiResponse<RemoveMessageReaction200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1588,10 +1590,10 @@ public class MessagesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        RemoveMessageReaction200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveMessageReaction200Response>() {});
         
 
-        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+        return new ApiResponse<RemoveMessageReaction200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

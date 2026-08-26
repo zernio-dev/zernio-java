@@ -47,12 +47,14 @@ import dev.zernio.ApiClient;
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_BUTTON_TEXT,
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_BUTTON_TYPE,
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_WEBSITE_URL,
+  MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_ENABLE_MESSENGER,
   MetaLeadFormPlatformData.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY,
+  MetaLeadFormPlatformData.JSON_PROPERTY_IS_PHONE_SMS_VERIFY_ENABLED,
   MetaLeadFormPlatformData.JSON_PROPERTY_BLOCK_DISPLAY_FOR_NON_TARGETED_VIEWER,
   MetaLeadFormPlatformData.JSON_PROPERTY_QUESTION_PAGE_CUSTOM_HEADLINE,
   MetaLeadFormPlatformData.JSON_PROPERTY_CONTEXT_CARD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:56:02.123986180Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T11:58:13.589053156Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadFormPlatformData {
   public static final String JSON_PROPERTY_QUESTIONS = "questions";
   @javax.annotation.Nonnull
@@ -90,9 +92,17 @@ public class MetaLeadFormPlatformData {
   @javax.annotation.Nullable
   private URI thankYouWebsiteUrl;
 
+  public static final String JSON_PROPERTY_THANK_YOU_ENABLE_MESSENGER = "thankYouEnableMessenger";
+  @javax.annotation.Nullable
+  private Boolean thankYouEnableMessenger = false;
+
   public static final String JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY = "isOptimizedForQuality";
   @javax.annotation.Nullable
   private Boolean isOptimizedForQuality;
+
+  public static final String JSON_PROPERTY_IS_PHONE_SMS_VERIFY_ENABLED = "isPhoneSmsVerifyEnabled";
+  @javax.annotation.Nullable
+  private Boolean isPhoneSmsVerifyEnabled = false;
 
   public static final String JSON_PROPERTY_BLOCK_DISPLAY_FOR_NON_TARGETED_VIEWER = "blockDisplayForNonTargetedViewer";
   @javax.annotation.Nullable
@@ -333,6 +343,30 @@ public class MetaLeadFormPlatformData {
   }
 
 
+  public MetaLeadFormPlatformData thankYouEnableMessenger(@javax.annotation.Nullable Boolean thankYouEnableMessenger) {
+    this.thankYouEnableMessenger = thankYouEnableMessenger;
+    return this;
+  }
+
+  /**
+   * Adds a &#39;Continue in Messenger&#39; option to the thank-you page (Meta thank_you_page.enable_messenger), so the lead can carry on chatting with the Page. Set thankYouButtonType to MESSAGE_BUSINESS or P2B_MESSENGER to make the chat the primary button.
+   * @return thankYouEnableMessenger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THANK_YOU_ENABLE_MESSENGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getThankYouEnableMessenger() {
+    return thankYouEnableMessenger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_THANK_YOU_ENABLE_MESSENGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThankYouEnableMessenger(@javax.annotation.Nullable Boolean thankYouEnableMessenger) {
+    this.thankYouEnableMessenger = thankYouEnableMessenger;
+  }
+
+
   public MetaLeadFormPlatformData isOptimizedForQuality(@javax.annotation.Nullable Boolean isOptimizedForQuality) {
     this.isOptimizedForQuality = isOptimizedForQuality;
     return this;
@@ -354,6 +388,30 @@ public class MetaLeadFormPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsOptimizedForQuality(@javax.annotation.Nullable Boolean isOptimizedForQuality) {
     this.isOptimizedForQuality = isOptimizedForQuality;
+  }
+
+
+  public MetaLeadFormPlatformData isPhoneSmsVerifyEnabled(@javax.annotation.Nullable Boolean isPhoneSmsVerifyEnabled) {
+    this.isPhoneSmsVerifyEnabled = isPhoneSmsVerifyEnabled;
+    return this;
+  }
+
+  /**
+   * Requires the lead to verify their phone number over SMS before the form submits (Meta is_phone_sms_verify_enabled). Only meaningful on a form with a PHONE question. Meta can restrict this parameter to apps holding a capability: when it does, the create fails with a 422 naming platformSpecificData.isPhoneSmsVerifyEnabled, and the toggle then has to be set in Meta&#39;s form builder.
+   * @return isPhoneSmsVerifyEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_PHONE_SMS_VERIFY_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsPhoneSmsVerifyEnabled() {
+    return isPhoneSmsVerifyEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_PHONE_SMS_VERIFY_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsPhoneSmsVerifyEnabled(@javax.annotation.Nullable Boolean isPhoneSmsVerifyEnabled) {
+    this.isPhoneSmsVerifyEnabled = isPhoneSmsVerifyEnabled;
   }
 
 
@@ -450,7 +508,9 @@ public class MetaLeadFormPlatformData {
         Objects.equals(this.thankYouButtonText, metaLeadFormPlatformData.thankYouButtonText) &&
         Objects.equals(this.thankYouButtonType, metaLeadFormPlatformData.thankYouButtonType) &&
         Objects.equals(this.thankYouWebsiteUrl, metaLeadFormPlatformData.thankYouWebsiteUrl) &&
+        Objects.equals(this.thankYouEnableMessenger, metaLeadFormPlatformData.thankYouEnableMessenger) &&
         Objects.equals(this.isOptimizedForQuality, metaLeadFormPlatformData.isOptimizedForQuality) &&
+        Objects.equals(this.isPhoneSmsVerifyEnabled, metaLeadFormPlatformData.isPhoneSmsVerifyEnabled) &&
         Objects.equals(this.blockDisplayForNonTargetedViewer, metaLeadFormPlatformData.blockDisplayForNonTargetedViewer) &&
         Objects.equals(this.questionPageCustomHeadline, metaLeadFormPlatformData.questionPageCustomHeadline) &&
         Objects.equals(this.contextCard, metaLeadFormPlatformData.contextCard);
@@ -458,7 +518,7 @@ public class MetaLeadFormPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(questions, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, isOptimizedForQuality, blockDisplayForNonTargetedViewer, questionPageCustomHeadline, contextCard);
+    return Objects.hash(questions, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, thankYouEnableMessenger, isOptimizedForQuality, isPhoneSmsVerifyEnabled, blockDisplayForNonTargetedViewer, questionPageCustomHeadline, contextCard);
   }
 
   @Override
@@ -474,7 +534,9 @@ public class MetaLeadFormPlatformData {
     sb.append("    thankYouButtonText: ").append(toIndentedString(thankYouButtonText)).append("\n");
     sb.append("    thankYouButtonType: ").append(toIndentedString(thankYouButtonType)).append("\n");
     sb.append("    thankYouWebsiteUrl: ").append(toIndentedString(thankYouWebsiteUrl)).append("\n");
+    sb.append("    thankYouEnableMessenger: ").append(toIndentedString(thankYouEnableMessenger)).append("\n");
     sb.append("    isOptimizedForQuality: ").append(toIndentedString(isOptimizedForQuality)).append("\n");
+    sb.append("    isPhoneSmsVerifyEnabled: ").append(toIndentedString(isPhoneSmsVerifyEnabled)).append("\n");
     sb.append("    blockDisplayForNonTargetedViewer: ").append(toIndentedString(blockDisplayForNonTargetedViewer)).append("\n");
     sb.append("    questionPageCustomHeadline: ").append(toIndentedString(questionPageCustomHeadline)).append("\n");
     sb.append("    contextCard: ").append(toIndentedString(contextCard)).append("\n");
@@ -575,9 +637,19 @@ public class MetaLeadFormPlatformData {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthankYouWebsiteUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThankYouWebsiteUrl()))));
     }
 
+    // add `thankYouEnableMessenger` to the URL query string
+    if (getThankYouEnableMessenger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sthankYouEnableMessenger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThankYouEnableMessenger()))));
+    }
+
     // add `isOptimizedForQuality` to the URL query string
     if (getIsOptimizedForQuality() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisOptimizedForQuality%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsOptimizedForQuality()))));
+    }
+
+    // add `isPhoneSmsVerifyEnabled` to the URL query string
+    if (getIsPhoneSmsVerifyEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisPhoneSmsVerifyEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsPhoneSmsVerifyEnabled()))));
     }
 
     // add `blockDisplayForNonTargetedViewer` to the URL query string

@@ -39,7 +39,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## addMessageReaction
 
-> UpdateYoutubeDefaultPlaylist200Response addMessageReaction(conversationId, messageId, addMessageReactionRequest)
+> AddMessageReaction200Response addMessageReaction(conversationId, messageId, addMessageReactionRequest)
 
 Add reaction
 
@@ -67,10 +67,10 @@ public class Example {
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID
-        String messageId = "messageId_example"; // String | The platform message ID to react to
+        String messageId = "messageId_example"; // String | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
         AddMessageReactionRequest addMessageReactionRequest = new AddMessageReactionRequest(); // AddMessageReactionRequest | 
         try {
-            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.addMessageReaction(conversationId, messageId, addMessageReactionRequest);
+            AddMessageReaction200Response result = apiInstance.addMessageReaction(conversationId, messageId, addMessageReactionRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#addMessageReaction");
@@ -89,12 +89,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID | |
-| **messageId** | **String**| The platform message ID to react to | |
+| **messageId** | **String**| The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) | |
 | **addMessageReactionRequest** | [**AddMessageReactionRequest**](AddMessageReactionRequest.md)|  | |
 
 ### Return type
 
-[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+[**AddMessageReaction200Response**](AddMessageReaction200Response.md)
 
 
 ### Authorization
@@ -109,15 +109,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Reaction added |  -  |
+| **200** | The platform accepted the reaction request. This does not guarantee the reaction was placed: the platform never confirms what it acted on. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **404** | Account or conversation not found |  -  |
+| **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
 ## addMessageReactionWithHttpInfo
 
-> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addMessageReaction addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest)
+> ApiResponse<AddMessageReaction200Response> addMessageReaction addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest)
 
 Add reaction
 
@@ -146,10 +146,10 @@ public class Example {
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID
-        String messageId = "messageId_example"; // String | The platform message ID to react to
+        String messageId = "messageId_example"; // String | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
         AddMessageReactionRequest addMessageReactionRequest = new AddMessageReactionRequest(); // AddMessageReactionRequest | 
         try {
-            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+            ApiResponse<AddMessageReaction200Response> response = apiInstance.addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -170,12 +170,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID | |
-| **messageId** | **String**| The platform message ID to react to | |
+| **messageId** | **String**| The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) | |
 | **addMessageReactionRequest** | [**AddMessageReactionRequest**](AddMessageReactionRequest.md)|  | |
 
 ### Return type
 
-ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+ApiResponse<[**AddMessageReaction200Response**](AddMessageReaction200Response.md)>
 
 
 ### Authorization
@@ -190,11 +190,11 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Reaction added |  -  |
+| **200** | The platform accepted the reaction request. This does not guarantee the reaction was placed: the platform never confirms what it acted on. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **404** | Account or conversation not found |  -  |
+| **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
 
 ## createInboxConversation
@@ -1489,7 +1489,7 @@ ApiResponse<[**MarkConversationRead200Response**](MarkConversationRead200Respons
 
 ## removeMessageReaction
 
-> UpdateYoutubeDefaultPlaylist200Response removeMessageReaction(conversationId, messageId, accountId)
+> RemoveMessageReaction200Response removeMessageReaction(conversationId, messageId, accountId)
 
 Remove reaction
 
@@ -1517,10 +1517,10 @@ public class Example {
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID
-        String messageId = "messageId_example"; // String | The platform message ID
+        String messageId = "messageId_example"; // String | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
         String accountId = "accountId_example"; // String | Social account ID
         try {
-            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.removeMessageReaction(conversationId, messageId, accountId);
+            RemoveMessageReaction200Response result = apiInstance.removeMessageReaction(conversationId, messageId, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#removeMessageReaction");
@@ -1539,12 +1539,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID | |
-| **messageId** | **String**| The platform message ID | |
+| **messageId** | **String**| The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) | |
 | **accountId** | **String**| Social account ID | |
 
 ### Return type
 
-[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+[**RemoveMessageReaction200Response**](RemoveMessageReaction200Response.md)
 
 
 ### Authorization
@@ -1559,15 +1559,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Reaction removed |  -  |
+| **200** | The platform accepted the removal request. This does not guarantee a reaction was removed: the platform never confirms what it acted on, and a reaction placed by the other participant cannot be removed (platform rule). Check &#x60;fromMe&#x60; on GET /messages to know who placed a reaction. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **404** | Account or conversation not found |  -  |
+| **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
 ## removeMessageReactionWithHttpInfo
 
-> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeMessageReaction removeMessageReactionWithHttpInfo(conversationId, messageId, accountId)
+> ApiResponse<RemoveMessageReaction200Response> removeMessageReaction removeMessageReactionWithHttpInfo(conversationId, messageId, accountId)
 
 Remove reaction
 
@@ -1596,10 +1596,10 @@ public class Example {
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID
-        String messageId = "messageId_example"; // String | The platform message ID
+        String messageId = "messageId_example"; // String | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
         String accountId = "accountId_example"; // String | Social account ID
         try {
-            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.removeMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+            ApiResponse<RemoveMessageReaction200Response> response = apiInstance.removeMessageReactionWithHttpInfo(conversationId, messageId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1620,12 +1620,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID | |
-| **messageId** | **String**| The platform message ID | |
+| **messageId** | **String**| The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) | |
 | **accountId** | **String**| Social account ID | |
 
 ### Return type
 
-ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+ApiResponse<[**RemoveMessageReaction200Response**](RemoveMessageReaction200Response.md)>
 
 
 ### Authorization
@@ -1640,11 +1640,11 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Reaction removed |  -  |
+| **200** | The platform accepted the removal request. This does not guarantee a reaction was removed: the platform never confirms what it acted on, and a reaction placed by the other participant cannot be removed (platform rule). Check &#x60;fromMe&#x60; on GET /messages to know who placed a reaction. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **404** | Account or conversation not found |  -  |
+| **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
 
 ## searchInboxConversations

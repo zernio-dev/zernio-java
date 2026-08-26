@@ -16644,7 +16644,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The platform message ID
+      - description: The platform message ID (as returned by GET /messages) or the
+          Zernio message ID (as returned by the reaction webhook)
         explode: false
         in: path
         name: messageId
@@ -16665,8 +16666,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
-          description: Reaction removed
+                $ref: "#/components/schemas/removeMessageReaction_200_response"
+          description: "The platform accepted the removal request. This does not guarantee\
+            \ a reaction was removed: the platform never confirms what it acted on,\
+            \ and a reaction placed by the other participant cannot be removed (platform\
+            \ rule). Check `fromMe` on GET /messages to know who placed a reaction."
         "400":
           description: Platform does not support reactions or invalid request
         "401":
@@ -16674,7 +16678,8 @@ paths:
         "403":
           description: Inbox addon required
         "404":
-          description: Account or conversation not found
+          description: "Account, conversation or message not found (message_not_found\
+            \ when messageId does not resolve to a message in this conversation)"
       security:
       - bearerAuth: []
       summary: Remove reaction
@@ -16701,7 +16706,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The platform message ID to react to
+      - description: The platform message ID (as returned by GET /messages) or the
+          Zernio message ID (as returned by the reaction webhook)
         explode: false
         in: path
         name: messageId
@@ -16720,8 +16726,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
-          description: Reaction added
+                $ref: "#/components/schemas/addMessageReaction_200_response"
+          description: "The platform accepted the reaction request. This does not\
+            \ guarantee the reaction was placed: the platform never confirms what\
+            \ it acted on."
         "400":
           description: Platform does not support reactions or invalid request
         "401":
@@ -16729,7 +16737,8 @@ paths:
         "403":
           description: Inbox addon required
         "404":
-          description: Account or conversation not found
+          description: "Account, conversation or message not found (message_not_found\
+            \ when messageId does not resolve to a message in this conversation)"
       security:
       - bearerAuth: []
       summary: Add reaction
@@ -32632,8 +32641,9 @@ paths:
         "403":
           description: Ads add-on required.
         "422":
-          description: Meta rejected the lead form with error code 3. The Facebook
-            Page normally needs a Page admin to accept the Lead Ads Terms of Service.
+          description: "Meta rejected the lead form. Code 3 is Meta's generic app-capability\
+            \ error and does not name a field; when the request set isPhoneSmsVerifyEnabled,\
+            \ the response names that field as the one to drop first."
       summary: Create a lead form
       tags:
       - Lead Gen
@@ -68681,6 +68691,34 @@ components:
       required:
       - accountId
       - emoji
+    addMessageReaction_200_response:
+      example:
+        success: true
+        messageId: messageId
+        platformMessageId: platformMessageId
+      properties:
+        success:
+          type: boolean
+        messageId:
+          description: The Zernio message ID the reaction was resolved against
+          type: string
+        platformMessageId:
+          description: The platform message ID the reaction was sent for
+          type: string
+    removeMessageReaction_200_response:
+      example:
+        success: true
+        messageId: messageId
+        platformMessageId: platformMessageId
+      properties:
+        success:
+          type: boolean
+        messageId:
+          description: The Zernio message ID the removal was resolved against
+          type: string
+        platformMessageId:
+          description: The platform message ID the removal was sent for
+          type: string
     uploadMediaDirect_request:
       properties:
         file:
@@ -90393,9 +90431,25 @@ components:
         thankYouWebsiteUrl:
           format: uri
           type: string
+        thankYouEnableMessenger:
+          default: false
+          description: "Adds a 'Continue in Messenger' option to the thank-you page\
+            \ (Meta thank_you_page.enable_messenger), so the lead can carry on chatting\
+            \ with the Page. Set thankYouButtonType to MESSAGE_BUSINESS or P2B_MESSENGER\
+            \ to make the chat the primary button."
+          type: boolean
         isOptimizedForQuality:
           description: Set true for a higher-intent form (adds a review step before
             submit).
+          type: boolean
+        isPhoneSmsVerifyEnabled:
+          default: false
+          description: "Requires the lead to verify their phone number over SMS before\
+            \ the form submits (Meta is_phone_sms_verify_enabled). Only meaningful\
+            \ on a form with a PHONE question. Meta can restrict this parameter to\
+            \ apps holding a capability: when it does, the create fails with a 422\
+            \ naming platformSpecificData.isPhoneSmsVerifyEnabled, and the toggle\
+            \ then has to be set in Meta's form builder."
           type: boolean
         blockDisplayForNonTargetedViewer:
           type: boolean

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-26T11:56:02.123986180Z[Etc/UTC]
+- Build date: 2026-08-26T11:58:13.589053156Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1337,6 +1337,7 @@ Class | Method | HTTP request | Description
  - [AddConversionAssociations200ResponseFailedInner](docs/AddConversionAssociations200ResponseFailedInner.md)
  - [AddConversionAssociationsRequest](docs/AddConversionAssociationsRequest.md)
  - [AddDiscordMemberRole200Response](docs/AddDiscordMemberRole200Response.md)
+ - [AddMessageReaction200Response](docs/AddMessageReaction200Response.md)
  - [AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
  - [AddTrackingTagSharedAccount201Response](docs/AddTrackingTagSharedAccount201Response.md)
  - [AddTrackingTagSharedAccountRequest](docs/AddTrackingTagSharedAccountRequest.md)
@@ -2441,6 +2442,7 @@ Class | Method | HTTP request | Description
  - [RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
+ - [RemoveMessageReaction200Response](docs/RemoveMessageReaction200Response.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [ReplaceAdAudienceCompanies200Response](docs/ReplaceAdAudienceCompanies200Response.md)
  - [ReplaceAdAudienceCompaniesRequest](docs/ReplaceAdAudienceCompaniesRequest.md)

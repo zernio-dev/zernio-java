@@ -52,6 +52,7 @@ docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
 docs/AddDiscordMemberRole200Response.md
+docs/AddMessageReaction200Response.md
 docs/AddMessageReactionRequest.md
 docs/AddTrackingTagSharedAccount201Response.md
 docs/AddTrackingTagSharedAccountRequest.md
@@ -1193,6 +1194,7 @@ docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
 docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
+docs/RemoveMessageReaction200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
@@ -1922,6 +1924,7 @@ src/main/java/dev/zernio/model/AddConversionAssociations200Response.java
 src/main/java/dev/zernio/model/AddConversionAssociations200ResponseFailedInner.java
 src/main/java/dev/zernio/model/AddConversionAssociationsRequest.java
 src/main/java/dev/zernio/model/AddDiscordMemberRole200Response.java
+src/main/java/dev/zernio/model/AddMessageReaction200Response.java
 src/main/java/dev/zernio/model/AddMessageReactionRequest.java
 src/main/java/dev/zernio/model/AddTrackingTagSharedAccount201Response.java
 src/main/java/dev/zernio/model/AddTrackingTagSharedAccountRequest.java
@@ -3026,6 +3029,7 @@ src/main/java/dev/zernio/model/RemediatePhoneNumberRequestDocumentsInnerOneOf.ja
 src/main/java/dev/zernio/model/RemoveBookmark200Response.java
 src/main/java/dev/zernio/model/RemoveConversionAssociations200Response.java
 src/main/java/dev/zernio/model/RemoveDiscordMemberRole200Response.java
+src/main/java/dev/zernio/model/RemoveMessageReaction200Response.java
 src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompanies200Response.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequest.java
@@ -3611,3 +3615,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AddMessageReaction200ResponseTest.java
+src/test/java/dev/zernio/model/RemoveMessageReaction200ResponseTest.java
