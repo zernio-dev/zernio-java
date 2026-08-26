@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:11:12.560030797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:21:45.242379967Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplatesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -174,11 +174,12 @@ public class WhatsAppTemplatesApi {
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
    * @param accountId WhatsApp social account ID (required)
    * @param name Exact library template name (required)
+   * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @return GetWhatsAppLibraryTemplate200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppLibraryTemplate200Response getWhatsAppLibraryTemplate(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name) throws ApiException {
-    return getWhatsAppLibraryTemplate(accountId, name, null);
+  public GetWhatsAppLibraryTemplate200Response getWhatsAppLibraryTemplate(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String language) throws ApiException {
+    return getWhatsAppLibraryTemplate(accountId, name, language, null);
   }
 
   /**
@@ -186,12 +187,13 @@ public class WhatsAppTemplatesApi {
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
    * @param accountId WhatsApp social account ID (required)
    * @param name Exact library template name (required)
+   * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppLibraryTemplate200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppLibraryTemplate200Response getWhatsAppLibraryTemplate(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppLibraryTemplate200Response> localVarResponse = getWhatsAppLibraryTemplateWithHttpInfo(accountId, name, headers);
+  public GetWhatsAppLibraryTemplate200Response getWhatsAppLibraryTemplate(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppLibraryTemplate200Response> localVarResponse = getWhatsAppLibraryTemplateWithHttpInfo(accountId, name, language, headers);
     return localVarResponse.getData();
   }
 
@@ -200,11 +202,12 @@ public class WhatsAppTemplatesApi {
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
    * @param accountId WhatsApp social account ID (required)
    * @param name Exact library template name (required)
+   * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @return ApiResponse&lt;GetWhatsAppLibraryTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppLibraryTemplate200Response> getWhatsAppLibraryTemplateWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name) throws ApiException {
-    return getWhatsAppLibraryTemplateWithHttpInfo(accountId, name, null);
+  public ApiResponse<GetWhatsAppLibraryTemplate200Response> getWhatsAppLibraryTemplateWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String language) throws ApiException {
+    return getWhatsAppLibraryTemplateWithHttpInfo(accountId, name, language, null);
   }
 
   /**
@@ -212,12 +215,13 @@ public class WhatsAppTemplatesApi {
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
    * @param accountId WhatsApp social account ID (required)
    * @param name Exact library template name (required)
+   * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppLibraryTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppLibraryTemplate200Response> getWhatsAppLibraryTemplateWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getWhatsAppLibraryTemplateRequestBuilder(accountId, name, headers);
+  public ApiResponse<GetWhatsAppLibraryTemplate200Response> getWhatsAppLibraryTemplateWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppLibraryTemplateRequestBuilder(accountId, name, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -264,7 +268,7 @@ public class WhatsAppTemplatesApi {
     }
   }
 
-  private HttpRequest.Builder getWhatsAppLibraryTemplateRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getWhatsAppLibraryTemplateRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppLibraryTemplate");
@@ -285,6 +289,8 @@ public class WhatsAppTemplatesApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "name";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("name", name));
+    localVarQueryParameterBaseName = "language";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("language", language));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

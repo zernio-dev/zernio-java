@@ -12,6 +12,7 @@
 |**category** | **String** |  |  [optional] |
 |**body** | **String** |  |  [optional] |
 |**bodyParams** | **List&lt;String&gt;** |  |  [optional] |
+|**availableLanguages** | **List&lt;String&gt;** |  |  [optional] |
 |**buttons** | [**List&lt;GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner&gt;**](GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.md) |  |  [optional] |
 
 

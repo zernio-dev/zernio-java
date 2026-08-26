@@ -21069,6 +21069,16 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Desired language variant (e.g. es, en_US). If the template is\
+          \ not offered in it, the first available variant is returned and named in\
+          \ the response language field."
+        explode: true
+        in: query
+        name: language
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -72944,6 +72954,9 @@ components:
           type: type
         - text: text
           type: type
+        availableLanguages:
+        - availableLanguages
+        - availableLanguages
         name: name
         language: language
         body_params:
@@ -72964,6 +72977,10 @@ components:
           items:
             type: string
           type: array
+        availableLanguages:
+          items:
+            type: string
+          type: array
         buttons:
           items:
             $ref: "#/components/schemas/getWhatsAppLibraryTemplate_200_response_template_buttons_inner"
@@ -72976,6 +72993,9 @@ components:
             type: type
           - text: text
             type: type
+          availableLanguages:
+          - availableLanguages
+          - availableLanguages
           name: name
           language: language
           body_params:

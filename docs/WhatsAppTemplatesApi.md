@@ -11,7 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## getWhatsAppLibraryTemplate
 
-> GetWhatsAppLibraryTemplate200Response getWhatsAppLibraryTemplate(accountId, name)
+> GetWhatsAppLibraryTemplate200Response getWhatsAppLibraryTemplate(accountId, name, language)
 
 Look up a library template
 
@@ -40,8 +40,9 @@ public class Example {
         WhatsAppTemplatesApi apiInstance = new WhatsAppTemplatesApi(defaultClient);
         String accountId = "accountId_example"; // String | WhatsApp social account ID
         String name = "name_example"; // String | Exact library template name
+        String language = "language_example"; // String | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field.
         try {
-            GetWhatsAppLibraryTemplate200Response result = apiInstance.getWhatsAppLibraryTemplate(accountId, name);
+            GetWhatsAppLibraryTemplate200Response result = apiInstance.getWhatsAppLibraryTemplate(accountId, name, language);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppTemplatesApi#getWhatsAppLibraryTemplate");
@@ -61,6 +62,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| WhatsApp social account ID | |
 | **name** | **String**| Exact library template name | |
+| **language** | **String**| Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. | [optional] |
 
 ### Return type
 
@@ -86,7 +88,7 @@ public class Example {
 
 ## getWhatsAppLibraryTemplateWithHttpInfo
 
-> ApiResponse<GetWhatsAppLibraryTemplate200Response> getWhatsAppLibraryTemplate getWhatsAppLibraryTemplateWithHttpInfo(accountId, name)
+> ApiResponse<GetWhatsAppLibraryTemplate200Response> getWhatsAppLibraryTemplate getWhatsAppLibraryTemplateWithHttpInfo(accountId, name, language)
 
 Look up a library template
 
@@ -116,8 +118,9 @@ public class Example {
         WhatsAppTemplatesApi apiInstance = new WhatsAppTemplatesApi(defaultClient);
         String accountId = "accountId_example"; // String | WhatsApp social account ID
         String name = "name_example"; // String | Exact library template name
+        String language = "language_example"; // String | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field.
         try {
-            ApiResponse<GetWhatsAppLibraryTemplate200Response> response = apiInstance.getWhatsAppLibraryTemplateWithHttpInfo(accountId, name);
+            ApiResponse<GetWhatsAppLibraryTemplate200Response> response = apiInstance.getWhatsAppLibraryTemplateWithHttpInfo(accountId, name, language);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -139,6 +142,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| WhatsApp social account ID | |
 | **name** | **String**| Exact library template name | |
+| **language** | **String**| Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. | [optional] |
 
 ### Return type
 

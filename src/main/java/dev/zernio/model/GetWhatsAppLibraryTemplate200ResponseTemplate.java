@@ -41,9 +41,10 @@ import dev.zernio.ApiClient;
   GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_CATEGORY,
   GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_BODY,
   GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_BODY_PARAMS,
+  GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_AVAILABLE_LANGUAGES,
   GetWhatsAppLibraryTemplate200ResponseTemplate.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:11:12.560030797Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:21:45.242379967Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppLibraryTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -64,6 +65,10 @@ public class GetWhatsAppLibraryTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_BODY_PARAMS = "body_params";
   @javax.annotation.Nullable
   private List<String> bodyParams = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_AVAILABLE_LANGUAGES = "availableLanguages";
+  @javax.annotation.Nullable
+  private List<String> availableLanguages = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BUTTONS = "buttons";
   @javax.annotation.Nullable
@@ -200,6 +205,38 @@ public class GetWhatsAppLibraryTemplate200ResponseTemplate {
   }
 
 
+  public GetWhatsAppLibraryTemplate200ResponseTemplate availableLanguages(@javax.annotation.Nullable List<String> availableLanguages) {
+    this.availableLanguages = availableLanguages;
+    return this;
+  }
+
+  public GetWhatsAppLibraryTemplate200ResponseTemplate addAvailableLanguagesItem(String availableLanguagesItem) {
+    if (this.availableLanguages == null) {
+      this.availableLanguages = new ArrayList<>();
+    }
+    this.availableLanguages.add(availableLanguagesItem);
+    return this;
+  }
+
+  /**
+   * Get availableLanguages
+   * @return availableLanguages
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getAvailableLanguages() {
+    return availableLanguages;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAvailableLanguages(@javax.annotation.Nullable List<String> availableLanguages) {
+    this.availableLanguages = availableLanguages;
+  }
+
+
   public GetWhatsAppLibraryTemplate200ResponseTemplate buttons(@javax.annotation.Nullable List<GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner> buttons) {
     this.buttons = buttons;
     return this;
@@ -249,12 +286,13 @@ public class GetWhatsAppLibraryTemplate200ResponseTemplate {
         Objects.equals(this.category, getWhatsAppLibraryTemplate200ResponseTemplate.category) &&
         Objects.equals(this.body, getWhatsAppLibraryTemplate200ResponseTemplate.body) &&
         Objects.equals(this.bodyParams, getWhatsAppLibraryTemplate200ResponseTemplate.bodyParams) &&
+        Objects.equals(this.availableLanguages, getWhatsAppLibraryTemplate200ResponseTemplate.availableLanguages) &&
         Objects.equals(this.buttons, getWhatsAppLibraryTemplate200ResponseTemplate.buttons);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, language, category, body, bodyParams, buttons);
+    return Objects.hash(name, language, category, body, bodyParams, availableLanguages, buttons);
   }
 
   @Override
@@ -266,6 +304,7 @@ public class GetWhatsAppLibraryTemplate200ResponseTemplate {
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    bodyParams: ").append(toIndentedString(bodyParams)).append("\n");
+    sb.append("    availableLanguages: ").append(toIndentedString(availableLanguages)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -340,6 +379,15 @@ public class GetWhatsAppLibraryTemplate200ResponseTemplate {
         joiner.add(String.format(java.util.Locale.ROOT, "%sbody_params%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getBodyParams().get(i)))));
+      }
+    }
+
+    // add `availableLanguages` to the URL query string
+    if (getAvailableLanguages() != null) {
+      for (int i = 0; i < getAvailableLanguages().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%savailableLanguages%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getAvailableLanguages().get(i)))));
       }
     }
 
