@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.InboxWebhookAccount;
 import dev.zernio.model.InboxWebhookConversation;
 import dev.zernio.model.WebhookPayloadMessageSentMessage;
+import dev.zernio.model.WebhookPayloadMessageSentMetadata;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -42,9 +43,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSent.JSON_PROPERTY_MESSAGE,
   WebhookPayloadMessageSent.JSON_PROPERTY_CONVERSATION,
   WebhookPayloadMessageSent.JSON_PROPERTY_ACCOUNT,
+  WebhookPayloadMessageSent.JSON_PROPERTY_METADATA,
   WebhookPayloadMessageSent.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -98,6 +100,10 @@ public class WebhookPayloadMessageSent {
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   @javax.annotation.Nonnull
   private InboxWebhookAccount account;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageSentMetadata metadata;
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -226,6 +232,30 @@ public class WebhookPayloadMessageSent {
   }
 
 
+  public WebhookPayloadMessageSent metadata(@javax.annotation.Nullable WebhookPayloadMessageSentMetadata metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageSentMetadata getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(@javax.annotation.Nullable WebhookPayloadMessageSentMetadata metadata) {
+    this.metadata = metadata;
+  }
+
+
   public WebhookPayloadMessageSent timestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
@@ -267,12 +297,13 @@ public class WebhookPayloadMessageSent {
         Objects.equals(this.message, webhookPayloadMessageSent.message) &&
         Objects.equals(this.conversation, webhookPayloadMessageSent.conversation) &&
         Objects.equals(this.account, webhookPayloadMessageSent.account) &&
+        Objects.equals(this.metadata, webhookPayloadMessageSent.metadata) &&
         Objects.equals(this.timestamp, webhookPayloadMessageSent.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, event, message, conversation, account, timestamp);
+    return Objects.hash(id, event, message, conversation, account, metadata, timestamp);
   }
 
   @Override
@@ -284,6 +315,7 @@ public class WebhookPayloadMessageSent {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    conversation: ").append(toIndentedString(conversation)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -355,6 +387,11 @@ public class WebhookPayloadMessageSent {
     // add `account` to the URL query string
     if (getAccount() != null) {
       joiner.add(getAccount().toUrlQueryString(prefix + "account" + suffix));
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      joiner.add(getMetadata().toUrlQueryString(prefix + "metadata" + suffix));
     }
 
     // add `timestamp` to the URL query string

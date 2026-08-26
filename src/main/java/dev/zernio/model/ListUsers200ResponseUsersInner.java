@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   ListUsers200ResponseUsersInner.JSON_PROPERTY_ROLE,
   ListUsers200ResponseUsersInner.JSON_PROPERTY_IS_ROOT,
   ListUsers200ResponseUsersInner.JSON_PROPERTY_PROFILE_ACCESS,
-  ListUsers200ResponseUsersInner.JSON_PROPERTY_CREATED_AT
+  ListUsers200ResponseUsersInner.JSON_PROPERTY_CREATED_AT,
+  ListUsers200ResponseUsersInner.JSON_PROPERTY_LAST_LOGIN_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListUsers200ResponseUsersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -73,6 +74,10 @@ public class ListUsers200ResponseUsersInner {
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
   private OffsetDateTime createdAt;
+
+  public static final String JSON_PROPERTY_LAST_LOGIN_AT = "lastLoginAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime lastLoginAt;
 
   public ListUsers200ResponseUsersInner() { 
   }
@@ -253,6 +258,30 @@ public class ListUsers200ResponseUsersInner {
   }
 
 
+  public ListUsers200ResponseUsersInner lastLoginAt(@javax.annotation.Nullable OffsetDateTime lastLoginAt) {
+    this.lastLoginAt = lastLoginAt;
+    return this;
+  }
+
+  /**
+   * Last sign-in, stamped at most once an hour, so it is accurate to within an hour rather than to the exact session. Omitted for members with no recorded sign-in since the field shipped, which does not mean they never signed in.
+   * @return lastLoginAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LAST_LOGIN_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getLastLoginAt() {
+    return lastLoginAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_LOGIN_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastLoginAt(@javax.annotation.Nullable OffsetDateTime lastLoginAt) {
+    this.lastLoginAt = lastLoginAt;
+  }
+
+
   /**
    * Return true if this listUsers_200_response_users_inner object is equal to o.
    */
@@ -271,12 +300,13 @@ public class ListUsers200ResponseUsersInner {
         Objects.equals(this.role, listUsers200ResponseUsersInner.role) &&
         Objects.equals(this.isRoot, listUsers200ResponseUsersInner.isRoot) &&
         Objects.equals(this.profileAccess, listUsers200ResponseUsersInner.profileAccess) &&
-        Objects.equals(this.createdAt, listUsers200ResponseUsersInner.createdAt);
+        Objects.equals(this.createdAt, listUsers200ResponseUsersInner.createdAt) &&
+        Objects.equals(this.lastLoginAt, listUsers200ResponseUsersInner.lastLoginAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, email, role, isRoot, profileAccess, createdAt);
+    return Objects.hash(id, name, email, role, isRoot, profileAccess, createdAt, lastLoginAt);
   }
 
   @Override
@@ -290,6 +320,7 @@ public class ListUsers200ResponseUsersInner {
     sb.append("    isRoot: ").append(toIndentedString(isRoot)).append("\n");
     sb.append("    profileAccess: ").append(toIndentedString(profileAccess)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    lastLoginAt: ").append(toIndentedString(lastLoginAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -374,6 +405,11 @@ public class ListUsers200ResponseUsersInner {
     // add `createdAt` to the URL query string
     if (getCreatedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%screatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedAt()))));
+    }
+
+    // add `lastLoginAt` to the URL query string
+    if (getLastLoginAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastLoginAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastLoginAt()))));
     }
 
     return joiner.toString();

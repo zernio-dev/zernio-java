@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   RespondToPhoneNumberReviewerRequest.JSON_PROPERTY_ENTITY_TYPE,
   RespondToPhoneNumberReviewerRequest.JSON_PROPERTY_ATTACHMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RespondToPhoneNumberReviewerRequest {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

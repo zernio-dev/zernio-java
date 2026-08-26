@@ -48,7 +48,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = GetConversionMetrics200ResponseRowsInnerMetricsValue.GetConversionMetrics200ResponseRowsInnerMetricsValueDeserializer.class)
 @JsonSerialize(using = GetConversionMetrics200ResponseRowsInnerMetricsValue.GetConversionMetrics200ResponseRowsInnerMetricsValueSerializer.class)
 public class GetConversionMetrics200ResponseRowsInnerMetricsValue extends AbstractOpenApiSchema {

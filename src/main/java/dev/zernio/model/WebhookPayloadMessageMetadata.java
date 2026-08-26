@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
@@ -226,7 +226,7 @@ public class WebhookPayloadMessageMetadata {
   }
 
   /**
-   * platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On &#x60;message.sent&#x60; echoes (operator replied from the native app) this is the only metadata field populated. 
+   * platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). Outgoing quote-replies carry the same field on &#x60;message.sent&#x60;; see WebhookPayloadMessageSent.metadata. 
    * @return quotedMessageId
    */
   @javax.annotation.Nullable

@@ -2527,7 +2527,7 @@ ApiResponse<Void>
 
 Message sent event
 
-Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;, so a quote-reply arrives with &#x60;metadata.quotedMessageId&#x60; and mirroring CRMs can thread it without a lookup. 
 
 ### Example
 
@@ -2596,7 +2596,7 @@ null (empty response body)
 
 Message sent event
 
-Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;, so a quote-reply arrives with &#x60;metadata.quotedMessageId&#x60; and mirroring CRMs can thread it without a lookup. 
 
 ### Example
 

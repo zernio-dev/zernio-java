@@ -88,7 +88,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2060,7 +2060,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;, so a quote-reply arrives with &#x60;metadata.quotedMessageId&#x60; and mirroring CRMs can thread it without a lookup. 
    * @param webhookPayloadMessageSent  (required)
    * @throws ApiException if fails to make API call
    */
@@ -2070,7 +2070,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;, so a quote-reply arrives with &#x60;metadata.quotedMessageId&#x60; and mirroring CRMs can thread it without a lookup. 
    * @param webhookPayloadMessageSent  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -2081,7 +2081,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;, so a quote-reply arrives with &#x60;metadata.quotedMessageId&#x60; and mirroring CRMs can thread it without a lookup. 
    * @param webhookPayloadMessageSent  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -2092,7 +2092,7 @@ public class WebhookEventsApi {
 
   /**
    * Message sent event
-   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+   * Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;, so a quote-reply arrives with &#x60;metadata.quotedMessageId&#x60; and mirroring CRMs can thread it without a lookup. 
    * @param webhookPayloadMessageSent  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

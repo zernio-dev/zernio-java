@@ -1705,6 +1705,7 @@ docs/WebhookPayloadMessageSent.md
 docs/WebhookPayloadMessageSentMessage.md
 docs/WebhookPayloadMessageSentMessageAttachmentsInner.md
 docs/WebhookPayloadMessageSentMessageSender.md
+docs/WebhookPayloadMessageSentMetadata.md
 docs/WebhookPayloadPost.md
 docs/WebhookPayloadPostPlatform.md
 docs/WebhookPayloadPostPlatformAccount.md
@@ -3528,6 +3529,7 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageSent.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessage.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessageAttachmentsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessageSender.java
+src/main/java/dev/zernio/model/WebhookPayloadMessageSentMetadata.java
 src/main/java/dev/zernio/model/WebhookPayloadPost.java
 src/main/java/dev/zernio/model/WebhookPayloadPostPlatform.java
 src/main/java/dev/zernio/model/WebhookPayloadPostPlatformAccount.java
@@ -3615,3 +3617,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadMessageSentMetadataTest.java

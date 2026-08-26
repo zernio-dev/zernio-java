@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Internal message ID |  |
 |**conversationId** | **String** | Internal conversation ID |  |
-|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
+|**platform** | [**PlatformEnum**](#PlatformEnum) | Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent. |  |
 |**platformMessageId** | **String** | Platform&#39;s message ID |  |
 |**direction** | [**DirectionEnum**](#DirectionEnum) |  |  |
 |**text** | **String** | Message text content |  |
@@ -29,6 +29,10 @@
 | FACEBOOK | &quot;facebook&quot; |
 | TELEGRAM | &quot;telegram&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
+| TWITTER | &quot;twitter&quot; |
+| REDDIT | &quot;reddit&quot; |
+| BLUESKY | &quot;bluesky&quot; |
+| SLACK | &quot;slack&quot; |
 
 
 

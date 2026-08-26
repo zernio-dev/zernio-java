@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ConfigureTikTokAdsBrandIdentityRequest.JSON_PROPERTY_DISPLAY_NAME,
   ConfigureTikTokAdsBrandIdentityRequest.JSON_PROPERTY_IMAGE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConfigureTikTokAdsBrandIdentityRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

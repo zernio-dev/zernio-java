@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_IS_READ,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -61,7 +61,7 @@ public class WebhookPayloadMessageSentMessage {
   private String conversationId;
 
   /**
-   * Gets or Sets platform
+   * Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent.
    */
   public enum PlatformEnum {
     INSTAGRAM(String.valueOf("instagram")),
@@ -70,7 +70,15 @@ public class WebhookPayloadMessageSentMessage {
     
     TELEGRAM(String.valueOf("telegram")),
     
-    WHATSAPP(String.valueOf("whatsapp"));
+    WHATSAPP(String.valueOf("whatsapp")),
+    
+    TWITTER(String.valueOf("twitter")),
+    
+    REDDIT(String.valueOf("reddit")),
+    
+    BLUESKY(String.valueOf("bluesky")),
+    
+    SLACK(String.valueOf("slack"));
 
     private String value;
 
@@ -262,7 +270,7 @@ public class WebhookPayloadMessageSentMessage {
   }
 
   /**
-   * Get platform
+   * Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent.
    * @return platform
    */
   @javax.annotation.Nonnull

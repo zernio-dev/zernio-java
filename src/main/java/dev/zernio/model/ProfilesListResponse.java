@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ProfilesListResponse.JSON_PROPERTY_SKIP,
   ProfilesListResponse.JSON_PROPERTY_LIMIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:00:27.961850700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T12:07:13.291824968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesListResponse {
   public static final String JSON_PROPERTY_PROFILES = "profiles";
   @javax.annotation.Nullable

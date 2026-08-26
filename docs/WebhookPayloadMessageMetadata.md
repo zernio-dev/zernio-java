@@ -8,7 +8,7 @@ Platform-specific message context (present when the message is a quick reply tap
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**quotedMessageId** | **String** | platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On &#x60;message.sent&#x60; echoes (operator replied from the native app) this is the only metadata field populated.  |  [optional] |
+|**quotedMessageId** | **String** | platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). Outgoing quote-replies carry the same field on &#x60;message.sent&#x60;; see WebhookPayloadMessageSent.metadata.  |  [optional] |
 |**quickReplyPayload** | **String** | Payload from a quick reply tap (Facebook/Instagram Messenger). |  [optional] |
 |**postbackPayload** | **String** | Payload from a postback button tap (Facebook/Instagram Messenger). |  [optional] |
 |**postbackTitle** | **String** | Title of the tapped postback button (Facebook/Instagram Messenger). |  [optional] |
