@@ -89,7 +89,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:13:21.953508788Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:15:49.784833812Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1625,7 +1625,7 @@ public class WebhookEventsApi {
 
   /**
    * Message edited event
-   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full editHistory so consumers can show prior versions. 
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, Telegram, and WhatsApp. The payload includes the full editHistory so consumers can show prior versions. 
    * @param webhookPayloadMessageEdited  (required)
    * @throws ApiException if fails to make API call
    */
@@ -1635,7 +1635,7 @@ public class WebhookEventsApi {
 
   /**
    * Message edited event
-   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full editHistory so consumers can show prior versions. 
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, Telegram, and WhatsApp. The payload includes the full editHistory so consumers can show prior versions. 
    * @param webhookPayloadMessageEdited  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -1646,7 +1646,7 @@ public class WebhookEventsApi {
 
   /**
    * Message edited event
-   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full editHistory so consumers can show prior versions. 
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, Telegram, and WhatsApp. The payload includes the full editHistory so consumers can show prior versions. 
    * @param webhookPayloadMessageEdited  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -1657,7 +1657,7 @@ public class WebhookEventsApi {
 
   /**
    * Message edited event
-   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full editHistory so consumers can show prior versions. 
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, Telegram, and WhatsApp. The payload includes the full editHistory so consumers can show prior versions. 
    * @param webhookPayloadMessageEdited  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
