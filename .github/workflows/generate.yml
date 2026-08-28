@@ -45,10 +45,15 @@ jobs:
           curl -f --retry 5 --retry-delay 2 --retry-all-errors --max-time 60 -o openapi.yaml https://zernio.com/openapi.yaml
           echo "Fetched OpenAPI spec"
 
+      - name: Normalize spec for the Java generator
+        run: |
+          python3 -c 'import yaml' 2>/dev/null || python3 -m pip install --quiet --break-system-packages pyyaml
+          python3 scripts/normalize-spec-for-java.py openapi.yaml "$RUNNER_TEMP/openapi-java.yaml"
+
       - name: Generate SDK
         run: |
           openapi-generator-cli generate \
-            -i openapi.yaml \
+            -i "$RUNNER_TEMP/openapi-java.yaml" \
             -g java \
             -o . \
             --skip-validate-spec \
