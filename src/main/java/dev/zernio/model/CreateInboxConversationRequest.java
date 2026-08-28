@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateInboxConversationRequestHeaderLocation;
 import dev.zernio.model.CreateInboxConversationRequestHeaderMedia;
 import dev.zernio.model.CreateInboxConversationRequestTemplateButtonParamsInner;
 import java.util.ArrayList;
@@ -48,9 +49,10 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS,
-  CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA
+  CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA,
+  CreateInboxConversationRequest.JSON_PROPERTY_HEADER_LOCATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T15:49:44.517199519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T16:33:46.641856518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -132,6 +134,10 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_HEADER_MEDIA = "headerMedia";
   @javax.annotation.Nullable
   private CreateInboxConversationRequestHeaderMedia headerMedia;
+
+  public static final String JSON_PROPERTY_HEADER_LOCATION = "headerLocation";
+  @javax.annotation.Nullable
+  private CreateInboxConversationRequestHeaderLocation headerLocation;
 
   public CreateInboxConversationRequest() { 
   }
@@ -440,6 +446,30 @@ public class CreateInboxConversationRequest {
   }
 
 
+  public CreateInboxConversationRequest headerLocation(@javax.annotation.Nullable CreateInboxConversationRequestHeaderLocation headerLocation) {
+    this.headerLocation = headerLocation;
+    return this;
+  }
+
+  /**
+   * Get headerLocation
+   * @return headerLocation
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADER_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateInboxConversationRequestHeaderLocation getHeaderLocation() {
+    return headerLocation;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADER_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeaderLocation(@javax.annotation.Nullable CreateInboxConversationRequestHeaderLocation headerLocation) {
+    this.headerLocation = headerLocation;
+  }
+
+
   /**
    * Return true if this createInboxConversation_request object is equal to o.
    */
@@ -463,12 +493,13 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
         Objects.equals(this.templateParams, createInboxConversationRequest.templateParams) &&
         Objects.equals(this.templateButtonParams, createInboxConversationRequest.templateButtonParams) &&
-        Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia);
+        Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia) &&
+        Objects.equals(this.headerLocation, createInboxConversationRequest.headerLocation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, templateButtonParams, headerMedia);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, templateButtonParams, headerMedia, headerLocation);
   }
 
   @Override
@@ -487,6 +518,7 @@ public class CreateInboxConversationRequest {
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
     sb.append("    templateButtonParams: ").append(toIndentedString(templateButtonParams)).append("\n");
     sb.append("    headerMedia: ").append(toIndentedString(headerMedia)).append("\n");
+    sb.append("    headerLocation: ").append(toIndentedString(headerLocation)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -601,6 +633,11 @@ public class CreateInboxConversationRequest {
     // add `headerMedia` to the URL query string
     if (getHeaderMedia() != null) {
       joiner.add(getHeaderMedia().toUrlQueryString(prefix + "headerMedia" + suffix));
+    }
+
+    // add `headerLocation` to the URL query string
+    if (getHeaderLocation() != null) {
+      joiner.add(getHeaderLocation().toUrlQueryString(prefix + "headerLocation" + suffix));
     }
 
     return joiner.toString();

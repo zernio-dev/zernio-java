@@ -269,6 +269,7 @@ docs/CreateInboxConversation422Response.md
 docs/CreateInboxConversation429Response.md
 docs/CreateInboxConversationRequest.md
 docs/CreateInboxConversationRequest1.md
+docs/CreateInboxConversationRequestHeaderLocation.md
 docs/CreateInboxConversationRequestHeaderMedia.md
 docs/CreateInboxConversationRequestTemplateButtonParamsInner.md
 docs/CreateInviteToken201Response.md
@@ -2154,6 +2155,7 @@ src/main/java/dev/zernio/model/CreateInboxConversation422Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation429Response.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequest.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequest1.java
+src/main/java/dev/zernio/model/CreateInboxConversationRequestHeaderLocation.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequestHeaderMedia.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequestTemplateButtonParamsInner.java
 src/main/java/dev/zernio/model/CreateInviteToken201Response.java
@@ -3663,3 +3665,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateInboxConversationRequestHeaderLocationTest.java

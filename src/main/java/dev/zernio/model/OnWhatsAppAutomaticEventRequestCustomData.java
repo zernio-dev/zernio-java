@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppAutomaticEventRequestCustomData.JSON_PROPERTY_CURRENCY,
   OnWhatsAppAutomaticEventRequestCustomData.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T15:49:44.517199519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T16:33:46.641856518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppAutomaticEventRequestCustomData {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
