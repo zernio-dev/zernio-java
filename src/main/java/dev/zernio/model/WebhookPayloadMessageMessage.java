@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -47,9 +51,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessage.JSON_PROPERTY_ATTACHMENTS,
   WebhookPayloadMessageMessage.JSON_PROPERTY_SENDER,
   WebhookPayloadMessageMessage.JSON_PROPERTY_SENT_AT,
-  WebhookPayloadMessageMessage.JSON_PROPERTY_IS_READ
+  WebhookPayloadMessageMessage.JSON_PROPERTY_IS_READ,
+  WebhookPayloadMessageMessage.JSON_PROPERTY_SENT_VIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -166,6 +171,54 @@ public class WebhookPayloadMessageMessage {
   public static final String JSON_PROPERTY_IS_READ = "isRead";
   @javax.annotation.Nonnull
   private Boolean isRead;
+
+  /**
+   * Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. 
+   */
+  public enum SentViaEnum {
+    HUMAN(String.valueOf("human")),
+    
+    API(String.valueOf("api")),
+    
+    BROADCAST(String.valueOf("broadcast")),
+    
+    SEQUENCE(String.valueOf("sequence")),
+    
+    WORKFLOW(String.valueOf("workflow")),
+    
+    COMMENT_AUTOMATION(String.valueOf("comment_automation")),
+    
+    BULK_API(String.valueOf("bulk-api"));
+
+    private String value;
+
+    SentViaEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SentViaEnum fromValue(String value) {
+      for (SentViaEnum b : SentViaEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_SENT_VIA = "sentVia";
+  private JsonNullable<SentViaEnum> sentVia = JsonNullable.<SentViaEnum>undefined();
 
   public WebhookPayloadMessageMessage() { 
   }
@@ -418,6 +471,38 @@ public class WebhookPayloadMessageMessage {
   }
 
 
+  public WebhookPayloadMessageMessage sentVia(@javax.annotation.Nullable SentViaEnum sentVia) {
+    this.sentVia = JsonNullable.<SentViaEnum>of(sentVia);
+    return this;
+  }
+
+  /**
+   * Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. 
+   * @return sentVia
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public SentViaEnum getSentVia() {
+        return sentVia.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SENT_VIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<SentViaEnum> getSentVia_JsonNullable() {
+    return sentVia;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENT_VIA)
+  public void setSentVia_JsonNullable(JsonNullable<SentViaEnum> sentVia) {
+    this.sentVia = sentVia;
+  }
+
+  public void setSentVia(@javax.annotation.Nullable SentViaEnum sentVia) {
+    this.sentVia = JsonNullable.<SentViaEnum>of(sentVia);
+  }
+
+
   /**
    * Return true if this WebhookPayloadMessage_message object is equal to o.
    */
@@ -439,12 +524,24 @@ public class WebhookPayloadMessageMessage {
         Objects.equals(this.attachments, webhookPayloadMessageMessage.attachments) &&
         Objects.equals(this.sender, webhookPayloadMessageMessage.sender) &&
         Objects.equals(this.sentAt, webhookPayloadMessageMessage.sentAt) &&
-        Objects.equals(this.isRead, webhookPayloadMessageMessage.isRead);
+        Objects.equals(this.isRead, webhookPayloadMessageMessage.isRead) &&
+        equalsNullable(this.sentVia, webhookPayloadMessageMessage.sentVia);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, platform, platformMessageId, direction, text, attachments, sender, sentAt, isRead);
+    return Objects.hash(id, conversationId, platform, platformMessageId, direction, text, attachments, sender, sentAt, isRead, hashCodeNullable(sentVia));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -461,6 +558,7 @@ public class WebhookPayloadMessageMessage {
     sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    isRead: ").append(toIndentedString(isRead)).append("\n");
+    sb.append("    sentVia: ").append(toIndentedString(sentVia)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -561,6 +659,11 @@ public class WebhookPayloadMessageMessage {
     // add `isRead` to the URL query string
     if (getIsRead() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisRead%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsRead()))));
+    }
+
+    // add `sentVia` to the URL query string
+    if (getSentVia() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssentVia%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSentVia()))));
     }
 
     return joiner.toString();

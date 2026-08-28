@@ -72,9 +72,10 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENT_AT,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_DELIVERY_ERROR,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_REACTIONS,
-  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA,
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENT_VIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -287,6 +288,54 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
   private Map<String, Object> metadata = new HashMap<>();
+
+  /**
+   * Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+   */
+  public enum SentViaEnum {
+    HUMAN(String.valueOf("human")),
+    
+    API(String.valueOf("api")),
+    
+    BROADCAST(String.valueOf("broadcast")),
+    
+    SEQUENCE(String.valueOf("sequence")),
+    
+    WORKFLOW(String.valueOf("workflow")),
+    
+    COMMENT_AUTOMATION(String.valueOf("comment_automation")),
+    
+    BULK_API(String.valueOf("bulk-api"));
+
+    private String value;
+
+    SentViaEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SentViaEnum fromValue(String value) {
+      for (SentViaEnum b : SentViaEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_SENT_VIA = "sentVia";
+  private JsonNullable<SentViaEnum> sentVia = JsonNullable.<SentViaEnum>undefined();
 
   public GetInboxConversationMessages200ResponseMessagesInner() { 
   }
@@ -1041,7 +1090,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
   /**
-   * Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. 
+   * Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. It can also carry &#x60;source&#x60; (&#x60;whatsapp_business_app&#x60; / &#x60;coexistence_history&#x60; on a WhatsApp Coexistence number, &#x60;bulk-api&#x60; on a POST /v1/whatsapp/bulk send), which is where the message reached us from rather than who produced it: read &#x60;sentVia&#x60; for that. 
    * @return metadata
    */
   @javax.annotation.Nullable
@@ -1056,6 +1105,38 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
     this.metadata = metadata;
+  }
+
+
+  public GetInboxConversationMessages200ResponseMessagesInner sentVia(@javax.annotation.Nullable SentViaEnum sentVia) {
+    this.sentVia = JsonNullable.<SentViaEnum>of(sentVia);
+    return this;
+  }
+
+  /**
+   * Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+   * @return sentVia
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public SentViaEnum getSentVia() {
+        return sentVia.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SENT_VIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<SentViaEnum> getSentVia_JsonNullable() {
+    return sentVia;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENT_VIA)
+  public void setSentVia_JsonNullable(JsonNullable<SentViaEnum> sentVia) {
+    this.sentVia = sentVia;
+  }
+
+  public void setSentVia(@javax.annotation.Nullable SentViaEnum sentVia) {
+    this.sentVia = JsonNullable.<SentViaEnum>of(sentVia);
   }
 
 
@@ -1097,7 +1178,8 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
         equalsNullable(this.sentAt, getInboxConversationMessages200ResponseMessagesInner.sentAt) &&
         Objects.equals(this.deliveryError, getInboxConversationMessages200ResponseMessagesInner.deliveryError) &&
         Objects.equals(this.reactions, getInboxConversationMessages200ResponseMessagesInner.reactions) &&
-        Objects.equals(this.metadata, getInboxConversationMessages200ResponseMessagesInner.metadata);
+        Objects.equals(this.metadata, getInboxConversationMessages200ResponseMessagesInner.metadata) &&
+        equalsNullable(this.sentVia, getInboxConversationMessages200ResponseMessagesInner.sentVia);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -1106,7 +1188,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, accountId, platform, message, senderId, hashCodeNullable(senderName), hashCodeNullable(senderVerifiedType), direction, createdAt, attachments, hashCodeNullable(subject), hashCodeNullable(storyReply), hashCodeNullable(isStoryMention), isEdited, hashCodeNullable(editedAt), editCount, editHistory, isDeleted, hashCodeNullable(deletedAt), hashCodeNullable(deliveryStatus), hashCodeNullable(deliveredAt), hashCodeNullable(readAt), hashCodeNullable(sentAt), deliveryError, reactions, metadata);
+    return Objects.hash(id, conversationId, accountId, platform, message, senderId, hashCodeNullable(senderName), hashCodeNullable(senderVerifiedType), direction, createdAt, attachments, hashCodeNullable(subject), hashCodeNullable(storyReply), hashCodeNullable(isStoryMention), isEdited, hashCodeNullable(editedAt), editCount, editHistory, isDeleted, hashCodeNullable(deletedAt), hashCodeNullable(deliveryStatus), hashCodeNullable(deliveredAt), hashCodeNullable(readAt), hashCodeNullable(sentAt), deliveryError, reactions, metadata, hashCodeNullable(sentVia));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1147,6 +1229,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
     sb.append("    deliveryError: ").append(toIndentedString(deliveryError)).append("\n");
     sb.append("    reactions: ").append(toIndentedString(reactions)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    sentVia: ").append(toIndentedString(sentVia)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1346,6 +1429,11 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
       }
+    }
+
+    // add `sentVia` to the URL query string
+    if (getSentVia() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssentVia%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSentVia()))));
     }
 
     return joiner.toString();

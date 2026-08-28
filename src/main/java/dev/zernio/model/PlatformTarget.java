@@ -26,11 +26,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.MediaItem;
 import dev.zernio.model.PlatformTargetAccountId;
-import dev.zernio.model.PlatformTargetPlatformSpecificData;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -60,7 +61,7 @@ import dev.zernio.ApiClient;
   PlatformTarget.JSON_PROPERTY_ERROR_CATEGORY,
   PlatformTarget.JSON_PROPERTY_ERROR_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformTarget {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -84,7 +85,7 @@ public class PlatformTarget {
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
-  private PlatformTargetPlatformSpecificData platformSpecificData;
+  private Map<String, Object> platformSpecificData = new HashMap<>();
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -378,26 +379,34 @@ public class PlatformTarget {
   }
 
 
-  public PlatformTarget platformSpecificData(@javax.annotation.Nullable PlatformTargetPlatformSpecificData platformSpecificData) {
+  public PlatformTarget platformSpecificData(@javax.annotation.Nullable Map<String, Object> platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
   }
 
+  public PlatformTarget putPlatformSpecificDataItem(String key, Object platformSpecificDataItem) {
+    if (this.platformSpecificData == null) {
+      this.platformSpecificData = new HashMap<>();
+    }
+    this.platformSpecificData.put(key, platformSpecificDataItem);
+    return this;
+  }
+
   /**
-   * Get platformSpecificData
+   * The platform-specific options stored on this target, echoed back as they were sent. Typed per platform on the way in (see the *PlatformData schemas on the request body); free-form on the way out, because a response is not guaranteed to match exactly one of those variants and generated clients that pick a variant by structure reject the entire response when it doesn&#39;t. Zernio&#39;s internal publishing state (snapshots, container ids, publish stage) is never returned here, and the key is omitted rather than sent as an empty object.
    * @return platformSpecificData
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public PlatformTargetPlatformSpecificData getPlatformSpecificData() {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getPlatformSpecificData() {
     return platformSpecificData;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformSpecificData(@javax.annotation.Nullable PlatformTargetPlatformSpecificData platformSpecificData) {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable Map<String, Object> platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
   }
 
@@ -803,7 +812,11 @@ public class PlatformTarget {
 
     // add `platformSpecificData` to the URL query string
     if (getPlatformSpecificData() != null) {
-      joiner.add(getPlatformSpecificData().toUrlQueryString(prefix + "platformSpecificData" + suffix));
+      for (String _key : getPlatformSpecificData().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%splatformSpecificData%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getPlatformSpecificData().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getPlatformSpecificData().get(_key)))));
+      }
     }
 
     // add `status` to the URL query string

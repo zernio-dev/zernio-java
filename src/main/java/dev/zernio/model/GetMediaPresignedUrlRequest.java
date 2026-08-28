@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.MediaContentType;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,86 +38,15 @@ import dev.zernio.ApiClient;
   GetMediaPresignedUrlRequest.JSON_PROPERTY_CONTENT_TYPE,
   GetMediaPresignedUrlRequest.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrlRequest {
   public static final String JSON_PROPERTY_FILENAME = "filename";
   @javax.annotation.Nonnull
   private String filename;
 
-  /**
-   * MIME type of the file
-   */
-  public enum ContentTypeEnum {
-    IMAGE_JPEG(String.valueOf("image/jpeg")),
-    
-    IMAGE_JPG(String.valueOf("image/jpg")),
-    
-    IMAGE_PNG(String.valueOf("image/png")),
-    
-    IMAGE_WEBP(String.valueOf("image/webp")),
-    
-    IMAGE_GIF(String.valueOf("image/gif")),
-    
-    VIDEO_MP4(String.valueOf("video/mp4")),
-    
-    VIDEO_MPEG(String.valueOf("video/mpeg")),
-    
-    VIDEO_QUICKTIME(String.valueOf("video/quicktime")),
-    
-    VIDEO_AVI(String.valueOf("video/avi")),
-    
-    VIDEO_X_MSVIDEO(String.valueOf("video/x-msvideo")),
-    
-    VIDEO_WEBM(String.valueOf("video/webm")),
-    
-    VIDEO_X_M4V(String.valueOf("video/x-m4v")),
-    
-    APPLICATION_PDF(String.valueOf("application/pdf")),
-    
-    AUDIO_MPEG(String.valueOf("audio/mpeg")),
-    
-    AUDIO_MP4(String.valueOf("audio/mp4")),
-    
-    AUDIO_AAC(String.valueOf("audio/aac")),
-    
-    AUDIO_OGG(String.valueOf("audio/ogg")),
-    
-    AUDIO_WAV(String.valueOf("audio/wav")),
-    
-    AUDIO_WEBM(String.valueOf("audio/webm")),
-    
-    AUDIO_X_M4A(String.valueOf("audio/x-m4a"));
-
-    private String value;
-
-    ContentTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ContentTypeEnum fromValue(String value) {
-      for (ContentTypeEnum b : ContentTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_CONTENT_TYPE = "contentType";
   @javax.annotation.Nonnull
-  private ContentTypeEnum contentType;
+  private MediaContentType contentType;
 
   public static final String JSON_PROPERTY_SIZE = "size";
   @javax.annotation.Nullable
@@ -149,26 +79,26 @@ public class GetMediaPresignedUrlRequest {
   }
 
 
-  public GetMediaPresignedUrlRequest contentType(@javax.annotation.Nonnull ContentTypeEnum contentType) {
+  public GetMediaPresignedUrlRequest contentType(@javax.annotation.Nonnull MediaContentType contentType) {
     this.contentType = contentType;
     return this;
   }
 
   /**
-   * MIME type of the file
+   * Get contentType
    * @return contentType
    */
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public ContentTypeEnum getContentType() {
+  public MediaContentType getContentType() {
     return contentType;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setContentType(@javax.annotation.Nonnull ContentTypeEnum contentType) {
+  public void setContentType(@javax.annotation.Nonnull MediaContentType contentType) {
     this.contentType = contentType;
   }
 

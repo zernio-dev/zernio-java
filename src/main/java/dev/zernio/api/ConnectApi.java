@@ -51,6 +51,7 @@ import dev.zernio.model.GetRedditSubreddits200Response;
 import dev.zernio.model.GetSubredditRules200Response;
 import dev.zernio.model.GetTelegramConnectStatus200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
+import dev.zernio.model.GetYoutubeCaptions200Response;
 import dev.zernio.model.GetYoutubePlaylists200Response;
 import dev.zernio.model.HandleOAuthCallbackRequest;
 import dev.zernio.model.InitiateTelegramConnect200Response;
@@ -116,7 +117,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3337,6 +3338,165 @@ public class ConnectApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get a YouTube video transcript
+   * Returns the caption track YouTube already holds for one of the connected channel&#39;s own videos, as plain text plus timed cues. Use it instead of downloading and transcribing the video yourself.  Auto-generated (ASR) tracks are included: YouTube serves them to the channel owner, which is what the connected account is. Uploaded tracks win over auto-generated ones when both exist for a language.  Caching: we store the transcript on first read and serve it from there afterwards, so you do not need to cache it yourself. A cached read costs no YouTube quota and does not call YouTube at all. &#x60;source&#x60; tells you which happened (&#x60;youtube&#x60; on the first read, &#x60;cache&#x60; after). Pass &#x60;refresh&#x3D;true&#x60; only when the captions actually changed on YouTube, since that re-downloads.  Notes: - Only videos owned by this connected channel. Anything else returns 404. - &#x60;contentDetails.caption&#x60; in YouTube&#39;s own API reads &#x60;false&#x60; on videos that DO have a serving auto-generated track, so it is not a usable availability signal. Call this endpoint and handle the 404. - YouTube generates auto-captions only for videos with recognisable speech, and can take a few hours after upload to publish them. 
+   * @param accountId The connected YouTube account. (required)
+   * @param videoId The YouTube video id (the &#x60;platformPostId&#x60; on a synced external post). (required)
+   * @param language BCP-47 language tag as YouTube labels the track. &#x60;en&#x60; also matches an &#x60;en-GB&#x60; track. Omit to take the best available track. (optional)
+   * @param format &#x60;json&#x60; returns timed &#x60;cues&#x60;; &#x60;srt&#x60; returns the raw SubRip body instead. &#x60;text&#x60; is present either way. (optional, default to json)
+   * @param refresh Re-download from YouTube instead of serving the stored copy. Spends 200 quota units. (optional, default to false)
+   * @return GetYoutubeCaptions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetYoutubeCaptions200Response getYoutubeCaptions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String videoId, @javax.annotation.Nullable String language, @javax.annotation.Nullable String format, @javax.annotation.Nullable Boolean refresh) throws ApiException {
+    return getYoutubeCaptions(accountId, videoId, language, format, refresh, null);
+  }
+
+  /**
+   * Get a YouTube video transcript
+   * Returns the caption track YouTube already holds for one of the connected channel&#39;s own videos, as plain text plus timed cues. Use it instead of downloading and transcribing the video yourself.  Auto-generated (ASR) tracks are included: YouTube serves them to the channel owner, which is what the connected account is. Uploaded tracks win over auto-generated ones when both exist for a language.  Caching: we store the transcript on first read and serve it from there afterwards, so you do not need to cache it yourself. A cached read costs no YouTube quota and does not call YouTube at all. &#x60;source&#x60; tells you which happened (&#x60;youtube&#x60; on the first read, &#x60;cache&#x60; after). Pass &#x60;refresh&#x3D;true&#x60; only when the captions actually changed on YouTube, since that re-downloads.  Notes: - Only videos owned by this connected channel. Anything else returns 404. - &#x60;contentDetails.caption&#x60; in YouTube&#39;s own API reads &#x60;false&#x60; on videos that DO have a serving auto-generated track, so it is not a usable availability signal. Call this endpoint and handle the 404. - YouTube generates auto-captions only for videos with recognisable speech, and can take a few hours after upload to publish them. 
+   * @param accountId The connected YouTube account. (required)
+   * @param videoId The YouTube video id (the &#x60;platformPostId&#x60; on a synced external post). (required)
+   * @param language BCP-47 language tag as YouTube labels the track. &#x60;en&#x60; also matches an &#x60;en-GB&#x60; track. Omit to take the best available track. (optional)
+   * @param format &#x60;json&#x60; returns timed &#x60;cues&#x60;; &#x60;srt&#x60; returns the raw SubRip body instead. &#x60;text&#x60; is present either way. (optional, default to json)
+   * @param refresh Re-download from YouTube instead of serving the stored copy. Spends 200 quota units. (optional, default to false)
+   * @param headers Optional headers to include in the request
+   * @return GetYoutubeCaptions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetYoutubeCaptions200Response getYoutubeCaptions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String videoId, @javax.annotation.Nullable String language, @javax.annotation.Nullable String format, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetYoutubeCaptions200Response> localVarResponse = getYoutubeCaptionsWithHttpInfo(accountId, videoId, language, format, refresh, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a YouTube video transcript
+   * Returns the caption track YouTube already holds for one of the connected channel&#39;s own videos, as plain text plus timed cues. Use it instead of downloading and transcribing the video yourself.  Auto-generated (ASR) tracks are included: YouTube serves them to the channel owner, which is what the connected account is. Uploaded tracks win over auto-generated ones when both exist for a language.  Caching: we store the transcript on first read and serve it from there afterwards, so you do not need to cache it yourself. A cached read costs no YouTube quota and does not call YouTube at all. &#x60;source&#x60; tells you which happened (&#x60;youtube&#x60; on the first read, &#x60;cache&#x60; after). Pass &#x60;refresh&#x3D;true&#x60; only when the captions actually changed on YouTube, since that re-downloads.  Notes: - Only videos owned by this connected channel. Anything else returns 404. - &#x60;contentDetails.caption&#x60; in YouTube&#39;s own API reads &#x60;false&#x60; on videos that DO have a serving auto-generated track, so it is not a usable availability signal. Call this endpoint and handle the 404. - YouTube generates auto-captions only for videos with recognisable speech, and can take a few hours after upload to publish them. 
+   * @param accountId The connected YouTube account. (required)
+   * @param videoId The YouTube video id (the &#x60;platformPostId&#x60; on a synced external post). (required)
+   * @param language BCP-47 language tag as YouTube labels the track. &#x60;en&#x60; also matches an &#x60;en-GB&#x60; track. Omit to take the best available track. (optional)
+   * @param format &#x60;json&#x60; returns timed &#x60;cues&#x60;; &#x60;srt&#x60; returns the raw SubRip body instead. &#x60;text&#x60; is present either way. (optional, default to json)
+   * @param refresh Re-download from YouTube instead of serving the stored copy. Spends 200 quota units. (optional, default to false)
+   * @return ApiResponse&lt;GetYoutubeCaptions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetYoutubeCaptions200Response> getYoutubeCaptionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String videoId, @javax.annotation.Nullable String language, @javax.annotation.Nullable String format, @javax.annotation.Nullable Boolean refresh) throws ApiException {
+    return getYoutubeCaptionsWithHttpInfo(accountId, videoId, language, format, refresh, null);
+  }
+
+  /**
+   * Get a YouTube video transcript
+   * Returns the caption track YouTube already holds for one of the connected channel&#39;s own videos, as plain text plus timed cues. Use it instead of downloading and transcribing the video yourself.  Auto-generated (ASR) tracks are included: YouTube serves them to the channel owner, which is what the connected account is. Uploaded tracks win over auto-generated ones when both exist for a language.  Caching: we store the transcript on first read and serve it from there afterwards, so you do not need to cache it yourself. A cached read costs no YouTube quota and does not call YouTube at all. &#x60;source&#x60; tells you which happened (&#x60;youtube&#x60; on the first read, &#x60;cache&#x60; after). Pass &#x60;refresh&#x3D;true&#x60; only when the captions actually changed on YouTube, since that re-downloads.  Notes: - Only videos owned by this connected channel. Anything else returns 404. - &#x60;contentDetails.caption&#x60; in YouTube&#39;s own API reads &#x60;false&#x60; on videos that DO have a serving auto-generated track, so it is not a usable availability signal. Call this endpoint and handle the 404. - YouTube generates auto-captions only for videos with recognisable speech, and can take a few hours after upload to publish them. 
+   * @param accountId The connected YouTube account. (required)
+   * @param videoId The YouTube video id (the &#x60;platformPostId&#x60; on a synced external post). (required)
+   * @param language BCP-47 language tag as YouTube labels the track. &#x60;en&#x60; also matches an &#x60;en-GB&#x60; track. Omit to take the best available track. (optional)
+   * @param format &#x60;json&#x60; returns timed &#x60;cues&#x60;; &#x60;srt&#x60; returns the raw SubRip body instead. &#x60;text&#x60; is present either way. (optional, default to json)
+   * @param refresh Re-download from YouTube instead of serving the stored copy. Spends 200 quota units. (optional, default to false)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetYoutubeCaptions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetYoutubeCaptions200Response> getYoutubeCaptionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String videoId, @javax.annotation.Nullable String language, @javax.annotation.Nullable String format, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getYoutubeCaptionsRequestBuilder(accountId, videoId, language, format, refresh, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getYoutubeCaptions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetYoutubeCaptions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetYoutubeCaptions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetYoutubeCaptions200Response>() {});
+        
+
+        return new ApiResponse<GetYoutubeCaptions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getYoutubeCaptionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String videoId, @javax.annotation.Nullable String language, @javax.annotation.Nullable String format, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getYoutubeCaptions");
+    }
+    // verify the required parameter 'videoId' is set
+    if (videoId == null) {
+      throw new ApiException(400, "Missing the required parameter 'videoId' when calling getYoutubeCaptions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/youtube-captions"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "videoId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("videoId", videoId));
+    localVarQueryParameterBaseName = "language";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("language", language));
+    localVarQueryParameterBaseName = "format";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("format", format));
+    localVarQueryParameterBaseName = "refresh";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("refresh", refresh));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -48,9 +52,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SENDER,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_SENT_AT,
   WebhookPayloadMessageSentMessage.JSON_PROPERTY_IS_READ,
-  WebhookPayloadMessageSentMessage.JSON_PROPERTY_SOURCE
+  WebhookPayloadMessageSentMessage.JSON_PROPERTY_SOURCE,
+  WebhookPayloadMessageSentMessage.JSON_PROPERTY_SENT_VIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -175,7 +180,7 @@ public class WebhookPayloadMessageSentMessage {
   private Boolean isRead;
 
   /**
-   * WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+   * WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.
    */
   public enum SourceEnum {
     WHATSAPP_BUSINESS_APP(String.valueOf("whatsapp_business_app")),
@@ -212,6 +217,54 @@ public class WebhookPayloadMessageSentMessage {
   public static final String JSON_PROPERTY_SOURCE = "source";
   @javax.annotation.Nullable
   private SourceEnum source;
+
+  /**
+   * Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+   */
+  public enum SentViaEnum {
+    HUMAN(String.valueOf("human")),
+    
+    API(String.valueOf("api")),
+    
+    BROADCAST(String.valueOf("broadcast")),
+    
+    SEQUENCE(String.valueOf("sequence")),
+    
+    WORKFLOW(String.valueOf("workflow")),
+    
+    COMMENT_AUTOMATION(String.valueOf("comment_automation")),
+    
+    BULK_API(String.valueOf("bulk-api"));
+
+    private String value;
+
+    SentViaEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SentViaEnum fromValue(String value) {
+      for (SentViaEnum b : SentViaEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_SENT_VIA = "sentVia";
+  private JsonNullable<SentViaEnum> sentVia = JsonNullable.<SentViaEnum>undefined();
 
   public WebhookPayloadMessageSentMessage() { 
   }
@@ -470,7 +523,7 @@ public class WebhookPayloadMessageSentMessage {
   }
 
   /**
-   * WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+   * WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.
    * @return source
    */
   @javax.annotation.Nullable
@@ -485,6 +538,38 @@ public class WebhookPayloadMessageSentMessage {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSource(@javax.annotation.Nullable SourceEnum source) {
     this.source = source;
+  }
+
+
+  public WebhookPayloadMessageSentMessage sentVia(@javax.annotation.Nullable SentViaEnum sentVia) {
+    this.sentVia = JsonNullable.<SentViaEnum>of(sentVia);
+    return this;
+  }
+
+  /**
+   * Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+   * @return sentVia
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public SentViaEnum getSentVia() {
+        return sentVia.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SENT_VIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<SentViaEnum> getSentVia_JsonNullable() {
+    return sentVia;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENT_VIA)
+  public void setSentVia_JsonNullable(JsonNullable<SentViaEnum> sentVia) {
+    this.sentVia = sentVia;
+  }
+
+  public void setSentVia(@javax.annotation.Nullable SentViaEnum sentVia) {
+    this.sentVia = JsonNullable.<SentViaEnum>of(sentVia);
   }
 
 
@@ -510,12 +595,24 @@ public class WebhookPayloadMessageSentMessage {
         Objects.equals(this.sender, webhookPayloadMessageSentMessage.sender) &&
         Objects.equals(this.sentAt, webhookPayloadMessageSentMessage.sentAt) &&
         Objects.equals(this.isRead, webhookPayloadMessageSentMessage.isRead) &&
-        Objects.equals(this.source, webhookPayloadMessageSentMessage.source);
+        Objects.equals(this.source, webhookPayloadMessageSentMessage.source) &&
+        equalsNullable(this.sentVia, webhookPayloadMessageSentMessage.sentVia);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, platform, platformMessageId, direction, text, attachments, sender, sentAt, isRead, source);
+    return Objects.hash(id, conversationId, platform, platformMessageId, direction, text, attachments, sender, sentAt, isRead, source, hashCodeNullable(sentVia));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -533,6 +630,7 @@ public class WebhookPayloadMessageSentMessage {
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    isRead: ").append(toIndentedString(isRead)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    sentVia: ").append(toIndentedString(sentVia)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -638,6 +736,11 @@ public class WebhookPayloadMessageSentMessage {
     // add `source` to the URL query string
     if (getSource() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSource()))));
+    }
+
+    // add `sentVia` to the URL query string
+    if (getSentVia() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssentVia%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSentVia()))));
     }
 
     return joiner.toString();

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateInboxConversationRequestHeaderMedia;
+import dev.zernio.model.CreateInboxConversationRequestTemplateButtonParamsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,9 +47,10 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_LINK_PREVIEW,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
+  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS,
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -122,6 +124,10 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_TEMPLATE_PARAMS = "templateParams";
   @javax.annotation.Nullable
   private List<String> templateParams = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS = "templateButtonParams";
+  @javax.annotation.Nullable
+  private List<CreateInboxConversationRequestTemplateButtonParamsInner> templateButtonParams = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HEADER_MEDIA = "headerMedia";
   @javax.annotation.Nullable
@@ -360,7 +366,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here (use headerMedia to override the header asset per send).
+   * WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here (use headerMedia to override the header asset per send). Buttons that are not dynamic-URL buttons (copy-code, flow) take no value here either; use templateButtonParams.
    * @return templateParams
    */
   @javax.annotation.Nullable
@@ -375,6 +381,38 @@ public class CreateInboxConversationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplateParams(@javax.annotation.Nullable List<String> templateParams) {
     this.templateParams = templateParams;
+  }
+
+
+  public CreateInboxConversationRequest templateButtonParams(@javax.annotation.Nullable List<CreateInboxConversationRequestTemplateButtonParamsInner> templateButtonParams) {
+    this.templateButtonParams = templateButtonParams;
+    return this;
+  }
+
+  public CreateInboxConversationRequest addTemplateButtonParamsItem(CreateInboxConversationRequestTemplateButtonParamsInner templateButtonParamsItem) {
+    if (this.templateButtonParams == null) {
+      this.templateButtonParams = new ArrayList<>();
+    }
+    this.templateButtonParams.add(templateButtonParamsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Values for template buttons that carry one at send time, each addressed by the button&#39;s position in the approved template. This is the only way to send a copy-code button&#39;s payload (a Pix payment code, a coupon) or a flow token, because templateParams is a flat array of text variables and covers dynamic URL buttons only. Supplying a button here overrides whatever templateParams would have derived for that same index, so the send never carries one button twice; repeating an index within this array is rejected with 400. Each index must name a button of the matching kind on the approved template, which is also checked before the send and returns 400 (INVALID_TEMPLATE_BUTTON_PARAM) rather than a Meta rejection.
+   * @return templateButtonParams
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateInboxConversationRequestTemplateButtonParamsInner> getTemplateButtonParams() {
+    return templateButtonParams;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateButtonParams(@javax.annotation.Nullable List<CreateInboxConversationRequestTemplateButtonParamsInner> templateButtonParams) {
+    this.templateButtonParams = templateButtonParams;
   }
 
 
@@ -424,12 +462,13 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.linkPreview, createInboxConversationRequest.linkPreview) &&
         Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
         Objects.equals(this.templateParams, createInboxConversationRequest.templateParams) &&
+        Objects.equals(this.templateButtonParams, createInboxConversationRequest.templateButtonParams) &&
         Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, headerMedia);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, templateButtonParams, headerMedia);
   }
 
   @Override
@@ -446,6 +485,7 @@ public class CreateInboxConversationRequest {
     sb.append("    linkPreview: ").append(toIndentedString(linkPreview)).append("\n");
     sb.append("    templateLanguage: ").append(toIndentedString(templateLanguage)).append("\n");
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
+    sb.append("    templateButtonParams: ").append(toIndentedString(templateButtonParams)).append("\n");
     sb.append("    headerMedia: ").append(toIndentedString(headerMedia)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -545,6 +585,16 @@ public class CreateInboxConversationRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%stemplateParams%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTemplateParams().get(i)))));
+      }
+    }
+
+    // add `templateButtonParams` to the URL query string
+    if (getTemplateButtonParams() != null) {
+      for (int i = 0; i < getTemplateButtonParams().size(); i++) {
+        if (getTemplateButtonParams().get(i) != null) {
+          joiner.add(getTemplateButtonParams().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stemplateButtonParams%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

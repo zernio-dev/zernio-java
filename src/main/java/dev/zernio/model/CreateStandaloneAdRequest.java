@@ -41,6 +41,7 @@ import dev.zernio.model.CreateStandaloneAdRequestPlatformSpecificData;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestSitelinksInner;
+import dev.zernio.model.CreateStandaloneAdRequestStructuredSnippetsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
@@ -133,6 +134,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_SITELINKS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CALLOUTS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_STRUCTURED_SNIPPETS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
   CreateStandaloneAdRequest.JSON_PROPERTY_ATTRIBUTION_SPEC,
   CreateStandaloneAdRequest.JSON_PROPERTY_GENDER,
@@ -149,7 +152,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -948,6 +951,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_SITELINKS = "sitelinks";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestSitelinksInner> sitelinks = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CALLOUTS = "callouts";
+  @javax.annotation.Nullable
+  private List<String> callouts = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_STRUCTURED_SNIPPETS = "structuredSnippets";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets = new ArrayList<>();
 
   /**
    * Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests.
@@ -2995,6 +3006,70 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest callouts(@javax.annotation.Nullable List<String> callouts) {
+    this.callouts = callouts;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addCalloutsItem(String calloutsItem) {
+    if (this.callouts == null) {
+      this.callouts = new ArrayList<>();
+    }
+    this.callouts.add(calloutsItem);
+    return this;
+  }
+
+  /**
+   * Google Search only. Short callout texts (max 25 chars each) that appear as non-clickable annotations under the ad, e.g. \&quot;Free shipping\&quot;, \&quot;24/7 support\&quot;. Each becomes one Asset (&#x60;callout_asset&#x60;) plus a CampaignAsset link with field_type CALLOUT. Response&#39;s creative.callouts[] echoes each input plus its Google resourceName. 
+   * @return callouts
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALLOUTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getCallouts() {
+    return callouts;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALLOUTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallouts(@javax.annotation.Nullable List<String> callouts) {
+    this.callouts = callouts;
+  }
+
+
+  public CreateStandaloneAdRequest structuredSnippets(@javax.annotation.Nullable List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets) {
+    this.structuredSnippets = structuredSnippets;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addStructuredSnippetsItem(CreateStandaloneAdRequestStructuredSnippetsInner structuredSnippetsItem) {
+    if (this.structuredSnippets == null) {
+      this.structuredSnippets = new ArrayList<>();
+    }
+    this.structuredSnippets.add(structuredSnippetsItem);
+    return this;
+  }
+
+  /**
+   * Google Search only. Structured snippets — one header from Google&#39;s predefined list plus 3-10 values (max 25 chars each). Each becomes one Asset (&#x60;structured_snippet_asset&#x60;) plus a CampaignAsset link with field_type STRUCTURED_SNIPPET. 
+   * @return structuredSnippets
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STRUCTURED_SNIPPETS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestStructuredSnippetsInner> getStructuredSnippets() {
+    return structuredSnippets;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STRUCTURED_SNIPPETS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStructuredSnippets(@javax.annotation.Nullable List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets) {
+    this.structuredSnippets = structuredSnippets;
+  }
+
+
   public CreateStandaloneAdRequest advantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
     this.advantageAudience = advantageAudience;
     return this;
@@ -3452,6 +3527,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
         Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
         Objects.equals(this.sitelinks, createStandaloneAdRequest.sitelinks) &&
+        Objects.equals(this.callouts, createStandaloneAdRequest.callouts) &&
+        Objects.equals(this.structuredSnippets, createStandaloneAdRequest.structuredSnippets) &&
         Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience) &&
         Objects.equals(this.attributionSpec, createStandaloneAdRequest.attributionSpec) &&
         Objects.equals(this.gender, createStandaloneAdRequest.gender) &&
@@ -3471,7 +3548,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3549,6 +3626,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    additionalHeadlines: ").append(toIndentedString(additionalHeadlines)).append("\n");
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    sitelinks: ").append(toIndentedString(sitelinks)).append("\n");
+    sb.append("    callouts: ").append(toIndentedString(callouts)).append("\n");
+    sb.append("    structuredSnippets: ").append(toIndentedString(structuredSnippets)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    attributionSpec: ").append(toIndentedString(attributionSpec)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
@@ -4056,6 +4135,25 @@ public class CreateStandaloneAdRequest {
       for (int i = 0; i < getSitelinks().size(); i++) {
         if (getSitelinks().get(i) != null) {
           joiner.add(getSitelinks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%ssitelinks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `callouts` to the URL query string
+    if (getCallouts() != null) {
+      for (int i = 0; i < getCallouts().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scallouts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCallouts().get(i)))));
+      }
+    }
+
+    // add `structuredSnippets` to the URL query string
+    if (getStructuredSnippets() != null) {
+      for (int i = 0; i < getStructuredSnippets().size(); i++) {
+        if (getStructuredSnippets().get(i) != null) {
+          joiner.add(getStructuredSnippets().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sstructuredSnippets%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

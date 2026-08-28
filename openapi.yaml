@@ -182,6 +182,7 @@ x-documentation:
     - `call.failed` - A call failed with a hard error before or during bridging
     - `call.permission_request` - A WhatsApp user accepted or rejected your call-permission request
     - `whatsapp.automatic_event` - Meta's automatic event identification detected a lead or purchase in a Click-to-WhatsApp conversation. Branch on `eventName` (`LeadSubmitted` | `Purchase`); carries the `ctwa_clid` Conversions API match key
+    - `phone_number.stock_available` - An out-of-stock country you watch (POST /v1/phone-numbers/stock-watches) has deliverable numbers again. Fires once per watch, then the watch is consumed. Carries the deliverable count per number type at sweep time (first come, first served).
     - `whatsapp.number.kyc_submitted` - An end customer completed a hosted KYC share link; the number entered regulatory review under your account
     - `whatsapp.number.activated` - A provisioned WhatsApp number finished setup and is ready to connect
     - `whatsapp.number.declined` - A regulated number order was declined in review; nothing activates and nothing is billed
@@ -430,7 +431,7 @@ tags:
   - name: Webhooks
     description: |
       Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-      Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed, webhook.test.
+      Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, webhook.test.
       Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
 
       Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, whatsapp.number.* and verification.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
@@ -2430,7 +2431,7 @@ components:
           type: array
           items:
             type: string
-            enum: [post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed]
+            enum: [post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed]
           description: Events subscribed to
         isActive:
           type: boolean
@@ -2688,6 +2689,45 @@ components:
               type: string
             displayName:
               type: string
+        timestamp:
+          type: string
+          format: date-time
+          description: 'UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.'
+    PhoneNumberStockWatch:
+      type: object
+      required: [id, country, countryName, createdAt]
+      properties:
+        id: { type: string }
+        country: { type: string, description: 'ISO 3166-1 alpha-2.' }
+        countryName: { type: string }
+        createdAt: { type: string, format: date-time }
+    WebhookPayloadPhoneNumberStockAvailable:
+      type: object
+      description: Webhook payload for phone_number.stock_available events
+      required: [id, event, stock, timestamp]
+      properties:
+        id:
+          type: string
+          description: Stable webhook event ID
+        event:
+          type: string
+          enum: [phone_number.stock_available]
+        stock:
+          type: object
+          required: [country, types]
+          properties:
+            country:
+              type: string
+              description: 'ISO 3166-1 alpha-2 country code of the watched country.'
+            types:
+              type: array
+              description: 'Number types deliverable at sweep time. Only types with stock are listed.'
+              items:
+                type: object
+                required: [numberType, availableCount]
+                properties:
+                  numberType: { type: string, description: 'local, mobile, national or toll_free.' }
+                  availableCount: { type: integer, description: 'Deliverable numbers at sweep time; first come, first served.' }
         timestamp:
           type: string
           format: date-time
@@ -3663,6 +3703,14 @@ components:
               description: 'When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder=desc for the deterministic order.'
             isRead:
               type: boolean
+            sentVia:
+              type: [string, "null"]
+              enum: [human, api, broadcast, sequence, workflow, comment_automation, bulk-api, null]
+              description: |
+                Which Zernio surface produced the message. Always present and
+                always `null` on this event, since nobody on our side produced an
+                inbound message; it is only informative on `message.sent`, which
+                documents the vocabulary.
         conversation:
           $ref: '#/components/schemas/InboxWebhookConversation'
         account:
@@ -4020,7 +4068,23 @@ components:
             source:
               type: string
               enum: [whatsapp_business_app, cloud_api]
-              description: 'WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.'
+              description: 'WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.'
+            sentVia:
+              type: [string, "null"]
+              enum: [human, api, broadcast, sequence, workflow, comment_automation, bulk-api, null]
+              description: |
+                Which Zernio surface produced this message: `human` (an operator
+                in the Zernio inbox), `api` (a call to this API), `broadcast`,
+                `sequence`, `workflow`, `comment_automation`, or `bulk-api`
+                (POST /v1/whatsapp/bulk). Same vocabulary as the `source` filter
+                on the inbox analytics endpoints, and the same value a later
+                GET on this message returns.
+
+                Always present, and `null` whenever the lineage is unknown: a
+                message sent from the platform's own app, and every message
+                stored before this field shipped (2026-08). Existing messages
+                are NOT backfilled, so treat `null` as "unknown", never as
+                "sent by a human".
         conversation:
           $ref: '#/components/schemas/InboxWebhookConversation'
         account:
@@ -4840,6 +4904,34 @@ components:
           type: string
           enum: [platform_withheld]
           description: 'Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.'
+    MediaContentType:
+      type: string
+      description: >-
+        MIME type of the file to upload. Rejected with a 400 (INVALID_FIELD_VALUE
+        on contentType) when it is not one of these values, so generic types such
+        as application/octet-stream are not accepted here.
+      example: "video/mp4"
+      enum:
+        - image/jpeg
+        - image/jpg
+        - image/png
+        - image/webp
+        - image/gif
+        - video/mp4
+        - video/mpeg
+        - video/quicktime
+        - video/avi
+        - video/x-msvideo
+        - video/webm
+        - video/x-m4v
+        - application/pdf
+        - audio/mpeg
+        - audio/mp4
+        - audio/aac
+        - audio/ogg
+        - audio/wav
+        - audio/webm
+        - audio/x-m4a
     PlatformTarget:
       type: object
       properties:
@@ -4863,24 +4955,18 @@ components:
           format: date-time
           description: Optional per-platform scheduled time override (uses post.scheduledFor when omitted)
         platformSpecificData:
-          description: Platform-specific overrides and options.
-          oneOf:
-            - $ref: '#/components/schemas/TwitterPlatformData'
-            - $ref: '#/components/schemas/ThreadsPlatformData'
-            - $ref: '#/components/schemas/FacebookPlatformData'
-            - $ref: '#/components/schemas/InstagramPlatformData'
-            - $ref: '#/components/schemas/LinkedInPlatformData'
-            - $ref: '#/components/schemas/PinterestPlatformData'
-            - $ref: '#/components/schemas/YouTubePlatformData'
-            - $ref: '#/components/schemas/GoogleBusinessPlatformData'
-            - $ref: '#/components/schemas/TikTokPlatformData'
-            - $ref: '#/components/schemas/TelegramPlatformData'
-            - $ref: '#/components/schemas/SnapchatPlatformData'
-            - $ref: '#/components/schemas/RedditPlatformData'
-            - $ref: '#/components/schemas/BlueskyPlatformData'
-            - $ref: '#/components/schemas/DiscordPlatformData'
-            - $ref: '#/components/schemas/SlackPlatformData'
+          type: object
           additionalProperties: true
+          description: >-
+            The platform-specific options stored on this target, echoed back as
+            they were sent. Typed per platform on the way in (see the
+            *PlatformData schemas on the request body); free-form on the way
+            out, because a response is not guaranteed to match exactly one of
+            those variants and generated clients that pick a variant by
+            structure reject the entire response when it doesn't. Zernio's
+            internal publishing state (snapshots, container ids, publish stage)
+            is never returned here, and the key is omitted rather than sent as
+            an empty object.
         status:
           type: string
           example: pending
@@ -5596,7 +5682,7 @@ components:
           type: boolean
           default: false
           description: When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels.
-      description: Feed aspect ratio 0.8-1.91, carousels up to 10 items, stories require media (no captions). User tag coordinates 0.0-1.0 from top-left. Images over 8 MB and videos over platform limits are auto-compressed.
+      description: Feed aspect ratio 0.5625-1.91, carousels up to 10 items, stories require media (no captions). User tag coordinates 0.0-1.0 from top-left. Images over 8 MB and videos over platform limits are auto-compressed.
 
     InstagramAudioAsset:
       type: object
@@ -6914,14 +7000,14 @@ components:
               totalUsd: { type: number }
               quantity: { type: number }
         peaks:
-          type: object
-          description: Peak counts over the window (Metronome COUNT metrics + live active-number count).
+          type: [object, "null"]
+          description: 'Peak counts over the window (Metronome COUNT metrics + live active-number count). Null when `profileId` / `accountId` is set.'
           properties:
             accounts: { type: integer }
             numbers: { type: integer }
         callUsage:
-          type: object
-          description: Billable call volumes over the window.
+          type: [object, "null"]
+          description: 'Billable call volumes over the window. Null when `profileId` / `accountId` is set.'
           properties:
             whatsapp:
               type: object
@@ -6955,6 +7041,61 @@ components:
             ratePercent: { type: [number, "null"], description: "Combined rate percentage, e.g. 21." }
             jurisdictionLabel: { type: [string, "null"], description: 'Human jurisdiction label, e.g. "ES VAT" or "WA sales tax".' }
             reverseCharge: { type: boolean, description: True for EU/UK B2B reverse charge (0 tax added by design). }
+        attribution:
+          type: object
+          description: 'Present with `groupBy`. The window''s spend split per profile or account; `sum(groups) + unattributed` equals `totals` per product.'
+          properties:
+            groupBy:
+              type: string
+              enum: [profile, account]
+            groups:
+              type: array
+              items:
+                $ref: '#/components/schemas/UsageAttributionGroup'
+            unattributed:
+              $ref: '#/components/schemas/UsageAttributionSlice'
+              description: 'Spend no profile/account can claim: credits, 10DLC fees, Verify, and usage whose record no longer resolves to an account. Zero for a restricted principal.'
+            totals:
+              $ref: '#/components/schemas/UsageAttributionSlice'
+              description: 'The window totals; for a restricted principal, the sum of the visible groups.'
+            restricted:
+              type: boolean
+              description: 'True when the caller (profile-scoped API key or member) cannot see every profile: `groups` are filtered, `totals` sum them, `unattributed` is zero, and the top-level `days` / `totals` / `lineItems` are projected onto the visible groups with `peaks`, `callUsage` and `tax` null.'
+        scope:
+          description: 'Present with `profileId` / `accountId`: echoes the group the payload was projected onto.'
+          oneOf:
+            - type: object
+              required: [profileId]
+              properties:
+                profileId: { type: string }
+            - type: object
+              required: [accountId]
+              properties:
+                accountId: { type: string }
+    UsageAttributionGroup:
+      allOf:
+        - $ref: '#/components/schemas/UsageAttributionSlice'
+        - type: object
+          required: [key]
+          properties:
+            key: { type: string, description: 'Profile id or account id, per `groupBy`.' }
+    UsageAttributionSlice:
+      type: object
+      properties:
+        byProduct:
+          type: object
+          description: USD per product family.
+          properties:
+            accounts: { type: number }
+            numbers: { type: number }
+            calls: { type: number }
+            sms: { type: number }
+            verify: { type: number }
+            dlc: { type: number }
+            xApi: { type: number }
+            credits: { type: number }
+            other: { type: number }
+        totalUsd: { type: number }
     UsageStats:
       type: object
       description: |
@@ -7159,6 +7300,8 @@ components:
         follows: { type: integer, example: 0, description: 'Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms.' }
         igReelsAvgWatchTime: { type: integer, example: 0, description: 'Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms.' }
         igReelsVideoViewTotalTime: { type: integer, example: 0, description: 'Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms.' }
+        reelsSkipRate: { type: number, example: 0, description: 'Instagram Reels only: the rate of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Passed through exactly as Meta reports it, with no rescaling, so do not assume a 0-1 share. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views.' }
+        reposts: { type: integer, example: 0, description: 'Instagram only: reposts of the media by other users, minus deleted reposts. Available on feed posts, reels and stories. 0 for other platforms, including Threads, where reposts are counted in shares instead.' }
         videoDurationSeconds: { type: [integer, "null"], example: 30, description: 'Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio).' }
         engagementRate: { type: number, example: 6.59, description: 'Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula.' }
         lastUpdated: { type: string, format: date-time }
@@ -8115,7 +8258,7 @@ components:
               name: { type: string }
         customLocations:
           type: array
-          description: "Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured only where the capability map allows radius (Meta)."
+          description: "Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support."
           items:
             type: object
             required: [latitude, longitude, radius, distanceUnit]
@@ -8186,8 +8329,8 @@ components:
                   distanceUnit: { type: string, enum: [mile, kilometer] }
                   name: { type: string }
                   address: { type: string, description: "Optional label, sent to Meta as `address_string`. latitude/longitude take precedence for the pin location." }
-        ageMin: { type: integer, minimum: 13, maximum: 100 }
-        ageMax: { type: integer, minimum: 13, maximum: 100 }
+        ageMin: { type: integer, minimum: 13, maximum: 100, description: "Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 = 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there." }
+        ageMax: { type: integer, minimum: 13, maximum: 100, description: "Maximum age. Same per-platform application and clamping as ageMin." }
         gender: { type: string, enum: [all, male, female], description: "Restrict by gender. 'all' (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X." }
         incomeTier:
           type: string
@@ -8552,8 +8695,12 @@ components:
           description: "Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, LOCAL_SERVICES, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms."
         platformObjective: { type: [string, "null"], description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)" }
         optimizationGoal:
-          type: [string, array]
-          items: { type: string }
+          # anyOf, not type: [string, array]: hey-api resolves a type-array carrying items
+          # through the array branch and drops the string one (@zernio/node 0.2.640).
+          anyOf:
+            - type: string
+            - type: array
+              items: { type: string }
           description: 'A single string when every ad set shares one optimization goal; a JSON array of the distinct goals when ad sets differ (never a comma-joined string); array element order is not guaranteed, treat it as an unordered set; the key is absent when no ad set carries a goal. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); `NONE` with a manual costType is a campaign LinkedIn will not deliver.'
         bidStrategy:
           anyOf:
@@ -8630,8 +8777,12 @@ components:
           description: "Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType."
         platformObjective: { type: [string, "null"], description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)" }
         optimizationGoal:
-          type: [string, array]
-          items: { type: string }
+          # anyOf, not type: [string, array]: hey-api resolves a type-array carrying items
+          # through the array branch and drops the string one (@zernio/node 0.2.640).
+          anyOf:
+            - type: string
+            - type: array
+              items: { type: string }
           description: 'A single string when every ad set shares one optimization goal; a JSON array of the distinct goals when ad sets differ (never a comma-joined string); array element order is not guaranteed, treat it as an unordered set; the key is absent when no ad set carries a goal. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); `NONE` with a manual costType is a campaign LinkedIn will not deliver.'
         bidStrategy:
           anyOf:
@@ -10055,6 +10206,26 @@ webhooks:
       responses:
         '200':
           description: Webhook received successfully
+  phone_number.stock_available:
+    post:
+      operationId: onPhoneNumberStockAvailable
+      summary: Phone-number stock available event
+      description: |
+        Fired by the stock sweep (every 6h) the first time a country you watch
+        via POST /v1/phone-numbers/stock-watches has deliverable numbers again.
+        The watch is consumed, so the event fires once per watch; the stock
+        counts are a snapshot and numbers are sold first come, first served.
+        Buy with POST /v1/phone-numbers/purchase.
+      tags: [Webhook Events]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPayloadPhoneNumberStockAvailable'
+      responses:
+        '200':
+          description: Webhook received successfully
   verification.approved:
     post:
       operationId: onVerificationApproved
@@ -10443,8 +10614,8 @@ paths:
           description: Page number (default 1)
         - name: sortBy
           in: query
-          schema: { type: string, enum: [date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows], default: date }
-          description: Sort by date, engagement, or a specific metric
+          schema: { type: string, enum: [date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate], default: date }
+          description: 'Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0.'
         - name: order
           in: query
           schema: { type: string, enum: [asc, desc], default: desc }
@@ -13472,30 +13643,7 @@ paths:
                   description: Name of the file to upload
                   example: "my-video.mp4"
                 contentType:
-                  type: string
-                  description: MIME type of the file
-                  enum:
-                    - image/jpeg
-                    - image/jpg
-                    - image/png
-                    - image/webp
-                    - image/gif
-                    - video/mp4
-                    - video/mpeg
-                    - video/quicktime
-                    - video/avi
-                    - video/x-msvideo
-                    - video/webm
-                    - video/x-m4v
-                    - application/pdf
-                    - audio/mpeg
-                    - audio/mp4
-                    - audio/aac
-                    - audio/ogg
-                    - audio/wav
-                    - audio/webm
-                    - audio/x-m4a
-                  example: "video/mp4"
+                  $ref: '#/components/schemas/MediaContentType'
                 size:
                   type: integer
                   description: Optional file size in bytes for pre-validation (max 5GB)
@@ -13823,6 +13971,20 @@ paths:
         Also served at `GET /v1/usage/daily`. Usage-based accounts only —
         legacy Stripe accounts get `{ "supported": false, "days": [] }`.
 
+        **Attribution (metering mode):** `groupBy=profile|account` adds an
+        `attribution` breakdown of the window's spend per profile or account,
+        assembled from your own records and pro-rated against the invoice so
+        `sum(groups) + unattributed` equals `totals` exactly. `profileId` /
+        `accountId` instead project the whole payload (`days`, `totals`,
+        `lineItems`) onto that one group; `peaks`, `callUsage` and `tax` are
+        then `null` (workspace-level facts). Projected `days` spread the
+        group's period share over each day (usage is attributed per period,
+        not per day). Profile-scoped API keys and members only see their
+        profiles' groups (`attribution.restricted: true`, with `totals`
+        summing the visible groups). Credits, 10DLC fees and Verify are always
+        unattributed. `profileId` / `accountId` on their own do not select
+        metering mode: pair them with `range`.
+
         For per-domain consumption *volumes* use `GET /v1/usage/calls` and
         `GET /v1/usage/sms`. For the billing statement (balance, credits,
         caps, payment status) use `GET /v1/billing`.
@@ -13869,6 +14031,23 @@ paths:
             Bucketing of the `days` series: `day` (one row per UTC day),
             `month` (one row per calendar month, dated to the 1st), or `total`
             (no series — read `totals`). Does not affect `totals`.
+        - name: groupBy
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [profile, account]
+          description: 'Metering mode. Adds `attribution`: the window''s spend split per profile or per account (keys are ids; resolve names via `GET /v1/profiles` / `GET /v1/accounts`).'
+        - name: profileId
+          in: query
+          required: false
+          schema: { type: string }
+          description: 'Metering mode (pair with `range`). Project the payload onto this profile''s attributed share. Mutually exclusive with `accountId`, and `groupBy` (if given) must be `profile`; 404 when the profile is not in your workspace (or outside a scoped key''s profiles).'
+        - name: accountId
+          in: query
+          required: false
+          schema: { type: string }
+          description: 'Metering mode (pair with `range`). Project the payload onto this account''s attributed share. Mutually exclusive with `profileId`, and `groupBy` (if given) must be `account`; 404 when the account is not visible to the caller.'
       responses:
         '200':
           description: |
@@ -22480,6 +22659,122 @@ paths:
         '404': { description: Account not found }
         '502': { description: Pinterest rejected the request (e.g. duplicate board name) }
 
+  /v1/accounts/{accountId}/youtube-captions:
+    get:
+      x-resource-group: "accounts"
+      operationId: getYoutubeCaptions
+      tags: [Connect]
+      summary: Get a YouTube video transcript
+      description: |
+        Returns the caption track YouTube already holds for one of the connected channel's own videos, as plain text plus timed cues. Use it instead of downloading and transcribing the video yourself.
+
+        Auto-generated (ASR) tracks are included: YouTube serves them to the channel owner, which is what the connected account is. Uploaded tracks win over auto-generated ones when both exist for a language.
+
+        Caching: we store the transcript on first read and serve it from there afterwards, so you do not need to cache it yourself. A cached read costs no YouTube quota and does not call YouTube at all. `source` tells you which happened (`youtube` on the first read, `cache` after). Pass `refresh=true` only when the captions actually changed on YouTube, since that re-downloads.
+
+        Notes:
+        - Only videos owned by this connected channel. Anything else returns 404.
+        - `contentDetails.caption` in YouTube's own API reads `false` on videos that DO have a serving auto-generated track, so it is not a usable availability signal. Call this endpoint and handle the 404.
+        - YouTube generates auto-captions only for videos with recognisable speech, and can take a few hours after upload to publish them.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema: { type: string }
+          description: The connected YouTube account.
+        - name: videoId
+          in: query
+          required: true
+          schema: { type: string }
+          description: 'The YouTube video id (the `platformPostId` on a synced external post).'
+        - name: language
+          in: query
+          schema: { type: string }
+          description: 'BCP-47 language tag as YouTube labels the track. `en` also matches an `en-GB` track. Omit to take the best available track.'
+        - name: format
+          in: query
+          schema: { type: string, enum: [json, srt], default: json }
+          description: '`json` returns timed `cues`; `srt` returns the raw SubRip body instead. `text` is present either way.'
+        - name: refresh
+          in: query
+          schema: { type: boolean, default: false }
+          description: 'Re-download from YouTube instead of serving the stored copy. Spends 200 quota units.'
+      responses:
+        '200':
+          description: The transcript.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId: { type: string }
+                  videoId: { type: string }
+                  language: { type: string, description: The language of the returned track. }
+                  trackId: { type: string, description: YouTube's own caption track id. }
+                  trackKind:
+                    type: string
+                    enum: [asr, standard]
+                    description: '`asr` is YouTube''s auto-generated track; `standard` was uploaded by the channel.'
+                  source:
+                    type: string
+                    enum: [cache, youtube]
+                    description: '`cache` when served from our stored copy, `youtube` when this call spent the quota units.'
+                  fetchedAt: { type: string, format: date-time, description: When the stored copy was downloaded from YouTube. }
+                  text: { type: string, description: 'The whole transcript as one paragraph, no timings.' }
+                  cues:
+                    type: array
+                    description: 'Timed cues. Present when format is json. Auto-generated cues overlap in time by design (captions roll), so `start` can precede the previous cue''s `end`.'
+                    items:
+                      type: object
+                      properties:
+                        start: { type: number, description: 'Seconds from the start of the video.' }
+                        end: { type: number }
+                        text: { type: string }
+                  srt: { type: string, description: Raw SubRip body. Present when format is srt. }
+                  availableTracks:
+                    type: array
+                    description: 'Every track on the video, so you can re-request another language. On a cached read this is the listing as it stood when we downloaded, so a language added to the video since then appears only after a `refresh=true` or when you request that language directly.'
+                    items:
+                      type: object
+                      properties:
+                        trackId: { type: string }
+                        language: { type: string }
+                        trackKind: { type: string, enum: [asr, standard] }
+                        name: { type: string, description: 'The track''s display name. Empty for auto-generated tracks.' }
+              example:
+                accountId: "68a1f2c3d4e5f6a7b8c9d0e1"
+                videoId: "sdw1FML60tM"
+                language: "en"
+                trackId: "AUieDaanCEjmJQdL7wfZbe1QDQTbseX-hToYw99pmOJitlJz868"
+                trackKind: "asr"
+                source: "cache"
+                fetchedAt: "2026-08-27T21:09:54.000Z"
+                text: "Hey, this is Mickey. I'm the founder of this portfolio of three websites which are mainly monetized via AdSense."
+                cues:
+                  - start: 1.6
+                    end: 8.88
+                    text: "Hey, this is Mickey. I'm the founder of"
+                  - start: 5.04
+                    end: 12.8
+                    text: "this portfolio of three websites"
+                availableTracks:
+                  - trackId: "AUieDaanCEjmJQdL7wfZbe1QDQTbseX-hToYw99pmOJitlJz868"
+                    language: "en"
+                    trackKind: "asr"
+                    name: ""
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404':
+          description: 'Account not found, the video does not belong to this channel (`video_not_found`), or the video has no caption track in the requested language (`captions_not_found`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              example:
+                error: "This video has no caption tracks. YouTube generates them only for videos with recognisable speech, and it can take a few hours after upload."
+                type: "not_found"
+                code: "captions_not_found"
+                param: "videoId"
+
   /v1/accounts/{accountId}/youtube-playlists:
     get:
       x-resource-group: "accounts"
@@ -24795,7 +25090,7 @@ paths:
                   minItems: 1
                   items:
                     type: string
-                    enum: [post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed]
+                    enum: [post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed]
                   description: Events to subscribe to (at least one required)
                 isActive:
                   type: boolean
@@ -24914,7 +25209,7 @@ paths:
                   minItems: 1
                   items:
                     type: string
-                    enum: [post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, verification.approved, verification.failed]
+                    enum: [post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed]
                   description: Events to subscribe to. Must contain at least one event if provided.
                 isActive:
                   type: boolean
@@ -25576,7 +25871,7 @@ paths:
 
         Slack: pass a workspace member id as participantId (list them with GET /v1/accounts/{accountId}/slack-members). Zernio opens the DM channel with that member and sends the message; the thread then behaves like any other Slack conversation in the inbox. The member must belong to the connected workspace.
 
-        WhatsApp: this is the endpoint for sending an approved template message to a phone number. Provide templateName, templateLanguage, and templateParams (variable values for the text header, body and dynamic URL buttons, in that order), with the recipient phone in participantId. A template is required because WhatsApp does not permit freeform messages to open a conversation; a missing template returns TEMPLATE_REQUIRED. Templates with media headers (image, video, document) are handled automatically: Zernio reads the approved template definition and fills the header at send time with the template's approved sample asset. To send a DIFFERENT asset per message (e.g. a distinct invoice PDF for each recipient), pass the headerMedia field with a public link (or a Meta media id); it overrides the sample for that send. Calling this for a number you already have a thread with simply sends the template into that thread, which also makes it the way to re-engage a contact after the 24-hour customer-service window has closed. Once the recipient replies (opening the 24h window), send freeform messages with the send-message endpoint (POST /v1/inbox/conversations/{conversationId}/messages). Template fields are accepted on the JSON body only, not on multipart requests. Alternatively, WhatsApp Business Accounts eligible for Meta Direct Send can open a conversation with a business-initiated utility text message and no template: pass category: 'utility' together with message (and no templateName). See the category field below.
+        WhatsApp: this is the endpoint for sending an approved template message to a phone number. Provide templateName, templateLanguage, and templateParams (variable values for the text header, body and dynamic URL buttons, in that order), with the recipient phone in participantId. A template is required because WhatsApp does not permit freeform messages to open a conversation; a missing template returns TEMPLATE_REQUIRED. Templates with media headers (image, video, document) are handled automatically: Zernio reads the approved template definition and fills the header at send time with the template's approved sample asset. To send a DIFFERENT asset per message (e.g. a distinct invoice PDF for each recipient), pass the headerMedia field with a public link (or a Meta media id); it overrides the sample for that send. A button that carries its own value at send time (a copy-code button holding a Pix payment code or a coupon, a flow token) is sent with templateButtonParams, addressed by the button's index; templateParams covers text variables and dynamic URL buttons only. Calling this for a number you already have a thread with simply sends the template into that thread, which also makes it the way to re-engage a contact after the 24-hour customer-service window has closed. Once the recipient replies (opening the 24h window), send freeform messages with the send-message endpoint (POST /v1/inbox/conversations/{conversationId}/messages). Template fields are accepted on the JSON body only, not on multipart requests. Alternatively, WhatsApp Business Accounts eligible for Meta Direct Send can open a conversation with a business-initiated utility text message and no template: pass category: 'utility' together with message (and no templateName). See the category field below.
 
         DM eligibility (X/Twitter): Before sending, the endpoint checks if the recipient accepts DMs from your account (via the receives_your_dm field). If not, a 422 error with code DM_NOT_ALLOWED is returned. You can skip this check with skipDmCheck: true if you have already verified eligibility.
 
@@ -25651,7 +25946,42 @@ paths:
                     {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values:
                     [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled
                     automatically from the approved template and take no value here (use headerMedia
-                    to override the header asset per send).
+                    to override the header asset per send). Buttons that are not dynamic-URL buttons
+                    (copy-code, flow) take no value here either; use templateButtonParams.
+                templateButtonParams:
+                  type: array
+                  maxItems: 10
+                  description: >-
+                    WhatsApp only. Values for template buttons that carry one at send time, each
+                    addressed by the button's position in the approved template. This is the only
+                    way to send a copy-code button's payload (a Pix payment code, a coupon) or a
+                    flow token, because templateParams is a flat array of text variables and covers
+                    dynamic URL buttons only. Supplying a button here overrides whatever
+                    templateParams would have derived for that same index, so the send never
+                    carries one button twice; repeating an index within this array is rejected
+                    with 400. Each index must name a button of the matching kind on the approved
+                    template, which is also checked before the send and returns 400
+                    (INVALID_TEMPLATE_BUTTON_PARAM) rather than a Meta rejection.
+                  items:
+                    type: object
+                    required: [index, subType, value]
+                    properties:
+                      index:
+                        type: integer
+                        minimum: 0
+                        maximum: 9
+                        description: 'Zero-based position of the button in the approved template''s buttons.'
+                      subType:
+                        type: string
+                        enum: [url, copy_code, flow]
+                        description: >-
+                          The button kind, which decides how the value is sent: copy_code sends it
+                          as the coupon_code payload, flow as the flow token, url as the dynamic
+                          suffix appended to the button's base URL.
+                      value:
+                        type: string
+                        minLength: 1
+                        description: 'The value to send (e.g. the Pix copy-and-paste code for a copy_code button).'
                 headerMedia:
                   type: object
                   description: >-
@@ -26265,7 +26595,26 @@ paths:
                             `waInteractive` (a compact descriptor of WhatsApp interactive
                             content sent: buttons / list / cta_url / flow / location_request),
                             and for inbound interactive taps `interactiveType` / `interactiveId`.
+                            It can also carry `source` (`whatsapp_business_app` /
+                            `coexistence_history` on a WhatsApp Coexistence number, `bulk-api` on
+                            a POST /v1/whatsapp/bulk send), which is where the message reached us
+                            from rather than who produced it: read `sentVia` for that.
                           additionalProperties: true
+                        sentVia:
+                          type: [string, "null"]
+                          enum: [human, api, broadcast, sequence, workflow, comment_automation, bulk-api, null]
+                          description: |
+                            Which Zernio surface produced this outgoing message: `human` (an
+                            operator in the Zernio inbox), `api` (a call to this API),
+                            `broadcast`, `sequence`, `workflow`, `comment_automation`, or
+                            `bulk-api` (POST /v1/whatsapp/bulk). Same vocabulary as the `source`
+                            filter on the inbox analytics endpoints.
+
+                            Always present, and `null` whenever the lineage is unknown: every
+                            incoming message, any outgoing message sent from the platform's own
+                            app, and every message stored before this field shipped
+                            (2026-08). Existing messages are NOT backfilled, so treat `null`
+                            as "unknown", never as "sent by a human".
                   lastUpdated: { type: string, format: date-time }
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
@@ -28236,11 +28585,28 @@ paths:
       summary: Like comment
       description: |
         Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X,
-        Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required
-        in the request body. For LinkedIn, pass the composite comment URN returned by the
-        comments endpoints as commentId; an optional reactionType picks the reaction
+        Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below). For
+        Bluesky, the cid (content identifier) is
+        required in the request body. For LinkedIn, pass the composite comment URN returned
+        by the comments endpoints as commentId; an optional reactionType picks the reaction
         (defaults to LIKE), and accounts connected before the social-feed scopes were
         requested get a 403 with code `linkedin_reconnect_required`.
+
+        Instagram is in LIMITED RELEASE and not generally available: the call needs
+        `instagram_manage_engagement`, which Meta has so far granted this app only under
+        Standard Access, so it works for app admins, developers and testers of our Meta app
+        and returns a 403 with code `PLATFORM_BETA_RESTRICTED` for every other account.
+        That restriction lifts when Meta App Review grants Advanced Access; the constraints
+        below apply once it does.
+
+        Instagram covers comments and replies on feed posts, reels and carousels. Only an
+        account connected through Facebook Login can be granted
+        `instagram_manage_engagement`: an Instagram Login connection returns a 400 with
+        code `instagram_likes_require_facebook_login`, and an account whose token predates
+        the permission returns a 403 with code `reconnect_required`. Content from private
+        accounts cannot be liked. Instagram also enforces a burst limit of 50 like or
+        unlike calls per 5 seconds per Instagram account, and exceeding it locks that
+        account out of the like API for an hour, so pace bulk loops.
       tags: [Comments]
       security: [{ bearerAuth: [] }]
       parameters:
@@ -28283,14 +28649,16 @@ paths:
           description: Platform does not support liking comments
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403':
-          description: Inbox addon required
+          description: Inbox addon required, or the account is missing the platform permission
     delete:
       x-resource-group: "engagement"
       operationId: unlikeInboxComment
       summary: Unlike comment
       description: |
         Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky,
-        Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required.
+        Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query
+        parameter is required. Instagram has the same limited release, Facebook Login,
+        `instagram_manage_engagement` and burst-limit constraints as liking.
       tags: [Comments]
       security: [{ bearerAuth: [] }]
       parameters:
@@ -28326,7 +28694,7 @@ paths:
           description: Platform does not support unliking comments
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403':
-          description: Inbox addon required
+          description: Inbox addon required, or the account is missing the platform permission
 
   /v1/inbox/posts/{postId}/like:
     post:
@@ -28334,7 +28702,8 @@ paths:
       summary: Like post
       description: |
         Like (or react to) a post as a connected account. Supported platforms: LinkedIn,
-        Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest
+        Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release (see below).
+        Threads, TikTok and Pinterest
         expose no like endpoint in their APIs and return 400. Reddit returns 400 too,
         pointing at `POST /v1/accounts/{accountId}/reddit-vote`, which covers upvote,
         downvote and clear on both posts and comments.
@@ -28350,6 +28719,22 @@ paths:
         scopes, which are not retroactive: accounts connected before those were requested
         get a 403 with code `linkedin_reconnect_required` until the user reconnects the
         account. YouTube spends 50 quota units per call.
+
+        Instagram is in LIMITED RELEASE and not generally available: the call needs
+        `instagram_manage_engagement`, which Meta has so far granted this app only under
+        Standard Access, so it works for app admins, developers and testers of our Meta app
+        and returns a 403 with code `PLATFORM_BETA_RESTRICTED` for every other account.
+        That restriction lifts when Meta App Review grants Advanced Access; the constraints
+        below apply once it does.
+
+        Instagram covers feed images, reels and carousels (stories and private-account
+        media are not likeable). Only an account connected through Facebook Login can be
+        granted `instagram_manage_engagement`: an Instagram Login
+        connection returns a 400 with code `instagram_likes_require_facebook_login`, and an
+        account whose token predates the permission returns a 403 with code
+        `reconnect_required`. Instagram also enforces a burst limit of 50 like or unlike
+        calls per 5 seconds per Instagram account, and exceeding it locks that account out
+        of the like API for an hour, so pace bulk loops.
       tags: [Comments]
       security: [{ bearerAuth: [] }]
       parameters:
@@ -28396,7 +28781,9 @@ paths:
       summary: Unlike post
       description: |
         Remove this account's like from a post. Supported platforms: LinkedIn, Twitter/X,
-        Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky,
+        Facebook, YouTube, Bluesky, and Instagram in limited release. On YouTube this clears
+        the rating. Instagram has the same limited release, Facebook Login,
+        `instagram_manage_engagement` and burst-limit constraints as liking. For Bluesky,
         `likeUri` (returned when the post was liked) is required. Reddit uses
         `POST /v1/accounts/{accountId}/reddit-vote` with `direction: 0`.
       tags: [Comments]
@@ -34881,6 +35268,88 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '404': { description: Number not found }
 
+  /v1/phone-numbers/stock-watches:
+    post:
+      x-resource-group: "telephony"
+      operationId: createPhoneNumberStockWatch
+      tags: [Phone Numbers]
+      summary: Watch an out-of-stock country
+      description: |
+        Get notified the first time an out-of-stock country has deliverable
+        numbers again: an email to the account holder plus the
+        `phone_number.stock_available` webhook. Stock is re-checked every 6h.
+        One watch per country; a repeat request returns the existing watch
+        (200). The watch is consumed when it fires, so re-create it if you
+        miss the stock. Up to 20 countries can be watched at once.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [country]
+              properties:
+                country: { type: string, minLength: 2, maxLength: 2, description: 'ISO 3166-1 alpha-2 code of a country listed by GET /v1/phone-numbers/countries.' }
+      responses:
+        '201':
+          description: Watch created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhoneNumberStockWatch'
+        '200':
+          description: A watch for this country already existed; returned unchanged.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhoneNumberStockWatch'
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '409': { description: 'The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state).' }
+    get:
+      x-resource-group: "telephony"
+      operationId: listPhoneNumberStockWatches
+      tags: [Phone Numbers]
+      summary: List stock watches
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: The caller's active watches, oldest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  watches:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PhoneNumberStockWatch'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/phone-numbers/stock-watches/{id}:
+    delete:
+      x-resource-group: "telephony"
+      operationId: deletePhoneNumberStockWatch
+      tags: [Phone Numbers]
+      summary: Stop watching a country
+      security:
+        - bearerAuth: []
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Watch deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted: { type: boolean }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { description: 'Stock watch not found (code stock_watch_not_found).' }
   /v1/phone-numbers/sip-trunks:
     post:
       x-resource-group: "telephony"
@@ -39526,7 +39995,7 @@ paths:
       x-resource-group: "ads"
       operationId: updateAdCampaign
       tags: ["Ad Campaigns"]
-      x-platforms: ["meta", "google"]
+      x-platforms: ["meta", "google", "tiktok", "linkedin", "pinterest", "x", "openai"]
       summary: Update a campaign
       description: |
         Campaign-level edits. Send at least one of `budget`, `bidStrategy`, `name`
@@ -39609,7 +40078,7 @@ paths:
       x-resource-group: "ads"
       operationId: deleteAdCampaign
       tags: ["Ad Campaigns"]
-      x-platforms: ["meta", "tiktok", "google"]
+      x-platforms: ["meta", "google", "tiktok", "linkedin", "pinterest", "x", "openai"]
       summary: Delete a campaign
       description: |
         Deletes the whole campaign on the platform, cascading to its ad sets
@@ -39958,7 +40427,7 @@ paths:
       x-resource-group: "ads"
       operationId: updateAdSet
       tags: ["Ad Campaigns"]
-      x-platforms: ["meta", "tiktok", "openai"]
+      x-platforms: ["meta", "google", "tiktok", "linkedin", "pinterest", "x", "openai"]
       summary: Update an ad set
       description: |
         Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped
@@ -40111,6 +40580,38 @@ paths:
         '409': { description: "Campaign is CBO — route to /v1/ads/campaigns/{campaignId} instead" }
         '422': { description: "bidStrategy is LOWEST_COST_WITH_MIN_ROAS on OpenAI (unsupported: no ROAS-based bidding)" }
         '501': { description: "bidStrategy not supported on the platform (Meta, TikTok, and OpenAI only)" }
+    delete:
+      x-resource-group: "ads"
+      operationId: deleteAdSet
+      tags: ["Ad Campaigns"]
+      x-platforms: ["meta", "google", "tiktok", "linkedin", "pinterest", "x"]
+      summary: Delete an ad set
+      description: |
+        Deletes the ad set on the platform, cascading to its ads only (never the
+        campaign). Locally, every Ad document under the ad set is marked
+        `status: cancelled`.
+
+        Delete is soft on platforms that have no hard delete: LinkedIn moves the
+        campaign to `PENDING_DELETION`, Pinterest archives the ad group, and X
+        soft-flags the line item. Google removes the ad group. All remain readable
+        for reporting.
+      security:
+        - bearerAuth: []
+      parameters:
+        - { name: adSetId, in: path, required: true, schema: { type: string }, description: Platform ad set ID }
+      responses:
+        '200':
+          description: Ad set deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted: { type: boolean }
+                  adCount: { type: integer, description: Local Ad documents marked cancelled }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { description: Ad set not found }
+        '501': { description: Operation not supported on this platform }
 
   /v1/ads/ad-sets/{adSetId}/status:
     put:
@@ -40507,6 +41008,85 @@ paths:
         '400': { description: Invalid input }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '404': { description: Ad not found }
+
+  /v1/ads/campaigns/{campaignId}/assets:
+    post:
+      x-resource-group: "ads"
+      operationId: attachCampaignAssets
+      tags: ["Ad Campaigns"]
+      x-platforms: ["google"]
+      summary: Attach extension assets to a Google Search campaign
+      description: |-
+        Attach sitelinks, callouts and/or structured snippets to an already-existing Google
+        Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding
+        the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.
+
+        Google-only. Other platforms have no equivalent extension surface and return 501.
+
+        Approval status is Google-async; poll `asset.policy_summary` after review. Assets
+        stay in the account library even if the campaign is later deleted.
+      security:
+        - bearerAuth: []
+      parameters:
+        - { name: campaignId, in: path, required: true, schema: { type: string }, description: "Numeric Google platform campaign id." }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [accountId]
+              properties:
+                accountId: { type: string, description: "Zernio Google Ads SocialAccount id — resolves the customer id + refresh token." }
+                sitelinks:
+                  type: array
+                  minItems: 2
+                  maxItems: 20
+                  description: "See POST /v1/ads/create sitelinks — same shape."
+                  items:
+                    type: object
+                    required: [text, linkUrl]
+                    properties:
+                      text: { type: string, minLength: 1, maxLength: 25 }
+                      linkUrl: { type: string, format: uri }
+                      description1: { type: string, minLength: 1, maxLength: 35 }
+                      description2: { type: string, minLength: 1, maxLength: 35 }
+                callouts:
+                  type: array
+                  minItems: 1
+                  maxItems: 20
+                  items: { type: string, minLength: 1, maxLength: 25 }
+                structuredSnippets:
+                  type: array
+                  minItems: 1
+                  maxItems: 20
+                  items:
+                    type: object
+                    required: [header, values]
+                    properties:
+                      header:
+                        type: string
+                        enum: [Amenities, Brands, Courses, Degree programs, Destinations, Featured hotels, Insurance coverage, Models, Neighborhoods, Service catalog, Shows, Styles, Types]
+                      values:
+                        type: array
+                        minItems: 3
+                        maxItems: 10
+                        items: { type: string, minLength: 1, maxLength: 25 }
+      responses:
+        '201':
+          description: Assets attached
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaignId: { type: string }
+                  sitelinkAssetResourceNames: { type: array, items: { type: string } }
+                  calloutAssetResourceNames: { type: array, items: { type: string } }
+                  structuredSnippetAssetResourceNames: { type: array, items: { type: string } }
+        '400': { description: "Invalid input, or Google rejected the assets" }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { description: Only supported on Google Ads }
 
   /v1/ads/campaigns/{campaignId}/analytics:
     get:
@@ -43349,6 +43929,39 @@ paths:
                       linkUrl: { type: string, format: uri, description: "Final URL the sitelink navigates to." }
                       description1: { type: string, minLength: 1, maxLength: 35, description: "First description line under the link text (optional). 35-char cap." }
                       description2: { type: string, minLength: 1, maxLength: 35, description: "Second description line (optional; usually paired with description1)." }
+                callouts:
+                  type: array
+                  minItems: 1
+                  maxItems: 20
+                  items: { type: string, minLength: 1, maxLength: 25 }
+                  description: |
+                    Google Search only. Short callout texts (max 25 chars each) that appear as
+                    non-clickable annotations under the ad, e.g. "Free shipping", "24/7 support".
+                    Each becomes one Asset (`callout_asset`) plus a CampaignAsset link with
+                    field_type CALLOUT. Response's creative.callouts[] echoes each input plus
+                    its Google resourceName.
+                structuredSnippets:
+                  type: array
+                  minItems: 1
+                  maxItems: 20
+                  description: |
+                    Google Search only. Structured snippets — one header from Google's
+                    predefined list plus 3-10 values (max 25 chars each). Each becomes one
+                    Asset (`structured_snippet_asset`) plus a CampaignAsset link with
+                    field_type STRUCTURED_SNIPPET.
+                  items:
+                    type: object
+                    required: [header, values]
+                    properties:
+                      header:
+                        type: string
+                        enum: [Amenities, Brands, Courses, Degree programs, Destinations, Featured hotels, Insurance coverage, Models, Neighborhoods, Service catalog, Shows, Styles, Types]
+                        description: "One of Google's 13 predefined snippet headers."
+                      values:
+                        type: array
+                        minItems: 3
+                        maxItems: 10
+                        items: { type: string, minLength: 1, maxLength: 25 }
                 advantageAudience: { type: integer, enum: [0, 1], description: "Meta only. Controls the Advantage audience feature (targeting_automation). 0 = disabled (default), 1 = enabled. Meta Marketing API requires this field on all ad set creation requests." }
                 attributionSpec:
                   type: array
@@ -44335,6 +44948,17 @@ paths:
         filter on. Every result has `type` set to `location`, and its id is a
         `urn:li:geo:*` URN usable as a `regions[].key` on `POST /v1/ads/create`,
         `POST /v1/ads/boost` and `POST /v1/ads/targeting/reach-estimate`.
+
+        Google geo searches resolve against Google's geoTargetConstants and return
+        every matching level in one list; `geoType` is not applied (Google's
+        `target_type` is an open taxonomy that does not map one-to-one onto the
+        `geoType` enum), so filter client-side on the returned `type` (`country`,
+        `region`, `city`, `zip`, `metro`, or the lowercased Google target type for
+        rarer levels). `countryCode` scopes the search to one country. Each id is
+        Google's numeric criterion id, usable as a `regions`/`cities`/`zips`/`metros`
+        `key` on `POST /v1/ads/create`. Google city radius is not supported (pass a
+        `customLocations` lat/lng pin for a radius); country targeting also accepts
+        plain ISO codes via `countries` with no search call.
 
         Pinterest resolves against three whole-catalog endpoints (interests, locations,
         regions) with no server-side query or pagination, so matching, ranking and the

@@ -22,6 +22,8 @@ import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeResponse;
 import dev.zernio.model.AdsListResponse;
 import dev.zernio.model.AdsTimelineResponse;
+import dev.zernio.model.AttachCampaignAssets201Response;
+import dev.zernio.model.AttachCampaignAssetsRequest;
 import java.math.BigDecimal;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
@@ -34,6 +36,7 @@ import dev.zernio.model.CreateStandaloneAdRequest;
 import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.DeleteAdCampaign200Response;
 import dev.zernio.model.DeleteAdCampaignRequest;
+import dev.zernio.model.DeleteAdSet200Response;
 import dev.zernio.model.DuplicateAd200Response;
 import dev.zernio.model.DuplicateAdCampaign200Response;
 import dev.zernio.model.DuplicateAdCampaignRequest;
@@ -88,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -203,6 +206,138 @@ public class AdCampaignsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Attach extension assets to a Google Search campaign
+   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @return AttachCampaignAssets201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AttachCampaignAssets201Response attachCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest) throws ApiException {
+    return attachCampaignAssets(campaignId, attachCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Attach extension assets to a Google Search campaign
+   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AttachCampaignAssets201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AttachCampaignAssets201Response attachCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AttachCampaignAssets201Response> localVarResponse = attachCampaignAssetsWithHttpInfo(campaignId, attachCampaignAssetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Attach extension assets to a Google Search campaign
+   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @return ApiResponse&lt;AttachCampaignAssets201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AttachCampaignAssets201Response> attachCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest) throws ApiException {
+    return attachCampaignAssetsWithHttpInfo(campaignId, attachCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Attach extension assets to a Google Search campaign
+   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AttachCampaignAssets201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AttachCampaignAssets201Response> attachCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = attachCampaignAssetsRequestBuilder(campaignId, attachCampaignAssetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("attachCampaignAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AttachCampaignAssets201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AttachCampaignAssets201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AttachCampaignAssets201Response>() {});
+        
+
+        return new ApiResponse<AttachCampaignAssets201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder attachCampaignAssetsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling attachCampaignAssets");
+    }
+    // verify the required parameter 'attachCampaignAssetsRequest' is set
+    if (attachCampaignAssetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'attachCampaignAssetsRequest' when calling attachCampaignAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/assets"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(attachCampaignAssetsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -957,6 +1092,124 @@ public class AdCampaignsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete an ad set
+   * Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+   * @param adSetId Platform ad set ID (required)
+   * @return DeleteAdSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdSet200Response deleteAdSet(@javax.annotation.Nonnull String adSetId) throws ApiException {
+    return deleteAdSet(adSetId, null);
+  }
+
+  /**
+   * Delete an ad set
+   * Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+   * @param adSetId Platform ad set ID (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteAdSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdSet200Response deleteAdSet(@javax.annotation.Nonnull String adSetId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteAdSet200Response> localVarResponse = deleteAdSetWithHttpInfo(adSetId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete an ad set
+   * Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+   * @param adSetId Platform ad set ID (required)
+   * @return ApiResponse&lt;DeleteAdSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdSet200Response> deleteAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId) throws ApiException {
+    return deleteAdSetWithHttpInfo(adSetId, null);
+  }
+
+  /**
+   * Delete an ad set
+   * Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+   * @param adSetId Platform ad set ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteAdSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdSet200Response> deleteAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAdSetRequestBuilder(adSetId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteAdSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteAdSet200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteAdSet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteAdSet200Response>() {});
+        
+
+        return new ApiResponse<DeleteAdSet200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteAdSetRequestBuilder(@javax.annotation.Nonnull String adSetId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling deleteAdSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

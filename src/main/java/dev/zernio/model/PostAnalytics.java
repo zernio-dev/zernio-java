@@ -50,11 +50,13 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_FOLLOWS,
   PostAnalytics.JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME,
   PostAnalytics.JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME,
+  PostAnalytics.JSON_PROPERTY_REELS_SKIP_RATE,
+  PostAnalytics.JSON_PROPERTY_REPOSTS,
   PostAnalytics.JSON_PROPERTY_VIDEO_DURATION_SECONDS,
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -99,6 +101,14 @@ public class PostAnalytics {
   public static final String JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME = "igReelsVideoViewTotalTime";
   @javax.annotation.Nullable
   private Integer igReelsVideoViewTotalTime;
+
+  public static final String JSON_PROPERTY_REELS_SKIP_RATE = "reelsSkipRate";
+  @javax.annotation.Nullable
+  private BigDecimal reelsSkipRate;
+
+  public static final String JSON_PROPERTY_REPOSTS = "reposts";
+  @javax.annotation.Nullable
+  private Integer reposts;
 
   public static final String JSON_PROPERTY_VIDEO_DURATION_SECONDS = "videoDurationSeconds";
   private JsonNullable<Integer> videoDurationSeconds = JsonNullable.<Integer>undefined();
@@ -378,6 +388,54 @@ public class PostAnalytics {
   }
 
 
+  public PostAnalytics reelsSkipRate(@javax.annotation.Nullable BigDecimal reelsSkipRate) {
+    this.reelsSkipRate = reelsSkipRate;
+    return this;
+  }
+
+  /**
+   * Instagram Reels only: the rate of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Passed through exactly as Meta reports it, with no rescaling, so do not assume a 0-1 share. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views.
+   * @return reelsSkipRate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REELS_SKIP_RATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getReelsSkipRate() {
+    return reelsSkipRate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REELS_SKIP_RATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReelsSkipRate(@javax.annotation.Nullable BigDecimal reelsSkipRate) {
+    this.reelsSkipRate = reelsSkipRate;
+  }
+
+
+  public PostAnalytics reposts(@javax.annotation.Nullable Integer reposts) {
+    this.reposts = reposts;
+    return this;
+  }
+
+  /**
+   * Instagram only: reposts of the media by other users, minus deleted reposts. Available on feed posts, reels and stories. 0 for other platforms, including Threads, where reposts are counted in shares instead.
+   * @return reposts
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REPOSTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getReposts() {
+    return reposts;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REPOSTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReposts(@javax.annotation.Nullable Integer reposts) {
+    this.reposts = reposts;
+  }
+
+
   public PostAnalytics videoDurationSeconds(@javax.annotation.Nullable Integer videoDurationSeconds) {
     this.videoDurationSeconds = JsonNullable.<Integer>of(videoDurationSeconds);
     return this;
@@ -481,6 +539,8 @@ public class PostAnalytics {
         Objects.equals(this.follows, postAnalytics.follows) &&
         Objects.equals(this.igReelsAvgWatchTime, postAnalytics.igReelsAvgWatchTime) &&
         Objects.equals(this.igReelsVideoViewTotalTime, postAnalytics.igReelsVideoViewTotalTime) &&
+        Objects.equals(this.reelsSkipRate, postAnalytics.reelsSkipRate) &&
+        Objects.equals(this.reposts, postAnalytics.reposts) &&
         equalsNullable(this.videoDurationSeconds, postAnalytics.videoDurationSeconds) &&
         Objects.equals(this.engagementRate, postAnalytics.engagementRate) &&
         Objects.equals(this.lastUpdated, postAnalytics.lastUpdated);
@@ -492,7 +552,7 @@ public class PostAnalytics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, reelsSkipRate, reposts, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -517,6 +577,8 @@ public class PostAnalytics {
     sb.append("    follows: ").append(toIndentedString(follows)).append("\n");
     sb.append("    igReelsAvgWatchTime: ").append(toIndentedString(igReelsAvgWatchTime)).append("\n");
     sb.append("    igReelsVideoViewTotalTime: ").append(toIndentedString(igReelsVideoViewTotalTime)).append("\n");
+    sb.append("    reelsSkipRate: ").append(toIndentedString(reelsSkipRate)).append("\n");
+    sb.append("    reposts: ").append(toIndentedString(reposts)).append("\n");
     sb.append("    videoDurationSeconds: ").append(toIndentedString(videoDurationSeconds)).append("\n");
     sb.append("    engagementRate: ").append(toIndentedString(engagementRate)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
@@ -620,6 +682,16 @@ public class PostAnalytics {
     // add `igReelsVideoViewTotalTime` to the URL query string
     if (getIgReelsVideoViewTotalTime() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sigReelsVideoViewTotalTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIgReelsVideoViewTotalTime()))));
+    }
+
+    // add `reelsSkipRate` to the URL query string
+    if (getReelsSkipRate() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreelsSkipRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReelsSkipRate()))));
+    }
+
+    // add `reposts` to the URL query string
+    if (getReposts() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreposts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReposts()))));
     }
 
     // add `videoDurationSeconds` to the URL query string

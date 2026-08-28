@@ -27,7 +27,7 @@
 |**profileId** | **String** |  |  [optional] |
 |**advertisingChannelType** | **String** | Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType. |  [optional] |
 |**platformObjective** | **String** | Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC) |  [optional] |
-|**optimizationGoal** | [**AdTreeCampaignOptimizationGoal**](AdTreeCampaignOptimizationGoal.md) |  |  [optional] |
+|**optimizationGoal** | **Object** |  |  [optional] |
 |**bidStrategy** | **BidStrategy** |  |  [optional] |
 |**bidAmount** | **BigDecimal** | Representative bid from the top-spending ad set (whole currency units). Meta: populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, ungated, where 0 is a real delivery-stopping value. |  [optional] |
 |**roasAverageFloor** | **BigDecimal** | Representative ROAS floor from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x). |  [optional] |

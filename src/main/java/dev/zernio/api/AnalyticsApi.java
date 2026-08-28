@@ -92,7 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -221,7 +221,7 @@ public class AnalyticsApi {
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
    * @param limit Page size (default 50) (optional, default to 50)
    * @param page Page number (default 1) (optional, default to 1)
-   * @param sortBy Sort by date, engagement, or a specific metric (optional, default to date)
+   * @param sortBy Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @return GetAnalytics200Response
    * @throws ApiException if fails to make API call
@@ -242,7 +242,7 @@ public class AnalyticsApi {
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
    * @param limit Page size (default 50) (optional, default to 50)
    * @param page Page number (default 1) (optional, default to 1)
-   * @param sortBy Sort by date, engagement, or a specific metric (optional, default to date)
+   * @param sortBy Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @param headers Optional headers to include in the request
    * @return GetAnalytics200Response
@@ -265,7 +265,7 @@ public class AnalyticsApi {
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
    * @param limit Page size (default 50) (optional, default to 50)
    * @param page Page number (default 1) (optional, default to 1)
-   * @param sortBy Sort by date, engagement, or a specific metric (optional, default to date)
+   * @param sortBy Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @return ApiResponse&lt;GetAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
@@ -286,7 +286,7 @@ public class AnalyticsApi {
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
    * @param limit Page size (default 50) (optional, default to 50)
    * @param page Page number (default 1) (optional, default to 1)
-   * @param sortBy Sort by date, engagement, or a specific metric (optional, default to date)
+   * @param sortBy Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAnalytics200Response&gt;

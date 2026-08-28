@@ -487,11 +487,11 @@ ApiResponse<[**GetSmsUsage200Response**](GetSmsUsage200Response.md)>
 
 ## getUsage
 
-> GetUsage200Response getUsage(reconcile, range, from, to, granularity)
+> GetUsage200Response getUsage(reconcile, range, from, to, granularity, groupBy, profileId, accountId)
 
 Usage snapshot (default) or billed-spend metering (with params)
 
-Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
+Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  **Attribution (metering mode):** &#x60;groupBy&#x3D;profile|account&#x60; adds an &#x60;attribution&#x60; breakdown of the window&#39;s spend per profile or account, assembled from your own records and pro-rated against the invoice so &#x60;sum(groups) + unattributed&#x60; equals &#x60;totals&#x60; exactly. &#x60;profileId&#x60; / &#x60;accountId&#x60; instead project the whole payload (&#x60;days&#x60;, &#x60;totals&#x60;, &#x60;lineItems&#x60;) onto that one group; &#x60;peaks&#x60;, &#x60;callUsage&#x60; and &#x60;tax&#x60; are then &#x60;null&#x60; (workspace-level facts). Projected &#x60;days&#x60; spread the group&#39;s period share over each day (usage is attributed per period, not per day). Profile-scoped API keys and members only see their profiles&#39; groups (&#x60;attribution.restricted: true&#x60;, with &#x60;totals&#x60; summing the visible groups). Credits, 10DLC fees and Verify are always unattributed. &#x60;profileId&#x60; / &#x60;accountId&#x60; on their own do not select metering mode: pair them with &#x60;range&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
 
 ### Example
 
@@ -519,8 +519,11 @@ public class Example {
         LocalDate from = LocalDate.now(); // LocalDate | Inclusive start (UTC date). Required when `range=custom`.
         LocalDate to = LocalDate.now(); // LocalDate | Inclusive end (UTC date). Required when `range=custom`. Max span 366 days.
         String granularity = "day"; // String | Bucketing of the `days` series: `day` (one row per UTC day), `month` (one row per calendar month, dated to the 1st), or `total` (no series — read `totals`). Does not affect `totals`. 
+        String groupBy = "profile"; // String | Metering mode. Adds `attribution`: the window's spend split per profile or per account (keys are ids; resolve names via `GET /v1/profiles` / `GET /v1/accounts`).
+        String profileId = "profileId_example"; // String | Metering mode (pair with `range`). Project the payload onto this profile's attributed share. Mutually exclusive with `accountId`, and `groupBy` (if given) must be `profile`; 404 when the profile is not in your workspace (or outside a scoped key's profiles).
+        String accountId = "accountId_example"; // String | Metering mode (pair with `range`). Project the payload onto this account's attributed share. Mutually exclusive with `profileId`, and `groupBy` (if given) must be `account`; 404 when the account is not visible to the caller.
         try {
-            GetUsage200Response result = apiInstance.getUsage(reconcile, range, from, to, granularity);
+            GetUsage200Response result = apiInstance.getUsage(reconcile, range, from, to, granularity, groupBy, profileId, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsageApi#getUsage");
@@ -543,6 +546,9 @@ public class Example {
 | **from** | **LocalDate**| Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. | [optional] |
 | **to** | **LocalDate**| Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. | [optional] |
 | **granularity** | **String**| Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  | [optional] [default to day] [enum: day, month, total] |
+| **groupBy** | **String**| Metering mode. Adds &#x60;attribution&#x60;: the window&#39;s spend split per profile or per account (keys are ids; resolve names via &#x60;GET /v1/profiles&#x60; / &#x60;GET /v1/accounts&#x60;). | [optional] [enum: profile, account] |
+| **profileId** | **String**| Metering mode (pair with &#x60;range&#x60;). Project the payload onto this profile&#39;s attributed share. Mutually exclusive with &#x60;accountId&#x60;, and &#x60;groupBy&#x60; (if given) must be &#x60;profile&#x60;; 404 when the profile is not in your workspace (or outside a scoped key&#39;s profiles). | [optional] |
+| **accountId** | **String**| Metering mode (pair with &#x60;range&#x60;). Project the payload onto this account&#39;s attributed share. Mutually exclusive with &#x60;profileId&#x60;, and &#x60;groupBy&#x60; (if given) must be &#x60;account&#x60;; 404 when the account is not visible to the caller. | [optional] |
 
 ### Return type
 
@@ -568,11 +574,11 @@ public class Example {
 
 ## getUsageWithHttpInfo
 
-> ApiResponse<GetUsage200Response> getUsage getUsageWithHttpInfo(reconcile, range, from, to, granularity)
+> ApiResponse<GetUsage200Response> getUsage getUsageWithHttpInfo(reconcile, range, from, to, granularity, groupBy, profileId, accountId)
 
 Usage snapshot (default) or billed-spend metering (with params)
 
-Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
+Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  **Attribution (metering mode):** &#x60;groupBy&#x3D;profile|account&#x60; adds an &#x60;attribution&#x60; breakdown of the window&#39;s spend per profile or account, assembled from your own records and pro-rated against the invoice so &#x60;sum(groups) + unattributed&#x60; equals &#x60;totals&#x60; exactly. &#x60;profileId&#x60; / &#x60;accountId&#x60; instead project the whole payload (&#x60;days&#x60;, &#x60;totals&#x60;, &#x60;lineItems&#x60;) onto that one group; &#x60;peaks&#x60;, &#x60;callUsage&#x60; and &#x60;tax&#x60; are then &#x60;null&#x60; (workspace-level facts). Projected &#x60;days&#x60; spread the group&#39;s period share over each day (usage is attributed per period, not per day). Profile-scoped API keys and members only see their profiles&#39; groups (&#x60;attribution.restricted: true&#x60;, with &#x60;totals&#x60; summing the visible groups). Credits, 10DLC fees and Verify are always unattributed. &#x60;profileId&#x60; / &#x60;accountId&#x60; on their own do not select metering mode: pair them with &#x60;range&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
 
 ### Example
 
@@ -601,8 +607,11 @@ public class Example {
         LocalDate from = LocalDate.now(); // LocalDate | Inclusive start (UTC date). Required when `range=custom`.
         LocalDate to = LocalDate.now(); // LocalDate | Inclusive end (UTC date). Required when `range=custom`. Max span 366 days.
         String granularity = "day"; // String | Bucketing of the `days` series: `day` (one row per UTC day), `month` (one row per calendar month, dated to the 1st), or `total` (no series — read `totals`). Does not affect `totals`. 
+        String groupBy = "profile"; // String | Metering mode. Adds `attribution`: the window's spend split per profile or per account (keys are ids; resolve names via `GET /v1/profiles` / `GET /v1/accounts`).
+        String profileId = "profileId_example"; // String | Metering mode (pair with `range`). Project the payload onto this profile's attributed share. Mutually exclusive with `accountId`, and `groupBy` (if given) must be `profile`; 404 when the profile is not in your workspace (or outside a scoped key's profiles).
+        String accountId = "accountId_example"; // String | Metering mode (pair with `range`). Project the payload onto this account's attributed share. Mutually exclusive with `profileId`, and `groupBy` (if given) must be `account`; 404 when the account is not visible to the caller.
         try {
-            ApiResponse<GetUsage200Response> response = apiInstance.getUsageWithHttpInfo(reconcile, range, from, to, granularity);
+            ApiResponse<GetUsage200Response> response = apiInstance.getUsageWithHttpInfo(reconcile, range, from, to, granularity, groupBy, profileId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -627,6 +636,9 @@ public class Example {
 | **from** | **LocalDate**| Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. | [optional] |
 | **to** | **LocalDate**| Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. | [optional] |
 | **granularity** | **String**| Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  | [optional] [default to day] [enum: day, month, total] |
+| **groupBy** | **String**| Metering mode. Adds &#x60;attribution&#x60;: the window&#39;s spend split per profile or per account (keys are ids; resolve names via &#x60;GET /v1/profiles&#x60; / &#x60;GET /v1/accounts&#x60;). | [optional] [enum: profile, account] |
+| **profileId** | **String**| Metering mode (pair with &#x60;range&#x60;). Project the payload onto this profile&#39;s attributed share. Mutually exclusive with &#x60;accountId&#x60;, and &#x60;groupBy&#x60; (if given) must be &#x60;profile&#x60;; 404 when the profile is not in your workspace (or outside a scoped key&#39;s profiles). | [optional] |
+| **accountId** | **String**| Metering mode (pair with &#x60;range&#x60;). Project the payload onto this account&#39;s attributed share. Mutually exclusive with &#x60;profileId&#x60;, and &#x60;groupBy&#x60; (if given) must be &#x60;account&#x60;; 404 when the account is not visible to the caller. | [optional] |
 
 ### Return type
 

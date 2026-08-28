@@ -95,7 +95,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
         Integer limit = 50; // Integer | Page size (default 50)
         Integer page = 1; // Integer | Page number (default 1)
-        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric
+        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0.
         String order = "asc"; // String | Sort order
         try {
             GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
@@ -125,7 +125,7 @@ public class Example {
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **String**| Sort by date, engagement, or a specific metric | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows] |
+| **sortBy** | **String**| Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 
 ### Return type
@@ -193,7 +193,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
         Integer limit = 50; // Integer | Page size (default 50)
         Integer page = 1; // Integer | Page number (default 1)
-        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric
+        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0.
         String order = "asc"; // String | Sort order
         try {
             ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
@@ -225,7 +225,7 @@ public class Example {
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **String**| Sort by date, engagement, or a specific metric | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows] |
+| **sortBy** | **String**| Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort posts with no value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 
 ### Return type

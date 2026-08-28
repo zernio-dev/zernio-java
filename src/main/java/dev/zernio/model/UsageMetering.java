@@ -24,11 +24,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.UsageMeteringAttribution;
 import dev.zernio.model.UsageMeteringCallUsage;
 import dev.zernio.model.UsageMeteringDaysInner;
 import dev.zernio.model.UsageMeteringLineItemsInner;
 import dev.zernio.model.UsageMeteringPeaks;
 import dev.zernio.model.UsageMeteringPeriod;
+import dev.zernio.model.UsageMeteringScope;
 import dev.zernio.model.UsageMeteringTax;
 import dev.zernio.model.UsageMeteringTotals;
 import java.util.ArrayList;
@@ -50,9 +52,11 @@ import dev.zernio.ApiClient;
   UsageMetering.JSON_PROPERTY_PEAKS,
   UsageMetering.JSON_PROPERTY_CALL_USAGE,
   UsageMetering.JSON_PROPERTY_PERIOD,
-  UsageMetering.JSON_PROPERTY_TAX
+  UsageMetering.JSON_PROPERTY_TAX,
+  UsageMetering.JSON_PROPERTY_ATTRIBUTION,
+  UsageMetering.JSON_PROPERTY_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMetering {
   public static final String JSON_PROPERTY_SUPPORTED = "supported";
   @javax.annotation.Nullable
@@ -126,6 +130,14 @@ public class UsageMetering {
   public static final String JSON_PROPERTY_TAX = "tax";
   @javax.annotation.Nullable
   private UsageMeteringTax tax;
+
+  public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
+  @javax.annotation.Nullable
+  private UsageMeteringAttribution attribution;
+
+  public static final String JSON_PROPERTY_SCOPE = "scope";
+  @javax.annotation.Nullable
+  private UsageMeteringScope scope;
 
   public UsageMetering() { 
   }
@@ -362,6 +374,54 @@ public class UsageMetering {
   }
 
 
+  public UsageMetering attribution(@javax.annotation.Nullable UsageMeteringAttribution attribution) {
+    this.attribution = attribution;
+    return this;
+  }
+
+  /**
+   * Get attribution
+   * @return attribution
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UsageMeteringAttribution getAttribution() {
+    return attribution;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttribution(@javax.annotation.Nullable UsageMeteringAttribution attribution) {
+    this.attribution = attribution;
+  }
+
+
+  public UsageMetering scope(@javax.annotation.Nullable UsageMeteringScope scope) {
+    this.scope = scope;
+    return this;
+  }
+
+  /**
+   * Get scope
+   * @return scope
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SCOPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UsageMeteringScope getScope() {
+    return scope;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SCOPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setScope(@javax.annotation.Nullable UsageMeteringScope scope) {
+    this.scope = scope;
+  }
+
+
   /**
    * Return true if this UsageMetering object is equal to o.
    */
@@ -382,12 +442,14 @@ public class UsageMetering {
         Objects.equals(this.peaks, usageMetering.peaks) &&
         Objects.equals(this.callUsage, usageMetering.callUsage) &&
         Objects.equals(this.period, usageMetering.period) &&
-        Objects.equals(this.tax, usageMetering.tax);
+        Objects.equals(this.tax, usageMetering.tax) &&
+        Objects.equals(this.attribution, usageMetering.attribution) &&
+        Objects.equals(this.scope, usageMetering.scope);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(supported, granularity, days, totals, lineItems, peaks, callUsage, period, tax);
+    return Objects.hash(supported, granularity, days, totals, lineItems, peaks, callUsage, period, tax, attribution, scope);
   }
 
   @Override
@@ -403,6 +465,8 @@ public class UsageMetering {
     sb.append("    callUsage: ").append(toIndentedString(callUsage)).append("\n");
     sb.append("    period: ").append(toIndentedString(period)).append("\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
+    sb.append("    attribution: ").append(toIndentedString(attribution)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -503,6 +567,16 @@ public class UsageMetering {
     // add `tax` to the URL query string
     if (getTax() != null) {
       joiner.add(getTax().toUrlQueryString(prefix + "tax" + suffix));
+    }
+
+    // add `attribution` to the URL query string
+    if (getAttribution() != null) {
+      joiner.add(getAttribution().toUrlQueryString(prefix + "attribution" + suffix));
+    }
+
+    // add `scope` to the URL query string
+    if (getScope() != null) {
+      joiner.add(getScope().toUrlQueryString(prefix + "scope" + suffix));
     }
 
     return joiner.toString();

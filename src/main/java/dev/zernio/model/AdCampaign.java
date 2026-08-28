@@ -29,7 +29,6 @@ import dev.zernio.model.AdCampaignCampaignBudget;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdReviewStatus;
 import dev.zernio.model.AdStatus;
-import dev.zernio.model.AdTreeCampaignOptimizationGoal;
 import dev.zernio.model.AdTreeCampaignPromotedObject;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
@@ -77,7 +76,7 @@ import dev.zernio.ApiClient;
   AdCampaign.JSON_PROPERTY_EARLIEST_AD,
   AdCampaign.JSON_PROPERTY_LATEST_AD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -234,8 +233,7 @@ public class AdCampaign {
   private JsonNullable<String> platformObjective = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
-  @javax.annotation.Nullable
-  private AdTreeCampaignOptimizationGoal optimizationGoal;
+  private JsonNullable<Object> optimizationGoal = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   private JsonNullable<BidStrategy> bidStrategy = JsonNullable.<BidStrategy>undefined();
@@ -817,8 +815,8 @@ public class AdCampaign {
   }
 
 
-  public AdCampaign optimizationGoal(@javax.annotation.Nullable AdTreeCampaignOptimizationGoal optimizationGoal) {
-    this.optimizationGoal = optimizationGoal;
+  public AdCampaign optimizationGoal(@javax.annotation.Nullable Object optimizationGoal) {
+    this.optimizationGoal = JsonNullable.<Object>of(optimizationGoal);
     return this;
   }
 
@@ -827,17 +825,25 @@ public class AdCampaign {
    * @return optimizationGoal
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AdTreeCampaignOptimizationGoal getOptimizationGoal() {
-    return optimizationGoal;
+  @JsonIgnore
+  public Object getOptimizationGoal() {
+        return optimizationGoal.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptimizationGoal(@javax.annotation.Nullable AdTreeCampaignOptimizationGoal optimizationGoal) {
+
+  public JsonNullable<Object> getOptimizationGoal_JsonNullable() {
+    return optimizationGoal;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OPTIMIZATION_GOAL)
+  public void setOptimizationGoal_JsonNullable(JsonNullable<Object> optimizationGoal) {
     this.optimizationGoal = optimizationGoal;
+  }
+
+  public void setOptimizationGoal(@javax.annotation.Nullable Object optimizationGoal) {
+    this.optimizationGoal = JsonNullable.<Object>of(optimizationGoal);
   }
 
 
@@ -1041,7 +1047,7 @@ public class AdCampaign {
         Objects.equals(this.profileId, adCampaign.profileId) &&
         equalsNullable(this.advertisingChannelType, adCampaign.advertisingChannelType) &&
         equalsNullable(this.platformObjective, adCampaign.platformObjective) &&
-        Objects.equals(this.optimizationGoal, adCampaign.optimizationGoal) &&
+        equalsNullable(this.optimizationGoal, adCampaign.optimizationGoal) &&
         equalsNullable(this.bidStrategy, adCampaign.bidStrategy) &&
         equalsNullable(this.bidAmount, adCampaign.bidAmount) &&
         equalsNullable(this.roasAverageFloor, adCampaign.roasAverageFloor) &&
@@ -1056,7 +1062,7 @@ public class AdCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), optimizationGoal, hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, earliestAd, latestAd);
+    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, earliestAd, latestAd);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1250,7 +1256,7 @@ public class AdCampaign {
 
     // add `optimizationGoal` to the URL query string
     if (getOptimizationGoal() != null) {
-      joiner.add(getOptimizationGoal().toUrlQueryString(prefix + "optimizationGoal" + suffix));
+      joiner.add(String.format(java.util.Locale.ROOT, "%soptimizationGoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptimizationGoal()))));
     }
 
     // add `bidStrategy` to the URL query string

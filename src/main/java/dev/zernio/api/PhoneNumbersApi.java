@@ -26,6 +26,8 @@ import dev.zernio.model.CreatePhoneNumberKycLink200Response;
 import dev.zernio.model.CreatePhoneNumberKycLinkRequest;
 import dev.zernio.model.CreatePhoneNumberPortIn201Response;
 import dev.zernio.model.CreatePhoneNumberPortInRequest;
+import dev.zernio.model.CreatePhoneNumberStockWatchRequest;
+import dev.zernio.model.DeleteSmsSenderId200Response;
 import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetPhoneNumber200Response;
@@ -37,7 +39,9 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListPhoneNumberCountries200Response;
 import dev.zernio.model.ListPhoneNumberPortIns200Response;
+import dev.zernio.model.ListPhoneNumberStockWatches200Response;
 import dev.zernio.model.ListPhoneNumbers200Response;
+import dev.zernio.model.PhoneNumberStockWatch;
 import dev.zernio.model.PurchasePhoneNumber200Response;
 import dev.zernio.model.PurchasePhoneNumber202Response;
 import dev.zernio.model.PurchasePhoneNumber409Response;
@@ -91,7 +95,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -828,6 +832,247 @@ public class PhoneNumbersApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Watch an out-of-stock country
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+   * @param createPhoneNumberStockWatchRequest  (required)
+   * @return PhoneNumberStockWatch
+   * @throws ApiException if fails to make API call
+   */
+  public PhoneNumberStockWatch createPhoneNumberStockWatch(@javax.annotation.Nonnull CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest) throws ApiException {
+    return createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest, null);
+  }
+
+  /**
+   * Watch an out-of-stock country
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+   * @param createPhoneNumberStockWatchRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PhoneNumberStockWatch
+   * @throws ApiException if fails to make API call
+   */
+  public PhoneNumberStockWatch createPhoneNumberStockWatch(@javax.annotation.Nonnull CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PhoneNumberStockWatch> localVarResponse = createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Watch an out-of-stock country
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+   * @param createPhoneNumberStockWatchRequest  (required)
+   * @return ApiResponse&lt;PhoneNumberStockWatch&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PhoneNumberStockWatch> createPhoneNumberStockWatchWithHttpInfo(@javax.annotation.Nonnull CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest) throws ApiException {
+    return createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest, null);
+  }
+
+  /**
+   * Watch an out-of-stock country
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+   * @param createPhoneNumberStockWatchRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PhoneNumberStockWatch&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PhoneNumberStockWatch> createPhoneNumberStockWatchWithHttpInfo(@javax.annotation.Nonnull CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPhoneNumberStockWatchRequestBuilder(createPhoneNumberStockWatchRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createPhoneNumberStockWatch", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PhoneNumberStockWatch>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PhoneNumberStockWatch responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PhoneNumberStockWatch>() {});
+        
+
+        return new ApiResponse<PhoneNumberStockWatch>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createPhoneNumberStockWatchRequestBuilder(@javax.annotation.Nonnull CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createPhoneNumberStockWatchRequest' is set
+    if (createPhoneNumberStockWatchRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPhoneNumberStockWatchRequest' when calling createPhoneNumberStockWatch");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/stock-watches";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPhoneNumberStockWatchRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Stop watching a country
+   * 
+   * @param id  (required)
+   * @return DeleteSmsSenderId200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteSmsSenderId200Response deletePhoneNumberStockWatch(@javax.annotation.Nonnull String id) throws ApiException {
+    return deletePhoneNumberStockWatch(id, null);
+  }
+
+  /**
+   * Stop watching a country
+   * 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteSmsSenderId200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteSmsSenderId200Response deletePhoneNumberStockWatch(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteSmsSenderId200Response> localVarResponse = deletePhoneNumberStockWatchWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Stop watching a country
+   * 
+   * @param id  (required)
+   * @return ApiResponse&lt;DeleteSmsSenderId200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteSmsSenderId200Response> deletePhoneNumberStockWatchWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return deletePhoneNumberStockWatchWithHttpInfo(id, null);
+  }
+
+  /**
+   * Stop watching a country
+   * 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteSmsSenderId200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteSmsSenderId200Response> deletePhoneNumberStockWatchWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deletePhoneNumberStockWatchRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deletePhoneNumberStockWatch", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteSmsSenderId200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteSmsSenderId200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteSmsSenderId200Response>() {});
+        
+
+        return new ApiResponse<DeleteSmsSenderId200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deletePhoneNumberStockWatchRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling deletePhoneNumberStockWatch");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/stock-watches/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -1670,6 +1915,115 @@ public class PhoneNumbersApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/phone-numbers/port-in";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List stock watches
+   * 
+   * @return ListPhoneNumberStockWatches200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListPhoneNumberStockWatches200Response listPhoneNumberStockWatches() throws ApiException {
+    return listPhoneNumberStockWatches(null);
+  }
+
+  /**
+   * List stock watches
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ListPhoneNumberStockWatches200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListPhoneNumberStockWatches200Response listPhoneNumberStockWatches(Map<String, String> headers) throws ApiException {
+    ApiResponse<ListPhoneNumberStockWatches200Response> localVarResponse = listPhoneNumberStockWatchesWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List stock watches
+   * 
+   * @return ApiResponse&lt;ListPhoneNumberStockWatches200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListPhoneNumberStockWatches200Response> listPhoneNumberStockWatchesWithHttpInfo() throws ApiException {
+    return listPhoneNumberStockWatchesWithHttpInfo(null);
+  }
+
+  /**
+   * List stock watches
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListPhoneNumberStockWatches200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListPhoneNumberStockWatches200Response> listPhoneNumberStockWatchesWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listPhoneNumberStockWatchesRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listPhoneNumberStockWatches", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListPhoneNumberStockWatches200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListPhoneNumberStockWatches200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListPhoneNumberStockWatches200Response>() {});
+        
+
+        return new ApiResponse<ListPhoneNumberStockWatches200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listPhoneNumberStockWatchesRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/stock-watches";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

@@ -46,6 +46,7 @@ import dev.zernio.model.WebhookPayloadMessageDeleted;
 import dev.zernio.model.WebhookPayloadMessageDeliveryStatus;
 import dev.zernio.model.WebhookPayloadMessageEdited;
 import dev.zernio.model.WebhookPayloadMessageSent;
+import dev.zernio.model.WebhookPayloadPhoneNumberStockAvailable;
 import dev.zernio.model.WebhookPayloadPost;
 import dev.zernio.model.WebhookPayloadPostPlatform;
 import dev.zernio.model.WebhookPayloadReaction;
@@ -88,7 +89,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T14:52:15.339169363Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:03:30.991736913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2152,6 +2153,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageSent);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Phone-number stock available event
+   * Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+   * @param webhookPayloadPhoneNumberStockAvailable  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPhoneNumberStockAvailable(@javax.annotation.Nonnull WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable) throws ApiException {
+    onPhoneNumberStockAvailable(webhookPayloadPhoneNumberStockAvailable, null);
+  }
+
+  /**
+   * Phone-number stock available event
+   * Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+   * @param webhookPayloadPhoneNumberStockAvailable  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPhoneNumberStockAvailable(@javax.annotation.Nonnull WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable, Map<String, String> headers) throws ApiException {
+    onPhoneNumberStockAvailableWithHttpInfo(webhookPayloadPhoneNumberStockAvailable, headers);
+  }
+
+  /**
+   * Phone-number stock available event
+   * Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+   * @param webhookPayloadPhoneNumberStockAvailable  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPhoneNumberStockAvailableWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable) throws ApiException {
+    return onPhoneNumberStockAvailableWithHttpInfo(webhookPayloadPhoneNumberStockAvailable, null);
+  }
+
+  /**
+   * Phone-number stock available event
+   * Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+   * @param webhookPayloadPhoneNumberStockAvailable  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPhoneNumberStockAvailableWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPhoneNumberStockAvailableRequestBuilder(webhookPayloadPhoneNumberStockAvailable, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPhoneNumberStockAvailable", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPhoneNumberStockAvailableRequestBuilder(@javax.annotation.Nonnull WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadPhoneNumberStockAvailable' is set
+    if (webhookPayloadPhoneNumberStockAvailable == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadPhoneNumberStockAvailable' when calling onPhoneNumberStockAvailable");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/phone_number.stock_available";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPhoneNumberStockAvailable);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -14,6 +14,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**createPhoneNumberKycLinkWithHttpInfo**](PhoneNumbersApi.md#createPhoneNumberKycLinkWithHttpInfo) | **POST** /v1/phone-numbers/kyc/share | Create a hosted KYC link |
 | [**createPhoneNumberPortIn**](PhoneNumbersApi.md#createPhoneNumberPortIn) | **POST** /v1/phone-numbers/port-in | Port numbers in |
 | [**createPhoneNumberPortInWithHttpInfo**](PhoneNumbersApi.md#createPhoneNumberPortInWithHttpInfo) | **POST** /v1/phone-numbers/port-in | Port numbers in |
+| [**createPhoneNumberStockWatch**](PhoneNumbersApi.md#createPhoneNumberStockWatch) | **POST** /v1/phone-numbers/stock-watches | Watch an out-of-stock country |
+| [**createPhoneNumberStockWatchWithHttpInfo**](PhoneNumbersApi.md#createPhoneNumberStockWatchWithHttpInfo) | **POST** /v1/phone-numbers/stock-watches | Watch an out-of-stock country |
+| [**deletePhoneNumberStockWatch**](PhoneNumbersApi.md#deletePhoneNumberStockWatch) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country |
+| [**deletePhoneNumberStockWatchWithHttpInfo**](PhoneNumbersApi.md#deletePhoneNumberStockWatchWithHttpInfo) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country |
 | [**getPhoneNumber**](PhoneNumbersApi.md#getPhoneNumber) | **GET** /v1/phone-numbers/{id} | Get phone number |
 | [**getPhoneNumberWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberWithHttpInfo) | **GET** /v1/phone-numbers/{id} | Get phone number |
 | [**getPhoneNumberKycForm**](PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
@@ -28,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listPhoneNumberCountriesWithHttpInfo**](PhoneNumbersApi.md#listPhoneNumberCountriesWithHttpInfo) | **GET** /v1/phone-numbers/countries | List offerable number countries |
 | [**listPhoneNumberPortIns**](PhoneNumbersApi.md#listPhoneNumberPortIns) | **GET** /v1/phone-numbers/port-in | List port-in orders |
 | [**listPhoneNumberPortInsWithHttpInfo**](PhoneNumbersApi.md#listPhoneNumberPortInsWithHttpInfo) | **GET** /v1/phone-numbers/port-in | List port-in orders |
+| [**listPhoneNumberStockWatches**](PhoneNumbersApi.md#listPhoneNumberStockWatches) | **GET** /v1/phone-numbers/stock-watches | List stock watches |
+| [**listPhoneNumberStockWatchesWithHttpInfo**](PhoneNumbersApi.md#listPhoneNumberStockWatchesWithHttpInfo) | **GET** /v1/phone-numbers/stock-watches | List stock watches |
 | [**listPhoneNumbers**](PhoneNumbersApi.md#listPhoneNumbers) | **GET** /v1/phone-numbers | List phone numbers |
 | [**listPhoneNumbersWithHttpInfo**](PhoneNumbersApi.md#listPhoneNumbersWithHttpInfo) | **GET** /v1/phone-numbers | List phone numbers |
 | [**purchasePhoneNumber**](PhoneNumbersApi.md#purchasePhoneNumber) | **POST** /v1/phone-numbers/purchase | Purchase phone number |
@@ -809,6 +815,304 @@ ApiResponse<[**CreatePhoneNumberPortIn201Response**](CreatePhoneNumberPortIn201R
 | **401** | Unauthorized |  -  |
 | **409** | A number is already provisioned, or already in an in-flight port |  -  |
 | **422** | A number is not portable (reason included), numbers span multiple non-US/CA countries, or every split order failed to submit |  -  |
+
+
+## createPhoneNumberStockWatch
+
+> PhoneNumberStockWatch createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest)
+
+Watch an out-of-stock country
+
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = new CreatePhoneNumberStockWatchRequest(); // CreatePhoneNumberStockWatchRequest | 
+        try {
+            PhoneNumberStockWatch result = apiInstance.createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#createPhoneNumberStockWatch");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createPhoneNumberStockWatchRequest** | [**CreatePhoneNumberStockWatchRequest**](CreatePhoneNumberStockWatchRequest.md)|  | |
+
+### Return type
+
+[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Watch created. |  -  |
+| **200** | A watch for this country already existed; returned unchanged. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state). |  -  |
+
+## createPhoneNumberStockWatchWithHttpInfo
+
+> ApiResponse<PhoneNumberStockWatch> createPhoneNumberStockWatch createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest)
+
+Watch an out-of-stock country
+
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = new CreatePhoneNumberStockWatchRequest(); // CreatePhoneNumberStockWatchRequest | 
+        try {
+            ApiResponse<PhoneNumberStockWatch> response = apiInstance.createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#createPhoneNumberStockWatch");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createPhoneNumberStockWatchRequest** | [**CreatePhoneNumberStockWatchRequest**](CreatePhoneNumberStockWatchRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Watch created. |  -  |
+| **200** | A watch for this country already existed; returned unchanged. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state). |  -  |
+
+
+## deletePhoneNumberStockWatch
+
+> DeleteSmsSenderId200Response deletePhoneNumberStockWatch(id)
+
+Stop watching a country
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            DeleteSmsSenderId200Response result = apiInstance.deletePhoneNumberStockWatch(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#deletePhoneNumberStockWatch");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Watch deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Stock watch not found (code stock_watch_not_found). |  -  |
+
+## deletePhoneNumberStockWatchWithHttpInfo
+
+> ApiResponse<DeleteSmsSenderId200Response> deletePhoneNumberStockWatch deletePhoneNumberStockWatchWithHttpInfo(id)
+
+Stop watching a country
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.deletePhoneNumberStockWatchWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#deletePhoneNumberStockWatch");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Watch deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Stock watch not found (code stock_watch_not_found). |  -  |
 
 
 ## getPhoneNumber
@@ -1838,6 +2142,140 @@ ApiResponse<[**ListPhoneNumberPortIns200Response**](ListPhoneNumberPortIns200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Porting orders |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## listPhoneNumberStockWatches
+
+> ListPhoneNumberStockWatches200Response listPhoneNumberStockWatches()
+
+List stock watches
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        try {
+            ListPhoneNumberStockWatches200Response result = apiInstance.listPhoneNumberStockWatches();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#listPhoneNumberStockWatches");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListPhoneNumberStockWatches200Response**](ListPhoneNumberStockWatches200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The caller&#39;s active watches, oldest first. |  -  |
+| **401** | Unauthorized |  -  |
+
+## listPhoneNumberStockWatchesWithHttpInfo
+
+> ApiResponse<ListPhoneNumberStockWatches200Response> listPhoneNumberStockWatches listPhoneNumberStockWatchesWithHttpInfo()
+
+List stock watches
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        try {
+            ApiResponse<ListPhoneNumberStockWatches200Response> response = apiInstance.listPhoneNumberStockWatchesWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#listPhoneNumberStockWatches");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**ListPhoneNumberStockWatches200Response**](ListPhoneNumberStockWatches200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The caller&#39;s active watches, oldest first. |  -  |
 | **401** | Unauthorized |  -  |
 
 

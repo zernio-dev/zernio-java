@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-26T14:52:15.339169363Z[Etc/UTC]
+- Build date: 2026-08-28T09:03:30.991736913Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -227,6 +227,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**replaceAdAudienceCompaniesWithHttpInfo**](docs/AdAudiencesApi.md#replaceAdAudienceCompaniesWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignsApi* | [**attachCampaignAssets**](docs/AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign
+*AdCampaignsApi* | [**attachCampaignAssetsWithHttpInfo**](docs/AdCampaignsApi.md#attachCampaignAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign
 *AdCampaignsApi* | [**boostPost**](docs/AdCampaignsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
 *AdCampaignsApi* | [**boostPostWithHttpInfo**](docs/AdCampaignsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
 *AdCampaignsApi* | [**bulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkUpdateAdCampaignStatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
@@ -239,6 +241,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**deleteAdWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdCampaignsApi* | [**deleteAdCampaign**](docs/AdCampaignsApi.md#deleteAdCampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**deleteAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
+*AdCampaignsApi* | [**deleteAdSet**](docs/AdCampaignsApi.md#deleteAdSet) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
+*AdCampaignsApi* | [**deleteAdSetWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdSetWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
 *AdCampaignsApi* | [**duplicateAd**](docs/AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateAdCampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
@@ -521,6 +525,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getSubredditRulesWithHttpInfo**](docs/ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getTelegramConnectStatus**](docs/ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
+*ConnectApi* | [**getYoutubeCaptions**](docs/ConnectApi.md#getYoutubeCaptions) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
+*ConnectApi* | [**getYoutubeCaptionsWithHttpInfo**](docs/ConnectApi.md#getYoutubeCaptionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
 *ConnectApi* | [**getYoutubePlaylists**](docs/ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
 *ConnectApi* | [**getYoutubePlaylistsWithHttpInfo**](docs/ConnectApi.md#getYoutubePlaylistsWithHttpInfo) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
 *ConnectApi* | [**handleOAuthCallback**](docs/ConnectApi.md#handleOAuthCallback) | **POST** /v1/connect/{platform} | Complete OAuth callback
@@ -817,6 +823,10 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**createPhoneNumberKycLinkWithHttpInfo**](docs/PhoneNumbersApi.md#createPhoneNumberKycLinkWithHttpInfo) | **POST** /v1/phone-numbers/kyc/share | Create a hosted KYC link
 *PhoneNumbersApi* | [**createPhoneNumberPortIn**](docs/PhoneNumbersApi.md#createPhoneNumberPortIn) | **POST** /v1/phone-numbers/port-in | Port numbers in
 *PhoneNumbersApi* | [**createPhoneNumberPortInWithHttpInfo**](docs/PhoneNumbersApi.md#createPhoneNumberPortInWithHttpInfo) | **POST** /v1/phone-numbers/port-in | Port numbers in
+*PhoneNumbersApi* | [**createPhoneNumberStockWatch**](docs/PhoneNumbersApi.md#createPhoneNumberStockWatch) | **POST** /v1/phone-numbers/stock-watches | Watch an out-of-stock country
+*PhoneNumbersApi* | [**createPhoneNumberStockWatchWithHttpInfo**](docs/PhoneNumbersApi.md#createPhoneNumberStockWatchWithHttpInfo) | **POST** /v1/phone-numbers/stock-watches | Watch an out-of-stock country
+*PhoneNumbersApi* | [**deletePhoneNumberStockWatch**](docs/PhoneNumbersApi.md#deletePhoneNumberStockWatch) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country
+*PhoneNumbersApi* | [**deletePhoneNumberStockWatchWithHttpInfo**](docs/PhoneNumbersApi.md#deletePhoneNumberStockWatchWithHttpInfo) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country
 *PhoneNumbersApi* | [**getPhoneNumber**](docs/PhoneNumbersApi.md#getPhoneNumber) | **GET** /v1/phone-numbers/{id} | Get phone number
 *PhoneNumbersApi* | [**getPhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberWithHttpInfo) | **GET** /v1/phone-numbers/{id} | Get phone number
 *PhoneNumbersApi* | [**getPhoneNumberKycForm**](docs/PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
@@ -831,6 +841,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**listPhoneNumberCountriesWithHttpInfo**](docs/PhoneNumbersApi.md#listPhoneNumberCountriesWithHttpInfo) | **GET** /v1/phone-numbers/countries | List offerable number countries
 *PhoneNumbersApi* | [**listPhoneNumberPortIns**](docs/PhoneNumbersApi.md#listPhoneNumberPortIns) | **GET** /v1/phone-numbers/port-in | List port-in orders
 *PhoneNumbersApi* | [**listPhoneNumberPortInsWithHttpInfo**](docs/PhoneNumbersApi.md#listPhoneNumberPortInsWithHttpInfo) | **GET** /v1/phone-numbers/port-in | List port-in orders
+*PhoneNumbersApi* | [**listPhoneNumberStockWatches**](docs/PhoneNumbersApi.md#listPhoneNumberStockWatches) | **GET** /v1/phone-numbers/stock-watches | List stock watches
+*PhoneNumbersApi* | [**listPhoneNumberStockWatchesWithHttpInfo**](docs/PhoneNumbersApi.md#listPhoneNumberStockWatchesWithHttpInfo) | **GET** /v1/phone-numbers/stock-watches | List stock watches
 *PhoneNumbersApi* | [**listPhoneNumbers**](docs/PhoneNumbersApi.md#listPhoneNumbers) | **GET** /v1/phone-numbers | List phone numbers
 *PhoneNumbersApi* | [**listPhoneNumbersWithHttpInfo**](docs/PhoneNumbersApi.md#listPhoneNumbersWithHttpInfo) | **GET** /v1/phone-numbers | List phone numbers
 *PhoneNumbersApi* | [**purchasePhoneNumber**](docs/PhoneNumbersApi.md#purchasePhoneNumber) | **POST** /v1/phone-numbers/purchase | Purchase phone number
@@ -1328,7 +1340,6 @@ Class | Method | HTTP request | Description
  - [AdTreeCampaign](docs/AdTreeCampaign.md)
  - [AdTreeCampaignBudget](docs/AdTreeCampaignBudget.md)
  - [AdTreeCampaignCampaignBudget](docs/AdTreeCampaignCampaignBudget.md)
- - [AdTreeCampaignOptimizationGoal](docs/AdTreeCampaignOptimizationGoal.md)
  - [AdTreeCampaignPromotedObject](docs/AdTreeCampaignPromotedObject.md)
  - [AdTreeResponse](docs/AdTreeResponse.md)
  - [AddBroadcastRecipients200Response](docs/AddBroadcastRecipients200Response.md)
@@ -1369,6 +1380,10 @@ Class | Method | HTTP request | Description
  - [AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
  - [AssignGoogleBusinessLocation200ResponseAccount](docs/AssignGoogleBusinessLocation200ResponseAccount.md)
  - [AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
+ - [AttachCampaignAssets201Response](docs/AttachCampaignAssets201Response.md)
+ - [AttachCampaignAssetsRequest](docs/AttachCampaignAssetsRequest.md)
+ - [AttachCampaignAssetsRequestSitelinksInner](docs/AttachCampaignAssetsRequestSitelinksInner.md)
+ - [AttachCampaignAssetsRequestStructuredSnippetsInner](docs/AttachCampaignAssetsRequestStructuredSnippetsInner.md)
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
  - [AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
  - [BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
@@ -1541,6 +1556,7 @@ Class | Method | HTTP request | Description
  - [CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
  - [CreateInboxConversationRequest1](docs/CreateInboxConversationRequest1.md)
  - [CreateInboxConversationRequestHeaderMedia](docs/CreateInboxConversationRequestHeaderMedia.md)
+ - [CreateInboxConversationRequestTemplateButtonParamsInner](docs/CreateInboxConversationRequestTemplateButtonParamsInner.md)
  - [CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
@@ -1556,6 +1572,7 @@ Class | Method | HTTP request | Description
  - [CreatePhoneNumberPortInRequest](docs/CreatePhoneNumberPortInRequest.md)
  - [CreatePhoneNumberPortInRequestEndUser](docs/CreatePhoneNumberPortInRequestEndUser.md)
  - [CreatePhoneNumberPortInRequestRequirementsInner](docs/CreatePhoneNumberPortInRequestRequirementsInner.md)
+ - [CreatePhoneNumberStockWatchRequest](docs/CreatePhoneNumberStockWatchRequest.md)
  - [CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
@@ -1606,6 +1623,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestSitelinksInner](docs/CreateStandaloneAdRequestSitelinksInner.md)
+ - [CreateStandaloneAdRequestStructuredSnippetsInner](docs/CreateStandaloneAdRequestStructuredSnippetsInner.md)
  - [CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
  - [CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
@@ -1660,6 +1678,7 @@ Class | Method | HTTP request | Description
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
  - [DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
+ - [DeleteAdSet200Response](docs/DeleteAdSet200Response.md)
  - [DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
@@ -2079,6 +2098,9 @@ Class | Method | HTTP request | Description
  - [GetYouTubeDemographics412Response](docs/GetYouTubeDemographics412Response.md)
  - [GetYouTubeDemographics412ResponseScopeStatus](docs/GetYouTubeDemographics412ResponseScopeStatus.md)
  - [GetYouTubeVideoRetention404Response](docs/GetYouTubeVideoRetention404Response.md)
+ - [GetYoutubeCaptions200Response](docs/GetYoutubeCaptions200Response.md)
+ - [GetYoutubeCaptions200ResponseAvailableTracksInner](docs/GetYoutubeCaptions200ResponseAvailableTracksInner.md)
+ - [GetYoutubeCaptions200ResponseCuesInner](docs/GetYoutubeCaptions200ResponseCuesInner.md)
  - [GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
  - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [GoogleBusinessPlatformData](docs/GoogleBusinessPlatformData.md)
@@ -2277,6 +2299,7 @@ Class | Method | HTTP request | Description
  - [ListPhoneNumberCountries200ResponseCountriesInnerTypesInner](docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md)
  - [ListPhoneNumberPortIns200Response](docs/ListPhoneNumberPortIns200Response.md)
  - [ListPhoneNumberPortIns200ResponseOrdersInner](docs/ListPhoneNumberPortIns200ResponseOrdersInner.md)
+ - [ListPhoneNumberStockWatches200Response](docs/ListPhoneNumberStockWatches200Response.md)
  - [ListPhoneNumbers200Response](docs/ListPhoneNumbers200Response.md)
  - [ListPhoneNumbers200ResponseConnectedInner](docs/ListPhoneNumbers200ResponseConnectedInner.md)
  - [ListPhoneNumbers200ResponseNumbersInner](docs/ListPhoneNumbers200ResponseNumbersInner.md)
@@ -2348,6 +2371,7 @@ Class | Method | HTTP request | Description
  - [ListWorkflows200ResponseWorkflowsInner](docs/ListWorkflows200ResponseWorkflowsInner.md)
  - [LookupSmsNumber200Response](docs/LookupSmsNumber200Response.md)
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
+ - [MediaContentType](docs/MediaContentType.md)
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
@@ -2378,12 +2402,12 @@ Class | Method | HTTP request | Description
  - [Pagination](docs/Pagination.md)
  - [PauseWorkflow200Response](docs/PauseWorkflow200Response.md)
  - [Pending](docs/Pending.md)
+ - [PhoneNumberStockWatch](docs/PhoneNumberStockWatch.md)
  - [PinDiscordMessage200Response](docs/PinDiscordMessage200Response.md)
  - [PinterestPlatformData](docs/PinterestPlatformData.md)
  - [PlatformAnalytics](docs/PlatformAnalytics.md)
  - [PlatformTarget](docs/PlatformTarget.md)
  - [PlatformTargetAccountId](docs/PlatformTargetAccountId.md)
- - [PlatformTargetPlatformSpecificData](docs/PlatformTargetPlatformSpecificData.md)
  - [Post](docs/Post.md)
  - [PostAnalytics](docs/PostAnalytics.md)
  - [PostCreateResponse](docs/PostCreateResponse.md)
@@ -2835,13 +2859,19 @@ Class | Method | HTTP request | Description
  - [UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
  - [UploadedOrDerivedAudienceCompaniesInner](docs/UploadedOrDerivedAudienceCompaniesInner.md)
  - [UploadedOrDerivedAudienceMatchRulesInner](docs/UploadedOrDerivedAudienceMatchRulesInner.md)
+ - [UsageAttributionGroup](docs/UsageAttributionGroup.md)
+ - [UsageAttributionSlice](docs/UsageAttributionSlice.md)
+ - [UsageAttributionSliceByProduct](docs/UsageAttributionSliceByProduct.md)
  - [UsageMetering](docs/UsageMetering.md)
+ - [UsageMeteringAttribution](docs/UsageMeteringAttribution.md)
  - [UsageMeteringCallUsage](docs/UsageMeteringCallUsage.md)
  - [UsageMeteringCallUsageWhatsapp](docs/UsageMeteringCallUsageWhatsapp.md)
  - [UsageMeteringDaysInner](docs/UsageMeteringDaysInner.md)
  - [UsageMeteringLineItemsInner](docs/UsageMeteringLineItemsInner.md)
  - [UsageMeteringPeaks](docs/UsageMeteringPeaks.md)
  - [UsageMeteringPeriod](docs/UsageMeteringPeriod.md)
+ - [UsageMeteringScope](docs/UsageMeteringScope.md)
+ - [UsageMeteringScopeOneOf](docs/UsageMeteringScopeOneOf.md)
  - [UsageMeteringTax](docs/UsageMeteringTax.md)
  - [UsageMeteringTotals](docs/UsageMeteringTotals.md)
  - [UsageStats](docs/UsageStats.md)
@@ -2942,6 +2972,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageSentMessageAttachmentsInner](docs/WebhookPayloadMessageSentMessageAttachmentsInner.md)
  - [WebhookPayloadMessageSentMessageSender](docs/WebhookPayloadMessageSentMessageSender.md)
  - [WebhookPayloadMessageSentMetadata](docs/WebhookPayloadMessageSentMetadata.md)
+ - [WebhookPayloadPhoneNumberStockAvailable](docs/WebhookPayloadPhoneNumberStockAvailable.md)
+ - [WebhookPayloadPhoneNumberStockAvailableStock](docs/WebhookPayloadPhoneNumberStockAvailableStock.md)
+ - [WebhookPayloadPhoneNumberStockAvailableStockTypesInner](docs/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.md)
  - [WebhookPayloadPost](docs/WebhookPayloadPost.md)
  - [WebhookPayloadPostPlatform](docs/WebhookPayloadPostPlatform.md)
  - [WebhookPayloadPostPlatformAccount](docs/WebhookPayloadPostPlatformAccount.md)
