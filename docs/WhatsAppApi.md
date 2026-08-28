@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteWhatsAppGroupChatWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**deleteWhatsAppTemplate**](WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
 | [**deleteWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
+| [**deleteWhatsAppTemplateById**](WhatsAppApi.md#deleteWhatsAppTemplateById) | **DELETE** /v1/whatsapp/templates/id/{templateId} | Delete template by id |
+| [**deleteWhatsAppTemplateByIdWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppTemplateByIdWithHttpInfo) | **DELETE** /v1/whatsapp/templates/id/{templateId} | Delete template by id |
 | [**deleteWhatsappBusinessUsername**](WhatsAppApi.md#deleteWhatsappBusinessUsername) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username |
 | [**deleteWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#deleteWhatsappBusinessUsernameWithHttpInfo) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username |
 | [**getWhatsAppBlockStatus**](WhatsAppApi.md#getWhatsAppBlockStatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
@@ -40,6 +42,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppMediaWithHttpInfo**](WhatsAppApi.md#getWhatsAppMediaWithHttpInfo) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media |
 | [**getWhatsAppTemplate**](WhatsAppApi.md#getWhatsAppTemplate) | **GET** /v1/whatsapp/templates/{templateName} | Get template |
 | [**getWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template |
+| [**getWhatsAppTemplateById**](WhatsAppApi.md#getWhatsAppTemplateById) | **GET** /v1/whatsapp/templates/id/{templateId} | Get template by id |
+| [**getWhatsAppTemplateByIdWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplateByIdWithHttpInfo) | **GET** /v1/whatsapp/templates/id/{templateId} | Get template by id |
 | [**getWhatsAppTemplates**](WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates |
 | [**getWhatsAppTemplatesWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates |
 | [**getWhatsappBusinessUsername**](WhatsAppApi.md#getWhatsappBusinessUsername) | **GET** /v1/whatsapp/business-profile/username | Get business username |
@@ -74,6 +78,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateWhatsAppGroupChatWithHttpInfo**](WhatsAppApi.md#updateWhatsAppGroupChatWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings |
 | [**updateWhatsAppTemplate**](WhatsAppApi.md#updateWhatsAppTemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template |
 | [**updateWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#updateWhatsAppTemplateWithHttpInfo) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template |
+| [**updateWhatsAppTemplateById**](WhatsAppApi.md#updateWhatsAppTemplateById) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id |
+| [**updateWhatsAppTemplateByIdWithHttpInfo**](WhatsAppApi.md#updateWhatsAppTemplateByIdWithHttpInfo) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id |
 | [**uploadWhatsAppProfilePhoto**](WhatsAppApi.md#uploadWhatsAppProfilePhoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture |
 | [**uploadWhatsAppProfilePhotoWithHttpInfo**](WhatsAppApi.md#uploadWhatsAppProfilePhotoWithHttpInfo) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture |
 
@@ -1297,11 +1303,11 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 
 ## deleteWhatsAppTemplate
 
-> UnpublishPost200Response deleteWhatsAppTemplate(templateName, accountId)
+> DeleteWhatsAppTemplate200Response deleteWhatsAppTemplate(templateName, accountId, language)
 
 Delete template
 
-Permanently delete a message template by name. 
+Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
 
 ### Example
 
@@ -1324,10 +1330,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String templateName = "templateName_example"; // String | Template name
+        String templateName = "templateName_example"; // String | Template name (the family).
         String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String language = "language_example"; // String | Delete only this language variant (e.g. es). Omit to delete the whole family.
         try {
-            UnpublishPost200Response result = apiInstance.deleteWhatsAppTemplate(templateName, accountId);
+            DeleteWhatsAppTemplate200Response result = apiInstance.deleteWhatsAppTemplate(templateName, accountId, language);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppApi#deleteWhatsAppTemplate");
@@ -1345,12 +1352,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **templateName** | **String**| Template name | |
+| **templateName** | **String**| Template name (the family). | |
 | **accountId** | **String**| WhatsApp social account ID | |
+| **language** | **String**| Delete only this language variant (e.g. es). Omit to delete the whole family. | [optional] |
 
 ### Return type
 
-[**UnpublishPost200Response**](UnpublishPost200Response.md)
+[**DeleteWhatsAppTemplate200Response**](DeleteWhatsAppTemplate200Response.md)
 
 
 ### Authorization
@@ -1366,18 +1374,19 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template deleted successfully |  -  |
-| **400** | accountId or template name is required |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **502** | Meta rejected the delete or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+| **404** | Account not found, or (with language) no such variant (code template_not_found). |  -  |
+| **409** | Only with language: a bare code (es) matched several regional variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template). Without language there is no 409: the whole family is deleted. |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## deleteWhatsAppTemplateWithHttpInfo
 
-> ApiResponse<UnpublishPost200Response> deleteWhatsAppTemplate deleteWhatsAppTemplateWithHttpInfo(templateName, accountId)
+> ApiResponse<DeleteWhatsAppTemplate200Response> deleteWhatsAppTemplate deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language)
 
 Delete template
 
-Permanently delete a message template by name. 
+Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
 
 ### Example
 
@@ -1401,10 +1410,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String templateName = "templateName_example"; // String | Template name
+        String templateName = "templateName_example"; // String | Template name (the family).
         String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String language = "language_example"; // String | Delete only this language variant (e.g. es). Omit to delete the whole family.
         try {
-            ApiResponse<UnpublishPost200Response> response = apiInstance.deleteWhatsAppTemplateWithHttpInfo(templateName, accountId);
+            ApiResponse<DeleteWhatsAppTemplate200Response> response = apiInstance.deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1424,12 +1434,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **templateName** | **String**| Template name | |
+| **templateName** | **String**| Template name (the family). | |
 | **accountId** | **String**| WhatsApp social account ID | |
+| **language** | **String**| Delete only this language variant (e.g. es). Omit to delete the whole family. | [optional] |
 
 ### Return type
 
-ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
+ApiResponse<[**DeleteWhatsAppTemplate200Response**](DeleteWhatsAppTemplate200Response.md)>
 
 
 ### Authorization
@@ -1445,10 +1456,167 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template deleted successfully |  -  |
-| **400** | accountId or template name is required |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **502** | Meta rejected the delete or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+| **404** | Account not found, or (with language) no such variant (code template_not_found). |  -  |
+| **409** | Only with language: a bare code (es) matched several regional variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template). Without language there is no 409: the whole family is deleted. |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+
+## deleteWhatsAppTemplateById
+
+> DeleteWhatsAppTemplateById200Response deleteWhatsAppTemplateById(templateId, accountId)
+
+Delete template by id
+
+Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String templateId = "templateId_example"; // String | Meta template id (numeric).
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            DeleteWhatsAppTemplateById200Response result = apiInstance.deleteWhatsAppTemplateById(templateId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#deleteWhatsAppTemplateById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **templateId** | **String**| Meta template id (numeric). | |
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+[**DeleteWhatsAppTemplateById200Response**](DeleteWhatsAppTemplateById200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Variant deleted successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+## deleteWhatsAppTemplateByIdWithHttpInfo
+
+> ApiResponse<DeleteWhatsAppTemplateById200Response> deleteWhatsAppTemplateById deleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId)
+
+Delete template by id
+
+Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String templateId = "templateId_example"; // String | Meta template id (numeric).
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            ApiResponse<DeleteWhatsAppTemplateById200Response> response = apiInstance.deleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#deleteWhatsAppTemplateById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **templateId** | **String**| Meta template id (numeric). | |
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+ApiResponse<[**DeleteWhatsAppTemplateById200Response**](DeleteWhatsAppTemplateById200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Variant deleted successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## deleteWhatsappBusinessUsername
@@ -2667,11 +2835,11 @@ ApiResponse<[**File**](File.md)>
 
 ## getWhatsAppTemplate
 
-> GetWhatsAppTemplate200Response getWhatsAppTemplate(templateName, accountId)
+> GetWhatsAppTemplate200Response getWhatsAppTemplate(templateName, accountId, language)
 
 Get template
 
-Retrieve a single message template by name. 
+Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
 
 ### Example
 
@@ -2694,10 +2862,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String templateName = "templateName_example"; // String | Template name
+        String templateName = "templateName_example"; // String | Template name (the family).
         String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String language = "language_example"; // String | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages.
         try {
-            GetWhatsAppTemplate200Response result = apiInstance.getWhatsAppTemplate(templateName, accountId);
+            GetWhatsAppTemplate200Response result = apiInstance.getWhatsAppTemplate(templateName, accountId, language);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppApi#getWhatsAppTemplate");
@@ -2715,8 +2884,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **templateName** | **String**| Template name | |
+| **templateName** | **String**| Template name (the family). | |
 | **accountId** | **String**| WhatsApp social account ID | |
+| **language** | **String**| Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. | [optional] |
 
 ### Return type
 
@@ -2736,18 +2906,19 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
-| **400** | accountId is required |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | Account not found, or no template with that name (and language, when given). details.languages lists the family&#39;s languages when the name exists (code template_not_found). |  -  |
+| **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## getWhatsAppTemplateWithHttpInfo
 
-> ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplate getWhatsAppTemplateWithHttpInfo(templateName, accountId)
+> ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplate getWhatsAppTemplateWithHttpInfo(templateName, accountId, language)
 
 Get template
 
-Retrieve a single message template by name. 
+Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
 
 ### Example
 
@@ -2771,10 +2942,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String templateName = "templateName_example"; // String | Template name
+        String templateName = "templateName_example"; // String | Template name (the family).
         String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String language = "language_example"; // String | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages.
         try {
-            ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.getWhatsAppTemplateWithHttpInfo(templateName, accountId);
+            ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.getWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2794,7 +2966,165 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **templateName** | **String**| Template name | |
+| **templateName** | **String**| Template name (the family). | |
+| **accountId** | **String**| WhatsApp social account ID | |
+| **language** | **String**| Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Template retrieved successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found, or no template with that name (and language, when given). details.languages lists the family&#39;s languages when the name exists (code template_not_found). |  -  |
+| **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+
+## getWhatsAppTemplateById
+
+> GetWhatsAppTemplate200Response getWhatsAppTemplateById(templateId, accountId)
+
+Get template by id
+
+Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String templateId = "templateId_example"; // String | Meta template id (numeric).
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            GetWhatsAppTemplate200Response result = apiInstance.getWhatsAppTemplateById(templateId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppTemplateById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **templateId** | **String**| Meta template id (numeric). | |
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Template retrieved successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+## getWhatsAppTemplateByIdWithHttpInfo
+
+> ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateById getWhatsAppTemplateByIdWithHttpInfo(templateId, accountId)
+
+Get template by id
+
+Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String templateId = "templateId_example"; // String | Meta template id (numeric).
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.getWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppTemplateById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **templateId** | **String**| Meta template id (numeric). | |
 | **accountId** | **String**| WhatsApp social account ID | |
 
 ### Return type
@@ -2815,19 +3145,19 @@ ApiResponse<[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
-| **400** | accountId is required |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## getWhatsAppTemplates
 
-> GetWhatsAppTemplates200Response getWhatsAppTemplates(accountId)
+> GetWhatsAppTemplates200Response getWhatsAppTemplates(accountId, name, language, status)
 
 List templates
 
-List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
 
 ### Example
 
@@ -2851,8 +3181,11 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String name = "name_example"; // String | Exact template name; returns every language variant of that family.
+        String language = "language_example"; // String | Exact language code (e.g. en_US).
+        String status = "APPROVED"; // String | 
         try {
-            GetWhatsAppTemplates200Response result = apiInstance.getWhatsAppTemplates(accountId);
+            GetWhatsAppTemplates200Response result = apiInstance.getWhatsAppTemplates(accountId, name, language, status);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppApi#getWhatsAppTemplates");
@@ -2871,6 +3204,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| WhatsApp social account ID | |
+| **name** | **String**| Exact template name; returns every language variant of that family. | [optional] |
+| **language** | **String**| Exact language code (e.g. en_US). | [optional] |
+| **status** | **String**|  | [optional] [enum: APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION] |
 
 ### Return type
 
@@ -2896,11 +3232,11 @@ public class Example {
 
 ## getWhatsAppTemplatesWithHttpInfo
 
-> ApiResponse<GetWhatsAppTemplates200Response> getWhatsAppTemplates getWhatsAppTemplatesWithHttpInfo(accountId)
+> ApiResponse<GetWhatsAppTemplates200Response> getWhatsAppTemplates getWhatsAppTemplatesWithHttpInfo(accountId, name, language, status)
 
 List templates
 
-List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
 
 ### Example
 
@@ -2925,8 +3261,11 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String name = "name_example"; // String | Exact template name; returns every language variant of that family.
+        String language = "language_example"; // String | Exact language code (e.g. en_US).
+        String status = "APPROVED"; // String | 
         try {
-            ApiResponse<GetWhatsAppTemplates200Response> response = apiInstance.getWhatsAppTemplatesWithHttpInfo(accountId);
+            ApiResponse<GetWhatsAppTemplates200Response> response = apiInstance.getWhatsAppTemplatesWithHttpInfo(accountId, name, language, status);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2947,6 +3286,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| WhatsApp social account ID | |
+| **name** | **String**| Exact template name; returns every language variant of that family. | [optional] |
+| **language** | **String**| Exact language code (e.g. en_US). | [optional] |
+| **status** | **String**|  | [optional] [enum: APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION] |
 
 ### Return type
 
@@ -5263,7 +5605,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 
 Update template
 
-Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
 
 ### Example
 
@@ -5286,7 +5628,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String templateName = "templateName_example"; // String | Template name
+        String templateName = "templateName_example"; // String | Template name (the family).
         UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest = new UpdateWhatsAppTemplateRequest(); // UpdateWhatsAppTemplateRequest | 
         try {
             UpdateWhatsAppTemplate200Response result = apiInstance.updateWhatsAppTemplate(templateName, updateWhatsAppTemplateRequest);
@@ -5307,7 +5649,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **templateName** | **String**| Template name | |
+| **templateName** | **String**| Template name (the family). | |
 | **updateWhatsAppTemplateRequest** | [**UpdateWhatsAppTemplateRequest**](UpdateWhatsAppTemplateRequest.md)|  | |
 
 ### Return type
@@ -5328,9 +5670,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
-| **400** | Validation error (missing fields) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | Account not found, or no template with that name (and language, when given) (code template_not_found). |  -  |
+| **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## updateWhatsAppTemplateWithHttpInfo
@@ -5339,7 +5682,7 @@ public class Example {
 
 Update template
 
-Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
 
 ### Example
 
@@ -5363,7 +5706,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String templateName = "templateName_example"; // String | Template name
+        String templateName = "templateName_example"; // String | Template name (the family).
         UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest = new UpdateWhatsAppTemplateRequest(); // UpdateWhatsAppTemplateRequest | 
         try {
             ApiResponse<UpdateWhatsAppTemplate200Response> response = apiInstance.updateWhatsAppTemplateWithHttpInfo(templateName, updateWhatsAppTemplateRequest);
@@ -5386,7 +5729,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **templateName** | **String**| Template name | |
+| **templateName** | **String**| Template name (the family). | |
 | **updateWhatsAppTemplateRequest** | [**UpdateWhatsAppTemplateRequest**](UpdateWhatsAppTemplateRequest.md)|  | |
 
 ### Return type
@@ -5407,10 +5750,167 @@ ApiResponse<[**UpdateWhatsAppTemplate200Response**](UpdateWhatsAppTemplate200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
-| **400** | Validation error (missing fields) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | Account not found, or no template with that name (and language, when given) (code template_not_found). |  -  |
+| **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+
+## updateWhatsAppTemplateById
+
+> UpdateWhatsAppTemplateById200Response updateWhatsAppTemplateById(templateId, updateWhatsAppTemplateByIdRequest)
+
+Update template by id
+
+Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String templateId = "templateId_example"; // String | Meta template id (numeric).
+        UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest = new UpdateWhatsAppTemplateByIdRequest(); // UpdateWhatsAppTemplateByIdRequest | 
+        try {
+            UpdateWhatsAppTemplateById200Response result = apiInstance.updateWhatsAppTemplateById(templateId, updateWhatsAppTemplateByIdRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#updateWhatsAppTemplateById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **templateId** | **String**| Meta template id (numeric). | |
+| **updateWhatsAppTemplateByIdRequest** | [**UpdateWhatsAppTemplateByIdRequest**](UpdateWhatsAppTemplateByIdRequest.md)|  | |
+
+### Return type
+
+[**UpdateWhatsAppTemplateById200Response**](UpdateWhatsAppTemplateById200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Template updated successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the update (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+## updateWhatsAppTemplateByIdWithHttpInfo
+
+> ApiResponse<UpdateWhatsAppTemplateById200Response> updateWhatsAppTemplateById updateWhatsAppTemplateByIdWithHttpInfo(templateId, updateWhatsAppTemplateByIdRequest)
+
+Update template by id
+
+Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String templateId = "templateId_example"; // String | Meta template id (numeric).
+        UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest = new UpdateWhatsAppTemplateByIdRequest(); // UpdateWhatsAppTemplateByIdRequest | 
+        try {
+            ApiResponse<UpdateWhatsAppTemplateById200Response> response = apiInstance.updateWhatsAppTemplateByIdWithHttpInfo(templateId, updateWhatsAppTemplateByIdRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#updateWhatsAppTemplateById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **templateId** | **String**| Meta template id (numeric). | |
+| **updateWhatsAppTemplateByIdRequest** | [**UpdateWhatsAppTemplateByIdRequest**](UpdateWhatsAppTemplateByIdRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateWhatsAppTemplateById200Response**](UpdateWhatsAppTemplateById200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Template updated successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the update (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## uploadWhatsAppProfilePhoto

@@ -405,6 +405,8 @@ docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteValueRuleSet200Response.md
+docs/DeleteWhatsAppTemplate200Response.md
+docs/DeleteWhatsAppTemplateById200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DetachNumberFromSipTrunk200Response.md
 docs/DialVoiceWebCall200Response.md
@@ -803,6 +805,8 @@ docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
 docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
+docs/GetWhatsAppTemplate409Response.md
+docs/GetWhatsAppTemplate409ResponseDetails.md
 docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
 docs/GetWhatsappBusinessUsername200Response.md
@@ -1579,6 +1583,9 @@ docs/UpdateWhatsAppFlowRequest.md
 docs/UpdateWhatsAppGroupChatRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
+docs/UpdateWhatsAppTemplateById200Response.md
+docs/UpdateWhatsAppTemplateById200ResponseTemplate.md
+docs/UpdateWhatsAppTemplateByIdRequest.md
 docs/UpdateWhatsAppTemplateRequest.md
 docs/UpdateWorkflow200Response.md
 docs/UpdateWorkflow200ResponseWorkflow.md
@@ -2292,6 +2299,8 @@ src/main/java/dev/zernio/model/DeleteInboxReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
 src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteValueRuleSet200Response.java
+src/main/java/dev/zernio/model/DeleteWhatsAppTemplate200Response.java
+src/main/java/dev/zernio/model/DeleteWhatsAppTemplateById200Response.java
 src/main/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequest.java
 src/main/java/dev/zernio/model/DetachNumberFromSipTrunk200Response.java
 src/main/java/dev/zernio/model/DialVoiceWebCall200Response.java
@@ -2689,6 +2698,8 @@ src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseFieldsInner.ja
 src/main/java/dev/zernio/model/GetWhatsAppNumberRemediation200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200ResponseTemplate.java
+src/main/java/dev/zernio/model/GetWhatsAppTemplate409Response.java
+src/main/java/dev/zernio/model/GetWhatsAppTemplate409ResponseDetails.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplates200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplates200ResponseTemplatesInner.java
 src/main/java/dev/zernio/model/GetWhatsappBusinessUsername200Response.java
@@ -3435,6 +3446,9 @@ src/main/java/dev/zernio/model/UpdateWhatsAppFlowRequest.java
 src/main/java/dev/zernio/model/UpdateWhatsAppGroupChatRequest.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplate200ResponseTemplate.java
+src/main/java/dev/zernio/model/UpdateWhatsAppTemplateById200Response.java
+src/main/java/dev/zernio/model/UpdateWhatsAppTemplateById200ResponseTemplate.java
+src/main/java/dev/zernio/model/UpdateWhatsAppTemplateByIdRequest.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplateRequest.java
 src/main/java/dev/zernio/model/UpdateWorkflow200Response.java
 src/main/java/dev/zernio/model/UpdateWorkflow200ResponseWorkflow.java
@@ -3669,3 +3683,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/DeleteWhatsAppTemplate200ResponseTest.java
+src/test/java/dev/zernio/model/DeleteWhatsAppTemplateById200ResponseTest.java
+src/test/java/dev/zernio/model/GetWhatsAppTemplate409ResponseDetailsTest.java
+src/test/java/dev/zernio/model/GetWhatsAppTemplate409ResponseTest.java
+src/test/java/dev/zernio/model/UpdateWhatsAppTemplateById200ResponseTemplateTest.java
+src/test/java/dev/zernio/model/UpdateWhatsAppTemplateById200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateWhatsAppTemplateByIdRequestTest.java

@@ -37,13 +37,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateWhatsAppTemplateRequest.JSON_PROPERTY_ACCOUNT_ID,
+  UpdateWhatsAppTemplateRequest.JSON_PROPERTY_LANGUAGE,
   UpdateWhatsAppTemplateRequest.JSON_PROPERTY_COMPONENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:15:49.784833812Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T18:19:11.911138222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
+
+  public static final String JSON_PROPERTY_LANGUAGE = "language";
+  @javax.annotation.Nullable
+  private String language;
 
   public static final String JSON_PROPERTY_COMPONENTS = "components";
   @javax.annotation.Nonnull
@@ -73,6 +78,30 @@ public class UpdateWhatsAppTemplateRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
+  }
+
+
+  public UpdateWhatsAppTemplateRequest language(@javax.annotation.Nullable String language) {
+    this.language = language;
+    return this;
+  }
+
+  /**
+   * Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.
+   * @return language
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLanguage() {
+    return language;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguage(@javax.annotation.Nullable String language) {
+    this.language = language;
   }
 
 
@@ -121,12 +150,13 @@ public class UpdateWhatsAppTemplateRequest {
     }
     UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest = (UpdateWhatsAppTemplateRequest) o;
     return Objects.equals(this.accountId, updateWhatsAppTemplateRequest.accountId) &&
+        Objects.equals(this.language, updateWhatsAppTemplateRequest.language) &&
         Objects.equals(this.components, updateWhatsAppTemplateRequest.components);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, components);
+    return Objects.hash(accountId, language, components);
   }
 
   @Override
@@ -134,6 +164,7 @@ public class UpdateWhatsAppTemplateRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateWhatsAppTemplateRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -185,6 +216,11 @@ public class UpdateWhatsAppTemplateRequest {
     // add `accountId` to the URL query string
     if (getAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `language` to the URL query string
+    if (getLanguage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLanguage()))));
     }
 
     // add `components` to the URL query string

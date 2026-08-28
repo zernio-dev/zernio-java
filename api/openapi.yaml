@@ -19188,8 +19188,9 @@ paths:
   /v1/whatsapp/templates:
     get:
       description: |
-        List all message templates for the WhatsApp Business Account (WABA) associated with the given account.
-        Templates are fetched directly from the WhatsApp Cloud API.
+        List message templates for the WhatsApp Business Account (WABA) associated with the given account.
+        Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**:
+        a multi-language template appears once per language, each with its own Meta `id`.
       operationId: getWhatsAppTemplates
       parameters:
       - description: WhatsApp social account ID
@@ -19198,6 +19199,37 @@ paths:
         name: accountId
         required: true
         schema:
+          type: string
+        style: form
+      - description: Exact template name; returns every language variant of that family.
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Exact language code (e.g. en_US).
+        explode: true
+        in: query
+        name: language
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - APPROVED
+          - REJECTED
+          - PENDING
+          - PAUSED
+          - DISABLED
+          - IN_APPEAL
+          - PENDING_DELETION
           type: string
         style: form
       responses:
@@ -19305,13 +19337,233 @@ paths:
   /v1/whatsapp/templates/{templateName}:
     delete:
       description: |
-        Permanently delete a message template by name.
+        Permanently delete a message template.
+
+        **Without `language` this deletes every language variant of the name** (Meta's own
+        contract for deletion by name). Pass `language` to delete one variant only; the response
+        `scope` says which happened. Meta keeps a deleted approved template in `PENDING_DELETION`
+        for a while and the name cannot be reused for 30 days.
       operationId: deleteWhatsAppTemplate
       parameters:
-      - description: Template name
+      - description: Template name (the family).
         explode: false
         in: path
         name: templateName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Delete only this language variant (e.g. es). Omit to delete the
+          whole family.
+        explode: true
+        in: query
+        name: language
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteWhatsAppTemplate_200_response"
+          description: Template deleted successfully
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Account not found, or (with language) no such variant (code\
+            \ template_not_found)."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppTemplate_409_response"
+          description: "Only with language: a bare code (es) matched several regional\
+            \ variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template).\
+            \ Without language there is no 409: the whole family is deleted."
+        "502":
+          description: Meta rejected the request or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
+      security:
+      - bearerAuth: []
+      summary: Delete template
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    get:
+      description: |
+        Retrieve one message template variant by name.
+
+        Meta stores one template per **name + language**, so a name identifies a family of variants,
+        each with its own Meta id. Pass `language` to address one variant. Without it, a name with a
+        single variant resolves to that variant; a name with several returns `409 ambiguous_template`
+        with `details.languages`. A bare language (`es`) matches a single regional variant (`es_ES`);
+        if the family has several regional variants for it, that is also a 409. A full code (`es_ES`)
+        must match exactly. Variants in `PENDING_DELETION` are not part of the family.
+      operationId: getWhatsAppTemplate
+      parameters:
+      - description: Template name (the family).
+        explode: false
+        in: path
+        name: templateName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Language code of the variant (e.g. en_US, es, pt_BR). Required\
+          \ when the family has several languages."
+        explode: true
+        in: query
+        name: language
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppTemplate_200_response"
+          description: Template retrieved successfully
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Account not found, or no template with that name (and language,\
+            \ when given). details.languages lists the family's languages when the\
+            \ name exists (code template_not_found)."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppTemplate_409_response"
+          description: The template name exists in several languages and no language
+            was given (code ambiguous_template). details.languages lists them.
+        "502":
+          description: Meta rejected the request or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
+      security:
+      - bearerAuth: []
+      summary: Get template
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Update one variant's components. Name, language and category cannot change after creation.
+
+        Meta stores one template per **name + language**, so a name identifies a family of variants,
+        each with its own Meta id. Pass `language` to address one variant. Without it, a name with a
+        single variant resolves to that variant; a name with several returns `409 ambiguous_template`
+        with `details.languages`. A bare language (`es`) matches a single regional variant (`es_ES`);
+        if the family has several regional variants for it, that is also a 409. A full code (`es_ES`)
+        must match exactly. Variants in `PENDING_DELETION` are not part of the family.
+
+        Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved
+        template can be edited once per 24 hours and up to 10 times per 30 days. A successful update
+        sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`.
+        The final outcome arrives on the `whatsapp.template.status_updated` webhook (which carries the
+        variant's `templateId` and `language`). A variant already in `PENDING` cannot be edited again
+        until Meta finishes reviewing it.
+      operationId: updateWhatsAppTemplate
+      parameters:
+      - description: Template name (the family).
+        explode: false
+        in: path
+        name: templateName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 507f1f77bcf86cd799439011
+              language: es
+              components:
+              - type: body
+                text: "Actualizado: tu pedido {{1}} está confirmado. Entrega el {{2}}"
+                example:
+                  body_text:
+                  - - ORD-12345
+                    - 1 de abril
+              - type: buttons
+                buttons:
+                - type: quick_reply
+                  text: Seguir pedido
+            schema:
+              $ref: "#/components/schemas/updateWhatsAppTemplate_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateWhatsAppTemplate_200_response"
+          description: Template updated successfully
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Account not found, or no template with that name (and language,\
+            \ when given) (code template_not_found)."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppTemplate_409_response"
+          description: The template name exists in several languages and no language
+            was given (code ambiguous_template). details.languages lists them.
+        "502":
+          description: Meta rejected the update or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
+      security:
+      - bearerAuth: []
+      summary: Update template
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/templates/id/{templateId}:
+    delete:
+      description: |
+        Delete one language variant by its Meta id. Other languages of the same name are untouched.
+        The name cannot be reused for 30 days once its last variant is deleted.
+      operationId: deleteWhatsAppTemplateById
+      parameters:
+      - description: Meta template id (numeric).
+        explode: false
+        in: path
+        name: templateId
         required: true
         schema:
           type: string
@@ -19328,24 +19580,21 @@ paths:
         "200":
           content:
             application/json:
-              example:
-                success: true
-                message: Template "order_confirmation" deleted successfully
               schema:
-                $ref: "#/components/schemas/unpublishPost_200_response"
-          description: Template deleted successfully
+                $ref: "#/components/schemas/deleteWhatsAppTemplateById_200_response"
+          description: Variant deleted successfully
         "400":
-          description: accountId or template name is required
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          $ref: "#/components/responses/NotFound"
+          description: Account not found.
         "502":
-          description: Meta rejected the delete or was unreachable. Meta 4xx statuses
-            are forwarded as-is.
+          description: Meta rejected the request (including an id the account cannot
+            access) or was unreachable. Meta 4xx statuses are forwarded as-is.
       security:
       - bearerAuth: []
-      summary: Delete template
+      summary: Delete template by id
       tags:
       - WhatsApp
       x-resource-group: accounts
@@ -19353,13 +19602,14 @@ paths:
       - application/json
     get:
       description: |
-        Retrieve a single message template by name.
-      operationId: getWhatsAppTemplate
+        Retrieve one template variant by its Meta id, the id every variant of a family has on its own
+        and the one the `whatsapp.template.status_updated` webhook carries.
+      operationId: getWhatsAppTemplateById
       parameters:
-      - description: Template name
+      - description: Meta template id (numeric).
         explode: false
         in: path
-        name: templateName
+        name: templateId
         required: true
         schema:
           type: string
@@ -19380,17 +19630,17 @@ paths:
                 $ref: "#/components/schemas/getWhatsAppTemplate_200_response"
           description: Template retrieved successfully
         "400":
-          description: accountId is required
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          $ref: "#/components/responses/NotFound"
+          description: Account not found.
         "502":
-          description: Meta rejected the request or was unreachable. Meta 4xx statuses
-            are forwarded as-is.
+          description: Meta rejected the request (including an id the account cannot
+            access) or was unreachable. Meta 4xx statuses are forwarded as-is.
       security:
       - bearerAuth: []
-      summary: Get template
+      summary: Get template by id
       tags:
       - WhatsApp
       x-resource-group: accounts
@@ -19398,19 +19648,20 @@ paths:
       - application/json
     patch:
       description: |
-        Update a message template's components. Only certain fields can be updated depending on
-        the template's current approval state. Approved templates can only have components updated.
+        Update one variant's components by its Meta id. Name, language and category cannot change.
 
-        A successful update sends the template back to Meta for review, so the `status` returned
-        here is normally `PENDING`. The final outcome arrives later on the
-        `whatsapp.template.status_updated` webhook. A template already in `PENDING` cannot be
-        edited again until Meta finishes reviewing it.
-      operationId: updateWhatsAppTemplate
+        Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved
+        template can be edited once per 24 hours and up to 10 times per 30 days. A successful update
+        sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`.
+        The final outcome arrives on the `whatsapp.template.status_updated` webhook (which carries the
+        variant's `templateId` and `language`). A variant already in `PENDING` cannot be edited again
+        until Meta finishes reviewing it.
+      operationId: updateWhatsAppTemplateById
       parameters:
-      - description: Template name
+      - description: Meta template id (numeric).
         explode: false
         in: path
-        name: templateName
+        name: templateId
         required: true
         schema:
           type: string
@@ -19418,41 +19669,28 @@ paths:
       requestBody:
         content:
           application/json:
-            example:
-              accountId: 507f1f77bcf86cd799439011
-              components:
-              - type: body
-                text: "Updated: Your order {{1}} is confirmed. Delivery by {{2}}"
-                example:
-                  body_text:
-                  - - ORD-12345
-                    - April 1
-              - type: buttons
-                buttons:
-                - type: quick_reply
-                  text: Track Order
             schema:
-              $ref: "#/components/schemas/updateWhatsAppTemplate_request"
+              $ref: "#/components/schemas/updateWhatsAppTemplateById_request"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateWhatsAppTemplate_200_response"
+                $ref: "#/components/schemas/updateWhatsAppTemplateById_200_response"
           description: Template updated successfully
         "400":
-          description: Validation error (missing fields)
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          $ref: "#/components/responses/NotFound"
+          description: Account not found.
         "502":
-          description: Meta rejected the update or was unreachable. Meta 4xx statuses
-            are forwarded as-is.
+          description: Meta rejected the update (including an id the account cannot
+            access) or was unreachable. Meta 4xx statuses are forwarded as-is.
       security:
       - bearerAuth: []
-      summary: Update template
+      summary: Update template by id
       tags:
       - WhatsApp
       x-resource-group: accounts
@@ -68626,6 +68864,8 @@ components:
         components:
         - "{}"
         - "{}"
+        rejected_reason: rejected_reason
+        quality_score: "{}"
         name: name
         language: language
         id: id
@@ -68633,6 +68873,7 @@ components:
         status: status
       properties:
         id:
+          description: "Meta template id. Unique per language variant; usable on /v1/whatsapp/templates/id/{templateId}."
           type: string
         name:
           type: string
@@ -68641,17 +68882,27 @@ components:
         category:
           type: string
         language:
+          description: The variant actually returned.
           type: string
         components:
           items:
             type: object
           type: array
+        rejected_reason:
+          description: Only when status is REJECTED.
+          type: string
+        quality_score:
+          description: "Post-approval quality (GREEN/YELLOW/RED), when Meta reports\
+            \ one."
+          type: object
     getWhatsAppTemplate_200_response:
       example:
         template:
           components:
           - "{}"
           - "{}"
+          rejected_reason: rejected_reason
+          quality_score: "{}"
           name: name
           language: language
           id: id
@@ -68663,10 +68914,72 @@ components:
           type: boolean
         template:
           $ref: "#/components/schemas/getWhatsAppTemplate_200_response_template"
+    getWhatsAppTemplate_409_response_details:
+      example:
+        languages:
+        - languages
+        - languages
+      properties:
+        languages:
+          items:
+            type: string
+          type: array
+    getWhatsAppTemplate_409_response:
+      example:
+        code: ambiguous_template
+        param: language
+        details:
+          languages:
+          - languages
+          - languages
+        error: error
+        type: invalid_request_error
+      properties:
+        error:
+          type: string
+        type:
+          enum:
+          - invalid_request_error
+          type: string
+        code:
+          enum:
+          - ambiguous_template
+          type: string
+        param:
+          enum:
+          - language
+          type: string
+        details:
+          $ref: "#/components/schemas/getWhatsAppTemplate_409_response_details"
+    deleteWhatsAppTemplate_200_response:
+      example:
+        success: true
+        scope: all_languages
+        language: language
+        message: message
+      properties:
+        success:
+          type: boolean
+        scope:
+          description: Whether the whole family or one variant was deleted.
+          enum:
+          - all_languages
+          - language
+          type: string
+        language:
+          description: The deleted variant; only when scope is language.
+          type: string
+        message:
+          type: string
     updateWhatsAppTemplate_request:
       properties:
         accountId:
           description: WhatsApp social account ID
+          type: string
+        language:
+          description: "Language code of the variant to edit (e.g. en_US, es, pt_BR).\
+            \ Required when the family has several languages. Body only: a language\
+            \ query parameter on PATCH is a 400."
           type: string
         components:
           description: Updated template components
@@ -68680,12 +68993,17 @@ components:
     updateWhatsAppTemplate_200_response_template:
       example:
         name: name
+        language: language
         id: id
         status: PENDING
       properties:
         id:
+          description: Meta id of the edited variant.
           type: string
         name:
+          type: string
+        language:
+          description: The variant that was edited.
           type: string
         status:
           description: "Approval state read back from Meta after the update, normally\
@@ -68697,6 +69015,7 @@ components:
       example:
         template:
           name: name
+          language: language
           id: id
           status: PENDING
         success: true
@@ -68705,6 +69024,69 @@ components:
           type: boolean
         template:
           $ref: "#/components/schemas/updateWhatsAppTemplate_200_response_template"
+    deleteWhatsAppTemplateById_200_response:
+      example:
+        success: true
+        scope: language
+        language: language
+        message: message
+      properties:
+        success:
+          type: boolean
+        scope:
+          enum:
+          - language
+          type: string
+        language:
+          type: string
+        message:
+          type: string
+    updateWhatsAppTemplateById_request:
+      properties:
+        accountId:
+          description: WhatsApp social account ID
+          type: string
+        components:
+          description: Updated template components
+          items:
+            $ref: "#/components/schemas/WhatsAppTemplateComponent"
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - components
+    updateWhatsAppTemplateById_200_response_template:
+      example:
+        name: name
+        language: language
+        id: id
+        status: PENDING
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        language:
+          type: string
+        status:
+          description: "Approval state read back from Meta after the update, normally\
+            \ PENDING. If the state cannot be read back, the last known status is\
+            \ returned instead."
+          example: PENDING
+          type: string
+    updateWhatsAppTemplateById_200_response:
+      example:
+        template:
+          name: name
+          language: language
+          id: id
+          status: PENDING
+        success: true
+      properties:
+        success:
+          type: boolean
+        template:
+          $ref: "#/components/schemas/updateWhatsAppTemplateById_200_response_template"
     getWhatsAppCallingConfig_200_response:
       example:
         callerIdMode: business

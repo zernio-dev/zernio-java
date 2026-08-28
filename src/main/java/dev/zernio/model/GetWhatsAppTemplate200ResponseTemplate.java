@@ -40,9 +40,11 @@ import dev.zernio.ApiClient;
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_STATUS,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_CATEGORY,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_LANGUAGE,
-  GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_COMPONENTS
+  GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_COMPONENTS,
+  GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_REJECTED_REASON,
+  GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_QUALITY_SCORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:15:49.784833812Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T18:19:11.911138222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -68,6 +70,14 @@ public class GetWhatsAppTemplate200ResponseTemplate {
   @javax.annotation.Nullable
   private List<Object> components = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_REJECTED_REASON = "rejected_reason";
+  @javax.annotation.Nullable
+  private String rejectedReason;
+
+  public static final String JSON_PROPERTY_QUALITY_SCORE = "quality_score";
+  @javax.annotation.Nullable
+  private Object qualityScore;
+
   public GetWhatsAppTemplate200ResponseTemplate() { 
   }
 
@@ -77,7 +87,7 @@ public class GetWhatsAppTemplate200ResponseTemplate {
   }
 
   /**
-   * Get id
+   * Meta template id. Unique per language variant; usable on /v1/whatsapp/templates/id/{templateId}.
    * @return id
    */
   @javax.annotation.Nullable
@@ -173,7 +183,7 @@ public class GetWhatsAppTemplate200ResponseTemplate {
   }
 
   /**
-   * Get language
+   * The variant actually returned.
    * @return language
    */
   @javax.annotation.Nullable
@@ -223,6 +233,54 @@ public class GetWhatsAppTemplate200ResponseTemplate {
   }
 
 
+  public GetWhatsAppTemplate200ResponseTemplate rejectedReason(@javax.annotation.Nullable String rejectedReason) {
+    this.rejectedReason = rejectedReason;
+    return this;
+  }
+
+  /**
+   * Only when status is REJECTED.
+   * @return rejectedReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REJECTED_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRejectedReason() {
+    return rejectedReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REJECTED_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRejectedReason(@javax.annotation.Nullable String rejectedReason) {
+    this.rejectedReason = rejectedReason;
+  }
+
+
+  public GetWhatsAppTemplate200ResponseTemplate qualityScore(@javax.annotation.Nullable Object qualityScore) {
+    this.qualityScore = qualityScore;
+    return this;
+  }
+
+  /**
+   * Post-approval quality (GREEN/YELLOW/RED), when Meta reports one.
+   * @return qualityScore
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUALITY_SCORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Object getQualityScore() {
+    return qualityScore;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUALITY_SCORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQualityScore(@javax.annotation.Nullable Object qualityScore) {
+    this.qualityScore = qualityScore;
+  }
+
+
   /**
    * Return true if this getWhatsAppTemplate_200_response_template object is equal to o.
    */
@@ -240,12 +298,14 @@ public class GetWhatsAppTemplate200ResponseTemplate {
         Objects.equals(this.status, getWhatsAppTemplate200ResponseTemplate.status) &&
         Objects.equals(this.category, getWhatsAppTemplate200ResponseTemplate.category) &&
         Objects.equals(this.language, getWhatsAppTemplate200ResponseTemplate.language) &&
-        Objects.equals(this.components, getWhatsAppTemplate200ResponseTemplate.components);
+        Objects.equals(this.components, getWhatsAppTemplate200ResponseTemplate.components) &&
+        Objects.equals(this.rejectedReason, getWhatsAppTemplate200ResponseTemplate.rejectedReason) &&
+        Objects.equals(this.qualityScore, getWhatsAppTemplate200ResponseTemplate.qualityScore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, status, category, language, components);
+    return Objects.hash(id, name, status, category, language, components, rejectedReason, qualityScore);
   }
 
   @Override
@@ -258,6 +318,8 @@ public class GetWhatsAppTemplate200ResponseTemplate {
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
+    sb.append("    rejectedReason: ").append(toIndentedString(rejectedReason)).append("\n");
+    sb.append("    qualityScore: ").append(toIndentedString(qualityScore)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -337,6 +399,16 @@ public class GetWhatsAppTemplate200ResponseTemplate {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getComponents().get(i)))));
       }
+    }
+
+    // add `rejected_reason` to the URL query string
+    if (getRejectedReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srejected_reason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRejectedReason()))));
+    }
+
+    // add `quality_score` to the URL query string
+    if (getQualityScore() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squality_score%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQualityScore()))));
     }
 
     return joiner.toString();

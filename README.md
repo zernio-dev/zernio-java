@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-28T17:15:49.784833812Z[Etc/UTC]
+- Build date: 2026-08-28T18:19:11.911138222Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1129,6 +1129,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**deleteWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group
 *WhatsAppApi* | [**deleteWhatsAppTemplate**](docs/WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
 *WhatsAppApi* | [**deleteWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
+*WhatsAppApi* | [**deleteWhatsAppTemplateById**](docs/WhatsAppApi.md#deleteWhatsAppTemplateById) | **DELETE** /v1/whatsapp/templates/id/{templateId} | Delete template by id
+*WhatsAppApi* | [**deleteWhatsAppTemplateByIdWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppTemplateByIdWithHttpInfo) | **DELETE** /v1/whatsapp/templates/id/{templateId} | Delete template by id
 *WhatsAppApi* | [**deleteWhatsappBusinessUsername**](docs/WhatsAppApi.md#deleteWhatsappBusinessUsername) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username
 *WhatsAppApi* | [**deleteWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsappBusinessUsernameWithHttpInfo) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username
 *WhatsAppApi* | [**getWhatsAppBlockStatus**](docs/WhatsAppApi.md#getWhatsAppBlockStatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked
@@ -1147,6 +1149,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppMediaWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppMediaWithHttpInfo) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
 *WhatsAppApi* | [**getWhatsAppTemplate**](docs/WhatsAppApi.md#getWhatsAppTemplate) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**getWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template
+*WhatsAppApi* | [**getWhatsAppTemplateById**](docs/WhatsAppApi.md#getWhatsAppTemplateById) | **GET** /v1/whatsapp/templates/id/{templateId} | Get template by id
+*WhatsAppApi* | [**getWhatsAppTemplateByIdWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplateByIdWithHttpInfo) | **GET** /v1/whatsapp/templates/id/{templateId} | Get template by id
 *WhatsAppApi* | [**getWhatsAppTemplates**](docs/WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates
 *WhatsAppApi* | [**getWhatsAppTemplatesWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates
 *WhatsAppApi* | [**getWhatsappBusinessUsername**](docs/WhatsAppApi.md#getWhatsappBusinessUsername) | **GET** /v1/whatsapp/business-profile/username | Get business username
@@ -1181,6 +1185,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**updateWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppGroupChatWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings
 *WhatsAppApi* | [**updateWhatsAppTemplate**](docs/WhatsAppApi.md#updateWhatsAppTemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
 *WhatsAppApi* | [**updateWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppTemplateWithHttpInfo) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
+*WhatsAppApi* | [**updateWhatsAppTemplateById**](docs/WhatsAppApi.md#updateWhatsAppTemplateById) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id
+*WhatsAppApi* | [**updateWhatsAppTemplateByIdWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppTemplateByIdWithHttpInfo) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id
 *WhatsAppApi* | [**uploadWhatsAppProfilePhoto**](docs/WhatsAppApi.md#uploadWhatsAppProfilePhoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
 *WhatsAppApi* | [**uploadWhatsAppProfilePhotoWithHttpInfo**](docs/WhatsAppApi.md#uploadWhatsAppProfilePhotoWithHttpInfo) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
 *WhatsAppCallingApi* | [**disableWhatsAppCalling**](docs/WhatsAppCallingApi.md#disableWhatsAppCalling) | **DELETE** /v1/phone-numbers/{id}/whatsapp/calling | Disable calling on a number
@@ -1692,6 +1698,8 @@ Class | Method | HTTP request | Description
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [DeleteValueRuleSet200Response](docs/DeleteValueRuleSet200Response.md)
+ - [DeleteWhatsAppTemplate200Response](docs/DeleteWhatsAppTemplate200Response.md)
+ - [DeleteWhatsAppTemplateById200Response](docs/DeleteWhatsAppTemplateById200Response.md)
  - [DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [DetachNumberFromSipTrunk200Response](docs/DetachNumberFromSipTrunk200Response.md)
  - [DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
@@ -2089,6 +2097,8 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppNumberRemediation200Response](docs/GetWhatsAppNumberRemediation200Response.md)
  - [GetWhatsAppTemplate200Response](docs/GetWhatsAppTemplate200Response.md)
  - [GetWhatsAppTemplate200ResponseTemplate](docs/GetWhatsAppTemplate200ResponseTemplate.md)
+ - [GetWhatsAppTemplate409Response](docs/GetWhatsAppTemplate409Response.md)
+ - [GetWhatsAppTemplate409ResponseDetails](docs/GetWhatsAppTemplate409ResponseDetails.md)
  - [GetWhatsAppTemplates200Response](docs/GetWhatsAppTemplates200Response.md)
  - [GetWhatsAppTemplates200ResponseTemplatesInner](docs/GetWhatsAppTemplates200ResponseTemplatesInner.md)
  - [GetWhatsappBusinessUsername200Response](docs/GetWhatsappBusinessUsername200Response.md)
@@ -2835,6 +2845,9 @@ Class | Method | HTTP request | Description
  - [UpdateWhatsAppGroupChatRequest](docs/UpdateWhatsAppGroupChatRequest.md)
  - [UpdateWhatsAppTemplate200Response](docs/UpdateWhatsAppTemplate200Response.md)
  - [UpdateWhatsAppTemplate200ResponseTemplate](docs/UpdateWhatsAppTemplate200ResponseTemplate.md)
+ - [UpdateWhatsAppTemplateById200Response](docs/UpdateWhatsAppTemplateById200Response.md)
+ - [UpdateWhatsAppTemplateById200ResponseTemplate](docs/UpdateWhatsAppTemplateById200ResponseTemplate.md)
+ - [UpdateWhatsAppTemplateByIdRequest](docs/UpdateWhatsAppTemplateByIdRequest.md)
  - [UpdateWhatsAppTemplateRequest](docs/UpdateWhatsAppTemplateRequest.md)
  - [UpdateWorkflow200Response](docs/UpdateWorkflow200Response.md)
  - [UpdateWorkflow200ResponseWorkflow](docs/UpdateWorkflow200ResponseWorkflow.md)

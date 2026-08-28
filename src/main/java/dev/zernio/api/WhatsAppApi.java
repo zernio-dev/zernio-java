@@ -28,6 +28,8 @@ import dev.zernio.model.CreateWhatsAppGroupChatRequest;
 import dev.zernio.model.CreateWhatsAppGroupInviteLink200Response;
 import dev.zernio.model.CreateWhatsAppTemplate200Response;
 import dev.zernio.model.CreateWhatsAppTemplateRequest;
+import dev.zernio.model.DeleteWhatsAppTemplate200Response;
+import dev.zernio.model.DeleteWhatsAppTemplateById200Response;
 import dev.zernio.model.DeleteWhatsappBusinessUsernameRequest;
 import dev.zernio.model.ErrorResponse;
 import java.io.File;
@@ -38,6 +40,7 @@ import dev.zernio.model.GetWhatsAppDataset200Response;
 import dev.zernio.model.GetWhatsAppDisplayName200Response;
 import dev.zernio.model.GetWhatsAppGroupChat200Response;
 import dev.zernio.model.GetWhatsAppTemplate200Response;
+import dev.zernio.model.GetWhatsAppTemplate409Response;
 import dev.zernio.model.GetWhatsAppTemplates200Response;
 import dev.zernio.model.GetWhatsappBusinessUsername200Response;
 import dev.zernio.model.GetWhatsappBusinessUsernameSuggestions200Response;
@@ -63,6 +66,8 @@ import dev.zernio.model.UpdateWhatsAppDisplayName200Response;
 import dev.zernio.model.UpdateWhatsAppDisplayNameRequest;
 import dev.zernio.model.UpdateWhatsAppGroupChatRequest;
 import dev.zernio.model.UpdateWhatsAppTemplate200Response;
+import dev.zernio.model.UpdateWhatsAppTemplateById200Response;
+import dev.zernio.model.UpdateWhatsAppTemplateByIdRequest;
 import dev.zernio.model.UpdateWhatsAppTemplateRequest;
 import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 
@@ -97,7 +102,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:15:49.784833812Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T18:19:11.911138222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1300,53 +1305,57 @@ public class WhatsAppApi {
 
   /**
    * Delete template
-   * Permanently delete a message template by name. 
-   * @param templateName Template name (required)
+   * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
-   * @return UnpublishPost200Response
+   * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
+   * @return DeleteWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
    */
-  public UnpublishPost200Response deleteWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return deleteWhatsAppTemplate(templateName, accountId, null);
+  public DeleteWhatsAppTemplate200Response deleteWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language) throws ApiException {
+    return deleteWhatsAppTemplate(templateName, accountId, language, null);
   }
 
   /**
    * Delete template
-   * Permanently delete a message template by name. 
-   * @param templateName Template name (required)
+   * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
+   * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
    * @param headers Optional headers to include in the request
-   * @return UnpublishPost200Response
+   * @return DeleteWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
    */
-  public UnpublishPost200Response deleteWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<UnpublishPost200Response> localVarResponse = deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, headers);
+  public DeleteWhatsAppTemplate200Response deleteWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteWhatsAppTemplate200Response> localVarResponse = deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Delete template
-   * Permanently delete a message template by name. 
-   * @param templateName Template name (required)
+   * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
-   * @return ApiResponse&lt;UnpublishPost200Response&gt;
+   * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
+   * @return ApiResponse&lt;DeleteWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UnpublishPost200Response> deleteWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, null);
+  public ApiResponse<DeleteWhatsAppTemplate200Response> deleteWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language) throws ApiException {
+    return deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language, null);
   }
 
   /**
    * Delete template
-   * Permanently delete a message template by name. 
-   * @param templateName Template name (required)
+   * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
+   * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UnpublishPost200Response&gt;
+   * @return ApiResponse&lt;DeleteWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UnpublishPost200Response> deleteWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteWhatsAppTemplateRequestBuilder(templateName, accountId, headers);
+  public ApiResponse<DeleteWhatsAppTemplate200Response> deleteWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteWhatsAppTemplateRequestBuilder(templateName, accountId, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1361,7 +1370,7 @@ public class WhatsAppApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UnpublishPost200Response>(
+          return new ApiResponse<DeleteWhatsAppTemplate200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1371,10 +1380,10 @@ public class WhatsAppApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UnpublishPost200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnpublishPost200Response>() {});
+        DeleteWhatsAppTemplate200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteWhatsAppTemplate200Response>() {});
         
 
-        return new ApiResponse<UnpublishPost200Response>(
+        return new ApiResponse<DeleteWhatsAppTemplate200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1393,7 +1402,7 @@ public class WhatsAppApi {
     }
   }
 
-  private HttpRequest.Builder deleteWhatsAppTemplateRequestBuilder(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteWhatsAppTemplateRequestBuilder(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'templateName' is set
     if (templateName == null) {
       throw new ApiException(400, "Missing the required parameter 'templateName' when calling deleteWhatsAppTemplate");
@@ -1407,6 +1416,149 @@ public class WhatsAppApi {
 
     String localVarPath = "/v1/whatsapp/templates/{templateName}"
         .replace("{templateName}", ApiClient.urlEncode(templateName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "language";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("language", language));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete template by id
+   * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @return DeleteWhatsAppTemplateById200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteWhatsAppTemplateById200Response deleteWhatsAppTemplateById(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteWhatsAppTemplateById(templateId, accountId, null);
+  }
+
+  /**
+   * Delete template by id
+   * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteWhatsAppTemplateById200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteWhatsAppTemplateById200Response deleteWhatsAppTemplateById(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteWhatsAppTemplateById200Response> localVarResponse = deleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete template by id
+   * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @return ApiResponse&lt;DeleteWhatsAppTemplateById200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteWhatsAppTemplateById200Response> deleteWhatsAppTemplateByIdWithHttpInfo(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId, null);
+  }
+
+  /**
+   * Delete template by id
+   * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteWhatsAppTemplateById200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteWhatsAppTemplateById200Response> deleteWhatsAppTemplateByIdWithHttpInfo(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteWhatsAppTemplateByIdRequestBuilder(templateId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteWhatsAppTemplateById", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteWhatsAppTemplateById200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteWhatsAppTemplateById200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteWhatsAppTemplateById200Response>() {});
+        
+
+        return new ApiResponse<DeleteWhatsAppTemplateById200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteWhatsAppTemplateByIdRequestBuilder(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'templateId' is set
+    if (templateId == null) {
+      throw new ApiException(400, "Missing the required parameter 'templateId' when calling deleteWhatsAppTemplateById");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteWhatsAppTemplateById");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/templates/id/{templateId}"
+        .replace("{templateId}", ApiClient.urlEncode(templateId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
@@ -2527,53 +2679,57 @@ public class WhatsAppApi {
 
   /**
    * Get template
-   * Retrieve a single message template by name. 
-   * @param templateName Template name (required)
+   * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
+   * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @return GetWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppTemplate200Response getWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return getWhatsAppTemplate(templateName, accountId, null);
+  public GetWhatsAppTemplate200Response getWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language) throws ApiException {
+    return getWhatsAppTemplate(templateName, accountId, language, null);
   }
 
   /**
    * Get template
-   * Retrieve a single message template by name. 
-   * @param templateName Template name (required)
+   * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
+   * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppTemplate200Response getWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = getWhatsAppTemplateWithHttpInfo(templateName, accountId, headers);
+  public GetWhatsAppTemplate200Response getWhatsAppTemplate(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = getWhatsAppTemplateWithHttpInfo(templateName, accountId, language, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get template
-   * Retrieve a single message template by name. 
-   * @param templateName Template name (required)
+   * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
+   * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return getWhatsAppTemplateWithHttpInfo(templateName, accountId, null);
+  public ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language) throws ApiException {
+    return getWhatsAppTemplateWithHttpInfo(templateName, accountId, language, null);
   }
 
   /**
    * Get template
-   * Retrieve a single message template by name. 
-   * @param templateName Template name (required)
+   * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
+   * @param templateName Template name (the family). (required)
    * @param accountId WhatsApp social account ID (required)
+   * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getWhatsAppTemplateRequestBuilder(templateName, accountId, headers);
+  public ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateWithHttpInfo(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppTemplateRequestBuilder(templateName, accountId, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2620,7 +2776,7 @@ public class WhatsAppApi {
     }
   }
 
-  private HttpRequest.Builder getWhatsAppTemplateRequestBuilder(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getWhatsAppTemplateRequestBuilder(@javax.annotation.Nonnull String templateName, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'templateName' is set
     if (templateName == null) {
       throw new ApiException(400, "Missing the required parameter 'templateName' when calling getWhatsAppTemplate");
@@ -2634,6 +2790,149 @@ public class WhatsAppApi {
 
     String localVarPath = "/v1/whatsapp/templates/{templateName}"
         .replace("{templateName}", ApiClient.urlEncode(templateName.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "language";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("language", language));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get template by id
+   * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @return GetWhatsAppTemplate200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppTemplate200Response getWhatsAppTemplateById(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppTemplateById(templateId, accountId, null);
+  }
+
+  /**
+   * Get template by id
+   * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppTemplate200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppTemplate200Response getWhatsAppTemplateById(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = getWhatsAppTemplateByIdWithHttpInfo(templateId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get template by id
+   * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateByIdWithHttpInfo(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppTemplateByIdWithHttpInfo(templateId, accountId, null);
+  }
+
+  /**
+   * Get template by id
+   * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppTemplate200Response> getWhatsAppTemplateByIdWithHttpInfo(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppTemplateByIdRequestBuilder(templateId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppTemplateById", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppTemplate200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppTemplate200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppTemplate200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppTemplate200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppTemplateByIdRequestBuilder(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'templateId' is set
+    if (templateId == null) {
+      throw new ApiException(400, "Missing the required parameter 'templateId' when calling getWhatsAppTemplateById");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppTemplateById");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/templates/id/{templateId}"
+        .replace("{templateId}", ApiClient.urlEncode(templateId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
@@ -2668,49 +2967,61 @@ public class WhatsAppApi {
 
   /**
    * List templates
-   * List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+   * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
    * @param accountId WhatsApp social account ID (required)
+   * @param name Exact template name; returns every language variant of that family. (optional)
+   * @param language Exact language code (e.g. en_US). (optional)
+   * @param status  (optional)
    * @return GetWhatsAppTemplates200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppTemplates200Response getWhatsAppTemplates(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getWhatsAppTemplates(accountId, null);
+  public GetWhatsAppTemplates200Response getWhatsAppTemplates(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String name, @javax.annotation.Nullable String language, @javax.annotation.Nullable String status) throws ApiException {
+    return getWhatsAppTemplates(accountId, name, language, status, null);
   }
 
   /**
    * List templates
-   * List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+   * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
    * @param accountId WhatsApp social account ID (required)
+   * @param name Exact template name; returns every language variant of that family. (optional)
+   * @param language Exact language code (e.g. en_US). (optional)
+   * @param status  (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppTemplates200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppTemplates200Response getWhatsAppTemplates(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppTemplates200Response> localVarResponse = getWhatsAppTemplatesWithHttpInfo(accountId, headers);
+  public GetWhatsAppTemplates200Response getWhatsAppTemplates(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String name, @javax.annotation.Nullable String language, @javax.annotation.Nullable String status, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppTemplates200Response> localVarResponse = getWhatsAppTemplatesWithHttpInfo(accountId, name, language, status, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List templates
-   * List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+   * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
    * @param accountId WhatsApp social account ID (required)
+   * @param name Exact template name; returns every language variant of that family. (optional)
+   * @param language Exact language code (e.g. en_US). (optional)
+   * @param status  (optional)
    * @return ApiResponse&lt;GetWhatsAppTemplates200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppTemplates200Response> getWhatsAppTemplatesWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getWhatsAppTemplatesWithHttpInfo(accountId, null);
+  public ApiResponse<GetWhatsAppTemplates200Response> getWhatsAppTemplatesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String name, @javax.annotation.Nullable String language, @javax.annotation.Nullable String status) throws ApiException {
+    return getWhatsAppTemplatesWithHttpInfo(accountId, name, language, status, null);
   }
 
   /**
    * List templates
-   * List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+   * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
    * @param accountId WhatsApp social account ID (required)
+   * @param name Exact template name; returns every language variant of that family. (optional)
+   * @param language Exact language code (e.g. en_US). (optional)
+   * @param status  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppTemplates200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppTemplates200Response> getWhatsAppTemplatesWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getWhatsAppTemplatesRequestBuilder(accountId, headers);
+  public ApiResponse<GetWhatsAppTemplates200Response> getWhatsAppTemplatesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String name, @javax.annotation.Nullable String language, @javax.annotation.Nullable String status, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppTemplatesRequestBuilder(accountId, name, language, status, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2757,7 +3068,7 @@ public class WhatsAppApi {
     }
   }
 
-  private HttpRequest.Builder getWhatsAppTemplatesRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getWhatsAppTemplatesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String name, @javax.annotation.Nullable String language, @javax.annotation.Nullable String status, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppTemplates");
@@ -2772,6 +3083,12 @@ public class WhatsAppApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "name";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("name", name));
+    localVarQueryParameterBaseName = "language";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("language", language));
+    localVarQueryParameterBaseName = "status";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -4833,8 +5150,8 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
-   * @param templateName Template name (required)
+   * Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateName Template name (the family). (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @return UpdateWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
@@ -4845,8 +5162,8 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
-   * @param templateName Template name (required)
+   * Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateName Template name (the family). (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateWhatsAppTemplate200Response
@@ -4859,8 +5176,8 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
-   * @param templateName Template name (required)
+   * Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateName Template name (the family). (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @return ApiResponse&lt;UpdateWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
@@ -4871,8 +5188,8 @@ public class WhatsAppApi {
 
   /**
    * Update template
-   * Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
-   * @param templateName Template name (required)
+   * Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateName Template name (the family). (required)
    * @param updateWhatsAppTemplateRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateWhatsAppTemplate200Response&gt;
@@ -4948,6 +5265,138 @@ public class WhatsAppApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWhatsAppTemplateRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update template by id
+   * Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param updateWhatsAppTemplateByIdRequest  (required)
+   * @return UpdateWhatsAppTemplateById200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateWhatsAppTemplateById200Response updateWhatsAppTemplateById(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest) throws ApiException {
+    return updateWhatsAppTemplateById(templateId, updateWhatsAppTemplateByIdRequest, null);
+  }
+
+  /**
+   * Update template by id
+   * Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param updateWhatsAppTemplateByIdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateWhatsAppTemplateById200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateWhatsAppTemplateById200Response updateWhatsAppTemplateById(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateWhatsAppTemplateById200Response> localVarResponse = updateWhatsAppTemplateByIdWithHttpInfo(templateId, updateWhatsAppTemplateByIdRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update template by id
+   * Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param updateWhatsAppTemplateByIdRequest  (required)
+   * @return ApiResponse&lt;UpdateWhatsAppTemplateById200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateWhatsAppTemplateById200Response> updateWhatsAppTemplateByIdWithHttpInfo(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest) throws ApiException {
+    return updateWhatsAppTemplateByIdWithHttpInfo(templateId, updateWhatsAppTemplateByIdRequest, null);
+  }
+
+  /**
+   * Update template by id
+   * Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+   * @param templateId Meta template id (numeric). (required)
+   * @param updateWhatsAppTemplateByIdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateWhatsAppTemplateById200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateWhatsAppTemplateById200Response> updateWhatsAppTemplateByIdWithHttpInfo(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateWhatsAppTemplateByIdRequestBuilder(templateId, updateWhatsAppTemplateByIdRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateWhatsAppTemplateById", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateWhatsAppTemplateById200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateWhatsAppTemplateById200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateWhatsAppTemplateById200Response>() {});
+        
+
+        return new ApiResponse<UpdateWhatsAppTemplateById200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateWhatsAppTemplateByIdRequestBuilder(@javax.annotation.Nonnull String templateId, @javax.annotation.Nonnull UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'templateId' is set
+    if (templateId == null) {
+      throw new ApiException(400, "Missing the required parameter 'templateId' when calling updateWhatsAppTemplateById");
+    }
+    // verify the required parameter 'updateWhatsAppTemplateByIdRequest' is set
+    if (updateWhatsAppTemplateByIdRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateWhatsAppTemplateByIdRequest' when calling updateWhatsAppTemplateById");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/templates/id/{templateId}"
+        .replace("{templateId}", ApiClient.urlEncode(templateId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWhatsAppTemplateByIdRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -35,9 +35,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_ID,
   UpdateWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_NAME,
+  UpdateWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_LANGUAGE,
   UpdateWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:15:49.784833812Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T18:19:11.911138222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -46,6 +47,10 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
+
+  public static final String JSON_PROPERTY_LANGUAGE = "language";
+  @javax.annotation.Nullable
+  private String language;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -60,7 +65,7 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
   }
 
   /**
-   * Get id
+   * Meta id of the edited variant.
    * @return id
    */
   @javax.annotation.Nullable
@@ -102,6 +107,30 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
   }
 
 
+  public UpdateWhatsAppTemplate200ResponseTemplate language(@javax.annotation.Nullable String language) {
+    this.language = language;
+    return this;
+  }
+
+  /**
+   * The variant that was edited.
+   * @return language
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLanguage() {
+    return language;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguage(@javax.annotation.Nullable String language) {
+    this.language = language;
+  }
+
+
   public UpdateWhatsAppTemplate200ResponseTemplate status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
@@ -140,12 +169,13 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
     UpdateWhatsAppTemplate200ResponseTemplate updateWhatsAppTemplate200ResponseTemplate = (UpdateWhatsAppTemplate200ResponseTemplate) o;
     return Objects.equals(this.id, updateWhatsAppTemplate200ResponseTemplate.id) &&
         Objects.equals(this.name, updateWhatsAppTemplate200ResponseTemplate.name) &&
+        Objects.equals(this.language, updateWhatsAppTemplate200ResponseTemplate.language) &&
         Objects.equals(this.status, updateWhatsAppTemplate200ResponseTemplate.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, status);
+    return Objects.hash(id, name, language, status);
   }
 
   @Override
@@ -154,6 +184,7 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
     sb.append("class UpdateWhatsAppTemplate200ResponseTemplate {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -210,6 +241,11 @@ public class UpdateWhatsAppTemplate200ResponseTemplate {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `language` to the URL query string
+    if (getLanguage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLanguage()))));
     }
 
     // add `status` to the URL query string
