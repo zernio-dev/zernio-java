@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.SendInboxMessage200ResponseDataAttachmentsInner;
+import dev.zernio.model.SendInboxMessage200ResponseDataPartialFailure;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,9 +39,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SendInboxMessage200ResponseData.JSON_PROPERTY_MESSAGE_ID,
   SendInboxMessage200ResponseData.JSON_PROPERTY_CONVERSATION_ID,
-  SendInboxMessage200ResponseData.JSON_PROPERTY_ATTACHMENTS
+  SendInboxMessage200ResponseData.JSON_PROPERTY_ATTACHMENTS,
+  SendInboxMessage200ResponseData.JSON_PROPERTY_MESSAGE_IDS,
+  SendInboxMessage200ResponseData.JSON_PROPERTY_PARTIAL_FAILURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T16:33:46.641856518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T17:13:21.953508788Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable
@@ -53,6 +56,14 @@ public class SendInboxMessage200ResponseData {
   public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
   @javax.annotation.Nullable
   private List<SendInboxMessage200ResponseDataAttachmentsInner> attachments = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGE_IDS = "messageIds";
+  @javax.annotation.Nullable
+  private List<String> messageIds = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_PARTIAL_FAILURE = "partialFailure";
+  @javax.annotation.Nullable
+  private SendInboxMessage200ResponseDataPartialFailure partialFailure;
 
   public SendInboxMessage200ResponseData() { 
   }
@@ -137,6 +148,62 @@ public class SendInboxMessage200ResponseData {
   }
 
 
+  public SendInboxMessage200ResponseData messageIds(@javax.annotation.Nullable List<String> messageIds) {
+    this.messageIds = messageIds;
+    return this;
+  }
+
+  public SendInboxMessage200ResponseData addMessageIdsItem(String messageIdsItem) {
+    if (this.messageIds == null) {
+      this.messageIds = new ArrayList<>();
+    }
+    this.messageIds.add(messageIdsItem);
+    return this;
+  }
+
+  /**
+   * Facebook/Instagram only. Present when an attachment and text were both requested: Meta has no single body shape for both, so the send is two Meta messages under the hood. First element &#x3D;&#x3D;&#x3D; messageId (the attachment); second is the follow-up text.
+   * @return messageIds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getMessageIds() {
+    return messageIds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessageIds(@javax.annotation.Nullable List<String> messageIds) {
+    this.messageIds = messageIds;
+  }
+
+
+  public SendInboxMessage200ResponseData partialFailure(@javax.annotation.Nullable SendInboxMessage200ResponseDataPartialFailure partialFailure) {
+    this.partialFailure = partialFailure;
+    return this;
+  }
+
+  /**
+   * Get partialFailure
+   * @return partialFailure
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARTIAL_FAILURE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SendInboxMessage200ResponseDataPartialFailure getPartialFailure() {
+    return partialFailure;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARTIAL_FAILURE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPartialFailure(@javax.annotation.Nullable SendInboxMessage200ResponseDataPartialFailure partialFailure) {
+    this.partialFailure = partialFailure;
+  }
+
+
   /**
    * Return true if this sendInboxMessage_200_response_data object is equal to o.
    */
@@ -151,12 +218,14 @@ public class SendInboxMessage200ResponseData {
     SendInboxMessage200ResponseData sendInboxMessage200ResponseData = (SendInboxMessage200ResponseData) o;
     return Objects.equals(this.messageId, sendInboxMessage200ResponseData.messageId) &&
         Objects.equals(this.conversationId, sendInboxMessage200ResponseData.conversationId) &&
-        Objects.equals(this.attachments, sendInboxMessage200ResponseData.attachments);
+        Objects.equals(this.attachments, sendInboxMessage200ResponseData.attachments) &&
+        Objects.equals(this.messageIds, sendInboxMessage200ResponseData.messageIds) &&
+        Objects.equals(this.partialFailure, sendInboxMessage200ResponseData.partialFailure);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, conversationId, attachments);
+    return Objects.hash(messageId, conversationId, attachments, messageIds, partialFailure);
   }
 
   @Override
@@ -166,6 +235,8 @@ public class SendInboxMessage200ResponseData {
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    conversationId: ").append(toIndentedString(conversationId)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
+    sb.append("    messageIds: ").append(toIndentedString(messageIds)).append("\n");
+    sb.append("    partialFailure: ").append(toIndentedString(partialFailure)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,6 +302,20 @@ public class SendInboxMessage200ResponseData {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `messageIds` to the URL query string
+    if (getMessageIds() != null) {
+      for (int i = 0; i < getMessageIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smessageIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getMessageIds().get(i)))));
+      }
+    }
+
+    // add `partialFailure` to the URL query string
+    if (getPartialFailure() != null) {
+      joiner.add(getPartialFailure().toUrlQueryString(prefix + "partialFailure" + suffix));
     }
 
     return joiner.toString();

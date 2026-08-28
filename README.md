@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-28T16:33:46.641856518Z[Etc/UTC]
+- Build date: 2026-08-28T17:13:21.953508788Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2575,6 +2575,8 @@ Class | Method | HTTP request | Description
  - [SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
  - [SendInboxMessage200ResponseDataAttachmentsInner](docs/SendInboxMessage200ResponseDataAttachmentsInner.md)
+ - [SendInboxMessage200ResponseDataPartialFailure](docs/SendInboxMessage200ResponseDataPartialFailure.md)
+ - [SendInboxMessage200ResponseDataPartialFailurePlatformError](docs/SendInboxMessage200ResponseDataPartialFailurePlatformError.md)
  - [SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
  - [SendInboxMessage400ResponsePlatformError](docs/SendInboxMessage400ResponsePlatformError.md)
  - [SendInboxMessageRequest](docs/SendInboxMessageRequest.md)

@@ -66374,14 +66374,67 @@ components:
           type: string
         url:
           type: string
+    sendInboxMessage_200_response_data_partialFailure_platformError:
+      description: "Meta's own diagnostic fields for the rejected follow-up, same\
+        \ shape as the 400 response's platformError."
+      example:
+        code: 0
+        subcode: 6
+        fbtraceId: fbtraceId
+        type: type
+      properties:
+        code:
+          description: Meta error code
+          type: integer
+        subcode:
+          description: Meta error_subcode
+          type: integer
+        fbtraceId:
+          description: "Meta fbtrace_id, quote this in a Meta bug report"
+          type: string
+        type:
+          description: Meta error type (e.g. OAuthException)
+          type: string
+    sendInboxMessage_200_response_data_partialFailure:
+      description: Facebook/Instagram only. The attachment was delivered but the follow-up
+        text message was rejected by Meta and was not stored; the response is still
+        a 200 because the attachment send succeeded.
+      example:
+        part: text
+        platformError:
+          code: 0
+          subcode: 6
+          fbtraceId: fbtraceId
+          type: type
+        error: error
+      properties:
+        part:
+          enum:
+          - text
+          type: string
+        error:
+          type: string
+        platformError:
+          $ref: "#/components/schemas/sendInboxMessage_200_response_data_partialFailure_platformError"
     sendInboxMessage_200_response_data:
       example:
+        partialFailure:
+          part: text
+          platformError:
+            code: 0
+            subcode: 6
+            fbtraceId: fbtraceId
+            type: type
+          error: error
         attachments:
         - type: type
           url: url
         - type: type
           url: url
         conversationId: conversationId
+        messageIds:
+        - messageIds
+        - messageIds
         messageId: messageId
       properties:
         messageId:
@@ -66406,15 +66459,36 @@ components:
           items:
             $ref: "#/components/schemas/sendInboxMessage_200_response_data_attachments_inner"
           type: array
+        messageIds:
+          description: "Facebook/Instagram only. Present when an attachment and text\
+            \ were both requested: Meta has no single body shape for both, so the\
+            \ send is two Meta messages under the hood. First element === messageId\
+            \ (the attachment); second is the follow-up text."
+          items:
+            type: string
+          type: array
+        partialFailure:
+          $ref: "#/components/schemas/sendInboxMessage_200_response_data_partialFailure"
     sendInboxMessage_200_response:
       example:
         data:
+          partialFailure:
+            part: text
+            platformError:
+              code: 0
+              subcode: 6
+              fbtraceId: fbtraceId
+              type: type
+            error: error
           attachments:
           - type: type
             url: url
           - type: type
             url: url
           conversationId: conversationId
+          messageIds:
+          - messageIds
+          - messageIds
           messageId: messageId
         success: true
       properties:
@@ -66427,8 +66501,8 @@ components:
         \ rejected send, passed through verbatim so you can tell failure classes apart\
         \ and quote them to Meta. Absent when the failure did not come from Meta."
       example:
-        code: 0
-        subcode: 6
+        code: 1
+        subcode: 5
         fbtraceId: fbtraceId
         type: type
       properties:
@@ -66448,8 +66522,8 @@ components:
       example:
         code: PLATFORM_LIMITATION
         platformError:
-          code: 0
-          subcode: 6
+          code: 1
+          subcode: 5
           fbtraceId: fbtraceId
           type: type
         error: error
