@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-28T11:01:22.222903909Z[Etc/UTC]
+- Build date: 2026-08-28T15:09:12.639082010Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -151,6 +151,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**deleteAccountWithHttpInfo**](docs/AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account
 *AccountsApi* | [**getAccountHealth**](docs/AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAccountHealthWithHttpInfo**](docs/AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health
+*AccountsApi* | [**getAccountPosts**](docs/AccountsApi.md#getAccountPosts) | **GET** /v1/accounts/{accountId}/posts | List posts published on the platform
+*AccountsApi* | [**getAccountPostsWithHttpInfo**](docs/AccountsApi.md#getAccountPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/posts | List posts published on the platform
 *AccountsApi* | [**getAllAccountsHealth**](docs/AccountsApi.md#getAllAccountsHealth) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getAllAccountsHealthWithHttpInfo**](docs/AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getBlueskySettings**](docs/AccountsApi.md#getBlueskySettings) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings
@@ -1786,6 +1788,8 @@ Class | Method | HTTP request | Description
  - [GetAccountHealth200ResponsePlatformConnection](docs/GetAccountHealth200ResponsePlatformConnection.md)
  - [GetAccountHealth200ResponsePlatformConnectionMetaError](docs/GetAccountHealth200ResponsePlatformConnectionMetaError.md)
  - [GetAccountHealth200ResponseTokenStatus](docs/GetAccountHealth200ResponseTokenStatus.md)
+ - [GetAccountPosts200Response](docs/GetAccountPosts200Response.md)
+ - [GetAccountPosts200ResponsePostsInner](docs/GetAccountPosts200ResponsePostsInner.md)
  - [GetAd200Response](docs/GetAd200Response.md)
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)

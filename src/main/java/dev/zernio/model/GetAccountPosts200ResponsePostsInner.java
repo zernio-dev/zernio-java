@@ -1,6 +1,6 @@
 /*
  * Zernio API
- * API reference for Zernio. Authenticate with a Bearer API key. Base URL: https://zernio.com/api 
+ * API reference for Zernio. Authenticate with a Bearer API key. Base URL: https://zernio.com/api  Versioning and deprecation: all endpoints are versioned in the URL path (current version: /v1). Breaking changes only ship in a new path version; existing versions keep working. Deprecated operations are marked 'deprecated: true' in this spec and announced in the changelog (https://zernio.com/changelog) before removal.  Errors: every 4xx/5xx response is application/json with a machine-readable 'code' and a human-readable 'error' message (see the ErrorResponse schema). 
  *
  * The version of the OpenAPI document: 1.0.4
  * Contact: support@zernio.com
@@ -26,10 +26,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,24 +35,28 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_ID,
+  GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_PLATFORM,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_MESSAGE,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_CREATED_TIME,
-  GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_PICTURE,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_PERMALINK,
+  GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_PICTURE,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_MEDIA_TYPE,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_COMMENT_COUNT,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_LIKE_COUNT,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_REACTION_COUNT,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_SHARE_COUNT,
-  GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_PLATFORM,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_CID,
   GetAccountPosts200ResponsePostsInner.JSON_PROPERTY_SUBREDDIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T15:39:46.998053528Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T15:09:12.639082010Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountPosts200ResponsePostsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
   private String id;
+
+  public static final String JSON_PROPERTY_PLATFORM = "platform";
+  @javax.annotation.Nullable
+  private String platform;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -66,36 +66,41 @@ public class GetAccountPosts200ResponsePostsInner {
   @javax.annotation.Nullable
   private OffsetDateTime createdTime;
 
-  public static final String JSON_PROPERTY_PICTURE = "picture";
-  private JsonNullable<String> picture = JsonNullable.<String>undefined();
-
   public static final String JSON_PROPERTY_PERMALINK = "permalink";
-  private JsonNullable<String> permalink = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String permalink;
+
+  public static final String JSON_PROPERTY_PICTURE = "picture";
+  @javax.annotation.Nullable
+  private String picture;
 
   public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
-  private JsonNullable<String> mediaType = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String mediaType;
 
   public static final String JSON_PROPERTY_COMMENT_COUNT = "commentCount";
-  private JsonNullable<Integer> commentCount = JsonNullable.<Integer>undefined();
+  @javax.annotation.Nullable
+  private Integer commentCount;
 
   public static final String JSON_PROPERTY_LIKE_COUNT = "likeCount";
-  private JsonNullable<Integer> likeCount = JsonNullable.<Integer>undefined();
+  @javax.annotation.Nullable
+  private Integer likeCount;
 
   public static final String JSON_PROPERTY_REACTION_COUNT = "reactionCount";
-  private JsonNullable<Integer> reactionCount = JsonNullable.<Integer>undefined();
+  @javax.annotation.Nullable
+  private Integer reactionCount;
 
   public static final String JSON_PROPERTY_SHARE_COUNT = "shareCount";
-  private JsonNullable<Integer> shareCount = JsonNullable.<Integer>undefined();
-
-  public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
-  private String platform;
+  private Integer shareCount;
 
   public static final String JSON_PROPERTY_CID = "cid";
-  private JsonNullable<String> cid = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String cid;
 
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
-  private JsonNullable<String> subreddit = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String subreddit;
 
   public GetAccountPosts200ResponsePostsInner() { 
   }
@@ -106,7 +111,7 @@ public class GetAccountPosts200ResponsePostsInner {
   }
 
   /**
-   * Get id
+   * The platform&#39;s own post id (the video ID on YouTube)
    * @return id
    */
   @javax.annotation.Nullable
@@ -124,13 +129,37 @@ public class GetAccountPosts200ResponsePostsInner {
   }
 
 
+  public GetAccountPosts200ResponsePostsInner platform(@javax.annotation.Nullable String platform) {
+    this.platform = platform;
+    return this;
+  }
+
+  /**
+   * Get platform
+   * @return platform
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatform() {
+    return platform;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatform(@javax.annotation.Nullable String platform) {
+    this.platform = platform;
+  }
+
+
   public GetAccountPosts200ResponsePostsInner message(@javax.annotation.Nullable String message) {
     this.message = message;
     return this;
   }
 
   /**
-   * Get message
+   * Caption or title, empty string when the post has no text
    * @return message
    */
   @javax.annotation.Nullable
@@ -172,72 +201,56 @@ public class GetAccountPosts200ResponsePostsInner {
   }
 
 
-  public GetAccountPosts200ResponsePostsInner picture(@javax.annotation.Nullable String picture) {
-    this.picture = JsonNullable.<String>of(picture);
-    return this;
-  }
-
-  /**
-   * Get picture
-   * @return picture
-   */
-  @javax.annotation.Nullable
-  @JsonIgnore
-  public String getPicture() {
-        return picture.orElse(null);
-  }
-
-  @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getPicture_JsonNullable() {
-    return picture;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PICTURE)
-  public void setPicture_JsonNullable(JsonNullable<String> picture) {
-    this.picture = picture;
-  }
-
-  public void setPicture(@javax.annotation.Nullable String picture) {
-    this.picture = JsonNullable.<String>of(picture);
-  }
-
-
   public GetAccountPosts200ResponsePostsInner permalink(@javax.annotation.Nullable String permalink) {
-    this.permalink = JsonNullable.<String>of(permalink);
+    this.permalink = permalink;
     return this;
   }
 
   /**
-   * Get permalink
+   * Public URL of the post on the platform
    * @return permalink
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPermalink() {
-        return permalink.orElse(null);
+    return permalink;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getPermalink_JsonNullable() {
-    return permalink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PERMALINK)
-  public void setPermalink_JsonNullable(JsonNullable<String> permalink) {
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
     this.permalink = permalink;
   }
 
-  public void setPermalink(@javax.annotation.Nullable String permalink) {
-    this.permalink = JsonNullable.<String>of(permalink);
+
+  public GetAccountPosts200ResponsePostsInner picture(@javax.annotation.Nullable String picture) {
+    this.picture = picture;
+    return this;
+  }
+
+  /**
+   * Thumbnail or media URL
+   * @return picture
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPicture() {
+    return picture;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPicture(@javax.annotation.Nullable String picture) {
+    this.picture = picture;
   }
 
 
   public GetAccountPosts200ResponsePostsInner mediaType(@javax.annotation.Nullable String mediaType) {
-    this.mediaType = JsonNullable.<String>of(mediaType);
+    this.mediaType = mediaType;
     return this;
   }
 
@@ -246,30 +259,22 @@ public class GetAccountPosts200ResponsePostsInner {
    * @return mediaType
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMediaType() {
-        return mediaType.orElse(null);
+    return mediaType;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getMediaType_JsonNullable() {
-    return mediaType;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
-  public void setMediaType_JsonNullable(JsonNullable<String> mediaType) {
-    this.mediaType = mediaType;
-  }
-
   public void setMediaType(@javax.annotation.Nullable String mediaType) {
-    this.mediaType = JsonNullable.<String>of(mediaType);
+    this.mediaType = mediaType;
   }
 
 
   public GetAccountPosts200ResponsePostsInner commentCount(@javax.annotation.Nullable Integer commentCount) {
-    this.commentCount = JsonNullable.<Integer>of(commentCount);
+    this.commentCount = commentCount;
     return this;
   }
 
@@ -278,30 +283,22 @@ public class GetAccountPosts200ResponsePostsInner {
    * @return commentCount
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCommentCount() {
-        return commentCount.orElse(null);
+    return commentCount;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_COMMENT_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getCommentCount_JsonNullable() {
-    return commentCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_COMMENT_COUNT)
-  public void setCommentCount_JsonNullable(JsonNullable<Integer> commentCount) {
-    this.commentCount = commentCount;
-  }
-
   public void setCommentCount(@javax.annotation.Nullable Integer commentCount) {
-    this.commentCount = JsonNullable.<Integer>of(commentCount);
+    this.commentCount = commentCount;
   }
 
 
   public GetAccountPosts200ResponsePostsInner likeCount(@javax.annotation.Nullable Integer likeCount) {
-    this.likeCount = JsonNullable.<Integer>of(likeCount);
+    this.likeCount = likeCount;
     return this;
   }
 
@@ -310,62 +307,46 @@ public class GetAccountPosts200ResponsePostsInner {
    * @return likeCount
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_LIKE_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getLikeCount() {
-        return likeCount.orElse(null);
+    return likeCount;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_LIKE_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getLikeCount_JsonNullable() {
-    return likeCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_LIKE_COUNT)
-  public void setLikeCount_JsonNullable(JsonNullable<Integer> likeCount) {
-    this.likeCount = likeCount;
-  }
-
   public void setLikeCount(@javax.annotation.Nullable Integer likeCount) {
-    this.likeCount = JsonNullable.<Integer>of(likeCount);
+    this.likeCount = likeCount;
   }
 
 
   public GetAccountPosts200ResponsePostsInner reactionCount(@javax.annotation.Nullable Integer reactionCount) {
-    this.reactionCount = JsonNullable.<Integer>of(reactionCount);
+    this.reactionCount = reactionCount;
     return this;
   }
 
   /**
-   * Get reactionCount
+   * Facebook and LinkedIn only
    * @return reactionCount
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_REACTION_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getReactionCount() {
-        return reactionCount.orElse(null);
+    return reactionCount;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_REACTION_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getReactionCount_JsonNullable() {
-    return reactionCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_REACTION_COUNT)
-  public void setReactionCount_JsonNullable(JsonNullable<Integer> reactionCount) {
-    this.reactionCount = reactionCount;
-  }
-
   public void setReactionCount(@javax.annotation.Nullable Integer reactionCount) {
-    this.reactionCount = JsonNullable.<Integer>of(reactionCount);
+    this.reactionCount = reactionCount;
   }
 
 
   public GetAccountPosts200ResponsePostsInner shareCount(@javax.annotation.Nullable Integer shareCount) {
-    this.shareCount = JsonNullable.<Integer>of(shareCount);
+    this.shareCount = shareCount;
     return this;
   }
 
@@ -374,113 +355,65 @@ public class GetAccountPosts200ResponsePostsInner {
    * @return shareCount
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_SHARE_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getShareCount() {
-        return shareCount.orElse(null);
+    return shareCount;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_SHARE_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getShareCount_JsonNullable() {
-    return shareCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SHARE_COUNT)
-  public void setShareCount_JsonNullable(JsonNullable<Integer> shareCount) {
-    this.shareCount = shareCount;
-  }
-
   public void setShareCount(@javax.annotation.Nullable Integer shareCount) {
-    this.shareCount = JsonNullable.<Integer>of(shareCount);
-  }
-
-
-  public GetAccountPosts200ResponsePostsInner platform(@javax.annotation.Nullable String platform) {
-    this.platform = platform;
-    return this;
-  }
-
-  /**
-   * Get platform
-   * @return platform
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPlatform() {
-    return platform;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable String platform) {
-    this.platform = platform;
+    this.shareCount = shareCount;
   }
 
 
   public GetAccountPosts200ResponsePostsInner cid(@javax.annotation.Nullable String cid) {
-    this.cid = JsonNullable.<String>of(cid);
+    this.cid = cid;
     return this;
   }
 
   /**
-   * Bluesky only. Content ID needed for fetching replies.
+   * Bluesky content id, required to reply to the post
    * @return cid
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_CID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCid() {
-        return cid.orElse(null);
+    return cid;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_CID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCid_JsonNullable() {
-    return cid;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CID)
-  public void setCid_JsonNullable(JsonNullable<String> cid) {
-    this.cid = cid;
-  }
-
   public void setCid(@javax.annotation.Nullable String cid) {
-    this.cid = JsonNullable.<String>of(cid);
+    this.cid = cid;
   }
 
 
   public GetAccountPosts200ResponsePostsInner subreddit(@javax.annotation.Nullable String subreddit) {
-    this.subreddit = JsonNullable.<String>of(subreddit);
+    this.subreddit = subreddit;
     return this;
   }
 
   /**
-   * Reddit only. Subreddit name, needed for fetching comments.
+   * Reddit only
    * @return subreddit
    */
   @javax.annotation.Nullable
-  @JsonIgnore
+  @JsonProperty(value = JSON_PROPERTY_SUBREDDIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSubreddit() {
-        return subreddit.orElse(null);
+    return subreddit;
   }
+
 
   @JsonProperty(value = JSON_PROPERTY_SUBREDDIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubreddit_JsonNullable() {
-    return subreddit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBREDDIT)
-  public void setSubreddit_JsonNullable(JsonNullable<String> subreddit) {
-    this.subreddit = subreddit;
-  }
-
   public void setSubreddit(@javax.annotation.Nullable String subreddit) {
-    this.subreddit = JsonNullable.<String>of(subreddit);
+    this.subreddit = subreddit;
   }
 
 
@@ -497,34 +430,23 @@ public class GetAccountPosts200ResponsePostsInner {
     }
     GetAccountPosts200ResponsePostsInner getAccountPosts200ResponsePostsInner = (GetAccountPosts200ResponsePostsInner) o;
     return Objects.equals(this.id, getAccountPosts200ResponsePostsInner.id) &&
+        Objects.equals(this.platform, getAccountPosts200ResponsePostsInner.platform) &&
         Objects.equals(this.message, getAccountPosts200ResponsePostsInner.message) &&
         Objects.equals(this.createdTime, getAccountPosts200ResponsePostsInner.createdTime) &&
-        equalsNullable(this.picture, getAccountPosts200ResponsePostsInner.picture) &&
-        equalsNullable(this.permalink, getAccountPosts200ResponsePostsInner.permalink) &&
-        equalsNullable(this.mediaType, getAccountPosts200ResponsePostsInner.mediaType) &&
-        equalsNullable(this.commentCount, getAccountPosts200ResponsePostsInner.commentCount) &&
-        equalsNullable(this.likeCount, getAccountPosts200ResponsePostsInner.likeCount) &&
-        equalsNullable(this.reactionCount, getAccountPosts200ResponsePostsInner.reactionCount) &&
-        equalsNullable(this.shareCount, getAccountPosts200ResponsePostsInner.shareCount) &&
-        Objects.equals(this.platform, getAccountPosts200ResponsePostsInner.platform) &&
-        equalsNullable(this.cid, getAccountPosts200ResponsePostsInner.cid) &&
-        equalsNullable(this.subreddit, getAccountPosts200ResponsePostsInner.subreddit);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.permalink, getAccountPosts200ResponsePostsInner.permalink) &&
+        Objects.equals(this.picture, getAccountPosts200ResponsePostsInner.picture) &&
+        Objects.equals(this.mediaType, getAccountPosts200ResponsePostsInner.mediaType) &&
+        Objects.equals(this.commentCount, getAccountPosts200ResponsePostsInner.commentCount) &&
+        Objects.equals(this.likeCount, getAccountPosts200ResponsePostsInner.likeCount) &&
+        Objects.equals(this.reactionCount, getAccountPosts200ResponsePostsInner.reactionCount) &&
+        Objects.equals(this.shareCount, getAccountPosts200ResponsePostsInner.shareCount) &&
+        Objects.equals(this.cid, getAccountPosts200ResponsePostsInner.cid) &&
+        Objects.equals(this.subreddit, getAccountPosts200ResponsePostsInner.subreddit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, message, createdTime, hashCodeNullable(picture), hashCodeNullable(permalink), hashCodeNullable(mediaType), hashCodeNullable(commentCount), hashCodeNullable(likeCount), hashCodeNullable(reactionCount), hashCodeNullable(shareCount), platform, hashCodeNullable(cid), hashCodeNullable(subreddit));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(id, platform, message, createdTime, permalink, picture, mediaType, commentCount, likeCount, reactionCount, shareCount, cid, subreddit);
   }
 
   @Override
@@ -532,16 +454,16 @@ public class GetAccountPosts200ResponsePostsInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetAccountPosts200ResponsePostsInner {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
-    sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
     sb.append("    permalink: ").append(toIndentedString(permalink)).append("\n");
+    sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    commentCount: ").append(toIndentedString(commentCount)).append("\n");
     sb.append("    likeCount: ").append(toIndentedString(likeCount)).append("\n");
     sb.append("    reactionCount: ").append(toIndentedString(reactionCount)).append("\n");
     sb.append("    shareCount: ").append(toIndentedString(shareCount)).append("\n");
-    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
     sb.append("    subreddit: ").append(toIndentedString(subreddit)).append("\n");
     sb.append("}");
@@ -596,6 +518,11 @@ public class GetAccountPosts200ResponsePostsInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
+    // add `platform` to the URL query string
+    if (getPlatform() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
@@ -606,14 +533,14 @@ public class GetAccountPosts200ResponsePostsInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%screatedTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedTime()))));
     }
 
-    // add `picture` to the URL query string
-    if (getPicture() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%spicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPicture()))));
-    }
-
     // add `permalink` to the URL query string
     if (getPermalink() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spermalink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermalink()))));
+    }
+
+    // add `picture` to the URL query string
+    if (getPicture() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPicture()))));
     }
 
     // add `mediaType` to the URL query string
@@ -639,11 +566,6 @@ public class GetAccountPosts200ResponsePostsInner {
     // add `shareCount` to the URL query string
     if (getShareCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sshareCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShareCount()))));
-    }
-
-    // add `platform` to the URL query string
-    if (getPlatform() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
     }
 
     // add `cid` to the URL query string

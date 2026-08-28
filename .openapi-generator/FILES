@@ -502,6 +502,8 @@ docs/GetAccountHealth200ResponsePermissionsPostingInner.md
 docs/GetAccountHealth200ResponsePlatformConnection.md
 docs/GetAccountHealth200ResponsePlatformConnectionMetaError.md
 docs/GetAccountHealth200ResponseTokenStatus.md
+docs/GetAccountPosts200Response.md
+docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
@@ -2383,6 +2385,8 @@ src/main/java/dev/zernio/model/GetAccountHealth200ResponsePermissionsPostingInne
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnection.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnectionMetaError.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponseTokenStatus.java
+src/main/java/dev/zernio/model/GetAccountPosts200Response.java
+src/main/java/dev/zernio/model/GetAccountPosts200ResponsePostsInner.java
 src/main/java/dev/zernio/model/GetAd200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java

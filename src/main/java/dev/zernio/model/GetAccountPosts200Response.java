@@ -1,6 +1,6 @@
 /*
  * Zernio API
- * API reference for Zernio. Authenticate with a Bearer API key. Base URL: https://zernio.com/api 
+ * API reference for Zernio. Authenticate with a Bearer API key. Base URL: https://zernio.com/api  Versioning and deprecation: all endpoints are versioned in the URL path (current version: /v1). Breaking changes only ship in a new path version; existing versions keep working. Deprecated operations are marked 'deprecated: true' in this spec and announced in the changelog (https://zernio.com/changelog) before removal.  Errors: every 4xx/5xx response is application/json with a machine-readable 'code' and a human-readable 'error' message (see the ErrorResponse schema). 
  *
  * The version of the OpenAPI document: 1.0.4
  * Contact: support@zernio.com
@@ -41,11 +41,44 @@ import dev.zernio.ApiClient;
   GetAccountPosts200Response.JSON_PROPERTY_POSTS,
   GetAccountPosts200Response.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T15:39:46.998053528Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T15:09:12.639082010Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountPosts200Response {
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    SUCCESS(String.valueOf("success"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
-  private String status;
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_POSTS = "posts";
   @javax.annotation.Nullable
@@ -58,7 +91,7 @@ public class GetAccountPosts200Response {
   public GetAccountPosts200Response() { 
   }
 
-  public GetAccountPosts200Response status(@javax.annotation.Nullable String status) {
+  public GetAccountPosts200Response status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -70,14 +103,14 @@ public class GetAccountPosts200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable String status) {
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
   }
 
