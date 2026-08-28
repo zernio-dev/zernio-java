@@ -2514,7 +2514,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
-| **422** | Idempotency-Key reused with a different body |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 | **502** | Carrier-side send failed |  -  |
 
 ## sendSmsWithHttpInfo
@@ -2595,7 +2595,7 @@ ApiResponse<[**SendSms200Response**](SendSms200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
-| **422** | Idempotency-Key reused with a different body |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 | **502** | Carrier-side send failed |  -  |
 
 

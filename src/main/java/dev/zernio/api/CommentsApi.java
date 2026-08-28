@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:18:03.005792007Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T11:01:22.222903909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1234,53 +1234,57 @@ public class CommentsApi {
 
   /**
    * Reply to comment
-   * Post a reply to a post or specific comment. Requires accountId in request body.
+   * Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param replyToInboxPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ReplyToInboxPost200Response
    * @throws ApiException if fails to make API call
    */
-  public ReplyToInboxPost200Response replyToInboxPost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest) throws ApiException {
-    return replyToInboxPost(postId, replyToInboxPostRequest, null);
+  public ReplyToInboxPost200Response replyToInboxPost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return replyToInboxPost(postId, replyToInboxPostRequest, idempotencyKey, null);
   }
 
   /**
    * Reply to comment
-   * Post a reply to a post or specific comment. Requires accountId in request body.
+   * Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param replyToInboxPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ReplyToInboxPost200Response
    * @throws ApiException if fails to make API call
    */
-  public ReplyToInboxPost200Response replyToInboxPost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ReplyToInboxPost200Response> localVarResponse = replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, headers);
+  public ReplyToInboxPost200Response replyToInboxPost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToInboxPost200Response> localVarResponse = replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Reply to comment
-   * Post a reply to a post or specific comment. Requires accountId in request body.
+   * Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param replyToInboxPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;ReplyToInboxPost200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ReplyToInboxPost200Response> replyToInboxPostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest) throws ApiException {
-    return replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, null);
+  public ApiResponse<ReplyToInboxPost200Response> replyToInboxPostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, idempotencyKey, null);
   }
 
   /**
    * Reply to comment
-   * Post a reply to a post or specific comment. Requires accountId in request body.
+   * Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
    * @param replyToInboxPostRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ReplyToInboxPost200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ReplyToInboxPost200Response> replyToInboxPostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = replyToInboxPostRequestBuilder(postId, replyToInboxPostRequest, headers);
+  public ApiResponse<ReplyToInboxPost200Response> replyToInboxPostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replyToInboxPostRequestBuilder(postId, replyToInboxPostRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1327,7 +1331,7 @@ public class CommentsApi {
     }
   }
 
-  private HttpRequest.Builder replyToInboxPostRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder replyToInboxPostRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull ReplyToInboxPostRequest replyToInboxPostRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'postId' is set
     if (postId == null) {
       throw new ApiException(400, "Missing the required parameter 'postId' when calling replyToInboxPost");
@@ -1344,6 +1348,9 @@ public class CommentsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 

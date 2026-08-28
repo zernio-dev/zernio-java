@@ -56,7 +56,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:18:03.005792007Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T11:01:22.222903909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -489,53 +489,57 @@ public class ReviewsApi {
 
   /**
    * Reply to review
-   * Post a reply to a review. Requires accountId in request body.
+   * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
    * @param reviewId Review ID (URL-encoded for Google Business) (required)
    * @param replyToInboxReviewRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ReplyToInboxReview200Response
    * @throws ApiException if fails to make API call
    */
-  public ReplyToInboxReview200Response replyToInboxReview(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest) throws ApiException {
-    return replyToInboxReview(reviewId, replyToInboxReviewRequest, null);
+  public ReplyToInboxReview200Response replyToInboxReview(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return replyToInboxReview(reviewId, replyToInboxReviewRequest, idempotencyKey, null);
   }
 
   /**
    * Reply to review
-   * Post a reply to a review. Requires accountId in request body.
+   * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
    * @param reviewId Review ID (URL-encoded for Google Business) (required)
    * @param replyToInboxReviewRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ReplyToInboxReview200Response
    * @throws ApiException if fails to make API call
    */
-  public ReplyToInboxReview200Response replyToInboxReview(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ReplyToInboxReview200Response> localVarResponse = replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, headers);
+  public ReplyToInboxReview200Response replyToInboxReview(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToInboxReview200Response> localVarResponse = replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Reply to review
-   * Post a reply to a review. Requires accountId in request body.
+   * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
    * @param reviewId Review ID (URL-encoded for Google Business) (required)
    * @param replyToInboxReviewRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;ReplyToInboxReview200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ReplyToInboxReview200Response> replyToInboxReviewWithHttpInfo(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest) throws ApiException {
-    return replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, null);
+  public ApiResponse<ReplyToInboxReview200Response> replyToInboxReviewWithHttpInfo(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey, null);
   }
 
   /**
    * Reply to review
-   * Post a reply to a review. Requires accountId in request body.
+   * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
    * @param reviewId Review ID (URL-encoded for Google Business) (required)
    * @param replyToInboxReviewRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ReplyToInboxReview200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ReplyToInboxReview200Response> replyToInboxReviewWithHttpInfo(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = replyToInboxReviewRequestBuilder(reviewId, replyToInboxReviewRequest, headers);
+  public ApiResponse<ReplyToInboxReview200Response> replyToInboxReviewWithHttpInfo(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replyToInboxReviewRequestBuilder(reviewId, replyToInboxReviewRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -582,7 +586,7 @@ public class ReviewsApi {
     }
   }
 
-  private HttpRequest.Builder replyToInboxReviewRequestBuilder(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder replyToInboxReviewRequestBuilder(@javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToInboxReviewRequest replyToInboxReviewRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'reviewId' is set
     if (reviewId == null) {
       throw new ApiException(400, "Missing the required parameter 'reviewId' when calling replyToInboxReview");
@@ -599,6 +603,9 @@ public class ReviewsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 

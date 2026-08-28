@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestImages.JSON_PROPERTY_LANDSCAPE,
   CreateStandaloneAdRequestImages.JSON_PROPERTY_SQUARE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:18:03.005792007Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T11:01:22.222903909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestImages {
   public static final String JSON_PROPERTY_LANDSCAPE = "landscape";
   @javax.annotation.Nullable

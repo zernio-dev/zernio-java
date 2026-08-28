@@ -1185,11 +1185,11 @@ ApiResponse<[**ListInboxComments200Response**](ListInboxComments200Response.md)>
 
 ## replyToInboxPost
 
-> ReplyToInboxPost200Response replyToInboxPost(postId, replyToInboxPostRequest)
+> ReplyToInboxPost200Response replyToInboxPost(postId, replyToInboxPostRequest, idempotencyKey)
 
 Reply to comment
 
-Post a reply to a post or specific comment. Requires accountId in request body.
+Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
 
 ### Example
 
@@ -1214,8 +1214,9 @@ public class Example {
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
         ReplyToInboxPostRequest replyToInboxPostRequest = new ReplyToInboxPostRequest(); // ReplyToInboxPostRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ReplyToInboxPost200Response result = apiInstance.replyToInboxPost(postId, replyToInboxPostRequest);
+            ReplyToInboxPost200Response result = apiInstance.replyToInboxPost(postId, replyToInboxPostRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentsApi#replyToInboxPost");
@@ -1235,6 +1236,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
 | **replyToInboxPostRequest** | [**ReplyToInboxPostRequest**](ReplyToInboxPostRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1257,16 +1259,18 @@ public class Example {
 | **400** | Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to comment on this post on the platform (code platform_api_error, type platform_error) |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
 
 ## replyToInboxPostWithHttpInfo
 
-> ApiResponse<ReplyToInboxPost200Response> replyToInboxPost replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest)
+> ApiResponse<ReplyToInboxPost200Response> replyToInboxPost replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, idempotencyKey)
 
 Reply to comment
 
-Post a reply to a post or specific comment. Requires accountId in request body.
+Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
 
 ### Example
 
@@ -1292,8 +1296,9 @@ public class Example {
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
         ReplyToInboxPostRequest replyToInboxPostRequest = new ReplyToInboxPostRequest(); // ReplyToInboxPostRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<ReplyToInboxPost200Response> response = apiInstance.replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest);
+            ApiResponse<ReplyToInboxPost200Response> response = apiInstance.replyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1315,6 +1320,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
 | **replyToInboxPostRequest** | [**ReplyToInboxPostRequest**](ReplyToInboxPostRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1337,6 +1343,8 @@ ApiResponse<[**ReplyToInboxPost200Response**](ReplyToInboxPost200Response.md)>
 | **400** | Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to comment on this post on the platform (code platform_api_error, type platform_error) |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
 

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.JSON_PROPERTY_TYPE,
   GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T09:18:03.005792007Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T11:01:22.222903909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable

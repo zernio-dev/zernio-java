@@ -351,11 +351,11 @@ ApiResponse<[**ListInboxReviews200Response**](ListInboxReviews200Response.md)>
 
 ## replyToInboxReview
 
-> ReplyToInboxReview200Response replyToInboxReview(reviewId, replyToInboxReviewRequest)
+> ReplyToInboxReview200Response replyToInboxReview(reviewId, replyToInboxReviewRequest, idempotencyKey)
 
 Reply to review
 
-Post a reply to a review. Requires accountId in request body.
+Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
 
 ### Example
 
@@ -380,8 +380,9 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ReplyToInboxReview200Response result = apiInstance.replyToInboxReview(reviewId, replyToInboxReviewRequest);
+            ReplyToInboxReview200Response result = apiInstance.replyToInboxReview(reviewId, replyToInboxReviewRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReviewsApi#replyToInboxReview");
@@ -401,6 +402,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **reviewId** | **String**| Review ID (URL-encoded for Google Business) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -422,14 +424,16 @@ public class Example {
 | **200** | Reply posted |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 
 ## replyToInboxReviewWithHttpInfo
 
-> ApiResponse<ReplyToInboxReview200Response> replyToInboxReview replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest)
+> ApiResponse<ReplyToInboxReview200Response> replyToInboxReview replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey)
 
 Reply to review
 
-Post a reply to a review. Requires accountId in request body.
+Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
 
 ### Example
 
@@ -455,8 +459,9 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<ReplyToInboxReview200Response> response = apiInstance.replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest);
+            ApiResponse<ReplyToInboxReview200Response> response = apiInstance.replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -478,6 +483,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **reviewId** | **String**| Review ID (URL-encoded for Google Business) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -499,4 +505,6 @@ ApiResponse<[**ReplyToInboxReview200Response**](ReplyToInboxReview200Response.md
 | **200** | Reply posted |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 

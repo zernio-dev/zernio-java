@@ -1898,7 +1898,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
-| **422** | Idempotency-Key reused with a different body |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 
 ## sendInboxMessageWithHttpInfo
 
@@ -1980,7 +1980,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
-| **422** | Idempotency-Key reused with a different body |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 
 
 ## sendTypingIndicator
