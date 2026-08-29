@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T09:51:43.966085587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T10:26:57.113536886Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -91,8 +91,7 @@ public class PostAnalytics {
   private Integer views;
 
   public static final String JSON_PROPERTY_FOLLOWS = "follows";
-  @javax.annotation.Nullable
-  private Integer follows;
+  private JsonNullable<Integer> follows = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME = "igReelsAvgWatchTime";
   @javax.annotation.Nullable
@@ -317,26 +316,34 @@ public class PostAnalytics {
 
 
   public PostAnalytics follows(@javax.annotation.Nullable Integer follows) {
-    this.follows = follows;
+    this.follows = JsonNullable.<Integer>of(follows);
     return this;
   }
 
   /**
-   * Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms.
+   * Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms.
    * @return follows
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FOLLOWS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getFollows() {
-    return follows;
+        return follows.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FOLLOWS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFollows(@javax.annotation.Nullable Integer follows) {
+
+  public JsonNullable<Integer> getFollows_JsonNullable() {
+    return follows;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FOLLOWS)
+  public void setFollows_JsonNullable(JsonNullable<Integer> follows) {
     this.follows = follows;
+  }
+
+  public void setFollows(@javax.annotation.Nullable Integer follows) {
+    this.follows = JsonNullable.<Integer>of(follows);
   }
 
 
@@ -536,7 +543,7 @@ public class PostAnalytics {
         Objects.equals(this.saves, postAnalytics.saves) &&
         Objects.equals(this.clicks, postAnalytics.clicks) &&
         Objects.equals(this.views, postAnalytics.views) &&
-        Objects.equals(this.follows, postAnalytics.follows) &&
+        equalsNullable(this.follows, postAnalytics.follows) &&
         Objects.equals(this.igReelsAvgWatchTime, postAnalytics.igReelsAvgWatchTime) &&
         Objects.equals(this.igReelsVideoViewTotalTime, postAnalytics.igReelsVideoViewTotalTime) &&
         Objects.equals(this.reelsSkipRate, postAnalytics.reelsSkipRate) &&
@@ -552,7 +559,7 @@ public class PostAnalytics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, reelsSkipRate, reposts, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, hashCodeNullable(follows), igReelsAvgWatchTime, igReelsVideoViewTotalTime, reelsSkipRate, reposts, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

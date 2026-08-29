@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppTemplateById200ResponseTemplate.JSON_PROPERTY_LANGUAGE,
   UpdateWhatsAppTemplateById200ResponseTemplate.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T09:51:43.966085587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T10:26:57.113536886Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppTemplateById200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
