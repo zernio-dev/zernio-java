@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAdCreativeRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateAdCreativeRequest.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:04:33.027504065Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:06:34.002506970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCreativeRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

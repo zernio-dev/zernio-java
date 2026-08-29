@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetAdMedia200Response.JSON_PROPERTY_PLATFORM,
   GetAdMedia200Response.JSON_PROPERTY_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:04:33.027504065Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:06:34.002506970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdMedia200Response {
   public static final String JSON_PROPERTY_AD_ID = "adId";
   @javax.annotation.Nullable
