@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetDailyMetrics200ResponseDailyDataInnerMetrics.JSON_PROPERTY_CLICKS,
   GetDailyMetrics200ResponseDailyDataInnerMetrics.JSON_PROPERTY_VIEWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T12:05:53.800221179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:04:33.027504065Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetDailyMetrics200ResponseDailyDataInnerMetrics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetCallsUsage200ResponseGroupsInner.JSON_PROPERTY_BILLABLE_U_S_D,
   GetCallsUsage200ResponseGroupsInner.JSON_PROPERTY_META_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T12:05:53.800221179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:04:33.027504065Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCallsUsage200ResponseGroupsInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nullable

@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   ListSipTrunks200ResponseTrunksInner.JSON_PROPERTY_NUMBERS_ATTACHED,
   ListSipTrunks200ResponseTrunksInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T12:05:53.800221179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:04:33.027504065Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSipTrunks200ResponseTrunksInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
