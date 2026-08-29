@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage200ResponseDataAttachmentsInner.JSON_PROPERTY_TYPE,
   SendInboxMessage200ResponseDataAttachmentsInner.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T11:12:50.720604883Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T11:21:53.217159160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200ResponseDataAttachmentsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable

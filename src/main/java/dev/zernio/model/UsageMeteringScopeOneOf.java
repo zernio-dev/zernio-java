@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UsageMeteringScopeOneOf.JSON_PROPERTY_PROFILE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T11:12:50.720604883Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T11:21:53.217159160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMeteringScopeOneOf {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
