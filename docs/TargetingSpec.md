@@ -26,8 +26,8 @@ Normalized, platform-agnostic ad-targeting spec. Every field is optional, an emp
 |**companySizes** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
 |**seniorities** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
 |**jobFunctions** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
-|**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include. |  [optional] |
-|**audienceExclude** | **List&lt;String&gt;** | Platform audience IDs to exclude. |  [optional] |
+|**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate. |  [optional] |
+|**audienceExclude** | **List&lt;String&gt;** | Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate. |  [optional] |
 
 
 

@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   AdFunnelCounts.JSON_PROPERTY_MESSAGING_CONVERSATIONS_STARTED,
   AdFunnelCounts.JSON_PROPERTY_MESSAGING_FIRST_REPLIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T11:21:53.217159160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T12:05:53.800221179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdFunnelCounts {
   public static final String JSON_PROPERTY_LANDING_PAGE_VIEWS = "landingPageViews";
   @javax.annotation.Nullable

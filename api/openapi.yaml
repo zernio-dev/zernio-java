@@ -50494,12 +50494,16 @@ components:
             type: string
           type: array
         audienceInclude:
-          description: Platform audience IDs to include.
+          description: "Platform audience IDs to include. Not supported on any platform\
+            \ (no builder maps it): rejected with a 400 on ad create, boost, and reach\
+            \ estimate."
           items:
             type: string
           type: array
         audienceExclude:
-          description: Platform audience IDs to exclude.
+          description: "Platform audience IDs to exclude. Not supported on any platform\
+            \ (no builder maps it): rejected with a 400 on ad create, boost, and reach\
+            \ estimate."
           items:
             type: string
           type: array
