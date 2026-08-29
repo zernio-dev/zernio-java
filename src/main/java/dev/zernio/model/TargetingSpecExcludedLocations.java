@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   TargetingSpecExcludedLocations.JSON_PROPERTY_NEIGHBORHOODS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_CUSTOM_LOCATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-28T18:19:11.911138222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T09:51:43.966085587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocations {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable

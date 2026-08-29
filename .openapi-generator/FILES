@@ -3683,10 +3683,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/DeleteWhatsAppTemplate200ResponseTest.java
-src/test/java/dev/zernio/model/DeleteWhatsAppTemplateById200ResponseTest.java
-src/test/java/dev/zernio/model/GetWhatsAppTemplate409ResponseDetailsTest.java
-src/test/java/dev/zernio/model/GetWhatsAppTemplate409ResponseTest.java
-src/test/java/dev/zernio/model/UpdateWhatsAppTemplateById200ResponseTemplateTest.java
-src/test/java/dev/zernio/model/UpdateWhatsAppTemplateById200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateWhatsAppTemplateByIdRequestTest.java
