@@ -38,15 +38,20 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   AttachCampaignAssetsRequest.JSON_PROPERTY_ACCOUNT_ID,
+  AttachCampaignAssetsRequest.JSON_PROPERTY_CUSTOMER_ID,
   AttachCampaignAssetsRequest.JSON_PROPERTY_SITELINKS,
   AttachCampaignAssetsRequest.JSON_PROPERTY_CALLOUTS,
   AttachCampaignAssetsRequest.JSON_PROPERTY_STRUCTURED_SNIPPETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T10:26:57.113536886Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T11:12:50.720604883Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachCampaignAssetsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
+
+  public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
+  @javax.annotation.Nullable
+  private String customerId;
 
   public static final String JSON_PROPERTY_SITELINKS = "sitelinks";
   @javax.annotation.Nullable
@@ -84,6 +89,30 @@ public class AttachCampaignAssetsRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
+  }
+
+
+  public AttachCampaignAssetsRequest customerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+  /**
+   * Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+   * @return customerId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = customerId;
   }
 
 
@@ -196,6 +225,7 @@ public class AttachCampaignAssetsRequest {
     }
     AttachCampaignAssetsRequest attachCampaignAssetsRequest = (AttachCampaignAssetsRequest) o;
     return Objects.equals(this.accountId, attachCampaignAssetsRequest.accountId) &&
+        Objects.equals(this.customerId, attachCampaignAssetsRequest.customerId) &&
         Objects.equals(this.sitelinks, attachCampaignAssetsRequest.sitelinks) &&
         Objects.equals(this.callouts, attachCampaignAssetsRequest.callouts) &&
         Objects.equals(this.structuredSnippets, attachCampaignAssetsRequest.structuredSnippets);
@@ -203,7 +233,7 @@ public class AttachCampaignAssetsRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, sitelinks, callouts, structuredSnippets);
+    return Objects.hash(accountId, customerId, sitelinks, callouts, structuredSnippets);
   }
 
   @Override
@@ -211,6 +241,7 @@ public class AttachCampaignAssetsRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachCampaignAssetsRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    sitelinks: ").append(toIndentedString(sitelinks)).append("\n");
     sb.append("    callouts: ").append(toIndentedString(callouts)).append("\n");
     sb.append("    structuredSnippets: ").append(toIndentedString(structuredSnippets)).append("\n");
@@ -264,6 +295,11 @@ public class AttachCampaignAssetsRequest {
     // add `accountId` to the URL query string
     if (getAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `customerId` to the URL query string
+    if (getCustomerId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scustomerId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomerId()))));
     }
 
     // add `sitelinks` to the URL query string

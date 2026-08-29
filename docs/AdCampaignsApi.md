@@ -126,8 +126,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Assets attached |  -  |
-| **400** | Invalid input, or Google rejected the assets |  -  |
+| **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 ## attachCampaignAssetsWithHttpInfo
@@ -204,8 +205,9 @@ ApiResponse<[**AttachCampaignAssets201Response**](AttachCampaignAssets201Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Assets attached |  -  |
-| **400** | Invalid input, or Google rejected the assets |  -  |
+| **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 
