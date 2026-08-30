@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BillingSnapshotBalance.JSON_PROPERTY_ACCRUED_THIS_PERIOD_CENTS,
   BillingSnapshotBalance.JSON_PROPERTY_CREDITS_REMAINING_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-29T14:06:34.002506970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-30T14:24:50.552508738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotBalance {
   public static final String JSON_PROPERTY_ACCRUED_THIS_PERIOD_CENTS = "accruedThisPeriodCents";
   @javax.annotation.Nullable
