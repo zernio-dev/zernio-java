@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-31T16:38:48.026053582Z[Etc/UTC]
+- Build date: 2026-08-31T16:45:41.162466893Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1107,6 +1107,8 @@ Class | Method | HTTP request | Description
 *WebhooksApi* | [**getWebhookLogsWithHttpInfo**](docs/WebhooksApi.md#getWebhookLogsWithHttpInfo) | **GET** /v1/webhooks/logs | List webhook delivery logs
 *WebhooksApi* | [**getWebhookSettings**](docs/WebhooksApi.md#getWebhookSettings) | **GET** /v1/webhooks/settings | List webhooks
 *WebhooksApi* | [**getWebhookSettingsWithHttpInfo**](docs/WebhooksApi.md#getWebhookSettingsWithHttpInfo) | **GET** /v1/webhooks/settings | List webhooks
+*WebhooksApi* | [**redeliverWebhookEvent**](docs/WebhooksApi.md#redeliverWebhookEvent) | **POST** /v1/webhooks/logs/redeliver | Redeliver a webhook event
+*WebhooksApi* | [**redeliverWebhookEventWithHttpInfo**](docs/WebhooksApi.md#redeliverWebhookEventWithHttpInfo) | **POST** /v1/webhooks/logs/redeliver | Redeliver a webhook event
 *WebhooksApi* | [**testWebhook**](docs/WebhooksApi.md#testWebhook) | **POST** /v1/webhooks/test | Send test webhook
 *WebhooksApi* | [**testWebhookWithHttpInfo**](docs/WebhooksApi.md#testWebhookWithHttpInfo) | **POST** /v1/webhooks/test | Send test webhook
 *WebhooksApi* | [**updateWebhookSettings**](docs/WebhooksApi.md#updateWebhookSettings) | **PUT** /v1/webhooks/settings | Update webhook
@@ -2470,6 +2472,7 @@ Class | Method | HTTP request | Description
  - [RecyclingState](docs/RecyclingState.md)
  - [RedditPlatformData](docs/RedditPlatformData.md)
  - [RedditPost](docs/RedditPost.md)
+ - [RedeliverWebhookEventRequest](docs/RedeliverWebhookEventRequest.md)
  - [RegisterWhatsAppNumber200Response](docs/RegisterWhatsAppNumber200Response.md)
  - [RegisterWhatsAppNumberRequest](docs/RegisterWhatsAppNumberRequest.md)
  - [RejectWhatsAppGroupJoinRequestsRequest](docs/RejectWhatsAppGroupJoinRequestsRequest.md)

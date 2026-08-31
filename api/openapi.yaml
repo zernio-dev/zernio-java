@@ -15779,6 +15779,68 @@ paths:
       x-resource-group: webhooks
       x-accepts:
       - application/json
+  /v1/webhooks/logs/redeliver:
+    post:
+      description: |
+        Replay a past delivery: the original payload is re-sent, byte for byte, to the
+        subscription's current URL. The original event ID is preserved so your endpoint can
+        dedupe, and the replay is recorded as a fresh attempt, so it shows up in
+        `GET /v1/webhooks/logs` next to the delivery it replays.
+
+        Both `webhookId` and `eventId` come from a row of `GET /v1/webhooks/logs`. Because
+        the stored payload is replayed as-is, a redelivery reflects the event as it was
+        emitted, not the current state of the resource.
+
+        Only deliveries inside the 30-day log retention window can be replayed; past that
+        the payload is gone and the request fails with a 500. Replays run the same
+        resource-group checks as live delivery, against both the key's groups and the
+        subscription's `disabledResourceGroups`.
+      operationId: redeliverWebhookEvent
+      requestBody:
+        content:
+          application/json:
+            example:
+              webhookId: 507f1f77bcf86cd799439011
+              eventId: evt_9f2c1b7a4d8e
+            schema:
+              $ref: "#/components/schemas/redeliverWebhookEvent_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                message: Webhook re-delivered
+              schema:
+                $ref: "#/components/schemas/unpublishPost_200_response"
+          description: Event re-delivered successfully
+        "400":
+          description: webhookId or eventId missing or empty
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+        "500":
+          description: "Webhook no longer exists, has no URL configured, or the original\
+            \ payload is outside the 30-day retention window"
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/unpublishPost_200_response"
+          description: |
+            Re-delivery was attempted but your endpoint errored again. The attempt is still
+            logged; `message` describes the failure.
+      security:
+      - bearerAuth: []
+      summary: Redeliver a webhook event
+      tags:
+      - Webhooks
+      x-resource-group: webhooks
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/webhooks/test:
     post:
       description: |
@@ -63997,6 +64059,19 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/getWebhookLogs_200_response_pagination"
+    redeliverWebhookEvent_request:
+      properties:
+        webhookId:
+          description: ID of the webhook subscription that delivered the event
+          minLength: 1
+          type: string
+        eventId:
+          description: Stable event ID of the delivery to replay
+          minLength: 1
+          type: string
+      required:
+      - eventId
+      - webhookId
     testWebhook_request:
       properties:
         webhookId:

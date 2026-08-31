@@ -23,6 +23,7 @@ import dev.zernio.model.GetWebhookLogs200Response;
 import dev.zernio.model.GetWebhookSettings200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject2;
+import dev.zernio.model.RedeliverWebhookEventRequest;
 import dev.zernio.model.TestWebhookRequest;
 import dev.zernio.model.UnpublishPost200Response;
 import dev.zernio.model.UpdateWebhookSettings200Response;
@@ -60,7 +61,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:38:48.026053582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:45:41.162466893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -688,6 +689,129 @@ public class WebhooksApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Redeliver a webhook event
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * @param redeliverWebhookEventRequest  (required)
+   * @return UnpublishPost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UnpublishPost200Response redeliverWebhookEvent(@javax.annotation.Nonnull RedeliverWebhookEventRequest redeliverWebhookEventRequest) throws ApiException {
+    return redeliverWebhookEvent(redeliverWebhookEventRequest, null);
+  }
+
+  /**
+   * Redeliver a webhook event
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * @param redeliverWebhookEventRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnpublishPost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UnpublishPost200Response redeliverWebhookEvent(@javax.annotation.Nonnull RedeliverWebhookEventRequest redeliverWebhookEventRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnpublishPost200Response> localVarResponse = redeliverWebhookEventWithHttpInfo(redeliverWebhookEventRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Redeliver a webhook event
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * @param redeliverWebhookEventRequest  (required)
+   * @return ApiResponse&lt;UnpublishPost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnpublishPost200Response> redeliverWebhookEventWithHttpInfo(@javax.annotation.Nonnull RedeliverWebhookEventRequest redeliverWebhookEventRequest) throws ApiException {
+    return redeliverWebhookEventWithHttpInfo(redeliverWebhookEventRequest, null);
+  }
+
+  /**
+   * Redeliver a webhook event
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * @param redeliverWebhookEventRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnpublishPost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnpublishPost200Response> redeliverWebhookEventWithHttpInfo(@javax.annotation.Nonnull RedeliverWebhookEventRequest redeliverWebhookEventRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = redeliverWebhookEventRequestBuilder(redeliverWebhookEventRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("redeliverWebhookEvent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UnpublishPost200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnpublishPost200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnpublishPost200Response>() {});
+        
+
+        return new ApiResponse<UnpublishPost200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder redeliverWebhookEventRequestBuilder(@javax.annotation.Nonnull RedeliverWebhookEventRequest redeliverWebhookEventRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'redeliverWebhookEventRequest' is set
+    if (redeliverWebhookEventRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'redeliverWebhookEventRequest' when calling redeliverWebhookEvent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/webhooks/logs/redeliver";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(redeliverWebhookEventRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
