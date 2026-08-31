@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ReplyToInboxPostRequest.JSON_PROPERTY_ROOT_URI,
   ReplyToInboxPostRequest.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T17:42:18.018553509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T19:14:21.947849020Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToInboxPostRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
