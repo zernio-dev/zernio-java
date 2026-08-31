@@ -46306,12 +46306,23 @@ components:
           _id: _id
           status: draft
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        warnings:
+        - warnings
+        - warnings
         message: message
       properties:
         message:
           type: string
         post:
           $ref: "#/components/schemas/Post"
+        warnings:
+          description: "Advisory notices about a post that was still created: media\
+            \ truncated for a platform, a recycling caveat, or a field that was ignored\
+            \ because it sat outside platforms[].platformSpecificData. Absent when\
+            \ there are none."
+          items:
+            type: string
+          type: array
     PostUpdateResponse:
       example:
         post:

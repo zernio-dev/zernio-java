@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.Post;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,9 +37,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   PostCreateResponse.JSON_PROPERTY_MESSAGE,
-  PostCreateResponse.JSON_PROPERTY_POST
+  PostCreateResponse.JSON_PROPERTY_POST,
+  PostCreateResponse.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T13:31:57.857749272Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T13:59:11.538600611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostCreateResponse {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -46,6 +49,10 @@ public class PostCreateResponse {
   public static final String JSON_PROPERTY_POST = "post";
   @javax.annotation.Nullable
   private Post post;
+
+  public static final String JSON_PROPERTY_WARNINGS = "warnings";
+  @javax.annotation.Nullable
+  private List<String> warnings = new ArrayList<>();
 
   public PostCreateResponse() { 
   }
@@ -98,6 +105,38 @@ public class PostCreateResponse {
   }
 
 
+  public PostCreateResponse warnings(@javax.annotation.Nullable List<String> warnings) {
+    this.warnings = warnings;
+    return this;
+  }
+
+  public PostCreateResponse addWarningsItem(String warningsItem) {
+    if (this.warnings == null) {
+      this.warnings = new ArrayList<>();
+    }
+    this.warnings.add(warningsItem);
+    return this;
+  }
+
+  /**
+   * Advisory notices about a post that was still created: media truncated for a platform, a recycling caveat, or a field that was ignored because it sat outside platforms[].platformSpecificData. Absent when there are none.
+   * @return warnings
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getWarnings() {
+    return warnings;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWarnings(@javax.annotation.Nullable List<String> warnings) {
+    this.warnings = warnings;
+  }
+
+
   /**
    * Return true if this PostCreateResponse object is equal to o.
    */
@@ -111,12 +150,13 @@ public class PostCreateResponse {
     }
     PostCreateResponse postCreateResponse = (PostCreateResponse) o;
     return Objects.equals(this.message, postCreateResponse.message) &&
-        Objects.equals(this.post, postCreateResponse.post);
+        Objects.equals(this.post, postCreateResponse.post) &&
+        Objects.equals(this.warnings, postCreateResponse.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, post);
+    return Objects.hash(message, post, warnings);
   }
 
   @Override
@@ -125,6 +165,7 @@ public class PostCreateResponse {
     sb.append("class PostCreateResponse {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    post: ").append(toIndentedString(post)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -180,6 +221,15 @@ public class PostCreateResponse {
     // add `post` to the URL query string
     if (getPost() != null) {
       joiner.add(getPost().toUrlQueryString(prefix + "post" + suffix));
+    }
+
+    // add `warnings` to the URL query string
+    if (getWarnings() != null) {
+      for (int i = 0; i < getWarnings().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%swarnings%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getWarnings().get(i)))));
+      }
     }
 
     return joiner.toString();
