@@ -39,12 +39,13 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_ID,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_TYPE,
+  GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_ORIGINAL_TYPE,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_URL,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_REFRESH_URL,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_FILENAME,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_PREVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:56:03.988502193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T17:25:03.847074745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -96,6 +97,10 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_ORIGINAL_TYPE = "originalType";
+  @javax.annotation.Nullable
+  private String originalType;
 
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable
@@ -158,6 +163,30 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
+  }
+
+
+  public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner originalType(@javax.annotation.Nullable String originalType) {
+    this.originalType = originalType;
+    return this;
+  }
+
+  /**
+   * Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own type before normalization: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; become &#x60;share&#x60;. A story mention is &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; render on this field, since &#x60;share&#x60; alone is ambiguous.
+   * @return originalType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOriginalType() {
+    return originalType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOriginalType(@javax.annotation.Nullable String originalType) {
+    this.originalType = originalType;
   }
 
 
@@ -295,6 +324,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner = (GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner) o;
     return Objects.equals(this.id, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.id) &&
         Objects.equals(this.type, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.type) &&
+        Objects.equals(this.originalType, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.originalType) &&
         Objects.equals(this.url, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.url) &&
         equalsNullable(this.refreshUrl, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.refreshUrl) &&
         equalsNullable(this.filename, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.filename) &&
@@ -307,7 +337,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, url, hashCodeNullable(refreshUrl), hashCodeNullable(filename), hashCodeNullable(previewUrl));
+    return Objects.hash(id, type, originalType, url, hashCodeNullable(refreshUrl), hashCodeNullable(filename), hashCodeNullable(previewUrl));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -323,6 +353,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     sb.append("class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    originalType: ").append(toIndentedString(originalType)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    refreshUrl: ").append(toIndentedString(refreshUrl)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
@@ -382,6 +413,11 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `originalType` to the URL query string
+    if (getOriginalType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soriginalType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOriginalType()))));
     }
 
     // add `url` to the URL query string

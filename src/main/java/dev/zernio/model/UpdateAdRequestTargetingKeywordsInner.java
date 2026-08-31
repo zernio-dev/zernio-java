@@ -53,7 +53,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:56:03.988502193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T17:25:03.847074745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = UpdateAdRequestTargetingKeywordsInner.UpdateAdRequestTargetingKeywordsInnerDeserializer.class)
 @JsonSerialize(using = UpdateAdRequestTargetingKeywordsInner.UpdateAdRequestTargetingKeywordsInnerSerializer.class)
 public class UpdateAdRequestTargetingKeywordsInner extends AbstractOpenApiSchema {

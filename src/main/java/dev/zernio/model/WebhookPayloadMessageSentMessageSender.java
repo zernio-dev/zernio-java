@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * WebhookPayloadMessageSentMessageSender
+ * **On this event the sender is your own business, not the person you are talking to.** &#x60;id&#x60; is the Zernio account id and &#x60;name&#x60;, &#x60;username&#x60; and &#x60;picture&#x60; are that connected account&#39;s own profile.  Do not read these to name or update a contact: doing so on an echo relabels the customer&#39;s record with your business name. The other party is &#x60;conversation.participantId&#x60; / &#x60;participantName&#x60; / &#x60;participantUsername&#x60;, which are populated in both directions. 
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_ID,
@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_USERNAME,
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_PICTURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:56:03.988502193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T17:25:03.847074745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -70,7 +70,7 @@ public class WebhookPayloadMessageSentMessageSender {
   }
 
   /**
-   * Get id
+   * The Zernio account id of the connected account that sent the message, not a contact id.
    * @return id
    */
   @javax.annotation.Nonnull
@@ -118,7 +118,7 @@ public class WebhookPayloadMessageSentMessageSender {
   }
 
   /**
-   * Get name
+   * Display name of your connected account.
    * @return name
    */
   @javax.annotation.Nullable
@@ -142,7 +142,7 @@ public class WebhookPayloadMessageSentMessageSender {
   }
 
   /**
-   * Get username
+   * Username of your connected account.
    * @return username
    */
   @javax.annotation.Nullable
@@ -166,7 +166,7 @@ public class WebhookPayloadMessageSentMessageSender {
   }
 
   /**
-   * Get picture
+   * Profile picture of your connected account.
    * @return picture
    */
   @javax.annotation.Nullable

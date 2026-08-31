@@ -34,14 +34,19 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageSentMessageAttachmentsInner.JSON_PROPERTY_TYPE,
+  WebhookPayloadMessageSentMessageAttachmentsInner.JSON_PROPERTY_ORIGINAL_TYPE,
   WebhookPayloadMessageSentMessageAttachmentsInner.JSON_PROPERTY_URL,
   WebhookPayloadMessageSentMessageAttachmentsInner.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:56:03.988502193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T17:25:03.847074745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessageAttachmentsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
   private String type;
+
+  public static final String JSON_PROPERTY_ORIGINAL_TYPE = "originalType";
+  @javax.annotation.Nullable
+  private String originalType;
 
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
@@ -60,7 +65,7 @@ public class WebhookPayloadMessageSentMessageAttachmentsInner {
   }
 
   /**
-   * Attachment type (image, video, file, sticker, audio)
+   * Attachment type (image, video, file, sticker, audio, share)
    * @return type
    */
   @javax.annotation.Nonnull
@@ -78,13 +83,37 @@ public class WebhookPayloadMessageSentMessageAttachmentsInner {
   }
 
 
+  public WebhookPayloadMessageSentMessageAttachmentsInner originalType(@javax.annotation.Nullable String originalType) {
+    this.originalType = originalType;
+    return this;
+  }
+
+  /**
+   * Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it. See the same field on message.received for the full mapping.
+   * @return originalType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOriginalType() {
+    return originalType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOriginalType(@javax.annotation.Nullable String originalType) {
+    this.originalType = originalType;
+  }
+
+
   public WebhookPayloadMessageSentMessageAttachmentsInner url(@javax.annotation.Nonnull String url) {
     this.url = url;
     return this;
   }
 
   /**
-   * Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;. 
+   * Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;.  As on &#x60;message.received&#x60;, webhook attachments carry no &#x60;refreshUrl&#x60;: that field is stamped only on the REST read. Resolve Instagram and Facebook media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;. 
    * @return url
    */
   @javax.annotation.Nonnull
@@ -139,13 +168,14 @@ public class WebhookPayloadMessageSentMessageAttachmentsInner {
     }
     WebhookPayloadMessageSentMessageAttachmentsInner webhookPayloadMessageSentMessageAttachmentsInner = (WebhookPayloadMessageSentMessageAttachmentsInner) o;
     return Objects.equals(this.type, webhookPayloadMessageSentMessageAttachmentsInner.type) &&
+        Objects.equals(this.originalType, webhookPayloadMessageSentMessageAttachmentsInner.originalType) &&
         Objects.equals(this.url, webhookPayloadMessageSentMessageAttachmentsInner.url) &&
         Objects.equals(this.payload, webhookPayloadMessageSentMessageAttachmentsInner.payload);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, url, payload);
+    return Objects.hash(type, originalType, url, payload);
   }
 
   @Override
@@ -153,6 +183,7 @@ public class WebhookPayloadMessageSentMessageAttachmentsInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageSentMessageAttachmentsInner {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    originalType: ").append(toIndentedString(originalType)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");
@@ -205,6 +236,11 @@ public class WebhookPayloadMessageSentMessageAttachmentsInner {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `originalType` to the URL query string
+    if (getOriginalType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soriginalType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOriginalType()))));
     }
 
     // add `url` to the URL query string

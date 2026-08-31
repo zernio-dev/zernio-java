@@ -34,14 +34,19 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageMessageAttachmentsInner.JSON_PROPERTY_TYPE,
+  WebhookPayloadMessageMessageAttachmentsInner.JSON_PROPERTY_ORIGINAL_TYPE,
   WebhookPayloadMessageMessageAttachmentsInner.JSON_PROPERTY_URL,
   WebhookPayloadMessageMessageAttachmentsInner.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:56:03.988502193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T17:25:03.847074745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessageAttachmentsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
   private String type;
+
+  public static final String JSON_PROPERTY_ORIGINAL_TYPE = "originalType";
+  @javax.annotation.Nullable
+  private String originalType;
 
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
@@ -60,7 +65,7 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
   }
 
   /**
-   * Attachment type (image, video, file, sticker, audio)
+   * Attachment type (image, video, file, sticker, audio, share)
    * @return type
    */
   @javax.annotation.Nonnull
@@ -78,13 +83,37 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
   }
 
 
+  public WebhookPayloadMessageMessageAttachmentsInner originalType(@javax.annotation.Nullable String originalType) {
+    this.originalType = originalType;
+    return this;
+  }
+
+  /**
+   * Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; all become &#x60;share&#x60;.  Read it before rendering, because &#x60;type: \&quot;share\&quot;&#x60; alone is ambiguous. In particular a story mention arrives as &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; treating an unrecognized type as a generic document shows your agent \&quot;document received\&quot; for what is usually a lead. 
+   * @return originalType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOriginalType() {
+    return originalType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOriginalType(@javax.annotation.Nullable String originalType) {
+    this.originalType = originalType;
+  }
+
+
   public WebhookPayloadMessageMessageAttachmentsInner url(@javax.annotation.Nonnull String url) {
     this.url = url;
     return this;
   }
 
   /**
-   * Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule. 
+   * Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule.  **Webhook attachments carry no &#x60;refreshUrl&#x60;.** That field is stamped only when you read a message back over REST (&#x60;GET /v1/inbox/conversations/{conversationId}/messages&#x60;). On Instagram and Facebook the url above is a signed Meta CDN link that expires, so do not persist it: store the message id and resolve the media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;, which re-mints it on demand. Every value that URL needs is already in this payload: &#x60;message.conversationId&#x60;, &#x60;message.platformMessageId&#x60;, &#x60;account.accountId&#x60;, and the attachment&#39;s zero-based position in this array. 
    * @return url
    */
   @javax.annotation.Nonnull
@@ -139,13 +168,14 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
     }
     WebhookPayloadMessageMessageAttachmentsInner webhookPayloadMessageMessageAttachmentsInner = (WebhookPayloadMessageMessageAttachmentsInner) o;
     return Objects.equals(this.type, webhookPayloadMessageMessageAttachmentsInner.type) &&
+        Objects.equals(this.originalType, webhookPayloadMessageMessageAttachmentsInner.originalType) &&
         Objects.equals(this.url, webhookPayloadMessageMessageAttachmentsInner.url) &&
         Objects.equals(this.payload, webhookPayloadMessageMessageAttachmentsInner.payload);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, url, payload);
+    return Objects.hash(type, originalType, url, payload);
   }
 
   @Override
@@ -153,6 +183,7 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageMessageAttachmentsInner {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    originalType: ").append(toIndentedString(originalType)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");
@@ -205,6 +236,11 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `originalType` to the URL query string
+    if (getOriginalType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soriginalType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOriginalType()))));
     }
 
     // add `url` to the URL query string

@@ -997,7 +997,7 @@ ApiResponse<[**GetInboxConversationMessages200Response**](GetInboxConversationMe
 
 Resolve message attachment
 
-Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store. It is returned ready-made on each attachment as &#x60;refreshUrl&#x60; when you read a message over REST.  **Webhook payloads do not carry &#x60;refreshUrl&#x60;**, so a webhook-driven integration builds this URL itself. Every piece is in the event: &#x60;message.conversationId&#x60;, &#x60;message.platformMessageId&#x60;, the attachment&#39;s zero-based position, and &#x60;account.accountId&#x60;. Note that **&#x60;accountId&#x60; is a required query parameter**; omitting it returns &#x60;400&#x60; &#x60;missing_required_field&#x60;, which is the same requirement &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; has.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
 
 ### Example
 
@@ -1023,7 +1023,7 @@ public class Example {
         String conversationId = "conversationId_example"; // String | The conversation ID (Zernio id or platform conversation id)
         String messageId = "messageId_example"; // String | The message id as returned by the list-messages endpoint (the platform message id)
         Integer index = 56; // Integer | Zero-based position of the attachment in the message's attachments array
-        String accountId = "accountId_example"; // String | Social account ID
+        String accountId = "accountId_example"; // String | Social account ID. Required: without it the request returns 400 missing_required_field.
         String format = "redirect"; // String | `redirect` (default) answers 302 to the media; `json` returns the url in the body
         try {
             GetMessageAttachment200Response result = apiInstance.getMessageAttachment(conversationId, messageId, index, accountId, format);
@@ -1047,7 +1047,7 @@ public class Example {
 | **conversationId** | **String**| The conversation ID (Zernio id or platform conversation id) | |
 | **messageId** | **String**| The message id as returned by the list-messages endpoint (the platform message id) | |
 | **index** | **Integer**| Zero-based position of the attachment in the message&#39;s attachments array | |
-| **accountId** | **String**| Social account ID | |
+| **accountId** | **String**| Social account ID. Required: without it the request returns 400 missing_required_field. | |
 | **format** | **String**| &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body | [optional] [default to redirect] [enum: redirect, json] |
 
 ### Return type
@@ -1080,7 +1080,7 @@ public class Example {
 
 Resolve message attachment
 
-Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store. It is returned ready-made on each attachment as &#x60;refreshUrl&#x60; when you read a message over REST.  **Webhook payloads do not carry &#x60;refreshUrl&#x60;**, so a webhook-driven integration builds this URL itself. Every piece is in the event: &#x60;message.conversationId&#x60;, &#x60;message.platformMessageId&#x60;, the attachment&#39;s zero-based position, and &#x60;account.accountId&#x60;. Note that **&#x60;accountId&#x60; is a required query parameter**; omitting it returns &#x60;400&#x60; &#x60;missing_required_field&#x60;, which is the same requirement &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; has.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
 
 ### Example
 
@@ -1107,7 +1107,7 @@ public class Example {
         String conversationId = "conversationId_example"; // String | The conversation ID (Zernio id or platform conversation id)
         String messageId = "messageId_example"; // String | The message id as returned by the list-messages endpoint (the platform message id)
         Integer index = 56; // Integer | Zero-based position of the attachment in the message's attachments array
-        String accountId = "accountId_example"; // String | Social account ID
+        String accountId = "accountId_example"; // String | Social account ID. Required: without it the request returns 400 missing_required_field.
         String format = "redirect"; // String | `redirect` (default) answers 302 to the media; `json` returns the url in the body
         try {
             ApiResponse<GetMessageAttachment200Response> response = apiInstance.getMessageAttachmentWithHttpInfo(conversationId, messageId, index, accountId, format);
@@ -1133,7 +1133,7 @@ public class Example {
 | **conversationId** | **String**| The conversation ID (Zernio id or platform conversation id) | |
 | **messageId** | **String**| The message id as returned by the list-messages endpoint (the platform message id) | |
 | **index** | **Integer**| Zero-based position of the attachment in the message&#39;s attachments array | |
-| **accountId** | **String**| Social account ID | |
+| **accountId** | **String**| Social account ID. Required: without it the request returns 400 missing_required_field. | |
 | **format** | **String**| &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body | [optional] [default to redirect] [enum: redirect, json] |
 
 ### Return type
