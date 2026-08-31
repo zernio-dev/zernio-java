@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateDiscordThread200Response.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T08:49:02.065894743Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T10:16:37.104543989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateDiscordThread200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable

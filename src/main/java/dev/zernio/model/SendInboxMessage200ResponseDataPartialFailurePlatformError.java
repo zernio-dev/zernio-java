@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage200ResponseDataPartialFailurePlatformError.JSON_PROPERTY_FBTRACE_ID,
   SendInboxMessage200ResponseDataPartialFailurePlatformError.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T08:49:02.065894743Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T10:16:37.104543989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200ResponseDataPartialFailurePlatformError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

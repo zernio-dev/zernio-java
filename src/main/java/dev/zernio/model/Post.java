@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   Post.JSON_PROPERTY_CREATED_AT,
   Post.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T08:49:02.065894743Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T10:16:37.104543989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Post {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -282,7 +282,7 @@ public class Post {
   }
 
   /**
-   * YouTube: title must be ≤ 100 characters. 
+   * Stored on the post for reference/display only. This field is NOT used as the video title when publishing. To set a YouTube video title, use platformSpecificData.title on the youtube platform target (falls back to the first line of content when omitted).
    * @return title
    */
   @javax.annotation.Nullable
@@ -506,7 +506,7 @@ public class Post {
   }
 
   /**
-   * Get hashtags
+   * Stored for reference only. Hashtags are NOT automatically appended to the caption when publishing. Include hashtags directly in the content field (platforms like Instagram only support hashtags as caption text). For YouTube keywords, use the tags field instead.
    * @return hashtags
    */
   @javax.annotation.Nullable

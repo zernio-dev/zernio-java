@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**title** | **String** |  |  [optional] |
+|**title** | **String** | Stored on the post for reference/display only. This field is NOT used as the video title when publishing. To set a YouTube video title, use platformSpecificData.title on the youtube platform target (falls back to the first line of content when omitted). |  [optional] |
 |**content** | **String** |  |  [optional] |
 |**mediaItems** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  |  [optional] |
 |**platforms** | [**List&lt;UpdatePostRequestPlatformsInner&gt;**](UpdatePostRequestPlatformsInner.md) | Target platforms and accounts for this post. Each item must include platform and accountId. |  [optional] |
@@ -17,7 +17,7 @@
 |**timezone** | **String** |  |  [optional] |
 |**visibility** | [**VisibilityEnum**](#VisibilityEnum) |  |  [optional] |
 |**tags** | **List&lt;String&gt;** |  |  [optional] |
-|**hashtags** | **List&lt;String&gt;** |  |  [optional] |
+|**hashtags** | **List&lt;String&gt;** | Stored for reference only. Hashtags are NOT automatically appended to the caption when publishing. Include hashtags directly in the content field (platforms like Instagram only support hashtags as caption text). For YouTube keywords, use the tags field instead. |  [optional] |
 |**mentions** | **List&lt;String&gt;** |  |  [optional] |
 |**crosspostingEnabled** | **Boolean** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
