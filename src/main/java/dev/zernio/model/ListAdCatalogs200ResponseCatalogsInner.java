@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListAdCatalogs200ResponseCatalogsInner.JSON_PROPERTY_VERTICAL,
   ListAdCatalogs200ResponseCatalogsInner.JSON_PROPERTY_PRODUCT_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:45:41.162466893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:56:03.988502193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdCatalogs200ResponseCatalogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
