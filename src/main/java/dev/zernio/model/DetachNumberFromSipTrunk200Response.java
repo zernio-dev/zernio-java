@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DetachNumberFromSipTrunk200Response.JSON_PROPERTY_ATTACHED,
   DetachNumberFromSipTrunk200Response.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T10:16:37.104543989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T13:31:57.857749272Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DetachNumberFromSipTrunk200Response {
   public static final String JSON_PROPERTY_ATTACHED = "attached";
   @javax.annotation.Nullable

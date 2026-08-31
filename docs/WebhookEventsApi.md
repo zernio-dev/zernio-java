@@ -3097,7 +3097,7 @@ ApiResponse<Void>
 
 External post deleted event
 
-Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. 
+Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. Detection is a diff against the posts a prior sync already indexed, so an account for which no post has ever been indexed can never emit this event, no matter how the subscription is configured. 
 
 ### Example
 
@@ -3166,7 +3166,7 @@ null (empty response body)
 
 External post deleted event
 
-Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. 
+Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. Detection is a diff against the posts a prior sync already indexed, so an account for which no post has ever been indexed can never emit this event, no matter how the subscription is configured. 
 
 ### Example
 
@@ -3665,7 +3665,7 @@ ApiResponse<Void>
 
 Post platform deleted event
 
-Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. Detection is a diff against the posts a prior sync already indexed, so an account for which no post has ever been indexed can never emit this event, no matter how the subscription is configured. 
 
 ### Example
 
@@ -3734,7 +3734,7 @@ null (empty response body)
 
 Post platform deleted event
 
-Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. Detection is a diff against the posts a prior sync already indexed, so an account for which no post has ever been indexed can never emit this event, no matter how the subscription is configured. 
 
 ### Example
 
