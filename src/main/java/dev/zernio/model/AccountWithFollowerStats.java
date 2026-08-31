@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_DATA_POINTS,
   AccountWithFollowerStats.JSON_PROPERTY_ACCOUNT_STATS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T08:46:45.373430010Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T08:49:02.065894743Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -520,7 +520,7 @@ public class AccountWithFollowerStats {
   }
 
   /**
-   * Whether the user explicitly activated this account. false means the account was created as a side effect (e.g., posting account auto-created when user connected ads first). Posting UI and scheduler ignore accounts with enabled: false. 
+   * Whether the user explicitly activated this account. false means the account was created as a side effect (e.g., posting account auto-created when user connected ads first). Such accounts are hidden from this list, cannot be posted to (&#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;), and are not billed as connected accounts. 
    * @return enabled
    */
   @javax.annotation.Nullable
