@@ -3057,7 +3057,7 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 
 Update ad
 
-Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **Pinterest / X / LinkedIn / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
 
 ### Example
 
@@ -3125,7 +3125,7 @@ public class Example {
 | **400** | Invalid status transition or budget below minimum |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
-| **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+| **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 ## updateAdWithHttpInfo
@@ -3134,7 +3134,7 @@ public class Example {
 
 Update ad
 
-Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **Pinterest / X / LinkedIn / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
 
 ### Example
 
@@ -3205,7 +3205,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **400** | Invalid status transition or budget below minimum |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
-| **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+| **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 

@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Replace the ad&#39;s creative. Meta + TikTok only.  - **Meta**: requires &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;, &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;. The   ad&#39;s existing creative is replaced via a new &#x60;/act_X/adcreatives&#x60; upload + ad   update. The old creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. 
+ * Replace the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: requires &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;, &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;. The   ad&#39;s existing creative is replaced via a new &#x60;/act_X/adcreatives&#x60; upload + ad   update. The old creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. - **LinkedIn**: uploads new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;),   creates a new inline media creative on the same campaign, and pauses the old   creative (best-effort). The old creative is retained for historical reporting. 
  */
 @JsonPropertyOrder({
   UpdateAdRequestCreative.JSON_PROPERTY_HEADLINE,
@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestCreative.JSON_PROPERTY_IMAGE_URL,
   UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T13:59:11.538600611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:38:48.026053582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestCreative {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nullable

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   BulkUploadResult.JSON_PROPERTY_WARNINGS,
   BulkUploadResult.JSON_PROPERTY_RATE_LIMITED_ACCOUNTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T13:59:11.538600611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:38:48.026053582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUploadResult {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable
@@ -191,7 +191,7 @@ public class BulkUploadResult {
   }
 
   /**
-   * Top-level advisory warnings (e.g. &#x60;rows_exceed_advisory_limit:500&#x60;). Empty when none.
+   * Top-level advisory warnings, e.g. &#x60;rows_exceed_advisory_limit:500&#x60; or &#x60;unknown_columns:&lt;a,b,c&gt;&#x60; (comma-separated unrecognized CSV column names). Empty when none.
    * @return warnings
    */
   @javax.annotation.Nullable

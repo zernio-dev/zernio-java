@@ -2,7 +2,7 @@
 
 # UpdateAdRequestTargeting
 
-Meta + TikTok (demographics/interests) and Google (keyword edits only). Pinterest / X / LinkedIn return 501. 
+Meta + TikTok (demographics/interests), Google (keyword edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
 
 ## Properties
 

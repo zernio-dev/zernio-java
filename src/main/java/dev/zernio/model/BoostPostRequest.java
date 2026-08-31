@@ -71,9 +71,11 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_SPARK_AUTH_CODE,
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
+  BoostPostRequest.JSON_PROPERTY_LEAD_GEN_FORM_ID,
+  BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T13:59:11.538600611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T16:38:48.026053582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -307,6 +309,49 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
   @javax.annotation.Nullable
   private String dsaPayor;
+
+  public static final String JSON_PROPERTY_LEAD_GEN_FORM_ID = "leadGenFormId";
+  @javax.annotation.Nullable
+  private String leadGenFormId;
+
+  /**
+   * Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PAUSED(String.valueOf("PAUSED"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nullable
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
   @javax.annotation.Nullable
@@ -969,6 +1014,54 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest leadGenFormId(@javax.annotation.Nullable String leadGenFormId) {
+    this.leadGenFormId = leadGenFormId;
+    return this;
+  }
+
+  /**
+   * Lead Gen form ID to attach to the boosted ad&#39;s creative. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;. On Meta this is the leadgen_forms ID (create one via POST /v1/ads/lead-forms). On LinkedIn this is the adForm ID (create one via POST /v1/ads/lead-forms with a LinkedIn account); the creative&#39;s &#x60;leadgenCallToAction.destination&#x60; is set to &#x60;urn:li:adForm:{id}&#x60;. Ignored for other goals.
+   * @return leadGenFormId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LEAD_GEN_FORM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLeadGenFormId() {
+    return leadGenFormId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LEAD_GEN_FORM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLeadGenFormId(@javax.annotation.Nullable String leadGenFormId) {
+    this.leadGenFormId = leadGenFormId;
+  }
+
+
+  public BoostPostRequest status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
+
   public BoostPostRequest optimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
     this.optimizationGoal = optimizationGoal;
     return this;
@@ -1031,12 +1124,14 @@ public class BoostPostRequest {
         Objects.equals(this.sparkAuthCode, boostPostRequest.sparkAuthCode) &&
         Objects.equals(this.dsaBeneficiary, boostPostRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, boostPostRequest.dsaPayor) &&
+        Objects.equals(this.leadGenFormId, boostPostRequest.leadGenFormId) &&
+        Objects.equals(this.status, boostPostRequest.status) &&
         Objects.equals(this.optimizationGoal, boostPostRequest.optimizationGoal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, optimizationGoal);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
   }
 
   @Override
@@ -1069,6 +1164,8 @@ public class BoostPostRequest {
     sb.append("    sparkAuthCode: ").append(toIndentedString(sparkAuthCode)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
+    sb.append("    leadGenFormId: ").append(toIndentedString(leadGenFormId)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1257,6 +1354,16 @@ public class BoostPostRequest {
     // add `dsaPayor` to the URL query string
     if (getDsaPayor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
+    }
+
+    // add `leadGenFormId` to the URL query string
+    if (getLeadGenFormId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sleadGenFormId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLeadGenFormId()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `optimizationGoal` to the URL query string
