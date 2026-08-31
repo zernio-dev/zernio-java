@@ -16728,6 +16728,7 @@ paths:
         '400':
           description: 'Invalid accountId, platform does not support posts listing, or the account has no access token'
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { description: 'X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED)' }
         '404': { $ref: '#/components/responses/NotFound' }
   /v1/accounts/{accountId}/follow-status/{userId}:
     get:
@@ -21017,6 +21018,7 @@ paths:
         '400': { $ref: '#/components/responses/BadRequest' }
         '401':
           description: "Unauthorized, or the API key could not read an OpenAI ad account (code invalid_credentials)."
+        '402': { $ref: '#/components/responses/PaymentRequired' }
         '403':
           description: Ads add-on required.
 
@@ -28219,7 +28221,7 @@ paths:
                             accountUsername: { type: [string, "null"] }
                             platform: { type: string }
                             error: { type: string }
-                            code: { type: [string, "null"], description: Error code if available }
+                            code: { type: [string, "null"], description: 'Error code if available (e.g. TOKEN_EXPIRED, or X_INBOX_NOT_ENABLED for an X account whose owner has not enabled X inbox)' }
                             retryAfter: { type: [integer, "null"], description: Seconds to wait before retry (rate limits) }
                       lastUpdated: { type: string, format: date-time }
                       accountsSkipped:
@@ -31619,7 +31621,9 @@ paths:
                   isActive: { type: boolean }
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '402': { description: 'No payment method on file (code `payment_required`). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created.' }
         '403': { description: 'Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code `sender_id_limit_reached`; raisable via support).' }
+        '409': { description: 'Billing setup is incomplete for this workspace (code `billing_setup_incomplete`); contact support.' }
         '422': { description: 'Sender ID rejected: it appears to impersonate a protected brand or institution.' }
     get:
       x-resource-group: "telephony"

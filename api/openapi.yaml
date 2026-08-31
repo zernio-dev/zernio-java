@@ -7110,6 +7110,8 @@ paths:
             \ or the account has no access token"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED)
         "404":
           $ref: "#/components/responses/NotFound"
       summary: List posts published on the platform
@@ -11046,6 +11048,8 @@ paths:
         "401":
           description: "Unauthorized, or the API key could not read an OpenAI ad account\
             \ (code invalid_credentials)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
         "403":
           description: Ads add-on required.
       summary: Connect an OpenAI Ads account
@@ -21049,10 +21053,17 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          description: "No payment method on file (code `payment_required`). Sender-ID\
+            \ sends incur carrier fees, so the billing owner needs a card before one\
+            \ can be created."
         "403":
           description: "Workspace is not on usage-based billing, or already holds\
             \ the maximum of 1,000 active sender IDs (code `sender_id_limit_reached`;\
             \ raisable via support)."
+        "409":
+          description: Billing setup is incomplete for this workspace (code `billing_setup_incomplete`);
+            contact support.
         "422":
           description: "Sender ID rejected: it appears to impersonate a protected\
             \ brand or institution."
@@ -67120,6 +67131,74 @@ components:
           - facebook
           - instagram
           type: string
+    listInboxComments_200_response_meta_failedAccounts_inner:
+      example:
+        accountId: accountId
+        code: code
+        retryAfter: 5
+        accountUsername: accountUsername
+        error: error
+        platform: platform
+      properties:
+        accountId:
+          type: string
+        accountUsername:
+          nullable: true
+          type: string
+        platform:
+          type: string
+        error:
+          type: string
+        code:
+          description: "Error code if available (e.g. TOKEN_EXPIRED, or X_INBOX_NOT_ENABLED\
+            \ for an X account whose owner has not enabled X inbox)"
+          nullable: true
+          type: string
+        retryAfter:
+          description: Seconds to wait before retry (rate limits)
+          nullable: true
+          type: integer
+    listInboxComments_200_response_meta:
+      example:
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        accountsFailed: 5
+        failedAccounts:
+        - accountId: accountId
+          code: code
+          retryAfter: 5
+          accountUsername: accountUsername
+          error: error
+          platform: platform
+        - accountId: accountId
+          code: code
+          retryAfter: 5
+          accountUsername: accountUsername
+          error: error
+          platform: platform
+        accountsSkipped:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
+        accountsQueried: 1
+      properties:
+        accountsQueried:
+          type: integer
+        accountsFailed:
+          type: integer
+        failedAccounts:
+          items:
+            $ref: "#/components/schemas/listInboxComments_200_response_meta_failedAccounts_inner"
+          type: array
+        lastUpdated:
+          format: date-time
+          type: string
+        accountsSkipped:
+          description: "Connected accounts that were not queried: their platform does\
+            \ not support this feature, or the account is not enabled for it"
+          items:
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
+          type: array
     listInboxComments_200_response:
       example:
         pagination:
@@ -67186,7 +67265,7 @@ components:
         pagination:
           $ref: "#/components/schemas/listInboxConversations_200_response_pagination"
         meta:
-          $ref: "#/components/schemas/listInboxConversations_200_response_meta"
+          $ref: "#/components/schemas/listInboxComments_200_response_meta"
     getInboxPostComments_200_response_comments_inner_from:
       example:
         isOwner: true

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.ListInboxComments200ResponseDataInner;
-import dev.zernio.model.ListInboxConversations200ResponseMeta;
+import dev.zernio.model.ListInboxComments200ResponseMeta;
 import dev.zernio.model.ListInboxConversations200ResponsePagination;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListInboxComments200Response.JSON_PROPERTY_PAGINATION,
   ListInboxComments200Response.JSON_PROPERTY_META
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-30T14:24:50.552508738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T08:46:45.373430010Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
@@ -54,7 +54,7 @@ public class ListInboxComments200Response {
 
   public static final String JSON_PROPERTY_META = "meta";
   @javax.annotation.Nullable
-  private ListInboxConversations200ResponseMeta meta;
+  private ListInboxComments200ResponseMeta meta;
 
   public ListInboxComments200Response() { 
   }
@@ -115,7 +115,7 @@ public class ListInboxComments200Response {
   }
 
 
-  public ListInboxComments200Response meta(@javax.annotation.Nullable ListInboxConversations200ResponseMeta meta) {
+  public ListInboxComments200Response meta(@javax.annotation.Nullable ListInboxComments200ResponseMeta meta) {
     this.meta = meta;
     return this;
   }
@@ -127,14 +127,14 @@ public class ListInboxComments200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_META, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public ListInboxConversations200ResponseMeta getMeta() {
+  public ListInboxComments200ResponseMeta getMeta() {
     return meta;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_META, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMeta(@javax.annotation.Nullable ListInboxConversations200ResponseMeta meta) {
+  public void setMeta(@javax.annotation.Nullable ListInboxComments200ResponseMeta meta) {
     this.meta = meta;
   }
 

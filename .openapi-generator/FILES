@@ -989,6 +989,8 @@ docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md
 docs/ListHighDemandPeriods200Response.md
 docs/ListInboxComments200Response.md
 docs/ListInboxComments200ResponseDataInner.md
+docs/ListInboxComments200ResponseMeta.md
+docs/ListInboxComments200ResponseMetaFailedAccountsInner.md
 docs/ListInboxConversationAnalytics200Response.md
 docs/ListInboxConversationAnalytics200ResponseItemsInner.md
 docs/ListInboxConversationAnalytics200ResponsePagination.md
@@ -2869,6 +2871,8 @@ src/main/java/dev/zernio/model/ListGoogleBusinessPlaceActions200ResponsePlaceAct
 src/main/java/dev/zernio/model/ListHighDemandPeriods200Response.java
 src/main/java/dev/zernio/model/ListInboxComments200Response.java
 src/main/java/dev/zernio/model/ListInboxComments200ResponseDataInner.java
+src/main/java/dev/zernio/model/ListInboxComments200ResponseMeta.java
+src/main/java/dev/zernio/model/ListInboxComments200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/ListInboxConversationAnalytics200Response.java
 src/main/java/dev/zernio/model/ListInboxConversationAnalytics200ResponseItemsInner.java
 src/main/java/dev/zernio/model/ListInboxConversationAnalytics200ResponsePagination.java
@@ -3683,3 +3687,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListInboxComments200ResponseMetaFailedAccountsInnerTest.java
+src/test/java/dev/zernio/model/ListInboxComments200ResponseMetaTest.java

@@ -276,7 +276,9 @@ public class Example {
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
 | **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Billing setup is incomplete for this workspace (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 ## createSmsSenderIdWithHttpInfo
@@ -353,7 +355,9 @@ ApiResponse<[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)>
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
 | **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Billing setup is incomplete for this workspace (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 

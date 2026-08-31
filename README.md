@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-08-30T14:24:50.552508738Z[Etc/UTC]
+- Build date: 2026-08-31T08:46:45.373430010Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2268,6 +2268,8 @@ Class | Method | HTTP request | Description
  - [ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
  - [ListInboxComments200Response](docs/ListInboxComments200Response.md)
  - [ListInboxComments200ResponseDataInner](docs/ListInboxComments200ResponseDataInner.md)
+ - [ListInboxComments200ResponseMeta](docs/ListInboxComments200ResponseMeta.md)
+ - [ListInboxComments200ResponseMetaFailedAccountsInner](docs/ListInboxComments200ResponseMetaFailedAccountsInner.md)
  - [ListInboxConversationAnalytics200Response](docs/ListInboxConversationAnalytics200Response.md)
  - [ListInboxConversationAnalytics200ResponseItemsInner](docs/ListInboxConversationAnalytics200ResponseItemsInner.md)
  - [ListInboxConversationAnalytics200ResponsePagination](docs/ListInboxConversationAnalytics200ResponsePagination.md)
