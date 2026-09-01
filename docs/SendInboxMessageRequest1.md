@@ -16,7 +16,7 @@
 |**replyMarkup** | **String** | JSON string of replyMarkup object (same schema as application/json body) |  [optional] |
 |**messagingType** | **String** | Messaging type (Facebook only). RESPONSE, UPDATE, or MESSAGE_TAG. |  [optional] |
 |**messageTag** | **String** | Message tag (requires messagingType MESSAGE_TAG) |  [optional] |
-|**replyTo** | **String** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID (both available in message.platformMessageId from webhooks or the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without send-side reply support, including Instagram and Facebook Messenger (Meta&#39;s Send API rejects reply_to on Instagram and does not expose it on Messenger). |  [optional] |
+|**replyTo** | **String** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID (delivered as message.platformMessageId on webhooks, and as &#x60;id&#x60; on each entry of the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without send-side reply support, including Instagram and Facebook Messenger (Meta&#39;s Send API rejects reply_to on Instagram and does not expose it on Messenger). |  [optional] |
 |**voiceNote** | [**VoiceNoteEnum**](#VoiceNoteEnum) | WhatsApp-only. Set to \&quot;true\&quot; when the audio attachment is an in-browser voice recording; the server transcodes it to a WhatsApp-native container (ogg/Opus). Omit for regular audio file uploads. |  [optional] |
 
 

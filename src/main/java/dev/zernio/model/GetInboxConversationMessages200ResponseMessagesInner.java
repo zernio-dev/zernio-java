@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENT_VIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:16:24.331120782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:46:52.103206025Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -346,7 +346,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
   /**
-   * Get id
+   * The platform&#39;s own message id: the &#x60;wamid&#x60; on WhatsApp, the &#x60;mid&#x60; on Instagram and Facebook Messenger. This is what &#x60;metadata.quotedMessageId&#x60; points at, the value to pass as &#x60;replyTo&#x60; on the platforms that support quote-replies, and the &#x60;{messageId}&#x60; segment of the attachment-resolve URL. Webhooks deliver the same value as &#x60;message.platformMessageId&#x60;; this response has no field by that name. 
    * @return id
    */
   @javax.annotation.Nullable
@@ -1090,7 +1090,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
   /**
-   * Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. It can also carry &#x60;source&#x60; (&#x60;whatsapp_business_app&#x60; / &#x60;coexistence_history&#x60; on a WhatsApp Coexistence number, &#x60;bulk-api&#x60; on a POST /v1/whatsapp/bulk send), which is where the message reached us from rather than who produced it: read &#x60;sentVia&#x60; for that. 
+   * Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (the &#x60;id&#x60; of the message this one replies to, delivered as &#x60;message.platformMessageId&#x60; on webhooks), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. It can also carry &#x60;source&#x60; (&#x60;whatsapp_business_app&#x60; / &#x60;coexistence_history&#x60; on a WhatsApp Coexistence number, &#x60;bulk-api&#x60; on a POST /v1/whatsapp/bulk send), which is where the message reached us from rather than who produced it: read &#x60;sentVia&#x60; for that. 
    * @return metadata
    */
   @javax.annotation.Nullable
