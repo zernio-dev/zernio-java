@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   DiscordGuildMember.JSON_PROPERTY_JOINED_AT,
   DiscordGuildMember.JSON_PROPERTY_PREMIUM_SINCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T09:02:47.668777651Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T10:36:28.511660833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordGuildMember {
   public static final String JSON_PROPERTY_USER = "user";
   @javax.annotation.Nullable
