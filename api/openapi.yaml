@@ -15865,7 +15865,7 @@ paths:
         emitted, not the current state of the resource.
 
         Only deliveries inside the 30-day log retention window can be replayed; past that
-        the payload is gone and the request fails with a 500. Replays run the same
+        the payload is gone and the request fails with a 422. Replays run the same
         resource-group checks as live delivery, against both the key's groups and the
         subscription's `disabledResourceGroups`.
       operationId: redeliverWebhookEvent
@@ -15889,14 +15889,18 @@ paths:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Event re-delivered successfully
         "400":
-          description: webhookId or eventId missing or empty
+          description: "webhookId or eventId missing or empty, or the subscription\
+            \ has no URL configured"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/ResourceGroupForbidden"
-        "500":
-          description: "Webhook no longer exists, has no URL configured, or the original\
-            \ payload is outside the 30-day retention window"
+        "404":
+          description: Webhook subscription not found
+        "422":
+          description: "Original payload not replayable: no delivery matches this\
+            \ event inside the 30-day retention window, or the stored payload is truncated\
+            \ or not valid JSON"
         "502":
           content:
             application/json:
@@ -30737,7 +30741,8 @@ paths:
                 $ref: "#/components/schemas/updateAd_200_response"
           description: Ad updated
         "400":
-          description: Invalid status transition or budget below minimum
+          description: "Invalid status transition, budget below minimum, or a LinkedIn\
+            \ creative update without imageUrl or videoUrl"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -84535,10 +84540,11 @@ components:
           have no headline slot). `body` becomes the in-feed `ad_text`; `linkUrl` becomes
           `landing_page_url`; `videoUrl` triggers a fresh upload. `description`, `videoId`
           and `existingCreativeId` are Meta-only and return 400.
-        - **LinkedIn**: uploads new media (image via `imageUrl` or video via `videoUrl`),
-          creates a new inline media creative on the same campaign, and pauses the old
-          creative (best-effort). The old creative is retained for historical reporting.
-          `videoId` and `existingCreativeId` are Meta-only and return 400.
+        - **LinkedIn**: requires new media (image via `imageUrl` or video via `videoUrl`);
+          a text-only creative update returns 400. Uploads the media, creates a new inline
+          media creative on the same campaign, and pauses the old creative (best-effort).
+          The old creative is retained for historical reporting. `videoId` and
+          `existingCreativeId` are Meta-only and return 400.
       properties:
         headline:
           description: Meta and LinkedIn (TikTok has no headline slot)

@@ -61,7 +61,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:46:52.103206025Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T14:43:22.615865708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -702,7 +702,7 @@ public class WebhooksApi {
 
   /**
    * Redeliver a webhook event
-   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 422. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
    * @param redeliverWebhookEventRequest  (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -713,7 +713,7 @@ public class WebhooksApi {
 
   /**
    * Redeliver a webhook event
-   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 422. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
    * @param redeliverWebhookEventRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -726,7 +726,7 @@ public class WebhooksApi {
 
   /**
    * Redeliver a webhook event
-   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 422. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
    * @param redeliverWebhookEventRequest  (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -737,7 +737,7 @@ public class WebhooksApi {
 
   /**
    * Redeliver a webhook event
-   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 500. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
+   * Replay a past delivery: the original payload is re-sent, byte for byte, to the subscription&#39;s current URL. The original event ID is preserved so your endpoint can dedupe, and the replay is recorded as a fresh attempt, so it shows up in &#x60;GET /v1/webhooks/logs&#x60; next to the delivery it replays.  Both &#x60;webhookId&#x60; and &#x60;eventId&#x60; come from a row of &#x60;GET /v1/webhooks/logs&#x60;. Because the stored payload is replayed as-is, a redelivery reflects the event as it was emitted, not the current state of the resource.  Only deliveries inside the 30-day log retention window can be replayed; past that the payload is gone and the request fails with a 422. Replays run the same resource-group checks as live delivery, against both the key&#39;s groups and the subscription&#39;s &#x60;disabledResourceGroups&#x60;. 
    * @param redeliverWebhookEventRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;

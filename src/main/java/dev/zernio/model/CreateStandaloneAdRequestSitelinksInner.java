@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestSitelinksInner.JSON_PROPERTY_DESCRIPTION1,
   CreateStandaloneAdRequestSitelinksInner.JSON_PROPERTY_DESCRIPTION2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:46:52.103206025Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T14:43:22.615865708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestSitelinksInner {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull
