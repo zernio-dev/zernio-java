@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GoogleBusinessPlatformDataEventScheduleStartDate.JSON_PROPERTY_MONTH,
   GoogleBusinessPlatformDataEventScheduleStartDate.JSON_PROPERTY_DAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T19:14:21.947849020Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T09:02:47.668777651Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleBusinessPlatformDataEventScheduleStartDate {
   public static final String JSON_PROPERTY_YEAR = "year";
   @javax.annotation.Nonnull

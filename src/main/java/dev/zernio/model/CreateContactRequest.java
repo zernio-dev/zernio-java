@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   CreateContactRequest.JSON_PROPERTY_PLATFORM_IDENTIFIER,
   CreateContactRequest.JSON_PROPERTY_DISPLAY_IDENTIFIER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T19:14:21.947849020Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T09:02:47.668777651Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateContactRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -81,9 +81,56 @@ public class CreateContactRequest {
   @javax.annotation.Nullable
   private String accountId;
 
+  /**
+   * Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported.
+   */
+  public enum PlatformEnum {
+    INSTAGRAM(String.valueOf("instagram")),
+    
+    FACEBOOK(String.valueOf("facebook")),
+    
+    TELEGRAM(String.valueOf("telegram")),
+    
+    TWITTER(String.valueOf("twitter")),
+    
+    BLUESKY(String.valueOf("bluesky")),
+    
+    REDDIT(String.valueOf("reddit")),
+    
+    WHATSAPP(String.valueOf("whatsapp")),
+    
+    SLACK(String.valueOf("slack"));
+
+    private String value;
+
+    PlatformEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PlatformEnum fromValue(String value) {
+      for (PlatformEnum b : PlatformEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
-  private String platform;
+  private PlatformEnum platform;
 
   public static final String JSON_PROPERTY_PLATFORM_IDENTIFIER = "platformIdentifier";
   @javax.annotation.Nullable
@@ -296,26 +343,26 @@ public class CreateContactRequest {
   }
 
 
-  public CreateContactRequest platform(@javax.annotation.Nullable String platform) {
+  public CreateContactRequest platform(@javax.annotation.Nullable PlatformEnum platform) {
     this.platform = platform;
     return this;
   }
 
   /**
-   * Get platform
+   * Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported.
    * @return platform
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPlatform() {
+  public PlatformEnum getPlatform() {
     return platform;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable String platform) {
+  public void setPlatform(@javax.annotation.Nullable PlatformEnum platform) {
     this.platform = platform;
   }
 

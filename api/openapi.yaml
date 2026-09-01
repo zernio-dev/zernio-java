@@ -26684,6 +26684,7 @@ paths:
           - bluesky
           - reddit
           - whatsapp
+          - slack
           type: string
         style: form
       - explode: true
@@ -26748,7 +26749,10 @@ paths:
                 $ref: "#/components/schemas/createContact_200_response"
           description: Contact created
         "400":
-          description: Invalid request
+          description: "Invalid request. Channel fields are all-or-nothing: accountId,\
+            \ platform and platformIdentifier must be sent together (code: missing_required_field).\
+            \ A platform outside the enum does not support contact channels (code:\
+            \ platform_not_supported, details.supportedPlatforms lists the valid values)."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
@@ -26917,7 +26921,9 @@ paths:
           description: "Contact missing required field name, or a row carries platformIdentifier/accountId\
             \ with no top-level accountId to attach it to. A row missing platformIdentifier\
             \ while accountId IS set is not a 400: it is reported in errors[] under\
-            \ a 200."
+            \ a 200. An accountId on a platform with no contact channels rejects the\
+            \ whole import (code: platform_not_supported, details.supportedPlatforms\
+            \ lists the valid values)."
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Bulk create contacts
@@ -76356,6 +76362,17 @@ components:
           description: Optional. Creates a channel if provided with platform + platformIdentifier
           type: string
         platform:
+          description: Channel platform. Only the enum values support contact channels;
+            any other platform is rejected with code platform_not_supported.
+          enum:
+          - instagram
+          - facebook
+          - telegram
+          - twitter
+          - bluesky
+          - reddit
+          - whatsapp
+          - slack
           type: string
         platformIdentifier:
           type: string

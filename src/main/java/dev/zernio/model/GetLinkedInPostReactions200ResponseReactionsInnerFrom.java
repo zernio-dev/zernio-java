@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetLinkedInPostReactions200ResponseReactionsInnerFrom.JSON_PROPERTY_PROFILE_PICTURE,
   GetLinkedInPostReactions200ResponseReactionsInnerFrom.JSON_PROPERTY_PROFILE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-31T19:14:21.947849020Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T09:02:47.668777651Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInPostReactions200ResponseReactionsInnerFrom {
   public static final String JSON_PROPERTY_URN = "urn";
   @javax.annotation.Nullable

@@ -90,7 +90,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
+| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. An accountId on a platform with no contact channels rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
 | **401** | Unauthorized |  -  |
 
 ## bulkCreateContactsWithHttpInfo
@@ -165,7 +165,7 @@ ApiResponse<[**BulkCreateContacts200Response**](BulkCreateContacts200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
+| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. An accountId on a platform with no contact channels rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -238,7 +238,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Contact created |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request. Channel fields are all-or-nothing: accountId, platform and platformIdentifier must be sent together (code: missing_required_field). A platform outside the enum does not support contact channels (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Duplicate channel. The platformIdentifier is already bound to a channel on this accountId. |  -  |
 
@@ -314,7 +314,7 @@ ApiResponse<[**CreateContact200Response**](CreateContact200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Contact created |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request. Channel fields are all-or-nothing: accountId, platform and platformIdentifier must be sent together (code: missing_required_field). A platform outside the enum does not support contact channels (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Duplicate channel. The platformIdentifier is already bound to a channel on this accountId. |  -  |
 
@@ -829,7 +829,7 @@ public class Example {
 | **search** | **String**| Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
-| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp] |
+| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
@@ -920,7 +920,7 @@ public class Example {
 | **search** | **String**| Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
-| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp] |
+| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
