@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf10Parameters.JSON_PROPERTY_SAVED_ADDRESSES,
   SendInboxMessageRequestInteractiveActionOneOf10Parameters.JSON_PROPERTY_VALIDATION_ERRORS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T20:56:48.423749498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T21:03:41.957598213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf10Parameters {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull

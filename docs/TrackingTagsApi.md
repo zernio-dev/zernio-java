@@ -1384,6 +1384,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
 | **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
@@ -1463,6 +1464,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
 | **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |

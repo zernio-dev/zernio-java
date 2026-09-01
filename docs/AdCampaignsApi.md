@@ -128,6 +128,7 @@ public class Example {
 | **201** | Assets attached |  -  |
 | **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
@@ -207,6 +208,7 @@ ApiResponse<[**AttachCampaignAssets201Response**](AttachCampaignAssets201Respons
 | **201** | Assets attached |  -  |
 | **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
@@ -284,7 +286,7 @@ public class Example {
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **409** | An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step. Also returned as &#x60;idempotency_key_reused&#x60; when an Idempotency-Key is reused with a different request body.  |  -  |
 
@@ -364,7 +366,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **409** | An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step. Also returned as &#x60;idempotency_key_reused&#x60; when an Idempotency-Key is reused with a different request body.  |  -  |
 
@@ -440,6 +442,7 @@ public class Example {
 | **200** | Per-campaign results |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 
 ## bulkUpdateAdCampaignStatusWithHttpInfo
 
@@ -515,6 +518,7 @@ ApiResponse<[**BulkUpdateAdCampaignStatus200Response**](BulkUpdateAdCampaignStat
 | **200** | Per-campaign results |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 
 
 ## createAdCampaign
@@ -745,7 +749,7 @@ public class Example {
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, non-Meta platform used with creatives[] / adSetId, or a Meta validateOnly validation failure (verbatim) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 | **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502.  |  -  |
 
@@ -826,7 +830,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, non-Meta platform used with creatives[] / adSetId, or a Meta validateOnly validation failure (verbatim) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 | **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502.  |  -  |
 
@@ -1358,6 +1362,7 @@ public class Example {
 | **200** | Ad duplicated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -1439,6 +1444,7 @@ ApiResponse<[**DuplicateAd200Response**](DuplicateAd200Response.md)>
 | **200** | Ad duplicated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -1518,6 +1524,7 @@ public class Example {
 | **200** | Campaign duplicated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source campaign not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
@@ -1599,6 +1606,7 @@ ApiResponse<[**DuplicateAdCampaign200Response**](DuplicateAdCampaign200Response.
 | **200** | Campaign duplicated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source campaign not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
@@ -1678,6 +1686,7 @@ public class Example {
 | **200** | Ad set duplicated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -1759,6 +1768,7 @@ ApiResponse<[**DuplicateAdSet200Response**](DuplicateAdSet200Response.md)>
 | **200** | Ad set duplicated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -3128,6 +3138,7 @@ public class Example {
 | **200** | Ad updated |  -  |
 | **400** | Invalid status transition, budget below minimum, or a LinkedIn creative update without imageUrl or videoUrl |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
@@ -3208,6 +3219,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **200** | Ad updated |  -  |
 | **400** | Invalid status transition, budget below minimum, or a LinkedIn creative update without imageUrl or videoUrl |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
@@ -3286,6 +3298,7 @@ public class Example {
 | **200** | Campaign updated |  -  |
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign is ABO — route to /v1/ads/ad-sets/{adSetId} instead |  -  |
 | **501** | Operation not supported on this platform |  -  |
@@ -3366,6 +3379,7 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 | **200** | Campaign updated |  -  |
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign is ABO — route to /v1/ads/ad-sets/{adSetId} instead |  -  |
 | **501** | Operation not supported on this platform |  -  |
@@ -3444,6 +3458,7 @@ public class Example {
 | **200** | Campaign status updated |  -  |
 | **400** | Invalid input or campaign spans multiple social accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | No ads found for this campaign |  -  |
 
 ## updateAdCampaignStatusWithHttpInfo
@@ -3522,6 +3537,7 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 | **200** | Campaign status updated |  -  |
 | **400** | Invalid input or campaign spans multiple social accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | No ads found for this campaign |  -  |
 
 
@@ -3598,6 +3614,7 @@ public class Example {
 | **200** | Ad set updated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 | **409** | Campaign is CBO — route to /v1/ads/campaigns/{campaignId} instead |  -  |
 | **422** | bidStrategy is LOWEST_COST_WITH_MIN_ROAS on OpenAI (unsupported: no ROAS-based bidding) |  -  |
@@ -3679,6 +3696,7 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 | **200** | Ad set updated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 | **409** | Campaign is CBO — route to /v1/ads/campaigns/{campaignId} instead |  -  |
 | **422** | bidStrategy is LOWEST_COST_WITH_MIN_ROAS on OpenAI (unsupported: no ROAS-based bidding) |  -  |
@@ -3758,6 +3776,7 @@ public class Example {
 | **200** | Ad set status updated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 
 ## updateAdSetStatusWithHttpInfo
@@ -3836,6 +3855,7 @@ ApiResponse<[**UpdateAdSetStatus200Response**](UpdateAdSetStatus200Response.md)>
 | **200** | Ad set status updated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 
 
@@ -3912,6 +3932,7 @@ public class Example {
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 
 ## updateAdStatusWithHttpInfo
@@ -3990,5 +4011,6 @@ ApiResponse<[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)>
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 

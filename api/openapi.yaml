@@ -29559,6 +29559,10 @@ paths:
           description: Invalid input or campaign spans multiple social accounts
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: No ads found for this campaign
       security:
@@ -29690,6 +29694,10 @@ paths:
             \ at the campaign level (see the support table)"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Campaign not found
         "409":
@@ -29737,6 +29745,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
       security:
       - bearerAuth: []
       summary: Pause or resume many campaigns
@@ -29825,6 +29837,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Source campaign not found
         "501":
@@ -29890,6 +29906,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Source ad set not found
         "501":
@@ -29952,6 +29972,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Ad not found
         "501":
@@ -30140,6 +30164,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Ad set not found
         "409":
@@ -30219,6 +30247,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Ad set not found
       security:
@@ -30745,6 +30777,10 @@ paths:
             \ creative update without imageUrl or videoUrl"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           $ref: "#/components/responses/NotFound"
         "501":
@@ -30811,6 +30847,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Ad not found
       security:
@@ -30869,6 +30909,10 @@ paths:
             \ missing when the connection has multiple Google Ads accounts"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "422":
           description: No Google Ads customer accounts on this connection. Reconnect
             Google Ads.
@@ -31727,6 +31771,10 @@ paths:
           description: Updated
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Ad not found
         "405":
@@ -33392,8 +33440,10 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ads_allowance_exceeded`\
+            \ when the team has no payment method on file and has reached the 500\
+            \ free live ads: add a card to resume."
         "409":
           description: |
             An identical boost request is already in progress (with or without
@@ -33453,8 +33503,10 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ads_allowance_exceeded`\
+            \ when the team has no payment method on file and has reached the 500\
+            \ free live ads: add a card to resume."
         "422":
           description: "Platform ads connection required (TikTok Ads, X Ads) or missing\
             \ linked account"
@@ -36044,6 +36096,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Account not found
         "422":
@@ -36084,6 +36140,10 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Returned with code `ads_allowance_exceeded` when the team\
+            \ has no payment method on file and has reached the 500 free live ads:\
+            \ add a card to resume."
         "404":
           description: Account not found
         "422":
@@ -36151,8 +36211,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Forbidden. Also returned with code `ads_allowance_exceeded`\
+            \ when the team has no payment method on file and has reached the 500\
+            \ free live ads: add a card to resume."
         "404":
           description: SocialAccount not found.
         "422":
