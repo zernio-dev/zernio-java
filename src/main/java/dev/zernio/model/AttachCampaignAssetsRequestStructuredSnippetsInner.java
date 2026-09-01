@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AttachCampaignAssetsRequestStructuredSnippetsInner.JSON_PROPERTY_HEADER,
   AttachCampaignAssetsRequestStructuredSnippetsInner.JSON_PROPERTY_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T10:36:28.511660833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:16:24.331120782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachCampaignAssetsRequestStructuredSnippetsInner {
   /**
    * Gets or Sets header

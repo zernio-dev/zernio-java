@@ -54,6 +54,9 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_LANGUAGES,
   TargetingSpec.JSON_PROPERTY_INTERESTS,
   TargetingSpec.JSON_PROPERTY_BEHAVIORS,
+  TargetingSpec.JSON_PROPERTY_WORK_POSITIONS,
+  TargetingSpec.JSON_PROPERTY_WORK_EMPLOYERS,
+  TargetingSpec.JSON_PROPERTY_WORK_INDUSTRIES,
   TargetingSpec.JSON_PROPERTY_INDUSTRIES,
   TargetingSpec.JSON_PROPERTY_COMPANY_SIZES,
   TargetingSpec.JSON_PROPERTY_SENIORITIES,
@@ -61,7 +64,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T10:36:28.511660833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:16:24.331120782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -194,6 +197,18 @@ public class TargetingSpec {
   public static final String JSON_PROPERTY_BEHAVIORS = "behaviors";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestBehaviorsInner> behaviors = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WORK_POSITIONS = "workPositions";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> workPositions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WORK_EMPLOYERS = "workEmployers";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WORK_INDUSTRIES = "workIndustries";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = new ArrayList<>();
 
   public static final String JSON_PROPERTY_INDUSTRIES = "industries";
   @javax.annotation.Nullable
@@ -634,6 +649,102 @@ public class TargetingSpec {
   }
 
 
+  public TargetingSpec workPositions(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workPositions) {
+    this.workPositions = workPositions;
+    return this;
+  }
+
+  public TargetingSpec addWorkPositionsItem(CreateStandaloneAdRequestBehaviorsInner workPositionsItem) {
+    if (this.workPositions == null) {
+      this.workPositions = new ArrayList<>();
+    }
+    this.workPositions.add(workPositionsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments.
+   * @return workPositions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORK_POSITIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getWorkPositions() {
+    return workPositions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORK_POSITIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkPositions(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workPositions) {
+    this.workPositions = workPositions;
+  }
+
+
+  public TargetingSpec workEmployers(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workEmployers) {
+    this.workEmployers = workEmployers;
+    return this;
+  }
+
+  public TargetingSpec addWorkEmployersItem(CreateStandaloneAdRequestBehaviorsInner workEmployersItem) {
+    if (this.workEmployers == null) {
+      this.workEmployers = new ArrayList<>();
+    }
+    this.workEmployers.add(workEmployersItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer.
+   * @return workEmployers
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORK_EMPLOYERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getWorkEmployers() {
+    return workEmployers;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORK_EMPLOYERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkEmployers(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workEmployers) {
+    this.workEmployers = workEmployers;
+  }
+
+
+  public TargetingSpec workIndustries(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workIndustries) {
+    this.workIndustries = workIndustries;
+    return this;
+  }
+
+  public TargetingSpec addWorkIndustriesItem(CreateStandaloneAdRequestBehaviorsInner workIndustriesItem) {
+    if (this.workIndustries == null) {
+      this.workIndustries = new ArrayList<>();
+    }
+    this.workIndustries.add(workIndustriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments.
+   * @return workIndustries
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORK_INDUSTRIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getWorkIndustries() {
+    return workIndustries;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORK_INDUSTRIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkIndustries(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workIndustries) {
+    this.workIndustries = workIndustries;
+  }
+
+
   public TargetingSpec industries(@javax.annotation.Nullable List<String> industries) {
     this.industries = industries;
     return this;
@@ -776,7 +887,7 @@ public class TargetingSpec {
   }
 
   /**
-   * Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.
+   * Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400).
    * @return audienceInclude
    */
   @javax.annotation.Nullable
@@ -808,7 +919,7 @@ public class TargetingSpec {
   }
 
   /**
-   * Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.
+   * Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400).
    * @return audienceExclude
    */
   @javax.annotation.Nullable
@@ -852,6 +963,9 @@ public class TargetingSpec {
         Objects.equals(this.languages, targetingSpec.languages) &&
         Objects.equals(this.interests, targetingSpec.interests) &&
         Objects.equals(this.behaviors, targetingSpec.behaviors) &&
+        Objects.equals(this.workPositions, targetingSpec.workPositions) &&
+        Objects.equals(this.workEmployers, targetingSpec.workEmployers) &&
+        Objects.equals(this.workIndustries, targetingSpec.workIndustries) &&
         Objects.equals(this.industries, targetingSpec.industries) &&
         Objects.equals(this.companySizes, targetingSpec.companySizes) &&
         Objects.equals(this.seniorities, targetingSpec.seniorities) &&
@@ -862,7 +976,7 @@ public class TargetingSpec {
 
   @Override
   public int hashCode() {
-    return Objects.hash(countries, regions, cities, zips, metros, customLocations, excludedLocations, ageMin, ageMax, gender, incomeTier, languages, interests, behaviors, industries, companySizes, seniorities, jobFunctions, audienceInclude, audienceExclude);
+    return Objects.hash(countries, regions, cities, zips, metros, customLocations, excludedLocations, ageMin, ageMax, gender, incomeTier, languages, interests, behaviors, workPositions, workEmployers, workIndustries, industries, companySizes, seniorities, jobFunctions, audienceInclude, audienceExclude);
   }
 
   @Override
@@ -883,6 +997,9 @@ public class TargetingSpec {
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
     sb.append("    behaviors: ").append(toIndentedString(behaviors)).append("\n");
+    sb.append("    workPositions: ").append(toIndentedString(workPositions)).append("\n");
+    sb.append("    workEmployers: ").append(toIndentedString(workEmployers)).append("\n");
+    sb.append("    workIndustries: ").append(toIndentedString(workIndustries)).append("\n");
     sb.append("    industries: ").append(toIndentedString(industries)).append("\n");
     sb.append("    companySizes: ").append(toIndentedString(companySizes)).append("\n");
     sb.append("    seniorities: ").append(toIndentedString(seniorities)).append("\n");
@@ -1044,6 +1161,36 @@ public class TargetingSpec {
       for (int i = 0; i < getBehaviors().size(); i++) {
         if (getBehaviors().get(i) != null) {
           joiner.add(getBehaviors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbehaviors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `workPositions` to the URL query string
+    if (getWorkPositions() != null) {
+      for (int i = 0; i < getWorkPositions().size(); i++) {
+        if (getWorkPositions().get(i) != null) {
+          joiner.add(getWorkPositions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sworkPositions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `workEmployers` to the URL query string
+    if (getWorkEmployers() != null) {
+      for (int i = 0; i < getWorkEmployers().size(); i++) {
+        if (getWorkEmployers().get(i) != null) {
+          joiner.add(getWorkEmployers().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sworkEmployers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `workIndustries` to the URL query string
+    if (getWorkIndustries() != null) {
+      for (int i = 0; i < getWorkIndustries().size(); i++) {
+        if (getWorkIndustries().get(i) != null) {
+          joiner.add(getWorkIndustries().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sworkIndustries%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

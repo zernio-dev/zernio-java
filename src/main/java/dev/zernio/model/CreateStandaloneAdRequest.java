@@ -112,6 +112,9 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_METROS,
   CreateStandaloneAdRequest.JSON_PROPERTY_CUSTOM_LOCATIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_BEHAVIORS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_WORK_POSITIONS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_WORK_EMPLOYERS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_WORK_INDUSTRIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_INCOME_TIER,
   CreateStandaloneAdRequest.JSON_PROPERTY_LANGUAGES,
   CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENTS,
@@ -152,7 +155,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T10:36:28.511660833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:16:24.331120782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -746,6 +749,18 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_BEHAVIORS = "behaviors";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestBehaviorsInner> behaviors = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WORK_POSITIONS = "workPositions";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> workPositions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WORK_EMPLOYERS = "workEmployers";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WORK_INDUSTRIES = "workIndustries";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = new ArrayList<>();
 
   /**
    * Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. 
@@ -2390,6 +2405,102 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest workPositions(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workPositions) {
+    this.workPositions = workPositions;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addWorkPositionsItem(CreateStandaloneAdRequestBehaviorsInner workPositionsItem) {
+    if (this.workPositions == null) {
+      this.workPositions = new ArrayList<>();
+    }
+    this.workPositions.add(workPositionsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Each must include id. Rejected on other platforms (use LinkedIn&#39;s &#x60;jobTitles&#x60; there).
+   * @return workPositions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORK_POSITIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getWorkPositions() {
+    return workPositions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORK_POSITIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkPositions(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workPositions) {
+    this.workPositions = workPositions;
+  }
+
+
+  public CreateStandaloneAdRequest workEmployers(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workEmployers) {
+    this.workEmployers = workEmployers;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addWorkEmployersItem(CreateStandaloneAdRequestBehaviorsInner workEmployersItem) {
+    if (this.workEmployers == null) {
+      this.workEmployers = new ArrayList<>();
+    }
+    this.workEmployers.add(workEmployersItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer. Each must include id.
+   * @return workEmployers
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORK_EMPLOYERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getWorkEmployers() {
+    return workEmployers;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORK_EMPLOYERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkEmployers(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workEmployers) {
+    this.workEmployers = workEmployers;
+  }
+
+
+  public CreateStandaloneAdRequest workIndustries(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workIndustries) {
+    this.workIndustries = workIndustries;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addWorkIndustriesItem(CreateStandaloneAdRequestBehaviorsInner workIndustriesItem) {
+    if (this.workIndustries == null) {
+      this.workIndustries = new ArrayList<>();
+    }
+    this.workIndustries.add(workIndustriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Each must include id. Rejected on other platforms (use LinkedIn&#39;s &#x60;industries&#x60; there).
+   * @return workIndustries
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORK_INDUSTRIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getWorkIndustries() {
+    return workIndustries;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORK_INDUSTRIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkIndustries(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> workIndustries) {
+    this.workIndustries = workIndustries;
+  }
+
+
   public CreateStandaloneAdRequest incomeTier(@javax.annotation.Nullable IncomeTierEnum incomeTier) {
     this.incomeTier = incomeTier;
     return this;
@@ -3505,6 +3616,9 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.metros, createStandaloneAdRequest.metros) &&
         Objects.equals(this.customLocations, createStandaloneAdRequest.customLocations) &&
         Objects.equals(this.behaviors, createStandaloneAdRequest.behaviors) &&
+        Objects.equals(this.workPositions, createStandaloneAdRequest.workPositions) &&
+        Objects.equals(this.workEmployers, createStandaloneAdRequest.workEmployers) &&
+        Objects.equals(this.workIndustries, createStandaloneAdRequest.workIndustries) &&
         Objects.equals(this.incomeTier, createStandaloneAdRequest.incomeTier) &&
         Objects.equals(this.languages, createStandaloneAdRequest.languages) &&
         Objects.equals(this.placements, createStandaloneAdRequest.placements) &&
@@ -3548,7 +3662,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3604,6 +3718,9 @@ public class CreateStandaloneAdRequest {
     sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
     sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
     sb.append("    behaviors: ").append(toIndentedString(behaviors)).append("\n");
+    sb.append("    workPositions: ").append(toIndentedString(workPositions)).append("\n");
+    sb.append("    workEmployers: ").append(toIndentedString(workEmployers)).append("\n");
+    sb.append("    workIndustries: ").append(toIndentedString(workIndustries)).append("\n");
     sb.append("    incomeTier: ").append(toIndentedString(incomeTier)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
@@ -3978,6 +4095,36 @@ public class CreateStandaloneAdRequest {
       for (int i = 0; i < getBehaviors().size(); i++) {
         if (getBehaviors().get(i) != null) {
           joiner.add(getBehaviors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbehaviors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `workPositions` to the URL query string
+    if (getWorkPositions() != null) {
+      for (int i = 0; i < getWorkPositions().size(); i++) {
+        if (getWorkPositions().get(i) != null) {
+          joiner.add(getWorkPositions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sworkPositions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `workEmployers` to the URL query string
+    if (getWorkEmployers() != null) {
+      for (int i = 0; i < getWorkEmployers().size(); i++) {
+        if (getWorkEmployers().get(i) != null) {
+          joiner.add(getWorkEmployers().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sworkEmployers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `workIndustries` to the URL query string
+    if (getWorkIndustries() != null) {
+      for (int i = 0; i < getWorkIndustries().size(); i++) {
+        if (getWorkIndustries().get(i) != null) {
+          joiner.add(getWorkIndustries().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sworkIndustries%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

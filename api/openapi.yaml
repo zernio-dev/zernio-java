@@ -28783,6 +28783,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads\
+          \ read of an adset-centric dashboard)."
+        explode: true
+        in: query
+        name: adSetId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Meta ad ID. Returns the ad with this platform-side ad ID.
         explode: true
         in: query
@@ -34204,8 +34213,13 @@ paths:
         `POST /v1/ads/targeting/reach-estimate`, and `saved_targeting` audiences.
 
         The `dimension` param selects what is searched, `geo` (locations, further scoped
-        by `geoType`), `interest`, `behavior`, or `income`. Availability of each dimension
-        varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized
+        by `geoType`), `interest`, `behavior`, `income`, or the Meta-only work
+        demographics `workPosition`, `workEmployer` and `workIndustry` (their ids feed
+        `TargetingSpec.workPositions`/`workEmployers`/`workIndustries`). Availability of
+        each dimension varies by platform (e.g. behaviours are Meta/TikTok only).
+        Work industries are a fixed ~30-entry Meta catalog with no server-side query,
+        so `workIndustry` matching, ranking and `limit` happen in Zernio.
+        Results are normalized
         across platforms into a single shape, so the same client code consumes Meta,
         TikTok, LinkedIn, X, Pinterest, and Google results.
 
@@ -34271,7 +34285,8 @@ paths:
         style: form
       - description: "What to search. `geo` resolves locations (scope further with\
           \ `geoType`), `interest`/`behavior` resolve audience entities, `income`\
-          \ resolves income-tier options. Defaults to `interest` for backward compatibility\
+          \ resolves income-tier options, `workPosition`/`workEmployer`/`workIndustry`\
+          \ resolve Meta work demographics. Defaults to `interest` for backward compatibility\
           \ with the deprecated /v1/ads/interests alias."
         explode: true
         in: query
@@ -34284,6 +34299,9 @@ paths:
           - interest
           - behavior
           - income
+          - workPosition
+          - workEmployer
+          - workIndustry
           type: string
         style: form
       - description: Only used when `dimension=geo`. The kind of location to resolve.
@@ -50687,6 +50705,23 @@ components:
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
+        workPositions:
+          description: Meta only. Job title entities from /v1/ads/targeting/search?dimension=workPosition.
+            Not interchangeable with the LinkedIn `jobTitles` URN fragments.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workEmployers:
+          description: Meta only. Employer entities from /v1/ads/targeting/search?dimension=workEmployer.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workIndustries:
+          description: Meta only. Work-industry entities from /v1/ads/targeting/search?dimension=workIndustry.
+            Not interchangeable with the LinkedIn `industries` URN fragments.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
         industries:
           description: LinkedIn B2B only. Industry URN id fragments.
           items:
@@ -50708,16 +50743,17 @@ components:
             type: string
           type: array
         audienceInclude:
-          description: "Platform audience IDs to include. Not supported on any platform\
-            \ (no builder maps it): rejected with a 400 on ad create, boost, and reach\
-            \ estimate."
+          description: "Platform audience IDs to include, as returned by GET /v1/ads/audiences\
+            \ (Meta custom audience ids, TikTok audience ids, Pinterest customer list\
+            \ ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment\
+            \ forms accepted), Google user list ids, X custom audience ids). Not supported\
+            \ on OpenAI (400)."
           items:
             type: string
           type: array
         audienceExclude:
-          description: "Platform audience IDs to exclude. Not supported on any platform\
-            \ (no builder maps it): rejected with a 400 on ad create, boost, and reach\
-            \ estimate."
+          description: Platform audience IDs to exclude; same ID formats as audienceInclude.
+            Not supported on OpenAI (400).
           items:
             type: string
           type: array
@@ -84473,22 +84509,37 @@ components:
           type: integer
     updateAd_request_creative:
       description: |
-        Replace the ad's creative. Meta, TikTok, and LinkedIn.
+        Replace or patch the ad's creative. Meta, TikTok, and LinkedIn.
 
-        - **Meta**: requires `headline`, `body`, `callToAction`, `linkUrl`, `imageUrl`. The
-          ad's existing creative is replaced via a new `/act_X/adcreatives` upload + ad
-          update. The old creative is retained on the ad account for historical reporting.
+        - **Meta**: patch-style. Pass any subset — fields you omit are preserved from the
+          live creative, including media (`image_hash`/`video_id` are reused, no re-upload)
+          and `url_tags`. Sending the full set (`headline`, `body`, `callToAction`,
+          `linkUrl`, `imageUrl`) rebuilds the creative from scratch instead. Partial
+          patching reads the live `object_story_spec`, which Meta strips on SHARE /
+          page-post / dark / asset_feed creatives — those return 422 asking for the full
+          set. A `videoUrl`/`videoId` on an image creative is a type change and also
+          needs the full set. `existingCreativeId` repoints the ad at a creative from
+          GET /v1/ads/creatives and ignores every other field. Meta creatives are
+          immutable, so any change creates a new creative and repoints the ad; the old
+          creative is retained on the ad account for historical reporting.
         - **TikTok**: patch-style. Pass any subset; `headline` is ignored (TikTok creatives
           have no headline slot). `body` becomes the in-feed `ad_text`; `linkUrl` becomes
-          `landing_page_url`; `videoUrl` triggers a fresh upload.
+          `landing_page_url`; `videoUrl` triggers a fresh upload. `description`, `videoId`
+          and `existingCreativeId` are Meta-only and return 400.
         - **LinkedIn**: uploads new media (image via `imageUrl` or video via `videoUrl`),
           creates a new inline media creative on the same campaign, and pauses the old
           creative (best-effort). The old creative is retained for historical reporting.
+          `videoId` and `existingCreativeId` are Meta-only and return 400.
       properties:
         headline:
-          description: Meta only
+          description: Meta and LinkedIn (TikTok has no headline slot)
           type: string
         body:
+          type: string
+        description:
+          description: "Link description slot (Meta `link_data.description` / `video_data.link_description`,\
+            \ LinkedIn creative description)."
+          maxLength: 255
           type: string
         callToAction:
           type: string
@@ -84500,6 +84551,14 @@ components:
           type: string
         videoUrl:
           format: uri
+          type: string
+        videoId:
+          description: Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos
+            or GET /v1/ads/videos) instead of re-uploading via videoUrl.
+          type: string
+        existingCreativeId:
+          description: Meta only. Repoint the ad at an existing library creative (from
+            GET /v1/ads/creatives); all other creative fields are ignored.
           type: string
     updateAd_request:
       properties:
@@ -88619,6 +88678,26 @@ components:
         behaviors:
           description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
             Supported on Meta and TikTok. Each must include id.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workPositions:
+          description: Meta only. Job title entities from /v1/ads/targeting/search?dimension=workPosition.
+            Each must include id. Rejected on other platforms (use LinkedIn's `jobTitles`
+            there).
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workEmployers:
+          description: Meta only. Employer entities from /v1/ads/targeting/search?dimension=workEmployer.
+            Each must include id.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workIndustries:
+          description: Meta only. Work-industry entities from /v1/ads/targeting/search?dimension=workIndustry.
+            Each must include id. Rejected on other platforms (use LinkedIn's `industries`
+            there).
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array

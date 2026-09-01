@@ -31,17 +31,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Replace the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: requires &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;, &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;. The   ad&#39;s existing creative is replaced via a new &#x60;/act_X/adcreatives&#x60; upload + ad   update. The old creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. - **LinkedIn**: uploads new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;),   creates a new inline media creative on the same campaign, and pauses the old   creative (best-effort). The old creative is retained for historical reporting. 
+ * Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset — fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives — those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: uploads new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;),   creates a new inline media creative on the same campaign, and pauses the old   creative (best-effort). The old creative is retained for historical reporting.   &#x60;videoId&#x60; and &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
  */
 @JsonPropertyOrder({
   UpdateAdRequestCreative.JSON_PROPERTY_HEADLINE,
   UpdateAdRequestCreative.JSON_PROPERTY_BODY,
+  UpdateAdRequestCreative.JSON_PROPERTY_DESCRIPTION,
   UpdateAdRequestCreative.JSON_PROPERTY_CALL_TO_ACTION,
   UpdateAdRequestCreative.JSON_PROPERTY_LINK_URL,
   UpdateAdRequestCreative.JSON_PROPERTY_IMAGE_URL,
-  UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_URL
+  UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_URL,
+  UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_ID,
+  UpdateAdRequestCreative.JSON_PROPERTY_EXISTING_CREATIVE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T10:36:28.511660833Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T11:16:24.331120782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestCreative {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nullable
@@ -50,6 +53,10 @@ public class UpdateAdRequestCreative {
   public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nullable
   private String body;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  @javax.annotation.Nullable
+  private String description;
 
   public static final String JSON_PROPERTY_CALL_TO_ACTION = "callToAction";
   @javax.annotation.Nullable
@@ -67,6 +74,14 @@ public class UpdateAdRequestCreative {
   @javax.annotation.Nullable
   private URI videoUrl;
 
+  public static final String JSON_PROPERTY_VIDEO_ID = "videoId";
+  @javax.annotation.Nullable
+  private String videoId;
+
+  public static final String JSON_PROPERTY_EXISTING_CREATIVE_ID = "existingCreativeId";
+  @javax.annotation.Nullable
+  private String existingCreativeId;
+
   public UpdateAdRequestCreative() { 
   }
 
@@ -76,7 +91,7 @@ public class UpdateAdRequestCreative {
   }
 
   /**
-   * Meta only
+   * Meta and LinkedIn (TikTok has no headline slot)
    * @return headline
    */
   @javax.annotation.Nullable
@@ -115,6 +130,30 @@ public class UpdateAdRequestCreative {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBody(@javax.annotation.Nullable String body) {
     this.body = body;
+  }
+
+
+  public UpdateAdRequestCreative description(@javax.annotation.Nullable String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description).
+   * @return description
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
   }
 
 
@@ -214,6 +253,54 @@ public class UpdateAdRequestCreative {
   }
 
 
+  public UpdateAdRequestCreative videoId(@javax.annotation.Nullable String videoId) {
+    this.videoId = videoId;
+    return this;
+  }
+
+  /**
+   * Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos or GET /v1/ads/videos) instead of re-uploading via videoUrl.
+   * @return videoId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getVideoId() {
+    return videoId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoId(@javax.annotation.Nullable String videoId) {
+    this.videoId = videoId;
+  }
+
+
+  public UpdateAdRequestCreative existingCreativeId(@javax.annotation.Nullable String existingCreativeId) {
+    this.existingCreativeId = existingCreativeId;
+    return this;
+  }
+
+  /**
+   * Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored.
+   * @return existingCreativeId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_CREATIVE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExistingCreativeId() {
+    return existingCreativeId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_CREATIVE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExistingCreativeId(@javax.annotation.Nullable String existingCreativeId) {
+    this.existingCreativeId = existingCreativeId;
+  }
+
+
   /**
    * Return true if this updateAd_request_creative object is equal to o.
    */
@@ -228,15 +315,18 @@ public class UpdateAdRequestCreative {
     UpdateAdRequestCreative updateAdRequestCreative = (UpdateAdRequestCreative) o;
     return Objects.equals(this.headline, updateAdRequestCreative.headline) &&
         Objects.equals(this.body, updateAdRequestCreative.body) &&
+        Objects.equals(this.description, updateAdRequestCreative.description) &&
         Objects.equals(this.callToAction, updateAdRequestCreative.callToAction) &&
         Objects.equals(this.linkUrl, updateAdRequestCreative.linkUrl) &&
         Objects.equals(this.imageUrl, updateAdRequestCreative.imageUrl) &&
-        Objects.equals(this.videoUrl, updateAdRequestCreative.videoUrl);
+        Objects.equals(this.videoUrl, updateAdRequestCreative.videoUrl) &&
+        Objects.equals(this.videoId, updateAdRequestCreative.videoId) &&
+        Objects.equals(this.existingCreativeId, updateAdRequestCreative.existingCreativeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headline, body, callToAction, linkUrl, imageUrl, videoUrl);
+    return Objects.hash(headline, body, description, callToAction, linkUrl, imageUrl, videoUrl, videoId, existingCreativeId);
   }
 
   @Override
@@ -245,10 +335,13 @@ public class UpdateAdRequestCreative {
     sb.append("class UpdateAdRequestCreative {\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
+    sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
+    sb.append("    existingCreativeId: ").append(toIndentedString(existingCreativeId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -306,6 +399,11 @@ public class UpdateAdRequestCreative {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBody()))));
     }
 
+    // add `description` to the URL query string
+    if (getDescription() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+    }
+
     // add `callToAction` to the URL query string
     if (getCallToAction() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scallToAction%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallToAction()))));
@@ -324,6 +422,16 @@ public class UpdateAdRequestCreative {
     // add `videoUrl` to the URL query string
     if (getVideoUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoUrl()))));
+    }
+
+    // add `videoId` to the URL query string
+    if (getVideoId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoId()))));
+    }
+
+    // add `existingCreativeId` to the URL query string
+    if (getExistingCreativeId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexistingCreativeId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExistingCreativeId()))));
     }
 
     return joiner.toString();

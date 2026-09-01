@@ -22,12 +22,15 @@ Normalized, platform-agnostic ad-targeting spec. Every field is optional, an emp
 |**languages** | **List&lt;String&gt;** | Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;) for a specific one. Unknown codes are rejected. |  [optional] |
 |**interests** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Interest entities from /v1/ads/targeting/search?dimension&#x3D;interest. Each carries the platform&#39;s opaque id. |  [optional] |
 |**behaviors** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. |  [optional] |
+|**workPositions** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments. |  [optional] |
+|**workEmployers** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer. |  [optional] |
+|**workIndustries** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments. |  [optional] |
 |**industries** | **List&lt;String&gt;** | LinkedIn B2B only. Industry URN id fragments. |  [optional] |
 |**companySizes** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
 |**seniorities** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
 |**jobFunctions** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
-|**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate. |  [optional] |
-|**audienceExclude** | **List&lt;String&gt;** | Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate. |  [optional] |
+|**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400). |  [optional] |
+|**audienceExclude** | **List&lt;String&gt;** | Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400). |  [optional] |
 
 
 
