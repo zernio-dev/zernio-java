@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T14:43:22.615865708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T20:56:48.423749498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
