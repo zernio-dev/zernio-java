@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Zernio SocialAccount id (posting or ads variant). |  |
-|**adAccountId** | **String** | Meta ad account id (act_&lt;n&gt;). |  |
+|**adAccountId** | **String** | Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). |  |
 |**budgetAmount** | **BigDecimal** | Whole currency units. Exactly one of budgetAmount / reach. |  [optional] |
 |**reach** | **Integer** | Target unique reach. Exactly one of budgetAmount / reach. |  [optional] |
 |**startDate** | **OffsetDateTime** | Campaign window start (must be in the future). |  |

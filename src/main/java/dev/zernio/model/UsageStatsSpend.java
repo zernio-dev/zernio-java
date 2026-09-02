@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_CENTS,
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_LIMIT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-01T21:03:41.957598213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T08:57:24.910063664Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsSpend {
   public static final String JSON_PROPERTY_CURRENT_PERIOD_CENTS = "currentPeriodCents";
   @javax.annotation.Nullable

@@ -29463,11 +29463,16 @@ paths:
       - application/json
     post:
       description: |-
-        Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it
-        later via `existingCampaignId` on the create endpoints. A budget here is campaign-level
-        (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created
-        `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the
-        next sync discovery pass.
+        Creates a campaign WITHOUT its first ad set / ad, on the platform of the given
+        `accountId`. Ad sets join it later via `existingCampaignId` on the create endpoints.
+        Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it
+        for ABO (each ad set carries its own budget), and `specialAdCategories` /
+        `bidStrategy` are Meta-only (400 elsewhere). Google, X and OpenAI require a budget
+        (422 without one; OpenAI accepts only `budgetType: lifetime`). LinkedIn creates the
+        campaign GROUP (our campaign level) and rejects a budget, which lives on the
+        campaign (ad set) level there; it comes back `status: DRAFT`. TikTok campaigns are
+        created without a status and report `ENABLE`. Created `PAUSED` unless
+        `status: ACTIVE` where the platform supports it.
 
         **Idempotency:** send an `Idempotency-Key` header to make retries safe.
       operationId: createAdCampaign
@@ -29512,6 +29517,12 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - google
+      - linkedin
+      - tiktok
+      - x
+      - pinterest
+      - openai
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -81719,11 +81730,12 @@ components:
     createAdCampaign_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
+          description: Zernio SocialAccount id (posting or ads variant); its platform
+            decides where the campaign is created.
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         name:
           maxLength: 255
@@ -85089,7 +85101,8 @@ components:
           description: Zernio SocialAccount id used to resolve the Meta token.
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         formats:
           description: "Meta ad_format values, one preview per format. Defaults to\
@@ -86010,7 +86023,8 @@ components:
           description: Zernio SocialAccount id (posting or ads variant).
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         budgetAmount:
           description: Whole currency units. Exactly one of budgetAmount / reach.
@@ -86266,7 +86280,8 @@ components:
             the Meta token and Page.
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         headline:
           maxLength: 255
@@ -86347,8 +86362,8 @@ components:
     updateAdCreative_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
+          description: Zernio SocialAccount id (posting or ads variant); its platform
+            decides where the campaign is created.
           type: string
         name:
           maxLength: 255
@@ -86578,11 +86593,12 @@ components:
     createValueRuleSet_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
+          description: Zernio SocialAccount id (posting or ads variant); its platform
+            decides where the campaign is created.
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         name:
           maxLength: 255
@@ -86708,8 +86724,8 @@ components:
     updateValueRuleSet_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
+          description: Zernio SocialAccount id (posting or ads variant); its platform
+            decides where the campaign is created.
           type: string
         name:
           description: "Required: the update replaces the whole set."
@@ -89860,11 +89876,12 @@ components:
     uploadAdImage_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
+          description: Zernio SocialAccount id (posting or ads variant); its platform
+            decides where the campaign is created.
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         imageBase64:
           description: "Raw base64 image bytes, or a full data URL (the data:image/...;base64,\
@@ -89922,11 +89939,12 @@ components:
     uploadAdVideo_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id (posting or ads variant) used to resolve
-            the Meta token.
+          description: Zernio SocialAccount id (posting or ads variant); its platform
+            decides where the campaign is created.
           type: string
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         videoUrl:
           description: Public https URL of the video; downloaded server-side (SSRF-guarded)
@@ -91885,7 +91903,8 @@ components:
     createCustomConversion_request:
       properties:
         adAccountId:
-          description: Meta ad account id (act_<n>).
+          description: "Platform ad account id (Meta act_<n>, Google customer id,\
+            \ LinkedIn account id, ...)."
           type: string
         name:
           description: "Also the reuse key, together with pixelId."
