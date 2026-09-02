@@ -33,6 +33,7 @@ import dev.zernio.model.WebhookPayloadAccountAdsInitialSyncCompleted;
 import dev.zernio.model.WebhookPayloadAccountConnected;
 import dev.zernio.model.WebhookPayloadAccountDisconnected;
 import dev.zernio.model.WebhookPayloadAdStatusChanged;
+import dev.zernio.model.WebhookPayloadAnalyticsSynced;
 import dev.zernio.model.WebhookPayloadCallEnded;
 import dev.zernio.model.WebhookPayloadCallFailed;
 import dev.zernio.model.WebhookPayloadCallPermissionRequest;
@@ -89,7 +90,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:32:04.396188059Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T11:57:59.664764723Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -627,6 +628,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadAdStatusChanged);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Analytics synced event
+   * Fired once per connected account each time its analytics sync cycle completes successfully. Poll-driven (roughly hourly per account), not real-time, and never fired for a skipped or failed cycle.  A trigger, not a transport: the payload carries no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read every post whose analytics changed, across every account, in one paginated stream instead of polling analytics once per account.  The feed holds back its most recent few seconds of writes, so a read issued the instant this event lands often returns an empty page for that account. Poll again with the same cursor rather than reading an empty page as \&quot;nothing changed\&quot;.  High volume (roughly one delivery per connected account per hour). Subscribe to it on a dedicated webhook endpoint: a subscription&#39;s consecutive-failure count is shared across all of its events, so an outage while this event is flowing can suppress the low-volume publishing events on the same subscription. 
+   * @param webhookPayloadAnalyticsSynced  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onAnalyticsSynced(@javax.annotation.Nonnull WebhookPayloadAnalyticsSynced webhookPayloadAnalyticsSynced) throws ApiException {
+    onAnalyticsSynced(webhookPayloadAnalyticsSynced, null);
+  }
+
+  /**
+   * Analytics synced event
+   * Fired once per connected account each time its analytics sync cycle completes successfully. Poll-driven (roughly hourly per account), not real-time, and never fired for a skipped or failed cycle.  A trigger, not a transport: the payload carries no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read every post whose analytics changed, across every account, in one paginated stream instead of polling analytics once per account.  The feed holds back its most recent few seconds of writes, so a read issued the instant this event lands often returns an empty page for that account. Poll again with the same cursor rather than reading an empty page as \&quot;nothing changed\&quot;.  High volume (roughly one delivery per connected account per hour). Subscribe to it on a dedicated webhook endpoint: a subscription&#39;s consecutive-failure count is shared across all of its events, so an outage while this event is flowing can suppress the low-volume publishing events on the same subscription. 
+   * @param webhookPayloadAnalyticsSynced  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onAnalyticsSynced(@javax.annotation.Nonnull WebhookPayloadAnalyticsSynced webhookPayloadAnalyticsSynced, Map<String, String> headers) throws ApiException {
+    onAnalyticsSyncedWithHttpInfo(webhookPayloadAnalyticsSynced, headers);
+  }
+
+  /**
+   * Analytics synced event
+   * Fired once per connected account each time its analytics sync cycle completes successfully. Poll-driven (roughly hourly per account), not real-time, and never fired for a skipped or failed cycle.  A trigger, not a transport: the payload carries no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read every post whose analytics changed, across every account, in one paginated stream instead of polling analytics once per account.  The feed holds back its most recent few seconds of writes, so a read issued the instant this event lands often returns an empty page for that account. Poll again with the same cursor rather than reading an empty page as \&quot;nothing changed\&quot;.  High volume (roughly one delivery per connected account per hour). Subscribe to it on a dedicated webhook endpoint: a subscription&#39;s consecutive-failure count is shared across all of its events, so an outage while this event is flowing can suppress the low-volume publishing events on the same subscription. 
+   * @param webhookPayloadAnalyticsSynced  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onAnalyticsSyncedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadAnalyticsSynced webhookPayloadAnalyticsSynced) throws ApiException {
+    return onAnalyticsSyncedWithHttpInfo(webhookPayloadAnalyticsSynced, null);
+  }
+
+  /**
+   * Analytics synced event
+   * Fired once per connected account each time its analytics sync cycle completes successfully. Poll-driven (roughly hourly per account), not real-time, and never fired for a skipped or failed cycle.  A trigger, not a transport: the payload carries no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read every post whose analytics changed, across every account, in one paginated stream instead of polling analytics once per account.  The feed holds back its most recent few seconds of writes, so a read issued the instant this event lands often returns an empty page for that account. Poll again with the same cursor rather than reading an empty page as \&quot;nothing changed\&quot;.  High volume (roughly one delivery per connected account per hour). Subscribe to it on a dedicated webhook endpoint: a subscription&#39;s consecutive-failure count is shared across all of its events, so an outage while this event is flowing can suppress the low-volume publishing events on the same subscription. 
+   * @param webhookPayloadAnalyticsSynced  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onAnalyticsSyncedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadAnalyticsSynced webhookPayloadAnalyticsSynced, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onAnalyticsSyncedRequestBuilder(webhookPayloadAnalyticsSynced, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onAnalyticsSynced", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onAnalyticsSyncedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadAnalyticsSynced webhookPayloadAnalyticsSynced, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadAnalyticsSynced' is set
+    if (webhookPayloadAnalyticsSynced == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadAnalyticsSynced' when calling onAnalyticsSynced");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/analytics.synced";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadAnalyticsSynced);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

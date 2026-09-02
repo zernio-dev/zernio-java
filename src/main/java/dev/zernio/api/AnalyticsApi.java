@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AnalyticsDeltaResponse;
 import dev.zernio.model.AnalyticsSinglePostResponse;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.FacebookPostEarningsResponse;
@@ -92,7 +93,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:32:04.396188059Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T11:57:59.664764723Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -371,6 +372,152 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("sortBy", sortBy));
     localVarQueryParameterBaseName = "order";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("order", order));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Analytics changed since a cursor
+   * Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+   * @param cursor Opaque cursor from a previous response&#39;s &#x60;nextCursor&#x60;. Omit it to start from now: the response is then an empty page carrying the feed&#39;s current position. Rejected with a &#x60;400&#x60; when malformed, or when older than the retention window.  (optional)
+   * @param limit Page size. Out-of-range values are a 400, never a silent clamp. (optional, default to 50)
+   * @param platform Filter to a single platform (for example \&quot;youtube\&quot;). Omit for every platform. (optional)
+   * @param profileId Filter by profile ID (default \&quot;all\&quot;). Must be a valid profile ID or \&quot;all\&quot;. (optional, default to all)
+   * @return AnalyticsDeltaResponse
+   * @throws ApiException if fails to make API call
+   */
+  public AnalyticsDeltaResponse getAnalyticsDelta(@javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId) throws ApiException {
+    return getAnalyticsDelta(cursor, limit, platform, profileId, null);
+  }
+
+  /**
+   * Analytics changed since a cursor
+   * Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+   * @param cursor Opaque cursor from a previous response&#39;s &#x60;nextCursor&#x60;. Omit it to start from now: the response is then an empty page carrying the feed&#39;s current position. Rejected with a &#x60;400&#x60; when malformed, or when older than the retention window.  (optional)
+   * @param limit Page size. Out-of-range values are a 400, never a silent clamp. (optional, default to 50)
+   * @param platform Filter to a single platform (for example \&quot;youtube\&quot;). Omit for every platform. (optional)
+   * @param profileId Filter by profile ID (default \&quot;all\&quot;). Must be a valid profile ID or \&quot;all\&quot;. (optional, default to all)
+   * @param headers Optional headers to include in the request
+   * @return AnalyticsDeltaResponse
+   * @throws ApiException if fails to make API call
+   */
+  public AnalyticsDeltaResponse getAnalyticsDelta(@javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<AnalyticsDeltaResponse> localVarResponse = getAnalyticsDeltaWithHttpInfo(cursor, limit, platform, profileId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Analytics changed since a cursor
+   * Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+   * @param cursor Opaque cursor from a previous response&#39;s &#x60;nextCursor&#x60;. Omit it to start from now: the response is then an empty page carrying the feed&#39;s current position. Rejected with a &#x60;400&#x60; when malformed, or when older than the retention window.  (optional)
+   * @param limit Page size. Out-of-range values are a 400, never a silent clamp. (optional, default to 50)
+   * @param platform Filter to a single platform (for example \&quot;youtube\&quot;). Omit for every platform. (optional)
+   * @param profileId Filter by profile ID (default \&quot;all\&quot;). Must be a valid profile ID or \&quot;all\&quot;. (optional, default to all)
+   * @return ApiResponse&lt;AnalyticsDeltaResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AnalyticsDeltaResponse> getAnalyticsDeltaWithHttpInfo(@javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId) throws ApiException {
+    return getAnalyticsDeltaWithHttpInfo(cursor, limit, platform, profileId, null);
+  }
+
+  /**
+   * Analytics changed since a cursor
+   * Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+   * @param cursor Opaque cursor from a previous response&#39;s &#x60;nextCursor&#x60;. Omit it to start from now: the response is then an empty page carrying the feed&#39;s current position. Rejected with a &#x60;400&#x60; when malformed, or when older than the retention window.  (optional)
+   * @param limit Page size. Out-of-range values are a 400, never a silent clamp. (optional, default to 50)
+   * @param platform Filter to a single platform (for example \&quot;youtube\&quot;). Omit for every platform. (optional)
+   * @param profileId Filter by profile ID (default \&quot;all\&quot;). Must be a valid profile ID or \&quot;all\&quot;. (optional, default to all)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AnalyticsDeltaResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AnalyticsDeltaResponse> getAnalyticsDeltaWithHttpInfo(@javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAnalyticsDeltaRequestBuilder(cursor, limit, platform, profileId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAnalyticsDelta", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AnalyticsDeltaResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AnalyticsDeltaResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AnalyticsDeltaResponse>() {});
+        
+
+        return new ApiResponse<AnalyticsDeltaResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAnalyticsDeltaRequestBuilder(@javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/delta";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

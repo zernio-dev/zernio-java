@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-02T10:32:04.396188059Z[Etc/UTC]
+- Build date: 2026-09-02T11:57:59.664764723Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -339,6 +339,8 @@ Class | Method | HTTP request | Description
 *AdTargetingApi* | [**searchAdTargetingWithHttpInfo**](docs/AdTargetingApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**getAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsWithHttpInfo) | **GET** /v1/analytics | Get post analytics
+*AnalyticsApi* | [**getAnalyticsDelta**](docs/AnalyticsApi.md#getAnalyticsDelta) | **GET** /v1/analytics/delta | Analytics changed since a cursor
+*AnalyticsApi* | [**getAnalyticsDeltaWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsDeltaWithHttpInfo) | **GET** /v1/analytics/delta | Analytics changed since a cursor
 *AnalyticsApi* | [**getBestTimeToPost**](docs/AnalyticsApi.md#getBestTimeToPost) | **GET** /v1/analytics/best-time | Get best times to post
 *AnalyticsApi* | [**getBestTimeToPostWithHttpInfo**](docs/AnalyticsApi.md#getBestTimeToPostWithHttpInfo) | **GET** /v1/analytics/best-time | Get best times to post
 *AnalyticsApi* | [**getContentDecay**](docs/AnalyticsApi.md#getContentDecay) | **GET** /v1/analytics/content-decay | Get content performance decay
@@ -1374,6 +1376,9 @@ Class | Method | HTTP request | Description
  - [AdsListResponse](docs/AdsListResponse.md)
  - [AdsTimelineResponse](docs/AdsTimelineResponse.md)
  - [AdsTimelineResponseRowsInner](docs/AdsTimelineResponseRowsInner.md)
+ - [AnalyticsDeltaEntry](docs/AnalyticsDeltaEntry.md)
+ - [AnalyticsDeltaEntryMetrics](docs/AnalyticsDeltaEntryMetrics.md)
+ - [AnalyticsDeltaResponse](docs/AnalyticsDeltaResponse.md)
  - [AnalyticsListResponse](docs/AnalyticsListResponse.md)
  - [AnalyticsListResponsePostsInner](docs/AnalyticsListResponsePostsInner.md)
  - [AnalyticsListResponsePostsInnerMediaItemsInner](docs/AnalyticsListResponsePostsInnerMediaItemsInner.md)
@@ -2952,6 +2957,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
  - [WebhookPayloadAdStatusChangedError](docs/WebhookPayloadAdStatusChangedError.md)
  - [WebhookPayloadAdStatusChangedStatus](docs/WebhookPayloadAdStatusChangedStatus.md)
+ - [WebhookPayloadAnalyticsSynced](docs/WebhookPayloadAnalyticsSynced.md)
+ - [WebhookPayloadAnalyticsSyncedAccount](docs/WebhookPayloadAnalyticsSyncedAccount.md)
+ - [WebhookPayloadAnalyticsSyncedSync](docs/WebhookPayloadAnalyticsSyncedSync.md)
  - [WebhookPayloadCallEnded](docs/WebhookPayloadCallEnded.md)
  - [WebhookPayloadCallEndedCall](docs/WebhookPayloadCallEndedCall.md)
  - [WebhookPayloadCallEndedCallBilling](docs/WebhookPayloadCallEndedCallBilling.md)

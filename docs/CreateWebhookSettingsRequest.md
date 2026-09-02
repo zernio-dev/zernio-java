@@ -37,6 +37,7 @@
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
+| ANALYTICS_SYNCED | &quot;analytics.synced&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | CONVERSATION_STARTED | &quot;conversation.started&quot; |
 | CALL_RECEIVED | &quot;call.received&quot; |

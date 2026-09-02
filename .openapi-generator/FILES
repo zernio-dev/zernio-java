@@ -68,6 +68,9 @@ docs/AdsListResponse.md
 docs/AdsTimelineResponse.md
 docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
+docs/AnalyticsDeltaEntry.md
+docs/AnalyticsDeltaEntryMetrics.md
+docs/AnalyticsDeltaResponse.md
 docs/AnalyticsListResponse.md
 docs/AnalyticsListResponsePostsInner.md
 docs/AnalyticsListResponsePostsInnerMediaItemsInner.md
@@ -1694,6 +1697,9 @@ docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
 docs/WebhookPayloadAdStatusChangedError.md
 docs/WebhookPayloadAdStatusChangedStatus.md
+docs/WebhookPayloadAnalyticsSynced.md
+docs/WebhookPayloadAnalyticsSyncedAccount.md
+docs/WebhookPayloadAnalyticsSyncedSync.md
 docs/WebhookPayloadCallEnded.md
 docs/WebhookPayloadCallEndedCall.md
 docs/WebhookPayloadCallEndedCallBilling.md
@@ -1976,6 +1982,9 @@ src/main/java/dev/zernio/model/AdjustConversionsRequestAdjustmentsInnerUser.java
 src/main/java/dev/zernio/model/AdsListResponse.java
 src/main/java/dev/zernio/model/AdsTimelineResponse.java
 src/main/java/dev/zernio/model/AdsTimelineResponseRowsInner.java
+src/main/java/dev/zernio/model/AnalyticsDeltaEntry.java
+src/main/java/dev/zernio/model/AnalyticsDeltaEntryMetrics.java
+src/main/java/dev/zernio/model/AnalyticsDeltaResponse.java
 src/main/java/dev/zernio/model/AnalyticsListResponse.java
 src/main/java/dev/zernio/model/AnalyticsListResponsePostsInner.java
 src/main/java/dev/zernio/model/AnalyticsListResponsePostsInnerMediaItemsInner.java
@@ -3554,6 +3563,9 @@ src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObject.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedError.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedStatus.java
+src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSynced.java
+src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedSync.java
 src/main/java/dev/zernio/model/WebhookPayloadCallEnded.java
 src/main/java/dev/zernio/model/WebhookPayloadCallEndedCall.java
 src/main/java/dev/zernio/model/WebhookPayloadCallEndedCallBilling.java
@@ -3689,3 +3701,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AnalyticsDeltaEntryMetricsTest.java
+src/test/java/dev/zernio/model/AnalyticsDeltaEntryTest.java
+src/test/java/dev/zernio/model/AnalyticsDeltaResponseTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedSyncTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedTest.java
