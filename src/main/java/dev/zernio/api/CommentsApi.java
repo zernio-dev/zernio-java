@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:05:42.152341371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:32:04.396188059Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1373,7 +1373,7 @@ public class CommentsApi {
 
   /**
    * Send private reply
-   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Buttons are recommended for cold reach since chips do not render in the Instagram Message Requests folder. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
+   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
    * @param postId The media/post ID (Instagram media ID or Facebook post ID) (required)
    * @param commentId The comment ID to send a private reply to (required)
    * @param sendPrivateReplyToCommentRequest  (required)
@@ -1386,7 +1386,7 @@ public class CommentsApi {
 
   /**
    * Send private reply
-   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Buttons are recommended for cold reach since chips do not render in the Instagram Message Requests folder. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
+   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
    * @param postId The media/post ID (Instagram media ID or Facebook post ID) (required)
    * @param commentId The comment ID to send a private reply to (required)
    * @param sendPrivateReplyToCommentRequest  (required)
@@ -1401,7 +1401,7 @@ public class CommentsApi {
 
   /**
    * Send private reply
-   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Buttons are recommended for cold reach since chips do not render in the Instagram Message Requests folder. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
+   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
    * @param postId The media/post ID (Instagram media ID or Facebook post ID) (required)
    * @param commentId The comment ID to send a private reply to (required)
    * @param sendPrivateReplyToCommentRequest  (required)
@@ -1414,7 +1414,7 @@ public class CommentsApi {
 
   /**
    * Send private reply
-   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Buttons are recommended for cold reach since chips do not render in the Instagram Message Requests folder. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
+   * Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. 
    * @param postId The media/post ID (Instagram media ID or Facebook post ID) (required)
    * @param commentId The comment ID to send a private reply to (required)
    * @param sendPrivateReplyToCommentRequest  (required)
