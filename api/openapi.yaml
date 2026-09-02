@@ -38149,6 +38149,9 @@ components:
         - radius: 6.027456183070403
           distance_unit: mile
           key: key
+        regionalRegulatedCategories:
+        - regionalRegulatedCategories
+        - regionalRegulatedCategories
         adAccountId: adAccountId
         welcomeMessage:
           text: text
@@ -38430,6 +38433,14 @@ components:
             a default payor.
           maxLength: 100
           type: string
+        regionalRegulatedCategories:
+          description: "Meta only. Regional regulation categories required when the\
+            \ ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL,\
+            \ THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to\
+            \ the ad set."
+          items:
+            type: string
+          type: array
       required:
       - accountId
       - adAccountId
@@ -87371,6 +87382,14 @@ components:
           items:
             type: string
           type: array
+        regionalRegulatedCategories:
+          description: "Meta only. Regional regulation categories required when the\
+            \ ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL,\
+            \ THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to\
+            \ the ad set."
+          items:
+            type: string
+          type: array
         linkUrl:
           description: |
             Destination URL for the CTA button. Send it together with `callToAction`.
@@ -88862,6 +88881,15 @@ components:
             Meta (metaads) only. 2-letter ISO country codes the special ad category applies to. Requires
             specialAdCategories to be set (400 otherwise). Ignored when joining an existing campaign via
             existingCampaignId (the existing campaign's category/country already governs it).
+          items:
+            type: string
+          type: array
+        regionalRegulatedCategories:
+          description: |
+            Meta only. Regional regulation categories required when the ad set targets certain countries.
+            Known values: SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV,
+            INDIA_FINSERV, TAIWAN_FINSERV. Meta rejects the ad set without this when the targeting geo
+            includes the corresponding country.
           items:
             type: string
           type: array

@@ -66,6 +66,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_TRACKING,
   BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY,
+  BoostPostRequest.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   BoostPostRequest.JSON_PROPERTY_LINK_URL,
   BoostPostRequest.JSON_PROPERTY_CALL_TO_ACTION,
   BoostPostRequest.JSON_PROPERTY_SPARK_AUTH_CODE,
@@ -75,7 +76,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T08:57:24.910063664Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:05:42.152341371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -289,6 +290,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY = "specialAdCategoryCountry";
   @javax.annotation.Nullable
   private List<String> specialAdCategoryCountry = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES = "regionalRegulatedCategories";
+  @javax.annotation.Nullable
+  private List<String> regionalRegulatedCategories = new ArrayList<>();
 
   public static final String JSON_PROPERTY_LINK_URL = "linkUrl";
   @javax.annotation.Nullable
@@ -894,6 +899,38 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest regionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+    return this;
+  }
+
+  public BoostPostRequest addRegionalRegulatedCategoriesItem(String regionalRegulatedCategoriesItem) {
+    if (this.regionalRegulatedCategories == null) {
+      this.regionalRegulatedCategories = new ArrayList<>();
+    }
+    this.regionalRegulatedCategories.add(regionalRegulatedCategoriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set.
+   * @return regionalRegulatedCategories
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getRegionalRegulatedCategories() {
+    return regionalRegulatedCategories;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+  }
+
+
   public BoostPostRequest linkUrl(@javax.annotation.Nullable URI linkUrl) {
     this.linkUrl = linkUrl;
     return this;
@@ -1119,6 +1156,7 @@ public class BoostPostRequest {
         Objects.equals(this.tracking, boostPostRequest.tracking) &&
         Objects.equals(this.specialAdCategories, boostPostRequest.specialAdCategories) &&
         Objects.equals(this.specialAdCategoryCountry, boostPostRequest.specialAdCategoryCountry) &&
+        Objects.equals(this.regionalRegulatedCategories, boostPostRequest.regionalRegulatedCategories) &&
         Objects.equals(this.linkUrl, boostPostRequest.linkUrl) &&
         Objects.equals(this.callToAction, boostPostRequest.callToAction) &&
         Objects.equals(this.sparkAuthCode, boostPostRequest.sparkAuthCode) &&
@@ -1131,7 +1169,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
   }
 
   @Override
@@ -1159,6 +1197,7 @@ public class BoostPostRequest {
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    specialAdCategoryCountry: ").append(toIndentedString(specialAdCategoryCountry)).append("\n");
+    sb.append("    regionalRegulatedCategories: ").append(toIndentedString(regionalRegulatedCategories)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    sparkAuthCode: ").append(toIndentedString(sparkAuthCode)).append("\n");
@@ -1328,6 +1367,15 @@ public class BoostPostRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sspecialAdCategoryCountry%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategoryCountry().get(i)))));
+      }
+    }
+
+    // add `regionalRegulatedCategories` to the URL query string
+    if (getRegionalRegulatedCategories() != null) {
+      for (int i = 0; i < getRegionalRegulatedCategories().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionalRegulatedCategories%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getRegionalRegulatedCategories().get(i)))));
       }
     }
 

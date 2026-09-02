@@ -80,9 +80,10 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBody.JSON_PROPERTY_BID_AMOUNT,
   CtwaAdRequestBody.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CtwaAdRequestBody.JSON_PROPERTY_DSA_BENEFICIARY,
-  CtwaAdRequestBody.JSON_PROPERTY_DSA_PAYOR
+  CtwaAdRequestBody.JSON_PROPERTY_DSA_PAYOR,
+  CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T08:57:24.910063664Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:05:42.152341371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBody {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -435,6 +436,10 @@ public class CtwaAdRequestBody {
   public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
   @javax.annotation.Nullable
   private String dsaPayor;
+
+  public static final String JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES = "regionalRegulatedCategories";
+  @javax.annotation.Nullable
+  private List<String> regionalRegulatedCategories = new ArrayList<>();
 
   public CtwaAdRequestBody() { 
   }
@@ -1323,6 +1328,38 @@ public class CtwaAdRequestBody {
   }
 
 
+  public CtwaAdRequestBody regionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+    return this;
+  }
+
+  public CtwaAdRequestBody addRegionalRegulatedCategoriesItem(String regionalRegulatedCategoriesItem) {
+    if (this.regionalRegulatedCategories == null) {
+      this.regionalRegulatedCategories = new ArrayList<>();
+    }
+    this.regionalRegulatedCategories.add(regionalRegulatedCategoriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set.
+   * @return regionalRegulatedCategories
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getRegionalRegulatedCategories() {
+    return regionalRegulatedCategories;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+  }
+
+
   /**
    * Return true if this CtwaAdRequestBody object is equal to o.
    */
@@ -1368,12 +1405,13 @@ public class CtwaAdRequestBody {
         Objects.equals(this.bidAmount, ctwaAdRequestBody.bidAmount) &&
         Objects.equals(this.roasAverageFloor, ctwaAdRequestBody.roasAverageFloor) &&
         Objects.equals(this.dsaBeneficiary, ctwaAdRequestBody.dsaBeneficiary) &&
-        Objects.equals(this.dsaPayor, ctwaAdRequestBody.dsaPayor);
+        Objects.equals(this.dsaPayor, ctwaAdRequestBody.dsaPayor) &&
+        Objects.equals(this.regionalRegulatedCategories, ctwaAdRequestBody.regionalRegulatedCategories);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories);
   }
 
   @Override
@@ -1414,6 +1452,7 @@ public class CtwaAdRequestBody {
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
+    sb.append("    regionalRegulatedCategories: ").append(toIndentedString(regionalRegulatedCategories)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1668,6 +1707,15 @@ public class CtwaAdRequestBody {
     // add `dsaPayor` to the URL query string
     if (getDsaPayor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
+    }
+
+    // add `regionalRegulatedCategories` to the URL query string
+    if (getRegionalRegulatedCategories() != null) {
+      for (int i = 0; i < getRegionalRegulatedCategories().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionalRegulatedCategories%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getRegionalRegulatedCategories().get(i)))));
+      }
     }
 
     return joiner.toString();

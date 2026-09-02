@@ -81,10 +81,11 @@ import dev.zernio.ApiClient;
   CreateCallAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CreateCallAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCallAdRequest.JSON_PROPERTY_DSA_PAYOR,
+  CreateCallAdRequest.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   CreateCallAdRequest.JSON_PROPERTY_PHONE_NUMBER,
   CreateCallAdRequest.JSON_PROPERTY_LINK_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T08:57:24.910063664Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:05:42.152341371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -437,6 +438,10 @@ public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
   @javax.annotation.Nullable
   private String dsaPayor;
+
+  public static final String JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES = "regionalRegulatedCategories";
+  @javax.annotation.Nullable
+  private List<String> regionalRegulatedCategories = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nonnull
@@ -1333,6 +1338,38 @@ public class CreateCallAdRequest {
   }
 
 
+  public CreateCallAdRequest regionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+    return this;
+  }
+
+  public CreateCallAdRequest addRegionalRegulatedCategoriesItem(String regionalRegulatedCategoriesItem) {
+    if (this.regionalRegulatedCategories == null) {
+      this.regionalRegulatedCategories = new ArrayList<>();
+    }
+    this.regionalRegulatedCategories.add(regionalRegulatedCategoriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set.
+   * @return regionalRegulatedCategories
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getRegionalRegulatedCategories() {
+    return regionalRegulatedCategories;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+  }
+
+
   public CreateCallAdRequest phoneNumber(@javax.annotation.Nonnull String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
@@ -1427,13 +1464,14 @@ public class CreateCallAdRequest {
         Objects.equals(this.roasAverageFloor, createCallAdRequest.roasAverageFloor) &&
         Objects.equals(this.dsaBeneficiary, createCallAdRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, createCallAdRequest.dsaPayor) &&
+        Objects.equals(this.regionalRegulatedCategories, createCallAdRequest.regionalRegulatedCategories) &&
         Objects.equals(this.phoneNumber, createCallAdRequest.phoneNumber) &&
         Objects.equals(this.linkUrl, createCallAdRequest.linkUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, phoneNumber, linkUrl);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, phoneNumber, linkUrl);
   }
 
   @Override
@@ -1474,6 +1512,7 @@ public class CreateCallAdRequest {
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
+    sb.append("    regionalRegulatedCategories: ").append(toIndentedString(regionalRegulatedCategories)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("}");
@@ -1730,6 +1769,15 @@ public class CreateCallAdRequest {
     // add `dsaPayor` to the URL query string
     if (getDsaPayor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
+    }
+
+    // add `regionalRegulatedCategories` to the URL query string
+    if (getRegionalRegulatedCategories() != null) {
+      for (int i = 0; i < getRegionalRegulatedCategories().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionalRegulatedCategories%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getRegionalRegulatedCategories().get(i)))));
+      }
     }
 
     // add `phoneNumber` to the URL query string

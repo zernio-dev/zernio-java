@@ -81,9 +81,10 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CreateMessagingAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateMessagingAdRequest.JSON_PROPERTY_DSA_PAYOR,
+  CreateMessagingAdRequest.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T08:57:24.910063664Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T10:05:42.152341371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -436,6 +437,10 @@ public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
   @javax.annotation.Nullable
   private String dsaPayor;
+
+  public static final String JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES = "regionalRegulatedCategories";
+  @javax.annotation.Nullable
+  private List<String> regionalRegulatedCategories = new ArrayList<>();
 
   /**
    * Where the conversation opens when the ad is tapped.
@@ -1365,6 +1370,38 @@ public class CreateMessagingAdRequest {
   }
 
 
+  public CreateMessagingAdRequest regionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+    return this;
+  }
+
+  public CreateMessagingAdRequest addRegionalRegulatedCategoriesItem(String regionalRegulatedCategoriesItem) {
+    if (this.regionalRegulatedCategories == null) {
+      this.regionalRegulatedCategories = new ArrayList<>();
+    }
+    this.regionalRegulatedCategories.add(regionalRegulatedCategoriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set.
+   * @return regionalRegulatedCategories
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getRegionalRegulatedCategories() {
+    return regionalRegulatedCategories;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
+    this.regionalRegulatedCategories = regionalRegulatedCategories;
+  }
+
+
   public CreateMessagingAdRequest destination(@javax.annotation.Nonnull DestinationEnum destination) {
     this.destination = destination;
     return this;
@@ -1435,12 +1472,13 @@ public class CreateMessagingAdRequest {
         Objects.equals(this.roasAverageFloor, createMessagingAdRequest.roasAverageFloor) &&
         Objects.equals(this.dsaBeneficiary, createMessagingAdRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, createMessagingAdRequest.dsaPayor) &&
+        Objects.equals(this.regionalRegulatedCategories, createMessagingAdRequest.regionalRegulatedCategories) &&
         Objects.equals(this.destination, createMessagingAdRequest.destination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, destination);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, destination);
   }
 
   @Override
@@ -1481,6 +1519,7 @@ public class CreateMessagingAdRequest {
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
+    sb.append("    regionalRegulatedCategories: ").append(toIndentedString(regionalRegulatedCategories)).append("\n");
     sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1736,6 +1775,15 @@ public class CreateMessagingAdRequest {
     // add `dsaPayor` to the URL query string
     if (getDsaPayor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
+    }
+
+    // add `regionalRegulatedCategories` to the URL query string
+    if (getRegionalRegulatedCategories() != null) {
+      for (int i = 0; i < getRegionalRegulatedCategories().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionalRegulatedCategories%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getRegionalRegulatedCategories().get(i)))));
+      }
     }
 
     // add `destination` to the URL query string
