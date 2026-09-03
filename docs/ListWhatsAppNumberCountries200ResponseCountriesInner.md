@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**code** | **String** | ISO 3166-1 alpha-2 |  [optional] |
 |**tier** | [**TierEnum**](#TierEnum) |  |  [optional] |
-|**monthlyCents** | **Integer** |  |  [optional] |
+|**monthlyCents** | **Integer** | Price a NEW number in this country costs per month, in cents, for the default (first) type. 1.5x the carrier&#39;s monthly cost, rounded up to a whole dollar, minimum $3. |  [optional] |
 |**needsKyc** | **Boolean** |  |  [optional] |
 |**outboundCallingAvailable** | **Boolean** |  |  [optional] |
 

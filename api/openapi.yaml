@@ -22911,6 +22911,10 @@ paths:
         no checkout redirect). No payment method on file returns `402 PAYMENT_REQUIRED`;
         a regulated country returns `202` with `status: "kyc_required"` and a `kycUrl`.
 
+        The monthly price is the one `GET /v1/phone-numbers/countries` quotes for that
+        country and `numberType` at the time of purchase, and it is stamped on the number:
+        later rate-card changes never move a number you already own.
+
         Requires usage-based billing (the Usage plan). The maximum number of phone numbers
         is determined by the user's plan.
       operationId: purchasePhoneNumber
@@ -23226,6 +23230,10 @@ paths:
         number provisions inline and bills per month on your usage-based invoice (there is
         no checkout redirect). No payment method on file returns `402 PAYMENT_REQUIRED`;
         a regulated country returns `202` with `status: "kyc_required"` and a `kycUrl`.
+
+        The monthly price is the one `GET /v1/phone-numbers/countries` quotes for that
+        country and `numberType` at the time of purchase, and it is stamped on the number:
+        later rate-card changes never move a number you already own.
 
         Requires usage-based billing (the Usage plan). The maximum number of phone numbers
         is determined by the user's plan.
@@ -72956,7 +72964,9 @@ components:
           nullable: true
           type: string
         monthlyCents:
-          description: Per-country monthly price in cents ($2..$25).
+          description: "What this number bills each month, in cents. Stamped when\
+            \ the number was bought, so an existing number keeps its price when the\
+            \ rate card changes."
           type: integer
         hostedByZernio:
           description: "False for numbers you brought yourself (connected via Meta\
@@ -73418,6 +73428,7 @@ components:
         needsKyc:
           type: boolean
         monthlyCents:
+          description: "Price a NEW number of this type costs per month, in cents."
           type: integer
         whatsappAvailable:
           description: Always false for toll_free (WhatsApp does not reliably register
@@ -73469,6 +73480,9 @@ components:
           - 4
           type: integer
         monthlyCents:
+          description: "Price a NEW number in this country costs per month, in cents,\
+            \ for the default (first) type. 1.5x the carrier's monthly cost, rounded\
+            \ up to a whole dollar, minimum $3."
           type: integer
         needsKyc:
           type: boolean
@@ -73740,6 +73754,9 @@ components:
           - 4
           type: integer
         monthlyCents:
+          description: "Price a NEW number in this country costs per month, in cents,\
+            \ for the default (first) type. 1.5x the carrier's monthly cost, rounded\
+            \ up to a whole dollar, minimum $3."
           type: integer
         needsKyc:
           type: boolean

@@ -10,7 +10,7 @@
 |**numberType** | [**NumberTypeEnum**](#NumberTypeEnum) |  |  [optional] |
 |**tier** | [**TierEnum**](#TierEnum) |  |  [optional] |
 |**needsKyc** | **Boolean** |  |  [optional] |
-|**monthlyCents** | **Integer** |  |  [optional] |
+|**monthlyCents** | **Integer** | Price a NEW number of this type costs per month, in cents. |  [optional] |
 |**whatsappAvailable** | **Boolean** | Always false for toll_free (WhatsApp does not reliably register toll-free numbers). |  [optional] |
 |**smsAvailable** | **Boolean** |  |  [optional] |
 |**callsAvailable** | **Boolean** |  |  [optional] |

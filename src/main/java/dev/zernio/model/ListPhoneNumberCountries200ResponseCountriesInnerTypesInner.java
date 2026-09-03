@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_CALLS_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_IN_STOCK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:10:04.830791210Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:53:01.685956449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   /**
    * Gets or Sets numberType
@@ -235,7 +235,7 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   }
 
   /**
-   * Get monthlyCents
+   * Price a NEW number of this type costs per month, in cents.
    * @return monthlyCents
    */
   @javax.annotation.Nullable

@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CALLING_ENABLED,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:10:04.830791210Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:53:01.685956449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -347,7 +347,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   }
 
   /**
-   * Per-country monthly price in cents ($2..$25).
+   * What this number bills each month, in cents. Stamped when the number was bought, so an existing number keeps its price when the rate card changes.
    * @return monthlyCents
    */
   @javax.annotation.Nullable

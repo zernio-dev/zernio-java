@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_IN_STOCK,
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_TYPES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:10:04.830791210Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:53:01.685956449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInner {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -185,7 +185,7 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
   }
 
   /**
-   * Get monthlyCents
+   * Price a NEW number in this country costs per month, in cents, for the default (first) type. 1.5x the carrier&#39;s monthly cost, rounded up to a whole dollar, minimum $3.
    * @return monthlyCents
    */
   @javax.annotation.Nullable
