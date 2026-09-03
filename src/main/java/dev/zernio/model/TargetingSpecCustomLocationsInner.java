@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   TargetingSpecCustomLocationsInner.JSON_PROPERTY_NAME,
   TargetingSpecCustomLocationsInner.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T19:02:57.814615497Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T19:50:27.915625012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecCustomLocationsInner {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   @javax.annotation.Nonnull

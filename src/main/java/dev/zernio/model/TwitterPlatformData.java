@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_MADE_WITH_AI,
   TwitterPlatformData.JSON_PROPERTY_SENSITIVE_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T19:02:57.814615497Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T19:50:27.915625012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_ARTICLE = "article";
   @javax.annotation.Nullable
@@ -298,7 +298,7 @@ public class TwitterPlatformData {
   }
 
   /**
-   * Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting.
+   * Uploads the video with X&#39;s amplify_video media category instead of the standard tweet_video. Applied only when the connected X account has a paid X subscription; on other accounts the flag is accepted and ignored. It is not required to post long videos. The standard tweet_video path already publishes videos well past 140 seconds on free accounts, and maximum duration is set by X per account, not by Zernio. Zernio enforces only the 512 MB file-size limit. Some accounts additionally require X&#39;s long-video API allowlisting, without which X rejects an amplify_video upload.
    * @return longVideo
    */
   @javax.annotation.Nullable
