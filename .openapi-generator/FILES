@@ -1735,6 +1735,7 @@ docs/WebhookPayloadMessageMessageSenderInstagramProfile.md
 docs/WebhookPayloadMessageMetadata.md
 docs/WebhookPayloadMessageMetadataOrder.md
 docs/WebhookPayloadMessageMetadataOrderProductItemsInner.md
+docs/WebhookPayloadMessageMetadataQuotedMessage.md
 docs/WebhookPayloadMessageMetadataReferral.md
 docs/WebhookPayloadMessageMetadataReferralAdsContextData.md
 docs/WebhookPayloadMessageMetadataReferredProduct.md
@@ -3601,6 +3602,7 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageMessageSenderInstagramProfil
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadata.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataOrder.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataOrderProductItemsInner.java
+src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataQuotedMessage.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferral.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferralAdsContextData.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferredProduct.java
@@ -3701,3 +3703,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataQuotedMessageTest.java

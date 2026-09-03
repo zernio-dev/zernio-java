@@ -8,7 +8,8 @@ Platform-specific message context (present when the message is a quick reply tap
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**quotedMessageId** | **String** | platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId.  |  [optional] |
+|**quotedMessageId** | **String** | Raw platform envelope id (WhatsApp &#x60;context.id&#x60;; Instagram and Facebook Messenger &#x60;reply_to.mid&#x60;) of the message this one is a quote-reply to, forwarded verbatim. It may not equal the stored id of that message (see &#x60;quotedMessage.platformMessageId&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId.  |  [optional] |
+|**quotedMessage** | [**WebhookPayloadMessageMetadataQuotedMessage**](WebhookPayloadMessageMetadataQuotedMessage.md) |  |  [optional] |
 |**quickReplyPayload** | **String** | Payload from a quick reply tap (Facebook/Instagram Messenger). |  [optional] |
 |**postbackPayload** | **String** | Payload from a postback button tap (Facebook/Instagram Messenger). |  [optional] |
 |**postbackTitle** | **String** | Title of the tapped postback button (Facebook/Instagram Messenger). |  [optional] |

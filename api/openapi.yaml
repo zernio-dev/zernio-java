@@ -42090,6 +42090,9 @@ components:
           noRenderableContent: true
           contactsOrigin: contact_request
           postbackPayload: postbackPayload
+          quotedMessage:
+            messageId: messageId
+            platformMessageId: platformMessageId
           interactiveId: interactiveId
           nfmReplyName: nfmReplyName
           interactiveType: button_reply
@@ -95398,6 +95401,21 @@ components:
       - sender
       - sentAt
       - text
+    WebhookPayloadMessage_metadata_quotedMessage:
+      description: Zernio's own ids for the message this one quote-replies to. Present
+        only when that message is stored; WhatsApp only today.
+      example:
+        messageId: messageId
+        platformMessageId: platformMessageId
+      properties:
+        messageId:
+          description: Internal id of the stored quoted message.
+          type: string
+        platformMessageId:
+          description: "The STORED message's platform id (what message.sent and list-messages\
+            \ return). Can differ from quotedMessageId, because Meta renders one message\
+            \ under a different wamid per perspective."
+          type: string
     WebhookPayloadMessage_metadata_order_product_items_inner:
       example:
         quantity: 6
@@ -95637,6 +95655,9 @@ components:
         noRenderableContent: true
         contactsOrigin: contact_request
         postbackPayload: postbackPayload
+        quotedMessage:
+          messageId: messageId
+          platformMessageId: platformMessageId
         interactiveId: interactiveId
         nfmReplyName: nfmReplyName
         interactiveType: button_reply
@@ -95694,12 +95715,16 @@ components:
       properties:
         quotedMessageId:
           description: |
-            platformMessageId of the message this one is a quote-reply to.
-            WhatsApp (`context.id`), Instagram and Facebook Messenger
-            (`reply_to.mid`). On outgoing messages the same field appears on
-            `message.sent`, but only on some surfaces: see
+            Raw platform envelope id (WhatsApp `context.id`; Instagram and
+            Facebook Messenger `reply_to.mid`) of the message this one is a
+            quote-reply to, forwarded verbatim. It may not equal the stored
+            id of that message (see `quotedMessage.platformMessageId`). On
+            outgoing messages the same field appears on `message.sent`, but
+            only on some surfaces: see
             WebhookPayloadMessageSent.metadata.quotedMessageId.
           type: string
+        quotedMessage:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_quotedMessage"
         quickReplyPayload:
           description: Payload from a quick reply tap (Facebook/Instagram Messenger).
           type: string

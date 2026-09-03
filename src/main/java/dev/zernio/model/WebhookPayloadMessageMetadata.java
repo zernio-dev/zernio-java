@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.WebhookPayloadMessageMetadataOrder;
+import dev.zernio.model.WebhookPayloadMessageMetadataQuotedMessage;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferral;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferredProduct;
 import dev.zernio.model.WebhookPayloadMessageMetadataStoryReply;
@@ -43,6 +44,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageMetadata.JSON_PROPERTY_QUOTED_MESSAGE_ID,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_QUOTED_MESSAGE,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_QUICK_REPLY_PAYLOAD,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_POSTBACK_PAYLOAD,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_POSTBACK_TITLE,
@@ -63,11 +65,15 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:28:42.937280457Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:38:27.441520595Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
   private String quotedMessageId;
+
+  public static final String JSON_PROPERTY_QUOTED_MESSAGE = "quotedMessage";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageMetadataQuotedMessage quotedMessage;
 
   public static final String JSON_PROPERTY_QUICK_REPLY_PAYLOAD = "quickReplyPayload";
   @javax.annotation.Nullable
@@ -226,7 +232,7 @@ public class WebhookPayloadMessageMetadata {
   }
 
   /**
-   * platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. 
+   * Raw platform envelope id (WhatsApp &#x60;context.id&#x60;; Instagram and Facebook Messenger &#x60;reply_to.mid&#x60;) of the message this one is a quote-reply to, forwarded verbatim. It may not equal the stored id of that message (see &#x60;quotedMessage.platformMessageId&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. 
    * @return quotedMessageId
    */
   @javax.annotation.Nullable
@@ -241,6 +247,30 @@ public class WebhookPayloadMessageMetadata {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQuotedMessageId(@javax.annotation.Nullable String quotedMessageId) {
     this.quotedMessageId = quotedMessageId;
+  }
+
+
+  public WebhookPayloadMessageMetadata quotedMessage(@javax.annotation.Nullable WebhookPayloadMessageMetadataQuotedMessage quotedMessage) {
+    this.quotedMessage = quotedMessage;
+    return this;
+  }
+
+  /**
+   * Get quotedMessage
+   * @return quotedMessage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUOTED_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageMetadataQuotedMessage getQuotedMessage() {
+    return quotedMessage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUOTED_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuotedMessage(@javax.annotation.Nullable WebhookPayloadMessageMetadataQuotedMessage quotedMessage) {
+    this.quotedMessage = quotedMessage;
   }
 
 
@@ -729,6 +759,7 @@ public class WebhookPayloadMessageMetadata {
     }
     WebhookPayloadMessageMetadata webhookPayloadMessageMetadata = (WebhookPayloadMessageMetadata) o;
     return Objects.equals(this.quotedMessageId, webhookPayloadMessageMetadata.quotedMessageId) &&
+        Objects.equals(this.quotedMessage, webhookPayloadMessageMetadata.quotedMessage) &&
         Objects.equals(this.quickReplyPayload, webhookPayloadMessageMetadata.quickReplyPayload) &&
         Objects.equals(this.postbackPayload, webhookPayloadMessageMetadata.postbackPayload) &&
         Objects.equals(this.postbackTitle, webhookPayloadMessageMetadata.postbackTitle) &&
@@ -752,7 +783,7 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotedMessageId, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
+    return Objects.hash(quotedMessageId, quotedMessage, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
   }
 
   @Override
@@ -760,6 +791,7 @@ public class WebhookPayloadMessageMetadata {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageMetadata {\n");
     sb.append("    quotedMessageId: ").append(toIndentedString(quotedMessageId)).append("\n");
+    sb.append("    quotedMessage: ").append(toIndentedString(quotedMessage)).append("\n");
     sb.append("    quickReplyPayload: ").append(toIndentedString(quickReplyPayload)).append("\n");
     sb.append("    postbackPayload: ").append(toIndentedString(postbackPayload)).append("\n");
     sb.append("    postbackTitle: ").append(toIndentedString(postbackTitle)).append("\n");
@@ -829,6 +861,11 @@ public class WebhookPayloadMessageMetadata {
     // add `quotedMessageId` to the URL query string
     if (getQuotedMessageId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%squotedMessageId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuotedMessageId()))));
+    }
+
+    // add `quotedMessage` to the URL query string
+    if (getQuotedMessage() != null) {
+      joiner.add(getQuotedMessage().toUrlQueryString(prefix + "quotedMessage" + suffix));
     }
 
     // add `quickReplyPayload` to the URL query string
