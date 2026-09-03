@@ -26712,6 +26712,91 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/flows/encryption-key:
+    get:
+      description: |
+        Read the RSA business public key registered on the phone number for WhatsApp Flows
+        endpoint encryption. Only one key is active per phone number at a time. Flows that
+        use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime
+        until the endpoint serves the matching private key, and Meta rejects publish with
+        error code 139002 ("Missing Flows Signed Public Key") when no key is registered.
+        `registered` reflects whether a key is present, never `signatureStatus` alone:
+        Meta reports an unregistered key as MISMATCH rather than a null/absent value.
+      operationId: getWhatsAppFlowsEncryptionKey
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppFlowsEncryptionKey_200_response"
+          description: Encryption key status retrieved
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+        "404":
+          description: WhatsApp account not found
+        "502":
+          description: Meta rejected the request
+      security:
+      - bearerAuth: []
+      summary: Get Flows encryption key status
+      tags:
+      - WhatsApp Flows
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Register (or replace) the RSA business public key for WhatsApp Flows endpoint
+        encryption on the phone number. Uploading a new key replaces the previous one:
+        only one key is active per phone number. The corresponding private key must be
+        served by the flow's endpoint, or endpoint-backed flows (flow_action:
+        data_exchange) will fail at runtime even though the key is registered.
+      operationId: setWhatsAppFlowsEncryptionKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setWhatsAppFlowsEncryptionKey_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Encryption key registered
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+        "404":
+          description: WhatsApp account not found
+        "502":
+          description: Meta rejected the request
+      security:
+      - bearerAuth: []
+      summary: Register a Flows encryption key
+      tags:
+      - WhatsApp Flows
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/flows/send:
     post:
       description: |
@@ -76660,6 +76745,41 @@ components:
           items:
             $ref: "#/components/schemas/listWhatsAppFlowVersions_200_response_versions_inner"
           type: array
+    getWhatsAppFlowsEncryptionKey_200_response:
+      example:
+        signatureStatus: VALID
+        registered: true
+        publicKey: publicKey
+      properties:
+        publicKey:
+          description: "The registered RSA public key in PEM format, or null when\
+            \ none is registered."
+          nullable: true
+          type: string
+        signatureStatus:
+          description: "VALID (key matches Meta's records) or MISMATCH (no key registered,\
+            \ or the key does not match); null when unknown."
+          enum:
+          - VALID
+          - MISMATCH
+          nullable: true
+          type: string
+        registered:
+          description: "Whether a key is currently registered. Derived from publicKey,\
+            \ not signatureStatus."
+          type: boolean
+    setWhatsAppFlowsEncryptionKey_request:
+      properties:
+        accountId:
+          description: WhatsApp social account ID
+          type: string
+        businessPublicKey:
+          description: RSA public key in PEM format. Rejected if it is a private key
+            or not a valid RSA public key PEM.
+          type: string
+      required:
+      - accountId
+      - businessPublicKey
     sendWhatsAppFlowMessage_request_flow_action_payload:
       properties:
         screen:

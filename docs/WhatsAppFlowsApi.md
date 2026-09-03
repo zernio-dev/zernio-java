@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppFlowJsonWithHttpInfo**](WhatsAppFlowsApi.md#getWhatsAppFlowJsonWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset |
 | [**getWhatsAppFlowPreview**](WhatsAppFlowsApi.md#getWhatsAppFlowPreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL |
 | [**getWhatsAppFlowPreviewWithHttpInfo**](WhatsAppFlowsApi.md#getWhatsAppFlowPreviewWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL |
+| [**getWhatsAppFlowsEncryptionKey**](WhatsAppFlowsApi.md#getWhatsAppFlowsEncryptionKey) | **GET** /v1/whatsapp/flows/encryption-key | Get Flows encryption key status |
+| [**getWhatsAppFlowsEncryptionKeyWithHttpInfo**](WhatsAppFlowsApi.md#getWhatsAppFlowsEncryptionKeyWithHttpInfo) | **GET** /v1/whatsapp/flows/encryption-key | Get Flows encryption key status |
 | [**listWhatsAppFlowResponses**](WhatsAppFlowsApi.md#listWhatsAppFlowResponses) | **GET** /v1/whatsapp/flow-responses | List flow responses |
 | [**listWhatsAppFlowResponsesWithHttpInfo**](WhatsAppFlowsApi.md#listWhatsAppFlowResponsesWithHttpInfo) | **GET** /v1/whatsapp/flow-responses | List flow responses |
 | [**listWhatsAppFlowVersions**](WhatsAppFlowsApi.md#listWhatsAppFlowVersions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions |
@@ -26,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**publishWhatsAppFlowWithHttpInfo**](WhatsAppFlowsApi.md#publishWhatsAppFlowWithHttpInfo) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow |
 | [**sendWhatsAppFlowMessage**](WhatsAppFlowsApi.md#sendWhatsAppFlowMessage) | **POST** /v1/whatsapp/flows/send | Send flow message |
 | [**sendWhatsAppFlowMessageWithHttpInfo**](WhatsAppFlowsApi.md#sendWhatsAppFlowMessageWithHttpInfo) | **POST** /v1/whatsapp/flows/send | Send flow message |
+| [**setWhatsAppFlowsEncryptionKey**](WhatsAppFlowsApi.md#setWhatsAppFlowsEncryptionKey) | **POST** /v1/whatsapp/flows/encryption-key | Register a Flows encryption key |
+| [**setWhatsAppFlowsEncryptionKeyWithHttpInfo**](WhatsAppFlowsApi.md#setWhatsAppFlowsEncryptionKeyWithHttpInfo) | **POST** /v1/whatsapp/flows/encryption-key | Register a Flows encryption key |
 | [**updateWhatsAppFlow**](WhatsAppFlowsApi.md#updateWhatsAppFlow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow |
 | [**updateWhatsAppFlowWithHttpInfo**](WhatsAppFlowsApi.md#updateWhatsAppFlowWithHttpInfo) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow |
 | [**uploadWhatsAppFlowJson**](WhatsAppFlowsApi.md#uploadWhatsAppFlowJson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON |
@@ -955,6 +959,160 @@ ApiResponse<[**GetWhatsAppFlowPreview200Response**](GetWhatsAppFlowPreview200Res
 | **404** | Flow or account not found |  -  |
 
 
+## getWhatsAppFlowsEncryptionKey
+
+> GetWhatsAppFlowsEncryptionKey200Response getWhatsAppFlowsEncryptionKey(accountId)
+
+Get Flows encryption key status
+
+Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppFlowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            GetWhatsAppFlowsEncryptionKey200Response result = apiInstance.getWhatsAppFlowsEncryptionKey(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppFlowsApi#getWhatsAppFlowsEncryptionKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+[**GetWhatsAppFlowsEncryptionKey200Response**](GetWhatsAppFlowsEncryptionKey200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Encryption key status retrieved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **502** | Meta rejected the request |  -  |
+
+## getWhatsAppFlowsEncryptionKeyWithHttpInfo
+
+> ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> getWhatsAppFlowsEncryptionKey getWhatsAppFlowsEncryptionKeyWithHttpInfo(accountId)
+
+Get Flows encryption key status
+
+Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppFlowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> response = apiInstance.getWhatsAppFlowsEncryptionKeyWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppFlowsApi#getWhatsAppFlowsEncryptionKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppFlowsEncryptionKey200Response**](GetWhatsAppFlowsEncryptionKey200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Encryption key status retrieved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **502** | Meta rejected the request |  -  |
+
+
 ## listWhatsAppFlowResponses
 
 > ListWhatsAppFlowResponses200Response listWhatsAppFlowResponses(accountId, flowId, limit)
@@ -1715,6 +1873,160 @@ ApiResponse<[**SendWhatsAppFlowMessage200Response**](SendWhatsAppFlowMessage200R
 | **400** | Validation error or missing phone number ID |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+
+## setWhatsAppFlowsEncryptionKey
+
+> UpdateYoutubeDefaultPlaylist200Response setWhatsAppFlowsEncryptionKey(setWhatsAppFlowsEncryptionKeyRequest)
+
+Register a Flows encryption key
+
+Register (or replace) the RSA business public key for WhatsApp Flows endpoint encryption on the phone number. Uploading a new key replaces the previous one: only one key is active per phone number. The corresponding private key must be served by the flow&#39;s endpoint, or endpoint-backed flows (flow_action: data_exchange) will fail at runtime even though the key is registered. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppFlowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
+        SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest = new SetWhatsAppFlowsEncryptionKeyRequest(); // SetWhatsAppFlowsEncryptionKeyRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.setWhatsAppFlowsEncryptionKey(setWhatsAppFlowsEncryptionKeyRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppFlowsApi#setWhatsAppFlowsEncryptionKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setWhatsAppFlowsEncryptionKeyRequest** | [**SetWhatsAppFlowsEncryptionKeyRequest**](SetWhatsAppFlowsEncryptionKeyRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Encryption key registered |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **502** | Meta rejected the request |  -  |
+
+## setWhatsAppFlowsEncryptionKeyWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setWhatsAppFlowsEncryptionKey setWhatsAppFlowsEncryptionKeyWithHttpInfo(setWhatsAppFlowsEncryptionKeyRequest)
+
+Register a Flows encryption key
+
+Register (or replace) the RSA business public key for WhatsApp Flows endpoint encryption on the phone number. Uploading a new key replaces the previous one: only one key is active per phone number. The corresponding private key must be served by the flow&#39;s endpoint, or endpoint-backed flows (flow_action: data_exchange) will fail at runtime even though the key is registered. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppFlowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
+        SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest = new SetWhatsAppFlowsEncryptionKeyRequest(); // SetWhatsAppFlowsEncryptionKeyRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.setWhatsAppFlowsEncryptionKeyWithHttpInfo(setWhatsAppFlowsEncryptionKeyRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppFlowsApi#setWhatsAppFlowsEncryptionKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setWhatsAppFlowsEncryptionKeyRequest** | [**SetWhatsAppFlowsEncryptionKeyRequest**](SetWhatsAppFlowsEncryptionKeyRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Encryption key registered |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **502** | Meta rejected the request |  -  |
 
 
 ## updateWhatsAppFlow

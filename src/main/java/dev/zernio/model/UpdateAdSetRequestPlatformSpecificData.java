@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_END_DATE,
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T14:44:52.970149352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T16:17:17.947333983Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequestPlatformSpecificData {
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
   @javax.annotation.Nullable

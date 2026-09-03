@@ -21,15 +21,19 @@ import dev.zernio.Pair;
 import dev.zernio.model.CreateWhatsAppFlow200Response;
 import dev.zernio.model.CreateWhatsAppFlowRequest;
 import dev.zernio.model.DeleteWhatsappBusinessUsernameRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetWhatsAppFlow200Response;
 import dev.zernio.model.GetWhatsAppFlowJson200Response;
 import dev.zernio.model.GetWhatsAppFlowPreview200Response;
+import dev.zernio.model.GetWhatsAppFlowsEncryptionKey200Response;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListWhatsAppFlowResponses200Response;
 import dev.zernio.model.ListWhatsAppFlowVersions200Response;
 import dev.zernio.model.ListWhatsAppFlows200Response;
 import dev.zernio.model.SendWhatsAppFlowMessage200Response;
 import dev.zernio.model.SendWhatsAppFlowMessageRequest;
+import dev.zernio.model.SetWhatsAppFlowsEncryptionKeyRequest;
 import dev.zernio.model.UpdateWhatsAppFlowRequest;
 import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 import dev.zernio.model.UploadWhatsAppFlowJson200Response;
@@ -66,7 +70,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T14:44:52.970149352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T16:17:17.947333983Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppFlowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1015,6 +1019,138 @@ public class WhatsAppFlowsApi {
   }
 
   /**
+   * Get Flows encryption key status
+   * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
+   * @param accountId WhatsApp social account ID (required)
+   * @return GetWhatsAppFlowsEncryptionKey200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppFlowsEncryptionKey200Response getWhatsAppFlowsEncryptionKey(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppFlowsEncryptionKey(accountId, null);
+  }
+
+  /**
+   * Get Flows encryption key status
+   * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppFlowsEncryptionKey200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppFlowsEncryptionKey200Response getWhatsAppFlowsEncryptionKey(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> localVarResponse = getWhatsAppFlowsEncryptionKeyWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Flows encryption key status
+   * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
+   * @param accountId WhatsApp social account ID (required)
+   * @return ApiResponse&lt;GetWhatsAppFlowsEncryptionKey200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> getWhatsAppFlowsEncryptionKeyWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppFlowsEncryptionKeyWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * Get Flows encryption key status
+   * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppFlowsEncryptionKey200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> getWhatsAppFlowsEncryptionKeyWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppFlowsEncryptionKeyRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppFlowsEncryptionKey", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppFlowsEncryptionKey200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppFlowsEncryptionKey200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppFlowsEncryptionKey200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppFlowsEncryptionKey200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppFlowsEncryptionKeyRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppFlowsEncryptionKey");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/flows/encryption-key";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List flow responses
    * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
    * @param accountId WhatsApp social account ID (required)
@@ -1671,6 +1807,129 @@ public class WhatsAppFlowsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendWhatsAppFlowMessageRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Register a Flows encryption key
+   * Register (or replace) the RSA business public key for WhatsApp Flows endpoint encryption on the phone number. Uploading a new key replaces the previous one: only one key is active per phone number. The corresponding private key must be served by the flow&#39;s endpoint, or endpoint-backed flows (flow_action: data_exchange) will fail at runtime even though the key is registered. 
+   * @param setWhatsAppFlowsEncryptionKeyRequest  (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response setWhatsAppFlowsEncryptionKey(@javax.annotation.Nonnull SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest) throws ApiException {
+    return setWhatsAppFlowsEncryptionKey(setWhatsAppFlowsEncryptionKeyRequest, null);
+  }
+
+  /**
+   * Register a Flows encryption key
+   * Register (or replace) the RSA business public key for WhatsApp Flows endpoint encryption on the phone number. Uploading a new key replaces the previous one: only one key is active per phone number. The corresponding private key must be served by the flow&#39;s endpoint, or endpoint-backed flows (flow_action: data_exchange) will fail at runtime even though the key is registered. 
+   * @param setWhatsAppFlowsEncryptionKeyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response setWhatsAppFlowsEncryptionKey(@javax.annotation.Nonnull SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = setWhatsAppFlowsEncryptionKeyWithHttpInfo(setWhatsAppFlowsEncryptionKeyRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Register a Flows encryption key
+   * Register (or replace) the RSA business public key for WhatsApp Flows endpoint encryption on the phone number. Uploading a new key replaces the previous one: only one key is active per phone number. The corresponding private key must be served by the flow&#39;s endpoint, or endpoint-backed flows (flow_action: data_exchange) will fail at runtime even though the key is registered. 
+   * @param setWhatsAppFlowsEncryptionKeyRequest  (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setWhatsAppFlowsEncryptionKeyWithHttpInfo(@javax.annotation.Nonnull SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest) throws ApiException {
+    return setWhatsAppFlowsEncryptionKeyWithHttpInfo(setWhatsAppFlowsEncryptionKeyRequest, null);
+  }
+
+  /**
+   * Register a Flows encryption key
+   * Register (or replace) the RSA business public key for WhatsApp Flows endpoint encryption on the phone number. Uploading a new key replaces the previous one: only one key is active per phone number. The corresponding private key must be served by the flow&#39;s endpoint, or endpoint-backed flows (flow_action: data_exchange) will fail at runtime even though the key is registered. 
+   * @param setWhatsAppFlowsEncryptionKeyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setWhatsAppFlowsEncryptionKeyWithHttpInfo(@javax.annotation.Nonnull SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = setWhatsAppFlowsEncryptionKeyRequestBuilder(setWhatsAppFlowsEncryptionKeyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("setWhatsAppFlowsEncryptionKey", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder setWhatsAppFlowsEncryptionKeyRequestBuilder(@javax.annotation.Nonnull SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'setWhatsAppFlowsEncryptionKeyRequest' is set
+    if (setWhatsAppFlowsEncryptionKeyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'setWhatsAppFlowsEncryptionKeyRequest' when calling setWhatsAppFlowsEncryptionKey");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/flows/encryption-key";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setWhatsAppFlowsEncryptionKeyRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

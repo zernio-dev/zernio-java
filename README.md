@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-03T14:44:52.970149352Z[Etc/UTC]
+- Build date: 2026-09-03T16:17:17.947333983Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1237,6 +1237,8 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**getWhatsAppFlowJsonWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowJsonWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
 *WhatsAppFlowsApi* | [**getWhatsAppFlowPreview**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowPreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
 *WhatsAppFlowsApi* | [**getWhatsAppFlowPreviewWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowPreviewWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**getWhatsAppFlowsEncryptionKey**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowsEncryptionKey) | **GET** /v1/whatsapp/flows/encryption-key | Get Flows encryption key status
+*WhatsAppFlowsApi* | [**getWhatsAppFlowsEncryptionKeyWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowsEncryptionKeyWithHttpInfo) | **GET** /v1/whatsapp/flows/encryption-key | Get Flows encryption key status
 *WhatsAppFlowsApi* | [**listWhatsAppFlowResponses**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowResponses) | **GET** /v1/whatsapp/flow-responses | List flow responses
 *WhatsAppFlowsApi* | [**listWhatsAppFlowResponsesWithHttpInfo**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowResponsesWithHttpInfo) | **GET** /v1/whatsapp/flow-responses | List flow responses
 *WhatsAppFlowsApi* | [**listWhatsAppFlowVersions**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowVersions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
@@ -1247,6 +1249,8 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**publishWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#publishWhatsAppFlowWithHttpInfo) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow
 *WhatsAppFlowsApi* | [**sendWhatsAppFlowMessage**](docs/WhatsAppFlowsApi.md#sendWhatsAppFlowMessage) | **POST** /v1/whatsapp/flows/send | Send flow message
 *WhatsAppFlowsApi* | [**sendWhatsAppFlowMessageWithHttpInfo**](docs/WhatsAppFlowsApi.md#sendWhatsAppFlowMessageWithHttpInfo) | **POST** /v1/whatsapp/flows/send | Send flow message
+*WhatsAppFlowsApi* | [**setWhatsAppFlowsEncryptionKey**](docs/WhatsAppFlowsApi.md#setWhatsAppFlowsEncryptionKey) | **POST** /v1/whatsapp/flows/encryption-key | Register a Flows encryption key
+*WhatsAppFlowsApi* | [**setWhatsAppFlowsEncryptionKeyWithHttpInfo**](docs/WhatsAppFlowsApi.md#setWhatsAppFlowsEncryptionKeyWithHttpInfo) | **POST** /v1/whatsapp/flows/encryption-key | Register a Flows encryption key
 *WhatsAppFlowsApi* | [**updateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updateWhatsAppFlow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**updateWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#updateWhatsAppFlowWithHttpInfo) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**uploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadWhatsAppFlowJson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
@@ -2089,6 +2093,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppFlowJson200Response](docs/GetWhatsAppFlowJson200Response.md)
  - [GetWhatsAppFlowJson200ResponseAssetsInner](docs/GetWhatsAppFlowJson200ResponseAssetsInner.md)
  - [GetWhatsAppFlowPreview200Response](docs/GetWhatsAppFlowPreview200Response.md)
+ - [GetWhatsAppFlowsEncryptionKey200Response](docs/GetWhatsAppFlowsEncryptionKey200Response.md)
  - [GetWhatsAppGroupChat200Response](docs/GetWhatsAppGroupChat200Response.md)
  - [GetWhatsAppGroupChat200ResponseGroup](docs/GetWhatsAppGroupChat200ResponseGroup.md)
  - [GetWhatsAppGroupChat200ResponseGroupParticipantsInner](docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md)
@@ -2666,6 +2671,7 @@ Class | Method | HTTP request | Description
  - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
  - [SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
  - [ShareSmsRegistration200Response](docs/ShareSmsRegistration200Response.md)
