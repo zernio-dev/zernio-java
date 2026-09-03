@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListInboxMentions200ResponseMeta.JSON_PROPERTY_TOTAL,
   ListInboxMentions200ResponseMeta.JSON_PROPERTY_SORT_ORDER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T12:28:41.445780306Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T14:44:52.970149352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxMentions200ResponseMeta {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable
