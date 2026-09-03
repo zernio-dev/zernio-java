@@ -123,6 +123,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORY_COUNTRY,
   CreateStandaloneAdRequest.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_END_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_START_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
@@ -156,7 +157,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-02T11:57:59.664764723Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:28:42.937280457Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -876,6 +877,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES = "regionalRegulatedCategories";
   @javax.annotation.Nullable
   private List<String> regionalRegulatedCategories = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES = "regionalRegulationIdentities";
+  @javax.annotation.Nullable
+  private Map<String, Integer> regionalRegulationIdentities = new HashMap<>();
 
   public static final String JSON_PROPERTY_END_DATE = "endDate";
   @javax.annotation.Nullable
@@ -2720,7 +2725,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Regional regulation categories required when the ad set targets certain countries. Known values: SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV. Meta rejects the ad set without this when the targeting geo includes the corresponding country. 
+   * Meta only. Regional regulation categories required when the ad set targets certain countries. Known values: BRAZIL_REGULATION, SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV. Meta rejects the ad set without this when the targeting geo includes the corresponding country. 
    * @return regionalRegulatedCategories
    */
   @javax.annotation.Nullable
@@ -2735,6 +2740,38 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegionalRegulatedCategories(@javax.annotation.Nullable List<String> regionalRegulatedCategories) {
     this.regionalRegulatedCategories = regionalRegulatedCategories;
+  }
+
+
+  public CreateStandaloneAdRequest regionalRegulationIdentities(@javax.annotation.Nullable Map<String, Integer> regionalRegulationIdentities) {
+    this.regionalRegulationIdentities = regionalRegulationIdentities;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest putRegionalRegulationIdentitiesItem(String key, Integer regionalRegulationIdentitiesItem) {
+    if (this.regionalRegulationIdentities == null) {
+      this.regionalRegulationIdentities = new HashMap<>();
+    }
+    this.regionalRegulationIdentities.put(key, regionalRegulationIdentitiesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Beneficiary/payer entity IDs for regionalRegulatedCategories. Values are numeric IDs from Meta verification. Keys vary by category (e.g. universal_beneficiary / universal_payer for BRAZIL_REGULATION and THAILAND_UNIVERSAL). If omitted, Meta uses Ads Manager defaults when configured. 
+   * @return regionalRegulationIdentities
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Integer> getRegionalRegulationIdentities() {
+    return regionalRegulationIdentities;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionalRegulationIdentities(@javax.annotation.Nullable Map<String, Integer> regionalRegulationIdentities) {
+    this.regionalRegulationIdentities = regionalRegulationIdentities;
   }
 
 
@@ -3664,6 +3701,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.specialAdCategories, createStandaloneAdRequest.specialAdCategories) &&
         Objects.equals(this.specialAdCategoryCountry, createStandaloneAdRequest.specialAdCategoryCountry) &&
         Objects.equals(this.regionalRegulatedCategories, createStandaloneAdRequest.regionalRegulatedCategories) &&
+        Objects.equals(this.regionalRegulationIdentities, createStandaloneAdRequest.regionalRegulationIdentities) &&
         Objects.equals(this.endDate, createStandaloneAdRequest.endDate) &&
         Objects.equals(this.startDate, createStandaloneAdRequest.startDate) &&
         Objects.equals(this.instagramAccountId, createStandaloneAdRequest.instagramAccountId) &&
@@ -3700,7 +3738,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3767,6 +3805,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    specialAdCategoryCountry: ").append(toIndentedString(specialAdCategoryCountry)).append("\n");
     sb.append("    regionalRegulatedCategories: ").append(toIndentedString(regionalRegulatedCategories)).append("\n");
+    sb.append("    regionalRegulationIdentities: ").append(toIndentedString(regionalRegulationIdentities)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
@@ -4226,6 +4265,15 @@ public class CreateStandaloneAdRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sregionalRegulatedCategories%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRegionalRegulatedCategories().get(i)))));
+      }
+    }
+
+    // add `regionalRegulationIdentities` to the URL query string
+    if (getRegionalRegulationIdentities() != null) {
+      for (String _key : getRegionalRegulationIdentities().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionalRegulationIdentities%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getRegionalRegulationIdentities().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRegionalRegulationIdentities().get(_key)))));
       }
     }
 
