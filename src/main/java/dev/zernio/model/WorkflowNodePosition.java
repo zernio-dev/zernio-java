@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WorkflowNodePosition.JSON_PROPERTY_X,
   WorkflowNodePosition.JSON_PROPERTY_Y
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:38:27.441520595Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:41:27.350513694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowNodePosition {
   public static final String JSON_PROPERTY_X = "x";
   @javax.annotation.Nullable

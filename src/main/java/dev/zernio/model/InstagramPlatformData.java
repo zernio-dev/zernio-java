@@ -51,9 +51,13 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_THUMB_OFFSET,
   InstagramPlatformData.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
   InstagramPlatformData.JSON_PROPERTY_REEL_COVER,
-  InstagramPlatformData.JSON_PROPERTY_IS_AI_GENERATED
+  InstagramPlatformData.JSON_PROPERTY_IS_AI_GENERATED,
+  InstagramPlatformData.JSON_PROPERTY_IS_PAID_PARTNERSHIP,
+  InstagramPlatformData.JSON_PROPERTY_BRANDED_CONTENT_SPONSORS,
+  InstagramPlatformData.JSON_PROPERTY_COMMENTS_ENABLED,
+  InstagramPlatformData.JSON_PROPERTY_LOCATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:38:27.441520595Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:41:27.350513694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.
@@ -139,6 +143,22 @@ public class InstagramPlatformData {
   public static final String JSON_PROPERTY_IS_AI_GENERATED = "isAiGenerated";
   @javax.annotation.Nullable
   private Boolean isAiGenerated = false;
+
+  public static final String JSON_PROPERTY_IS_PAID_PARTNERSHIP = "isPaidPartnership";
+  @javax.annotation.Nullable
+  private Boolean isPaidPartnership = false;
+
+  public static final String JSON_PROPERTY_BRANDED_CONTENT_SPONSORS = "brandedContentSponsors";
+  @javax.annotation.Nullable
+  private List<String> brandedContentSponsors = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_COMMENTS_ENABLED = "commentsEnabled";
+  @javax.annotation.Nullable
+  private Boolean commentsEnabled = true;
+
+  public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
+  @javax.annotation.Nullable
+  private String locationId;
 
   public InstagramPlatformData() { 
   }
@@ -472,6 +492,110 @@ public class InstagramPlatformData {
   }
 
 
+  public InstagramPlatformData isPaidPartnership(@javax.annotation.Nullable Boolean isPaidPartnership) {
+    this.isPaidPartnership = isPaidPartnership;
+    return this;
+  }
+
+  /**
+   * When true, Instagram shows the \&quot;Paid partnership\&quot; label on the post. Applies to feed posts, Reels, and carousels; not supported on Stories (400). Requires an Instagram account connected via Facebook Login; classic Instagram Login accounts get a 400 (instagram_paid_partnership_requires_facebook_login). Implied when brandedContentSponsors is set.
+   * @return isPaidPartnership
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_PAID_PARTNERSHIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsPaidPartnership() {
+    return isPaidPartnership;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_PAID_PARTNERSHIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsPaidPartnership(@javax.annotation.Nullable Boolean isPaidPartnership) {
+    this.isPaidPartnership = isPaidPartnership;
+  }
+
+
+  public InstagramPlatformData brandedContentSponsors(@javax.annotation.Nullable List<String> brandedContentSponsors) {
+    this.brandedContentSponsors = brandedContentSponsors;
+    return this;
+  }
+
+  public InstagramPlatformData addBrandedContentSponsorsItem(String brandedContentSponsorsItem) {
+    if (this.brandedContentSponsors == null) {
+      this.brandedContentSponsors = new ArrayList<>();
+    }
+    this.brandedContentSponsors.add(brandedContentSponsorsItem);
+    return this;
+  }
+
+  /**
+   * Up to 2 brands to tag as sponsors, each an Instagram username (leading @ optional) or a numeric Instagram user ID. Usernames are resolved at publish time via the Business Discovery API on the publishing account; a sponsor that cannot be resolved (private, personal, or nonexistent account) fails the post with a user error naming it. Sponsors must be professional (Business or Creator) accounts. A brand that has pre-approved the creator shows as \&quot;Paid partnership with @brand\&quot; immediately; otherwise the plain label shows and the brand receives an approval request. Sets isPaidPartnership. Same login and content-type rules as isPaidPartnership.
+   * @return brandedContentSponsors
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BRANDED_CONTENT_SPONSORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getBrandedContentSponsors() {
+    return brandedContentSponsors;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BRANDED_CONTENT_SPONSORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBrandedContentSponsors(@javax.annotation.Nullable List<String> brandedContentSponsors) {
+    this.brandedContentSponsors = brandedContentSponsors;
+  }
+
+
+  public InstagramPlatformData commentsEnabled(@javax.annotation.Nullable Boolean commentsEnabled) {
+    this.commentsEnabled = commentsEnabled;
+    return this;
+  }
+
+  /**
+   * When false, comments are turned off on the post right after it is published (Meta exposes this as comment_enabled on the media object). Applies to feed posts, Reels, and carousels; ignored for Stories, which have no comments. Works with both Instagram connection methods. Best-effort: if the toggle fails after a successful publish, the post still succeeds and stays live with comments on.
+   * @return commentsEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENTS_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCommentsEnabled() {
+    return commentsEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENTS_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommentsEnabled(@javax.annotation.Nullable Boolean commentsEnabled) {
+    this.commentsEnabled = commentsEnabled;
+  }
+
+
+  public InstagramPlatformData locationId(@javax.annotation.Nullable String locationId) {
+    this.locationId = locationId;
+    return this;
+  }
+
+  /**
+   * Tags the post with a location. The ID of a Facebook Page that has location data (digits only); it is sent to Instagram as location_id. Applies to feed posts, Reels, and the carousel as a whole; Stories and individual carousel slides are unsupported (a Story with locationId is rejected with a 400). A Page without location data or that does not exist fails the post with a user error at publish time.
+   * @return locationId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLocationId() {
+    return locationId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocationId(@javax.annotation.Nullable String locationId) {
+    this.locationId = locationId;
+  }
+
+
   /**
    * Return true if this InstagramPlatformData object is equal to o.
    */
@@ -496,12 +620,16 @@ public class InstagramPlatformData {
         Objects.equals(this.thumbOffset, instagramPlatformData.thumbOffset) &&
         Objects.equals(this.instagramThumbnail, instagramPlatformData.instagramThumbnail) &&
         Objects.equals(this.reelCover, instagramPlatformData.reelCover) &&
-        Objects.equals(this.isAiGenerated, instagramPlatformData.isAiGenerated);
+        Objects.equals(this.isAiGenerated, instagramPlatformData.isAiGenerated) &&
+        Objects.equals(this.isPaidPartnership, instagramPlatformData.isPaidPartnership) &&
+        Objects.equals(this.brandedContentSponsors, instagramPlatformData.brandedContentSponsors) &&
+        Objects.equals(this.commentsEnabled, instagramPlatformData.commentsEnabled) &&
+        Objects.equals(this.locationId, instagramPlatformData.locationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, audioConfiguration, muteAudio, thumbOffset, instagramThumbnail, reelCover, isAiGenerated);
+    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, audioConfiguration, muteAudio, thumbOffset, instagramThumbnail, reelCover, isAiGenerated, isPaidPartnership, brandedContentSponsors, commentsEnabled, locationId);
   }
 
   @Override
@@ -521,6 +649,10 @@ public class InstagramPlatformData {
     sb.append("    instagramThumbnail: ").append(toIndentedString(instagramThumbnail)).append("\n");
     sb.append("    reelCover: ").append(toIndentedString(reelCover)).append("\n");
     sb.append("    isAiGenerated: ").append(toIndentedString(isAiGenerated)).append("\n");
+    sb.append("    isPaidPartnership: ").append(toIndentedString(isPaidPartnership)).append("\n");
+    sb.append("    brandedContentSponsors: ").append(toIndentedString(brandedContentSponsors)).append("\n");
+    sb.append("    commentsEnabled: ").append(toIndentedString(commentsEnabled)).append("\n");
+    sb.append("    locationId: ").append(toIndentedString(locationId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -640,6 +772,30 @@ public class InstagramPlatformData {
     // add `isAiGenerated` to the URL query string
     if (getIsAiGenerated() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisAiGenerated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAiGenerated()))));
+    }
+
+    // add `isPaidPartnership` to the URL query string
+    if (getIsPaidPartnership() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisPaidPartnership%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsPaidPartnership()))));
+    }
+
+    // add `brandedContentSponsors` to the URL query string
+    if (getBrandedContentSponsors() != null) {
+      for (int i = 0; i < getBrandedContentSponsors().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sbrandedContentSponsors%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getBrandedContentSponsors().get(i)))));
+      }
+    }
+
+    // add `commentsEnabled` to the URL query string
+    if (getCommentsEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommentsEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentsEnabled()))));
+    }
+
+    // add `locationId` to the URL query string
+    if (getLocationId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationId()))));
     }
 
     return joiner.toString();
