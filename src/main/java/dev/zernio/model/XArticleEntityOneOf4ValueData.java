@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   XArticleEntityOneOf4ValueData.JSON_PROPERTY_MARKDOWN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T19:50:27.915625012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:10:04.830791210Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticleEntityOneOf4ValueData {
   public static final String JSON_PROPERTY_MARKDOWN = "markdown";
   @javax.annotation.Nonnull

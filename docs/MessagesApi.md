@@ -700,7 +700,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         String accountId = "accountId_example"; // String | The social account ID
         try {
             GetInboxConversation200Response result = apiInstance.getInboxConversation(conversationId, accountId);
@@ -721,7 +721,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **accountId** | **String**| The social account ID | |
 
 ### Return type
@@ -776,7 +776,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         String accountId = "accountId_example"; // String | The social account ID
         try {
             ApiResponse<GetInboxConversation200Response> response = apiInstance.getInboxConversationWithHttpInfo(conversationId, accountId);
@@ -799,7 +799,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **accountId** | **String**| The social account ID | |
 
 ### Return type
@@ -854,7 +854,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         String accountId = "accountId_example"; // String | Social account ID
         Integer limit = 100; // Integer | Number of messages to return per page. Default 100, max 100.
         String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page.
@@ -878,7 +878,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **accountId** | **String**| Social account ID | |
 | **limit** | **Integer**| Number of messages to return per page. Default 100, max 100. | [optional] [default to 100] |
 | **cursor** | **String**| Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. | [optional] |
@@ -936,7 +936,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         String accountId = "accountId_example"; // String | Social account ID
         Integer limit = 100; // Integer | Number of messages to return per page. Default 100, max 100.
         String cursor = "cursor_example"; // String | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page.
@@ -962,7 +962,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **accountId** | **String**| Social account ID | |
 | **limit** | **Integer**| Number of messages to return per page. Default 100, max 100. | [optional] [default to 100] |
 | **cursor** | **String**| Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. | [optional] |
@@ -2168,7 +2168,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         UpdateInboxConversationRequest updateInboxConversationRequest = new UpdateInboxConversationRequest(); // UpdateInboxConversationRequest | 
         try {
             UpdateInboxConversation200Response result = apiInstance.updateInboxConversation(conversationId, updateInboxConversationRequest);
@@ -2189,7 +2189,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **updateInboxConversationRequest** | [**UpdateInboxConversationRequest**](UpdateInboxConversationRequest.md)|  | |
 
 ### Return type
@@ -2244,7 +2244,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        String conversationId = "conversationId_example"; // String | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         UpdateInboxConversationRequest updateInboxConversationRequest = new UpdateInboxConversationRequest(); // UpdateInboxConversationRequest | 
         try {
             ApiResponse<UpdateInboxConversation200Response> response = apiInstance.updateInboxConversationWithHttpInfo(conversationId, updateInboxConversationRequest);
@@ -2267,7 +2267,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **conversationId** | **String**| The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. | |
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **updateInboxConversationRequest** | [**UpdateInboxConversationRequest**](UpdateInboxConversationRequest.md)|  | |
 
 ### Return type

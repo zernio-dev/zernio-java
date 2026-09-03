@@ -16657,9 +16657,9 @@ paths:
         accountId query parameter.
       operationId: getInboxConversation
       parameters:
-      - description: "The conversation ID (id field from list conversations endpoint).\
-          \ This is the platform-specific conversation identifier, not an internal\
-          \ database ID."
+      - description: "Opaque conversation identifier, accepted verbatim from the list\
+          \ endpoint or from the conversationId on inbox webhooks. Format not to be\
+          \ assumed."
         explode: false
         in: path
         name: conversationId
@@ -16701,9 +16701,9 @@ paths:
         body.
       operationId: updateInboxConversation
       parameters:
-      - description: "The conversation ID (id field from list conversations endpoint).\
-          \ This is the platform-specific conversation identifier, not an internal\
-          \ database ID."
+      - description: "Opaque conversation identifier, accepted verbatim from the list\
+          \ endpoint or from the conversationId on inbox webhooks. Format not to be\
+          \ assumed."
         explode: false
         in: path
         name: conversationId
@@ -16777,9 +16777,9 @@ paths:
         on eligible accounts), call `POST /v1/inbox/conversations/{conversationId}/read`.
       operationId: getInboxConversationMessages
       parameters:
-      - description: "The conversation ID (id field from list conversations endpoint).\
-          \ This is the platform-specific conversation identifier, not an internal\
-          \ database ID."
+      - description: "Opaque conversation identifier, accepted verbatim from the list\
+          \ endpoint or from the conversationId on inbox webhooks. Format not to be\
+          \ assumed."
         explode: false
         in: path
         name: conversationId
