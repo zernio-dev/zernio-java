@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListSlackMembers200ResponseMembersInner.JSON_PROPERTY_USERNAME,
   ListSlackMembers200ResponseMembersInner.JSON_PROPERTY_PICTURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:41:27.350513694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T12:28:41.445780306Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSlackMembers200ResponseMembersInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

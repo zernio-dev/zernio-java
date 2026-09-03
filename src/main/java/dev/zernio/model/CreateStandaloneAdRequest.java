@@ -88,6 +88,9 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_LONG_HEADLINE,
   CreateStandaloneAdRequest.JSON_PROPERTY_BODY,
   CreateStandaloneAdRequest.JSON_PROPERTY_DESCRIPTION,
+  CreateStandaloneAdRequest.JSON_PROPERTY_BODIES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_HEADLINES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_CALL_TO_ACTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequest.JSON_PROPERTY_LEAD_GEN_FORM_ID,
@@ -157,7 +160,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T10:41:27.350513694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T12:28:41.445780306Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -556,6 +559,18 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nullable
   private String description;
+
+  public static final String JSON_PROPERTY_BODIES = "bodies";
+  @javax.annotation.Nullable
+  private List<String> bodies = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HEADLINES = "headlines";
+  @javax.annotation.Nullable
+  private List<String> headlines = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DESCRIPTIONS = "descriptions";
+  @javax.annotation.Nullable
+  private List<String> descriptions = new ArrayList<>();
 
   /**
    * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
@@ -1745,7 +1760,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only (facebook/instagram). Link description — the secondary text shown below the headline (Meta&#39;s link_data.description; on video creatives mapped to video_data.link_description). When omitted, Meta auto-pulls the destination URL&#39;s OpenGraph description. Applies on legacy, attach, and placementAssets shapes; for multi-creative use creatives[].description (this field is the shared fallback). For multi-text variations use dynamicCreative.descriptions instead.
+   * Meta only (facebook/instagram). Link description — the secondary text shown below the headline (Meta&#39;s link_data.description; on video creatives mapped to video_data.link_description). When omitted, Meta auto-pulls the destination URL&#39;s OpenGraph description. Applies on legacy, attach, and placementAssets shapes; for multi-creative use creatives[].description (this field is the shared fallback). For multi-text variations use &#x60;descriptions&#x60; (array) instead.
    * @return description
    */
   @javax.annotation.Nullable
@@ -1760,6 +1775,102 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
+  }
+
+
+  public CreateStandaloneAdRequest bodies(@javax.annotation.Nullable List<String> bodies) {
+    this.bodies = bodies;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addBodiesItem(String bodiesItem) {
+    if (this.bodies == null) {
+      this.bodies = new ArrayList<>();
+    }
+    this.bodies.add(bodiesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Multiple Text Options (Advantage+ Flexible Format): supply 1-5 primary-text variations and Meta optimises delivery across them, WITHOUT enabling full Dynamic Creative (&#x60;dynamicCreative&#x60;). Uses &#x60;optimization_type: DEGREES_OF_FREEDOM&#x60; on the asset feed, so multiple ads per ad set are allowed (unlike &#x60;dynamicCreative&#x60; which is limited to one). Requires &#x60;imageUrl&#x60; or &#x60;video&#x60;, &#x60;linkUrl&#x60;, and &#x60;callToAction&#x60;. When set, the top-level &#x60;body&#x60; field is used as the &#x60;object_story_spec.link_data.message&#x60; (the preview text) and &#x60;headlines&#x60; must also be present. Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, and &#x60;creatives[]&#x60;. 
+   * @return bodies
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getBodies() {
+    return bodies;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BODIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBodies(@javax.annotation.Nullable List<String> bodies) {
+    this.bodies = bodies;
+  }
+
+
+  public CreateStandaloneAdRequest headlines(@javax.annotation.Nullable List<String> headlines) {
+    this.headlines = headlines;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addHeadlinesItem(String headlinesItem) {
+    if (this.headlines == null) {
+      this.headlines = new ArrayList<>();
+    }
+    this.headlines.add(headlinesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Headline variations for Multiple Text Options. Must be sent alongside &#x60;bodies&#x60;. The top-level &#x60;headline&#x60; field is used as the &#x60;object_story_spec.link_data.name&#x60;. 
+   * @return headlines
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADLINES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getHeadlines() {
+    return headlines;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADLINES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeadlines(@javax.annotation.Nullable List<String> headlines) {
+    this.headlines = headlines;
+  }
+
+
+  public CreateStandaloneAdRequest descriptions(@javax.annotation.Nullable List<String> descriptions) {
+    this.descriptions = descriptions;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addDescriptionsItem(String descriptionsItem) {
+    if (this.descriptions == null) {
+      this.descriptions = new ArrayList<>();
+    }
+    this.descriptions.add(descriptionsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Optional description variations for Multiple Text Options. Sent alongside &#x60;bodies&#x60; and &#x60;headlines&#x60;.
+   * @return descriptions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getDescriptions() {
+    return descriptions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptions(@javax.annotation.Nullable List<String> descriptions) {
+    this.descriptions = descriptions;
   }
 
 
@@ -3666,6 +3777,9 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.longHeadline, createStandaloneAdRequest.longHeadline) &&
         Objects.equals(this.body, createStandaloneAdRequest.body) &&
         Objects.equals(this.description, createStandaloneAdRequest.description) &&
+        Objects.equals(this.bodies, createStandaloneAdRequest.bodies) &&
+        Objects.equals(this.headlines, createStandaloneAdRequest.headlines) &&
+        Objects.equals(this.descriptions, createStandaloneAdRequest.descriptions) &&
         Objects.equals(this.callToAction, createStandaloneAdRequest.callToAction) &&
         Objects.equals(this.linkUrl, createStandaloneAdRequest.linkUrl) &&
         Objects.equals(this.leadGenFormId, createStandaloneAdRequest.leadGenFormId) &&
@@ -3738,7 +3852,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3770,6 +3884,9 @@ public class CreateStandaloneAdRequest {
     sb.append("    longHeadline: ").append(toIndentedString(longHeadline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    bodies: ").append(toIndentedString(bodies)).append("\n");
+    sb.append("    headlines: ").append(toIndentedString(headlines)).append("\n");
+    sb.append("    descriptions: ").append(toIndentedString(descriptions)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    leadGenFormId: ").append(toIndentedString(leadGenFormId)).append("\n");
@@ -4012,6 +4129,33 @@ public class CreateStandaloneAdRequest {
     // add `description` to the URL query string
     if (getDescription() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+    }
+
+    // add `bodies` to the URL query string
+    if (getBodies() != null) {
+      for (int i = 0; i < getBodies().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sbodies%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getBodies().get(i)))));
+      }
+    }
+
+    // add `headlines` to the URL query string
+    if (getHeadlines() != null) {
+      for (int i = 0; i < getHeadlines().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sheadlines%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getHeadlines().get(i)))));
+      }
+    }
+
+    // add `descriptions` to the URL query string
+    if (getDescriptions() != null) {
+      for (int i = 0; i < getDescriptions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sdescriptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getDescriptions().get(i)))));
+      }
     }
 
     // add `callToAction` to the URL query string
