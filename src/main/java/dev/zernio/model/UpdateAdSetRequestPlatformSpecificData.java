@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.UpdateAdSetRequestPlatformSpecificDataPromotedObject;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -38,9 +39,11 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_BILLING_EVENT,
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_START_DATE,
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_END_DATE,
+  UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_DAILY_MIN_SPEND_TARGET,
+  UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET,
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:06:04.756176364Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:17:01.537617571Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequestPlatformSpecificData {
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
   @javax.annotation.Nullable
@@ -57,6 +60,14 @@ public class UpdateAdSetRequestPlatformSpecificData {
   public static final String JSON_PROPERTY_END_DATE = "endDate";
   @javax.annotation.Nullable
   private String endDate;
+
+  public static final String JSON_PROPERTY_DAILY_MIN_SPEND_TARGET = "dailyMinSpendTarget";
+  @javax.annotation.Nullable
+  private BigDecimal dailyMinSpendTarget;
+
+  public static final String JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET = "lifetimeMinSpendTarget";
+  @javax.annotation.Nullable
+  private BigDecimal lifetimeMinSpendTarget;
 
   public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
   @javax.annotation.Nullable
@@ -161,6 +172,54 @@ public class UpdateAdSetRequestPlatformSpecificData {
   }
 
 
+  public UpdateAdSetRequestPlatformSpecificData dailyMinSpendTarget(@javax.annotation.Nullable BigDecimal dailyMinSpendTarget) {
+    this.dailyMinSpendTarget = dailyMinSpendTarget;
+    return this;
+  }
+
+  /**
+   * Meta &#x60;daily_min_spend_target&#x60;: the least this ad set should spend per day, in whole currency units of the ad account. It reserves a share of a CAMPAIGN budget for one ad set, so it requires a campaign using Advantage campaign budget (CBO). On an ad set that owns its budget (ABO) this returns 409 — move the budget to the campaign with &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60; first. Meta treats it as a target, not a guarantee, and rejects the combined minimum of a campaign&#39;s ad sets going over the campaign budget. Mutually exclusive with &#x60;lifetimeMinSpendTarget&#x60; (400): the flavour must match the campaign budget type, a daily budget takes a daily target. Read it back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;daily_min_spend_target&#x60;. 
+   * @return dailyMinSpendTarget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DAILY_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getDailyMinSpendTarget() {
+    return dailyMinSpendTarget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DAILY_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDailyMinSpendTarget(@javax.annotation.Nullable BigDecimal dailyMinSpendTarget) {
+    this.dailyMinSpendTarget = dailyMinSpendTarget;
+  }
+
+
+  public UpdateAdSetRequestPlatformSpecificData lifetimeMinSpendTarget(@javax.annotation.Nullable BigDecimal lifetimeMinSpendTarget) {
+    this.lifetimeMinSpendTarget = lifetimeMinSpendTarget;
+    return this;
+  }
+
+  /**
+   * Meta &#x60;lifetime_min_spend_target&#x60;: the lifetime-budget flavour of &#x60;dailyMinSpendTarget&#x60;, in whole currency units. Send this one when the campaign budget is a lifetime budget. Same rules and same rejections. 
+   * @return lifetimeMinSpendTarget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getLifetimeMinSpendTarget() {
+    return lifetimeMinSpendTarget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLifetimeMinSpendTarget(@javax.annotation.Nullable BigDecimal lifetimeMinSpendTarget) {
+    this.lifetimeMinSpendTarget = lifetimeMinSpendTarget;
+  }
+
+
   public UpdateAdSetRequestPlatformSpecificData promotedObject(@javax.annotation.Nullable UpdateAdSetRequestPlatformSpecificDataPromotedObject promotedObject) {
     this.promotedObject = promotedObject;
     return this;
@@ -201,12 +260,14 @@ public class UpdateAdSetRequestPlatformSpecificData {
         Objects.equals(this.billingEvent, updateAdSetRequestPlatformSpecificData.billingEvent) &&
         Objects.equals(this.startDate, updateAdSetRequestPlatformSpecificData.startDate) &&
         Objects.equals(this.endDate, updateAdSetRequestPlatformSpecificData.endDate) &&
+        Objects.equals(this.dailyMinSpendTarget, updateAdSetRequestPlatformSpecificData.dailyMinSpendTarget) &&
+        Objects.equals(this.lifetimeMinSpendTarget, updateAdSetRequestPlatformSpecificData.lifetimeMinSpendTarget) &&
         Objects.equals(this.promotedObject, updateAdSetRequestPlatformSpecificData.promotedObject);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(optimizationGoal, billingEvent, startDate, endDate, promotedObject);
+    return Objects.hash(optimizationGoal, billingEvent, startDate, endDate, dailyMinSpendTarget, lifetimeMinSpendTarget, promotedObject);
   }
 
   @Override
@@ -217,6 +278,8 @@ public class UpdateAdSetRequestPlatformSpecificData {
     sb.append("    billingEvent: ").append(toIndentedString(billingEvent)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    dailyMinSpendTarget: ").append(toIndentedString(dailyMinSpendTarget)).append("\n");
+    sb.append("    lifetimeMinSpendTarget: ").append(toIndentedString(lifetimeMinSpendTarget)).append("\n");
     sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -283,6 +346,16 @@ public class UpdateAdSetRequestPlatformSpecificData {
     // add `endDate` to the URL query string
     if (getEndDate() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sendDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndDate()))));
+    }
+
+    // add `dailyMinSpendTarget` to the URL query string
+    if (getDailyMinSpendTarget() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdailyMinSpendTarget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDailyMinSpendTarget()))));
+    }
+
+    // add `lifetimeMinSpendTarget` to the URL query string
+    if (getLifetimeMinSpendTarget() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slifetimeMinSpendTarget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLifetimeMinSpendTarget()))));
     }
 
     // add `promotedObject` to the URL query string

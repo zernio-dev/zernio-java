@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppFlowMessageRequestHeader.JSON_PROPERTY_TYPE,
   SendWhatsAppFlowMessageRequestHeader.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:06:04.756176364Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:17:01.537617571Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppFlowMessageRequestHeader {
   /**
    * Gets or Sets type

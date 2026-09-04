@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UndoRetweet200Response.JSON_PROPERTY_RETWEETED,
   UndoRetweet200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:06:04.756176364Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:17:01.537617571Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UndoRetweet200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

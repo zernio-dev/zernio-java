@@ -2,7 +2,7 @@
 
 # CreateStandaloneAdRequestPlatformSpecificData
 
-Platform-specific options. The platform is derived from `accountId`; sending options for a different platform returns a 400. LinkedIn (campaign bidding and delivery controls) and Meta (the bid trio) have options today.  **Meta**: `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root — the preferred home going forward. Sending the bid fields in BOTH places returns a 400 (`mutually_exclusive_fields`), and sending any of them in `adSetId` attach mode is a 400 too (the ad set already has its bid). 
+Platform-specific options. The platform is derived from `accountId`; sending options for a different platform returns a 400. LinkedIn (campaign bidding and delivery controls) and Meta (the bid trio) have options today.  **Meta**: `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root — the preferred home going forward. Sending the bid fields in BOTH places returns a 400 (`mutually_exclusive_fields`), and sending any of them in `adSetId` attach mode is a 400 too (the ad set already has its bid). `dailyMinSpendTarget` / `lifetimeMinSpendTarget` set the new ad set's minimum spend and live here only; they are rejected in `adSetId` attach mode as well. 
 
 ## oneOf schemas
 * [LinkedInAdsPlatformData](LinkedInAdsPlatformData.md)

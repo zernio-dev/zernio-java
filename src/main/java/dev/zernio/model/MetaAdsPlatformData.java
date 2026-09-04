@@ -37,9 +37,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   MetaAdsPlatformData.JSON_PROPERTY_BID_STRATEGY,
   MetaAdsPlatformData.JSON_PROPERTY_BID_AMOUNT,
-  MetaAdsPlatformData.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
+  MetaAdsPlatformData.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  MetaAdsPlatformData.JSON_PROPERTY_DAILY_MIN_SPEND_TARGET,
+  MetaAdsPlatformData.JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:06:04.756176364Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:17:01.537617571Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaAdsPlatformData {
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
@@ -52,6 +54,14 @@ public class MetaAdsPlatformData {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_DAILY_MIN_SPEND_TARGET = "dailyMinSpendTarget";
+  @javax.annotation.Nullable
+  private BigDecimal dailyMinSpendTarget;
+
+  public static final String JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET = "lifetimeMinSpendTarget";
+  @javax.annotation.Nullable
+  private BigDecimal lifetimeMinSpendTarget;
 
   public MetaAdsPlatformData() { 
   }
@@ -128,6 +138,54 @@ public class MetaAdsPlatformData {
   }
 
 
+  public MetaAdsPlatformData dailyMinSpendTarget(@javax.annotation.Nullable BigDecimal dailyMinSpendTarget) {
+    this.dailyMinSpendTarget = dailyMinSpendTarget;
+    return this;
+  }
+
+  /**
+   * Meta daily_min_spend_target on the ad set being created: the least it should spend per day, in whole currency units. It reserves a share of a CAMPAIGN budget, so it requires budgetLevel campaign or an existingCampaignId whose campaign has the budget (Advantage campaign budget / CBO); with an ad-set budget it is a 400, because Meta rejects a spend limit on an ad set that owns its budget. A target, not a guarantee. Mutually exclusive with lifetimeMinSpendTarget: the flavour must match the campaign budget type. Rejected with 400 on POST /v1/ads/boost and in adSetId attach mode: use PUT /v1/ads/ad-sets/{adSetId} for an ad set that already exists.
+   * @return dailyMinSpendTarget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DAILY_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getDailyMinSpendTarget() {
+    return dailyMinSpendTarget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DAILY_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDailyMinSpendTarget(@javax.annotation.Nullable BigDecimal dailyMinSpendTarget) {
+    this.dailyMinSpendTarget = dailyMinSpendTarget;
+  }
+
+
+  public MetaAdsPlatformData lifetimeMinSpendTarget(@javax.annotation.Nullable BigDecimal lifetimeMinSpendTarget) {
+    this.lifetimeMinSpendTarget = lifetimeMinSpendTarget;
+    return this;
+  }
+
+  /**
+   * Meta lifetime_min_spend_target: the lifetime-budget flavour of dailyMinSpendTarget, in whole currency units. Same rules and same rejections.
+   * @return lifetimeMinSpendTarget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getLifetimeMinSpendTarget() {
+    return lifetimeMinSpendTarget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLifetimeMinSpendTarget(@javax.annotation.Nullable BigDecimal lifetimeMinSpendTarget) {
+    this.lifetimeMinSpendTarget = lifetimeMinSpendTarget;
+  }
+
+
   /**
    * Return true if this MetaAdsPlatformData object is equal to o.
    */
@@ -142,12 +200,14 @@ public class MetaAdsPlatformData {
     MetaAdsPlatformData metaAdsPlatformData = (MetaAdsPlatformData) o;
     return Objects.equals(this.bidStrategy, metaAdsPlatformData.bidStrategy) &&
         Objects.equals(this.bidAmount, metaAdsPlatformData.bidAmount) &&
-        Objects.equals(this.roasAverageFloor, metaAdsPlatformData.roasAverageFloor);
+        Objects.equals(this.roasAverageFloor, metaAdsPlatformData.roasAverageFloor) &&
+        Objects.equals(this.dailyMinSpendTarget, metaAdsPlatformData.dailyMinSpendTarget) &&
+        Objects.equals(this.lifetimeMinSpendTarget, metaAdsPlatformData.lifetimeMinSpendTarget);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bidStrategy, bidAmount, roasAverageFloor);
+    return Objects.hash(bidStrategy, bidAmount, roasAverageFloor, dailyMinSpendTarget, lifetimeMinSpendTarget);
   }
 
   @Override
@@ -157,6 +217,8 @@ public class MetaAdsPlatformData {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    dailyMinSpendTarget: ").append(toIndentedString(dailyMinSpendTarget)).append("\n");
+    sb.append("    lifetimeMinSpendTarget: ").append(toIndentedString(lifetimeMinSpendTarget)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -217,6 +279,16 @@ public class MetaAdsPlatformData {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `dailyMinSpendTarget` to the URL query string
+    if (getDailyMinSpendTarget() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdailyMinSpendTarget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDailyMinSpendTarget()))));
+    }
+
+    // add `lifetimeMinSpendTarget` to the URL query string
+    if (getLifetimeMinSpendTarget() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slifetimeMinSpendTarget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLifetimeMinSpendTarget()))));
     }
 
     return joiner.toString();
