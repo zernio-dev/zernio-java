@@ -5939,7 +5939,7 @@ ApiResponse<Void>
 
 WhatsApp automatic event detected
 
-Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60;. Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements); when it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
 
 ### Example
 
@@ -6008,7 +6008,7 @@ null (empty response body)
 
 WhatsApp automatic event detected
 
-Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60;. Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements); when it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
 
 ### Example
 

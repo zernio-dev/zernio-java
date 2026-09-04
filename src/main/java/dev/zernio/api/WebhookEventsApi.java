@@ -90,7 +90,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T11:57:53.417199709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T14:13:48.731857626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4678,7 +4678,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp automatic event detected
-   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60;. Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements); when it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
    * @param onWhatsAppAutomaticEventRequest  (required)
    * @throws ApiException if fails to make API call
    */
@@ -4688,7 +4688,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp automatic event detected
-   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60;. Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements); when it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
    * @param onWhatsAppAutomaticEventRequest  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -4699,7 +4699,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp automatic event detected
-   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60;. Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements); when it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
    * @param onWhatsAppAutomaticEventRequest  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -4710,7 +4710,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp automatic event detected
-   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60;. Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements); when it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
    * @param onWhatsAppAutomaticEventRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
