@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListBroadcastRecipients200ResponseSummary.JSON_PROPERTY_READ,
   ListBroadcastRecipients200ResponseSummary.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:17:01.537617571Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T11:57:53.417199709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200ResponseSummary {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable

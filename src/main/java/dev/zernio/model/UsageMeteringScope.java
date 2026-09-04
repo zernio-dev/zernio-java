@@ -54,7 +54,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:17:01.537617571Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T11:57:53.417199709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = UsageMeteringScope.UsageMeteringScopeDeserializer.class)
 @JsonSerialize(using = UsageMeteringScope.UsageMeteringScopeSerializer.class)
 public class UsageMeteringScope extends AbstractOpenApiSchema {

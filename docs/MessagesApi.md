@@ -1895,6 +1895,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message sent |  -  |
 | **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send) |  -  |
+| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
@@ -1977,6 +1978,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Message sent |  -  |
 | **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send) |  -  |
+| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
