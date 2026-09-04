@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListInboxComments200ResponseMetaFailedAccountsInner.JSON_PROPERTY_CODE,
   ListInboxComments200ResponseMetaFailedAccountsInner.JSON_PROPERTY_RETRY_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:03:48.184686122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:06:04.756176364Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200ResponseMetaFailedAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

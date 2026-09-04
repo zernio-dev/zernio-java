@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   CreateLeadFormRequest.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY,
   CreateLeadFormRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:03:48.184686122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:06:04.756176364Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateLeadFormRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
