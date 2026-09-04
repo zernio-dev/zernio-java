@@ -67,7 +67,7 @@ import dev.zernio.ApiClient;
   AdTreeAdSet.JSON_PROPERTY_ADS,
   AdTreeAdSet.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-03T21:53:01.685956449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T09:01:21.516786559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSet {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable
@@ -564,7 +564,7 @@ public class AdTreeAdSet {
   }
 
   /**
-   * Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation: &#x60;_id&#x60;, &#x60;name&#x60;, &#x60;platform&#x60;, &#x60;status&#x60;, &#x60;configuredStatus&#x60;, &#x60;reviewStatus&#x60;, &#x60;budget&#x60;, &#x60;metrics&#x60;, &#x60;creative&#x60;, &#x60;goal&#x60; and the &#x60;platform*&#x60; ids are always included; &#x60;targeting&#x60; and &#x60;schedule&#x60; may be absent. &#x60;configuredStatus&#x60; (the ad&#39;s own on/off toggle) and &#x60;reviewStatus&#x60; (the platform&#39;s review verdict) are part of this contract, not incidental: a rejected ad is only distinguishable from a healthy one through &#x60;reviewStatus&#x60;. When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;.
+   * Individual ads within this ad set (capped at 100). When the ad set has more than 100 ads these are the 100 highest-spending over the requested date range, so this array depends on &#x60;fromDate&#x60;/&#x60;toDate&#x60;; &#x60;adCount&#x60; is always the true ad set size. Returns a subset of Ad fields from the aggregation: &#x60;_id&#x60;, &#x60;name&#x60;, &#x60;platform&#x60;, &#x60;status&#x60;, &#x60;configuredStatus&#x60;, &#x60;reviewStatus&#x60;, &#x60;budget&#x60;, &#x60;metrics&#x60;, &#x60;creative&#x60;, &#x60;goal&#x60; and the &#x60;platform*&#x60; ids are always included; &#x60;targeting&#x60; and &#x60;schedule&#x60; may be absent. &#x60;configuredStatus&#x60; (the ad&#39;s own on/off toggle) and &#x60;reviewStatus&#x60; (the platform&#39;s review verdict) are part of this contract, not incidental: a rejected ad is only distinguishable from a healthy one through &#x60;reviewStatus&#x60;. When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;.
    * @return ads
    */
   @javax.annotation.Nullable
