@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-04T09:01:21.516786559Z[Etc/UTC]
+- Build date: 2026-09-04T10:03:48.184686122Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1835,6 +1835,7 @@ Class | Method | HTTP request | Description
  - [GetAdsTimeline202Response](docs/GetAdsTimeline202Response.md)
  - [GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
  - [GetAllAccountsHealth200ResponseAccountsInner](docs/GetAllAccountsHealth200ResponseAccountsInner.md)
+ - [GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction](docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md)
  - [GetAllAccountsHealth200ResponseSummary](docs/GetAllAccountsHealth200ResponseSummary.md)
  - [GetAnalytics200Response](docs/GetAnalytics200Response.md)
  - [GetAnalytics400Response](docs/GetAnalytics400Response.md)
@@ -2647,7 +2648,6 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestTemplateElementsInner](docs/SendInboxMessageRequestTemplateElementsInner.md)
  - [SendInboxMessageRequestTemplateElementsInnerButtonsInner](docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md)
  - [SendPrivateReplyToComment200Response](docs/SendPrivateReplyToComment200Response.md)
- - [SendPrivateReplyToComment400Response](docs/SendPrivateReplyToComment400Response.md)
  - [SendPrivateReplyToCommentRequest](docs/SendPrivateReplyToCommentRequest.md)
  - [SendPrivateReplyToCommentRequestButtonsInner](docs/SendPrivateReplyToCommentRequestButtonsInner.md)
  - [SendPrivateReplyToCommentRequestButtonsInnerOneOf](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md)

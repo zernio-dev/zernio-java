@@ -19,6 +19,7 @@
 |**tokenExpiresAt** | **OffsetDateTime** |  |  [optional] |
 |**needsReconnect** | **Boolean** |  |  [optional] |
 |**issues** | **List&lt;String&gt;** |  |  [optional] |
+|**messagingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md) |  |  [optional] |
 
 
 

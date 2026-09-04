@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,9 +48,10 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_TOKEN_VALID,
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_TOKEN_EXPIRES_AT,
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_NEEDS_RECONNECT,
-  GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_ISSUES
+  GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_ISSUES,
+  GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_MESSAGING_RESTRICTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T09:01:21.516786559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:03:48.184686122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -135,6 +137,10 @@ public class GetAllAccountsHealth200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ISSUES = "issues";
   @javax.annotation.Nullable
   private List<String> issues = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGING_RESTRICTION = "messagingRestriction";
+  @javax.annotation.Nullable
+  private GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction;
 
   public GetAllAccountsHealth200ResponseAccountsInner() { 
   }
@@ -435,6 +441,30 @@ public class GetAllAccountsHealth200ResponseAccountsInner {
   }
 
 
+  public GetAllAccountsHealth200ResponseAccountsInner messagingRestriction(@javax.annotation.Nullable GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction) {
+    this.messagingRestriction = messagingRestriction;
+    return this;
+  }
+
+  /**
+   * Get messagingRestriction
+   * @return messagingRestriction
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_RESTRICTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction getMessagingRestriction() {
+    return messagingRestriction;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_RESTRICTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessagingRestriction(@javax.annotation.Nullable GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction) {
+    this.messagingRestriction = messagingRestriction;
+  }
+
+
   /**
    * Return true if this getAllAccountsHealth_200_response_accounts_inner object is equal to o.
    */
@@ -458,12 +488,13 @@ public class GetAllAccountsHealth200ResponseAccountsInner {
         Objects.equals(this.tokenValid, getAllAccountsHealth200ResponseAccountsInner.tokenValid) &&
         Objects.equals(this.tokenExpiresAt, getAllAccountsHealth200ResponseAccountsInner.tokenExpiresAt) &&
         Objects.equals(this.needsReconnect, getAllAccountsHealth200ResponseAccountsInner.needsReconnect) &&
-        Objects.equals(this.issues, getAllAccountsHealth200ResponseAccountsInner.issues);
+        Objects.equals(this.issues, getAllAccountsHealth200ResponseAccountsInner.issues) &&
+        Objects.equals(this.messagingRestriction, getAllAccountsHealth200ResponseAccountsInner.messagingRestriction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, platform, username, displayName, profileId, status, canPost, canFetchAnalytics, tokenValid, tokenExpiresAt, needsReconnect, issues);
+    return Objects.hash(accountId, platform, username, displayName, profileId, status, canPost, canFetchAnalytics, tokenValid, tokenExpiresAt, needsReconnect, issues, messagingRestriction);
   }
 
   @Override
@@ -482,6 +513,7 @@ public class GetAllAccountsHealth200ResponseAccountsInner {
     sb.append("    tokenExpiresAt: ").append(toIndentedString(tokenExpiresAt)).append("\n");
     sb.append("    needsReconnect: ").append(toIndentedString(needsReconnect)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
+    sb.append("    messagingRestriction: ").append(toIndentedString(messagingRestriction)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -591,6 +623,11 @@ public class GetAllAccountsHealth200ResponseAccountsInner {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getIssues().get(i)))));
       }
+    }
+
+    // add `messagingRestriction` to the URL query string
+    if (getMessagingRestriction() != null) {
+      joiner.add(getMessagingRestriction().toUrlQueryString(prefix + "messagingRestriction" + suffix));
     }
 
     return joiner.toString();

@@ -18677,7 +18677,9 @@ paths:
         cards and attachments to commenters who do not follow the account (Meta code 2, subcode
         1545133, returned here as a non-retryable 400 that says so), and the failed call still
         consumes the comment's single private reply. To reach non-followers send plain text and
-        add buttons once they reply. `quickReplies` and `buttons` are mutually exclusive.
+        add buttons once they reply. `quickReplies` and `buttons` are mutually exclusive. When
+        the comment's single private reply is spent (by this call or an earlier one) the 400
+        carries `details.privateReplyConsumed: true`; never retry it.
       operationId: sendPrivateReplyToComment
       parameters:
       - description: The media/post ID (Instagram media ID or Facebook post ID)
@@ -18747,24 +18749,60 @@ paths:
                   value:
                     error: Private replies to comments are only supported on Instagram
                       and Facebook.
-                    code: PLATFORM_LIMITATION
-                alreadyReplied:
-                  summary: Already sent a private reply
+                    type: invalid_request_error
+                    code: invalid_field_value
+                    param: accountId
+                followGated:
+                  summary: "Media refused, commenter does not follow the account (reply\
+                    \ consumed)"
                   value:
-                    error: "A private reply has already been sent to this comment,\
-                      \ or the 7-day reply window has expired. Only one private reply\
-                      \ per comment is allowed within 7 days."
+                    error: "Instagram refused this private reply because it carries\
+                      \ a card, buttons or an attachment and the commenter does not\
+                      \ follow this account. Meta delivers only plain text to non-followers.\
+                      \ This attempt consumed the comment's single private reply,\
+                      \ so do not retry it; send a text-only private reply to reach\
+                      \ non-followers."
+                    type: platform_error
+                    code: platform_api_error
+                    platform: instagram
+                    platformError:
+                      code: 2
+                      error_subcode: 1545133
+                      is_transient: false
+                      message: Service temporarily unavailable
+                      error_user_title: Your message can't be delivered
+                      error_user_msg: You can't send media to Jejum de Daniel unless
+                        they follow you.
+                    details:
+                      privateReplyConsumed: true
+                alreadyReplied:
+                  summary: "Already sent a private reply (reply consumed, Meta subcode\
+                    \ 2534023)"
+                  value:
+                    error: A private reply has already been sent to this comment.
+                      Instagram only allows one private reply per comment.
+                    type: platform_error
+                    code: platform_api_error
+                    platform: instagram
+                    details:
+                      privateReplyConsumed: true
                 commentTooOld:
                   summary: Comment older than 7 days
                   value:
-                    error: The comment is older than 7 days. Private replies can only
-                      be sent within 7 days of the comment being posted.
+                    error: The comment is older than 7 days. Instagram only allows
+                      private replies within 7 days of the comment being posted.
+                    type: platform_error
+                    code: platform_api_error
+                    platform: instagram
                 missingMessage:
                   summary: Missing message
                   value:
                     error: message is required and must be a non-empty string
+                    type: invalid_request_error
+                    code: missing_required_field
+                    param: message
               schema:
-                $ref: "#/components/schemas/sendPrivateReplyToComment_400_response"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Bad request
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -39206,8 +39244,9 @@ components:
           type: object
         details:
           additionalProperties: true
-          description: Additional structured context (e.g. field-level validation
-            errors).
+          description: "Additional structured context (e.g. field-level validation\
+            \ errors), for example `privateReplyConsumed` on the private-reply endpoint's\
+            \ 400 when the comment's single reply is already spent."
           type: object
     CommentAutomationAudience:
       description: |
@@ -56684,19 +56723,44 @@ components:
         needsReconnect:
           description: Number of accounts needing reconnection
           type: integer
+    getAllAccountsHealth_200_response_accounts_inner_messagingRestriction:
+      description: "Observed from Meta's own error subcodes on our own sends (2534122,\
+        \ 1893063, 2534029), not a live probe. Set on the first refused send and cleared\
+        \ when a later send succeeds, so it lags reality by one send in each direction."
+      example:
+        lastSeenAt: 2000-01-23T04:56:07.000+00:00
+        subcode: 2
+        message: message
+        firstSeenAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        subcode:
+          type: integer
+        message:
+          type: string
+        firstSeenAt:
+          format: date-time
+          type: string
+        lastSeenAt:
+          format: date-time
+          type: string
     getAllAccountsHealth_200_response_accounts_inner:
       example:
-        accountId: accountId
-        canPost: true
         needsReconnect: true
         displayName: displayName
-        profileId: profileId
         tokenValid: true
-        tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
+        messagingRestriction:
+          lastSeenAt: 2000-01-23T04:56:07.000+00:00
+          subcode: 2
+          message: message
+          firstSeenAt: 2000-01-23T04:56:07.000+00:00
         issues:
         - issues
         - issues
         platform: platform
+        accountId: accountId
+        canPost: true
+        profileId: profileId
+        tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
         username: username
         status: healthy
         canFetchAnalytics: true
@@ -56732,6 +56796,8 @@ components:
           items:
             type: string
           type: array
+        messagingRestriction:
+          $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_messagingRestriction"
     getAllAccountsHealth_200_response:
       example:
         summary:
@@ -56741,31 +56807,41 @@ components:
           warning: 1
           error: 5
         accounts:
-        - accountId: accountId
-          canPost: true
-          needsReconnect: true
+        - needsReconnect: true
           displayName: displayName
-          profileId: profileId
           tokenValid: true
-          tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
+          messagingRestriction:
+            lastSeenAt: 2000-01-23T04:56:07.000+00:00
+            subcode: 2
+            message: message
+            firstSeenAt: 2000-01-23T04:56:07.000+00:00
           issues:
           - issues
           - issues
           platform: platform
+          accountId: accountId
+          canPost: true
+          profileId: profileId
+          tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
           username: username
           status: healthy
           canFetchAnalytics: true
-        - accountId: accountId
-          canPost: true
-          needsReconnect: true
+        - needsReconnect: true
           displayName: displayName
-          profileId: profileId
           tokenValid: true
-          tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
+          messagingRestriction:
+            lastSeenAt: 2000-01-23T04:56:07.000+00:00
+            subcode: 2
+            message: message
+            firstSeenAt: 2000-01-23T04:56:07.000+00:00
           issues:
           - issues
           - issues
           platform: platform
+          accountId: accountId
+          canPost: true
+          profileId: profileId
+          tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
           username: username
           status: healthy
           canFetchAnalytics: true
@@ -56961,6 +57037,11 @@ components:
             required: true
             granted: true
           canFetchAnalytics: true
+        messagingRestriction:
+          lastSeenAt: 2000-01-23T04:56:07.000+00:00
+          subcode: 2
+          message: message
+          firstSeenAt: 2000-01-23T04:56:07.000+00:00
         issues:
         - issues
         - issues
@@ -57008,6 +57089,8 @@ components:
           items:
             type: string
           type: array
+        messagingRestriction:
+          $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_messagingRestriction"
         platformConnection:
           $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection"
     getAccountPosts_200_response_posts_inner:
@@ -68965,17 +69048,6 @@ components:
           - instagram
           - facebook
           example: instagram
-          type: string
-    sendPrivateReplyToComment_400_response:
-      example:
-        code: PLATFORM_LIMITATION
-        error: error
-      properties:
-        error:
-          type: string
-        code:
-          enum:
-          - PLATFORM_LIMITATION
           type: string
     retweetPost_request:
       properties:

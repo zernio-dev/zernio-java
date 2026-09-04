@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ErrorResponse.JSON_PROPERTY_PLATFORM_ERROR,
   ErrorResponse.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T09:01:21.516786559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:03:48.184686122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponse {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -287,7 +287,7 @@ public class ErrorResponse {
   }
 
   /**
-   * Additional structured context (e.g. field-level validation errors).
+   * Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent.
    * @return details
    */
   @javax.annotation.Nullable

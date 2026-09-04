@@ -14,7 +14,7 @@ Canonical error envelope. `error` is the human-readable message; `type`, `code`,
 |**param** | **String** | The request field that caused the error, when applicable. |  [optional] |
 |**platform** | **String** | Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error. |  [optional] |
 |**platformError** | **Map&lt;String, Object&gt;** | Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg.  |  [optional] |
-|**details** | **Map&lt;String, Object&gt;** | Additional structured context (e.g. field-level validation errors). |  [optional] |
+|**details** | **Map&lt;String, Object&gt;** | Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent. |  [optional] |
 
 
 

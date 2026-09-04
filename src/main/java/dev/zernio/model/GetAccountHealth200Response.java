@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetAccountHealth200ResponsePermissions;
 import dev.zernio.model.GetAccountHealth200ResponsePlatformConnection;
 import dev.zernio.model.GetAccountHealth200ResponseTokenStatus;
+import dev.zernio.model.GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,9 +48,10 @@ import dev.zernio.ApiClient;
   GetAccountHealth200Response.JSON_PROPERTY_PERMISSIONS,
   GetAccountHealth200Response.JSON_PROPERTY_ISSUES,
   GetAccountHealth200Response.JSON_PROPERTY_RECOMMENDATIONS,
+  GetAccountHealth200Response.JSON_PROPERTY_MESSAGING_RESTRICTION,
   GetAccountHealth200Response.JSON_PROPERTY_PLATFORM_CONNECTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T09:01:21.516786559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T10:03:48.184686122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200Response {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -123,6 +125,10 @@ public class GetAccountHealth200Response {
   public static final String JSON_PROPERTY_RECOMMENDATIONS = "recommendations";
   @javax.annotation.Nullable
   private List<String> recommendations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGING_RESTRICTION = "messagingRestriction";
+  @javax.annotation.Nullable
+  private GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction;
 
   public static final String JSON_PROPERTY_PLATFORM_CONNECTION = "platformConnection";
   @javax.annotation.Nullable
@@ -363,6 +369,30 @@ public class GetAccountHealth200Response {
   }
 
 
+  public GetAccountHealth200Response messagingRestriction(@javax.annotation.Nullable GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction) {
+    this.messagingRestriction = messagingRestriction;
+    return this;
+  }
+
+  /**
+   * Get messagingRestriction
+   * @return messagingRestriction
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_RESTRICTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction getMessagingRestriction() {
+    return messagingRestriction;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_RESTRICTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessagingRestriction(@javax.annotation.Nullable GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction) {
+    this.messagingRestriction = messagingRestriction;
+  }
+
+
   public GetAccountHealth200Response platformConnection(@javax.annotation.Nullable GetAccountHealth200ResponsePlatformConnection platformConnection) {
     this.platformConnection = platformConnection;
     return this;
@@ -408,12 +438,13 @@ public class GetAccountHealth200Response {
         Objects.equals(this.permissions, getAccountHealth200Response.permissions) &&
         Objects.equals(this.issues, getAccountHealth200Response.issues) &&
         Objects.equals(this.recommendations, getAccountHealth200Response.recommendations) &&
+        Objects.equals(this.messagingRestriction, getAccountHealth200Response.messagingRestriction) &&
         Objects.equals(this.platformConnection, getAccountHealth200Response.platformConnection);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, platform, username, displayName, status, tokenStatus, permissions, issues, recommendations, platformConnection);
+    return Objects.hash(accountId, platform, username, displayName, status, tokenStatus, permissions, issues, recommendations, messagingRestriction, platformConnection);
   }
 
   @Override
@@ -429,6 +460,7 @@ public class GetAccountHealth200Response {
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
     sb.append("    recommendations: ").append(toIndentedString(recommendations)).append("\n");
+    sb.append("    messagingRestriction: ").append(toIndentedString(messagingRestriction)).append("\n");
     sb.append("    platformConnection: ").append(toIndentedString(platformConnection)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -528,6 +560,11 @@ public class GetAccountHealth200Response {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRecommendations().get(i)))));
       }
+    }
+
+    // add `messagingRestriction` to the URL query string
+    if (getMessagingRestriction() != null) {
+      joiner.add(getMessagingRestriction().toUrlQueryString(prefix + "messagingRestriction" + suffix));
     }
 
     // add `platformConnection` to the URL query string

@@ -535,6 +535,7 @@ docs/GetAdsSearchTerms200ResponsePaging.md
 docs/GetAdsTimeline202Response.md
 docs/GetAllAccountsHealth200Response.md
 docs/GetAllAccountsHealth200ResponseAccountsInner.md
+docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md
 docs/GetAllAccountsHealth200ResponseSummary.md
 docs/GetAnalytics200Response.md
 docs/GetAnalytics400Response.md
@@ -1372,7 +1373,6 @@ docs/SendInboxMessageRequestTemplate.md
 docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
-docs/SendPrivateReplyToComment400Response.md
 docs/SendPrivateReplyToCommentRequest.md
 docs/SendPrivateReplyToCommentRequestButtonsInner.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
@@ -2440,6 +2440,7 @@ src/main/java/dev/zernio/model/GetAdsSearchTerms200ResponsePaging.java
 src/main/java/dev/zernio/model/GetAdsTimeline202Response.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200Response.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInner.java
+src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseSummary.java
 src/main/java/dev/zernio/model/GetAnalytics200Response.java
 src/main/java/dev/zernio/model/GetAnalytics400Response.java
@@ -3252,7 +3253,6 @@ src/main/java/dev/zernio/model/SendInboxMessageRequestTemplate.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInner.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.java
 src/main/java/dev/zernio/model/SendPrivateReplyToComment200Response.java
-src/main/java/dev/zernio/model/SendPrivateReplyToComment400Response.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequest.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInner.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf.java
@@ -3707,3 +3707,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestrictionTest.java
