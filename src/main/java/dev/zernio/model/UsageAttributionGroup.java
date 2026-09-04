@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   UsageAttributionGroup.JSON_PROPERTY_TOTAL_USD,
   UsageAttributionGroup.JSON_PROPERTY_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T14:45:08.741075590Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T15:20:23.359621895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageAttributionGroup {
   public static final String JSON_PROPERTY_BY_PRODUCT = "byProduct";
   @javax.annotation.Nullable

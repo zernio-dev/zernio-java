@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetAdAudience200Response.JSON_PROPERTY_AUDIENCE,
   GetAdAudience200Response.JSON_PROPERTY_META_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T14:45:08.741075590Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T15:20:23.359621895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAudience200Response {
   public static final String JSON_PROPERTY_AUDIENCE = "audience";
   @javax.annotation.Nullable

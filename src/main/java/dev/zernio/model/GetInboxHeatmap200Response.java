@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetInboxHeatmap200Response.JSON_PROPERTY_TO,
   GetInboxHeatmap200Response.JSON_PROPERTY_BUCKETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T14:45:08.741075590Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T15:20:23.359621895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxHeatmap200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
