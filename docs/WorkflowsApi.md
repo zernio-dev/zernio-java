@@ -254,7 +254,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
-| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, or a WhatsApp-only node on another platform) |  -  |
+| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, a WhatsApp-only node on another platform, or a WhatsApp interactive list node whose sections carry no rows) |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createWorkflowWithHttpInfo
@@ -329,7 +329,7 @@ ApiResponse<[**CreateWorkflow200Response**](CreateWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
-| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, or a WhatsApp-only node on another platform) |  -  |
+| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, a WhatsApp-only node on another platform, or a WhatsApp interactive list node whose sections carry no rows) |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -2084,7 +2084,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph, or a graph edit attempted while the workflow is active |  -  |
+| **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or a graph edit attempted while the workflow is active |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2162,7 +2162,7 @@ ApiResponse<[**UpdateWorkflow200Response**](UpdateWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph, or a graph edit attempted while the workflow is active |  -  |
+| **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or a graph edit attempted while the workflow is active |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

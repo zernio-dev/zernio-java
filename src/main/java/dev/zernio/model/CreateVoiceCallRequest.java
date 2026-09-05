@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CreateVoiceCallRequest.JSON_PROPERTY_AMD,
   CreateVoiceCallRequest.JSON_PROPERTY_VOICEMAIL_DROP_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T12:50:05.312122591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T13:16:41.658158108Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateVoiceCallRequest {
   public static final String JSON_PROPERTY_TO = "to";
   @javax.annotation.Nonnull

@@ -27931,7 +27931,8 @@ paths:
           description: Workflow created
         "400":
           description: "Invalid graph (duplicate node ids, edges referencing missing\
-            \ nodes, or a WhatsApp-only node on another platform)"
+            \ nodes, a WhatsApp-only node on another platform, or a WhatsApp interactive\
+            \ list node whose sections carry no rows)"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create workflow
@@ -28019,7 +28020,8 @@ paths:
                 $ref: "#/components/schemas/updateWorkflow_200_response"
           description: Workflow updated
         "400":
-          description: "Invalid graph, or a graph edit attempted while the workflow\
+          description: "Invalid graph (including a WhatsApp interactive list node\
+            \ whose sections carry no rows), or a graph edit attempted while the workflow\
             \ is active"
         "401":
           $ref: "#/components/responses/Unauthorized"
