@@ -43148,6 +43148,11 @@ components:
         call:
           durationSeconds: 0
           endReason: hangup
+          callErrors:
+          - code: 6
+            message: message
+          - code: 6
+            message: message
           startedAt: 2000-01-23T04:56:07.000+00:00
           phoneNumberId: phoneNumberId
           hangupCause: hangupCause
@@ -43158,6 +43163,7 @@ components:
             recordingCostUSD: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
           accountId: accountId
+          isVoicemail: true
           recordingExpiresAt: 2000-01-23T04:56:07.000+00:00
           metaCallId: metaCallId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -96632,6 +96638,11 @@ components:
       example:
         durationSeconds: 0
         endReason: hangup
+        callErrors:
+        - code: 6
+          message: message
+        - code: 6
+          message: message
         startedAt: 2000-01-23T04:56:07.000+00:00
         phoneNumberId: phoneNumberId
         hangupCause: hangupCause
@@ -96642,6 +96653,7 @@ components:
           recordingCostUSD: 5.962133916683182
           telnyxCostUSD: 1.4658129805029452
         accountId: accountId
+        isVoicemail: true
         recordingExpiresAt: 2000-01-23T04:56:07.000+00:00
         metaCallId: metaCallId
         endedAt: 2000-01-23T04:56:07.000+00:00
@@ -96697,6 +96709,19 @@ components:
             \ on non-SIP legs."
           nullable: true
           type: string
+        isVoicemail:
+          description: "True when the inbound call was handled by voicemail, whether\
+            \ scheduled or because the forward did not connect."
+          type: boolean
+        callErrors:
+          description: "Failures recorded on the call up to hangup (bridge failed,\
+            \ dial failed, recording error). Empty on a clean call. `message` is free-form\
+            \ diagnostic text and is not stable, do not parse it. `code` is 0 unless\
+            \ a provider code is known. Errors the carrier reports after hangup appear\
+            \ only on GET /v1/calls/{id}."
+          items:
+            $ref: "#/components/schemas/CallRecord_callErrors_inner"
+          type: array
         recordingUrl:
           type: string
         recordingExpiresAt:

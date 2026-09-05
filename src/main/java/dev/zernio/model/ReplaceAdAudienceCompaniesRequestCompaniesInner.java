@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ReplaceAdAudienceCompaniesRequestCompaniesInner.JSON_PROPERTY_WEBSITE,
   ReplaceAdAudienceCompaniesRequestCompaniesInner.JSON_PROPERTY_LINKEDIN_PAGE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T08:41:22.465934449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T12:50:05.312122591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplaceAdAudienceCompaniesRequestCompaniesInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

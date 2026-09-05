@@ -24,9 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CallRecordCallErrorsInner;
 import dev.zernio.model.WebhookPayloadCallEndedCallBilling;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -52,11 +55,13 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallEndedCall.JSON_PROPERTY_END_REASON,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_HANGUP_CAUSE,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_SIP_HANGUP_CAUSE,
+  WebhookPayloadCallEndedCall.JSON_PROPERTY_IS_VOICEMAIL,
+  WebhookPayloadCallEndedCall.JSON_PROPERTY_CALL_ERRORS,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_RECORDING_URL,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_RECORDING_EXPIRES_AT,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_BILLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T08:41:22.465934449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T12:50:05.312122591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallEndedCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -180,6 +185,14 @@ public class WebhookPayloadCallEndedCall {
 
   public static final String JSON_PROPERTY_SIP_HANGUP_CAUSE = "sipHangupCause";
   private JsonNullable<String> sipHangupCause = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_IS_VOICEMAIL = "isVoicemail";
+  @javax.annotation.Nullable
+  private Boolean isVoicemail;
+
+  public static final String JSON_PROPERTY_CALL_ERRORS = "callErrors";
+  @javax.annotation.Nullable
+  private List<CallRecordCallErrorsInner> callErrors = new ArrayList<>();
 
   public static final String JSON_PROPERTY_RECORDING_URL = "recordingUrl";
   @javax.annotation.Nullable
@@ -532,6 +545,62 @@ public class WebhookPayloadCallEndedCall {
   }
 
 
+  public WebhookPayloadCallEndedCall isVoicemail(@javax.annotation.Nullable Boolean isVoicemail) {
+    this.isVoicemail = isVoicemail;
+    return this;
+  }
+
+  /**
+   * True when the inbound call was handled by voicemail, whether scheduled or because the forward did not connect.
+   * @return isVoicemail
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_VOICEMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsVoicemail() {
+    return isVoicemail;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_VOICEMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsVoicemail(@javax.annotation.Nullable Boolean isVoicemail) {
+    this.isVoicemail = isVoicemail;
+  }
+
+
+  public WebhookPayloadCallEndedCall callErrors(@javax.annotation.Nullable List<CallRecordCallErrorsInner> callErrors) {
+    this.callErrors = callErrors;
+    return this;
+  }
+
+  public WebhookPayloadCallEndedCall addCallErrorsItem(CallRecordCallErrorsInner callErrorsItem) {
+    if (this.callErrors == null) {
+      this.callErrors = new ArrayList<>();
+    }
+    this.callErrors.add(callErrorsItem);
+    return this;
+  }
+
+  /**
+   * Failures recorded on the call up to hangup (bridge failed, dial failed, recording error). Empty on a clean call. &#x60;message&#x60; is free-form diagnostic text and is not stable, do not parse it. &#x60;code&#x60; is 0 unless a provider code is known. Errors the carrier reports after hangup appear only on GET /v1/calls/{id}.
+   * @return callErrors
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALL_ERRORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CallRecordCallErrorsInner> getCallErrors() {
+    return callErrors;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALL_ERRORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallErrors(@javax.annotation.Nullable List<CallRecordCallErrorsInner> callErrors) {
+    this.callErrors = callErrors;
+  }
+
+
   public WebhookPayloadCallEndedCall recordingUrl(@javax.annotation.Nullable String recordingUrl) {
     this.recordingUrl = recordingUrl;
     return this;
@@ -629,6 +698,8 @@ public class WebhookPayloadCallEndedCall {
         Objects.equals(this.endReason, webhookPayloadCallEndedCall.endReason) &&
         equalsNullable(this.hangupCause, webhookPayloadCallEndedCall.hangupCause) &&
         equalsNullable(this.sipHangupCause, webhookPayloadCallEndedCall.sipHangupCause) &&
+        Objects.equals(this.isVoicemail, webhookPayloadCallEndedCall.isVoicemail) &&
+        Objects.equals(this.callErrors, webhookPayloadCallEndedCall.callErrors) &&
         Objects.equals(this.recordingUrl, webhookPayloadCallEndedCall.recordingUrl) &&
         Objects.equals(this.recordingExpiresAt, webhookPayloadCallEndedCall.recordingExpiresAt) &&
         Objects.equals(this.billing, webhookPayloadCallEndedCall.billing);
@@ -640,7 +711,7 @@ public class WebhookPayloadCallEndedCall {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, hashCodeNullable(metaCallId), accountId, phoneNumberId, direction, from, to, startedAt, endedAt, durationSeconds, endReason, hashCodeNullable(hangupCause), hashCodeNullable(sipHangupCause), recordingUrl, recordingExpiresAt, billing);
+    return Objects.hash(id, hashCodeNullable(metaCallId), accountId, phoneNumberId, direction, from, to, startedAt, endedAt, durationSeconds, endReason, hashCodeNullable(hangupCause), hashCodeNullable(sipHangupCause), isVoicemail, callErrors, recordingUrl, recordingExpiresAt, billing);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -667,6 +738,8 @@ public class WebhookPayloadCallEndedCall {
     sb.append("    endReason: ").append(toIndentedString(endReason)).append("\n");
     sb.append("    hangupCause: ").append(toIndentedString(hangupCause)).append("\n");
     sb.append("    sipHangupCause: ").append(toIndentedString(sipHangupCause)).append("\n");
+    sb.append("    isVoicemail: ").append(toIndentedString(isVoicemail)).append("\n");
+    sb.append("    callErrors: ").append(toIndentedString(callErrors)).append("\n");
     sb.append("    recordingUrl: ").append(toIndentedString(recordingUrl)).append("\n");
     sb.append("    recordingExpiresAt: ").append(toIndentedString(recordingExpiresAt)).append("\n");
     sb.append("    billing: ").append(toIndentedString(billing)).append("\n");
@@ -780,6 +853,21 @@ public class WebhookPayloadCallEndedCall {
     // add `sipHangupCause` to the URL query string
     if (getSipHangupCause() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssipHangupCause%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSipHangupCause()))));
+    }
+
+    // add `isVoicemail` to the URL query string
+    if (getIsVoicemail() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisVoicemail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsVoicemail()))));
+    }
+
+    // add `callErrors` to the URL query string
+    if (getCallErrors() != null) {
+      for (int i = 0; i < getCallErrors().size(); i++) {
+        if (getCallErrors().get(i) != null) {
+          joiner.add(getCallErrors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scallErrors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `recordingUrl` to the URL query string
