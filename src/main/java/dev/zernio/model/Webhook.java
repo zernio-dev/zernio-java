@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS,
   Webhook.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T15:20:23.359621895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T08:41:22.465934449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -461,7 +461,7 @@ public class Webhook {
   }
 
   /**
-   * Consecutive delivery failures (resets on success, webhook disabled at 10)
+   * Consecutive terminal delivery failures (resets to 0 on any successful delivery). Auto-disable only triggers when the endpoint has had no successful delivery within a 3-day window AND either reaches 20 consecutive terminal failures or has been failing continuously for 3 days; any success within that window keeps the endpoint enabled regardless of the count.
    * @return failureCount
    */
   @javax.annotation.Nullable

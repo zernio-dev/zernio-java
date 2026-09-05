@@ -47,7 +47,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T15:20:23.359621895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T08:41:22.465934449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = UploadWhatsAppFlowJsonRequestFlowJson.UploadWhatsAppFlowJsonRequestFlowJsonDeserializer.class)
 @JsonSerialize(using = UploadWhatsAppFlowJsonRequestFlowJson.UploadWhatsAppFlowJsonRequestFlowJsonSerializer.class)
 public class UploadWhatsAppFlowJsonRequestFlowJson extends AbstractOpenApiSchema {

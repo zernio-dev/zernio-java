@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetFacebookPostReactions200ResponseBreakdown.JSON_PROPERTY_ANGRY,
   GetFacebookPostReactions200ResponseBreakdown.JSON_PROPERTY_CARE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-04T15:20:23.359621895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T08:41:22.465934449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetFacebookPostReactions200ResponseBreakdown {
   public static final String JSON_PROPERTY_LIKE = "like";
   @javax.annotation.Nullable
