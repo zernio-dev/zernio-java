@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -36,7 +37,7 @@ import dev.zernio.ApiClient;
   GetTikTokCreatorInfo200ResponsePostingLimits.JSON_PROPERTY_MAX_VIDEO_DURATION_SEC,
   GetTikTokCreatorInfo200ResponsePostingLimits.JSON_PROPERTY_INTERACTION_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:39:11.471486688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T14:47:16.485628759Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokCreatorInfo200ResponsePostingLimits {
   public static final String JSON_PROPERTY_MAX_VIDEO_DURATION_SEC = "maxVideoDurationSec";
   @javax.annotation.Nullable
@@ -44,7 +45,7 @@ public class GetTikTokCreatorInfo200ResponsePostingLimits {
 
   public static final String JSON_PROPERTY_INTERACTION_SETTINGS = "interactionSettings";
   @javax.annotation.Nullable
-  private Object interactionSettings;
+  private GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings interactionSettings;
 
   public GetTikTokCreatorInfo200ResponsePostingLimits() { 
   }
@@ -73,26 +74,26 @@ public class GetTikTokCreatorInfo200ResponsePostingLimits {
   }
 
 
-  public GetTikTokCreatorInfo200ResponsePostingLimits interactionSettings(@javax.annotation.Nullable Object interactionSettings) {
+  public GetTikTokCreatorInfo200ResponsePostingLimits interactionSettings(@javax.annotation.Nullable GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings interactionSettings) {
     this.interactionSettings = interactionSettings;
     return this;
   }
 
   /**
-   * Available interaction toggles (comment, duet, stitch) and their defaults
+   * Get interactionSettings
    * @return interactionSettings
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_INTERACTION_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getInteractionSettings() {
+  public GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings getInteractionSettings() {
     return interactionSettings;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_INTERACTION_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInteractionSettings(@javax.annotation.Nullable Object interactionSettings) {
+  public void setInteractionSettings(@javax.annotation.Nullable GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings interactionSettings) {
     this.interactionSettings = interactionSettings;
   }
 
@@ -178,7 +179,7 @@ public class GetTikTokCreatorInfo200ResponsePostingLimits {
 
     // add `interactionSettings` to the URL query string
     if (getInteractionSettings() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sinteractionSettings%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInteractionSettings()))));
+      joiner.add(getInteractionSettings().toUrlQueryString(prefix + "interactionSettings" + suffix));
     }
 
     return joiner.toString();

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-07T11:39:11.471486688Z[Etc/UTC]
+- Build date: 2026-09-07T14:47:16.485628759Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2055,6 +2055,10 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponseCommercialContentTypesInner](docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md)
  - [GetTikTokCreatorInfo200ResponseCreator](docs/GetTikTokCreatorInfo200ResponseCreator.md)
  - [GetTikTokCreatorInfo200ResponsePostingLimits](docs/GetTikTokCreatorInfo200ResponsePostingLimits.md)
+ - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings.md)
+ - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment.md)
+ - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md)
+ - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md)
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)

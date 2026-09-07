@@ -755,6 +755,10 @@ docs/GetTikTokCreatorInfo200Response.md
 docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md
 docs/GetTikTokCreatorInfo200ResponseCreator.md
 docs/GetTikTokCreatorInfo200ResponsePostingLimits.md
+docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings.md
+docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment.md
+docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md
+docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md
 docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
@@ -2663,6 +2667,10 @@ src/main/java/dev/zernio/model/GetTikTokCreatorInfo200Response.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCreator.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimits.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.java
 src/main/java/dev/zernio/model/GetTrackingTag200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
@@ -3713,3 +3721,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowCommentTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuetTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitchTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsTest.java

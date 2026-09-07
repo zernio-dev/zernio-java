@@ -54,7 +54,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:39:11.471486688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T14:47:16.485628759Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = SubmitWhatsAppNumberKycRequestDocumentsInner.SubmitWhatsAppNumberKycRequestDocumentsInnerDeserializer.class)
 @JsonSerialize(using = SubmitWhatsAppNumberKycRequestDocumentsInner.SubmitWhatsAppNumberKycRequestDocumentsInnerSerializer.class)
 public class SubmitWhatsAppNumberKycRequestDocumentsInner extends AbstractOpenApiSchema {

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ReviewPhoneNumberKycPacketRequest.JSON_PROPERTY_ADDRESS,
   ReviewPhoneNumberKycPacketRequest.JSON_PROPERTY_DOCS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:39:11.471486688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T14:47:16.485628759Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewPhoneNumberKycPacketRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull

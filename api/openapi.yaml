@@ -7557,9 +7557,21 @@ paths:
                 postingLimits:
                   maxVideoDurationSec: 600
                   interactionSettings:
-                    comment: true
-                    duet: true
-                    stitch: true
+                    allow_comment:
+                      enabled: true
+                      required: true
+                      default: false
+                      label: Allow Comment
+                    allow_duet:
+                      enabled: true
+                      required: true
+                      default: false
+                      label: Allow Duet
+                    allow_stitch:
+                      enabled: false
+                      required: true
+                      default: false
+                      label: Allow Stitch
                 commercialContentTypes:
                 - value: none
                   label: No Commercial Content
@@ -57743,18 +57755,132 @@ components:
         label:
           description: Human-readable label
           type: string
+    getTikTokCreatorInfo_200_response_postingLimits_interactionSettings_allow_comment:
+      description: Descriptor for the allow_comment toggle.
+      example:
+        default: true
+        label: label
+        enabled: true
+        required: true
+      properties:
+        enabled:
+          description: "Whether the creator permits this interaction. False means\
+            \ they disabled it in the TikTok app. This is availability, never the\
+            \ value the user selected."
+          type: boolean
+        required:
+          description: "Whether tiktokSettings.allow_comment must be supplied when\
+            \ creating a post. Always true, because TikTok forbids defaulting it."
+          type: boolean
+        default:
+          description: "Initial value a post composer should render. A UI seed only,\
+            \ never applied server-side when the field is omitted."
+          type: boolean
+        label:
+          description: Human-readable toggle label.
+          type: string
+    getTikTokCreatorInfo_200_response_postingLimits_interactionSettings_allow_duet:
+      description: Descriptor for the allow_duet toggle. Null when mediaType is photo.
+      example:
+        default: true
+        label: label
+        enabled: true
+        required: true
+      properties:
+        enabled:
+          description: "Whether the creator permits this interaction. False means\
+            \ they disabled it in the TikTok app. This is availability, never the\
+            \ value the user selected."
+          type: boolean
+        required:
+          description: "Whether tiktokSettings.allow_duet must be supplied when creating\
+            \ a post. Always true, because TikTok forbids defaulting it."
+          type: boolean
+        default:
+          description: "Initial value a post composer should render. A UI seed only,\
+            \ never applied server-side when the field is omitted."
+          type: boolean
+        label:
+          description: Human-readable toggle label.
+          type: string
+    getTikTokCreatorInfo_200_response_postingLimits_interactionSettings_allow_stitch:
+      description: Descriptor for the allow_stitch toggle. Null when mediaType is
+        photo.
+      example:
+        default: true
+        label: label
+        enabled: true
+        required: true
+      properties:
+        enabled:
+          description: "Whether the creator permits this interaction. False means\
+            \ they disabled it in the TikTok app. This is availability, never the\
+            \ value the user selected."
+          type: boolean
+        required:
+          description: "Whether tiktokSettings.allow_stitch must be supplied when\
+            \ creating a post. Always true, because TikTok forbids defaulting it."
+          type: boolean
+        default:
+          description: "Initial value a post composer should render. A UI seed only,\
+            \ never applied server-side when the field is omitted."
+          type: boolean
+        label:
+          description: Human-readable toggle label.
+          type: string
+    getTikTokCreatorInfo_200_response_postingLimits_interactionSettings:
+      description: "Per-interaction descriptors for the comment, duet and stitch toggles.\
+        \ Each key matches the tiktokSettings field of the same name on the create-post\
+        \ request. allow_duet and allow_stitch are null when mediaType is photo, because\
+        \ TikTok does not apply duet or stitch to photo posts."
+      example:
+        allow_comment:
+          default: true
+          label: label
+          enabled: true
+          required: true
+        allow_stitch:
+          default: true
+          label: label
+          enabled: true
+          required: true
+        allow_duet:
+          default: true
+          label: label
+          enabled: true
+          required: true
+      properties:
+        allow_comment:
+          $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_postingLimits_interactionSettings_allow_comment"
+        allow_duet:
+          $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_postingLimits_interactionSettings_allow_duet"
+        allow_stitch:
+          $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_postingLimits_interactionSettings_allow_stitch"
     getTikTokCreatorInfo_200_response_postingLimits:
       example:
         maxVideoDurationSec: 0
-        interactionSettings: "{}"
+        interactionSettings:
+          allow_comment:
+            default: true
+            label: label
+            enabled: true
+            required: true
+          allow_stitch:
+            default: true
+            label: label
+            enabled: true
+            required: true
+          allow_duet:
+            default: true
+            label: label
+            enabled: true
+            required: true
       properties:
         maxVideoDurationSec:
           description: Maximum video duration in seconds
           type: integer
         interactionSettings:
-          description: "Available interaction toggles (comment, duet, stitch) and\
-            \ their defaults"
-          type: object
+          $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_postingLimits_interactionSettings"
     getTikTokCreatorInfo_200_response_commercialContentTypes_inner:
       example:
         label: label
@@ -57796,7 +57922,22 @@ components:
           value: value
         postingLimits:
           maxVideoDurationSec: 0
-          interactionSettings: "{}"
+          interactionSettings:
+            allow_comment:
+              default: true
+              label: label
+              enabled: true
+              required: true
+            allow_stitch:
+              default: true
+              label: label
+              enabled: true
+              required: true
+            allow_duet:
+              default: true
+              label: label
+              enabled: true
+              required: true
       properties:
         creator:
           $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_creator"
