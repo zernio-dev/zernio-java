@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Webhook payload for the review.updated event. Fired when the reviewer edits their text or rating, or when a reply is added (via the API or directly on the platform). Same shape as review.new. When a reply is present, review.hasReply is true and review.reply is populated. 
+ * Webhook payload for the review.updated event. Fired when the reviewer edits their text or rating, or when a reply is posted through POST /v1/inbox/reviews/{reviewId}/reply. A reply written directly in Google&#39;s own interface does NOT fire this event: Google emits no notification when a reviewReply is written. Same shape as review.new. When a reply is present, review.hasReply is true and review.reply is populated. 
  */
 @JsonPropertyOrder({
   WebhookPayloadReviewUpdated.JSON_PROPERTY_ID,
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadReviewUpdated.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadReviewUpdated.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:56:42.718170660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T10:40:54.051391253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadReviewUpdated {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

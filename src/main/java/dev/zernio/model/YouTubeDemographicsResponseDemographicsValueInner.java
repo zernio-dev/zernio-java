@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   YouTubeDemographicsResponseDemographicsValueInner.JSON_PROPERTY_DIMENSION,
   YouTubeDemographicsResponseDemographicsValueInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:56:42.718170660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T10:40:54.051391253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDemographicsResponseDemographicsValueInner {
   public static final String JSON_PROPERTY_DIMENSION = "dimension";
   @javax.annotation.Nullable
