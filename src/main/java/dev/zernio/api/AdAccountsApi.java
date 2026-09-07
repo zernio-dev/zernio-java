@@ -18,6 +18,8 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AddAccountCallouts201Response;
+import dev.zernio.model.AddAccountCalloutsRequest;
 import dev.zernio.model.CreateCustomConversionRequest;
 import dev.zernio.model.CreateHighDemandPeriod201Response;
 import dev.zernio.model.CreateHighDemandPeriodRequest;
@@ -33,6 +35,7 @@ import dev.zernio.model.GetDsaRecommendations200Response;
 import dev.zernio.model.GetValueRuleSet200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListAccountCallouts200Response;
 import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAdLabels200Response;
 import dev.zernio.model.ListAdStudies200Response;
@@ -42,6 +45,8 @@ import dev.zernio.model.ListHighDemandPeriods200Response;
 import dev.zernio.model.ListMetaBusinesses200Response;
 import dev.zernio.model.ListValueRuleSets200Response;
 import java.time.LocalDate;
+import dev.zernio.model.RemoveAccountCallout200Response;
+import dev.zernio.model.RemoveAccountCalloutRequest;
 import dev.zernio.model.UpdateAdAccount200Response;
 import dev.zernio.model.UpdateAdAccountRequest;
 import dev.zernio.model.UpdateValueRuleSet200Response;
@@ -72,7 +77,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -187,6 +192,129 @@ public class AdAccountsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Add account-level callout extensions
+   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * @param addAccountCalloutsRequest  (required)
+   * @return AddAccountCallouts201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAccountCallouts201Response addAccountCallouts(@javax.annotation.Nonnull AddAccountCalloutsRequest addAccountCalloutsRequest) throws ApiException {
+    return addAccountCallouts(addAccountCalloutsRequest, null);
+  }
+
+  /**
+   * Add account-level callout extensions
+   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * @param addAccountCalloutsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AddAccountCallouts201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAccountCallouts201Response addAccountCallouts(@javax.annotation.Nonnull AddAccountCalloutsRequest addAccountCalloutsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AddAccountCallouts201Response> localVarResponse = addAccountCalloutsWithHttpInfo(addAccountCalloutsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Add account-level callout extensions
+   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * @param addAccountCalloutsRequest  (required)
+   * @return ApiResponse&lt;AddAccountCallouts201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAccountCallouts201Response> addAccountCalloutsWithHttpInfo(@javax.annotation.Nonnull AddAccountCalloutsRequest addAccountCalloutsRequest) throws ApiException {
+    return addAccountCalloutsWithHttpInfo(addAccountCalloutsRequest, null);
+  }
+
+  /**
+   * Add account-level callout extensions
+   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * @param addAccountCalloutsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AddAccountCallouts201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAccountCallouts201Response> addAccountCalloutsWithHttpInfo(@javax.annotation.Nonnull AddAccountCalloutsRequest addAccountCalloutsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addAccountCalloutsRequestBuilder(addAccountCalloutsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("addAccountCallouts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AddAccountCallouts201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AddAccountCallouts201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AddAccountCallouts201Response>() {});
+        
+
+        return new ApiResponse<AddAccountCallouts201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder addAccountCalloutsRequestBuilder(@javax.annotation.Nonnull AddAccountCalloutsRequest addAccountCalloutsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'addAccountCalloutsRequest' is set
+    if (addAccountCalloutsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addAccountCalloutsRequest' when calling addAccountCallouts");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/callouts";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addAccountCalloutsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -1597,6 +1725,144 @@ public class AdAccountsApi {
   }
 
   /**
+   * List account-level callout extensions
+   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @return ListAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAccountCallouts200Response listAccountCallouts(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAccountCallouts(accountId, customerId, null);
+  }
+
+  /**
+   * List account-level callout extensions
+   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAccountCallouts200Response listAccountCallouts(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAccountCallouts200Response> localVarResponse = listAccountCalloutsWithHttpInfo(accountId, customerId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List account-level callout extensions
+   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @return ApiResponse&lt;ListAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAccountCallouts200Response> listAccountCalloutsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAccountCalloutsWithHttpInfo(accountId, customerId, null);
+  }
+
+  /**
+   * List account-level callout extensions
+   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAccountCallouts200Response> listAccountCalloutsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAccountCalloutsRequestBuilder(accountId, customerId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAccountCallouts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAccountCallouts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAccountCallouts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAccountCallouts200Response>() {});
+        
+
+        return new ApiResponse<ListAccountCallouts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAccountCalloutsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountCallouts");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/callouts";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List ad accounts
    * Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
    * @param accountId Social account ID (required)
@@ -2770,6 +3036,129 @@ public class AdAccountsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove an account-level callout extension
+   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * @param removeAccountCalloutRequest  (required)
+   * @return RemoveAccountCallout200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAccountCallout200Response removeAccountCallout(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest) throws ApiException {
+    return removeAccountCallout(removeAccountCalloutRequest, null);
+  }
+
+  /**
+   * Remove an account-level callout extension
+   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * @param removeAccountCalloutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveAccountCallout200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAccountCallout200Response removeAccountCallout(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveAccountCallout200Response> localVarResponse = removeAccountCalloutWithHttpInfo(removeAccountCalloutRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove an account-level callout extension
+   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * @param removeAccountCalloutRequest  (required)
+   * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAccountCallout200Response> removeAccountCalloutWithHttpInfo(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest) throws ApiException {
+    return removeAccountCalloutWithHttpInfo(removeAccountCalloutRequest, null);
+  }
+
+  /**
+   * Remove an account-level callout extension
+   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * @param removeAccountCalloutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAccountCallout200Response> removeAccountCalloutWithHttpInfo(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeAccountCalloutRequestBuilder(removeAccountCalloutRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeAccountCallout", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveAccountCallout200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveAccountCallout200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveAccountCallout200Response>() {});
+        
+
+        return new ApiResponse<RemoveAccountCallout200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeAccountCalloutRequestBuilder(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'removeAccountCalloutRequest' is set
+    if (removeAccountCalloutRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'removeAccountCalloutRequest' when calling removeAccountCallout");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/callouts";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(removeAccountCalloutRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

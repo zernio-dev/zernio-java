@@ -22,6 +22,8 @@ import dev.zernio.model.AddConversionAssociations200Response;
 import dev.zernio.model.AddConversionAssociationsRequest;
 import dev.zernio.model.AdjustConversions200Response;
 import dev.zernio.model.AdjustConversionsRequest;
+import dev.zernio.model.CreateConversionAction201Response;
+import dev.zernio.model.CreateConversionActionRequest;
 import dev.zernio.model.CreateConversionDestination201Response;
 import dev.zernio.model.CreateConversionDestinationRequest;
 import dev.zernio.model.ErrorResponse;
@@ -29,6 +31,8 @@ import dev.zernio.model.GetConversionDestination200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.GetConversionsQuality200Response;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListConversionActions200Response;
 import dev.zernio.model.ListConversionAssociations200Response;
 import dev.zernio.model.ListConversionDestinations200Response;
 import dev.zernio.model.RemoveConversionAssociations200Response;
@@ -61,7 +65,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -427,6 +431,129 @@ public class ConversionsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(adjustConversionsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a website conversion action
+   * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+   * @param createConversionActionRequest  (required)
+   * @return CreateConversionAction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionAction201Response createConversionAction(@javax.annotation.Nonnull CreateConversionActionRequest createConversionActionRequest) throws ApiException {
+    return createConversionAction(createConversionActionRequest, null);
+  }
+
+  /**
+   * Create a website conversion action
+   * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+   * @param createConversionActionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateConversionAction201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionAction201Response createConversionAction(@javax.annotation.Nonnull CreateConversionActionRequest createConversionActionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateConversionAction201Response> localVarResponse = createConversionActionWithHttpInfo(createConversionActionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a website conversion action
+   * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+   * @param createConversionActionRequest  (required)
+   * @return ApiResponse&lt;CreateConversionAction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionAction201Response> createConversionActionWithHttpInfo(@javax.annotation.Nonnull CreateConversionActionRequest createConversionActionRequest) throws ApiException {
+    return createConversionActionWithHttpInfo(createConversionActionRequest, null);
+  }
+
+  /**
+   * Create a website conversion action
+   * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+   * @param createConversionActionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateConversionAction201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionAction201Response> createConversionActionWithHttpInfo(@javax.annotation.Nonnull CreateConversionActionRequest createConversionActionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createConversionActionRequestBuilder(createConversionActionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createConversionAction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateConversionAction201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateConversionAction201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateConversionAction201Response>() {});
+        
+
+        return new ApiResponse<CreateConversionAction201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createConversionActionRequestBuilder(@javax.annotation.Nonnull CreateConversionActionRequest createConversionActionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createConversionActionRequest' is set
+    if (createConversionActionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createConversionActionRequest' when calling createConversionAction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/conversions/actions";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createConversionActionRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1144,6 +1271,150 @@ public class ConversionsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "destinationId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("destinationId", destinationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List conversion actions and their tag snippets
+   * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+   * @param accountId SocialAccount _id (must be a googleads account). (required)
+   * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
+   * @param type Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)
+   * @return ListConversionActions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListConversionActions200Response listConversionActions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String type) throws ApiException {
+    return listConversionActions(accountId, customerId, type, null);
+  }
+
+  /**
+   * List conversion actions and their tag snippets
+   * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+   * @param accountId SocialAccount _id (must be a googleads account). (required)
+   * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
+   * @param type Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListConversionActions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListConversionActions200Response listConversionActions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String type, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListConversionActions200Response> localVarResponse = listConversionActionsWithHttpInfo(accountId, customerId, type, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List conversion actions and their tag snippets
+   * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+   * @param accountId SocialAccount _id (must be a googleads account). (required)
+   * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
+   * @param type Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)
+   * @return ApiResponse&lt;ListConversionActions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListConversionActions200Response> listConversionActionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String type) throws ApiException {
+    return listConversionActionsWithHttpInfo(accountId, customerId, type, null);
+  }
+
+  /**
+   * List conversion actions and their tag snippets
+   * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+   * @param accountId SocialAccount _id (must be a googleads account). (required)
+   * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
+   * @param type Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListConversionActions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListConversionActions200Response> listConversionActionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String type, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listConversionActionsRequestBuilder(accountId, customerId, type, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listConversionActions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListConversionActions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListConversionActions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListConversionActions200Response>() {});
+        
+
+        return new ApiResponse<ListConversionActions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listConversionActionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String type, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listConversionActions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/conversions/actions";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "type";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

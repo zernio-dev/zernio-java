@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**addConversionAssociationsWithHttpInfo**](ConversionsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns |
 | [**adjustConversions**](ConversionsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions |
 | [**adjustConversionsWithHttpInfo**](ConversionsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions |
+| [**createConversionAction**](ConversionsApi.md#createConversionAction) | **POST** /v1/ads/conversions/actions | Create a website conversion action |
+| [**createConversionActionWithHttpInfo**](ConversionsApi.md#createConversionActionWithHttpInfo) | **POST** /v1/ads/conversions/actions | Create a website conversion action |
 | [**createConversionDestination**](ConversionsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**createConversionDestinationWithHttpInfo**](ConversionsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**deleteConversionDestination**](ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
@@ -18,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionMetricsWithHttpInfo**](ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**getConversionsQuality**](ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getConversionsQualityWithHttpInfo**](ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
+| [**listConversionActions**](ConversionsApi.md#listConversionActions) | **GET** /v1/ads/conversions/actions | List conversion actions and their tag snippets |
+| [**listConversionActionsWithHttpInfo**](ConversionsApi.md#listConversionActionsWithHttpInfo) | **GET** /v1/ads/conversions/actions | List conversion actions and their tag snippets |
 | [**listConversionAssociations**](ConversionsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
 | [**listConversionAssociationsWithHttpInfo**](ConversionsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
 | [**listConversionDestinations**](ConversionsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
@@ -347,6 +351,160 @@ ApiResponse<[**AdjustConversions200Response**](AdjustConversions200Response.md)>
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Conversion adjustments are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
+
+
+## createConversionAction
+
+> CreateConversionAction201Response createConversionAction(createConversionActionRequest)
+
+Create a website conversion action
+
+Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateConversionActionRequest createConversionActionRequest = new CreateConversionActionRequest(); // CreateConversionActionRequest | 
+        try {
+            CreateConversionAction201Response result = apiInstance.createConversionAction(createConversionActionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createConversionAction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createConversionActionRequest** | [**CreateConversionActionRequest**](CreateConversionActionRequest.md)|  | |
+
+### Return type
+
+[**CreateConversionAction201Response**](CreateConversionAction201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The created conversion action, with its tag snippets. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Conversion actions are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
+
+## createConversionActionWithHttpInfo
+
+> ApiResponse<CreateConversionAction201Response> createConversionAction createConversionActionWithHttpInfo(createConversionActionRequest)
+
+Create a website conversion action
+
+Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateConversionActionRequest createConversionActionRequest = new CreateConversionActionRequest(); // CreateConversionActionRequest | 
+        try {
+            ApiResponse<CreateConversionAction201Response> response = apiInstance.createConversionActionWithHttpInfo(createConversionActionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createConversionAction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createConversionActionRequest** | [**CreateConversionActionRequest**](CreateConversionActionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateConversionAction201Response**](CreateConversionAction201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The created conversion action, with its tag snippets. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Conversion actions are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
 
 
 ## createConversionDestination
@@ -1165,6 +1323,168 @@ ApiResponse<[**GetConversionsQuality200Response**](GetConversionsQuality200Respo
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **405** | Platform does not expose Event Match Quality (non-Meta). |  -  |
+
+
+## listConversionActions
+
+> ListConversionActions200Response listConversionActions(accountId, customerId, type)
+
+List conversion actions and their tag snippets
+
+Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String accountId = "accountId_example"; // String | SocialAccount _id (must be a googleads account).
+        String customerId = "customerId_example"; // String | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer.
+        String type = "type_example"; // String | Filter by Google's ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS).
+        try {
+            ListConversionActions200Response result = apiInstance.listConversionActions(accountId, customerId, type);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listConversionActions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| SocialAccount _id (must be a googleads account). | |
+| **customerId** | **String**| Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional] |
+| **type** | **String**| Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). | [optional] |
+
+### Return type
+
+[**ListConversionActions200Response**](ListConversionActions200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The resolved customer and its conversion actions. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Conversion actions are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
+
+## listConversionActionsWithHttpInfo
+
+> ApiResponse<ListConversionActions200Response> listConversionActions listConversionActionsWithHttpInfo(accountId, customerId, type)
+
+List conversion actions and their tag snippets
+
+Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String accountId = "accountId_example"; // String | SocialAccount _id (must be a googleads account).
+        String customerId = "customerId_example"; // String | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer.
+        String type = "type_example"; // String | Filter by Google's ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS).
+        try {
+            ApiResponse<ListConversionActions200Response> response = apiInstance.listConversionActionsWithHttpInfo(accountId, customerId, type);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listConversionActions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| SocialAccount _id (must be a googleads account). | |
+| **customerId** | **String**| Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional] |
+| **type** | **String**| Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). | [optional] |
+
+### Return type
+
+ApiResponse<[**ListConversionActions200Response**](ListConversionActions200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The resolved customer and its conversion actions. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Conversion actions are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
 
 
 ## listConversionAssociations

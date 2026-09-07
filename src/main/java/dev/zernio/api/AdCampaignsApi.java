@@ -32,6 +32,8 @@ import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
 import dev.zernio.model.BulkUpdateAdCampaignStatusRequest;
 import dev.zernio.model.CreateAdCampaign201Response;
 import dev.zernio.model.CreateAdCampaignRequest;
+import dev.zernio.model.CreateAdSet201Response;
+import dev.zernio.model.CreateAdSetRequest;
 import dev.zernio.model.CreateStandaloneAd200Response;
 import dev.zernio.model.CreateStandaloneAd201Response;
 import dev.zernio.model.CreateStandaloneAdRequest;
@@ -50,10 +52,12 @@ import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdSetDetails200Response;
 import dev.zernio.model.GetAdTree202Response;
 import dev.zernio.model.GetAdsTimeline202Response;
+import dev.zernio.model.GetCampaignTargeting200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdCampaigns200Response;
 import dev.zernio.model.ListAdKeywords200Response;
+import dev.zernio.model.ListAdSets200Response;
 import dev.zernio.model.ListAds202Response;
 import dev.zernio.model.ListCampaignNegativeKeywords200Response;
 import java.time.LocalDate;
@@ -72,6 +76,8 @@ import dev.zernio.model.UpdateAdSet200Response;
 import dev.zernio.model.UpdateAdSetRequest;
 import dev.zernio.model.UpdateAdSetStatus200Response;
 import dev.zernio.model.UpdateAdStatus200Response;
+import dev.zernio.model.UpdateCampaignTargeting200Response;
+import dev.zernio.model.UpdateCampaignTargetingRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -98,7 +104,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -838,6 +844,136 @@ public class AdCampaignsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdCampaignRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a standalone ad group
+   * Google Ads compliance row C.190: creates an ad group WITHOUT an ad, under an existing campaign. Ads join it later via &#x60;existingAdGroupId&#x60; on POST /v1/ads/create. Google only; every other platform returns 501.  Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The new ad group has no ad yet, so it will not appear in GET /v1/ads/tree (built purely from &#x60;ads&#x60; rows) until one is added; use GET /v1/ads/ad-sets to see it in the meantime.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * @param createAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
+   * @return CreateAdSet201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdSet201Response createAdSet(@javax.annotation.Nonnull CreateAdSetRequest createAdSetRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return createAdSet(createAdSetRequest, idempotencyKey, null);
+  }
+
+  /**
+   * Create a standalone ad group
+   * Google Ads compliance row C.190: creates an ad group WITHOUT an ad, under an existing campaign. Ads join it later via &#x60;existingAdGroupId&#x60; on POST /v1/ads/create. Google only; every other platform returns 501.  Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The new ad group has no ad yet, so it will not appear in GET /v1/ads/tree (built purely from &#x60;ads&#x60; rows) until one is added; use GET /v1/ads/ad-sets to see it in the meantime.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * @param createAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateAdSet201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdSet201Response createAdSet(@javax.annotation.Nonnull CreateAdSetRequest createAdSetRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdSet201Response> localVarResponse = createAdSetWithHttpInfo(createAdSetRequest, idempotencyKey, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a standalone ad group
+   * Google Ads compliance row C.190: creates an ad group WITHOUT an ad, under an existing campaign. Ads join it later via &#x60;existingAdGroupId&#x60; on POST /v1/ads/create. Google only; every other platform returns 501.  Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The new ad group has no ad yet, so it will not appear in GET /v1/ads/tree (built purely from &#x60;ads&#x60; rows) until one is added; use GET /v1/ads/ad-sets to see it in the meantime.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * @param createAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
+   * @return ApiResponse&lt;CreateAdSet201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdSet201Response> createAdSetWithHttpInfo(@javax.annotation.Nonnull CreateAdSetRequest createAdSetRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return createAdSetWithHttpInfo(createAdSetRequest, idempotencyKey, null);
+  }
+
+  /**
+   * Create a standalone ad group
+   * Google Ads compliance row C.190: creates an ad group WITHOUT an ad, under an existing campaign. Ads join it later via &#x60;existingAdGroupId&#x60; on POST /v1/ads/create. Google only; every other platform returns 501.  Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The new ad group has no ad yet, so it will not appear in GET /v1/ads/tree (built purely from &#x60;ads&#x60; rows) until one is added; use GET /v1/ads/ad-sets to see it in the meantime.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * @param createAdSetRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAdSet201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdSet201Response> createAdSetWithHttpInfo(@javax.annotation.Nonnull CreateAdSetRequest createAdSetRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAdSetRequestBuilder(createAdSetRequest, idempotencyKey, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createAdSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateAdSet201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAdSet201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdSet201Response>() {});
+        
+
+        return new ApiResponse<CreateAdSet201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createAdSetRequestBuilder(@javax.annotation.Nonnull CreateAdSetRequest createAdSetRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createAdSetRequest' is set
+    if (createAdSetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createAdSetRequest' when calling createAdSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdSetRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2410,6 +2546,143 @@ public class AdCampaignsApi {
   }
 
   /**
+   * Read a Google campaign&#39;s device, location, and language targeting
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the live campaign state so an integrator can build an editor around it. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
+   * @return GetCampaignTargeting200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignTargeting200Response getCampaignTargeting(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform) throws ApiException {
+    return getCampaignTargeting(campaignId, platform, null);
+  }
+
+  /**
+   * Read a Google campaign&#39;s device, location, and language targeting
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the live campaign state so an integrator can build an editor around it. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetCampaignTargeting200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignTargeting200Response getCampaignTargeting(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetCampaignTargeting200Response> localVarResponse = getCampaignTargetingWithHttpInfo(campaignId, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read a Google campaign&#39;s device, location, and language targeting
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the live campaign state so an integrator can build an editor around it. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
+   * @return ApiResponse&lt;GetCampaignTargeting200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignTargeting200Response> getCampaignTargetingWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform) throws ApiException {
+    return getCampaignTargetingWithHttpInfo(campaignId, platform, null);
+  }
+
+  /**
+   * Read a Google campaign&#39;s device, location, and language targeting
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the live campaign state so an integrator can build an editor around it. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetCampaignTargeting200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignTargeting200Response> getCampaignTargetingWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCampaignTargetingRequestBuilder(campaignId, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCampaignTargeting", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetCampaignTargeting200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetCampaignTargeting200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCampaignTargeting200Response>() {});
+        
+
+        return new ApiResponse<GetCampaignTargeting200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCampaignTargetingRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling getCampaignTargeting");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/targeting"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List campaigns
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
    * @param includeEmpty Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)
@@ -2777,6 +3050,146 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("negative", negative));
     localVarQueryParameterBaseName = "search";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List ad sets
+   * Ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. Reads the &#x60;ad_sets&#x60; table directly, independent of the &#x60;ads&#x60; rollup GET /v1/ads/tree uses, so a just-created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here even though it is invisible in the tree until an ad joins it via &#x60;existingAdGroupId&#x60;. Returns at most 500 rows, newest first.
+   * @param accountId Social account ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param platform  (optional)
+   * @return ListAdSets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdSets200Response listAdSets(@javax.annotation.Nullable String accountId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platform) throws ApiException {
+    return listAdSets(accountId, campaignId, platform, null);
+  }
+
+  /**
+   * List ad sets
+   * Ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. Reads the &#x60;ad_sets&#x60; table directly, independent of the &#x60;ads&#x60; rollup GET /v1/ads/tree uses, so a just-created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here even though it is invisible in the tree until an ad joins it via &#x60;existingAdGroupId&#x60;. Returns at most 500 rows, newest first.
+   * @param accountId Social account ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAdSets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdSets200Response listAdSets(@javax.annotation.Nullable String accountId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdSets200Response> localVarResponse = listAdSetsWithHttpInfo(accountId, campaignId, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List ad sets
+   * Ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. Reads the &#x60;ad_sets&#x60; table directly, independent of the &#x60;ads&#x60; rollup GET /v1/ads/tree uses, so a just-created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here even though it is invisible in the tree until an ad joins it via &#x60;existingAdGroupId&#x60;. Returns at most 500 rows, newest first.
+   * @param accountId Social account ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param platform  (optional)
+   * @return ApiResponse&lt;ListAdSets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdSets200Response> listAdSetsWithHttpInfo(@javax.annotation.Nullable String accountId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platform) throws ApiException {
+    return listAdSetsWithHttpInfo(accountId, campaignId, platform, null);
+  }
+
+  /**
+   * List ad sets
+   * Ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. Reads the &#x60;ad_sets&#x60; table directly, independent of the &#x60;ads&#x60; rollup GET /v1/ads/tree uses, so a just-created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here even though it is invisible in the tree until an ad joins it via &#x60;existingAdGroupId&#x60;. Returns at most 500 rows, newest first.
+   * @param accountId Social account ID (optional)
+   * @param campaignId Platform campaign ID (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdSets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdSets200Response> listAdSetsWithHttpInfo(@javax.annotation.Nullable String accountId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdSetsRequestBuilder(accountId, campaignId, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdSets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdSets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdSets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdSets200Response>() {});
+        
+
+        return new ApiResponse<ListAdSets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdSetsRequestBuilder(@javax.annotation.Nullable String accountId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "campaignId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignId", campaignId));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -4317,6 +4730,138 @@ public class AdCampaignsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdKeywordRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Edit a Google campaign&#39;s device, location, or language targeting
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param updateCampaignTargetingRequest  (required)
+   * @return UpdateCampaignTargeting200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignTargeting200Response updateCampaignTargeting(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignTargetingRequest updateCampaignTargetingRequest) throws ApiException {
+    return updateCampaignTargeting(campaignId, updateCampaignTargetingRequest, null);
+  }
+
+  /**
+   * Edit a Google campaign&#39;s device, location, or language targeting
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param updateCampaignTargetingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateCampaignTargeting200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignTargeting200Response updateCampaignTargeting(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignTargetingRequest updateCampaignTargetingRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateCampaignTargeting200Response> localVarResponse = updateCampaignTargetingWithHttpInfo(campaignId, updateCampaignTargetingRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Edit a Google campaign&#39;s device, location, or language targeting
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param updateCampaignTargetingRequest  (required)
+   * @return ApiResponse&lt;UpdateCampaignTargeting200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignTargeting200Response> updateCampaignTargetingWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignTargetingRequest updateCampaignTargetingRequest) throws ApiException {
+    return updateCampaignTargetingWithHttpInfo(campaignId, updateCampaignTargetingRequest, null);
+  }
+
+  /**
+   * Edit a Google campaign&#39;s device, location, or language targeting
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400. 
+   * @param campaignId Google platform campaign ID (required)
+   * @param updateCampaignTargetingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateCampaignTargeting200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignTargeting200Response> updateCampaignTargetingWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignTargetingRequest updateCampaignTargetingRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateCampaignTargetingRequestBuilder(campaignId, updateCampaignTargetingRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateCampaignTargeting", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateCampaignTargeting200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateCampaignTargeting200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateCampaignTargeting200Response>() {});
+        
+
+        return new ApiResponse<UpdateCampaignTargeting200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateCampaignTargetingRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignTargetingRequest updateCampaignTargetingRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling updateCampaignTargeting");
+    }
+    // verify the required parameter 'updateCampaignTargetingRequest' is set
+    if (updateCampaignTargetingRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateCampaignTargetingRequest' when calling updateCampaignTargeting");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/targeting"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateCampaignTargetingRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

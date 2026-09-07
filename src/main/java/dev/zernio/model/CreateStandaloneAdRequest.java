@@ -162,7 +162,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -2666,7 +2666,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;], [&#39;de&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code for a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;, \&quot;zh_TW\&quot;). Unknown codes are rejected. Other ad platforms use their own language-code systems.
+   * e.g. [\&quot;en\&quot;,\&quot;es\&quot;]. Google: campaign language targeting (language_constant) using Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); unknown codes return 400. On Meta, a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code for a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;, \&quot;zh_TW\&quot;); unknown codes are rejected. Other ad platforms use their own language-code systems.
    * @return languages
    */
   @javax.annotation.Nullable

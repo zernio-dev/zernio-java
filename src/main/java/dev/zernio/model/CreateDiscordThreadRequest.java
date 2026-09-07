@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateDiscordThreadRequest.JSON_PROPERTY_MESSAGE_ID,
   CreateDiscordThreadRequest.JSON_PROPERTY_AUTO_ARCHIVE_DURATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateDiscordThreadRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
