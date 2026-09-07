@@ -62,7 +62,7 @@ import dev.zernio.ApiClient;
   CreatePostRequest.JSON_PROPERTY_QUEUED_FROM_PROFILE,
   CreatePostRequest.JSON_PROPERTY_QUEUE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T16:47:16.123166731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -201,7 +201,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * Get mediaItems
+   * Media attached to every platform in the request (a platform entry can override it with &#x60;customMedia&#x60;). Each entry needs a publicly reachable HTTPS &#x60;url&#x60;; &#x60;type&#x60; (image, video, gif, document) is inferred from the URL extension when omitted and a &#x60;type&#x60; that contradicts the extension is rejected with 400. Upload files with &#x60;POST /v1/media/presign&#x60; first; per-platform size, duration and format limits are listed on each platform schema.
    * @return mediaItems
    */
   @javax.annotation.Nullable
@@ -257,7 +257,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * Get scheduledFor
+   * When to publish. Required unless &#x60;publishNow&#x60; is true, &#x60;queuedFromProfile&#x60; is set, or the post is a draft. An ISO 8601 value with a &#x60;Z&#x60; or offset (&#x60;2026-01-15T10:00:00Z&#x60;, &#x60;2026-01-15T11:00:00+01:00&#x60;) is taken as-is; a value without one (&#x60;2026-01-15T10:00:00&#x60; or &#x60;2026-01-15 10:00&#x60;) is read as local time in &#x60;timezone&#x60;. A value already in the past is published synchronously in the same request. Ignored when &#x60;publishNow&#x60; is true.
    * @return scheduledFor
    */
   @javax.annotation.Nullable
@@ -281,7 +281,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * Get publishNow
+   * Publish to every platform synchronously in this request instead of scheduling; the response then carries each platform result and &#x60;platformPostUrl&#x60;, with HTTP 207 when some platforms failed. Takes precedence over &#x60;scheduledFor&#x60;; ignored when &#x60;isDraft&#x60; is true.
    * @return publishNow
    */
   @javax.annotation.Nullable
@@ -329,7 +329,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * Get timezone
+   * IANA timezone (&#x60;Europe/Madrid&#x60;, &#x60;America/New_York&#x60;) used to interpret a &#x60;scheduledFor&#x60; (root or per-platform) that carries no &#x60;Z&#x60; or offset. Has no effect on values that already carry one. An unknown name returns 400 when &#x60;scheduledFor&#x60; is set.
    * @return timezone
    */
   @javax.annotation.Nullable
@@ -449,7 +449,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * Get crosspostingEnabled
+   * Stored on the post and echoed back on reads. Publishing does not branch on it: every entry in &#x60;platforms&#x60; is published regardless, so treat it as a label for your own tooling.
    * @return crosspostingEnabled
    */
   @javax.annotation.Nullable
@@ -481,7 +481,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * Get metadata
+   * Free-form key/value pairs of your own, stored on the post and returned on reads and in webhook payloads. Zernio also writes the bookkeeping keys &#x60;usageCounted&#x60;, &#x60;usageRefunded&#x60; and &#x60;hidden&#x60; into this object; do not set them, and they are stripped from webhook payloads.
    * @return metadata
    */
   @javax.annotation.Nullable

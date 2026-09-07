@@ -34,9 +34,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreateTrackingTagRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
-  CreateTrackingTagRequest.JSON_PROPERTY_NAME
+  CreateTrackingTagRequest.JSON_PROPERTY_NAME,
+  CreateTrackingTagRequest.JSON_PROPERTY_DEFAULT_EVENT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T16:47:16.123166731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTrackingTagRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull
@@ -45,6 +46,65 @@ public class CreateTrackingTagRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
   private String name;
+
+  /**
+   * OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately.
+   */
+  public enum DefaultEventTypeEnum {
+    ORDER_CREATED(String.valueOf("order_created")),
+    
+    LEAD_CREATED(String.valueOf("lead_created")),
+    
+    ITEMS_ADDED(String.valueOf("items_added")),
+    
+    CONTENTS_VIEWED(String.valueOf("contents_viewed")),
+    
+    CHECKOUT_STARTED(String.valueOf("checkout_started")),
+    
+    REGISTRATION_COMPLETED(String.valueOf("registration_completed")),
+    
+    SUBSCRIPTION_CREATED(String.valueOf("subscription_created")),
+    
+    TRIAL_STARTED(String.valueOf("trial_started")),
+    
+    APPOINTMENT_SCHEDULED(String.valueOf("appointment_scheduled")),
+    
+    PAGE_VIEWED(String.valueOf("page_viewed")),
+    
+    APP_INSTALLED(String.valueOf("app_installed")),
+    
+    APP_OPENED(String.valueOf("app_opened"));
+
+    private String value;
+
+    DefaultEventTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DefaultEventTypeEnum fromValue(String value) {
+      for (DefaultEventTypeEnum b : DefaultEventTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_DEFAULT_EVENT_TYPE = "defaultEventType";
+  @javax.annotation.Nullable
+  private DefaultEventTypeEnum defaultEventType;
 
   public CreateTrackingTagRequest() { 
   }
@@ -97,6 +157,30 @@ public class CreateTrackingTagRequest {
   }
 
 
+  public CreateTrackingTagRequest defaultEventType(@javax.annotation.Nullable DefaultEventTypeEnum defaultEventType) {
+    this.defaultEventType = defaultEventType;
+    return this;
+  }
+
+  /**
+   * OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately.
+   * @return defaultEventType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_EVENT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public DefaultEventTypeEnum getDefaultEventType() {
+    return defaultEventType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_EVENT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDefaultEventType(@javax.annotation.Nullable DefaultEventTypeEnum defaultEventType) {
+    this.defaultEventType = defaultEventType;
+  }
+
+
   /**
    * Return true if this createTrackingTag_request object is equal to o.
    */
@@ -110,12 +194,13 @@ public class CreateTrackingTagRequest {
     }
     CreateTrackingTagRequest createTrackingTagRequest = (CreateTrackingTagRequest) o;
     return Objects.equals(this.adAccountId, createTrackingTagRequest.adAccountId) &&
-        Objects.equals(this.name, createTrackingTagRequest.name);
+        Objects.equals(this.name, createTrackingTagRequest.name) &&
+        Objects.equals(this.defaultEventType, createTrackingTagRequest.defaultEventType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(adAccountId, name);
+    return Objects.hash(adAccountId, name, defaultEventType);
   }
 
   @Override
@@ -124,6 +209,7 @@ public class CreateTrackingTagRequest {
     sb.append("class CreateTrackingTagRequest {\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    defaultEventType: ").append(toIndentedString(defaultEventType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +265,11 @@ public class CreateTrackingTagRequest {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `defaultEventType` to the URL query string
+    if (getDefaultEventType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdefaultEventType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultEventType()))));
     }
 
     return joiner.toString();
