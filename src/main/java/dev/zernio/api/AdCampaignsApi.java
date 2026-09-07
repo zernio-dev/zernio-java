@@ -20,6 +20,8 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeResponse;
+import dev.zernio.model.AddAdKeywords201Response;
+import dev.zernio.model.AddAdKeywordsRequest;
 import dev.zernio.model.AdsListResponse;
 import dev.zernio.model.AdsTimelineResponse;
 import dev.zernio.model.AttachCampaignAssets201Response;
@@ -53,18 +55,23 @@ import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdCampaigns200Response;
 import dev.zernio.model.ListAdKeywords200Response;
 import dev.zernio.model.ListAds202Response;
+import dev.zernio.model.ListCampaignNegativeKeywords200Response;
 import java.time.LocalDate;
+import dev.zernio.model.RemoveAdKeyword200Response;
+import dev.zernio.model.ReplaceCampaignNegativeKeywords200Response;
+import dev.zernio.model.ReplaceCampaignNegativeKeywordsRequest;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdCampaign200Response;
 import dev.zernio.model.UpdateAdCampaignRequest;
 import dev.zernio.model.UpdateAdCampaignStatus200Response;
 import dev.zernio.model.UpdateAdCampaignStatusRequest;
+import dev.zernio.model.UpdateAdKeyword200Response;
+import dev.zernio.model.UpdateAdKeywordRequest;
 import dev.zernio.model.UpdateAdRequest;
 import dev.zernio.model.UpdateAdSet200Response;
 import dev.zernio.model.UpdateAdSetRequest;
 import dev.zernio.model.UpdateAdSetStatus200Response;
 import dev.zernio.model.UpdateAdStatus200Response;
-import dev.zernio.model.UpdateAdStatusRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -91,7 +98,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -206,6 +213,129 @@ public class AdCampaignsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Add Search keywords to an ad group
+   * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+   * @param addAdKeywordsRequest  (required)
+   * @return AddAdKeywords201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAdKeywords201Response addAdKeywords(@javax.annotation.Nonnull AddAdKeywordsRequest addAdKeywordsRequest) throws ApiException {
+    return addAdKeywords(addAdKeywordsRequest, null);
+  }
+
+  /**
+   * Add Search keywords to an ad group
+   * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+   * @param addAdKeywordsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AddAdKeywords201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAdKeywords201Response addAdKeywords(@javax.annotation.Nonnull AddAdKeywordsRequest addAdKeywordsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AddAdKeywords201Response> localVarResponse = addAdKeywordsWithHttpInfo(addAdKeywordsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Add Search keywords to an ad group
+   * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+   * @param addAdKeywordsRequest  (required)
+   * @return ApiResponse&lt;AddAdKeywords201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAdKeywords201Response> addAdKeywordsWithHttpInfo(@javax.annotation.Nonnull AddAdKeywordsRequest addAdKeywordsRequest) throws ApiException {
+    return addAdKeywordsWithHttpInfo(addAdKeywordsRequest, null);
+  }
+
+  /**
+   * Add Search keywords to an ad group
+   * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+   * @param addAdKeywordsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AddAdKeywords201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAdKeywords201Response> addAdKeywordsWithHttpInfo(@javax.annotation.Nonnull AddAdKeywordsRequest addAdKeywordsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addAdKeywordsRequestBuilder(addAdKeywordsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("addAdKeywords", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AddAdKeywords201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AddAdKeywords201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AddAdKeywords201Response>() {});
+        
+
+        return new ApiResponse<AddAdKeywords201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder addAdKeywordsRequestBuilder(@javax.annotation.Nonnull AddAdKeywordsRequest addAdKeywordsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'addAdKeywordsRequest' is set
+    if (addAdKeywordsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addAdKeywordsRequest' when calling addAdKeywords");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/keywords";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addAdKeywordsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -2892,6 +3022,393 @@ public class AdCampaignsApi {
   }
 
   /**
+   * List campaign-level negative keywords
+   * Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+   * @param campaignId Platform campaign ID (required)
+   * @param platform Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)
+   * @return ListCampaignNegativeKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListCampaignNegativeKeywords200Response listCampaignNegativeKeywords(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform) throws ApiException {
+    return listCampaignNegativeKeywords(campaignId, platform, null);
+  }
+
+  /**
+   * List campaign-level negative keywords
+   * Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+   * @param campaignId Platform campaign ID (required)
+   * @param platform Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListCampaignNegativeKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListCampaignNegativeKeywords200Response listCampaignNegativeKeywords(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListCampaignNegativeKeywords200Response> localVarResponse = listCampaignNegativeKeywordsWithHttpInfo(campaignId, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List campaign-level negative keywords
+   * Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+   * @param campaignId Platform campaign ID (required)
+   * @param platform Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)
+   * @return ApiResponse&lt;ListCampaignNegativeKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCampaignNegativeKeywords200Response> listCampaignNegativeKeywordsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform) throws ApiException {
+    return listCampaignNegativeKeywordsWithHttpInfo(campaignId, platform, null);
+  }
+
+  /**
+   * List campaign-level negative keywords
+   * Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+   * @param campaignId Platform campaign ID (required)
+   * @param platform Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListCampaignNegativeKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCampaignNegativeKeywords200Response> listCampaignNegativeKeywordsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listCampaignNegativeKeywordsRequestBuilder(campaignId, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listCampaignNegativeKeywords", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListCampaignNegativeKeywords200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListCampaignNegativeKeywords200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCampaignNegativeKeywords200Response>() {});
+        
+
+        return new ApiResponse<ListCampaignNegativeKeywords200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listCampaignNegativeKeywordsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling listCampaignNegativeKeywords");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/negative-keywords"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove a Search keyword
+   * Removes one keyword criterion (positive or negative) from its ad group (M.140).
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @return RemoveAdKeyword200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAdKeyword200Response removeAdKeyword(@javax.annotation.Nonnull String keywordId) throws ApiException {
+    return removeAdKeyword(keywordId, null);
+  }
+
+  /**
+   * Remove a Search keyword
+   * Removes one keyword criterion (positive or negative) from its ad group (M.140).
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveAdKeyword200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAdKeyword200Response removeAdKeyword(@javax.annotation.Nonnull String keywordId, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveAdKeyword200Response> localVarResponse = removeAdKeywordWithHttpInfo(keywordId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove a Search keyword
+   * Removes one keyword criterion (positive or negative) from its ad group (M.140).
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @return ApiResponse&lt;RemoveAdKeyword200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAdKeyword200Response> removeAdKeywordWithHttpInfo(@javax.annotation.Nonnull String keywordId) throws ApiException {
+    return removeAdKeywordWithHttpInfo(keywordId, null);
+  }
+
+  /**
+   * Remove a Search keyword
+   * Removes one keyword criterion (positive or negative) from its ad group (M.140).
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveAdKeyword200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAdKeyword200Response> removeAdKeywordWithHttpInfo(@javax.annotation.Nonnull String keywordId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeAdKeywordRequestBuilder(keywordId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeAdKeyword", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveAdKeyword200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveAdKeyword200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveAdKeyword200Response>() {});
+        
+
+        return new ApiResponse<RemoveAdKeyword200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeAdKeywordRequestBuilder(@javax.annotation.Nonnull String keywordId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'keywordId' is set
+    if (keywordId == null) {
+      throw new ApiException(400, "Missing the required parameter 'keywordId' when calling removeAdKeyword");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/keywords/{keywordId}"
+        .replace("{keywordId}", ApiClient.urlEncode(keywordId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Replace campaign-level negative keywords
+   * Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+   * @param campaignId Platform campaign ID (required)
+   * @param replaceCampaignNegativeKeywordsRequest  (required)
+   * @return ReplaceCampaignNegativeKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplaceCampaignNegativeKeywords200Response replaceCampaignNegativeKeywords(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest) throws ApiException {
+    return replaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest, null);
+  }
+
+  /**
+   * Replace campaign-level negative keywords
+   * Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+   * @param campaignId Platform campaign ID (required)
+   * @param replaceCampaignNegativeKeywordsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReplaceCampaignNegativeKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplaceCampaignNegativeKeywords200Response replaceCampaignNegativeKeywords(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplaceCampaignNegativeKeywords200Response> localVarResponse = replaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Replace campaign-level negative keywords
+   * Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+   * @param campaignId Platform campaign ID (required)
+   * @param replaceCampaignNegativeKeywordsRequest  (required)
+   * @return ApiResponse&lt;ReplaceCampaignNegativeKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplaceCampaignNegativeKeywords200Response> replaceCampaignNegativeKeywordsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest) throws ApiException {
+    return replaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest, null);
+  }
+
+  /**
+   * Replace campaign-level negative keywords
+   * Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+   * @param campaignId Platform campaign ID (required)
+   * @param replaceCampaignNegativeKeywordsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplaceCampaignNegativeKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplaceCampaignNegativeKeywords200Response> replaceCampaignNegativeKeywordsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replaceCampaignNegativeKeywordsRequestBuilder(campaignId, replaceCampaignNegativeKeywordsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("replaceCampaignNegativeKeywords", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplaceCampaignNegativeKeywords200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplaceCampaignNegativeKeywords200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplaceCampaignNegativeKeywords200Response>() {});
+        
+
+        return new ApiResponse<ReplaceCampaignNegativeKeywords200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder replaceCampaignNegativeKeywordsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling replaceCampaignNegativeKeywords");
+    }
+    // verify the required parameter 'replaceCampaignNegativeKeywordsRequest' is set
+    if (replaceCampaignNegativeKeywordsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'replaceCampaignNegativeKeywordsRequest' when calling replaceCampaignNegativeKeywords");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/negative-keywords"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replaceCampaignNegativeKeywordsRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Update ad
    * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
    * @param adId  (required)
@@ -3288,6 +3805,138 @@ public class AdCampaignsApi {
   }
 
   /**
+   * Pause or enable a Search keyword
+   * Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @param updateAdKeywordRequest  (required)
+   * @return UpdateAdKeyword200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdKeyword200Response updateAdKeyword(@javax.annotation.Nonnull String keywordId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest) throws ApiException {
+    return updateAdKeyword(keywordId, updateAdKeywordRequest, null);
+  }
+
+  /**
+   * Pause or enable a Search keyword
+   * Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @param updateAdKeywordRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdKeyword200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdKeyword200Response updateAdKeyword(@javax.annotation.Nonnull String keywordId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdKeyword200Response> localVarResponse = updateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pause or enable a Search keyword
+   * Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @param updateAdKeywordRequest  (required)
+   * @return ApiResponse&lt;UpdateAdKeyword200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdKeyword200Response> updateAdKeywordWithHttpInfo(@javax.annotation.Nonnull String keywordId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest) throws ApiException {
+    return updateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest, null);
+  }
+
+  /**
+   * Pause or enable a Search keyword
+   * Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
+   * @param updateAdKeywordRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdKeyword200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdKeyword200Response> updateAdKeywordWithHttpInfo(@javax.annotation.Nonnull String keywordId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdKeywordRequestBuilder(keywordId, updateAdKeywordRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdKeyword", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdKeyword200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdKeyword200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdKeyword200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdKeyword200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdKeywordRequestBuilder(@javax.annotation.Nonnull String keywordId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'keywordId' is set
+    if (keywordId == null) {
+      throw new ApiException(400, "Missing the required parameter 'keywordId' when calling updateAdKeyword");
+    }
+    // verify the required parameter 'updateAdKeywordRequest' is set
+    if (updateAdKeywordRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdKeywordRequest' when calling updateAdKeyword");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/keywords/{keywordId}"
+        .replace("{keywordId}", ApiClient.urlEncode(keywordId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdKeywordRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Update an ad set
    * Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, and Meta-only post-launch delivery settings via &#x60;platformSpecificData&#x60;. At least one updatable field is required.  Value rule sets (Meta only, see &#x60;/v1/ads/value-rule-sets&#x60;): - ATTACH or REPLACE: send &#x60;valueRuleSetId&#x60;. Attachment is driven by the id&#39;s   presence, so &#x60;valueRulesApplied: true&#x60; is optional. Sending a different id   replaces the previous association; there is no separate replace call. - DETACH: send &#x60;valueRulesApplied: false&#x60; and OMIT &#x60;valueRuleSetId&#x60;. - Sending &#x60;valueRulesApplied: false&#x60; TOGETHER with &#x60;valueRuleSetId&#x60; returns 400   &#x60;mutually_exclusive_fields&#x60;. This is deliberate: Meta attaches the rule set   whenever &#x60;value_rule_set_id&#x60; is present, even with &#x60;value_rules_applied&#x60; false,   so echoing stored state while asking to detach would silently keep the bid   adjustments live. - Eligibility: only ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta   rejects the rest server-side. - Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;. Meta   does not document &#x60;value_rules_applied&#x60; as a readable ad-set field, so the   boolean cannot be read back.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS). - Meta only: send &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; to change the cap amount on an ad set   under a COST_CAP / LOWEST_COST_WITH_BID_CAP parent campaign, leaving the strategy itself   (inherited from the campaign) untouched. &#x60;roasAverageFloor&#x60; without &#x60;bidStrategy&#x60; is   rejected (it has no meaning outside LOWEST_COST_WITH_MIN_ROAS).  Delivery settings are validated by Meta against the campaign objective; incompatible combinations (e.g. a billingEvent the optimization goal doesn&#39;t allow) surface as 400s from Meta.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
    * @param adSetId Platform ad set ID (required)
@@ -3555,25 +4204,25 @@ public class AdCampaignsApi {
    * Pause or resume a single ad
    * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdStatusRequest  (required)
+   * @param updateAdKeywordRequest  (required)
    * @return UpdateAdStatus200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest) throws ApiException {
-    return updateAdStatus(adId, updateAdStatusRequest, null);
+  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest) throws ApiException {
+    return updateAdStatus(adId, updateAdKeywordRequest, null);
   }
 
   /**
    * Pause or resume a single ad
    * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdStatusRequest  (required)
+   * @param updateAdKeywordRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateAdStatus200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateAdStatus200Response> localVarResponse = updateAdStatusWithHttpInfo(adId, updateAdStatusRequest, headers);
+  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdStatus200Response> localVarResponse = updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -3581,25 +4230,25 @@ public class AdCampaignsApi {
    * Pause or resume a single ad
    * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdStatusRequest  (required)
+   * @param updateAdKeywordRequest  (required)
    * @return ApiResponse&lt;UpdateAdStatus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest) throws ApiException {
-    return updateAdStatusWithHttpInfo(adId, updateAdStatusRequest, null);
+  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest) throws ApiException {
+    return updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest, null);
   }
 
   /**
    * Pause or resume a single ad
    * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdStatusRequest  (required)
+   * @param updateAdKeywordRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateAdStatus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateAdStatusRequestBuilder(adId, updateAdStatusRequest, headers);
+  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdStatusRequestBuilder(adId, updateAdKeywordRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3646,14 +4295,14 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder updateAdStatusRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateAdStatusRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adId' is set
     if (adId == null) {
       throw new ApiException(400, "Missing the required parameter 'adId' when calling updateAdStatus");
     }
-    // verify the required parameter 'updateAdStatusRequest' is set
-    if (updateAdStatusRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateAdStatusRequest' when calling updateAdStatus");
+    // verify the required parameter 'updateAdKeywordRequest' is set
+    if (updateAdKeywordRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdKeywordRequest' when calling updateAdStatus");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -3667,7 +4316,7 @@ public class AdCampaignsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdStatusRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdKeywordRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

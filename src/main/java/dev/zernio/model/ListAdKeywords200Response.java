@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.ListAdKeywords200ResponseKeywordsInner;
+import dev.zernio.model.AdKeyword;
 import dev.zernio.model.Pagination;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,11 +40,11 @@ import dev.zernio.ApiClient;
   ListAdKeywords200Response.JSON_PROPERTY_KEYWORDS,
   ListAdKeywords200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdKeywords200Response {
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
-  private List<ListAdKeywords200ResponseKeywordsInner> keywords = new ArrayList<>();
+  private List<AdKeyword> keywords = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
@@ -53,12 +53,12 @@ public class ListAdKeywords200Response {
   public ListAdKeywords200Response() { 
   }
 
-  public ListAdKeywords200Response keywords(@javax.annotation.Nullable List<ListAdKeywords200ResponseKeywordsInner> keywords) {
+  public ListAdKeywords200Response keywords(@javax.annotation.Nullable List<AdKeyword> keywords) {
     this.keywords = keywords;
     return this;
   }
 
-  public ListAdKeywords200Response addKeywordsItem(ListAdKeywords200ResponseKeywordsInner keywordsItem) {
+  public ListAdKeywords200Response addKeywordsItem(AdKeyword keywordsItem) {
     if (this.keywords == null) {
       this.keywords = new ArrayList<>();
     }
@@ -73,14 +73,14 @@ public class ListAdKeywords200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_KEYWORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<ListAdKeywords200ResponseKeywordsInner> getKeywords() {
+  public List<AdKeyword> getKeywords() {
     return keywords;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_KEYWORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKeywords(@javax.annotation.Nullable List<ListAdKeywords200ResponseKeywordsInner> keywords) {
+  public void setKeywords(@javax.annotation.Nullable List<AdKeyword> keywords) {
     this.keywords = keywords;
   }
 

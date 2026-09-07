@@ -45,6 +45,7 @@ import dev.zernio.model.CreateStandaloneAdRequestStructuredSnippetsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
+import dev.zernio.model.KeywordEntry;
 import dev.zernio.model.TargetingSpec;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -139,6 +140,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_NEGATIVE_KEYWORDS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_NEGATIVE_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_SITELINKS,
@@ -160,7 +162,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -974,11 +976,15 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
-  private List<String> keywords = new ArrayList<>();
+  private List<KeywordEntry> keywords = new ArrayList<>();
 
   public static final String JSON_PROPERTY_NEGATIVE_KEYWORDS = "negativeKeywords";
   @javax.annotation.Nullable
-  private List<String> negativeKeywords = new ArrayList<>();
+  private List<KeywordEntry> negativeKeywords = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CAMPAIGN_NEGATIVE_KEYWORDS = "campaignNegativeKeywords";
+  @javax.annotation.Nullable
+  private List<KeywordEntry> campaignNegativeKeywords = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ADDITIONAL_HEADLINES = "additionalHeadlines";
   @javax.annotation.Nullable
@@ -3142,12 +3148,12 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest keywords(@javax.annotation.Nullable List<String> keywords) {
+  public CreateStandaloneAdRequest keywords(@javax.annotation.Nullable List<KeywordEntry> keywords) {
     this.keywords = keywords;
     return this;
   }
 
-  public CreateStandaloneAdRequest addKeywordsItem(String keywordsItem) {
+  public CreateStandaloneAdRequest addKeywordsItem(KeywordEntry keywordsItem) {
     if (this.keywords == null) {
       this.keywords = new ArrayList<>();
     }
@@ -3156,30 +3162,30 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Search only. BROAD-match keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.keywords, which also sets match types.
+   * Google Search only. Keywords on the new ad group; entries are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId} targeting.keywords.
    * @return keywords
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_KEYWORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getKeywords() {
+  public List<KeywordEntry> getKeywords() {
     return keywords;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_KEYWORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKeywords(@javax.annotation.Nullable List<String> keywords) {
+  public void setKeywords(@javax.annotation.Nullable List<KeywordEntry> keywords) {
     this.keywords = keywords;
   }
 
 
-  public CreateStandaloneAdRequest negativeKeywords(@javax.annotation.Nullable List<String> negativeKeywords) {
+  public CreateStandaloneAdRequest negativeKeywords(@javax.annotation.Nullable List<KeywordEntry> negativeKeywords) {
     this.negativeKeywords = negativeKeywords;
     return this;
   }
 
-  public CreateStandaloneAdRequest addNegativeKeywordsItem(String negativeKeywordsItem) {
+  public CreateStandaloneAdRequest addNegativeKeywordsItem(KeywordEntry negativeKeywordsItem) {
     if (this.negativeKeywords == null) {
       this.negativeKeywords = new ArrayList<>();
     }
@@ -3188,21 +3194,53 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Search only; other platforms return 400. BROAD-match negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords.
+   * Google Search only; other platforms return 400. Ad-group-level negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords.
    * @return negativeKeywords
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_NEGATIVE_KEYWORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getNegativeKeywords() {
+  public List<KeywordEntry> getNegativeKeywords() {
     return negativeKeywords;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_NEGATIVE_KEYWORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNegativeKeywords(@javax.annotation.Nullable List<String> negativeKeywords) {
+  public void setNegativeKeywords(@javax.annotation.Nullable List<KeywordEntry> negativeKeywords) {
     this.negativeKeywords = negativeKeywords;
+  }
+
+
+  public CreateStandaloneAdRequest campaignNegativeKeywords(@javax.annotation.Nullable List<KeywordEntry> campaignNegativeKeywords) {
+    this.campaignNegativeKeywords = campaignNegativeKeywords;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addCampaignNegativeKeywordsItem(KeywordEntry campaignNegativeKeywordsItem) {
+    if (this.campaignNegativeKeywords == null) {
+      this.campaignNegativeKeywords = new ArrayList<>();
+    }
+    this.campaignNegativeKeywords.add(campaignNegativeKeywordsItem);
+    return this;
+  }
+
+  /**
+   * Google Search only; other platforms return 400. Campaign-level negative keywords (campaign_criterion.negative), created alongside the ad group. Editable later via PUT /v1/ads/campaigns/{campaignId}/negative-keywords.
+   * @return campaignNegativeKeywords
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_NEGATIVE_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<KeywordEntry> getCampaignNegativeKeywords() {
+    return campaignNegativeKeywords;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_NEGATIVE_KEYWORDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignNegativeKeywords(@javax.annotation.Nullable List<KeywordEntry> campaignNegativeKeywords) {
+    this.campaignNegativeKeywords = campaignNegativeKeywords;
   }
 
 
@@ -3828,6 +3866,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
         Objects.equals(this.keywords, createStandaloneAdRequest.keywords) &&
         Objects.equals(this.negativeKeywords, createStandaloneAdRequest.negativeKeywords) &&
+        Objects.equals(this.campaignNegativeKeywords, createStandaloneAdRequest.campaignNegativeKeywords) &&
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
         Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
         Objects.equals(this.sitelinks, createStandaloneAdRequest.sitelinks) &&
@@ -3852,7 +3891,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3935,6 +3974,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    negativeKeywords: ").append(toIndentedString(negativeKeywords)).append("\n");
+    sb.append("    campaignNegativeKeywords: ").append(toIndentedString(campaignNegativeKeywords)).append("\n");
     sb.append("    additionalHeadlines: ").append(toIndentedString(additionalHeadlines)).append("\n");
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    sitelinks: ").append(toIndentedString(sitelinks)).append("\n");
@@ -4484,18 +4524,30 @@ public class CreateStandaloneAdRequest {
     // add `keywords` to the URL query string
     if (getKeywords() != null) {
       for (int i = 0; i < getKeywords().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%skeywords%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getKeywords().get(i)))));
+        if (getKeywords().get(i) != null) {
+          joiner.add(getKeywords().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%skeywords%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 
     // add `negativeKeywords` to the URL query string
     if (getNegativeKeywords() != null) {
       for (int i = 0; i < getNegativeKeywords().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%snegativeKeywords%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getNegativeKeywords().get(i)))));
+        if (getNegativeKeywords().get(i) != null) {
+          joiner.add(getNegativeKeywords().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%snegativeKeywords%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `campaignNegativeKeywords` to the URL query string
+    if (getCampaignNegativeKeywords() != null) {
+      for (int i = 0; i < getCampaignNegativeKeywords().size(); i++) {
+        if (getCampaignNegativeKeywords().get(i) != null) {
+          joiner.add(getCampaignNegativeKeywords().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scampaignNegativeKeywords%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

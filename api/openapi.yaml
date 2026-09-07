@@ -29760,6 +29760,130 @@ paths:
       - google
       x-accepts:
       - application/json
+    post:
+      description: |
+        Adds one or more keyword criteria to an existing Google Search ad group,
+        without touching the keywords already there (unlike the whole-set diff on
+        `PUT /v1/ads/{adId}`, `keywords`/`negativeKeywords` in `platformSpecificData`,
+        which replaces the set). Set `negative: true` to add ad-group-level negatives
+        instead of positive keywords.
+      operationId: addAdKeywords
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addAdKeywords_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addAdKeywords_201_response"
+          description: Keywords added
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: The ad group ("adSetId") was not found for this account.
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Add Search keywords to an ad group
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/keywords/{keywordId}:
+    delete:
+      description: Removes one keyword criterion (positive or negative) from its ad
+        group (M.140).
+      operationId: removeAdKeyword
+      parameters:
+      - description: Zernio keyword ID (not the Google criterion ID)
+        explode: false
+        in: path
+        name: keywordId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeAdKeyword_200_response"
+          description: Keyword removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Keyword not found
+      security:
+      - bearerAuth: []
+      summary: Remove a Search keyword
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Changes `ad_group_criterion.status` for one keyword criterion (M.140).
+        Negative keywords have no status on Google and cannot be paused or enabled.
+      operationId: updateAdKeyword
+      parameters:
+      - description: Zernio keyword ID (not the Google criterion ID)
+        explode: false
+        in: path
+        name: keywordId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdKeyword_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdKeyword_200_response"
+          description: Keyword updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Keyword not found
+        "422":
+          description: Negative keywords have no status on Google; they cannot be
+            paused or enabled.
+      security:
+      - bearerAuth: []
+      summary: Pause or enable a Search keyword
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/campaigns:
     get:
       description: |
@@ -30208,6 +30332,122 @@ paths:
       - pinterest
       - x
       - openai
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/negative-keywords:
+    get:
+      description: |
+        Returns the campaign-level negative keywords (`campaign_criterion.negative`),
+        distinct from the ad-group-level negatives under `GET /v1/ads/keywords`. Read
+        live from Google on every call (not synced to Postgres), and gated by the
+        shared Google Ads operations budget like every other on-demand Google surface.
+
+        The platform is always discovered from the campaign itself; a non-Google
+        campaign returns 501 rather than 404, whether or not `platform` was passed.
+      operationId: listCampaignNegativeKeywords
+      parameters:
+      - description: Platform campaign ID
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Optional and NOT authoritative: the resolved campaign's own\
+          \ platform decides 200 vs 501, never this hint."
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          - openai
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignNegativeKeywords_200_response"
+          description: Campaign-level negative keywords
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Campaign not found
+        "429":
+          description: Google Ads operations budget exhausted; retry later
+        "501":
+          description: Only available on Google Ads campaigns
+      security:
+      - bearerAuth: []
+      summary: List campaign-level negative keywords
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Replaces the FULL set of campaign-level negative keywords (C.270): the desired
+        list is diffed against what Google already has, and the difference is applied
+        as one `create`/`remove` mutate. Send an empty array to clear every campaign
+        negative.
+
+        The platform is always discovered from the campaign itself; a non-Google
+        campaign returns 501 rather than 404, whether or not `platform` was sent.
+      operationId: replaceCampaignNegativeKeywords
+      parameters:
+      - description: Platform campaign ID
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/replaceCampaignNegativeKeywords_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/replaceCampaignNegativeKeywords_200_response"
+          description: Campaign-level negative keywords replaced
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Campaign not found
+        "429":
+          description: Google Ads operations budget exhausted; retry later
+        "501":
+          description: Only available on Google Ads campaigns
+      security:
+      - bearerAuth: []
+      summary: Replace campaign-level negative keywords
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31326,7 +31566,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/updateAdStatus_request"
+              $ref: "#/components/schemas/updateAdKeyword_request"
         required: true
       responses:
         "200":
@@ -54198,6 +54438,100 @@ components:
         latestAd:
           format: date-time
           type: string
+    AdKeyword:
+      example:
+        adSetName: adSetName
+        adAccountId: adAccountId
+        campaignId: campaignId
+        matchType: exact
+        platform: google
+        accountId: accountId
+        negative: true
+        adSetStatus: adSetStatus
+        profileId: profileId
+        campaignStatus: campaignStatus
+        adSetId: adSetId
+        qualityScore: 0
+        id: id
+        metrics:
+          conversions: 2.3021358869347655
+          cost: 5.637376656633329
+          firstPageCpc: 7.061401241503109
+          clicks: 1
+          windowDays: 6
+          impressions: 5
+          firstPositionCpc: 9.301444243932576
+        keyword: keyword
+        campaignName: campaignName
+        syncedAt: 2000-01-23T04:56:07.000+00:00
+        status: active
+      properties:
+        id:
+          type: string
+        accountId:
+          description: Social account ID owning the sync
+          type: string
+        profileId:
+          type: string
+        platform:
+          enum:
+          - google
+          type: string
+        adAccountId:
+          description: Google customer ID
+          type: string
+        campaignId:
+          type: string
+        campaignName:
+          nullable: true
+          type: string
+        campaignStatus:
+          nullable: true
+          type: string
+        adSetId:
+          description: Google ad group ID
+          type: string
+        adSetName:
+          nullable: true
+          type: string
+        adSetStatus:
+          nullable: true
+          type: string
+        keyword:
+          type: string
+        matchType:
+          enum:
+          - exact
+          - phrase
+          - broad
+          - unknown
+          type: string
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        negative:
+          type: boolean
+        qualityScore:
+          description: "Google Quality Score, 1-10. Null when unrated."
+          nullable: true
+          type: integer
+        syncedAt:
+          format: date-time
+          nullable: true
+          type: string
+        metrics:
+          $ref: "#/components/schemas/AdKeyword_metrics"
+    KeywordEntry:
+      description: "A Google Search keyword: a bare string (BROAD match), or an object\
+        \ naming the match type."
+      oneOf:
+      - description: Keyword text; defaults to BROAD match
+        maxLength: 80
+        minLength: 1
+        type: string
+      - $ref: "#/components/schemas/addAdKeywords_request_keywords_inner_anyOf"
     ConversionEvent:
       description: |
         A single conversion event to relay to the ad platform. All PII fields
@@ -83135,76 +83469,6 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsSearchTerms_200_response_paging"
-    listAdKeywords_200_response_keywords_inner:
-      example:
-        adSetName: adSetName
-        adAccountId: adAccountId
-        campaignId: campaignId
-        matchType: exact
-        platform: google
-        accountId: accountId
-        negative: true
-        adSetStatus: adSetStatus
-        profileId: profileId
-        campaignStatus: campaignStatus
-        adSetId: adSetId
-        id: id
-        keyword: keyword
-        campaignName: campaignName
-        syncedAt: 2000-01-23T04:56:07.000+00:00
-        status: active
-      properties:
-        id:
-          type: string
-        accountId:
-          description: Social account ID owning the sync
-          type: string
-        profileId:
-          type: string
-        platform:
-          enum:
-          - google
-          type: string
-        adAccountId:
-          description: Google customer ID
-          type: string
-        campaignId:
-          type: string
-        campaignName:
-          nullable: true
-          type: string
-        campaignStatus:
-          nullable: true
-          type: string
-        adSetId:
-          description: Google ad group ID
-          type: string
-        adSetName:
-          nullable: true
-          type: string
-        adSetStatus:
-          nullable: true
-          type: string
-        keyword:
-          type: string
-        matchType:
-          enum:
-          - exact
-          - phrase
-          - broad
-          - unknown
-          type: string
-        status:
-          enum:
-          - active
-          - paused
-          type: string
-        negative:
-          type: boolean
-        syncedAt:
-          format: date-time
-          nullable: true
-          type: string
     listAdKeywords_200_response:
       example:
         pagination:
@@ -83224,7 +83488,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
+          qualityScore: 0
           id: id
+          metrics:
+            conversions: 2.3021358869347655
+            cost: 5.637376656633329
+            firstPageCpc: 7.061401241503109
+            clicks: 1
+            windowDays: 6
+            impressions: 5
+            firstPositionCpc: 9.301444243932576
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -83240,7 +83513,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
+          qualityScore: 0
           id: id
+          metrics:
+            conversions: 2.3021358869347655
+            cost: 5.637376656633329
+            firstPageCpc: 7.061401241503109
+            clicks: 1
+            windowDays: 6
+            impressions: 5
+            firstPositionCpc: 9.301444243932576
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -83248,10 +83530,159 @@ components:
       properties:
         keywords:
           items:
-            $ref: "#/components/schemas/listAdKeywords_200_response_keywords_inner"
+            $ref: "#/components/schemas/AdKeyword"
           type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
+    addAdKeywords_request_keywords_inner_anyOf:
+      properties:
+        text:
+          maxLength: 80
+          minLength: 1
+          type: string
+        matchType:
+          enum:
+          - exact
+          - phrase
+          - broad
+          type: string
+      required:
+      - text
+    addAdKeywords_request_keywords_inner:
+      anyOf:
+      - description: Keyword text; defaults to BROAD match
+        type: string
+      - $ref: "#/components/schemas/addAdKeywords_request_keywords_inner_anyOf"
+    addAdKeywords_request:
+      properties:
+        accountId:
+          description: Social account ID (Google Ads)
+          type: string
+        adSetId:
+          description: Google ad group ID to add the keywords to
+          type: string
+        keywords:
+          items:
+            $ref: "#/components/schemas/addAdKeywords_request_keywords_inner"
+          maxItems: 1000
+          minItems: 1
+          type: array
+        negative:
+          default: false
+          description: Add as ad-group-level negatives instead of positive keywords
+          type: boolean
+      required:
+      - accountId
+      - adSetId
+      - keywords
+    addAdKeywords_201_response:
+      example:
+        keywords:
+        - adSetName: adSetName
+          adAccountId: adAccountId
+          campaignId: campaignId
+          matchType: exact
+          platform: google
+          accountId: accountId
+          negative: true
+          adSetStatus: adSetStatus
+          profileId: profileId
+          campaignStatus: campaignStatus
+          adSetId: adSetId
+          qualityScore: 0
+          id: id
+          metrics:
+            conversions: 2.3021358869347655
+            cost: 5.637376656633329
+            firstPageCpc: 7.061401241503109
+            clicks: 1
+            windowDays: 6
+            impressions: 5
+            firstPositionCpc: 9.301444243932576
+          keyword: keyword
+          campaignName: campaignName
+          syncedAt: 2000-01-23T04:56:07.000+00:00
+          status: active
+        - adSetName: adSetName
+          adAccountId: adAccountId
+          campaignId: campaignId
+          matchType: exact
+          platform: google
+          accountId: accountId
+          negative: true
+          adSetStatus: adSetStatus
+          profileId: profileId
+          campaignStatus: campaignStatus
+          adSetId: adSetId
+          qualityScore: 0
+          id: id
+          metrics:
+            conversions: 2.3021358869347655
+            cost: 5.637376656633329
+            firstPageCpc: 7.061401241503109
+            clicks: 1
+            windowDays: 6
+            impressions: 5
+            firstPositionCpc: 9.301444243932576
+          keyword: keyword
+          campaignName: campaignName
+          syncedAt: 2000-01-23T04:56:07.000+00:00
+          status: active
+      properties:
+        keywords:
+          items:
+            $ref: "#/components/schemas/AdKeyword"
+          type: array
+    removeAdKeyword_200_response:
+      example:
+        keywordId: keywordId
+        removed: true
+      properties:
+        removed:
+          description: Always true on success
+          type: boolean
+        keywordId:
+          type: string
+    updateAdKeyword_request:
+      properties:
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+      required:
+      - status
+    updateAdKeyword_200_response:
+      example:
+        keyword:
+          adSetName: adSetName
+          adAccountId: adAccountId
+          campaignId: campaignId
+          matchType: exact
+          platform: google
+          accountId: accountId
+          negative: true
+          adSetStatus: adSetStatus
+          profileId: profileId
+          campaignStatus: campaignStatus
+          adSetId: adSetId
+          qualityScore: 0
+          id: id
+          metrics:
+            conversions: 2.3021358869347655
+            cost: 5.637376656633329
+            firstPageCpc: 7.061401241503109
+            clicks: 1
+            windowDays: 6
+            impressions: 5
+            firstPositionCpc: 9.301444243932576
+          keyword: keyword
+          campaignName: campaignName
+          syncedAt: 2000-01-23T04:56:07.000+00:00
+          status: active
+      properties:
+        keyword:
+          $ref: "#/components/schemas/AdKeyword"
     listAdCampaigns_200_response:
       example:
         pagination:
@@ -83735,6 +84166,81 @@ components:
         adCount:
           description: Number of local Ad docs marked cancelled
           type: integer
+    listCampaignNegativeKeywords_200_response_keywords_inner:
+      example:
+        criterionId: criterionId
+        matchType: exact
+        text: text
+      properties:
+        criterionId:
+          type: string
+        text:
+          type: string
+        matchType:
+          enum:
+          - exact
+          - phrase
+          - broad
+          type: string
+    listCampaignNegativeKeywords_200_response:
+      example:
+        keywords:
+        - criterionId: criterionId
+          matchType: exact
+          text: text
+        - criterionId: criterionId
+          matchType: exact
+          text: text
+      properties:
+        keywords:
+          items:
+            $ref: "#/components/schemas/listCampaignNegativeKeywords_200_response_keywords_inner"
+          type: array
+    replaceCampaignNegativeKeywords_request:
+      properties:
+        platform:
+          description: "Optional and NOT authoritative: the resolved campaign's own\
+            \ platform decides 200 vs 501, never this hint."
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          - openai
+          type: string
+        keywords:
+          items:
+            $ref: "#/components/schemas/KeywordEntry"
+          maxItems: 1000
+          type: array
+      required:
+      - keywords
+    replaceCampaignNegativeKeywords_200_response:
+      example:
+        removed: 6
+        keywords:
+        - criterionId: criterionId
+          matchType: exact
+          text: text
+        - criterionId: criterionId
+          matchType: exact
+          text: text
+        created: 0
+      properties:
+        created:
+          description: Negative criteria newly created on Google
+          type: integer
+        removed:
+          description: Negative criteria removed from Google
+          type: integer
+        keywords:
+          description: The full negative-keyword set after the replace
+          items:
+            $ref: "#/components/schemas/listCampaignNegativeKeywords_200_response_keywords_inner"
+          type: array
     bulkUpdateAdCampaignStatus_request_campaigns_inner:
       properties:
         platformCampaignId:
@@ -86523,15 +87029,6 @@ components:
           $ref: "#/components/schemas/Ad"
         message:
           type: string
-    updateAdStatus_request:
-      properties:
-        status:
-          enum:
-          - active
-          - paused
-          type: string
-      required:
-      - status
     updateAdStatus_200_response:
       example:
         message: message
@@ -90815,21 +91312,28 @@ components:
           - search
           type: string
         keywords:
-          description: "Google Search only. BROAD-match keywords on the new ad group.\
-            \ Editable later via PUT /v1/ads/{adId} targeting.keywords, which also\
-            \ sets match types."
+          description: "Google Search only. Keywords on the new ad group; entries\
+            \ are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId}\
+            \ targeting.keywords."
           items:
-            maxLength: 80
-            type: string
+            $ref: "#/components/schemas/KeywordEntry"
           maxItems: 1000
           type: array
         negativeKeywords:
-          description: "Google Search only; other platforms return 400. BROAD-match\
+          description: "Google Search only; other platforms return 400. Ad-group-level\
             \ negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId}\
             \ targeting.negativeKeywords."
           items:
-            maxLength: 80
-            type: string
+            $ref: "#/components/schemas/KeywordEntry"
+          maxItems: 1000
+          type: array
+        campaignNegativeKeywords:
+          description: "Google Search only; other platforms return 400. Campaign-level\
+            \ negative keywords (campaign_criterion.negative), created alongside the\
+            \ ad group. Editable later via PUT /v1/ads/campaigns/{campaignId}/negative-keywords."
+          items:
+            $ref: "#/components/schemas/KeywordEntry"
+          maxItems: 1000
           type: array
         additionalHeadlines:
           description: Google Search RSA only. Extra headlines.
@@ -100833,6 +101337,37 @@ components:
           - daily
           - lifetime
           type: string
+    AdKeyword_metrics:
+      description: Trailing 30-day window. Null on rows synced before the metrics
+        columns existed (re-synced on the keyword's next weekly sweep).
+      example:
+        conversions: 2.3021358869347655
+        cost: 5.637376656633329
+        firstPageCpc: 7.061401241503109
+        clicks: 1
+        windowDays: 6
+        impressions: 5
+        firstPositionCpc: 9.301444243932576
+      properties:
+        windowDays:
+          type: integer
+        clicks:
+          type: integer
+        impressions:
+          type: integer
+        cost:
+          description: "Account currency, not USD-normalized"
+          type: number
+        conversions:
+          type: number
+        firstPageCpc:
+          description: Account currency
+          nullable: true
+          type: number
+        firstPositionCpc:
+          description: Account currency
+          nullable: true
+          type: number
     ConversionEvent_user_clickIds:
       description: Platform click identifiers captured from the originating ad click.
       properties:

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BulkUpdateAdCampaignStatus200ResponseTotals.JSON_PROPERTY_SKIPPED,
   BulkUpdateAdCampaignStatus200ResponseTotals.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUpdateAdCampaignStatus200ResponseTotals {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable

@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addAdKeywords**](AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search keywords to an ad group |
+| [**addAdKeywordsWithHttpInfo**](AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search keywords to an ad group |
 | [**attachCampaignAssets**](AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign |
 | [**attachCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#attachCampaignAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign |
 | [**boostPost**](AdCampaignsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
@@ -40,12 +42,20 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdKeywordsWithHttpInfo**](AdCampaignsApi.md#listAdKeywordsWithHttpInfo) | **GET** /v1/ads/keywords | List Search keywords |
 | [**listAds**](AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads |
 | [**listAdsWithHttpInfo**](AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
+| [**listCampaignNegativeKeywords**](AdCampaignsApi.md#listCampaignNegativeKeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
+| [**listCampaignNegativeKeywordsWithHttpInfo**](AdCampaignsApi.md#listCampaignNegativeKeywordsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
+| [**removeAdKeyword**](AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
+| [**removeAdKeywordWithHttpInfo**](AdCampaignsApi.md#removeAdKeywordWithHttpInfo) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
+| [**replaceCampaignNegativeKeywords**](AdCampaignsApi.md#replaceCampaignNegativeKeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
+| [**replaceCampaignNegativeKeywordsWithHttpInfo**](AdCampaignsApi.md#replaceCampaignNegativeKeywordsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
 | [**updateAd**](AdCampaignsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdWithHttpInfo**](AdCampaignsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdCampaign**](AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**updateAdCampaignWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**updateAdCampaignStatus**](AdCampaignsApi.md#updateAdCampaignStatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 | [**updateAdCampaignStatusWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
+| [**updateAdKeyword**](AdCampaignsApi.md#updateAdKeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
+| [**updateAdKeywordWithHttpInfo**](AdCampaignsApi.md#updateAdKeywordWithHttpInfo) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
 | [**updateAdSet**](AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**updateAdSetWithHttpInfo**](AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**updateAdSetStatus**](AdCampaignsApi.md#updateAdSetStatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
@@ -53,6 +63,158 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdStatus**](AdCampaignsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**updateAdStatusWithHttpInfo**](AdCampaignsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 
+
+
+## addAdKeywords
+
+> AddAdKeywords201Response addAdKeywords(addAdKeywordsRequest)
+
+Add Search keywords to an ad group
+
+Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        AddAdKeywordsRequest addAdKeywordsRequest = new AddAdKeywordsRequest(); // AddAdKeywordsRequest | 
+        try {
+            AddAdKeywords201Response result = apiInstance.addAdKeywords(addAdKeywordsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#addAdKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addAdKeywordsRequest** | [**AddAdKeywordsRequest**](AddAdKeywordsRequest.md)|  | |
+
+### Return type
+
+[**AddAdKeywords201Response**](AddAdKeywords201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Keywords added |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The ad group (\&quot;adSetId\&quot;) was not found for this account. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## addAdKeywordsWithHttpInfo
+
+> ApiResponse<AddAdKeywords201Response> addAdKeywords addAdKeywordsWithHttpInfo(addAdKeywordsRequest)
+
+Add Search keywords to an ad group
+
+Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        AddAdKeywordsRequest addAdKeywordsRequest = new AddAdKeywordsRequest(); // AddAdKeywordsRequest | 
+        try {
+            ApiResponse<AddAdKeywords201Response> response = apiInstance.addAdKeywordsWithHttpInfo(addAdKeywordsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#addAdKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addAdKeywordsRequest** | [**AddAdKeywordsRequest**](AddAdKeywordsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AddAdKeywords201Response**](AddAdKeywords201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Keywords added |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The ad group (\&quot;adSetId\&quot;) was not found for this account. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## attachCampaignAssets
@@ -3065,6 +3227,470 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
+## listCampaignNegativeKeywords
+
+> ListCampaignNegativeKeywords200Response listCampaignNegativeKeywords(campaignId, platform)
+
+List campaign-level negative keywords
+
+Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Platform campaign ID
+        String platform = "facebook"; // String | Optional and NOT authoritative: the resolved campaign's own platform decides 200 vs 501, never this hint.
+        try {
+            ListCampaignNegativeKeywords200Response result = apiInstance.listCampaignNegativeKeywords(campaignId, platform);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listCampaignNegativeKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Platform campaign ID | |
+| **platform** | **String**| Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+
+### Return type
+
+[**ListCampaignNegativeKeywords200Response**](ListCampaignNegativeKeywords200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
+
+## listCampaignNegativeKeywordsWithHttpInfo
+
+> ApiResponse<ListCampaignNegativeKeywords200Response> listCampaignNegativeKeywords listCampaignNegativeKeywordsWithHttpInfo(campaignId, platform)
+
+List campaign-level negative keywords
+
+Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Platform campaign ID
+        String platform = "facebook"; // String | Optional and NOT authoritative: the resolved campaign's own platform decides 200 vs 501, never this hint.
+        try {
+            ApiResponse<ListCampaignNegativeKeywords200Response> response = apiInstance.listCampaignNegativeKeywordsWithHttpInfo(campaignId, platform);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listCampaignNegativeKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Platform campaign ID | |
+| **platform** | **String**| Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+
+### Return type
+
+ApiResponse<[**ListCampaignNegativeKeywords200Response**](ListCampaignNegativeKeywords200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
+
+
+## removeAdKeyword
+
+> RemoveAdKeyword200Response removeAdKeyword(keywordId)
+
+Remove a Search keyword
+
+Removes one keyword criterion (positive or negative) from its ad group (M.140).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        try {
+            RemoveAdKeyword200Response result = apiInstance.removeAdKeyword(keywordId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeAdKeyword");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+
+### Return type
+
+[**RemoveAdKeyword200Response**](RemoveAdKeyword200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Keyword not found |  -  |
+
+## removeAdKeywordWithHttpInfo
+
+> ApiResponse<RemoveAdKeyword200Response> removeAdKeyword removeAdKeywordWithHttpInfo(keywordId)
+
+Remove a Search keyword
+
+Removes one keyword criterion (positive or negative) from its ad group (M.140).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        try {
+            ApiResponse<RemoveAdKeyword200Response> response = apiInstance.removeAdKeywordWithHttpInfo(keywordId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeAdKeyword");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+
+### Return type
+
+ApiResponse<[**RemoveAdKeyword200Response**](RemoveAdKeyword200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Keyword not found |  -  |
+
+
+## replaceCampaignNegativeKeywords
+
+> ReplaceCampaignNegativeKeywords200Response replaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest)
+
+Replace campaign-level negative keywords
+
+Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Platform campaign ID
+        ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest = new ReplaceCampaignNegativeKeywordsRequest(); // ReplaceCampaignNegativeKeywordsRequest | 
+        try {
+            ReplaceCampaignNegativeKeywords200Response result = apiInstance.replaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#replaceCampaignNegativeKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Platform campaign ID | |
+| **replaceCampaignNegativeKeywordsRequest** | [**ReplaceCampaignNegativeKeywordsRequest**](ReplaceCampaignNegativeKeywordsRequest.md)|  | |
+
+### Return type
+
+[**ReplaceCampaignNegativeKeywords200Response**](ReplaceCampaignNegativeKeywords200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords replaced |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
+
+## replaceCampaignNegativeKeywordsWithHttpInfo
+
+> ApiResponse<ReplaceCampaignNegativeKeywords200Response> replaceCampaignNegativeKeywords replaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest)
+
+Replace campaign-level negative keywords
+
+Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Platform campaign ID
+        ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest = new ReplaceCampaignNegativeKeywordsRequest(); // ReplaceCampaignNegativeKeywordsRequest | 
+        try {
+            ApiResponse<ReplaceCampaignNegativeKeywords200Response> response = apiInstance.replaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#replaceCampaignNegativeKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Platform campaign ID | |
+| **replaceCampaignNegativeKeywordsRequest** | [**ReplaceCampaignNegativeKeywordsRequest**](ReplaceCampaignNegativeKeywordsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ReplaceCampaignNegativeKeywords200Response**](ReplaceCampaignNegativeKeywords200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords replaced |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
+
+
 ## updateAd
 
 > UpdateAd200Response updateAd(adId, updateAdRequest)
@@ -3541,6 +4167,162 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 | **404** | No ads found for this campaign |  -  |
 
 
+## updateAdKeyword
+
+> UpdateAdKeyword200Response updateAdKeyword(keywordId, updateAdKeywordRequest)
+
+Pause or enable a Search keyword
+
+Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+        try {
+            UpdateAdKeyword200Response result = apiInstance.updateAdKeyword(keywordId, updateAdKeywordRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateAdKeyword");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
+
+### Return type
+
+[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Keyword not found |  -  |
+| **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
+
+## updateAdKeywordWithHttpInfo
+
+> ApiResponse<UpdateAdKeyword200Response> updateAdKeyword updateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest)
+
+Pause or enable a Search keyword
+
+Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+        try {
+            ApiResponse<UpdateAdKeyword200Response> response = apiInstance.updateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateAdKeyword");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Keyword not found |  -  |
+| **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
+
+
 ## updateAdSet
 
 > UpdateAdSet200Response updateAdSet(adSetId, updateAdSetRequest)
@@ -3861,7 +4643,7 @@ ApiResponse<[**UpdateAdSetStatus200Response**](UpdateAdSetStatus200Response.md)>
 
 ## updateAdStatus
 
-> UpdateAdStatus200Response updateAdStatus(adId, updateAdStatusRequest)
+> UpdateAdStatus200Response updateAdStatus(adId, updateAdKeywordRequest)
 
 Pause or resume a single ad
 
@@ -3889,9 +4671,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
-        UpdateAdStatusRequest updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
+        UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
         try {
-            UpdateAdStatus200Response result = apiInstance.updateAdStatus(adId, updateAdStatusRequest);
+            UpdateAdStatus200Response result = apiInstance.updateAdStatus(adId, updateAdKeywordRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#updateAdStatus");
@@ -3910,7 +4692,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. | |
-| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md)|  | |
+| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
 
 ### Return type
 
@@ -3937,7 +4719,7 @@ public class Example {
 
 ## updateAdStatusWithHttpInfo
 
-> ApiResponse<UpdateAdStatus200Response> updateAdStatus updateAdStatusWithHttpInfo(adId, updateAdStatusRequest)
+> ApiResponse<UpdateAdStatus200Response> updateAdStatus updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest)
 
 Pause or resume a single ad
 
@@ -3966,9 +4748,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
-        UpdateAdStatusRequest updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
+        UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
         try {
-            ApiResponse<UpdateAdStatus200Response> response = apiInstance.updateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
+            ApiResponse<UpdateAdStatus200Response> response = apiInstance.updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3989,7 +4771,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. | |
-| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md)|  | |
+| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
 
 ### Return type
 

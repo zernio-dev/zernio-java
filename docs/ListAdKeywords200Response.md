@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**keywords** | [**List&lt;ListAdKeywords200ResponseKeywordsInner&gt;**](ListAdKeywords200ResponseKeywordsInner.md) |  |  [optional] |
+|**keywords** | [**List&lt;AdKeyword&gt;**](AdKeyword.md) |  |  [optional] |
 |**pagination** | [**Pagination**](Pagination.md) |  |  [optional] |
 
 

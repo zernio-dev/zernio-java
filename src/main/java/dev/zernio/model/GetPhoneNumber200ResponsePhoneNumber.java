@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_PROVISIONED_AT,
   GetPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_SIP_TRUNK_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumber200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

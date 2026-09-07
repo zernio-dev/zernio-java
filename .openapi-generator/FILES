@@ -30,6 +30,8 @@ docs/AdDailyMetrics.md
 docs/AdEngagementCounts.md
 docs/AdFunnelCounts.md
 docs/AdInsightsApi.md
+docs/AdKeyword.md
+docs/AdKeywordMetrics.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
@@ -46,6 +48,10 @@ docs/AdTreeCampaignBudget.md
 docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
+docs/AddAdKeywords201Response.md
+docs/AddAdKeywordsRequest.md
+docs/AddAdKeywordsRequestKeywordsInner.md
+docs/AddAdKeywordsRequestKeywordsInnerAnyOf.md
 docs/AddBroadcastRecipients200Response.md
 docs/AddBroadcastRecipientsRequest.md
 docs/AddConversionAssociations200Response.md
@@ -893,6 +899,7 @@ docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InvitesApi.md
+docs/KeywordEntry.md
 docs/LeadGenApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
@@ -944,7 +951,6 @@ docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAdCreatives200Response.md
 docs/ListAdImages200Response.md
 docs/ListAdKeywords200Response.md
-docs/ListAdKeywords200ResponseKeywordsInner.md
 docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
@@ -960,6 +966,8 @@ docs/ListBroadcasts200Response.md
 docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCalls200Response.md
 docs/ListCalls200ResponseCallsInner.md
+docs/ListCampaignNegativeKeywords200Response.md
+docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
 docs/ListCommentAutomationLogs200Response.md
 docs/ListCommentAutomationLogs200ResponseMisses.md
 docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
@@ -1225,6 +1233,7 @@ docs/RemediatePhoneNumber200ResponsePhoneNumber.md
 docs/RemediatePhoneNumberRequest.md
 docs/RemediatePhoneNumberRequestDocumentsInner.md
 docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
+docs/RemoveAdKeyword200Response.md
 docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
@@ -1233,6 +1242,8 @@ docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
 docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md
+docs/ReplaceCampaignNegativeKeywords200Response.md
+docs/ReplaceCampaignNegativeKeywordsRequest.md
 docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
@@ -1493,6 +1504,8 @@ docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
 docs/UpdateAdCreative200Response.md
 docs/UpdateAdCreativeRequest.md
+docs/UpdateAdKeyword200Response.md
+docs/UpdateAdKeywordRequest.md
 docs/UpdateAdRequest.md
 docs/UpdateAdRequestBudget.md
 docs/UpdateAdRequestCreative.md
@@ -1507,7 +1520,6 @@ docs/UpdateAdSetRequestPlatformSpecificData.md
 docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
-docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
@@ -1960,6 +1972,8 @@ src/main/java/dev/zernio/model/AdCreative.java
 src/main/java/dev/zernio/model/AdDailyMetrics.java
 src/main/java/dev/zernio/model/AdEngagementCounts.java
 src/main/java/dev/zernio/model/AdFunnelCounts.java
+src/main/java/dev/zernio/model/AdKeyword.java
+src/main/java/dev/zernio/model/AdKeywordMetrics.java
 src/main/java/dev/zernio/model/AdMetrics.java
 src/main/java/dev/zernio/model/AdPromotedObject.java
 src/main/java/dev/zernio/model/AdReviewStatus.java
@@ -1974,6 +1988,10 @@ src/main/java/dev/zernio/model/AdTreeCampaignBudget.java
 src/main/java/dev/zernio/model/AdTreeCampaignCampaignBudget.java
 src/main/java/dev/zernio/model/AdTreeCampaignPromotedObject.java
 src/main/java/dev/zernio/model/AdTreeResponse.java
+src/main/java/dev/zernio/model/AddAdKeywords201Response.java
+src/main/java/dev/zernio/model/AddAdKeywordsRequest.java
+src/main/java/dev/zernio/model/AddAdKeywordsRequestKeywordsInner.java
+src/main/java/dev/zernio/model/AddAdKeywordsRequestKeywordsInnerAnyOf.java
 src/main/java/dev/zernio/model/AddBroadcastRecipients200Response.java
 src/main/java/dev/zernio/model/AddBroadcastRecipientsRequest.java
 src/main/java/dev/zernio/model/AddConversionAssociations200Response.java
@@ -2797,6 +2815,7 @@ src/main/java/dev/zernio/model/InstagramPlatformData.java
 src/main/java/dev/zernio/model/InstagramPlatformDataAudioConfiguration.java
 src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
+src/main/java/dev/zernio/model/KeywordEntry.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
 src/main/java/dev/zernio/model/LikeInboxCommentRequest.java
 src/main/java/dev/zernio/model/LikePost200Response.java
@@ -2846,7 +2865,6 @@ src/main/java/dev/zernio/model/ListAdCatalogs200ResponseCatalogsInner.java
 src/main/java/dev/zernio/model/ListAdCreatives200Response.java
 src/main/java/dev/zernio/model/ListAdImages200Response.java
 src/main/java/dev/zernio/model/ListAdKeywords200Response.java
-src/main/java/dev/zernio/model/ListAdKeywords200ResponseKeywordsInner.java
 src/main/java/dev/zernio/model/ListAdLabels200Response.java
 src/main/java/dev/zernio/model/ListAdStudies200Response.java
 src/main/java/dev/zernio/model/ListAdVideos200Response.java
@@ -2862,6 +2880,8 @@ src/main/java/dev/zernio/model/ListBroadcasts200Response.java
 src/main/java/dev/zernio/model/ListBroadcasts200ResponseBroadcastsInner.java
 src/main/java/dev/zernio/model/ListCalls200Response.java
 src/main/java/dev/zernio/model/ListCalls200ResponseCallsInner.java
+src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200Response.java
+src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200ResponseKeywordsInner.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMisses.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMissesSamplesInner.java
@@ -3116,6 +3136,7 @@ src/main/java/dev/zernio/model/RemediatePhoneNumber200ResponsePhoneNumber.java
 src/main/java/dev/zernio/model/RemediatePhoneNumberRequest.java
 src/main/java/dev/zernio/model/RemediatePhoneNumberRequestDocumentsInner.java
 src/main/java/dev/zernio/model/RemediatePhoneNumberRequestDocumentsInnerOneOf.java
+src/main/java/dev/zernio/model/RemoveAdKeyword200Response.java
 src/main/java/dev/zernio/model/RemoveBookmark200Response.java
 src/main/java/dev/zernio/model/RemoveConversionAssociations200Response.java
 src/main/java/dev/zernio/model/RemoveDiscordMemberRole200Response.java
@@ -3124,6 +3145,8 @@ src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompanies200Response.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequest.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequestCompaniesInner.java
+src/main/java/dev/zernio/model/ReplaceCampaignNegativeKeywords200Response.java
+src/main/java/dev/zernio/model/ReplaceCampaignNegativeKeywordsRequest.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReview200Response.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200Response.java
@@ -3378,6 +3401,8 @@ src/main/java/dev/zernio/model/UpdateAdCampaignStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdCampaignStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdCreative200Response.java
 src/main/java/dev/zernio/model/UpdateAdCreativeRequest.java
+src/main/java/dev/zernio/model/UpdateAdKeyword200Response.java
+src/main/java/dev/zernio/model/UpdateAdKeywordRequest.java
 src/main/java/dev/zernio/model/UpdateAdRequest.java
 src/main/java/dev/zernio/model/UpdateAdRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdRequestCreative.java
@@ -3392,7 +3417,6 @@ src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdStatus200Response.java
-src/main/java/dev/zernio/model/UpdateAdStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreative.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInner.java
@@ -3727,3 +3751,17 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdKeywordMetricsTest.java
+src/test/java/dev/zernio/model/AdKeywordTest.java
+src/test/java/dev/zernio/model/AddAdKeywords201ResponseTest.java
+src/test/java/dev/zernio/model/AddAdKeywordsRequestKeywordsInnerAnyOfTest.java
+src/test/java/dev/zernio/model/AddAdKeywordsRequestKeywordsInnerTest.java
+src/test/java/dev/zernio/model/AddAdKeywordsRequestTest.java
+src/test/java/dev/zernio/model/KeywordEntryTest.java
+src/test/java/dev/zernio/model/ListCampaignNegativeKeywords200ResponseKeywordsInnerTest.java
+src/test/java/dev/zernio/model/ListCampaignNegativeKeywords200ResponseTest.java
+src/test/java/dev/zernio/model/RemoveAdKeyword200ResponseTest.java
+src/test/java/dev/zernio/model/ReplaceCampaignNegativeKeywords200ResponseTest.java
+src/test/java/dev/zernio/model/ReplaceCampaignNegativeKeywordsRequestTest.java
+src/test/java/dev/zernio/model/UpdateAdKeyword200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateAdKeywordRequestTest.java

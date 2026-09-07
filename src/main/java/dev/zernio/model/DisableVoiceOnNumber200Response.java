@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DisableVoiceOnNumber200Response.JSON_PROPERTY_ENABLED,
   DisableVoiceOnNumber200Response.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T17:59:12.292655465Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DisableVoiceOnNumber200Response {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
