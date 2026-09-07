@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
   PhoneNumberStockWatch.JSON_PROPERTY_ID,
   PhoneNumberStockWatch.JSON_PROPERTY_COUNTRY,
   PhoneNumberStockWatch.JSON_PROPERTY_COUNTRY_NAME,
+  PhoneNumberStockWatch.JSON_PROPERTY_NUMBER_TYPE,
   PhoneNumberStockWatch.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:18:26.386242433Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:56:42.718170660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumberStockWatch {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -52,6 +53,49 @@ public class PhoneNumberStockWatch {
   public static final String JSON_PROPERTY_COUNTRY_NAME = "countryName";
   @javax.annotation.Nonnull
   private String countryName;
+
+  /**
+   * The watched number type, or null when the watch covers every type in the country.
+   */
+  public enum NumberTypeEnum {
+    LOCAL(String.valueOf("local")),
+    
+    MOBILE(String.valueOf("mobile")),
+    
+    NATIONAL(String.valueOf("national")),
+    
+    TOLL_FREE(String.valueOf("toll_free"));
+
+    private String value;
+
+    NumberTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NumberTypeEnum fromValue(String value) {
+      for (NumberTypeEnum b : NumberTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
+  @javax.annotation.Nullable
+  private NumberTypeEnum numberType;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
@@ -132,6 +176,30 @@ public class PhoneNumberStockWatch {
   }
 
 
+  public PhoneNumberStockWatch numberType(@javax.annotation.Nullable NumberTypeEnum numberType) {
+    this.numberType = numberType;
+    return this;
+  }
+
+  /**
+   * The watched number type, or null when the watch covers every type in the country.
+   * @return numberType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public NumberTypeEnum getNumberType() {
+    return numberType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setNumberType(@javax.annotation.Nullable NumberTypeEnum numberType) {
+    this.numberType = numberType;
+  }
+
+
   public PhoneNumberStockWatch createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -171,12 +239,13 @@ public class PhoneNumberStockWatch {
     return Objects.equals(this.id, phoneNumberStockWatch.id) &&
         Objects.equals(this.country, phoneNumberStockWatch.country) &&
         Objects.equals(this.countryName, phoneNumberStockWatch.countryName) &&
+        Objects.equals(this.numberType, phoneNumberStockWatch.numberType) &&
         Objects.equals(this.createdAt, phoneNumberStockWatch.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, country, countryName, createdAt);
+    return Objects.hash(id, country, countryName, numberType, createdAt);
   }
 
   @Override
@@ -186,6 +255,7 @@ public class PhoneNumberStockWatch {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    countryName: ").append(toIndentedString(countryName)).append("\n");
+    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -247,6 +317,11 @@ public class PhoneNumberStockWatch {
     // add `countryName` to the URL query string
     if (getCountryName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountryName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountryName()))));
+    }
+
+    // add `numberType` to the URL query string
+    if (getNumberType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
     }
 
     // add `createdAt` to the URL query string

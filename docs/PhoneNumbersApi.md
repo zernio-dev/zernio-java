@@ -823,7 +823,7 @@ ApiResponse<[**CreatePhoneNumberPortIn201Response**](CreatePhoneNumberPortIn201R
 
 Watch an out-of-stock country
 
-Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
 
 ### Example
 
@@ -886,7 +886,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Watch created. |  -  |
-| **200** | A watch for this country already existed; returned unchanged. |  -  |
+| **200** | A watch for this country and type already existed; returned unchanged. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state). |  -  |
@@ -897,7 +897,7 @@ public class Example {
 
 Watch an out-of-stock country
 
-Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
 
 ### Example
 
@@ -963,7 +963,7 @@ ApiResponse<[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Watch created. |  -  |
-| **200** | A watch for this country already existed; returned unchanged. |  -  |
+| **200** | A watch for this country and type already existed; returned unchanged. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state). |  -  |

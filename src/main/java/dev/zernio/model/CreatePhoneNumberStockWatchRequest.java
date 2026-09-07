@@ -33,13 +33,57 @@ import dev.zernio.ApiClient;
  * CreatePhoneNumberStockWatchRequest
  */
 @JsonPropertyOrder({
-  CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_COUNTRY
+  CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_COUNTRY,
+  CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_NUMBER_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:18:26.386242433Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:56:42.718170660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberStockWatchRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
   private String country;
+
+  /**
+   * Narrow the watch to one number type. Omit to be notified when any type in the country is back.
+   */
+  public enum NumberTypeEnum {
+    LOCAL(String.valueOf("local")),
+    
+    MOBILE(String.valueOf("mobile")),
+    
+    NATIONAL(String.valueOf("national")),
+    
+    TOLL_FREE(String.valueOf("toll_free"));
+
+    private String value;
+
+    NumberTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NumberTypeEnum fromValue(String value) {
+      for (NumberTypeEnum b : NumberTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
+  @javax.annotation.Nullable
+  private NumberTypeEnum numberType;
 
   public CreatePhoneNumberStockWatchRequest() { 
   }
@@ -68,6 +112,30 @@ public class CreatePhoneNumberStockWatchRequest {
   }
 
 
+  public CreatePhoneNumberStockWatchRequest numberType(@javax.annotation.Nullable NumberTypeEnum numberType) {
+    this.numberType = numberType;
+    return this;
+  }
+
+  /**
+   * Narrow the watch to one number type. Omit to be notified when any type in the country is back.
+   * @return numberType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public NumberTypeEnum getNumberType() {
+    return numberType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNumberType(@javax.annotation.Nullable NumberTypeEnum numberType) {
+    this.numberType = numberType;
+  }
+
+
   /**
    * Return true if this createPhoneNumberStockWatch_request object is equal to o.
    */
@@ -80,12 +148,13 @@ public class CreatePhoneNumberStockWatchRequest {
       return false;
     }
     CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = (CreatePhoneNumberStockWatchRequest) o;
-    return Objects.equals(this.country, createPhoneNumberStockWatchRequest.country);
+    return Objects.equals(this.country, createPhoneNumberStockWatchRequest.country) &&
+        Objects.equals(this.numberType, createPhoneNumberStockWatchRequest.numberType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country);
+    return Objects.hash(country, numberType);
   }
 
   @Override
@@ -93,6 +162,7 @@ public class CreatePhoneNumberStockWatchRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreatePhoneNumberStockWatchRequest {\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -143,6 +213,11 @@ public class CreatePhoneNumberStockWatchRequest {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `numberType` to the URL query string
+    if (getNumberType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
     }
 
     return joiner.toString();
