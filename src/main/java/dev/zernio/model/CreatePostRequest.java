@@ -50,6 +50,7 @@ import dev.zernio.ApiClient;
   CreatePostRequest.JSON_PROPERTY_SCHEDULED_FOR,
   CreatePostRequest.JSON_PROPERTY_PUBLISH_NOW,
   CreatePostRequest.JSON_PROPERTY_IS_DRAFT,
+  CreatePostRequest.JSON_PROPERTY_DRY_RUN,
   CreatePostRequest.JSON_PROPERTY_TIMEZONE,
   CreatePostRequest.JSON_PROPERTY_TAGS,
   CreatePostRequest.JSON_PROPERTY_HASHTAGS,
@@ -62,7 +63,7 @@ import dev.zernio.ApiClient;
   CreatePostRequest.JSON_PROPERTY_QUEUED_FROM_PROFILE,
   CreatePostRequest.JSON_PROPERTY_QUEUE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -91,6 +92,10 @@ public class CreatePostRequest {
   public static final String JSON_PROPERTY_IS_DRAFT = "isDraft";
   @javax.annotation.Nullable
   private Boolean isDraft = false;
+
+  public static final String JSON_PROPERTY_DRY_RUN = "dryRun";
+  @javax.annotation.Nullable
+  private Boolean dryRun = false;
 
   public static final String JSON_PROPERTY_TIMEZONE = "timezone";
   @javax.annotation.Nullable
@@ -320,6 +325,30 @@ public class CreatePostRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsDraft(@javax.annotation.Nullable Boolean isDraft) {
     this.isDraft = isDraft;
+  }
+
+
+  public CreatePostRequest dryRun(@javax.annotation.Nullable Boolean dryRun) {
+    this.dryRun = dryRun;
+    return this;
+  }
+
+  /**
+   * TikTok only. Preview whether each &#x60;tiktok&#x60; entry in &#x60;platforms&#x60; could publish right now under the TikTok Direct Post daily limits, without creating, scheduling or publishing anything: no post is persisted and no upload slot is claimed, so it can be repeated freely. The request still goes through auth, the payment gate and body validation, then returns HTTP 200 with &#x60;{ dryRun: true, canPublish, tiktok: [...] }&#x60; instead of 201. Only &#x60;tiktok&#x60; entries are evaluated; other platforms in the body are ignored, and a body with no &#x60;tiktok&#x60; entry is rejected with 400 &#x60;invalid_field_value&#x60; on &#x60;platforms&#x60;. An entry with &#x60;platformSpecificData.tiktokSettings.draft: true&#x60; (Creator Inbox upload) is not subject to the limit and always reports &#x60;canPublish: true&#x60;.
+   * @return dryRun
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DRY_RUN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getDryRun() {
+    return dryRun;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DRY_RUN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDryRun(@javax.annotation.Nullable Boolean dryRun) {
+    this.dryRun = dryRun;
   }
 
 
@@ -638,6 +667,7 @@ public class CreatePostRequest {
         Objects.equals(this.scheduledFor, createPostRequest.scheduledFor) &&
         Objects.equals(this.publishNow, createPostRequest.publishNow) &&
         Objects.equals(this.isDraft, createPostRequest.isDraft) &&
+        Objects.equals(this.dryRun, createPostRequest.dryRun) &&
         Objects.equals(this.timezone, createPostRequest.timezone) &&
         Objects.equals(this.tags, createPostRequest.tags) &&
         Objects.equals(this.hashtags, createPostRequest.hashtags) &&
@@ -653,7 +683,7 @@ public class CreatePostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, content, mediaItems, platforms, scheduledFor, publishNow, isDraft, timezone, tags, hashtags, mentions, crosspostingEnabled, metadata, tiktokSettings, facebookSettings, recycling, queuedFromProfile, queueId);
+    return Objects.hash(title, content, mediaItems, platforms, scheduledFor, publishNow, isDraft, dryRun, timezone, tags, hashtags, mentions, crosspostingEnabled, metadata, tiktokSettings, facebookSettings, recycling, queuedFromProfile, queueId);
   }
 
   @Override
@@ -667,6 +697,7 @@ public class CreatePostRequest {
     sb.append("    scheduledFor: ").append(toIndentedString(scheduledFor)).append("\n");
     sb.append("    publishNow: ").append(toIndentedString(publishNow)).append("\n");
     sb.append("    isDraft: ").append(toIndentedString(isDraft)).append("\n");
+    sb.append("    dryRun: ").append(toIndentedString(dryRun)).append("\n");
     sb.append("    timezone: ").append(toIndentedString(timezone)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    hashtags: ").append(toIndentedString(hashtags)).append("\n");
@@ -768,6 +799,11 @@ public class CreatePostRequest {
     // add `isDraft` to the URL query string
     if (getIsDraft() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisDraft%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsDraft()))));
+    }
+
+    // add `dryRun` to the URL query string
+    if (getDryRun() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdryRun%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDryRun()))));
     }
 
     // add `timezone` to the URL query string

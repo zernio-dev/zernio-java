@@ -63,6 +63,7 @@ import dev.zernio.model.ListGoogleBusinessLocations200Response;
 import dev.zernio.model.ListInstagramPages200Response;
 import dev.zernio.model.ListLinkedInOrganizations200Response;
 import dev.zernio.model.ListPinterestBoardsForSelection200Response;
+import dev.zernio.model.ListSlackChannels200Response;
 import dev.zernio.model.ListSnapchatProfiles200Response;
 import dev.zernio.model.ListWhatsAppPhoneNumbers200Response;
 import dev.zernio.model.SelectFacebookPage200Response;
@@ -117,7 +118,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4599,6 +4600,156 @@ public class ConnectApi {
     if (xConnectToken != null) {
       localVarRequestBuilder.header("X-Connect-Token", xConnectToken.toString());
     }
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List Slack channels for the channel picker
+   * Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+   * @param profileId Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used. (required)
+   * @param pendingDataToken Nonce from the OAuth redirect (first connect). (optional)
+   * @param accountId Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)
+   * @param redirectUrl Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)
+   * @return ListSlackChannels200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSlackChannels200Response listSlackChannels(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl) throws ApiException {
+    return listSlackChannels(profileId, pendingDataToken, accountId, redirectUrl, null);
+  }
+
+  /**
+   * List Slack channels for the channel picker
+   * Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+   * @param profileId Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used. (required)
+   * @param pendingDataToken Nonce from the OAuth redirect (first connect). (optional)
+   * @param accountId Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)
+   * @param redirectUrl Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListSlackChannels200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSlackChannels200Response listSlackChannels(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSlackChannels200Response> localVarResponse = listSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Slack channels for the channel picker
+   * Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+   * @param profileId Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used. (required)
+   * @param pendingDataToken Nonce from the OAuth redirect (first connect). (optional)
+   * @param accountId Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)
+   * @param redirectUrl Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)
+   * @return ApiResponse&lt;ListSlackChannels200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSlackChannels200Response> listSlackChannelsWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl) throws ApiException {
+    return listSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl, null);
+  }
+
+  /**
+   * List Slack channels for the channel picker
+   * Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+   * @param profileId Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used. (required)
+   * @param pendingDataToken Nonce from the OAuth redirect (first connect). (optional)
+   * @param accountId Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)
+   * @param redirectUrl Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListSlackChannels200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSlackChannels200Response> listSlackChannelsWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listSlackChannelsRequestBuilder(profileId, pendingDataToken, accountId, redirectUrl, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listSlackChannels", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListSlackChannels200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListSlackChannels200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSlackChannels200Response>() {});
+        
+
+        return new ApiResponse<ListSlackChannels200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listSlackChannelsRequestBuilder(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'profileId' is set
+    if (profileId == null) {
+      throw new ApiException(400, "Missing the required parameter 'profileId' when calling listSlackChannels");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/slack";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "pendingDataToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pendingDataToken", pendingDataToken));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "redirect_url";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("redirect_url", redirectUrl));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());

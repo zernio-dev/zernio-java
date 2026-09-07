@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetAccountHealth200ResponsePlatformConnectionMetaError.JSON_PROPERTY_SUBCODE,
   GetAccountHealth200ResponsePlatformConnectionMetaError.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200ResponsePlatformConnectionMetaError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

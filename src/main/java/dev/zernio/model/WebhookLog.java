@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   WebhookLog.JSON_PROPERTY_RESPONSE_TIME,
   WebhookLog.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookLog {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable
@@ -226,7 +226,7 @@ public class WebhookLog {
   }
 
   /**
-   * Stable webhook event ID (correlates to the delivered payload)
+   * Stable webhook event ID: the payload &#x60;id&#x60;, also sent as the X-Zernio-Event-Id header. Shared by every attempt and redelivery of the same event.
    * @return eventId
    */
   @javax.annotation.Nullable

@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   Post.JSON_PROPERTY_CREATED_AT,
   Post.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:28:39.904315668Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T18:57:04.674292477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Post {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -98,7 +98,7 @@ public class Post {
   private String timezone;
 
   /**
-   * Gets or Sets status
+   * &#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts.
    */
   public enum StatusEnum {
     DRAFT(String.valueOf("draft")),
@@ -109,9 +109,11 @@ public class Post {
     
     PUBLISHED(String.valueOf("published")),
     
+    PARTIAL(String.valueOf("partial")),
+    
     FAILED(String.valueOf("failed")),
     
-    PARTIAL(String.valueOf("partial"));
+    CANCELLED(String.valueOf("cancelled"));
 
     private String value;
 
@@ -442,7 +444,7 @@ public class Post {
   }
 
   /**
-   * Get status
+   * &#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts.
    * @return status
    */
   @javax.annotation.Nullable

@@ -189,7 +189,7 @@ ApiResponse<[**BulkUploadResult**](BulkUploadResult.md)>
 
 ## createPost
 
-> PostCreateResponse createPost(createPostRequest, xRequestId)
+> CreatePost200Response createPost(createPostRequest, xRequestId)
 
 Create post
 
@@ -219,7 +219,7 @@ public class Example {
         CreatePostRequest createPostRequest = new CreatePostRequest(); // CreatePostRequest | 
         UUID xRequestId = UUID.randomUUID(); // UUID | Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract. 
         try {
-            PostCreateResponse result = apiInstance.createPost(createPostRequest, xRequestId);
+            CreatePost200Response result = apiInstance.createPost(createPostRequest, xRequestId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PostsApi#createPost");
@@ -242,7 +242,7 @@ public class Example {
 
 ### Return type
 
-[**PostCreateResponse**](PostCreateResponse.md)
+[**CreatePost200Response**](CreatePost200Response.md)
 
 
 ### Authorization
@@ -257,6 +257,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | dryRun preview (TikTok only): nothing was created. Deliberately carries no numeric cap detail, only a per-account go/no-go and a reason. |  -  |
 | **201** | Post created |  -  |
 | **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |
@@ -267,7 +268,7 @@ public class Example {
 
 ## createPostWithHttpInfo
 
-> ApiResponse<PostCreateResponse> createPost createPostWithHttpInfo(createPostRequest, xRequestId)
+> ApiResponse<CreatePost200Response> createPost createPostWithHttpInfo(createPostRequest, xRequestId)
 
 Create post
 
@@ -298,7 +299,7 @@ public class Example {
         CreatePostRequest createPostRequest = new CreatePostRequest(); // CreatePostRequest | 
         UUID xRequestId = UUID.randomUUID(); // UUID | Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract. 
         try {
-            ApiResponse<PostCreateResponse> response = apiInstance.createPostWithHttpInfo(createPostRequest, xRequestId);
+            ApiResponse<CreatePost200Response> response = apiInstance.createPostWithHttpInfo(createPostRequest, xRequestId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -323,7 +324,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**PostCreateResponse**](PostCreateResponse.md)>
+ApiResponse<[**CreatePost200Response**](CreatePost200Response.md)>
 
 
 ### Authorization
@@ -338,6 +339,7 @@ ApiResponse<[**PostCreateResponse**](PostCreateResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | dryRun preview (TikTok only): nothing was created. Deliberately carries no numeric cap detail, only a per-account go/no-go and a reason. |  -  |
 | **201** | Post created |  -  |
 | **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |
@@ -873,7 +875,7 @@ public class Example {
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**| Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 10] |
 | **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
-| **status** | **String**|  | [optional] [enum: draft, scheduled, published, failed] |
+| **status** | **String**|  | [optional] [enum: draft, scheduled, publishing, published, partial, failed, cancelled] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**| Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional] |
 | **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
@@ -972,7 +974,7 @@ public class Example {
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**| Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 10] |
 | **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
-| **status** | **String**|  | [optional] [enum: draft, scheduled, published, failed] |
+| **status** | **String**|  | [optional] [enum: draft, scheduled, publishing, published, partial, failed, cancelled] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**| Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional] |
 | **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |

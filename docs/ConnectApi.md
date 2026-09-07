@@ -70,6 +70,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listLinkedInOrganizationsWithHttpInfo**](ConnectApi.md#listLinkedInOrganizationsWithHttpInfo) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
 | [**listPinterestBoardsForSelection**](ConnectApi.md#listPinterestBoardsForSelection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
 | [**listPinterestBoardsForSelectionWithHttpInfo**](ConnectApi.md#listPinterestBoardsForSelectionWithHttpInfo) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
+| [**listSlackChannels**](ConnectApi.md#listSlackChannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker |
+| [**listSlackChannelsWithHttpInfo**](ConnectApi.md#listSlackChannelsWithHttpInfo) | **GET** /v1/connect/slack | List Slack channels for the channel picker |
 | [**listSnapchatProfiles**](ConnectApi.md#listSnapchatProfiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
 | [**listSnapchatProfilesWithHttpInfo**](ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
 | [**listWhatsAppPhoneNumbers**](ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
@@ -5287,6 +5289,170 @@ ApiResponse<[**ListPinterestBoardsForSelection200Response**](ListPinterestBoards
 | **401** | Unauthorized |  -  |
 | **403** | No access to profile |  -  |
 | **500** | Failed to fetch boards |  -  |
+
+
+## listSlackChannels
+
+> ListSlackChannels200Response listSlackChannels(profileId, pendingDataToken, accountId, redirectUrl)
+
+List Slack channels for the channel picker
+
+Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when `pendingDataToken` is used.
+        String pendingDataToken = "pendingDataToken_example"; // String | Nonce from the OAuth redirect (first connect).
+        String accountId = "accountId_example"; // String | Existing active Slack account (yours or a team member's) whose workspace token is reused.
+        URI redirectUrl = new URI(); // URI | Start-OAuth mode only: where to send the user after the connect completes. `redirectUrl` is accepted as an alias.
+        try {
+            ListSlackChannels200Response result = apiInstance.listSlackChannels(profileId, pendingDataToken, accountId, redirectUrl);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listSlackChannels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used. | |
+| **pendingDataToken** | **String**| Nonce from the OAuth redirect (first connect). | [optional] |
+| **accountId** | **String**| Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. | [optional] |
+| **redirectUrl** | **URI**| Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. | [optional] |
+
+### Return type
+
+[**ListSlackChannels200Response**](ListSlackChannels200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Channel list (picker mode), or the OAuth URL when neither &#x60;pendingDataToken&#x60; nor &#x60;accountId&#x60; is sent |  -  |
+| **400** | Invalid profileId or accountId format, or pendingDataToken invalid, expired or issued for another profile (code: invalid_field_value) |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available) |  -  |
+| **404** | Profile not found (start-OAuth mode), or no active Slack account with that accountId for this user or their team (code: account_not_found) |  -  |
+
+## listSlackChannelsWithHttpInfo
+
+> ApiResponse<ListSlackChannels200Response> listSlackChannels listSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl)
+
+List Slack channels for the channel picker
+
+Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when `pendingDataToken` is used.
+        String pendingDataToken = "pendingDataToken_example"; // String | Nonce from the OAuth redirect (first connect).
+        String accountId = "accountId_example"; // String | Existing active Slack account (yours or a team member's) whose workspace token is reused.
+        URI redirectUrl = new URI(); // URI | Start-OAuth mode only: where to send the user after the connect completes. `redirectUrl` is accepted as an alias.
+        try {
+            ApiResponse<ListSlackChannels200Response> response = apiInstance.listSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listSlackChannels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used. | |
+| **pendingDataToken** | **String**| Nonce from the OAuth redirect (first connect). | [optional] |
+| **accountId** | **String**| Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. | [optional] |
+| **redirectUrl** | **URI**| Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListSlackChannels200Response**](ListSlackChannels200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Channel list (picker mode), or the OAuth URL when neither &#x60;pendingDataToken&#x60; nor &#x60;accountId&#x60; is sent |  -  |
+| **400** | Invalid profileId or accountId format, or pendingDataToken invalid, expired or issued for another profile (code: invalid_field_value) |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available) |  -  |
+| **404** | Profile not found (start-OAuth mode), or no active Slack account with that accountId for this user or their team (code: account_not_found) |  -  |
 
 
 ## listSnapchatProfiles

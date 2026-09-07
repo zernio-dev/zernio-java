@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-07T18:28:39.904315668Z[Etc/UTC]
+- Build date: 2026-09-07T18:57:04.674292477Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -559,6 +559,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**listLinkedInOrganizationsWithHttpInfo**](docs/ConnectApi.md#listLinkedInOrganizationsWithHttpInfo) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
 *ConnectApi* | [**listPinterestBoardsForSelection**](docs/ConnectApi.md#listPinterestBoardsForSelection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
 *ConnectApi* | [**listPinterestBoardsForSelectionWithHttpInfo**](docs/ConnectApi.md#listPinterestBoardsForSelectionWithHttpInfo) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
+*ConnectApi* | [**listSlackChannels**](docs/ConnectApi.md#listSlackChannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker
+*ConnectApi* | [**listSlackChannelsWithHttpInfo**](docs/ConnectApi.md#listSlackChannelsWithHttpInfo) | **GET** /v1/connect/slack | List Slack channels for the channel picker
 *ConnectApi* | [**listSnapchatProfiles**](docs/ConnectApi.md#listSnapchatProfiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**listSnapchatProfilesWithHttpInfo**](docs/ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**listWhatsAppPhoneNumbers**](docs/ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
@@ -1478,6 +1480,9 @@ Class | Method | HTTP request | Description
  - [CampaignAnalyticsResponseCampaign](docs/CampaignAnalyticsResponseCampaign.md)
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
+ - [ChannelPicker](docs/ChannelPicker.md)
+ - [ChannelPickerChannelsInner](docs/ChannelPickerChannelsInner.md)
+ - [ChannelPickerTeam](docs/ChannelPickerTeam.md)
  - [CheckPhoneNumberAvailability200Response](docs/CheckPhoneNumberAvailability200Response.md)
  - [CheckPhoneNumberAvailability200ResponseAreaOptionsInner](docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md)
  - [CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
@@ -1614,6 +1619,8 @@ Class | Method | HTTP request | Description
  - [CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
+ - [CreatePost200Response](docs/CreatePost200Response.md)
+ - [CreatePost200ResponseTiktokInner](docs/CreatePost200ResponseTiktokInner.md)
  - [CreatePost403Response](docs/CreatePost403Response.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
@@ -2370,6 +2377,7 @@ Class | Method | HTTP request | Description
  - [ListSipTrunks200Response](docs/ListSipTrunks200Response.md)
  - [ListSipTrunks200ResponseTrunksInner](docs/ListSipTrunks200ResponseTrunksInner.md)
  - [ListSipTrunks200ResponseTrunksInnerTermination](docs/ListSipTrunks200ResponseTrunksInnerTermination.md)
+ - [ListSlackChannels200Response](docs/ListSlackChannels200Response.md)
  - [ListSlackMembers200Response](docs/ListSlackMembers200Response.md)
  - [ListSlackMembers200ResponseMembersInner](docs/ListSlackMembers200ResponseMembersInner.md)
  - [ListSmsOptOuts200Response](docs/ListSmsOptOuts200Response.md)
@@ -2716,6 +2724,7 @@ Class | Method | HTTP request | Description
  - [StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
  - [StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
+ - [StartOAuth](docs/StartOAuth.md)
  - [StartSmsRegistration200Response](docs/StartSmsRegistration200Response.md)
  - [StartSmsRegistrationRequest](docs/StartSmsRegistrationRequest.md)
  - [StartSmsRegistrationRequestBrand](docs/StartSmsRegistrationRequestBrand.md)
