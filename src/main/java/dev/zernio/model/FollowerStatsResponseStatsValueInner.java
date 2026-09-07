@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   FollowerStatsResponseStatsValueInner.JSON_PROPERTY_DATE,
   FollowerStatsResponseStatsValueInner.JSON_PROPERTY_FOLLOWERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:11:55.358385327Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:04:42.809315906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FollowerStatsResponseStatsValueInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable

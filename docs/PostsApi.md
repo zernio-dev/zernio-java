@@ -258,6 +258,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Post created |  -  |
+| **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_DISCONNECTED&#x60; — a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (accounts report their connection state via &#x60;isActive&#x60;). The disconnect itself is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60; — a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60; — a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60; — a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
@@ -338,6 +339,7 @@ ApiResponse<[**PostCreateResponse**](PostCreateResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Post created |  -  |
+| **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_DISCONNECTED&#x60; — a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (accounts report their connection state via &#x60;isActive&#x60;). The disconnect itself is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60; — a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60; — a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60; — a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
@@ -1072,7 +1074,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Retry successful |  -  |
-| **207** | Partial success |  -  |
+| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
 | **400** | Invalid state |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Payment required: the account owner has a failed payment. |  -  |
@@ -1153,7 +1155,7 @@ ApiResponse<[**PostRetryResponse**](PostRetryResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Retry successful |  -  |
-| **207** | Partial success |  -  |
+| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
 | **400** | Invalid state |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Payment required: the account owner has a failed payment. |  -  |
@@ -1392,7 +1394,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post updated |  -  |
-| **207** | Partial publish success |  -  |
+| **207** | The post was updated, but the inline publish that followed did not fully succeed.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  Read &#x60;post.status&#x60;: &#x60;partial&#x60; (some platforms published), &#x60;failed&#x60; (none published, terminal), or &#x60;scheduled&#x60; (transient errors, platforms reset to &#x60;pending&#x60;, Zernio retries automatically and this is not a failure). &#x60;platformResults&#x60; is omitted when the attempt aborted before producing per-platform results; &#x60;post.platforms[]&#x60; is always present.  |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
@@ -1472,7 +1474,7 @@ ApiResponse<[**PostUpdateResponse**](PostUpdateResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post updated |  -  |
-| **207** | Partial publish success |  -  |
+| **207** | The post was updated, but the inline publish that followed did not fully succeed.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  Read &#x60;post.status&#x60;: &#x60;partial&#x60; (some platforms published), &#x60;failed&#x60; (none published, terminal), or &#x60;scheduled&#x60; (transient errors, platforms reset to &#x60;pending&#x60;, Zernio retries automatically and this is not a failure). &#x60;platformResults&#x60; is omitted when the attempt aborted before producing per-platform results; &#x60;post.platforms[]&#x60; is always present.  |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-07T08:11:55.358385327Z[Etc/UTC]
+- Build date: 2026-09-07T09:04:42.809315906Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2443,6 +2443,8 @@ Class | Method | HTTP request | Description
  - [PostCreateResponse](docs/PostCreateResponse.md)
  - [PostDeleteResponse](docs/PostDeleteResponse.md)
  - [PostGetResponse](docs/PostGetResponse.md)
+ - [PostPublishIncompleteResponse](docs/PostPublishIncompleteResponse.md)
+ - [PostPublishIncompleteResponsePlatformResultsInner](docs/PostPublishIncompleteResponsePlatformResultsInner.md)
  - [PostRetryResponse](docs/PostRetryResponse.md)
  - [PostUpdateResponse](docs/PostUpdateResponse.md)
  - [PostUserId](docs/PostUserId.md)
@@ -2526,6 +2528,7 @@ Class | Method | HTTP request | Description
  - [RespondToSmsRegistrationReviewRequest](docs/RespondToSmsRegistrationReviewRequest.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
+ - [RetryPost207Response](docs/RetryPost207Response.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)
  - [RetweetPostRequest](docs/RetweetPostRequest.md)
  - [ReuseSmsRegistrationForNumber200Response](docs/ReuseSmsRegistrationForNumber200Response.md)

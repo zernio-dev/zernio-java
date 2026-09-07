@@ -35,9 +35,11 @@ import java.time.LocalDate;
 import dev.zernio.model.PostCreateResponse;
 import dev.zernio.model.PostDeleteResponse;
 import dev.zernio.model.PostGetResponse;
+import dev.zernio.model.PostPublishIncompleteResponse;
 import dev.zernio.model.PostRetryResponse;
 import dev.zernio.model.PostUpdateResponse;
 import dev.zernio.model.PostsListResponse;
+import dev.zernio.model.RetryPost207Response;
 import java.util.UUID;
 import dev.zernio.model.UnpublishPost200Response;
 import dev.zernio.model.UnpublishPostRequest;
@@ -76,7 +78,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:11:55.358385327Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:04:42.809315906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

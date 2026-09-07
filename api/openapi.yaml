@@ -5520,6 +5520,65 @@ paths:
               schema:
                 $ref: "#/components/schemas/PostCreateResponse"
           description: Post created
+        "207":
+          content:
+            application/json:
+              examples:
+                allPlatformsFailed:
+                  summary: "Every platform failed (post.status is failed, terminal)"
+                  value:
+                    post:
+                      _id: 6a9e43f7fd28fe46ce033d98
+                      content: We just launched!
+                      status: failed
+                      platforms:
+                      - platform: facebook
+                        status: failed
+                        errorMessage: "Facebook needs you to confirm your identity\
+                          \ before you can publish as this Page. Open the Facebook\
+                          \ mobile app, go to this Page, and complete the identity\
+                          \ confirmation, then try again."
+                        errorCategory: platform_rejected
+                        errorSource: platform
+                    message: Post created but publishing failed
+                    error: All platforms failed
+                    platformResults:
+                    - platform: facebook
+                      status: failed
+                      error: "Facebook needs you to confirm your identity before you\
+                        \ can publish as this Page. Open the Facebook mobile app,\
+                        \ go to this Page, and complete the identity confirmation,\
+                        \ then try again."
+                temporaryErrorsWillRetry:
+                  summary: "Transient errors (post.status is scheduled, Zernio retries)"
+                  value:
+                    post:
+                      _id: 6a9e43f7fd28fe46ce033d99
+                      content: We just launched!
+                      status: scheduled
+                      platforms:
+                      - platform: instagram
+                        status: pending
+                    message: Post created but publishing failed
+                    error: Publishing encountered temporary errors. The post will
+                      be retried automatically.
+                    platformResults:
+                    - platform: instagram
+                      status: pending
+                      error: null
+              schema:
+                $ref: "#/components/schemas/PostPublishIncompleteResponse"
+          description: |
+            The post was created, but the inline publish (`publishNow: true`, or a `scheduledFor` that is already due) did not fully succeed.
+
+            **207 is a 2xx status.** `fetch(...).ok` is `true` and axios' default `validateStatus` resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.
+
+            Tell the outcomes apart with `post.status`:
+            - `partial` - at least one platform published and at least one failed. Per-platform detail is in `platformResults` and in `post.platforms[]`.
+            - `failed` - no platform published. Terminal; nothing will be retried. Read `platforms[].errorMessage`, `platforms[].errorCategory` and `platforms[].errorSource` to decide whether the caller, the platform or Zernio must act.
+            - `scheduled` - every platform hit a transient error and was reset to `pending`. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.
+
+            A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: `post.status` is whatever it already was and `platformResults` is absent. Read `error` and `post.platforms[]`, which is always present.
         "400":
           content:
             application/json:
@@ -5873,7 +5932,16 @@ paths:
                 $ref: "#/components/schemas/PostUpdateResponse"
           description: Post updated
         "207":
-          description: Partial publish success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostPublishIncompleteResponse"
+          description: |
+            The post was updated, but the inline publish that followed did not fully succeed.
+
+            **207 is a 2xx status**, so `fetch(...).ok` is `true` and axios resolves. Branch on the status code explicitly.
+
+            Read `post.status`: `partial` (some platforms published), `failed` (none published, terminal), or `scheduled` (transient errors, platforms reset to `pending`, Zernio retries automatically and this is not a failure). `platformResults` is omitted when the attempt aborted before producing per-platform results; `post.platforms[]` is always present.
         "400":
           content:
             application/json:
@@ -6047,7 +6115,16 @@ paths:
                 $ref: "#/components/schemas/PostRetryResponse"
           description: Retry successful
         "207":
-          description: Partial success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/retryPost_207_response"
+          description: |
+            The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.
+
+            **207 is a 2xx status**, so `fetch(...).ok` is `true` and axios resolves. Branch on the status code explicitly.
+
+            This response carries no `platformResults`. Read `post.status` (`partial`, `failed`, or `scheduled` when transient errors will be retried automatically) and `post.platforms[]` for per-platform detail.
         "400":
           content:
             application/json:
@@ -47410,6 +47487,183 @@ components:
           items:
             type: string
           type: array
+    PostPublishIncompleteResponse:
+      description: Body of the 207 returned by createPost and updatePost when the
+        post was saved but the inline publish did not fully succeed. Read `post.status`
+        to tell the three outcomes apart.
+      example:
+        post:
+          queueId: queueId
+          metadata:
+            key: ""
+          hashtags:
+          - hashtags
+          - hashtags
+          visibility: public
+          timezone: timezone
+          recycling:
+            recycleCount: 5
+            gap: 6
+            expireCount: 1
+            lastRecycledAt: 2000-01-23T04:56:07.000+00:00
+            expireDate: 2000-01-23T04:56:07.000+00:00
+            nextRecycleAt: 2000-01-23T04:56:07.000+00:00
+            contentVariationIndex: 5
+            gapFreq: week
+            enabled: true
+            startDate: 2000-01-23T04:56:07.000+00:00
+            contentVariations:
+            - contentVariations
+            - contentVariations
+          recycledFromPostId: recycledFromPostId
+          title: title
+          userId: Post_userId
+          content: content
+          platforms:
+          - platformSpecificData:
+              key: ""
+            publishedAt: 2000-01-23T04:56:07.000+00:00
+            errorSource: user
+            errorMessage: errorMessage
+            platform: twitter
+            accountId: PlatformTarget_accountId
+            customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
+            errorCategory: auth_expired
+            scheduledFor: 2000-01-23T04:56:07.000+00:00
+            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            customMedia:
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
+            status: pending
+            platformPostId: "1234567890123456789"
+          - platformSpecificData:
+              key: ""
+            publishedAt: 2000-01-23T04:56:07.000+00:00
+            errorSource: user
+            errorMessage: errorMessage
+            platform: twitter
+            accountId: PlatformTarget_accountId
+            customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
+            errorCategory: auth_expired
+            scheduledFor: 2000-01-23T04:56:07.000+00:00
+            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            customMedia:
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
+            status: pending
+            platformPostId: "1234567890123456789"
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          mediaItems:
+          - thumbnail: https://openapi-generator.tech
+            filename: filename
+            altText: altText
+            size: 0
+            instagramThumbnail: https://openapi-generator.tech
+            tiktokProcessed: true
+            mimeType: mimeType
+            type: image
+            title: title
+            url: https://openapi-generator.tech
+          - thumbnail: https://openapi-generator.tech
+            filename: filename
+            altText: altText
+            size: 0
+            instagramThumbnail: https://openapi-generator.tech
+            tiktokProcessed: true
+            mimeType: mimeType
+            type: image
+            title: title
+            url: https://openapi-generator.tech
+          queuedFromProfile: queuedFromProfile
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          mentions:
+          - mentions
+          - mentions
+          _id: _id
+          status: draft
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        warnings:
+        - warnings
+        - warnings
+        platformResults:
+        - error: error
+          platform: platform
+          status: failed
+        - error: error
+          platform: platform
+          status: failed
+        message: message
+        error: error
+      properties:
+        post:
+          $ref: "#/components/schemas/Post"
+        message:
+          description: Human-readable summary of the publish outcome.
+          type: string
+        error:
+          description: "Present when no platform published. Absent on a partial success.\
+            \ Informational only; the per-platform detail is in `platformResults`\
+            \ and in `post.platforms[]`."
+          type: string
+        platformResults:
+          description: "Per-platform outcome of the publish attempt. Omitted when\
+            \ the attempt aborted before producing per-platform results (for example\
+            \ the post was already being processed); read `post.platforms[]` in that\
+            \ case."
+          items:
+            $ref: "#/components/schemas/PostPublishIncompleteResponse_platformResults_inner"
+          type: array
+        warnings:
+          description: Advisory notices about the post that was still created. Absent
+            when there are none.
+          items:
+            type: string
+          type: array
     PostDeleteResponse:
       example:
         message: message
@@ -56367,6 +56621,153 @@ components:
         file:
           format: binary
           type: string
+    retryPost_207_response:
+      example:
+        post:
+          queueId: queueId
+          metadata:
+            key: ""
+          hashtags:
+          - hashtags
+          - hashtags
+          visibility: public
+          timezone: timezone
+          recycling:
+            recycleCount: 5
+            gap: 6
+            expireCount: 1
+            lastRecycledAt: 2000-01-23T04:56:07.000+00:00
+            expireDate: 2000-01-23T04:56:07.000+00:00
+            nextRecycleAt: 2000-01-23T04:56:07.000+00:00
+            contentVariationIndex: 5
+            gapFreq: week
+            enabled: true
+            startDate: 2000-01-23T04:56:07.000+00:00
+            contentVariations:
+            - contentVariations
+            - contentVariations
+          recycledFromPostId: recycledFromPostId
+          title: title
+          userId: Post_userId
+          content: content
+          platforms:
+          - platformSpecificData:
+              key: ""
+            publishedAt: 2000-01-23T04:56:07.000+00:00
+            errorSource: user
+            errorMessage: errorMessage
+            platform: twitter
+            accountId: PlatformTarget_accountId
+            customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
+            errorCategory: auth_expired
+            scheduledFor: 2000-01-23T04:56:07.000+00:00
+            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            customMedia:
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
+            status: pending
+            platformPostId: "1234567890123456789"
+          - platformSpecificData:
+              key: ""
+            publishedAt: 2000-01-23T04:56:07.000+00:00
+            errorSource: user
+            errorMessage: errorMessage
+            platform: twitter
+            accountId: PlatformTarget_accountId
+            customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
+            errorCategory: auth_expired
+            scheduledFor: 2000-01-23T04:56:07.000+00:00
+            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            customMedia:
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            - thumbnail: https://openapi-generator.tech
+              filename: filename
+              altText: altText
+              size: 0
+              instagramThumbnail: https://openapi-generator.tech
+              tiktokProcessed: true
+              mimeType: mimeType
+              type: image
+              title: title
+              url: https://openapi-generator.tech
+            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
+            status: pending
+            platformPostId: "1234567890123456789"
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          mediaItems:
+          - thumbnail: https://openapi-generator.tech
+            filename: filename
+            altText: altText
+            size: 0
+            instagramThumbnail: https://openapi-generator.tech
+            tiktokProcessed: true
+            mimeType: mimeType
+            type: image
+            title: title
+            url: https://openapi-generator.tech
+          - thumbnail: https://openapi-generator.tech
+            filename: filename
+            altText: altText
+            size: 0
+            instagramThumbnail: https://openapi-generator.tech
+            tiktokProcessed: true
+            mimeType: mimeType
+            type: image
+            title: title
+            url: https://openapi-generator.tech
+          queuedFromProfile: queuedFromProfile
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          mentions:
+          - mentions
+          - mentions
+          _id: _id
+          status: draft
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        message: message
+        error: error
+      properties:
+        message:
+          type: string
+        error:
+          description: Summary of why the retry did not fully succeed.
+          type: string
+        post:
+          $ref: "#/components/schemas/Post"
     unpublishPost_request:
       properties:
         platform:
@@ -98887,6 +99288,29 @@ components:
           items:
             $ref: "#/components/schemas/LinkedInAggregateAnalyticsDailyResponse_analytics_impressions_inner"
           type: array
+    PostPublishIncompleteResponse_platformResults_inner:
+      example:
+        error: error
+        platform: platform
+        status: failed
+      properties:
+        platform:
+          description: "Platform slug, matching `post.platforms[].platform`."
+          type: string
+        status:
+          description: "Per-platform status: pending, processing, published, failed,\
+            \ cancelled, uploading."
+          example: failed
+          type: string
+        error:
+          description: "Failure detail for this platform, or null when it did not\
+            \ fail."
+          nullable: true
+          type: string
+      required:
+      - error
+      - platform
+      - status
     FollowerStatsResponse_stats_value_inner:
       example:
         date: 2000-01-23

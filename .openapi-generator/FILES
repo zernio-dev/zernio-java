@@ -1162,6 +1162,8 @@ docs/PostAnalytics.md
 docs/PostCreateResponse.md
 docs/PostDeleteResponse.md
 docs/PostGetResponse.md
+docs/PostPublishIncompleteResponse.md
+docs/PostPublishIncompleteResponsePlatformResultsInner.md
 docs/PostRetryResponse.md
 docs/PostUpdateResponse.md
 docs/PostUserId.md
@@ -1250,6 +1252,7 @@ docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
+docs/RetryPost207Response.md
 docs/RetweetPost200Response.md
 docs/RetweetPostRequest.md
 docs/ReuseSmsRegistrationForNumber200Response.md
@@ -3048,6 +3051,8 @@ src/main/java/dev/zernio/model/PostAnalytics.java
 src/main/java/dev/zernio/model/PostCreateResponse.java
 src/main/java/dev/zernio/model/PostDeleteResponse.java
 src/main/java/dev/zernio/model/PostGetResponse.java
+src/main/java/dev/zernio/model/PostPublishIncompleteResponse.java
+src/main/java/dev/zernio/model/PostPublishIncompleteResponsePlatformResultsInner.java
 src/main/java/dev/zernio/model/PostRetryResponse.java
 src/main/java/dev/zernio/model/PostUpdateResponse.java
 src/main/java/dev/zernio/model/PostUserId.java
@@ -3131,6 +3136,7 @@ src/main/java/dev/zernio/model/RespondToSmsRegistrationReview200Response.java
 src/main/java/dev/zernio/model/RespondToSmsRegistrationReviewRequest.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200ResponseWorkflow.java
+src/main/java/dev/zernio/model/RetryPost207Response.java
 src/main/java/dev/zernio/model/RetweetPost200Response.java
 src/main/java/dev/zernio/model/RetweetPostRequest.java
 src/main/java/dev/zernio/model/ReuseSmsRegistrationForNumber200Response.java
@@ -3707,3 +3713,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PostPublishIncompleteResponsePlatformResultsInnerTest.java
+src/test/java/dev/zernio/model/PostPublishIncompleteResponseTest.java
+src/test/java/dev/zernio/model/RetryPost207ResponseTest.java
