@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.UpdateAdRequestTargetingDevicesInner;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import dev.zernio.model.UpdateAdRequestTargetingKeywordsInner;
 import java.util.ArrayList;
@@ -34,18 +35,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta + TikTok (demographics/interests), Google (keyword edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
+ * Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
  */
 @JsonPropertyOrder({
   UpdateAdRequestTargeting.JSON_PROPERTY_KEYWORDS,
   UpdateAdRequestTargeting.JSON_PROPERTY_NEGATIVE_KEYWORDS,
+  UpdateAdRequestTargeting.JSON_PROPERTY_DEVICES,
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MIN,
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MAX,
   UpdateAdRequestTargeting.JSON_PROPERTY_COUNTRIES,
   UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS,
   UpdateAdRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
@@ -54,6 +56,10 @@ public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_NEGATIVE_KEYWORDS = "negativeKeywords";
   @javax.annotation.Nullable
   private List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DEVICES = "devices";
+  @javax.annotation.Nullable
+  private List<UpdateAdRequestTargetingDevicesInner> devices = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -174,6 +180,38 @@ public class UpdateAdRequestTargeting {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNegativeKeywords(@javax.annotation.Nullable List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords) {
     this.negativeKeywords = negativeKeywords;
+  }
+
+
+  public UpdateAdRequestTargeting devices(@javax.annotation.Nullable List<UpdateAdRequestTargetingDevicesInner> devices) {
+    this.devices = devices;
+    return this;
+  }
+
+  public UpdateAdRequestTargeting addDevicesItem(UpdateAdRequestTargetingDevicesInner devicesItem) {
+    if (this.devices == null) {
+      this.devices = new ArrayList<>();
+    }
+    this.devices.add(devicesItem);
+    return this;
+  }
+
+  /**
+   * Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }.
+   * @return devices
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEVICES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateAdRequestTargetingDevicesInner> getDevices() {
+    return devices;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DEVICES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDevices(@javax.annotation.Nullable List<UpdateAdRequestTargetingDevicesInner> devices) {
+    this.devices = devices;
   }
 
 
@@ -331,6 +369,7 @@ public class UpdateAdRequestTargeting {
     UpdateAdRequestTargeting updateAdRequestTargeting = (UpdateAdRequestTargeting) o;
     return Objects.equals(this.keywords, updateAdRequestTargeting.keywords) &&
         Objects.equals(this.negativeKeywords, updateAdRequestTargeting.negativeKeywords) &&
+        Objects.equals(this.devices, updateAdRequestTargeting.devices) &&
         Objects.equals(this.ageMin, updateAdRequestTargeting.ageMin) &&
         Objects.equals(this.ageMax, updateAdRequestTargeting.ageMax) &&
         Objects.equals(this.countries, updateAdRequestTargeting.countries) &&
@@ -340,7 +379,7 @@ public class UpdateAdRequestTargeting {
 
   @Override
   public int hashCode() {
-    return Objects.hash(keywords, negativeKeywords, ageMin, ageMax, countries, interests, advantageAudience);
+    return Objects.hash(keywords, negativeKeywords, devices, ageMin, ageMax, countries, interests, advantageAudience);
   }
 
   @Override
@@ -349,6 +388,7 @@ public class UpdateAdRequestTargeting {
     sb.append("class UpdateAdRequestTargeting {\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    negativeKeywords: ").append(toIndentedString(negativeKeywords)).append("\n");
+    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
@@ -416,6 +456,16 @@ public class UpdateAdRequestTargeting {
       for (int i = 0; i < getNegativeKeywords().size(); i++) {
         if (getNegativeKeywords().get(i) != null) {
           joiner.add(getNegativeKeywords().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%snegativeKeywords%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `devices` to the URL query string
+    if (getDevices() != null) {
+      for (int i = 0; i < getDevices().size(); i++) {
+        if (getDevices().get(i) != null) {
+          joiner.add(getDevices().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdevices%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

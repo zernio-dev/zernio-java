@@ -152,6 +152,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  CreateStandaloneAdRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_VALUE_RULE_SET_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_VALUE_RULES_APPLIED,
   CreateStandaloneAdRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
@@ -162,7 +163,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1101,6 +1102,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID = "portfolioBidStrategyId";
+  @javax.annotation.Nullable
+  private String portfolioBidStrategyId;
 
   public static final String JSON_PROPERTY_VALUE_RULE_SET_ID = "valueRuleSetId";
   @javax.annotation.Nullable
@@ -3490,7 +3495,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Meta bid strategy applied to the ad set.  OpenAI Ads: required on every ad group via this flat field, the only channel it supports (&#x60;platformSpecificData&#x60; is Meta/LinkedIn-only and returns 400 for OpenAI). No auto-bid option exists; send &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60; together with &#x60;bidAmount&#x60;, omitting it returns 400. 
+   * Deprecated: send it inside &#x60;platformSpecificData&#x60; instead (Meta today; TikTok&#39;s nested shape is planned). The flat field keeps working during the deprecation window; sending both shapes returns a 400.  Meta bid strategy applied to the ad set.  OpenAI Ads: required on every ad group via this flat field, the only channel it supports (&#x60;platformSpecificData&#x60; is Meta/LinkedIn-only and returns 400 for OpenAI). No auto-bid option exists; send &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60; together with &#x60;bidAmount&#x60;, omitting it returns 400.  Google (not deprecated there, this shared flat field is Google&#39;s only shape): applied to the campaign this call creates. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead. Omitted, the campaign falls back to a goal-based default. 
    * @return bidStrategy
    * @deprecated
    */
@@ -3559,6 +3564,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
     this.roasAverageFloor = roasAverageFloor;
+  }
+
+
+  public CreateStandaloneAdRequest portfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
+    return this;
+  }
+
+  /**
+   * Google only. Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) to the new campaign instead of a standard one. Exclusive with bidStrategy.
+   * @return portfolioBidStrategyId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPortfolioBidStrategyId() {
+    return portfolioBidStrategyId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
   }
 
 
@@ -3878,6 +3907,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.bidStrategy, createStandaloneAdRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, createStandaloneAdRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, createStandaloneAdRequest.roasAverageFloor) &&
+        Objects.equals(this.portfolioBidStrategyId, createStandaloneAdRequest.portfolioBidStrategyId) &&
         Objects.equals(this.valueRuleSetId, createStandaloneAdRequest.valueRuleSetId) &&
         Objects.equals(this.valueRulesApplied, createStandaloneAdRequest.valueRulesApplied) &&
         Objects.equals(this.platformSpecificData, createStandaloneAdRequest.platformSpecificData) &&
@@ -3891,7 +3921,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3986,6 +4016,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    portfolioBidStrategyId: ").append(toIndentedString(portfolioBidStrategyId)).append("\n");
     sb.append("    valueRuleSetId: ").append(toIndentedString(valueRuleSetId)).append("\n");
     sb.append("    valueRulesApplied: ").append(toIndentedString(valueRulesApplied)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
@@ -4631,6 +4662,11 @@ public class CreateStandaloneAdRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `portfolioBidStrategyId` to the URL query string
+    if (getPortfolioBidStrategyId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sportfolioBidStrategyId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortfolioBidStrategyId()))));
     }
 
     // add `valueRuleSetId` to the URL query string

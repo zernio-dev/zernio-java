@@ -14,6 +14,7 @@ Echoes back only the fields you sent, plus `updated`.
 |**bidStrategy** | **BidStrategy** |  |  [optional] |
 |**bidAmount** | **BigDecimal** |  |  [optional] |
 |**roasAverageFloor** | **BigDecimal** |  |  [optional] |
+|**portfolioBidStrategyId** | **String** | Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet). |  [optional] |
 |**platformSpecificData** | **Object** |  |  [optional] |
 
 

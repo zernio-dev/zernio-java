@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreatePost200ResponseTiktokInner.JSON_PROPERTY_ALREADY_POSTED_TODAY,
   CreatePost200ResponseTiktokInner.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePost200ResponseTiktokInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

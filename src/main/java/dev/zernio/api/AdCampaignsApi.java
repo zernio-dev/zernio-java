@@ -34,6 +34,8 @@ import dev.zernio.model.CreateAdCampaign201Response;
 import dev.zernio.model.CreateAdCampaignRequest;
 import dev.zernio.model.CreateAdSet201Response;
 import dev.zernio.model.CreateAdSetRequest;
+import dev.zernio.model.CreateBidStrategy201Response;
+import dev.zernio.model.CreateBidStrategyRequest;
 import dev.zernio.model.CreateStandaloneAd200Response;
 import dev.zernio.model.CreateStandaloneAd201Response;
 import dev.zernio.model.CreateStandaloneAdRequest;
@@ -52,6 +54,7 @@ import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdSetDetails200Response;
 import dev.zernio.model.GetAdTree202Response;
 import dev.zernio.model.GetAdsTimeline202Response;
+import dev.zernio.model.GetCampaignBidding200Response;
 import dev.zernio.model.GetCampaignTargeting200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -59,6 +62,7 @@ import dev.zernio.model.ListAdCampaigns200Response;
 import dev.zernio.model.ListAdKeywords200Response;
 import dev.zernio.model.ListAdSets200Response;
 import dev.zernio.model.ListAds202Response;
+import dev.zernio.model.ListBidStrategies200Response;
 import dev.zernio.model.ListCampaignNegativeKeywords200Response;
 import java.time.LocalDate;
 import dev.zernio.model.RemoveAdKeyword200Response;
@@ -76,6 +80,8 @@ import dev.zernio.model.UpdateAdSet200Response;
 import dev.zernio.model.UpdateAdSetRequest;
 import dev.zernio.model.UpdateAdSetStatus200Response;
 import dev.zernio.model.UpdateAdStatus200Response;
+import dev.zernio.model.UpdateBidStrategy200Response;
+import dev.zernio.model.UpdateBidStrategyRequest;
 import dev.zernio.model.UpdateCampaignTargeting200Response;
 import dev.zernio.model.UpdateCampaignTargetingRequest;
 
@@ -104,7 +110,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -731,7 +737,7 @@ public class AdCampaignsApi {
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return CreateAdCampaign201Response
@@ -743,7 +749,7 @@ public class AdCampaignsApi {
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
@@ -757,7 +763,7 @@ public class AdCampaignsApi {
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
@@ -769,7 +775,7 @@ public class AdCampaignsApi {
 
   /**
    * Create a standalone campaign
-   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+   * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
@@ -974,6 +980,129 @@ public class AdCampaignsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdSetRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a Google Ads portfolio bid strategy
+   * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+   * @param createBidStrategyRequest  (required)
+   * @return CreateBidStrategy201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateBidStrategy201Response createBidStrategy(@javax.annotation.Nonnull CreateBidStrategyRequest createBidStrategyRequest) throws ApiException {
+    return createBidStrategy(createBidStrategyRequest, null);
+  }
+
+  /**
+   * Create a Google Ads portfolio bid strategy
+   * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+   * @param createBidStrategyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateBidStrategy201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateBidStrategy201Response createBidStrategy(@javax.annotation.Nonnull CreateBidStrategyRequest createBidStrategyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateBidStrategy201Response> localVarResponse = createBidStrategyWithHttpInfo(createBidStrategyRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a Google Ads portfolio bid strategy
+   * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+   * @param createBidStrategyRequest  (required)
+   * @return ApiResponse&lt;CreateBidStrategy201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateBidStrategy201Response> createBidStrategyWithHttpInfo(@javax.annotation.Nonnull CreateBidStrategyRequest createBidStrategyRequest) throws ApiException {
+    return createBidStrategyWithHttpInfo(createBidStrategyRequest, null);
+  }
+
+  /**
+   * Create a Google Ads portfolio bid strategy
+   * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+   * @param createBidStrategyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateBidStrategy201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateBidStrategy201Response> createBidStrategyWithHttpInfo(@javax.annotation.Nonnull CreateBidStrategyRequest createBidStrategyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createBidStrategyRequestBuilder(createBidStrategyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createBidStrategy", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateBidStrategy201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateBidStrategy201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateBidStrategy201Response>() {});
+        
+
+        return new ApiResponse<CreateBidStrategy201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createBidStrategyRequestBuilder(@javax.annotation.Nonnull CreateBidStrategyRequest createBidStrategyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createBidStrategyRequest' is set
+    if (createBidStrategyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createBidStrategyRequest' when calling createBidStrategy");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/bid-strategies";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createBidStrategyRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2546,6 +2675,163 @@ public class AdCampaignsApi {
   }
 
   /**
+   * Read a campaign&#39;s current bidding
+   * Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param accountId Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. (required)
+   * @param platform Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)
+   * @return GetCampaignBidding200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignBidding200Response getCampaignBidding(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String platform, @javax.annotation.Nullable String customerId) throws ApiException {
+    return getCampaignBidding(campaignId, accountId, platform, customerId, null);
+  }
+
+  /**
+   * Read a campaign&#39;s current bidding
+   * Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param accountId Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. (required)
+   * @param platform Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetCampaignBidding200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignBidding200Response getCampaignBidding(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String platform, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetCampaignBidding200Response> localVarResponse = getCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read a campaign&#39;s current bidding
+   * Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param accountId Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. (required)
+   * @param platform Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)
+   * @return ApiResponse&lt;GetCampaignBidding200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignBidding200Response> getCampaignBiddingWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String platform, @javax.annotation.Nullable String customerId) throws ApiException {
+    return getCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId, null);
+  }
+
+  /**
+   * Read a campaign&#39;s current bidding
+   * Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param accountId Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. (required)
+   * @param platform Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetCampaignBidding200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignBidding200Response> getCampaignBiddingWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String platform, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCampaignBiddingRequestBuilder(campaignId, accountId, platform, customerId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCampaignBidding", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetCampaignBidding200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetCampaignBidding200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCampaignBidding200Response>() {});
+        
+
+        return new ApiResponse<GetCampaignBidding200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCampaignBiddingRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String platform, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling getCampaignBidding");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getCampaignBidding");
+    }
+    // verify the required parameter 'platform' is set
+    if (platform == null) {
+      throw new ApiException(400, "Missing the required parameter 'platform' when calling getCampaignBidding");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/bidding"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Read a Google campaign&#39;s device, location, and language targeting
    * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the live campaign state so an integrator can build an editor around it. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
    * @param campaignId Google platform campaign ID (required)
@@ -3435,6 +3721,156 @@ public class AdCampaignsApi {
   }
 
   /**
+   * List Google Ads portfolio bid strategies
+   * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @return ListBidStrategies200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListBidStrategies200Response listBidStrategies(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listBidStrategies(accountId, customerId, fromDate, toDate, null);
+  }
+
+  /**
+   * List Google Ads portfolio bid strategies
+   * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListBidStrategies200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListBidStrategies200Response listBidStrategies(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListBidStrategies200Response> localVarResponse = listBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Google Ads portfolio bid strategies
+   * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @return ApiResponse&lt;ListBidStrategies200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListBidStrategies200Response> listBidStrategiesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate, null);
+  }
+
+  /**
+   * List Google Ads portfolio bid strategies
+   * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * @param fromDate Defaults to 30 days ago. (optional)
+   * @param toDate Defaults to today. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListBidStrategies200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListBidStrategies200Response> listBidStrategiesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listBidStrategiesRequestBuilder(accountId, customerId, fromDate, toDate, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listBidStrategies", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListBidStrategies200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListBidStrategies200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListBidStrategies200Response>() {});
+        
+
+        return new ApiResponse<ListBidStrategies200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listBidStrategiesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listBidStrategies");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/bid-strategies";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List campaign-level negative keywords
    * Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
    * @param campaignId Platform campaign ID (required)
@@ -3823,7 +4259,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @return UpdateAd200Response
@@ -3835,7 +4271,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @param headers Optional headers to include in the request
@@ -3849,7 +4285,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @return ApiResponse&lt;UpdateAd200Response&gt;
@@ -3861,7 +4297,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @param headers Optional headers to include in the request
@@ -3955,7 +4391,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @return UpdateAdCampaign200Response
@@ -3967,7 +4403,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request
@@ -3981,7 +4417,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @return ApiResponse&lt;UpdateAdCampaign200Response&gt;
@@ -3993,7 +4429,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4731,6 +5167,138 @@ public class AdCampaignsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdKeywordRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update a Google Ads portfolio bid strategy
+   * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+   * @param strategyId Numeric Google Ads bid strategy id. (required)
+   * @param updateBidStrategyRequest  (required)
+   * @return UpdateBidStrategy200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateBidStrategy200Response updateBidStrategy(@javax.annotation.Nonnull String strategyId, @javax.annotation.Nonnull UpdateBidStrategyRequest updateBidStrategyRequest) throws ApiException {
+    return updateBidStrategy(strategyId, updateBidStrategyRequest, null);
+  }
+
+  /**
+   * Update a Google Ads portfolio bid strategy
+   * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+   * @param strategyId Numeric Google Ads bid strategy id. (required)
+   * @param updateBidStrategyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateBidStrategy200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateBidStrategy200Response updateBidStrategy(@javax.annotation.Nonnull String strategyId, @javax.annotation.Nonnull UpdateBidStrategyRequest updateBidStrategyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateBidStrategy200Response> localVarResponse = updateBidStrategyWithHttpInfo(strategyId, updateBidStrategyRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update a Google Ads portfolio bid strategy
+   * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+   * @param strategyId Numeric Google Ads bid strategy id. (required)
+   * @param updateBidStrategyRequest  (required)
+   * @return ApiResponse&lt;UpdateBidStrategy200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateBidStrategy200Response> updateBidStrategyWithHttpInfo(@javax.annotation.Nonnull String strategyId, @javax.annotation.Nonnull UpdateBidStrategyRequest updateBidStrategyRequest) throws ApiException {
+    return updateBidStrategyWithHttpInfo(strategyId, updateBidStrategyRequest, null);
+  }
+
+  /**
+   * Update a Google Ads portfolio bid strategy
+   * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+   * @param strategyId Numeric Google Ads bid strategy id. (required)
+   * @param updateBidStrategyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateBidStrategy200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateBidStrategy200Response> updateBidStrategyWithHttpInfo(@javax.annotation.Nonnull String strategyId, @javax.annotation.Nonnull UpdateBidStrategyRequest updateBidStrategyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateBidStrategyRequestBuilder(strategyId, updateBidStrategyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateBidStrategy", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateBidStrategy200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateBidStrategy200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateBidStrategy200Response>() {});
+        
+
+        return new ApiResponse<UpdateBidStrategy200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateBidStrategyRequestBuilder(@javax.annotation.Nonnull String strategyId, @javax.annotation.Nonnull UpdateBidStrategyRequest updateBidStrategyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'strategyId' is set
+    if (strategyId == null) {
+      throw new ApiException(400, "Missing the required parameter 'strategyId' when calling updateBidStrategy");
+    }
+    // verify the required parameter 'updateBidStrategyRequest' is set
+    if (updateBidStrategyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateBidStrategyRequest' when calling updateBidStrategy");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/bid-strategies/{strategyId}"
+        .replace("{strategyId}", ApiClient.urlEncode(strategyId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateBidStrategyRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

@@ -46,9 +46,10 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_STATUS,
   CreateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateAdCampaignRequest.JSON_PROPERTY_BID_AMOUNT,
-  CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
+  CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  CreateAdCampaignRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -249,7 +250,7 @@ public class CreateAdCampaignRequest {
   private StatusEnum status = StatusEnum.PAUSED;
 
   /**
-   * Campaign bid strategy. Meta stores &#x60;bid_strategy&#x60; alongside the budget, so this REQUIRES &#x60;budgetAmount&#x60; + &#x60;budgetType&#x60; on the same request; sending it without a campaign budget is a 400. A campaign carrying a strategy without its &#x60;bid_amount&#x60; makes every ad set created under it fail with an error that names the ad set (code 100, subcode 1815857), so the bad state is rejected up front rather than accepted. To bid at ad-set level, set the strategy there instead.
+   * Campaign bid strategy. Meta stores &#x60;bid_strategy&#x60; alongside the budget, so this REQUIRES &#x60;budgetAmount&#x60; + &#x60;budgetType&#x60; on the same request; sending it without a campaign budget is a 400. A campaign carrying a strategy without its &#x60;bid_amount&#x60; makes every ad set created under it fail with an error that names the ad set (code 100, subcode 1815857), so the bad state is rejected up front rather than accepted. To bid at ad-set level on Meta, set the strategy there instead. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead.
    */
   public enum BidStrategyEnum {
     LOWEST_COST_WITHOUT_CAP(String.valueOf("LOWEST_COST_WITHOUT_CAP")),
@@ -298,6 +299,10 @@ public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID = "portfolioBidStrategyId";
+  @javax.annotation.Nullable
+  private String portfolioBidStrategyId;
 
   public CreateAdCampaignRequest() { 
   }
@@ -508,7 +513,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Campaign bid strategy. Meta stores &#x60;bid_strategy&#x60; alongside the budget, so this REQUIRES &#x60;budgetAmount&#x60; + &#x60;budgetType&#x60; on the same request; sending it without a campaign budget is a 400. A campaign carrying a strategy without its &#x60;bid_amount&#x60; makes every ad set created under it fail with an error that names the ad set (code 100, subcode 1815857), so the bad state is rejected up front rather than accepted. To bid at ad-set level, set the strategy there instead.
+   * Campaign bid strategy. Meta stores &#x60;bid_strategy&#x60; alongside the budget, so this REQUIRES &#x60;budgetAmount&#x60; + &#x60;budgetType&#x60; on the same request; sending it without a campaign budget is a 400. A campaign carrying a strategy without its &#x60;bid_amount&#x60; makes every ad set created under it fail with an error that names the ad set (code 100, subcode 1815857), so the bad state is rejected up front rather than accepted. To bid at ad-set level on Meta, set the strategy there instead. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead.
    * @return bidStrategy
    */
   @javax.annotation.Nullable
@@ -532,7 +537,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise. Validated here but NOT stored by Meta: the campaign object has no bid_amount field, only bid_strategy lives on it. The amount takes effect once an ad set joins this campaign (existingCampaignId on POST /v1/ads/create) and supplies its own bidAmount there.
+   * Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise. On Meta, validated here but NOT stored: the campaign object has no bid_amount field, only bid_strategy lives on it, and the amount takes effect once an ad set joins this campaign (existingCampaignId on POST /v1/ads/create) and supplies its own bidAmount there. On Google, stored directly on the campaign&#39;s bidding strategy.
    * @return bidAmount
    */
   @javax.annotation.Nullable
@@ -574,6 +579,30 @@ public class CreateAdCampaignRequest {
   }
 
 
+  public CreateAdCampaignRequest portfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
+    return this;
+  }
+
+  /**
+   * Google only. Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) to the new campaign instead of a standard one. Exclusive with bidStrategy.
+   * @return portfolioBidStrategyId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPortfolioBidStrategyId() {
+    return portfolioBidStrategyId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
+  }
+
+
   /**
    * Return true if this createAdCampaign_request object is equal to o.
    */
@@ -596,12 +625,13 @@ public class CreateAdCampaignRequest {
         Objects.equals(this.status, createAdCampaignRequest.status) &&
         Objects.equals(this.bidStrategy, createAdCampaignRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, createAdCampaignRequest.bidAmount) &&
-        Objects.equals(this.roasAverageFloor, createAdCampaignRequest.roasAverageFloor);
+        Objects.equals(this.roasAverageFloor, createAdCampaignRequest.roasAverageFloor) &&
+        Objects.equals(this.portfolioBidStrategyId, createAdCampaignRequest.portfolioBidStrategyId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, specialAdCategories, budgetAmount, budgetType, status, bidStrategy, bidAmount, roasAverageFloor);
+    return Objects.hash(accountId, adAccountId, name, goal, specialAdCategories, budgetAmount, budgetType, status, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId);
   }
 
   @Override
@@ -619,6 +649,7 @@ public class CreateAdCampaignRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    portfolioBidStrategyId: ").append(toIndentedString(portfolioBidStrategyId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -723,6 +754,11 @@ public class CreateAdCampaignRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `portfolioBidStrategyId` to the URL query string
+    if (getPortfolioBidStrategyId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sportfolioBidStrategyId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortfolioBidStrategyId()))));
     }
 
     return joiner.toString();

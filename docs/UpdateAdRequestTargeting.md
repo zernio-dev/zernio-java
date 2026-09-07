@@ -2,7 +2,7 @@
 
 # UpdateAdRequestTargeting
 
-Meta + TikTok (demographics/interests), Google (keyword edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
+Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
 
 ## Properties
 
@@ -10,6 +10,7 @@ Meta + TikTok (demographics/interests), Google (keyword edits only), and LinkedI
 |------------ | ------------- | ------------- | -------------|
 |**keywords** | [**List&lt;UpdateAdRequestTargetingKeywordsInner&gt;**](UpdateAdRequestTargetingKeywordsInner.md) | Google only. The FULL new set of positive keywords for the ad group; live keywords not listed are removed. Entries are strings (BROAD) or { text, matchType } with matchType exact | phrase | broad. Mirrored to GET /v1/ads/keywords immediately. |  [optional] |
 |**negativeKeywords** | [**List&lt;UpdateAdRequestTargetingKeywordsInner&gt;**](UpdateAdRequestTargetingKeywordsInner.md) | Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords. |  [optional] |
+|**devices** | [**List&lt;UpdateAdRequestTargetingDevicesInner&gt;**](UpdateAdRequestTargetingDevicesInner.md) | Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }. |  [optional] |
 |**ageMin** | **Integer** |  |  [optional] |
 |**ageMax** | **Integer** |  |  [optional] |
 |**countries** | **List&lt;String&gt;** |  |  [optional] |

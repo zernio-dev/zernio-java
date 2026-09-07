@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   UpdateAdCampaign200Response.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdCampaign200Response.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdCampaign200Response.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  UpdateAdCampaign200Response.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID,
   UpdateAdCampaign200Response.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaign200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
@@ -102,6 +103,10 @@ public class UpdateAdCampaign200Response {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID = "portfolioBidStrategyId";
+  @javax.annotation.Nullable
+  private String portfolioBidStrategyId;
 
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
@@ -254,6 +259,30 @@ public class UpdateAdCampaign200Response {
   }
 
 
+  public UpdateAdCampaign200Response portfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
+    return this;
+  }
+
+  /**
+   * Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet).
+   * @return portfolioBidStrategyId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPortfolioBidStrategyId() {
+    return portfolioBidStrategyId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
+  }
+
+
   public UpdateAdCampaign200Response platformSpecificData(@javax.annotation.Nullable Object platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
@@ -296,12 +325,13 @@ public class UpdateAdCampaign200Response {
         Objects.equals(this.bidStrategy, updateAdCampaign200Response.bidStrategy) &&
         Objects.equals(this.bidAmount, updateAdCampaign200Response.bidAmount) &&
         Objects.equals(this.roasAverageFloor, updateAdCampaign200Response.roasAverageFloor) &&
+        Objects.equals(this.portfolioBidStrategyId, updateAdCampaign200Response.portfolioBidStrategyId) &&
         Objects.equals(this.platformSpecificData, updateAdCampaign200Response.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updated, budget, budgetLevel, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData);
+    return Objects.hash(updated, budget, budgetLevel, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, platformSpecificData);
   }
 
   @Override
@@ -314,6 +344,7 @@ public class UpdateAdCampaign200Response {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    portfolioBidStrategyId: ").append(toIndentedString(portfolioBidStrategyId)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -390,6 +421,11 @@ public class UpdateAdCampaign200Response {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `portfolioBidStrategyId` to the URL query string
+    if (getPortfolioBidStrategyId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sportfolioBidStrategyId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortfolioBidStrategyId()))));
     }
 
     // add `platformSpecificData` to the URL query string

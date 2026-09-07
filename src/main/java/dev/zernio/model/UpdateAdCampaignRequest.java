@@ -42,11 +42,12 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdCampaignRequest.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  UpdateAdCampaignRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID,
   UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T19:47:51.121023355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Required: platform campaign IDs are not globally unique.
@@ -104,6 +105,10 @@ public class UpdateAdCampaignRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID = "portfolioBidStrategyId";
+  @javax.annotation.Nullable
+  private String portfolioBidStrategyId;
 
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
@@ -174,7 +179,7 @@ public class UpdateAdCampaignRequest {
   }
 
   /**
-   * **Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy.
+   * **Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead.
    * @return bidStrategy
    */
   @javax.annotation.Nullable
@@ -237,6 +242,30 @@ public class UpdateAdCampaignRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
     this.roasAverageFloor = roasAverageFloor;
+  }
+
+
+  public UpdateAdCampaignRequest portfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
+    return this;
+  }
+
+  /**
+   * **Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy.
+   * @return portfolioBidStrategyId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPortfolioBidStrategyId() {
+    return portfolioBidStrategyId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortfolioBidStrategyId(@javax.annotation.Nullable String portfolioBidStrategyId) {
+    this.portfolioBidStrategyId = portfolioBidStrategyId;
   }
 
 
@@ -329,6 +358,7 @@ public class UpdateAdCampaignRequest {
         Objects.equals(this.bidStrategy, updateAdCampaignRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, updateAdCampaignRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, updateAdCampaignRequest.roasAverageFloor) &&
+        Objects.equals(this.portfolioBidStrategyId, updateAdCampaignRequest.portfolioBidStrategyId) &&
         Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
         Objects.equals(this.name, updateAdCampaignRequest.name) &&
         Objects.equals(this.platformSpecificData, updateAdCampaignRequest.platformSpecificData);
@@ -336,7 +366,7 @@ public class UpdateAdCampaignRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, accountId, bidStrategy, bidAmount, roasAverageFloor, budget, name, platformSpecificData);
+    return Objects.hash(platform, accountId, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, budget, name, platformSpecificData);
   }
 
   @Override
@@ -348,6 +378,7 @@ public class UpdateAdCampaignRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    portfolioBidStrategyId: ").append(toIndentedString(portfolioBidStrategyId)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
@@ -421,6 +452,11 @@ public class UpdateAdCampaignRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `portfolioBidStrategyId` to the URL query string
+    if (getPortfolioBidStrategyId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sportfolioBidStrategyId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortfolioBidStrategyId()))));
     }
 
     // add `budget` to the URL query string
