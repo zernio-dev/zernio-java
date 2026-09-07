@@ -25,9 +25,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.ListCampaignNegativeKeywords200ResponseKeywordsInner;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,13 +41,22 @@ import dev.zernio.ApiClient;
  * ListCampaignNegativeKeywords200Response
  */
 @JsonPropertyOrder({
-  ListCampaignNegativeKeywords200Response.JSON_PROPERTY_KEYWORDS
+  ListCampaignNegativeKeywords200Response.JSON_PROPERTY_KEYWORDS,
+  ListCampaignNegativeKeywords200Response.JSON_PROPERTY_CACHED_AT,
+  ListCampaignNegativeKeywords200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T22:05:55.899922593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCampaignNegativeKeywords200Response {
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
   private List<ListCampaignNegativeKeywords200ResponseKeywordsInner> keywords = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CACHED_AT = "cachedAt";
+  private JsonNullable<OffsetDateTime> cachedAt = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_STALE = "stale";
+  @javax.annotation.Nullable
+  private Boolean stale;
 
   public ListCampaignNegativeKeywords200Response() { 
   }
@@ -79,6 +93,62 @@ public class ListCampaignNegativeKeywords200Response {
   }
 
 
+  public ListCampaignNegativeKeywords200Response cachedAt(@javax.annotation.Nullable OffsetDateTime cachedAt) {
+    this.cachedAt = JsonNullable.<OffsetDateTime>of(cachedAt);
+    return this;
+  }
+
+  /**
+   * When this list was fetched from Google. Null when it was never served from cache.
+   * @return cachedAt
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getCachedAt() {
+        return cachedAt.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CACHED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getCachedAt_JsonNullable() {
+    return cachedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CACHED_AT)
+  public void setCachedAt_JsonNullable(JsonNullable<OffsetDateTime> cachedAt) {
+    this.cachedAt = cachedAt;
+  }
+
+  public void setCachedAt(@javax.annotation.Nullable OffsetDateTime cachedAt) {
+    this.cachedAt = JsonNullable.<OffsetDateTime>of(cachedAt);
+  }
+
+
+  public ListCampaignNegativeKeywords200Response stale(@javax.annotation.Nullable Boolean stale) {
+    this.stale = stale;
+    return this;
+  }
+
+  /**
+   * True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+   * @return stale
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getStale() {
+    return stale;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStale(@javax.annotation.Nullable Boolean stale) {
+    this.stale = stale;
+  }
+
+
   /**
    * Return true if this listCampaignNegativeKeywords_200_response object is equal to o.
    */
@@ -91,12 +161,25 @@ public class ListCampaignNegativeKeywords200Response {
       return false;
     }
     ListCampaignNegativeKeywords200Response listCampaignNegativeKeywords200Response = (ListCampaignNegativeKeywords200Response) o;
-    return Objects.equals(this.keywords, listCampaignNegativeKeywords200Response.keywords);
+    return Objects.equals(this.keywords, listCampaignNegativeKeywords200Response.keywords) &&
+        equalsNullable(this.cachedAt, listCampaignNegativeKeywords200Response.cachedAt) &&
+        Objects.equals(this.stale, listCampaignNegativeKeywords200Response.stale);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(keywords);
+    return Objects.hash(keywords, hashCodeNullable(cachedAt), stale);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -104,6 +187,8 @@ public class ListCampaignNegativeKeywords200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListCampaignNegativeKeywords200Response {\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
+    sb.append("    cachedAt: ").append(toIndentedString(cachedAt)).append("\n");
+    sb.append("    stale: ").append(toIndentedString(stale)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -159,6 +244,16 @@ public class ListCampaignNegativeKeywords200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `cachedAt` to the URL query string
+    if (getCachedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scachedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCachedAt()))));
+    }
+
+    // add `stale` to the URL query string
+    if (getStale() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstale%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStale()))));
     }
 
     return joiner.toString();

@@ -1574,6 +1574,8 @@ docs/UpdateBroadcastRequestMessage.md
 docs/UpdateBroadcastRequestTemplate.md
 docs/UpdateBroadcastRequestTemplateVariableMappingValue.md
 docs/UpdateCampaignTargeting200Response.md
+docs/UpdateCampaignTargeting200ResponseDevicesInner.md
+docs/UpdateCampaignTargeting200ResponseLanguagesInner.md
 docs/UpdateCampaignTargetingRequest.md
 docs/UpdateCampaignTargetingRequestTargeting.md
 docs/UpdateCampaignTargetingRequestTargetingDevicesInner.md
@@ -3517,6 +3519,8 @@ src/main/java/dev/zernio/model/UpdateBroadcastRequestMessage.java
 src/main/java/dev/zernio/model/UpdateBroadcastRequestTemplate.java
 src/main/java/dev/zernio/model/UpdateBroadcastRequestTemplateVariableMappingValue.java
 src/main/java/dev/zernio/model/UpdateCampaignTargeting200Response.java
+src/main/java/dev/zernio/model/UpdateCampaignTargeting200ResponseDevicesInner.java
+src/main/java/dev/zernio/model/UpdateCampaignTargeting200ResponseLanguagesInner.java
 src/main/java/dev/zernio/model/UpdateCampaignTargetingRequest.java
 src/main/java/dev/zernio/model/UpdateCampaignTargetingRequestTargeting.java
 src/main/java/dev/zernio/model/UpdateCampaignTargetingRequestTargetingDevicesInner.java
@@ -3843,17 +3847,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CampaignBiddingBidSpecTest.java
-src/test/java/dev/zernio/model/CampaignBiddingPortfolioTest.java
-src/test/java/dev/zernio/model/CampaignBiddingTest.java
-src/test/java/dev/zernio/model/CreateBidStrategy201ResponseStrategyTest.java
-src/test/java/dev/zernio/model/CreateBidStrategy201ResponseTest.java
-src/test/java/dev/zernio/model/CreateBidStrategyRequestTest.java
-src/test/java/dev/zernio/model/GetCampaignBidding200ResponseTest.java
-src/test/java/dev/zernio/model/ListBidStrategies200ResponseTest.java
-src/test/java/dev/zernio/model/PortfolioBidStrategyTest.java
-src/test/java/dev/zernio/model/UpdateAdRequestTargetingDevicesInnerOneOfTest.java
-src/test/java/dev/zernio/model/UpdateAdRequestTargetingDevicesInnerTest.java
-src/test/java/dev/zernio/model/UpdateBidStrategy200ResponseStrategyTest.java
-src/test/java/dev/zernio/model/UpdateBidStrategy200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateBidStrategyRequestTest.java
+src/test/java/dev/zernio/model/UpdateCampaignTargeting200ResponseDevicesInnerTest.java
+src/test/java/dev/zernio/model/UpdateCampaignTargeting200ResponseLanguagesInnerTest.java

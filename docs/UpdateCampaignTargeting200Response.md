@@ -9,6 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**campaignId** | **String** |  |  [optional] |
 |**updated** | [**List&lt;UpdatedEnum&gt;**](#List&lt;UpdatedEnum&gt;) | Which targeting fields were applied. |  [optional] |
+|**devices** | [**List&lt;UpdateCampaignTargeting200ResponseDevicesInner&gt;**](UpdateCampaignTargeting200ResponseDevicesInner.md) |  |  [optional] |
+|**locations** | [**List&lt;GetCampaignTargeting200ResponseLocationsInner&gt;**](GetCampaignTargeting200ResponseLocationsInner.md) |  |  [optional] |
+|**languages** | [**List&lt;UpdateCampaignTargeting200ResponseLanguagesInner&gt;**](UpdateCampaignTargeting200ResponseLanguagesInner.md) |  |  [optional] |
 
 
 

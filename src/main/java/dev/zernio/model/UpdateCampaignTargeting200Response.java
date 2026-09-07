@@ -24,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetCampaignTargeting200ResponseLocationsInner;
+import dev.zernio.model.UpdateCampaignTargeting200ResponseDevicesInner;
+import dev.zernio.model.UpdateCampaignTargeting200ResponseLanguagesInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,9 +39,12 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateCampaignTargeting200Response.JSON_PROPERTY_CAMPAIGN_ID,
-  UpdateCampaignTargeting200Response.JSON_PROPERTY_UPDATED
+  UpdateCampaignTargeting200Response.JSON_PROPERTY_UPDATED,
+  UpdateCampaignTargeting200Response.JSON_PROPERTY_DEVICES,
+  UpdateCampaignTargeting200Response.JSON_PROPERTY_LOCATIONS,
+  UpdateCampaignTargeting200Response.JSON_PROPERTY_LANGUAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T22:05:55.899922593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargeting200Response {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable
@@ -84,6 +90,18 @@ public class UpdateCampaignTargeting200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
   private List<UpdatedEnum> updated = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DEVICES = "devices";
+  @javax.annotation.Nullable
+  private List<UpdateCampaignTargeting200ResponseDevicesInner> devices = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_LOCATIONS = "locations";
+  @javax.annotation.Nullable
+  private List<GetCampaignTargeting200ResponseLocationsInner> locations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_LANGUAGES = "languages";
+  @javax.annotation.Nullable
+  private List<UpdateCampaignTargeting200ResponseLanguagesInner> languages = new ArrayList<>();
 
   public UpdateCampaignTargeting200Response() { 
   }
@@ -144,6 +162,102 @@ public class UpdateCampaignTargeting200Response {
   }
 
 
+  public UpdateCampaignTargeting200Response devices(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseDevicesInner> devices) {
+    this.devices = devices;
+    return this;
+  }
+
+  public UpdateCampaignTargeting200Response addDevicesItem(UpdateCampaignTargeting200ResponseDevicesInner devicesItem) {
+    if (this.devices == null) {
+      this.devices = new ArrayList<>();
+    }
+    this.devices.add(devicesItem);
+    return this;
+  }
+
+  /**
+   * Get devices
+   * @return devices
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEVICES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateCampaignTargeting200ResponseDevicesInner> getDevices() {
+    return devices;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DEVICES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDevices(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseDevicesInner> devices) {
+    this.devices = devices;
+  }
+
+
+  public UpdateCampaignTargeting200Response locations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseLocationsInner> locations) {
+    this.locations = locations;
+    return this;
+  }
+
+  public UpdateCampaignTargeting200Response addLocationsItem(GetCampaignTargeting200ResponseLocationsInner locationsItem) {
+    if (this.locations == null) {
+      this.locations = new ArrayList<>();
+    }
+    this.locations.add(locationsItem);
+    return this;
+  }
+
+  /**
+   * Get locations
+   * @return locations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetCampaignTargeting200ResponseLocationsInner> getLocations() {
+    return locations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseLocationsInner> locations) {
+    this.locations = locations;
+  }
+
+
+  public UpdateCampaignTargeting200Response languages(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseLanguagesInner> languages) {
+    this.languages = languages;
+    return this;
+  }
+
+  public UpdateCampaignTargeting200Response addLanguagesItem(UpdateCampaignTargeting200ResponseLanguagesInner languagesItem) {
+    if (this.languages == null) {
+      this.languages = new ArrayList<>();
+    }
+    this.languages.add(languagesItem);
+    return this;
+  }
+
+  /**
+   * Get languages
+   * @return languages
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateCampaignTargeting200ResponseLanguagesInner> getLanguages() {
+    return languages;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguages(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseLanguagesInner> languages) {
+    this.languages = languages;
+  }
+
+
   /**
    * Return true if this updateCampaignTargeting_200_response object is equal to o.
    */
@@ -157,12 +271,15 @@ public class UpdateCampaignTargeting200Response {
     }
     UpdateCampaignTargeting200Response updateCampaignTargeting200Response = (UpdateCampaignTargeting200Response) o;
     return Objects.equals(this.campaignId, updateCampaignTargeting200Response.campaignId) &&
-        Objects.equals(this.updated, updateCampaignTargeting200Response.updated);
+        Objects.equals(this.updated, updateCampaignTargeting200Response.updated) &&
+        Objects.equals(this.devices, updateCampaignTargeting200Response.devices) &&
+        Objects.equals(this.locations, updateCampaignTargeting200Response.locations) &&
+        Objects.equals(this.languages, updateCampaignTargeting200Response.languages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(campaignId, updated);
+    return Objects.hash(campaignId, updated, devices, locations, languages);
   }
 
   @Override
@@ -171,6 +288,9 @@ public class UpdateCampaignTargeting200Response {
     sb.append("class UpdateCampaignTargeting200Response {\n");
     sb.append("    campaignId: ").append(toIndentedString(campaignId)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
+    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
+    sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -229,6 +349,36 @@ public class UpdateCampaignTargeting200Response {
         joiner.add(String.format(java.util.Locale.ROOT, "%supdated%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getUpdated().get(i)))));
+      }
+    }
+
+    // add `devices` to the URL query string
+    if (getDevices() != null) {
+      for (int i = 0; i < getDevices().size(); i++) {
+        if (getDevices().get(i) != null) {
+          joiner.add(getDevices().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdevices%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `locations` to the URL query string
+    if (getLocations() != null) {
+      for (int i = 0; i < getLocations().size(); i++) {
+        if (getLocations().get(i) != null) {
+          joiner.add(getLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%slocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `languages` to the URL query string
+    if (getLanguages() != null) {
+      for (int i = 0; i < getLanguages().size(); i++) {
+        if (getLanguages().get(i) != null) {
+          joiner.add(getLanguages().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%slanguages%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

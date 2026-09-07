@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-07T20:20:36.287499880Z[Etc/UTC]
+- Build date: 2026-09-07T22:05:55.899922593Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2883,6 +2883,8 @@ Class | Method | HTTP request | Description
  - [UpdateBroadcastRequestTemplate](docs/UpdateBroadcastRequestTemplate.md)
  - [UpdateBroadcastRequestTemplateVariableMappingValue](docs/UpdateBroadcastRequestTemplateVariableMappingValue.md)
  - [UpdateCampaignTargeting200Response](docs/UpdateCampaignTargeting200Response.md)
+ - [UpdateCampaignTargeting200ResponseDevicesInner](docs/UpdateCampaignTargeting200ResponseDevicesInner.md)
+ - [UpdateCampaignTargeting200ResponseLanguagesInner](docs/UpdateCampaignTargeting200ResponseLanguagesInner.md)
  - [UpdateCampaignTargetingRequest](docs/UpdateCampaignTargetingRequest.md)
  - [UpdateCampaignTargetingRequestTargeting](docs/UpdateCampaignTargetingRequestTargeting.md)
  - [UpdateCampaignTargetingRequestTargetingDevicesInner](docs/UpdateCampaignTargetingRequestTargetingDevicesInner.md)

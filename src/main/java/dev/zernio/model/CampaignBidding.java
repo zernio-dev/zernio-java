@@ -26,7 +26,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CampaignBiddingBidSpec;
 import dev.zernio.model.CampaignBiddingPortfolio;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,9 +43,11 @@ import dev.zernio.ApiClient;
   CampaignBidding.JSON_PROPERTY_CHANNEL,
   CampaignBidding.JSON_PROPERTY_BIDDING_STRATEGY_TYPE,
   CampaignBidding.JSON_PROPERTY_BID_SPEC,
-  CampaignBidding.JSON_PROPERTY_PORTFOLIO
+  CampaignBidding.JSON_PROPERTY_PORTFOLIO,
+  CampaignBidding.JSON_PROPERTY_CACHED_AT,
+  CampaignBidding.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T22:05:55.899922593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignBidding {
   /**
    * campaign.advertising_channel_type. COST_CAP&#39;s underlying Google field differs by channel; see bidStrategy on PUT.
@@ -92,6 +99,13 @@ public class CampaignBidding {
   public static final String JSON_PROPERTY_PORTFOLIO = "portfolio";
   @javax.annotation.Nullable
   private CampaignBiddingPortfolio portfolio;
+
+  public static final String JSON_PROPERTY_CACHED_AT = "cachedAt";
+  private JsonNullable<OffsetDateTime> cachedAt = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_STALE = "stale";
+  @javax.annotation.Nullable
+  private Boolean stale;
 
   public CampaignBidding() { 
   }
@@ -192,6 +206,62 @@ public class CampaignBidding {
   }
 
 
+  public CampaignBidding cachedAt(@javax.annotation.Nullable OffsetDateTime cachedAt) {
+    this.cachedAt = JsonNullable.<OffsetDateTime>of(cachedAt);
+    return this;
+  }
+
+  /**
+   * When this data was fetched from Google. Null when it was never served from cache.
+   * @return cachedAt
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getCachedAt() {
+        return cachedAt.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CACHED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getCachedAt_JsonNullable() {
+    return cachedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CACHED_AT)
+  public void setCachedAt_JsonNullable(JsonNullable<OffsetDateTime> cachedAt) {
+    this.cachedAt = cachedAt;
+  }
+
+  public void setCachedAt(@javax.annotation.Nullable OffsetDateTime cachedAt) {
+    this.cachedAt = JsonNullable.<OffsetDateTime>of(cachedAt);
+  }
+
+
+  public CampaignBidding stale(@javax.annotation.Nullable Boolean stale) {
+    this.stale = stale;
+    return this;
+  }
+
+  /**
+   * True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+   * @return stale
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getStale() {
+    return stale;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStale(@javax.annotation.Nullable Boolean stale) {
+    this.stale = stale;
+  }
+
+
   /**
    * Return true if this CampaignBidding object is equal to o.
    */
@@ -207,12 +277,25 @@ public class CampaignBidding {
     return Objects.equals(this.channel, campaignBidding.channel) &&
         Objects.equals(this.biddingStrategyType, campaignBidding.biddingStrategyType) &&
         Objects.equals(this.bidSpec, campaignBidding.bidSpec) &&
-        Objects.equals(this.portfolio, campaignBidding.portfolio);
+        Objects.equals(this.portfolio, campaignBidding.portfolio) &&
+        equalsNullable(this.cachedAt, campaignBidding.cachedAt) &&
+        Objects.equals(this.stale, campaignBidding.stale);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channel, biddingStrategyType, bidSpec, portfolio);
+    return Objects.hash(channel, biddingStrategyType, bidSpec, portfolio, hashCodeNullable(cachedAt), stale);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -223,6 +306,8 @@ public class CampaignBidding {
     sb.append("    biddingStrategyType: ").append(toIndentedString(biddingStrategyType)).append("\n");
     sb.append("    bidSpec: ").append(toIndentedString(bidSpec)).append("\n");
     sb.append("    portfolio: ").append(toIndentedString(portfolio)).append("\n");
+    sb.append("    cachedAt: ").append(toIndentedString(cachedAt)).append("\n");
+    sb.append("    stale: ").append(toIndentedString(stale)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -288,6 +373,16 @@ public class CampaignBidding {
     // add `portfolio` to the URL query string
     if (getPortfolio() != null) {
       joiner.add(getPortfolio().toUrlQueryString(prefix + "portfolio" + suffix));
+    }
+
+    // add `cachedAt` to the URL query string
+    if (getCachedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scachedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCachedAt()))));
+    }
+
+    // add `stale` to the URL query string
+    if (getStale() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstale%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStale()))));
     }
 
     return joiner.toString();

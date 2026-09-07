@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T22:05:55.899922593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdInsightsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -853,7 +853,7 @@ public class AdInsightsApi {
 
   /**
    * Google Ads search terms report
-   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
    * @param fromDate Defaults to 30 days ago. (optional)
@@ -870,7 +870,7 @@ public class AdInsightsApi {
 
   /**
    * Google Ads search terms report
-   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
    * @param fromDate Defaults to 30 days ago. (optional)
@@ -889,7 +889,7 @@ public class AdInsightsApi {
 
   /**
    * Google Ads search terms report
-   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
    * @param fromDate Defaults to 30 days ago. (optional)
@@ -906,7 +906,7 @@ public class AdInsightsApi {
 
   /**
    * Google Ads search terms report
-   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+   * The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
    * @param fromDate Defaults to 30 days ago. (optional)

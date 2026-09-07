@@ -29488,9 +29488,11 @@ paths:
       description: |-
         The actual search queries that triggered your ads, with matched-keyword
         status and spend metrics — the raw material for wasted-spend analysis and
-        negative-keyword lists. Reads Google's `search_term_view` live; defaults
-        to the last 30 days. Rows are ordered by cost, descending. Draws on the
-        shared Google Ads operations budget.
+        negative-keyword lists. Reads Google's `search_term_view`, cached for
+        the quota window; defaults to the last 30 days. Rows are ordered by
+        cost, descending. Draws on the shared Google Ads operations budget.
+        The response carries `cachedAt` and `stale`, set when a quota-exhausted
+        call falls back to the last-good copy instead of a live read.
       operationId: getAdsSearchTerms
       parameters:
       - description: Google ads SocialAccount id.
@@ -29582,7 +29584,9 @@ paths:
       description: "Bidding strategy report: type, status, campaign count, clicks,\
         \ cost, cost per conversion, impressions, average CPC and conversions over\
         \ the date range (default last 30 days). Reads Google's `bidding_strategy`\
-        \ resource live. Draws on the shared Google Ads operations budget."
+        \ resource, cached for the quota window. Draws on the shared Google Ads operations\
+        \ budget. The response carries `cachedAt` and `stale`, set when a quota-exhausted\
+        \ call falls back to the last-good copy instead of a live read."
       operationId: listBidStrategies
       parameters:
       - description: Google ads SocialAccount id.
@@ -30491,9 +30495,12 @@ paths:
   /v1/ads/campaigns/{campaignId}/bidding:
     get:
       description: |
-        Live read of the campaign's bidding strategy on Google, for pre-filling the bid strategy
-        block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; `platform` is required
-        and rejected when it is anything else, since a `campaignId` is not globally unique.
+        Read of the campaign's bidding strategy on Google, cached for the quota window, for
+        pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}.
+        Google Ads only; `platform` is required and rejected when it is anything else, since
+        a `campaignId` is not globally unique. The response carries `cachedAt` and `stale`,
+        set when a quota-exhausted call falls back to the last-good copy instead of a live
+        read.
 
         Maps Google's bidding strategy onto the same triplet PUT accepts: `LOWEST_COST_WITHOUT_CAP`
         (Maximize Conversions, no target), `COST_CAP` + `bidAmount` (Target CPA), `LOWEST_COST_WITH_MIN_ROAS`
@@ -30716,9 +30723,11 @@ paths:
     get:
       description: |
         Returns the campaign-level negative keywords (`campaign_criterion.negative`),
-        distinct from the ad-group-level negatives under `GET /v1/ads/keywords`. Read
-        live from Google on every call (not synced to Postgres), and gated by the
-        shared Google Ads operations budget like every other on-demand Google surface.
+        distinct from the ad-group-level negatives under `GET /v1/ads/keywords`. Cached
+        for the quota window (not synced to Postgres), and gated by the shared Google
+        Ads operations budget like every other on-demand Google surface. The response
+        carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to
+        the last-good copy instead of a live read.
 
         The platform is always discovered from the campaign itself; a non-Google
         campaign returns 501 rather than 404, whether or not `platform` was passed.
@@ -30969,9 +30978,10 @@ paths:
     get:
       description: |
         Google Ads compliance requires geo, language, budget, and bidding targeting
-        set at creation to stay editable afterwards; this reads the live campaign
-        state so an integrator can build an editor around it. Google only; every
-        other platform returns 501.
+        set at creation to stay editable afterwards; this reads the campaign state
+        so an integrator can build an editor around it. Cached for the quota window
+        (10 minutes fresh, up to 7 days last-good), not always a live read. Google
+        only; every other platform returns 501.
 
         `devices` always lists all four device types with `included` reflecting
         Google's negative device criteria (a device absent from any negative
@@ -31042,6 +31052,10 @@ paths:
 
         `languages` is an array of Google's language codes (ISO 639-1, plus variants
         such as `zh_CN`); an unknown code returns 400.
+
+        The response includes the refreshed `devices`/`locations`/`languages` state
+        read back from Google after the edit, and invalidates the cached copy
+        `GET` on this campaign would otherwise keep serving.
       operationId: updateCampaignTargeting
       parameters:
       - description: Google platform campaign ID
@@ -34538,7 +34552,11 @@ paths:
         Google Ads compliance row C.75: callout assets linked at the CUSTOMER
         level via `customer_asset` (not a campaign or ad group), so they serve
         fleet-wide across the account. Google only; every other platform
-        returns 501. Draws on the shared Google Ads operations budget.
+        returns 501. Cached for the quota window (10 minutes fresh, up to 7
+        days last-good), and gated by the shared Google Ads operations budget
+        on a cache miss. The response carries `cachedAt` and `stale`, set when
+        a quota-exhausted call falls back to the last-good copy instead of a
+        live read.
       operationId: listAccountCallouts
       parameters:
       - description: Google ads SocialAccount id.
@@ -34574,6 +34592,8 @@ paths:
             \ on usage-based plans)."
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget exhausted; retry later
         "501":
           description: Only available on Google Ads accounts
       security:
@@ -37113,6 +37133,11 @@ paths:
         `customerId` is optional: when omitted, it is resolved from the connection's
         accessible Google Ads customers, and the call fails with `400` when more than
         one is accessible (pass `customerId` to disambiguate).
+
+        The list itself is cached for the quota window (1 hour fresh, up to 7 days
+        last-good; the cache key does not vary on `type`). The response carries
+        `cachedAt` and `stale`, set when a quota-exhausted call falls back to the
+        last-good copy instead of a live read.
       operationId: listConversionActions
       parameters:
       - description: SocialAccount _id (must be a googleads account).
@@ -37174,8 +37199,9 @@ paths:
       description: |
         Creates a `WEBPAGE` conversion action (category `DEFAULT`) and returns it with
         its tag snippets, read back after creation since Google never returns them on
-        the create response itself. Google-only; other platforms return `501`. Requires
-        the Ads add-on.
+        the create response itself. Invalidates the cached list `GET` on this resource
+        would otherwise keep serving. Google-only; other platforms return `501`.
+        Requires the Ads add-on.
       operationId: createConversionAction
       requestBody:
         content:
@@ -53187,6 +53213,16 @@ components:
           $ref: "#/components/schemas/CampaignBidding_bidSpec"
         portfolio:
           $ref: "#/components/schemas/CampaignBidding_portfolio"
+        cachedAt:
+          description: When this data was fetched from Google. Null when it was never
+            served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     AdBudget:
       description: Budget amount in the ad account's native currency (see the campaign's
         `currency` field for the code).
@@ -84401,6 +84437,7 @@ components:
           type: string
     getAdsSearchTerms_200_response:
       example:
+        stale: true
         data:
         - conversions: 5.962133916683182
           searchTerm: searchTerm
@@ -84429,6 +84466,7 @@ components:
         customerId: customerId
         paging:
           nextPageToken: nextPageToken
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         customerId:
           type: string
@@ -84438,8 +84476,19 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsSearchTerms_200_response_paging"
+        cachedAt:
+          description: When this data was fetched from Google. Null when it was never
+            served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     listBidStrategies_200_response:
       example:
+        stale: true
         strategies:
         - targetRoas: 3.616076749251911
           targetCpa: 9.301444243932576
@@ -84469,6 +84518,7 @@ components:
           status: status
         customerId: customerId
         currency: currency
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         customerId:
           type: string
@@ -84480,6 +84530,16 @@ components:
           items:
             $ref: "#/components/schemas/PortfolioBidStrategy"
           type: array
+        cachedAt:
+          description: When this data was fetched from Google. Null when it was never
+            served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     createBidStrategy_request:
       properties:
         accountId:
@@ -85386,11 +85446,13 @@ components:
           portfolioBidStrategyId: portfolioBidStrategyId
           bidAmount: 0.8008281904610115
           roasAverageFloor: 6.027456183070403
+        stale: true
         portfolio:
           name: name
           id: id
         campaignId: campaignId
         channel: SEARCH
+        cachedAt: 2000-01-23T04:56:07.000+00:00
         biddingStrategyType: biddingStrategyType
     updateAdCampaign_request_budget:
       description: '**Meta only.** The CBO budget.'
@@ -85541,6 +85603,7 @@ components:
           type: string
     listCampaignNegativeKeywords_200_response:
       example:
+        stale: true
         keywords:
         - criterionId: criterionId
           matchType: exact
@@ -85548,11 +85611,22 @@ components:
         - criterionId: criterionId
           matchType: exact
           text: text
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         keywords:
           items:
             $ref: "#/components/schemas/listCampaignNegativeKeywords_200_response_keywords_inner"
           type: array
+        cachedAt:
+          description: When this list was fetched from Google. Null when it was never
+            served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     replaceCampaignNegativeKeywords_request:
       properties:
         platform:
@@ -85804,6 +85878,7 @@ components:
           type: string
     getCampaignTargeting_200_response:
       example:
+        stale: true
         languages:
         - code: code
           name: name
@@ -85823,6 +85898,7 @@ components:
           negative: true
         - geoTargetId: geoTargetId
           negative: true
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         devices:
           items:
@@ -85836,6 +85912,16 @@ components:
           items:
             $ref: "#/components/schemas/getCampaignTargeting_200_response_languages_inner"
           type: array
+        cachedAt:
+          description: When this targeting was fetched from Google. Null when it was
+            never served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     updateCampaignTargeting_request_targeting_devices_inner_oneOf:
       properties:
         device:
@@ -85888,9 +85974,59 @@ components:
       required:
       - platform
       - targeting
+    updateCampaignTargeting_200_response_devices_inner:
+      example:
+        bidModifier: 0.8008281904610115
+        device: MOBILE
+        included: true
+      properties:
+        device:
+          enum:
+          - MOBILE
+          - DESKTOP
+          - TABLET
+          - CONNECTED_TV
+          type: string
+        included:
+          type: boolean
+        bidModifier:
+          description: Always null on this read; see GET's description.
+          nullable: true
+          type: number
+    updateCampaignTargeting_200_response_languages_inner:
+      example:
+        code: code
+        name: name
+        id: id
+      properties:
+        code:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
     updateCampaignTargeting_200_response:
       example:
+        languages:
+        - code: code
+          name: name
+          id: id
+        - code: code
+          name: name
+          id: id
+        devices:
+        - bidModifier: 0.8008281904610115
+          device: MOBILE
+          included: true
+        - bidModifier: 0.8008281904610115
+          device: MOBILE
+          included: true
         campaignId: campaignId
+        locations:
+        - geoTargetId: geoTargetId
+          negative: true
+        - geoTargetId: geoTargetId
+          negative: true
         updated:
         - devices
         - devices
@@ -85905,6 +86041,18 @@ components:
             - locations
             - languages
             type: string
+          type: array
+        devices:
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_200_response_devices_inner"
+          type: array
+        locations:
+          items:
+            $ref: "#/components/schemas/getCampaignTargeting_200_response_locations_inner"
+          type: array
+        languages:
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_200_response_languages_inner"
           type: array
     listAdSets_200_response_adSets_inner:
       example:
@@ -90835,7 +90983,9 @@ components:
         - assetId: assetId
           text: text
           status: status
+        stale: true
         customerId: customerId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         customerId:
           type: string
@@ -90843,6 +90993,16 @@ components:
           items:
             $ref: "#/components/schemas/listAccountCallouts_200_response_callouts_inner"
           type: array
+        cachedAt:
+          description: When this list was fetched from Google. Null when it was never
+            served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     addAccountCallouts_request:
       properties:
         accountId:
@@ -91020,6 +91180,7 @@ components:
           type: string
     listAdAccounts_200_response:
       example:
+        stale: true
         accounts:
         - accountStatus: ""
           approvalStatus: approvalStatus
@@ -91045,11 +91206,23 @@ components:
           minimumDailyBudget: 1.4658129805029452
           unusableReason: unusableReason
           status: status
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         accounts:
           items:
             $ref: "#/components/schemas/listAdAccounts_200_response_accounts_inner"
           type: array
+        cachedAt:
+          description: "Google only. When this list was fetched from Google. Null\
+            \ when it was never served from cache, or on other platforms."
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "Google only. True when Google's daily API quota was exhausted\
+            \ and this is the last successful fetch, not a live read. Absent on other\
+            \ platforms."
+          type: boolean
     updateAdAccount_request:
       properties:
         accountId:
@@ -95421,7 +95594,9 @@ components:
           type: string
     listConversionActions_200_response:
       example:
+        stale: true
         customerId: customerId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
         actions:
         - name: name
           tagSnippets:
@@ -95459,6 +95634,16 @@ components:
           items:
             $ref: "#/components/schemas/ConversionAction"
           type: array
+        cachedAt:
+          description: When this list was fetched from Google. Null when it was never
+            served from cache.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: "True when Google's daily API quota was exhausted and this\
+            \ is the last successful fetch, not a live read."
+          type: boolean
     createConversionAction_request:
       properties:
         accountId:

@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CampaignBiddingBidSpec;
 import dev.zernio.model.CampaignBiddingPortfolio;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -39,9 +40,11 @@ import dev.zernio.ApiClient;
   GetCampaignBidding200Response.JSON_PROPERTY_BIDDING_STRATEGY_TYPE,
   GetCampaignBidding200Response.JSON_PROPERTY_BID_SPEC,
   GetCampaignBidding200Response.JSON_PROPERTY_PORTFOLIO,
+  GetCampaignBidding200Response.JSON_PROPERTY_CACHED_AT,
+  GetCampaignBidding200Response.JSON_PROPERTY_STALE,
   GetCampaignBidding200Response.JSON_PROPERTY_CAMPAIGN_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T20:20:36.287499880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T22:05:55.899922593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignBidding200Response {
   /**
    * campaign.advertising_channel_type. COST_CAP&#39;s underlying Google field differs by channel; see bidStrategy on PUT.
@@ -93,6 +96,14 @@ public class GetCampaignBidding200Response {
   public static final String JSON_PROPERTY_PORTFOLIO = "portfolio";
   @javax.annotation.Nullable
   private CampaignBiddingPortfolio portfolio;
+
+  public static final String JSON_PROPERTY_CACHED_AT = "cachedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime cachedAt;
+
+  public static final String JSON_PROPERTY_STALE = "stale";
+  @javax.annotation.Nullable
+  private Boolean stale;
 
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable
@@ -197,6 +208,54 @@ public class GetCampaignBidding200Response {
   }
 
 
+  public GetCampaignBidding200Response cachedAt(@javax.annotation.Nullable OffsetDateTime cachedAt) {
+    this.cachedAt = cachedAt;
+    return this;
+  }
+
+  /**
+   * When this data was fetched from Google. Null when it was never served from cache.
+   * @return cachedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CACHED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getCachedAt() {
+    return cachedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CACHED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCachedAt(@javax.annotation.Nullable OffsetDateTime cachedAt) {
+    this.cachedAt = cachedAt;
+  }
+
+
+  public GetCampaignBidding200Response stale(@javax.annotation.Nullable Boolean stale) {
+    this.stale = stale;
+    return this;
+  }
+
+  /**
+   * True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+   * @return stale
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getStale() {
+    return stale;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STALE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStale(@javax.annotation.Nullable Boolean stale) {
+    this.stale = stale;
+  }
+
+
   public GetCampaignBidding200Response campaignId(@javax.annotation.Nullable String campaignId) {
     this.campaignId = campaignId;
     return this;
@@ -237,12 +296,14 @@ public class GetCampaignBidding200Response {
         Objects.equals(this.biddingStrategyType, getCampaignBidding200Response.biddingStrategyType) &&
         Objects.equals(this.bidSpec, getCampaignBidding200Response.bidSpec) &&
         Objects.equals(this.portfolio, getCampaignBidding200Response.portfolio) &&
+        Objects.equals(this.cachedAt, getCampaignBidding200Response.cachedAt) &&
+        Objects.equals(this.stale, getCampaignBidding200Response.stale) &&
         Objects.equals(this.campaignId, getCampaignBidding200Response.campaignId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channel, biddingStrategyType, bidSpec, portfolio, campaignId);
+    return Objects.hash(channel, biddingStrategyType, bidSpec, portfolio, cachedAt, stale, campaignId);
   }
 
   @Override
@@ -253,6 +314,8 @@ public class GetCampaignBidding200Response {
     sb.append("    biddingStrategyType: ").append(toIndentedString(biddingStrategyType)).append("\n");
     sb.append("    bidSpec: ").append(toIndentedString(bidSpec)).append("\n");
     sb.append("    portfolio: ").append(toIndentedString(portfolio)).append("\n");
+    sb.append("    cachedAt: ").append(toIndentedString(cachedAt)).append("\n");
+    sb.append("    stale: ").append(toIndentedString(stale)).append("\n");
     sb.append("    campaignId: ").append(toIndentedString(campaignId)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -319,6 +382,16 @@ public class GetCampaignBidding200Response {
     // add `portfolio` to the URL query string
     if (getPortfolio() != null) {
       joiner.add(getPortfolio().toUrlQueryString(prefix + "portfolio" + suffix));
+    }
+
+    // add `cachedAt` to the URL query string
+    if (getCachedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scachedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCachedAt()))));
+    }
+
+    // add `stale` to the URL query string
+    if (getStale() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstale%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStale()))));
     }
 
     // add `campaignId` to the URL query string

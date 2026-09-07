@@ -1779,7 +1779,7 @@ ApiResponse<[**GetValueRuleSet200Response**](GetValueRuleSet200Response.md)>
 
 List account-level callout extensions
 
-Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
 ### Example
 
@@ -1848,6 +1848,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Resource not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
 ## listAccountCalloutsWithHttpInfo
@@ -1856,7 +1857,7 @@ public class Example {
 
 List account-level callout extensions
 
-Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
 ### Example
 
@@ -1928,6 +1929,7 @@ ApiResponse<[**ListAccountCallouts200Response**](ListAccountCallouts200Response.
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Resource not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
 
