@@ -48,6 +48,7 @@ import dev.zernio.ApiClient;
   AdMetrics.JSON_PROPERTY_CPM,
   AdMetrics.JSON_PROPERTY_ENGAGEMENT,
   AdMetrics.JSON_PROPERTY_CONVERSIONS,
+  AdMetrics.JSON_PROPERTY_ALL_CONVERSIONS,
   AdMetrics.JSON_PROPERTY_COST_PER_CONVERSION,
   AdMetrics.JSON_PROPERTY_ACTIONS,
   AdMetrics.JSON_PROPERTY_ACTION_VALUES,
@@ -74,7 +75,7 @@ import dev.zernio.ApiClient;
   AdMetrics.JSON_PROPERTY_ENGAGEMENT_BREAKDOWN,
   AdMetrics.JSON_PROPERTY_LAST_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T15:27:19.365563970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T16:47:16.123166731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -111,6 +112,10 @@ public class AdMetrics {
   public static final String JSON_PROPERTY_CONVERSIONS = "conversions";
   @javax.annotation.Nullable
   private BigDecimal conversions;
+
+  public static final String JSON_PROPERTY_ALL_CONVERSIONS = "allConversions";
+  @javax.annotation.Nullable
+  private BigDecimal allConversions;
 
   public static final String JSON_PROPERTY_COST_PER_CONVERSION = "costPerConversion";
   @javax.annotation.Nullable
@@ -428,6 +433,30 @@ public class AdMetrics {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConversions(@javax.annotation.Nullable BigDecimal conversions) {
     this.conversions = conversions;
+  }
+
+
+  public AdMetrics allConversions(@javax.annotation.Nullable BigDecimal allConversions) {
+    this.allConversions = allConversions;
+    return this;
+  }
+
+  /**
+   * All conversions, including actions excluded from the Conversions column (Google metrics.all_conversions). 0 on platforms without the concept.
+   * @return allConversions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALL_CONVERSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getAllConversions() {
+    return allConversions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALL_CONVERSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllConversions(@javax.annotation.Nullable BigDecimal allConversions) {
+    this.allConversions = allConversions;
   }
 
 
@@ -1076,6 +1105,7 @@ public class AdMetrics {
         Objects.equals(this.cpm, adMetrics.cpm) &&
         Objects.equals(this.engagement, adMetrics.engagement) &&
         Objects.equals(this.conversions, adMetrics.conversions) &&
+        Objects.equals(this.allConversions, adMetrics.allConversions) &&
         Objects.equals(this.costPerConversion, adMetrics.costPerConversion) &&
         Objects.equals(this.actions, adMetrics.actions) &&
         Objects.equals(this.actionValues, adMetrics.actionValues) &&
@@ -1105,7 +1135,7 @@ public class AdMetrics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, costPerAction, outboundClicks, outboundClicksCtr, inlineLinkClicks, inlineLinkClickCtr, uniqueClicks, uniqueCtr, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt);
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, allConversions, costPerConversion, actions, actionValues, purchaseValue, roas, costPerAction, outboundClicks, outboundClicksCtr, inlineLinkClicks, inlineLinkClickCtr, uniqueClicks, uniqueCtr, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt);
   }
 
   @Override
@@ -1121,6 +1151,7 @@ public class AdMetrics {
     sb.append("    cpm: ").append(toIndentedString(cpm)).append("\n");
     sb.append("    engagement: ").append(toIndentedString(engagement)).append("\n");
     sb.append("    conversions: ").append(toIndentedString(conversions)).append("\n");
+    sb.append("    allConversions: ").append(toIndentedString(allConversions)).append("\n");
     sb.append("    costPerConversion: ").append(toIndentedString(costPerConversion)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    actionValues: ").append(toIndentedString(actionValues)).append("\n");
@@ -1236,6 +1267,11 @@ public class AdMetrics {
     // add `conversions` to the URL query string
     if (getConversions() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconversions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConversions()))));
+    }
+
+    // add `allConversions` to the URL query string
+    if (getAllConversions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallConversions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllConversions()))));
     }
 
     // add `costPerConversion` to the URL query string

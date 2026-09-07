@@ -47,13 +47,14 @@ import dev.zernio.ApiClient;
   AdsTimelineResponseRowsInner.JSON_PROPERTY_CPC,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_CPM,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_CONVERSIONS,
+  AdsTimelineResponseRowsInner.JSON_PROPERTY_ALL_CONVERSIONS,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_COST_PER_CONVERSION,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_ACTIONS,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_ACTION_VALUES,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_PURCHASE_VALUE,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T15:27:19.365563970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T16:47:16.123166731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsTimelineResponseRowsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -94,6 +95,10 @@ public class AdsTimelineResponseRowsInner {
   public static final String JSON_PROPERTY_CONVERSIONS = "conversions";
   @javax.annotation.Nullable
   private BigDecimal conversions;
+
+  public static final String JSON_PROPERTY_ALL_CONVERSIONS = "allConversions";
+  @javax.annotation.Nullable
+  private BigDecimal allConversions;
 
   public static final String JSON_PROPERTY_COST_PER_CONVERSION = "costPerConversion";
   @javax.annotation.Nullable
@@ -358,6 +363,30 @@ public class AdsTimelineResponseRowsInner {
   }
 
 
+  public AdsTimelineResponseRowsInner allConversions(@javax.annotation.Nullable BigDecimal allConversions) {
+    this.allConversions = allConversions;
+    return this;
+  }
+
+  /**
+   * All conversions, including actions excluded from the Conversions column (Google metrics.all_conversions). 0 on platforms without the concept.
+   * @return allConversions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALL_CONVERSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getAllConversions() {
+    return allConversions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALL_CONVERSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllConversions(@javax.annotation.Nullable BigDecimal allConversions) {
+    this.allConversions = allConversions;
+  }
+
+
   public AdsTimelineResponseRowsInner costPerConversion(@javax.annotation.Nullable BigDecimal costPerConversion) {
     this.costPerConversion = costPerConversion;
     return this;
@@ -516,6 +545,7 @@ public class AdsTimelineResponseRowsInner {
         Objects.equals(this.cpc, adsTimelineResponseRowsInner.cpc) &&
         Objects.equals(this.cpm, adsTimelineResponseRowsInner.cpm) &&
         Objects.equals(this.conversions, adsTimelineResponseRowsInner.conversions) &&
+        Objects.equals(this.allConversions, adsTimelineResponseRowsInner.allConversions) &&
         Objects.equals(this.costPerConversion, adsTimelineResponseRowsInner.costPerConversion) &&
         Objects.equals(this.actions, adsTimelineResponseRowsInner.actions) &&
         Objects.equals(this.actionValues, adsTimelineResponseRowsInner.actionValues) &&
@@ -525,7 +555,7 @@ public class AdsTimelineResponseRowsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(date, spend, impressions, reach, clicks, engagement, ctr, cpc, cpm, conversions, costPerConversion, actions, actionValues, purchaseValue, roas);
+    return Objects.hash(date, spend, impressions, reach, clicks, engagement, ctr, cpc, cpm, conversions, allConversions, costPerConversion, actions, actionValues, purchaseValue, roas);
   }
 
   @Override
@@ -542,6 +572,7 @@ public class AdsTimelineResponseRowsInner {
     sb.append("    cpc: ").append(toIndentedString(cpc)).append("\n");
     sb.append("    cpm: ").append(toIndentedString(cpm)).append("\n");
     sb.append("    conversions: ").append(toIndentedString(conversions)).append("\n");
+    sb.append("    allConversions: ").append(toIndentedString(allConversions)).append("\n");
     sb.append("    costPerConversion: ").append(toIndentedString(costPerConversion)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    actionValues: ").append(toIndentedString(actionValues)).append("\n");
@@ -642,6 +673,11 @@ public class AdsTimelineResponseRowsInner {
     // add `conversions` to the URL query string
     if (getConversions() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconversions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConversions()))));
+    }
+
+    // add `allConversions` to the URL query string
+    if (getAllConversions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallConversions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllConversions()))));
     }
 
     // add `costPerConversion` to the URL query string
