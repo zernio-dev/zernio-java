@@ -3721,7 +3721,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowCommentTest.java
-src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuetTest.java
-src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitchTest.java
-src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsTest.java
