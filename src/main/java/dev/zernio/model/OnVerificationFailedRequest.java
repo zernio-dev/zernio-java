@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   OnVerificationFailedRequest.JSON_PROPERTY_VERIFICATION,
   OnVerificationFailedRequest.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T10:40:54.051391253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:14:47.444679557Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnVerificationFailedRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
