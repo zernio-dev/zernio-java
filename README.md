@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-07T15:18:03.487120678Z[Etc/UTC]
+- Build date: 2026-09-07T15:27:19.365563970Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -327,6 +327,8 @@ Class | Method | HTTP request | Description
 *AdInsightsApi* | [**listLocalServicesLeadsWithHttpInfo**](docs/AdInsightsApi.md#listLocalServicesLeadsWithHttpInfo) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads
 *AdInsightsApi* | [**queryAdInsights**](docs/AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query
 *AdInsightsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdInsightsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query
+*AdLibraryApi* | [**searchAdLibrary**](docs/AdLibraryApi.md#searchAdLibrary) | **GET** /v1/ads/library | Search the public Ad Library
+*AdLibraryApi* | [**searchAdLibraryWithHttpInfo**](docs/AdLibraryApi.md#searchAdLibraryWithHttpInfo) | **GET** /v1/ads/library | Search the public Ad Library
 *AdTargetingApi* | [**estimateAdReach**](docs/AdTargetingApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdTargetingApi* | [**estimateAdReachWithHttpInfo**](docs/AdTargetingApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdTargetingApi* | [**getLinkedInBidPricing**](docs/AdTargetingApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds
@@ -2551,6 +2553,8 @@ Class | Method | HTTP request | Description
  - [ScheduleBroadcastRequest](docs/ScheduleBroadcastRequest.md)
  - [SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
  - [SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
+ - [SearchAdLibrary200Response](docs/SearchAdLibrary200Response.md)
+ - [SearchAdLibrary200ResponsePaging](docs/SearchAdLibrary200ResponsePaging.md)
  - [SearchAdTargeting200Response](docs/SearchAdTargeting200Response.md)
  - [SearchAdTargeting200ResponseResultsInner](docs/SearchAdTargeting200ResponseResultsInner.md)
  - [SearchAvailablePhoneNumbers200Response](docs/SearchAvailablePhoneNumbers200Response.md)

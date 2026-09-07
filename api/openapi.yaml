@@ -242,6 +242,10 @@ tags:
     Requires the Ads add-on.
   name: Ad Targeting
 - description: |
+    Competitor and market research over the public ad archives (Meta Ad Library, LinkedIn Ad Library),
+    searched with the customer's own connected token. Requires the Ads add-on.
+  name: Ad Library
+- description: |
     Measurement: cached aggregate analytics per ad/campaign, plus live Meta Graph insight queries
     (arbitrary fields, breakdowns, filtering, attribution windows) and async report runs.
     Requires the Ads add-on.
@@ -18903,6 +18907,24 @@ paths:
                     type: platform_error
                     code: platform_api_error
                     platform: instagram
+                declinedByMeta:
+                  summary: "Meta declined the private reply on this media (subcode\
+                    \ 2534066, reply NOT consumed)"
+                  value:
+                    error: "Instagram declined this private reply (Meta error 2534066).\
+                      \ Despite Meta's wording, the token and permissions are fine\
+                      \ and the comment ID is valid, so reconnecting the account or\
+                      \ retrying this comment will not change the result."
+                    type: platform_error
+                    code: platform_api_error
+                    platform: instagram
+                    platformError:
+                      code: 200
+                      error_subcode: 2534066
+                      type: IGApiException
+                      message: "Please check if access token has enough IG permissions\
+                        \ granular scopes for IG private reply. Or, verify if the\
+                        \ comment ID is valid"
                 missingMessage:
                   summary: Missing message
                   value:
@@ -34888,6 +34910,290 @@ paths:
       - tiktok
       - linkedin
       - pinterest
+      x-accepts:
+      - application/json
+  /v1/ads/library:
+    get:
+      description: |-
+        Competitor and market research over the platform's public ad archive, searched with the
+        customer's own connected token (no extra scope): Meta's Ad Library (`GET /ads_archive`) for
+        a `facebook` / `instagram` / `metaads` account, LinkedIn's Ad Library (`GET /rest/adLibrary`)
+        for a `linkedin` / `linkedinads` account. Rows are returned in the platform's raw shape under
+        `data`; `paging.after` is an opaque cursor on both (`null` when exhausted).
+
+        **Meta coverage.** Political and social-issue ads are searchable worldwide. Every other ad is
+        in the archive only if it was delivered to the EU or UK within the last year, so a US-only
+        commercial advertiser is invisible. Spend, impressions and demographics are political-only
+        fields and are left out of the default projection; request them via `fields`. Meta serves the
+        archive only to people who confirmed their identity and location at facebook.com/ID: until the
+        Facebook user behind the connection has done so, the call fails with
+        `meta_identity_confirmation_required` (403).
+
+        **LinkedIn coverage.** Ads served after June 1 2023, worldwide, kept for a year after their
+        last impression. EU-delivered ads carry impression ranges and the disclosed targeting facets.
+        Pages are capped at 25 ads (`limit` > 25 is a 400); `after` is the next offset.
+
+        Which params apply: `q`, `countries`, `since`, `until`, `limit`, `after` on both; `pageIds`,
+        `adType`, `status`, `platforms`, `mediaType`, `languages`, `searchType`, `fields` are Meta-only;
+        `advertiser` is LinkedIn-only. Passing a param the account's platform does not support is a 400
+        naming the param.
+      operationId: searchAdLibrary
+      parameters:
+      - description: "Zernio SocialAccount id (facebook / instagram / metaads for\
+          \ Meta, linkedin / linkedinads for LinkedIn). Its token is the one that\
+          \ searches."
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Keyword search. Meta does not translate it, so write it in the\
+          \ ads' language. Required unless pageIds (Meta) or advertiser (LinkedIn)\
+          \ is given."
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          maxLength: 100
+          type: string
+        style: form
+      - description: Meta only. Comma-separated Facebook Page ids (max 10) whose ads
+          to list.
+        explode: true
+        in: query
+        name: pageIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: LinkedIn only. Advertiser (Page) name to search.
+        explode: true
+        in: query
+        name: advertiser
+        required: false
+        schema:
+          maxLength: 100
+          type: string
+        style: form
+      - description: Comma-separated ISO 3166-1 alpha-2 codes the ads reached. Meta
+          defaults to ALL (an explicit ALL is Meta-only); LinkedIn searches every
+          market when omitted.
+        explode: true
+        in: query
+        name: countries
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Meta only.
+        explode: true
+        in: query
+        name: adType
+        required: false
+        schema:
+          default: ALL
+          enum:
+          - ALL
+          - POLITICAL_AND_ISSUE_ADS
+          - HOUSING_ADS
+          - EMPLOYMENT_ADS
+          - FINANCIAL_PRODUCTS_AND_SERVICES_ADS
+          type: string
+        style: form
+      - description: Meta only. ACTIVE = eligible for delivery right now.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          default: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ALL
+          type: string
+        style: form
+      - description: "Meta only. Comma-separated publisher platforms: FACEBOOK, INSTAGRAM,\
+          \ AUDIENCE_NETWORK, MESSENGER, WHATSAPP, OCULUS, THREADS, STREAMING_SERVICES."
+        explode: true
+        in: query
+        name: platforms
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Meta only.
+        explode: true
+        in: query
+        name: mediaType
+        required: false
+        schema:
+          enum:
+          - ALL
+          - IMAGE
+          - MEME
+          - VIDEO
+          - NONE
+          type: string
+        style: form
+      - description: Meta only. Comma-separated ISO 639-1 codes of the ad text.
+        explode: true
+        in: query
+        name: languages
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Earliest delivery date (YYYY-MM-DD).
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Latest delivery date (YYYY-MM-DD).
+        explode: true
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Meta only. Whether q matches words in any order or as an exact
+          phrase (comma-separate phrases to match all of them).
+        explode: true
+        in: query
+        name: searchType
+        required: false
+        schema:
+          default: KEYWORD_UNORDERED
+          enum:
+          - KEYWORD_UNORDERED
+          - KEYWORD_EXACT_PHRASE
+          type: string
+        style: form
+      - description: "Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution\
+          \ for political ads."
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Rows per page. LinkedIn accepts at most 25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                meta:
+                  summary: "Meta, an EU-delivered ad"
+                  value:
+                    platform: meta
+                    data:
+                    - id: "1234567890"
+                      page_id: "811889972008357"
+                      page_name: Zernio
+                      ad_creation_time: 2026-08-02
+                      ad_delivery_start_time: 2026-08-03
+                      ad_creative_bodies:
+                      - Schedule posts and run ads from one API.
+                      ad_creative_link_titles:
+                      - Zernio for developers
+                      ad_snapshot_url: https://www.facebook.com/ads/archive/render_ad/?id=1234567890&access_token=...
+                      publisher_platforms:
+                      - facebook
+                      - instagram
+                      languages:
+                      - en
+                      eu_total_reach: 18400
+                      target_ages:
+                      - "25"
+                      - "54"
+                      target_gender: All
+                    paging:
+                      after: QVFIUm...
+                linkedin:
+                  summary: "LinkedIn, an EU-delivered ad"
+                  value:
+                    platform: linkedin
+                    data:
+                    - isRestricted: false
+                      adUrl: https://www.linkedin.com/ad-library/detail/1521996423
+                      details:
+                        type: SPONSORED_STATUS_UPDATE
+                        advertiser:
+                          advertiserName: CEE Microsoft Dynamics Partners
+                          advertiserUrl: https://www.linkedin.com/company/71491884
+                          adPayer: UAB Companial
+                        adStatistics:
+                          firstImpressionAt: 1788623666998
+                          latestImpressionAt: 1788780782520
+                          totalImpressions:
+                            from: 5000
+                            to: 10000
+                          impressionsDistributionByCountry: []
+                        adTargeting:
+                        - facetName: Language
+                          includedSegments:
+                          - polski
+                          excludedSegments: []
+                        - facetName: Location
+                          includedSegments:
+                          - Polska
+                          excludedSegments: []
+                    paging:
+                      after: "25"
+                      total: 27147
+              schema:
+                $ref: "#/components/schemas/searchAdLibrary_200_response"
+          description: Archived ads (raw platform shape)
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required (legacy plans need the Ads add-on), or,\
+            \ on Meta, `meta_identity_confirmation_required`: the Facebook user behind\
+            \ the connection has not confirmed identity and location at facebook.com/ID."
+        "404":
+          description: Account not found
+        "501":
+          description: Only supported on Meta and LinkedIn accounts
+      security:
+      - bearerAuth: []
+      summary: Search the public Ad Library
+      tags:
+      - Ad Library
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - linkedin
       x-accepts:
       - application/json
   /v1/ads/targeting/reach-estimate:
@@ -91518,6 +91824,54 @@ components:
           items:
             $ref: "#/components/schemas/searchAdTargeting_200_response_results_inner"
           type: array
+    searchAdLibrary_200_response_paging:
+      example:
+        total: 0
+        after: after
+      properties:
+        after:
+          description: Cursor for the next page; null when exhausted.
+          nullable: true
+          type: string
+        total:
+          description: LinkedIn only. Total matching ads.
+          type: integer
+    searchAdLibrary_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        paging:
+          total: 0
+          after: after
+        platform: meta
+      properties:
+        platform:
+          enum:
+          - meta
+          - linkedin
+          type: string
+        data:
+          items:
+            description: "Meta: an ArchivedAd (id, page_id, page_name, ad_creation_time,\
+              \ ad_delivery_start_time, ad_delivery_stop_time, ad_creative_bodies[],\
+              \ ad_creative_link_titles[], ad_creative_link_descriptions[], ad_creative_link_captions[],\
+              \ ad_snapshot_url, publisher_platforms[], languages[], plus eu_total_reach,\
+              \ beneficiary_payers, target_ages, target_gender, target_locations,\
+              \ age_country_gender_reach_breakdown, total_reach_by_location on EU/UK\
+              \ ads). LinkedIn: { adUrl, isRestricted, details: { type, advertiser:\
+              \ { advertiserName, advertiserUrl, adPayer }, adStatistics: { firstImpressionAt,\
+              \ latestImpressionAt, totalImpressions: { from, to }, impressionsDistributionByCountry[]\
+              \ }, adTargeting: [{ facetName, includedSegments[], excludedSegments[]\
+              \ }] } } (adStatistics and adTargeting only on EU-delivered ads)."
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/searchAdLibrary_200_response_paging"
+      required:
+      - data
+      - paging
+      - platform
     estimateAdReach_request:
       properties:
         accountId:
