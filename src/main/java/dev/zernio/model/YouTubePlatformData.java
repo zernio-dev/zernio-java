@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Videos under 3 min auto-detected as Shorts. Custom thumbnails for regular videos only. Scheduled videos are uploaded immediately with the specified visibility.
+ * Videos under 3 min auto-detected as Shorts. Custom thumbnails for regular videos only. Scheduled videos are uploaded immediately with the specified visibility. There is no description field here: the video description comes from the post content, or from customContent on this platform target when set, and is truncated to 5000 characters.
  */
 @JsonPropertyOrder({
   YouTubePlatformData.JSON_PROPERTY_TITLE,
@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   YouTubePlatformData.JSON_PROPERTY_CATEGORY_ID,
   YouTubePlatformData.JSON_PROPERTY_PLAYLIST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:14:47.444679557Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:39:11.471486688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubePlatformData {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

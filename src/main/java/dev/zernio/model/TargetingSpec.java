@@ -64,7 +64,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:14:47.444679557Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T11:39:11.471486688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
