@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallEstimate200Response.JSON_PROPERTY_PER_MINUTE_USD,
   GetWhatsAppCallEstimate200Response.JSON_PROPERTY_BREAKDOWN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:09:26.283235206Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:11:55.358385327Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallEstimate200Response {
   public static final String JSON_PROPERTY_DESTINATION_COUNTRY = "destinationCountry";
   private JsonNullable<String> destinationCountry = JsonNullable.<String>undefined();

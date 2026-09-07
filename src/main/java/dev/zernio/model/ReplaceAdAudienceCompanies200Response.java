@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ReplaceAdAudienceCompanies200Response.JSON_PROPERTY_MESSAGE,
   ReplaceAdAudienceCompanies200Response.JSON_PROPERTY_NUM_RECEIVED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:09:26.283235206Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:11:55.358385327Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplaceAdAudienceCompanies200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
