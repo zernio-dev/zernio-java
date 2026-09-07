@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_VERIFIED_NAME,
   ConnectWhatsAppCredentials200ResponseAccount.JSON_PROPERTY_QUALITY_RATING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:04:42.809315906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:18:26.386242433Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppCredentials200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

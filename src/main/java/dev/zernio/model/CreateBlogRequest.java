@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateBlogRequest.JSON_PROPERTY_TITLE,
   CreateBlogRequest.JSON_PROPERTY_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:04:42.809315906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:18:26.386242433Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBlogRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

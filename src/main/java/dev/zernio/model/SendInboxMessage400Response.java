@@ -38,19 +38,25 @@ import dev.zernio.ApiClient;
   SendInboxMessage400Response.JSON_PROPERTY_CODE,
   SendInboxMessage400Response.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:04:42.809315906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:18:26.386242433Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
 
   /**
-   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
+   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
    */
   public enum CodeEnum {
     PLATFORM_LIMITATION(String.valueOf("PLATFORM_LIMITATION")),
     
-    MISSING_PARTICIPANT(String.valueOf("MISSING_PARTICIPANT"));
+    MISSING_PARTICIPANT(String.valueOf("MISSING_PARTICIPANT")),
+    
+    DIRECT_SEND_NOT_ELIGIBLE(String.valueOf("DIRECT_SEND_NOT_ELIGIBLE")),
+    
+    DIRECT_SEND_LIMITED(String.valueOf("DIRECT_SEND_LIMITED")),
+    
+    DIRECT_SEND_BLOCKED(String.valueOf("DIRECT_SEND_BLOCKED"));
 
     private String value;
 
@@ -120,7 +126,7 @@ public class SendInboxMessage400Response {
   }
 
   /**
-   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
+   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
    * @return code
    */
   @javax.annotation.Nullable

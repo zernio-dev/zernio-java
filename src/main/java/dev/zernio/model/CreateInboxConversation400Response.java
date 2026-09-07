@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversation400Response.JSON_PROPERTY_ERROR,
   CreateInboxConversation400Response.JSON_PROPERTY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:04:42.809315906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T09:18:26.386242433Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversation400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -46,7 +46,21 @@ public class CreateInboxConversation400Response {
    * Gets or Sets code
    */
   public enum CodeEnum {
-    PLATFORM_NOT_SUPPORTED(String.valueOf("PLATFORM_NOT_SUPPORTED"));
+    PLATFORM_NOT_SUPPORTED(String.valueOf("PLATFORM_NOT_SUPPORTED")),
+    
+    PLATFORM_LIMITATION(String.valueOf("PLATFORM_LIMITATION")),
+    
+    TEMPLATE_REQUIRED(String.valueOf("TEMPLATE_REQUIRED")),
+    
+    INVALID_TEMPLATE_PARAMS(String.valueOf("INVALID_TEMPLATE_PARAMS")),
+    
+    INVALID_TEMPLATE_BUTTON_PARAM(String.valueOf("INVALID_TEMPLATE_BUTTON_PARAM")),
+    
+    DIRECT_SEND_NOT_ELIGIBLE(String.valueOf("DIRECT_SEND_NOT_ELIGIBLE")),
+    
+    DIRECT_SEND_LIMITED(String.valueOf("DIRECT_SEND_LIMITED")),
+    
+    DIRECT_SEND_BLOCKED(String.valueOf("DIRECT_SEND_BLOCKED"));
 
     private String value;
 

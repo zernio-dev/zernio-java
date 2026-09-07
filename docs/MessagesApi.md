@@ -266,7 +266,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Conversation created successfully |  -  |
-| **400** | Validation error, platform not supported, category combined with templateName or used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send |  -  |
+| **400** | Validation error, platform not supported, an attachment the platform does not accept (PLATFORM_LIMITATION), template required to start a WhatsApp conversation (TEMPLATE_REQUIRED), template variables that do not match the approved definition (INVALID_TEMPLATE_PARAMS, INVALID_TEMPLATE_BUTTON_PARAM), category combined with templateName or used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send: DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED require Meta to grant or restore Direct Send access, while DIRECT_SEND_LIMITED is temporary and lifts on its own |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
 | **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
@@ -345,7 +345,7 @@ ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Conversation created successfully |  -  |
-| **400** | Validation error, platform not supported, category combined with templateName or used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send |  -  |
+| **400** | Validation error, platform not supported, an attachment the platform does not accept (PLATFORM_LIMITATION), template required to start a WhatsApp conversation (TEMPLATE_REQUIRED), template variables that do not match the approved definition (INVALID_TEMPLATE_PARAMS, INVALID_TEMPLATE_BUTTON_PARAM), category combined with templateName or used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send: DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED require Meta to grant or restore Direct Send access, while DIRECT_SEND_LIMITED is temporary and lifts on its own |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
 | **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
