@@ -13,6 +13,10 @@
 
 package dev.zernio.model;
 
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
@@ -50,7 +54,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_CATEGORIES,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SERVICE_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-05T13:16:41.658158108Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T08:09:26.283235206Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequest {
   public static final String JSON_PROPERTY_UPDATE_MASK = "updateMask";
   @javax.annotation.Nonnull
@@ -286,6 +290,49 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
     this.serviceItems = serviceItems;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   * @param key the name of the property
+   * @param value the value of the property
+   * @return self reference
+   */
+  @JsonAnySetter
+  public UpdateGoogleBusinessLocationDetailsRequest putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) properties.
+   * @return the additional (undeclared) properties
+   */
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   * @param key the name of the property
+   * @return the additional (undeclared) property with the specified name
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
   /**
    * Return true if this updateGoogleBusinessLocationDetails_request object is equal to o.
@@ -306,12 +353,13 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
         Objects.equals(this.websiteUri, updateGoogleBusinessLocationDetailsRequest.websiteUri) &&
         Objects.equals(this.phoneNumbers, updateGoogleBusinessLocationDetailsRequest.phoneNumbers) &&
         Objects.equals(this.categories, updateGoogleBusinessLocationDetailsRequest.categories) &&
-        Objects.equals(this.serviceItems, updateGoogleBusinessLocationDetailsRequest.serviceItems);
+        Objects.equals(this.serviceItems, updateGoogleBusinessLocationDetailsRequest.serviceItems)&&
+        Objects.equals(this.additionalProperties, updateGoogleBusinessLocationDetailsRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updateMask, regularHours, specialHours, profile, websiteUri, phoneNumbers, categories, serviceItems);
+    return Objects.hash(updateMask, regularHours, specialHours, profile, websiteUri, phoneNumbers, categories, serviceItems, additionalProperties);
   }
 
   @Override
@@ -326,6 +374,7 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    serviceItems: ").append(toIndentedString(serviceItems)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -11565,9 +11565,12 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Selected phone number not found in the specified WABA
         "409":
-          description: "Conflict with an existing connection. Either the phone number\
-            \ is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE,\
-            \ connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile),\
+          description: "Conflict with an existing connection. One of: the target profile\
+            \ already has a WhatsApp number connected (code ONE_WHATSAPP_PER_PROFILE,\
+            \ each profile holds exactly one WhatsApp number, so connect this number\
+            \ to a different or new profile); the phone number is a Zernio-provisioned\
+            \ number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE,\
+            \ connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile);\
             \ or the number is already actively connected on another profile or workspace\
             \ (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first).\
             \ A number can only be live on one profile."
@@ -60368,6 +60371,7 @@ components:
         price:
           $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceItems_inner_price"
     updateGoogleBusinessLocationDetails_request:
+      additionalProperties: {}
       properties:
         updateMask:
           description: "Required. Comma-separated fields to update (e.g. 'regularHours',\
