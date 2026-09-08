@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAccountRequestXCapabilities.JSON_PROPERTY_ANALYTICS,
   UpdateAccountRequestXCapabilities.JSON_PROPERTY_INBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:32:59.786460831Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:45:38.623436951Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountRequestXCapabilities {
   public static final String JSON_PROPERTY_ANALYTICS = "analytics";
   @javax.annotation.Nullable
