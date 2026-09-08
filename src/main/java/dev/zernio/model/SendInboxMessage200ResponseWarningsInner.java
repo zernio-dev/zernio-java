@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage200ResponseWarningsInner.JSON_PROPERTY_PARAM,
   SendInboxMessage200ResponseWarningsInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:45:38.623436951Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200ResponseWarningsInner {
   /**
    * Gets or Sets code

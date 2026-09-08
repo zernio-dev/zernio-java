@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   GetSlackSettings200ResponseAccount.JSON_PROPERTY_DEFAULT_USERNAME,
   GetSlackSettings200ResponseAccount.JSON_PROPERTY_DEFAULT_ICON_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:45:38.623436951Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSlackSettings200ResponseAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

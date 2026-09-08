@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   PortfolioBidStrategy.JSON_PROPERTY_TARGET_CPA,
   PortfolioBidStrategy.JSON_PROPERTY_TARGET_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:45:38.623436951Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PortfolioBidStrategy {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
