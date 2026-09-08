@@ -33,109 +33,13 @@ import dev.zernio.ApiClient;
  * InlineObject2
  */
 @JsonPropertyOrder({
-  InlineObject2.JSON_PROPERTY_ERROR,
-  InlineObject2.JSON_PROPERTY_CODE,
-  InlineObject2.JSON_PROPERTY_REQUIRED_GROUP
+  InlineObject2.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject2 {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
-
-  /**
-   * Gets or Sets code
-   */
-  public enum CodeEnum {
-    INSUFFICIENT_PERMISSIONS(String.valueOf("insufficient_permissions")),
-    
-    UNCLASSIFIED_RESOURCE(String.valueOf("unclassified_resource"));
-
-    private String value;
-
-    CodeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CodeEnum fromValue(String value) {
-      for (CodeEnum b : CodeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_CODE = "code";
-  @javax.annotation.Nullable
-  private CodeEnum code;
-
-  /**
-   * The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
-   */
-  public enum RequiredGroupEnum {
-    PUBLISHING(String.valueOf("publishing")),
-    
-    ENGAGEMENT(String.valueOf("engagement")),
-    
-    MESSAGES(String.valueOf("messages")),
-    
-    CONTACTS(String.valueOf("contacts")),
-    
-    ANALYTICS(String.valueOf("analytics")),
-    
-    ADS(String.valueOf("ads")),
-    
-    TELEPHONY(String.valueOf("telephony")),
-    
-    ACCOUNTS(String.valueOf("accounts")),
-    
-    BILLING(String.valueOf("billing")),
-    
-    WEBHOOKS(String.valueOf("webhooks"));
-
-    private String value;
-
-    RequiredGroupEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static RequiredGroupEnum fromValue(String value) {
-      for (RequiredGroupEnum b : RequiredGroupEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_REQUIRED_GROUP = "required_group";
-  @javax.annotation.Nullable
-  private RequiredGroupEnum requiredGroup;
 
   public InlineObject2() { 
   }
@@ -164,54 +68,6 @@ public class InlineObject2 {
   }
 
 
-  public InlineObject2 code(@javax.annotation.Nullable CodeEnum code) {
-    this.code = code;
-    return this;
-  }
-
-  /**
-   * Get code
-   * @return code
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CodeEnum getCode() {
-    return code;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCode(@javax.annotation.Nullable CodeEnum code) {
-    this.code = code;
-  }
-
-
-  public InlineObject2 requiredGroup(@javax.annotation.Nullable RequiredGroupEnum requiredGroup) {
-    this.requiredGroup = requiredGroup;
-    return this;
-  }
-
-  /**
-   * The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
-   * @return requiredGroup
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIRED_GROUP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public RequiredGroupEnum getRequiredGroup() {
-    return requiredGroup;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_REQUIRED_GROUP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequiredGroup(@javax.annotation.Nullable RequiredGroupEnum requiredGroup) {
-    this.requiredGroup = requiredGroup;
-  }
-
-
   /**
    * Return true if this inline_object_2 object is equal to o.
    */
@@ -224,14 +80,12 @@ public class InlineObject2 {
       return false;
     }
     InlineObject2 inlineObject2 = (InlineObject2) o;
-    return Objects.equals(this.error, inlineObject2.error) &&
-        Objects.equals(this.code, inlineObject2.code) &&
-        Objects.equals(this.requiredGroup, inlineObject2.requiredGroup);
+    return Objects.equals(this.error, inlineObject2.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, code, requiredGroup);
+    return Objects.hash(error);
   }
 
   @Override
@@ -239,8 +93,6 @@ public class InlineObject2 {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineObject2 {\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    requiredGroup: ").append(toIndentedString(requiredGroup)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -291,16 +143,6 @@ public class InlineObject2 {
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
-    }
-
-    // add `code` to the URL query string
-    if (getCode() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCode()))));
-    }
-
-    // add `required_group` to the URL query string
-    if (getRequiredGroup() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%srequired_group%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequiredGroup()))));
     }
 
     return joiner.toString();

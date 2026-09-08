@@ -27,7 +27,7 @@ import dev.zernio.model.GetInboxSourceBreakdown200Response;
 import dev.zernio.model.GetInboxTopAccounts200Response;
 import dev.zernio.model.GetInboxVolume200Response;
 import dev.zernio.model.GetInboxVolume400Response;
-import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListInboxConversationAnalytics200Response;
 import java.time.LocalDate;
 
@@ -56,7 +56,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxAnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

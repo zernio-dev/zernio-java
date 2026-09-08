@@ -20,7 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetGoogleBusinessFoodMenus200Response;
-import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.UpdateGoogleBusinessFoodMenus200Response;
 import dev.zernio.model.UpdateGoogleBusinessFoodMenusRequest;
 
@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbFoodMenusApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

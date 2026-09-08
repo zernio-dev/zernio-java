@@ -286,6 +286,24 @@ tags:
     Requires the Ads add-on.
   name: Tracking Tags
 - description: |
+    Provision and operate Meta Business Agent, Meta's own AI agent, on a connected WhatsApp number
+    without the merchant opening Business Manager. Check eligibility and setup state, create the agent,
+    turn it on or off, feed it knowledge (business information, FAQs, websites, files), give it skills
+    and UI skills, wire connectors and tools to your own APIs, cap usage with budgets, test it in Meta's
+    sandbox, send it business events, and run evaluations.
+
+    Two steps stay manual by Meta's design and have no API: the merchant accepts the Meta Business Agent
+    terms in WhatsApp Manager (until then every call answers `business_agent_terms_not_accepted`), and a
+    payment method is attached to the Business Agent billable account in Billing Hub (without it the agent
+    is on but Meta delivers no messages; allowlisted-only testing is exempt). `GET .../business-agent`
+    reports both.
+
+    While the agent answers a conversation your inbox receives it on the standby path and a reply from
+    Zernio takes control back. Every call needs the WhatsApp social account id, the Inbox add-on, and a
+    number managed through the Cloud API (a coexistence number that still runs the in-app Business AI is
+    not eligible).
+  name: Business Agent
+- description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
     Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
@@ -11755,56 +11773,12 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /v1/connect/whatsapp/sdk-config:
-    get:
-      description: |
-        The public values needed to run Meta's Embedded Signup inside your own page with the
-        Facebook JavaScript SDK instead of the redirect flow: pass `appId` and `graphApiVersion`
-        to `FB.init`, and `configId` as `config_id` to `FB.login`. The popup then reports the
-        WhatsApp Business Account and phone number the user picked through the
-        `WA_EMBEDDED_SIGNUP` message event, and you finish the connection with
-        `POST /v1/connect/whatsapp/embedded-signup`. Because the number comes back from the popup,
-        the user never sees a second number picker.
-
-        Available on request: `FB.login` only opens on HTTPS domains listed in the Zernio Meta app, so
-        send the domains that will host the popup to support before going live.
-      operationId: getWhatsAppSdkConfig
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/getWhatsAppSdkConfig_200_response"
-          description: SDK configuration
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-      security:
-      - bearerAuth: []
-      summary: Get Embedded Signup SDK config
-      tags:
-      - Connect
-      x-resource-group: accounts
-      x-accepts:
-      - application/json
   /v1/connect/whatsapp/embedded-signup:
     post:
-      description: |
-        Finish a WhatsApp connection started with Meta's Embedded Signup in your own page (Facebook
-        JavaScript SDK). The code never passes through a `redirect_url`, so `POST /v1/connect/{platform}`
-        cannot accept it.
-
-        The flow: call `GET /v1/connect/whatsapp/sdk-config`, run `FB.login` with that `configId`,
-        `response_type: 'code'`, `override_default_response_type: true` and
-        `extras: { sessionInfoVersion: '3' }`, read `waba_id` and `phone_number_id` from the
-        `WA_EMBEDDED_SIGNUP` message event Meta posts to your window, then send the `code` from the
-        login response here together with those ids.
-
-        Always forward `wabaId` and `phoneNumberId`: Zernio connects exactly that number and no picker is
-        shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the
-        token can reach, which may not be the one the user picked.
-
-        The Zernio Meta app must list the domain that hosts the popup before `FB.login` will open there.
-        Available on request: send the domains to support.
+      description: "Exchange the authorization code Meta Embedded Signup returns to\
+        \ your browser SDK. This is the headless completion path for WhatsApp: the\
+        \ code never passes through a redirect_uri, so POST /v1/connect/{platform}\
+        \ cannot accept it."
       operationId: connectWhatsAppEmbeddedSignup
       requestBody:
         content:
@@ -17551,7 +17525,7 @@ paths:
         WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta's thread control:
         - `release`: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly).
         - `take`: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number's escalation partner; other apps take control by sending a message.
-        - `pass`: transfer control to the number's configured escalation partner, or to the agent with `target: ai_agent`.
+        - `pass`: transfer control to the number's configured escalation partner, or to the agent with `target: ai_agent`. Meta's Cloud API currently rejects it ("Pass action is not supported", verified 2026-09-08); use `release` to hand a thread back to the agent.
 
         The conversation's `threadControl` follows the result; a `conversation.control_changed` webhook fires when Meta later reports the change.
       operationId: setConversationThreadControl
@@ -38480,6 +38454,1982 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/business-agent:
+    get:
+      description: |
+        One read that says where the merchant is: whether the number is eligible, whether the
+        Meta Business Agent terms are accepted, whether an agent exists, whether it is on, and its
+        settings. `manualSteps` lists what Zernio can verify is still pending (accepting the terms
+        in WhatsApp Manager); `unverifiedSteps` lists what Meta exposes no state for (the payment
+        method in Billing Hub). Never fails for those pre-setup states; it reports them as flags.
+      operationId: getBusinessAgentStatus
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentStatus"
+          description: Setup status
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get agent setup status
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/onboard:
+    post:
+      description: |
+        Creates the Meta Business Agent on the number and schedules Meta's data preparation.
+        Requires the terms to be accepted; eligibility is checked first and an ineligible
+        number answers 403 `business_agent_not_eligible`. Not idempotent: call it once, then
+        configure knowledge and skills, then enable it through the settings. Configuration
+        calls made in the first minute can still answer `business_agent_not_found` while Meta
+        prepares the workspace.
+      operationId: onboardBusinessAgent
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/onboardBusinessAgent_201_response"
+          description: Agent created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+        "409":
+          description: Meta rejected the state change (code business_agent_conflict).
+      security:
+      - bearerAuth: []
+      summary: Create the agent
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/settings:
+    get:
+      description: Settings of every agent configured on the number (normally one).
+        Pass `agentId` to read one.
+      operationId: listBusinessAgentSettings
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: true
+        in: query
+        name: agentId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentSettings_200_response"
+          description: Settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List agent settings
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Partial update: fields you omit keep their value. `rollout.enabled: true` turns the agent
+        on for new conversations; `false` stops it on every thread. Turning it on for `EVERYONE`
+        needs a payment method on the Business Agent billable account (Meta accepts the call but
+        delivers nothing without one); `ALLOWLISTED_ONLY` does not, which is how you test with a
+        few numbers before billing. `never_say_phrases` replaces the whole list.
+      operationId: updateBusinessAgentSettings
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: true
+        in: query
+        name: agentId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateBusinessAgentSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentSettings"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update agent settings
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/allowlist:
+    get:
+      description: Consumers the agent answers while `ai_audience` is ALLOWLISTED_ONLY.
+      operationId: listBusinessAgentAllowlist
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentAllowlist_200_response"
+          description: Allowlist
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List allowlisted consumers
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: One E.164 number per call. Not idempotent.
+      operationId: addBusinessAgentAllowlistEntry
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addBusinessAgentAllowlistEntry_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentAllowlistEntry"
+          description: Entry added
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Allowlist a consumer
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/allowlist/{entryId}:
+    delete:
+      operationId: removeBusinessAgentAllowlistEntry
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: entryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Remove an allowlisted consumer
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/business-information:
+    delete:
+      operationId: resetBusinessAgentBusinessInformation
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Reset business information
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      description: "Payment methods, return policy, how to buy, shipping, description\
+        \ and contact details the agent answers from. Empty values until configured."
+      operationId: getBusinessAgentBusinessInformation
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentBusinessInformation"
+          description: Business information
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get business information
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      description: "Full replacement: every field you send overwrites the stored value;\
+        \ fields you omit are cleared."
+      operationId: replaceBusinessAgentBusinessInformation
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentBusinessInformation"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentBusinessInformation"
+          description: Stored business information
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Replace business information
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/faqs:
+    get:
+      operationId: listBusinessAgentFaqs
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentFaqs_200_response"
+          description: FAQs
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List FAQs
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: One specific question per entry; beyond a few hundred entries retrieval
+        quality drops. Not idempotent.
+      operationId: createBusinessAgentFaq
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentFaqInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentFaq"
+          description: FAQ created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+        "409":
+          description: Meta rejected the entry (code business_agent_conflict).
+      security:
+      - bearerAuth: []
+      summary: Create a FAQ
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/faqs/{faqId}:
+    delete:
+      operationId: deleteBusinessAgentFaq
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: faqId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a FAQ
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentFaq
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: faqId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentFaq"
+          description: FAQ
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a FAQ
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateBusinessAgentFaq
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: faqId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentFaqInput"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentFaq"
+          description: FAQ updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a FAQ
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/websites:
+    get:
+      operationId: listBusinessAgentWebsites
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentWebsites_200_response"
+          description: Websites
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List crawled websites
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: Meta crawls the site into the agent knowledge and recrawls it periodically;
+        check `crawl_status` and `crawl_error` on read. Not idempotent.
+      operationId: addBusinessAgentWebsite
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentWebsiteInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentWebsite"
+          description: Website added
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Add a website to crawl
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/websites/{websiteId}:
+    delete:
+      operationId: deleteBusinessAgentWebsite
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: websiteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Remove a crawled website
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentWebsite
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: websiteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentWebsite"
+          description: Website
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a crawled website
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateBusinessAgentWebsite
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: websiteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentWebsiteInput"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentWebsite"
+          description: Website updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a crawled website
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/files:
+    get:
+      operationId: listBusinessAgentFiles
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentFiles_200_response"
+          description: Files
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List knowledge files
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Accepted types: pdf, doc, docx, png, jpg, jpeg, plus csv and xlsx when Meta enabled
+        extraction on the asset. Meta's limit is 100 MB. Two ways to send the file:
+        - JSON `{ url, fileName }`: Zernio downloads the file (public https URL, no redirects,
+          capped at 100 MB) and forwards it. Use this for anything above a few megabytes.
+        - multipart form-data with a `file` part (and an optional `fileName`): bounded by the
+          request body limit of about 4.5 MB; larger uploads must use the `url` form.
+        Not idempotent.
+      operationId: uploadBusinessAgentFile
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/uploadBusinessAgentFile_request"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/uploadBusinessAgentFile_request_1"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentKnowledgeFile"
+          description: File uploaded
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+        "413":
+          description: File larger than 100 MB (code payload_too_large). A multipart
+            body above the request limit is rejected by the host before the route
+            runs.
+      security:
+      - bearerAuth: []
+      summary: Upload a knowledge file
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/files/{fileId}:
+    delete:
+      operationId: deleteBusinessAgentFile
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: fileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a knowledge file
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentFile
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: fileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentKnowledgeFile"
+          description: File
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a knowledge file
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/skills:
+    get:
+      operationId: listBusinessAgentSkills
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentSkills_200_response"
+          description: Skills
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List skills
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: Behavioral instructions in the brand voice. Reads back `pending_review`
+        until Meta content review passes it. Not idempotent.
+      operationId: createBusinessAgentSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentSkillInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentSkill"
+          description: Skill created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Create a skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/skills/{skillId}:
+    delete:
+      operationId: deleteBusinessAgentSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: skillId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: skillId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentSkill"
+          description: Skill
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateBusinessAgentSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: skillId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentSkillInput"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentSkill"
+          description: Skill updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/ui-skills:
+    get:
+      description: Cursor paged; follow `paging.cursors.after` until `paging.next`
+        is absent.
+      operationId: listBusinessAgentUiSkills
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: true
+        in: query
+        name: before
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentUiSkills_200_response"
+          description: UI skills
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List UI skills
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: "Tells the agent when to send a rich component (CTA URL button,\
+        \ image, carousel, list, reply buttons, location, Flow) and what to put in\
+        \ it. Not idempotent."
+      operationId: createBusinessAgentUiSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentUiSkillInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentUiSkill"
+          description: UI skill created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Create a UI skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/ui-skills/{uiSkillId}:
+    delete:
+      operationId: deleteBusinessAgentUiSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: uiSkillId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a UI skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentUiSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: uiSkillId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentUiSkill"
+          description: UI skill
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a UI skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateBusinessAgentUiSkill
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: uiSkillId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentUiSkillInput"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentUiSkill"
+          description: UI skill updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a UI skill
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors:
+    get:
+      description: External APIs the agent may call. `connection_status` says whether
+        Meta can currently reach each one.
+      operationId: listBusinessAgentConnectors
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentConnectors_200_response"
+          description: Connectors
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List connectors
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: "Base URL plus how to authenticate (OAuth client credentials, API\
+        \ key or none). Names are unique per number. Not idempotent."
+      operationId: createBusinessAgentConnector
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentConnectorInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnector"
+          description: Connector created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+        "409":
+          description: A connector with that name already exists (code business_agent_conflict).
+      security:
+      - bearerAuth: []
+      summary: Create a connector
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}:
+    delete:
+      operationId: deleteBusinessAgentConnector
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a connector
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentConnector
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnector"
+          description: Connector
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a connector
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateBusinessAgentConnector
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentConnectorInput"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnector"
+          description: Connector updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a connector
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}/credentials:
+    post:
+      description: |
+        Set or rotate the connector's credentials in place: `kind: api_key`, `kind: oauth`
+        (client credentials) or `kind: certificate` (mTLS client certificate). Meta has no call
+        that removes a credential layer; change the connector's `auth_type` or delete it instead.
+      operationId: setBusinessAgentConnectorCredentials
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setBusinessAgentConnectorCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnector"
+          description: Connector with the new credential metadata
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Set connector credentials
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}/refresh-tools:
+    post:
+      description: Re-discovers the tools of an MCP connector. A failed discovery
+        keeps the previous tool set and reports an ERROR sync status inside a 200.
+      operationId: refreshBusinessAgentConnectorTools
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnector"
+          description: Connector with updated tool sync metadata
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Refresh MCP connector tools
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}/logs:
+    get:
+      description: "Third-party failures over the last 7 days (window at most 7 days,\
+        \ default the last 24 hours). Each entry carries `failure_code_name` and `error_message`."
+      operationId: getBusinessAgentConnectorLogs
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      - description: Unix seconds.
+        explode: true
+        in: query
+        name: startTime
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Unix seconds.
+        explode: true
+        in: query
+        name: endTime
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: toolId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Add success rate and latency percentiles.
+        explode: true
+        in: query
+        name: includeStats
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Aggregate failure patterns instead of entries.
+        explode: true
+        in: query
+        name: summaryOnly
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: topN
+        required: false
+        schema:
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getBusinessAgentConnectorLogs_200_response"
+          description: Logs
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get connector failure logs
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}/tools:
+    get:
+      operationId: listBusinessAgentConnectorTools
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessAgentConnectorTools_200_response"
+          description: Tools
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: List connector tools
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: "One operation on the connector, with the request definition Meta\
+        \ uses to build the outbound call from the conversation. Type the body params\
+        \ explicitly. Not idempotent."
+      operationId: createBusinessAgentConnectorTool
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentConnectorToolInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnectorTool"
+          description: Tool created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Create a connector tool
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}/tools/{toolId}:
+    delete:
+      operationId: deleteBusinessAgentConnectorTool
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      - $ref: "#/components/parameters/BusinessAgentToolId"
+      responses:
+        "200":
+          $ref: "#/components/responses/BusinessAgentDeleted"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a connector tool
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getBusinessAgentConnectorTool
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      - $ref: "#/components/parameters/BusinessAgentToolId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnectorTool"
+          description: Tool
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a connector tool
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateBusinessAgentConnectorTool
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      - $ref: "#/components/parameters/BusinessAgentToolId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BusinessAgentConnectorToolInput"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentConnectorTool"
+          description: Tool updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a connector tool
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/connectors/{connectorId}/tools/{toolId}/run:
+    post:
+      description: "Executes the tool against the merchant API and returns the raw\
+        \ upstream result, to check a connector before the agent relies on it."
+      operationId: runBusinessAgentConnectorTool
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - $ref: "#/components/parameters/BusinessAgentConnectorId"
+      - $ref: "#/components/parameters/BusinessAgentToolId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/runBusinessAgentConnectorTool_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/runBusinessAgentConnectorTool_200_response"
+          description: Tool result
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Run a connector tool once
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/budget:
+    get:
+      description: Caps over rolling windows for the Business Manager that owns the
+        number. An empty list means unlimited.
+      operationId: getBusinessAgentBudget
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getBusinessAgentBudget_200_response"
+          description: Budgets
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get usage budgets
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    put:
+      description: "The full desired set: budgets left out are removed, an empty list\
+        \ returns to unlimited. Pass `budget_id` to edit one in place. When a cap\
+        \ is hit the agent finishes its turn, stops answering and hands the thread\
+        \ to a human until the window rolls over."
+      operationId: replaceBusinessAgentBudget
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getBusinessAgentBudget_200_response"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getBusinessAgentBudget_200_response"
+          description: Budgets after the update
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Replace usage budgets
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/test-messages:
+    post:
+      description: Runs the message through the full agent pipeline in Meta sandbox
+        with no WhatsApp user and no token billing. Pass back `conversationId` to
+        continue a thread. Meta rate-limits it per number per hour.
+      operationId: sendBusinessAgentTestMessage
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendBusinessAgentTestMessage_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentTestMessageResponse"
+          description: Agent reply
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+        "429":
+          description: "Meta hourly test-message limit reached (code rate_limited,\
+            \ Retry-After when known)."
+      security:
+      - bearerAuth: []
+      summary: Send a test message
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/events:
+    post:
+      description: "Tell the agent something happened in your systems (order shipped,\
+        \ document verified) so it messages the consumer about it. The consumer must\
+        \ already have a conversation with the number. Answers 202 with the event\
+        \ id; poll it for the outcome."
+      operationId: sendBusinessAgentEvent
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendBusinessAgentEvent_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendBusinessAgentEvent_202_response"
+          description: Event accepted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Send a business event
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/events/{eventId}:
+    get:
+      operationId: getBusinessAgentEvent
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessAgentEventStatus"
+          description: Event status
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a business event status
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-agent/evals:
+    get:
+      description: |
+        Without query parameters, lists the evaluation scenarios (`eval_cases`). With `jobId`,
+        polls a run started with POST. With `summaryIds`, returns the aggregated insight reports.
+        With `evalIds`, returns per-conversation evaluation details. One of the three at a time.
+      operationId: readBusinessAgentEvals
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      - explode: true
+        in: query
+        name: jobId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Comma-separated summary ids.
+        explode: true
+        in: query
+        name: summaryIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Comma-separated evaluation ids.
+        explode: true
+        in: query
+        name: evalIds
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+          description: Evaluation data as Meta returns it for the selected read
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Read evaluation data
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: Simulates the given scenarios against the agent and scores them.
+        Answers 202 with a `job_id` to poll with GET.
+      operationId: startBusinessAgentEvalRun
+      parameters:
+      - $ref: "#/components/parameters/BusinessAgentAccountId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/startBusinessAgentEvalRun_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startBusinessAgentEvalRun_202_response"
+          description: Run started
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/BusinessAgentForbidden"
+        "404":
+          $ref: "#/components/responses/BusinessAgentNotFound"
+      security:
+      - bearerAuth: []
+      summary: Start an evaluation run
+      tags:
+      - Business Agent
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/tracking-tags:
     get:
       description: |
@@ -39849,6 +41799,32 @@ components:
         type: integer
       style: simple
   parameters:
+    BusinessAgentAccountId:
+      description: WhatsApp social account id (the number must be managed through
+        the Cloud API).
+      explode: false
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      style: simple
+    BusinessAgentConnectorId:
+      explode: false
+      in: path
+      name: connectorId
+      required: true
+      schema:
+        type: string
+      style: simple
+    BusinessAgentToolId:
+      explode: false
+      in: path
+      name: toolId
+      required: true
+      schema:
+        type: string
+      style: simple
     PageParam:
       description: Page number (1-based)
       explode: true
@@ -39877,6 +41853,27 @@ components:
       description: Same Idempotency-Key still processing; retry after a short backoff
     IdempotencyKeyReused:
       description: Idempotency-Key reused with a different request
+    BusinessAgentForbidden:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "Inbox add-on required, the WhatsApp token lacks the Business Agent\
+        \ permissions (code reconnect_required), or the merchant has not accepted\
+        \ the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted)."
+    BusinessAgentNotFound:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "Account not found, or no agent exists on the number yet or the\
+        \ referenced item does not exist (code business_agent_not_found)."
+    BusinessAgentDeleted:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/inline_object"
+      description: Deleted
     BadRequest:
       content:
         application/json:
@@ -39887,19 +41884,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object"
+            $ref: "#/components/schemas/inline_object_1"
       description: Unauthorized
     NotFound:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object_1"
+            $ref: "#/components/schemas/inline_object_2"
       description: Resource not found
     ResourceGroupForbidden:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object_2"
+            $ref: "#/components/schemas/inline_object_3"
       description: "The API key is a restricted key (zrk_ prefix) and may not perform\
         \ this operation. Three cases. (1) The operation's resource group (see the\
         \ operation's x-resource-group) is disabled on the key: fix it by creating\
@@ -39973,7 +41970,7 @@ components:
                   effective_account_limit: 2000
                   current_account_count: 2000
           schema:
-            $ref: "#/components/schemas/inline_object_3"
+            $ref: "#/components/schemas/inline_object_4"
       description: |
         Payment method or enterprise contract required. The authenticated
         account hit a billing gate before the connection could proceed.
@@ -56202,6 +58199,786 @@ components:
           format: date-time
           nullable: true
           type: string
+    BusinessAgentSettings:
+      description: "Meta Business Agent settings for one WhatsApp number, as Meta\
+        \ returns them."
+      example:
+        followup:
+          message: message
+          enabled: true
+          followup_interval_in_seconds: 0
+        never_say_phrases:
+        - never_say_phrases
+        - never_say_phrases
+        agent_id: agent_id
+        rollout:
+          enabled: true
+        channel: whatsapp
+        ai_audience: EVERYONE
+        handoff:
+          message_selection: DEFAULT
+          message: message
+          enabled: true
+      properties:
+        agent_id:
+          type: string
+        channel:
+          example: whatsapp
+          type: string
+        rollout:
+          $ref: "#/components/schemas/BusinessAgentSettings_rollout"
+        handoff:
+          $ref: "#/components/schemas/BusinessAgentSettings_handoff"
+        followup:
+          $ref: "#/components/schemas/BusinessAgentSettings_followup"
+        ai_audience:
+          description: EVERYONE answers all consumers; ALLOWLISTED_ONLY answers only
+            the allowlist and needs no payment method.
+          enum:
+          - EVERYONE
+          - ALLOWLISTED_ONLY
+          - null
+          nullable: true
+          type: string
+        never_say_phrases:
+          description: Exact phrases the agent must never say.
+          items:
+            type: string
+          type: array
+      required:
+      - agent_id
+      - channel
+      - rollout
+    BusinessAgentStatus:
+      description: Where the merchant is in the Meta Business Agent setup for this
+        number.
+      example:
+        onboarded: true
+        settings: ""
+        unverifiedSteps:
+        - description: description
+          step: attach_payment_method
+          url: https://openapi-generator.tech
+        - description: description
+          step: attach_payment_method
+          url: https://openapi-generator.tech
+        agentId: agentId
+        manualSteps:
+        - description: description
+          step: accept_terms
+          url: https://openapi-generator.tech
+        - description: description
+          step: accept_terms
+          url: https://openapi-generator.tech
+        eligible: true
+        termsAccepted: true
+        enabled: true
+      properties:
+        eligible:
+          description: Whether the number can run the agent; null when the terms are
+            not accepted yet (Meta refuses the check).
+          nullable: true
+          type: boolean
+        termsAccepted:
+          description: False when Meta rejects calls because the merchant has not
+            accepted the terms in WhatsApp Manager.
+          type: boolean
+        onboarded:
+          description: An agent exists on the number (onboard was called).
+          type: boolean
+        enabled:
+          description: The agent answers live conversations.
+          type: boolean
+        agentId:
+          nullable: true
+          type: string
+        settings:
+          allOf:
+          - $ref: "#/components/schemas/BusinessAgentSettings"
+          nullable: true
+        manualSteps:
+          description: Steps Meta keeps outside the API that Zernio can verify are
+            still pending.
+          items:
+            $ref: "#/components/schemas/BusinessAgentStatus_manualSteps_inner"
+          type: array
+        unverifiedSteps:
+          description: "Steps Meta keeps outside the API and exposes no state for,\
+            \ listed once an agent exists. Informational: Zernio cannot tell whether\
+            \ the merchant already did them."
+          items:
+            $ref: "#/components/schemas/BusinessAgentStatus_unverifiedSteps_inner"
+          type: array
+      required:
+      - agentId
+      - eligible
+      - enabled
+      - manualSteps
+      - onboarded
+      - settings
+      - termsAccepted
+      - unverifiedSteps
+    BusinessAgentAllowlistEntry:
+      example:
+        consumer_phone_number: consumer_phone_number
+        id: id
+      properties:
+        id:
+          type: string
+        consumer_phone_number:
+          description: E.164 phone number.
+          type: string
+      required:
+      - id
+    BusinessAgentBusinessInformation:
+      description: Free-text facts the agent answers from; PUT replaces the whole
+        object.
+      example:
+        delivery_and_shipping: delivery_and_shipping
+        return_policy: return_policy
+        business_description: business_description
+        contact_info:
+          hours_of_operation: hours_of_operation
+          address: address
+          email: email
+        payment_method: payment_method
+        purchase_info: purchase_info
+      properties:
+        payment_method:
+          type: string
+        return_policy:
+          type: string
+        purchase_info:
+          type: string
+        delivery_and_shipping:
+          type: string
+        business_description:
+          type: string
+        contact_info:
+          $ref: "#/components/schemas/BusinessAgentBusinessInformation_contact_info"
+    BusinessAgentFaqInput:
+      example:
+        metadata:
+          key: metadata
+        question: question
+        answer: answer
+      properties:
+        question:
+          description: Phrase it the way a customer would ask it; one topic per entry.
+          maxLength: 1000
+          type: string
+        answer:
+          description: Self-contained; the agent retrieves entries independently.
+          maxLength: 8000
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+      required:
+      - answer
+      - question
+    BusinessAgentFaq:
+      allOf:
+      - $ref: "#/components/schemas/BusinessAgentFaqInput"
+      - properties:
+          id:
+            type: string
+          created_at:
+            description: Unix seconds.
+            type: integer
+        required:
+        - id
+      example:
+        metadata:
+          key: metadata
+        question: question
+        answer: answer
+        created_at: 0
+        id: id
+    BusinessAgentWebsiteInput:
+      example:
+        included_sub_domains:
+        - included_sub_domains
+        - included_sub_domains
+        single_urls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+        included_url_patterns:
+        - included_url_patterns
+        - included_url_patterns
+        excluded_sub_domains:
+        - excluded_sub_domains
+        - excluded_sub_domains
+        excluded_url_patterns:
+        - excluded_url_patterns
+        - excluded_url_patterns
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          format: uri
+          type: string
+        included_sub_domains:
+          items:
+            type: string
+          type: array
+        included_url_patterns:
+          description: Only URLs containing one of these substrings are ingested.
+          items:
+            type: string
+          type: array
+        excluded_sub_domains:
+          items:
+            type: string
+          type: array
+        excluded_url_patterns:
+          items:
+            type: string
+          type: array
+        single_urls:
+          description: Crawl only these exact pages instead of the whole site.
+          items:
+            format: uri
+            type: string
+          type: array
+      required:
+      - url
+    BusinessAgentWebsite:
+      allOf:
+      - $ref: "#/components/schemas/BusinessAgentWebsiteInput"
+      - properties:
+          id:
+            type: string
+          crawl_status:
+            description: "not_started, pending, in_progress, completed, completed_no_data\
+              \ or failed (see crawl_error)."
+            type: string
+          crawl_error:
+            type: string
+          pages_crawled:
+            type: integer
+          last_crawled_at:
+            description: Unix seconds.
+            type: integer
+          created_at:
+            description: Unix seconds.
+            type: integer
+        required:
+        - id
+      example:
+        crawl_status: crawl_status
+        included_sub_domains:
+        - included_sub_domains
+        - included_sub_domains
+        crawl_error: crawl_error
+        last_crawled_at: 6
+        single_urls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+        included_url_patterns:
+        - included_url_patterns
+        - included_url_patterns
+        pages_crawled: 0
+        excluded_sub_domains:
+        - excluded_sub_domains
+        - excluded_sub_domains
+        created_at: 1
+        excluded_url_patterns:
+        - excluded_url_patterns
+        - excluded_url_patterns
+        id: id
+        url: https://openapi-generator.tech
+    BusinessAgentKnowledgeFile:
+      example:
+        file_name: file_name
+        id: id
+      properties:
+        id:
+          type: string
+        file_name:
+          type: string
+      required:
+      - file_name
+      - id
+    BusinessAgentSkillInput:
+      example:
+        skill: skill
+        description: description
+        title: title
+      properties:
+        title:
+          description: "Lowercase letters, digits and hyphens, e.g. greeting-skill."
+          maxLength: 64
+          pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          type: string
+        description:
+          description: When the agent should apply the skill.
+          maxLength: 1024
+          type: string
+        skill:
+          description: The instructions themselves. Avoid two skills that both claim
+            priority for the same situation.
+          maxLength: 20000
+          type: string
+      required:
+      - skill
+    BusinessAgentSkill:
+      allOf:
+      - $ref: "#/components/schemas/BusinessAgentSkillInput"
+      - properties:
+          id:
+            type: string
+          channel:
+            type: string
+          created_at:
+            description: Unix seconds.
+            type: integer
+          status:
+            description: pending_review right after a write; blocked means Meta content
+              review rejected it and the agent never applies it.
+            enum:
+            - active
+            - pending_review
+            - blocked
+            type: string
+        required:
+        - id
+      example:
+        skill: skill
+        channel: channel
+        description: description
+        created_at: 0
+        id: id
+        title: title
+        status: active
+    BusinessAgentUiSkillInput:
+      example:
+        component_type: carousel_quick_reply
+        instruction: instruction
+        flow_id: 0
+        title: title
+        status: enabled
+      properties:
+        title:
+          type: string
+        component_type:
+          enum:
+          - carousel_quick_reply
+          - carousel_url
+          - cta_url
+          - flow
+          - image
+          - interactive_list
+          - interactive_reply_buttons
+          - location
+          - location_request
+          type: string
+        status:
+          enum:
+          - enabled
+          - disabled
+          type: string
+        instruction:
+          description: When to send the component and everything needed to fill its
+            fields.
+          type: string
+        flow_id:
+          description: "Required for component_type flow, rejected otherwise."
+          type: integer
+      required:
+      - component_type
+      - instruction
+      - status
+    BusinessAgentUiSkill:
+      allOf:
+      - $ref: "#/components/schemas/BusinessAgentUiSkillInput"
+      - properties:
+          id:
+            type: string
+          created_at:
+            description: Unix seconds.
+            type: integer
+          updated_at:
+            description: Unix seconds.
+            type: integer
+        required:
+        - id
+      example:
+        component_type: carousel_quick_reply
+        updated_at: 1
+        instruction: instruction
+        flow_id: 0
+        created_at: 6
+        id: id
+        title: title
+        status: enabled
+    BusinessAgentApiKeyConfig:
+      description: Where the connector injects the API key on each call.
+      example:
+        headers:
+        - prefix: prefix
+          value: value
+          field_name: field_name
+        - prefix: prefix
+          value: value
+          field_name: field_name
+        query_params:
+        - prefix: prefix
+          value: value
+          field_name: field_name
+        - prefix: prefix
+          value: value
+          field_name: field_name
+        body_params:
+        - prefix: prefix
+          value: value
+          field_name: field_name
+        - prefix: prefix
+          value: value
+          field_name: field_name
+      properties:
+        headers:
+          items:
+            $ref: "#/components/schemas/BusinessAgentApiKeyParams_inner"
+          type: array
+        query_params:
+          items:
+            $ref: "#/components/schemas/BusinessAgentApiKeyParams_inner"
+          type: array
+        body_params:
+          items:
+            $ref: "#/components/schemas/BusinessAgentApiKeyParams_inner"
+          type: array
+    BusinessAgentApiKeyParams:
+      items:
+        $ref: "#/components/schemas/BusinessAgentApiKeyParams_inner"
+      type: array
+    BusinessAgentOAuthClientCredentials:
+      example:
+        token_request_content_type: application/x-www-form-urlencoded
+        scopes_to_request:
+        - scopes_to_request
+        - scopes_to_request
+        client_secret: client_secret
+        token_url: https://openapi-generator.tech
+        client_id: client_id
+      properties:
+        token_url:
+          format: uri
+          type: string
+        scopes_to_request:
+          items:
+            type: string
+          type: array
+        token_request_content_type:
+          example: application/x-www-form-urlencoded
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
+      required:
+      - client_id
+      - client_secret
+      - token_url
+    BusinessAgentConnectorInput:
+      example:
+        auth_type: OAUTH2_CLIENT_CREDENTIALS
+        user_auth_injection_config:
+          prefix: prefix
+          location: headers
+          field_name: field_name
+        requires_certificate: true
+        connector_protocol: HTTP
+        name: name
+        base_url: https://openapi-generator.tech
+        description: description
+        auth_config:
+          api_key:
+            headers:
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            query_params:
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            body_params:
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            - prefix: prefix
+              value: value
+              field_name: field_name
+          oauth2_client_credentials:
+            token_request_content_type: application/x-www-form-urlencoded
+            scopes_to_request:
+            - scopes_to_request
+            - scopes_to_request
+            client_secret: client_secret
+            token_url: https://openapi-generator.tech
+            client_id: client_id
+      properties:
+        name:
+          description: Unique per number.
+          type: string
+        description:
+          description: Tell the agent what the service provides.
+          type: string
+        base_url:
+          description: Public HTTPS URL reachable from Meta.
+          format: uri
+          type: string
+        connector_protocol:
+          example: HTTP
+          type: string
+        auth_type:
+          enum:
+          - OAUTH2_CLIENT_CREDENTIALS
+          - API_KEY
+          - NONE
+          type: string
+        auth_config:
+          $ref: "#/components/schemas/BusinessAgentConnectorInput_auth_config"
+        user_auth_injection_config:
+          $ref: "#/components/schemas/BusinessAgentConnectorInput_user_auth_injection_config"
+        requires_certificate:
+          type: boolean
+      required:
+      - auth_type
+      - base_url
+      - name
+    BusinessAgentConnector:
+      allOf:
+      - $ref: "#/components/schemas/BusinessAgentConnectorInput"
+      - properties:
+          id:
+            type: string
+          mcp_tool_sync:
+            additionalProperties: true
+            type: object
+          mtls_config:
+            additionalProperties: true
+            type: object
+          connection_status:
+            $ref: "#/components/schemas/BusinessAgentConnector_allOf_connection_status"
+        required:
+        - id
+      example:
+        auth_type: OAUTH2_CLIENT_CREDENTIALS
+        user_auth_injection_config:
+          prefix: prefix
+          location: headers
+          field_name: field_name
+        requires_certificate: true
+        connector_protocol: HTTP
+        connection_status:
+          error_message: error_message
+          status: status
+        name: name
+        base_url: https://openapi-generator.tech
+        description: description
+        id: id
+        auth_config:
+          api_key:
+            headers:
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            query_params:
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            body_params:
+            - prefix: prefix
+              value: value
+              field_name: field_name
+            - prefix: prefix
+              value: value
+              field_name: field_name
+          oauth2_client_credentials:
+            token_request_content_type: application/x-www-form-urlencoded
+            scopes_to_request:
+            - scopes_to_request
+            - scopes_to_request
+            client_secret: client_secret
+            token_url: https://openapi-generator.tech
+            client_id: client_id
+        mcp_tool_sync:
+          key: ""
+        mtls_config:
+          key: ""
+    BusinessAgentConnectorToolInput:
+      example:
+        user_auth_action_config:
+          key: ""
+        name: name
+        description: description
+        transformation_spec:
+          key: ""
+        request_definition:
+          key: ""
+        user_auth_required: true
+      properties:
+        name:
+          type: string
+        description:
+          description: When and how the agent should use the operation.
+          type: string
+        request_definition:
+          additionalProperties: true
+          description: "Meta request definition: method, path, path_parameters, query_parameters,\
+            \ headers and a typed body schema (content_type, params, required)."
+          type: object
+        user_auth_required:
+          type: boolean
+        user_auth_action_config:
+          additionalProperties: true
+          type: object
+        transformation_spec:
+          additionalProperties: true
+          type: object
+      required:
+      - description
+      - name
+      - request_definition
+    BusinessAgentConnectorTool:
+      allOf:
+      - $ref: "#/components/schemas/BusinessAgentConnectorToolInput"
+      - properties:
+          id:
+            type: string
+        required:
+        - id
+      example:
+        user_auth_action_config:
+          key: ""
+        name: name
+        description: description
+        transformation_spec:
+          key: ""
+        request_definition:
+          key: ""
+        id: id
+        user_auth_required: true
+    BusinessAgentBudget:
+      example:
+        time_window: one_day
+        budget_id: budget_id
+        max_budget: 1
+        unit_type: token
+      properties:
+        budget_id:
+          description: Pass it back to edit an existing budget; omit to add one.
+          type: string
+        unit_type:
+          description: "Tokens count across the Business Manager, AI turns per conversation."
+          enum:
+          - token
+          - ai_turn
+          type: string
+        time_window:
+          description: Rolling window in the WABA timezone.
+          enum:
+          - one_day
+          - seven_days
+          - fourteen_days
+          - thirty_days
+          type: string
+        max_budget:
+          minimum: 1
+          type: integer
+      required:
+      - max_budget
+      - time_window
+      - unit_type
+    BusinessAgentTestMessageResponse:
+      example:
+        handoff_reason: handoff_reason
+        no_response_reason: no_response_reason
+        product_variant_ids:
+        - product_variant_ids
+        - product_variant_ids
+        agent_response: agent_response
+        conversation_id: conversation_id
+        quick_replies:
+        - quick_replies
+        - quick_replies
+        message_id: message_id
+        timestamp: 0
+      properties:
+        message_id:
+          type: string
+        agent_response:
+          type: string
+        conversation_id:
+          description: Pass it back as conversationId to continue the thread.
+          type: string
+        timestamp:
+          description: Unix seconds.
+          type: integer
+        handoff_reason:
+          type: string
+        no_response_reason:
+          type: string
+        quick_replies:
+          items:
+            type: string
+          type: array
+        product_variant_ids:
+          items:
+            type: string
+          type: array
+      required:
+      - agent_response
+      - conversation_id
+      - message_id
+    BusinessAgentEventStatus:
+      example:
+        error_message: error_message
+        event_type: event_type
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        status: request_received
+        skipped_reason: skipped_reason
+      properties:
+        status:
+          enum:
+          - request_received
+          - processing
+          - sent
+          - failed
+          - skipped
+          - success
+          type: string
+        event_type:
+          type: string
+        error_message:
+          type: string
+        skipped_reason:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - event_type
+      - status
+      - updated_at
     TrackingTag:
       description: |
         A platform measurement tag: the thing you create, install on a
@@ -64781,44 +67558,20 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/completeWhatsAppPhoneSelection_200_response_account"
-    getWhatsAppSdkConfig_200_response:
-      example:
-        configId: configId
-        appId: appId
-        graphApiVersion: v22.0
-      properties:
-        appId:
-          description: Meta app id for FB.init
-          type: string
-        configId:
-          description: Embedded Signup configuration id for the config_id option of
-            FB.login
-          type: string
-        graphApiVersion:
-          description: Graph API version to pass to FB.init (for example v22.0)
-          example: v22.0
-          type: string
-      required:
-      - appId
-      - configId
-      - graphApiVersion
     connectWhatsAppEmbeddedSignup_request:
       properties:
         code:
-          description: Authorization code from the FB.login response (authResponse.code)
+          description: Authorization code from the WA_EMBEDDED_SIGNUP postMessage
           type: string
         profileId:
           type: string
         wabaId:
-          description: waba_id from the WA_EMBEDDED_SIGNUP message event
+          description: "WhatsApp Business Account id, when the SDK reported one"
           type: string
         phoneNumberId:
-          description: phone_number_id from the WA_EMBEDDED_SIGNUP message event.
-            With wabaId it skips the number picker.
           type: string
         isCoexistence:
-          description: "Set when the popup ended with the FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING\
-            \ event, so the number stays live in the WhatsApp Business app"
+          description: Number is also live in the WhatsApp Business app
           type: boolean
         expectedPhoneNumber:
           description: Rejects the connect when Meta returns a different number
@@ -97010,6 +99763,602 @@ components:
       - name
       - pixelId
       - rule
+    onboardBusinessAgent_201_response:
+      example:
+        agentId: agentId
+      properties:
+        agentId:
+          type: string
+      required:
+      - agentId
+    listBusinessAgentSettings_200_response:
+      example:
+        settings:
+        - followup:
+            message: message
+            enabled: true
+            followup_interval_in_seconds: 0
+          never_say_phrases:
+          - never_say_phrases
+          - never_say_phrases
+          agent_id: agent_id
+          rollout:
+            enabled: true
+          channel: whatsapp
+          ai_audience: EVERYONE
+          handoff:
+            message_selection: DEFAULT
+            message: message
+            enabled: true
+        - followup:
+            message: message
+            enabled: true
+            followup_interval_in_seconds: 0
+          never_say_phrases:
+          - never_say_phrases
+          - never_say_phrases
+          agent_id: agent_id
+          rollout:
+            enabled: true
+          channel: whatsapp
+          ai_audience: EVERYONE
+          handoff:
+            message_selection: DEFAULT
+            message: message
+            enabled: true
+      properties:
+        settings:
+          items:
+            $ref: "#/components/schemas/BusinessAgentSettings"
+          type: array
+      required:
+      - settings
+    updateBusinessAgentSettings_request_rollout:
+      properties:
+        enabled:
+          type: boolean
+      required:
+      - enabled
+    updateBusinessAgentSettings_request_handoff:
+      properties:
+        enabled:
+          type: boolean
+        message:
+          maxLength: 1024
+          type: string
+        message_selection:
+          enum:
+          - DEFAULT
+          - AGENT
+          - CUSTOM
+          type: string
+      required:
+      - enabled
+    updateBusinessAgentSettings_request_followup:
+      properties:
+        enabled:
+          type: boolean
+        followup_interval_in_seconds:
+          enum:
+          - 0
+          - 300
+          - 900
+          - 1800
+          - 3600
+          - 7200
+          - 28800
+          - 86400
+          type: integer
+        message:
+          maxLength: 1024
+          type: string
+      required:
+      - enabled
+    updateBusinessAgentSettings_request:
+      properties:
+        rollout:
+          $ref: "#/components/schemas/updateBusinessAgentSettings_request_rollout"
+        handoff:
+          $ref: "#/components/schemas/updateBusinessAgentSettings_request_handoff"
+        followup:
+          $ref: "#/components/schemas/updateBusinessAgentSettings_request_followup"
+        ai_audience:
+          enum:
+          - EVERYONE
+          - ALLOWLISTED_ONLY
+          type: string
+        never_say_phrases:
+          description: Exact phrases the agent must never say; the full replacement
+            list.
+          items:
+            type: string
+          type: array
+    listBusinessAgentAllowlist_200_response:
+      example:
+        entries:
+        - consumer_phone_number: consumer_phone_number
+          id: id
+        - consumer_phone_number: consumer_phone_number
+          id: id
+      properties:
+        entries:
+          items:
+            $ref: "#/components/schemas/BusinessAgentAllowlistEntry"
+          type: array
+      required:
+      - entries
+    addBusinessAgentAllowlistEntry_request:
+      properties:
+        consumer_phone_number:
+          example: "+34600000000"
+          type: string
+      required:
+      - consumer_phone_number
+    listBusinessAgentFaqs_200_response:
+      example:
+        faqs:
+        - metadata:
+            key: metadata
+          question: question
+          answer: answer
+          created_at: 0
+          id: id
+        - metadata:
+            key: metadata
+          question: question
+          answer: answer
+          created_at: 0
+          id: id
+      properties:
+        faqs:
+          items:
+            $ref: "#/components/schemas/BusinessAgentFaq"
+          type: array
+      required:
+      - faqs
+    listBusinessAgentWebsites_200_response:
+      example:
+        websites:
+        - crawl_status: crawl_status
+          included_sub_domains:
+          - included_sub_domains
+          - included_sub_domains
+          crawl_error: crawl_error
+          last_crawled_at: 6
+          single_urls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+          included_url_patterns:
+          - included_url_patterns
+          - included_url_patterns
+          pages_crawled: 0
+          excluded_sub_domains:
+          - excluded_sub_domains
+          - excluded_sub_domains
+          created_at: 1
+          excluded_url_patterns:
+          - excluded_url_patterns
+          - excluded_url_patterns
+          id: id
+          url: https://openapi-generator.tech
+        - crawl_status: crawl_status
+          included_sub_domains:
+          - included_sub_domains
+          - included_sub_domains
+          crawl_error: crawl_error
+          last_crawled_at: 6
+          single_urls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+          included_url_patterns:
+          - included_url_patterns
+          - included_url_patterns
+          pages_crawled: 0
+          excluded_sub_domains:
+          - excluded_sub_domains
+          - excluded_sub_domains
+          created_at: 1
+          excluded_url_patterns:
+          - excluded_url_patterns
+          - excluded_url_patterns
+          id: id
+          url: https://openapi-generator.tech
+      properties:
+        websites:
+          items:
+            $ref: "#/components/schemas/BusinessAgentWebsite"
+          type: array
+      required:
+      - websites
+    listBusinessAgentFiles_200_response:
+      example:
+        files:
+        - file_name: file_name
+          id: id
+        - file_name: file_name
+          id: id
+      properties:
+        files:
+          items:
+            $ref: "#/components/schemas/BusinessAgentKnowledgeFile"
+          type: array
+      required:
+      - files
+    uploadBusinessAgentFile_request:
+      properties:
+        url:
+          description: Publicly downloadable file URL.
+          format: uri
+          type: string
+        fileName:
+          description: Defaults to the last path segment of the URL.
+          type: string
+      required:
+      - url
+    uploadBusinessAgentFile_request_1:
+      properties:
+        file:
+          format: binary
+          type: string
+        fileName:
+          type: string
+      required:
+      - file
+    listBusinessAgentSkills_200_response:
+      example:
+        skills:
+        - skill: skill
+          channel: channel
+          description: description
+          created_at: 0
+          id: id
+          title: title
+          status: active
+        - skill: skill
+          channel: channel
+          description: description
+          created_at: 0
+          id: id
+          title: title
+          status: active
+      properties:
+        skills:
+          items:
+            $ref: "#/components/schemas/BusinessAgentSkill"
+          type: array
+      required:
+      - skills
+    listBusinessAgentUiSkills_200_response:
+      example:
+        uiSkills:
+        - component_type: carousel_quick_reply
+          updated_at: 1
+          instruction: instruction
+          flow_id: 0
+          created_at: 6
+          id: id
+          title: title
+          status: enabled
+        - component_type: carousel_quick_reply
+          updated_at: 1
+          instruction: instruction
+          flow_id: 0
+          created_at: 6
+          id: id
+          title: title
+          status: enabled
+        paging:
+          key: ""
+      properties:
+        uiSkills:
+          items:
+            $ref: "#/components/schemas/BusinessAgentUiSkill"
+          type: array
+        paging:
+          additionalProperties: true
+          type: object
+      required:
+      - uiSkills
+    listBusinessAgentConnectors_200_response:
+      example:
+        connectors:
+        - auth_type: OAUTH2_CLIENT_CREDENTIALS
+          user_auth_injection_config:
+            prefix: prefix
+            location: headers
+            field_name: field_name
+          requires_certificate: true
+          connector_protocol: HTTP
+          connection_status:
+            error_message: error_message
+            status: status
+          name: name
+          base_url: https://openapi-generator.tech
+          description: description
+          id: id
+          auth_config:
+            api_key:
+              headers:
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              query_params:
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              body_params:
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              - prefix: prefix
+                value: value
+                field_name: field_name
+            oauth2_client_credentials:
+              token_request_content_type: application/x-www-form-urlencoded
+              scopes_to_request:
+              - scopes_to_request
+              - scopes_to_request
+              client_secret: client_secret
+              token_url: https://openapi-generator.tech
+              client_id: client_id
+          mcp_tool_sync:
+            key: ""
+          mtls_config:
+            key: ""
+        - auth_type: OAUTH2_CLIENT_CREDENTIALS
+          user_auth_injection_config:
+            prefix: prefix
+            location: headers
+            field_name: field_name
+          requires_certificate: true
+          connector_protocol: HTTP
+          connection_status:
+            error_message: error_message
+            status: status
+          name: name
+          base_url: https://openapi-generator.tech
+          description: description
+          id: id
+          auth_config:
+            api_key:
+              headers:
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              query_params:
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              body_params:
+              - prefix: prefix
+                value: value
+                field_name: field_name
+              - prefix: prefix
+                value: value
+                field_name: field_name
+            oauth2_client_credentials:
+              token_request_content_type: application/x-www-form-urlencoded
+              scopes_to_request:
+              - scopes_to_request
+              - scopes_to_request
+              client_secret: client_secret
+              token_url: https://openapi-generator.tech
+              client_id: client_id
+          mcp_tool_sync:
+            key: ""
+          mtls_config:
+            key: ""
+      properties:
+        connectors:
+          items:
+            $ref: "#/components/schemas/BusinessAgentConnector"
+          type: array
+      required:
+      - connectors
+    setBusinessAgentConnectorCredentials_request_oneOf:
+      properties:
+        kind:
+          enum:
+          - api_key
+          type: string
+        api_key_config:
+          $ref: "#/components/schemas/BusinessAgentApiKeyConfig"
+      required:
+      - api_key_config
+      - kind
+    setBusinessAgentConnectorCredentials_request_oneOf_1:
+      properties:
+        kind:
+          enum:
+          - oauth
+          type: string
+        oauth_config:
+          $ref: "#/components/schemas/BusinessAgentOAuthClientCredentials"
+      required:
+      - kind
+      - oauth_config
+    setBusinessAgentConnectorCredentials_request_oneOf_2:
+      properties:
+        kind:
+          enum:
+          - certificate
+          type: string
+        client_certificate:
+          description: PEM.
+          type: string
+        client_key:
+          description: PEM.
+          type: string
+        ca_certificate:
+          description: PEM.
+          type: string
+      required:
+      - client_certificate
+      - client_key
+      - kind
+    setBusinessAgentConnectorCredentials_request:
+      oneOf:
+      - $ref: "#/components/schemas/setBusinessAgentConnectorCredentials_request_oneOf"
+      - $ref: "#/components/schemas/setBusinessAgentConnectorCredentials_request_oneOf_1"
+      - $ref: "#/components/schemas/setBusinessAgentConnectorCredentials_request_oneOf_2"
+    getBusinessAgentConnectorLogs_200_response:
+      example:
+        data:
+        - key: ""
+        - key: ""
+        stats:
+          key: ""
+      properties:
+        data:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+        stats:
+          additionalProperties: true
+          type: object
+    listBusinessAgentConnectorTools_200_response:
+      example:
+        tools:
+        - user_auth_action_config:
+            key: ""
+          name: name
+          description: description
+          transformation_spec:
+            key: ""
+          request_definition:
+            key: ""
+          id: id
+          user_auth_required: true
+        - user_auth_action_config:
+            key: ""
+          name: name
+          description: description
+          transformation_spec:
+            key: ""
+          request_definition:
+            key: ""
+          id: id
+          user_auth_required: true
+      properties:
+        tools:
+          items:
+            $ref: "#/components/schemas/BusinessAgentConnectorTool"
+          type: array
+      required:
+      - tools
+    runBusinessAgentConnectorTool_request:
+      properties:
+        input:
+          description: JSON string with the tool arguments.
+          type: string
+      required:
+      - input
+    runBusinessAgentConnectorTool_200_response:
+      example:
+        output: output
+        status: status
+      properties:
+        output:
+          type: string
+        status:
+          type: string
+    getBusinessAgentBudget_200_response:
+      example:
+        budgets:
+        - time_window: one_day
+          budget_id: budget_id
+          max_budget: 1
+          unit_type: token
+        - time_window: one_day
+          budget_id: budget_id
+          max_budget: 1
+          unit_type: token
+      properties:
+        budgets:
+          items:
+            $ref: "#/components/schemas/BusinessAgentBudget"
+          type: array
+      required:
+      - budgets
+    sendBusinessAgentTestMessage_request:
+      properties:
+        message:
+          maxLength: 4096
+          type: string
+        conversationId:
+          type: string
+      required:
+      - message
+    sendBusinessAgentEvent_request:
+      properties:
+        to:
+          description: Consumer E.164 phone number.
+          example: "+34600000000"
+          type: string
+        type:
+          example: order_shipped
+          maxLength: 256
+          type: string
+        description:
+          maxLength: 1024
+          type: string
+        payload:
+          description: JSON string passed to the agent verbatim.
+          maxLength: 4096
+          type: string
+      required:
+      - description
+      - payload
+      - to
+      - type
+    sendBusinessAgentEvent_202_response:
+      example:
+        agent_event_id: agent_event_id
+        status: accepted
+      properties:
+        status:
+          example: accepted
+          type: string
+        agent_event_id:
+          type: string
+      required:
+      - status
+    startBusinessAgentEvalRun_request:
+      properties:
+        evalCaseIds:
+          items:
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - evalCaseIds
+    startBusinessAgentEvalRun_202_response:
+      example:
+        job_id: job_id
+        status: RUNNING
+      properties:
+        job_id:
+          type: string
+        status:
+          example: RUNNING
+          type: string
+      required:
+      - job_id
+      - status
     listTrackingTags_200_response:
       example:
         platform: metaads
@@ -104248,21 +107597,205 @@ components:
         altText:
           nullable: true
           type: string
+    BusinessAgentSettings_rollout:
+      example:
+        enabled: true
+      properties:
+        enabled:
+          description: Whether the agent answers live conversations.
+          type: boolean
+      required:
+      - enabled
+    BusinessAgentSettings_handoff:
+      example:
+        message_selection: DEFAULT
+        message: message
+        enabled: true
+      properties:
+        enabled:
+          description: Whether the agent releases the thread after sending its handoff
+            message.
+          type: boolean
+        message:
+          type: string
+        message_selection:
+          enum:
+          - DEFAULT
+          - AGENT
+          - CUSTOM
+          type: string
+    BusinessAgentSettings_followup:
+      example:
+        message: message
+        enabled: true
+        followup_interval_in_seconds: 0
+      properties:
+        enabled:
+          type: boolean
+        followup_interval_in_seconds:
+          enum:
+          - 0
+          - 300
+          - 900
+          - 1800
+          - 3600
+          - 7200
+          - 28800
+          - 86400
+          type: integer
+        message:
+          type: string
+    BusinessAgentStatus_manualSteps_inner:
+      example:
+        description: description
+        step: accept_terms
+        url: https://openapi-generator.tech
+      properties:
+        step:
+          enum:
+          - accept_terms
+          type: string
+        url:
+          format: uri
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - step
+      - url
+    BusinessAgentStatus_unverifiedSteps_inner:
+      example:
+        description: description
+        step: attach_payment_method
+        url: https://openapi-generator.tech
+      properties:
+        step:
+          enum:
+          - attach_payment_method
+          type: string
+        url:
+          format: uri
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - step
+      - url
+    BusinessAgentBusinessInformation_contact_info:
+      example:
+        hours_of_operation: hours_of_operation
+        address: address
+        email: email
+      properties:
+        email:
+          type: string
+        hours_of_operation:
+          type: string
+        address:
+          type: string
+    BusinessAgentApiKeyParams_inner:
+      example:
+        prefix: prefix
+        value: value
+        field_name: field_name
+      properties:
+        field_name:
+          type: string
+        value:
+          type: string
+        prefix:
+          type: string
+      required:
+      - field_name
+      - value
+    BusinessAgentConnectorInput_auth_config:
+      example:
+        api_key:
+          headers:
+          - prefix: prefix
+            value: value
+            field_name: field_name
+          - prefix: prefix
+            value: value
+            field_name: field_name
+          query_params:
+          - prefix: prefix
+            value: value
+            field_name: field_name
+          - prefix: prefix
+            value: value
+            field_name: field_name
+          body_params:
+          - prefix: prefix
+            value: value
+            field_name: field_name
+          - prefix: prefix
+            value: value
+            field_name: field_name
+        oauth2_client_credentials:
+          token_request_content_type: application/x-www-form-urlencoded
+          scopes_to_request:
+          - scopes_to_request
+          - scopes_to_request
+          client_secret: client_secret
+          token_url: https://openapi-generator.tech
+          client_id: client_id
+      properties:
+        oauth2_client_credentials:
+          $ref: "#/components/schemas/BusinessAgentOAuthClientCredentials"
+        api_key:
+          $ref: "#/components/schemas/BusinessAgentApiKeyConfig"
+    BusinessAgentConnectorInput_user_auth_injection_config:
+      example:
+        prefix: prefix
+        location: headers
+        field_name: field_name
+      properties:
+        location:
+          example: headers
+          type: string
+        field_name:
+          type: string
+        prefix:
+          type: string
+      required:
+      - field_name
+      - location
+    BusinessAgentConnector_allOf_connection_status:
+      example:
+        error_message: error_message
+        status: status
+      properties:
+        status:
+          description: "ACTIVE, PENDING_OAUTH, EXPIRED or ERROR."
+          type: string
+        error_message:
+          type: string
     inline_object:
+      example:
+        success: true
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+    inline_object_1:
       example:
         error: Unauthorized
       properties:
         error:
           example: Unauthorized
           type: string
-    inline_object_1:
+    inline_object_2:
       example:
         error: Not found
       properties:
         error:
           example: Not found
           type: string
-    inline_object_2:
+    inline_object_3:
       example:
         code: insufficient_permissions
         error: This API key has the 'messages' resource group disabled. GET /api/v1/inbox/conversations
@@ -104295,7 +107828,7 @@ components:
           - billing
           - webhooks
           type: string
-    inline_object_3_details:
+    inline_object_4_details:
       description: Structured context for SDK clients that want to render their own
         UX. Keys vary by `reason`.
       example:
@@ -104325,7 +107858,7 @@ components:
             set when reason=enterprise_required.
           example: 2000
           type: integer
-    inline_object_3:
+    inline_object_4:
       example:
         reason: free_tier_exceeded
         code: PAYMENT_REQUIRED
@@ -104371,7 +107904,7 @@ components:
           format: uri
           type: string
         details:
-          $ref: "#/components/schemas/inline_object_3_details"
+          $ref: "#/components/schemas/inline_object_4_details"
       required:
       - code
       - error

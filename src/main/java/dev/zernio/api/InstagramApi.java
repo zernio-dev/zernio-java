@@ -22,7 +22,7 @@ import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetInstagramAudio200Response;
 import dev.zernio.model.GetInstagramPublishingLimit200Response;
 import dev.zernio.model.GetInstagramStoryInsights200Response;
-import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListInstagramStories200Response;
 import dev.zernio.model.SearchInstagramAudio200Response;
 
@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

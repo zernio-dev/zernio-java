@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_IS_COEXISTENCE,
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_EXPECTED_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppEmbeddedSignupRequest {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull
@@ -75,7 +75,7 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
   }
 
   /**
-   * Authorization code from the FB.login response (authResponse.code)
+   * Authorization code from the WA_EMBEDDED_SIGNUP postMessage
    * @return code
    */
   @javax.annotation.Nonnull
@@ -123,7 +123,7 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
   }
 
   /**
-   * waba_id from the WA_EMBEDDED_SIGNUP message event
+   * WhatsApp Business Account id, when the SDK reported one
    * @return wabaId
    */
   @javax.annotation.Nullable
@@ -147,7 +147,7 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
   }
 
   /**
-   * phone_number_id from the WA_EMBEDDED_SIGNUP message event. With wabaId it skips the number picker.
+   * Get phoneNumberId
    * @return phoneNumberId
    */
   @javax.annotation.Nullable
@@ -171,7 +171,7 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
   }
 
   /**
-   * Set when the popup ended with the FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING event, so the number stays live in the WhatsApp Business app
+   * Number is also live in the WhatsApp Business app
    * @return isCoexistence
    */
   @javax.annotation.Nullable

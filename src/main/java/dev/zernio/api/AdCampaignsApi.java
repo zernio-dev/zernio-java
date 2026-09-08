@@ -56,8 +56,8 @@ import dev.zernio.model.GetAdTree202Response;
 import dev.zernio.model.GetAdsTimeline202Response;
 import dev.zernio.model.GetCampaignBidding200Response;
 import dev.zernio.model.GetCampaignTargeting200Response;
-import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListAdCampaigns200Response;
 import dev.zernio.model.ListAdKeywords200Response;
 import dev.zernio.model.ListAdSets200Response;
@@ -110,7 +110,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

@@ -24,8 +24,8 @@ import dev.zernio.model.CreateContact200Response;
 import dev.zernio.model.CreateContactRequest;
 import dev.zernio.model.GetContact200Response;
 import dev.zernio.model.GetContactChannels200Response;
-import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListContacts200Response;
 import dev.zernio.model.UpdateContact200Response;
 import dev.zernio.model.UpdateContactRequest;
@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContactsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

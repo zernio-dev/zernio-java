@@ -34,7 +34,7 @@ import java.io.File;
 import dev.zernio.model.GetInboxConversation200Response;
 import dev.zernio.model.GetInboxConversationMessages200Response;
 import dev.zernio.model.GetMessageAttachment200Response;
-import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListInboxConversations200Response;
 import dev.zernio.model.MarkConversationRead200Response;
 import dev.zernio.model.RemoveMessageReaction200Response;
@@ -82,7 +82,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2106,7 +2106,7 @@ public class MessagesApi {
 
   /**
    * Hand a conversation to or from Meta Business Agent
-   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
+   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
    * @param conversationId The conversation ID (required)
    * @param setConversationThreadControlRequest  (required)
    * @return SetConversationThreadControl200Response
@@ -2118,7 +2118,7 @@ public class MessagesApi {
 
   /**
    * Hand a conversation to or from Meta Business Agent
-   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
+   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
    * @param conversationId The conversation ID (required)
    * @param setConversationThreadControlRequest  (required)
    * @param headers Optional headers to include in the request
@@ -2132,7 +2132,7 @@ public class MessagesApi {
 
   /**
    * Hand a conversation to or from Meta Business Agent
-   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
+   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
    * @param conversationId The conversation ID (required)
    * @param setConversationThreadControlRequest  (required)
    * @return ApiResponse&lt;SetConversationThreadControl200Response&gt;
@@ -2144,7 +2144,7 @@ public class MessagesApi {
 
   /**
    * Hand a conversation to or from Meta Business Agent
-   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
+   * WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
    * @param conversationId The conversation ID (required)
    * @param setConversationThreadControlRequest  (required)
    * @param headers Optional headers to include in the request

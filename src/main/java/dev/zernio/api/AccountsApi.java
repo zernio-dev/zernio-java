@@ -31,8 +31,8 @@ import dev.zernio.model.GetInstagramFollowStatus200Response;
 import dev.zernio.model.GetSlackSettings200Response;
 import dev.zernio.model.GetTikTokCreatorInfo200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
-import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InlineObject2;
 import java.time.LocalDate;
 import dev.zernio.model.MoveAccountToProfile200Response;
 import dev.zernio.model.MoveAccountToProfileRequest;
@@ -66,7 +66,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

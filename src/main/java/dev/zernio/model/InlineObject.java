@@ -33,38 +33,38 @@ import dev.zernio.ApiClient;
  * InlineObject
  */
 @JsonPropertyOrder({
-  InlineObject.JSON_PROPERTY_ERROR
+  InlineObject.JSON_PROPERTY_SUCCESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T20:53:53.617100392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject {
-  public static final String JSON_PROPERTY_ERROR = "error";
-  @javax.annotation.Nullable
-  private String error;
+  public static final String JSON_PROPERTY_SUCCESS = "success";
+  @javax.annotation.Nonnull
+  private Boolean success;
 
   public InlineObject() { 
   }
 
-  public InlineObject error(@javax.annotation.Nullable String error) {
-    this.error = error;
+  public InlineObject success(@javax.annotation.Nonnull Boolean success) {
+    this.success = success;
     return this;
   }
 
   /**
-   * Get error
-   * @return error
+   * Get success
+   * @return success
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getError() {
-    return error;
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SUCCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public Boolean getSuccess() {
+    return success;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(@javax.annotation.Nullable String error) {
-    this.error = error;
+  @JsonProperty(value = JSON_PROPERTY_SUCCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSuccess(@javax.annotation.Nonnull Boolean success) {
+    this.success = success;
   }
 
 
@@ -80,19 +80,19 @@ public class InlineObject {
       return false;
     }
     InlineObject inlineObject = (InlineObject) o;
-    return Objects.equals(this.error, inlineObject.error);
+    return Objects.equals(this.success, inlineObject.success);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error);
+    return Objects.hash(success);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineObject {\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -140,9 +140,9 @@ public class InlineObject {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `error` to the URL query string
-    if (getError() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+    // add `success` to the URL query string
+    if (getSuccess() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssuccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccess()))));
     }
 
     return joiner.toString();
