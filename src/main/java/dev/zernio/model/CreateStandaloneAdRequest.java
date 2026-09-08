@@ -163,7 +163,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:08:10.425325168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T10:13:41.433058950Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
