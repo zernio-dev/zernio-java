@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdatePinterestBoardsRequest.JSON_PROPERTY_DEFAULT_BOARD_ID,
   UpdatePinterestBoardsRequest.JSON_PROPERTY_DEFAULT_BOARD_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:32:59.786460831Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePinterestBoardsRequest {
   public static final String JSON_PROPERTY_DEFAULT_BOARD_ID = "defaultBoardId";
   @javax.annotation.Nonnull

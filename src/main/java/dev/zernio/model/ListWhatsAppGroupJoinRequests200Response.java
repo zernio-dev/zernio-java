@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppGroupJoinRequests200Response.JSON_PROPERTY_SUCCESS,
   ListWhatsAppGroupJoinRequests200Response.JSON_PROPERTY_JOIN_REQUESTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:32:59.786460831Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppGroupJoinRequests200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
