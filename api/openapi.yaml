@@ -20169,8 +20169,9 @@ paths:
         must match exactly. Variants in `PENDING_DELETION` are not part of the family.
 
         Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved
-        template can be edited once per 24 hours and up to 10 times per 30 days. A successful update
-        sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`.
+        template can be edited once per 24 hours and up to 10 times per 30 days. A component update
+        sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`;
+        a TTL-only update keeps an APPROVED variant approved.
         The final outcome arrives on the `whatsapp.template.status_updated` webhook (which carries the
         variant's `templateId` and `language`). A variant already in `PENDING` cannot be edited again
         until Meta finishes reviewing it.
@@ -20335,8 +20336,9 @@ paths:
         Update one variant's components and/or its message_send_ttl_seconds by its Meta id. Name, language and category cannot change.
 
         Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved
-        template can be edited once per 24 hours and up to 10 times per 30 days. A successful update
-        sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`.
+        template can be edited once per 24 hours and up to 10 times per 30 days. A component update
+        sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`;
+        a TTL-only update keeps an APPROVED variant approved.
         The final outcome arrives on the `whatsapp.template.status_updated` webhook (which carries the
         variant's `templateId` and `language`). A variant already in `PENDING` cannot be edited again
         until Meta finishes reviewing it.
@@ -27289,6 +27291,7 @@ paths:
           - reddit
           - whatsapp
           - slack
+          - sms
           type: string
         style: form
       - explode: true
@@ -72569,9 +72572,10 @@ components:
           description: "Delivery validity window in seconds: a message not delivered\
             \ within it is dropped. Range depends on category: AUTHENTICATION 30 to\
             \ 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days);\
-            \ -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults\
-            \ to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises\
-            \ the template, it clears the TTL (read it back to check)."
+            \ -1 (create only) keeps the 30-day default on AUTHENTICATION and UTILITY.\
+            \ Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta\
+            \ later recategorises the template, it clears the TTL (read it back to\
+            \ check)."
           type: integer
       required:
       - accountId
@@ -72755,9 +72759,11 @@ components:
           description: "Delivery validity window in seconds: a message not delivered\
             \ within it is dropped. Range depends on category: AUTHENTICATION 30 to\
             \ 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days);\
-            \ -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults\
-            \ to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises\
-            \ the template, it clears the TTL (read it back to check)."
+            \ -1 is not accepted here (Meta treats it as an empty edit); send a value\
+            \ in range. A TTL-only edit keeps an APPROVED template approved, no re-review.\
+            \ Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta\
+            \ later recategorises the template, it clears the TTL (read it back to\
+            \ check)."
           type: integer
       required:
       - accountId
@@ -72828,9 +72834,11 @@ components:
           description: "Delivery validity window in seconds: a message not delivered\
             \ within it is dropped. Range depends on category: AUTHENTICATION 30 to\
             \ 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days);\
-            \ -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults\
-            \ to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises\
-            \ the template, it clears the TTL (read it back to check)."
+            \ -1 is not accepted here (Meta treats it as an empty edit); send a value\
+            \ in range. A TTL-only edit keeps an APPROVED template approved, no re-review.\
+            \ Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta\
+            \ later recategorises the template, it clears the TTL (read it back to\
+            \ check)."
           type: integer
       required:
       - accountId
@@ -79854,6 +79862,7 @@ components:
           - reddit
           - whatsapp
           - slack
+          - sms
           type: string
         platformIdentifier:
           type: string
@@ -80657,6 +80666,8 @@ components:
           - bluesky
           - reddit
           - whatsapp
+          - sms
+          - slack
           type: string
         name:
           type: string
@@ -82235,6 +82246,7 @@ components:
           - bluesky
           - reddit
           - whatsapp
+          - slack
           type: string
         name:
           type: string

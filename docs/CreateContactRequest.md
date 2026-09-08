@@ -33,6 +33,7 @@
 | REDDIT | &quot;reddit&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
 | SLACK | &quot;slack&quot; |
+| SMS | &quot;sms&quot; |
 
 
 

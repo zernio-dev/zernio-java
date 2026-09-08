@@ -829,7 +829,7 @@ public class Example {
 | **search** | **String**| Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
-| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack] |
+| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
@@ -920,7 +920,7 @@ public class Example {
 | **search** | **String**| Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
-| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack] |
+| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
