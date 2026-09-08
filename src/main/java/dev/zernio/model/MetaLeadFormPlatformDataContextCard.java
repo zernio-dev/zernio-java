@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +42,7 @@ import dev.zernio.ApiClient;
   MetaLeadFormPlatformDataContextCard.JSON_PROPERTY_BUTTON_TEXT,
   MetaLeadFormPlatformDataContextCard.JSON_PROPERTY_COVER_PHOTO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T12:17:48.743751818Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T13:58:58.816512564Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadFormPlatformDataContextCard {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -96,7 +97,7 @@ public class MetaLeadFormPlatformDataContextCard {
 
   public static final String JSON_PROPERTY_COVER_PHOTO = "coverPhoto";
   @javax.annotation.Nullable
-  private String coverPhoto;
+  private URI coverPhoto;
 
   public MetaLeadFormPlatformDataContextCard() { 
   }
@@ -205,26 +206,26 @@ public class MetaLeadFormPlatformDataContextCard {
   }
 
 
-  public MetaLeadFormPlatformDataContextCard coverPhoto(@javax.annotation.Nullable String coverPhoto) {
+  public MetaLeadFormPlatformDataContextCard coverPhoto(@javax.annotation.Nullable URI coverPhoto) {
     this.coverPhoto = coverPhoto;
     return this;
   }
 
   /**
-   * Get coverPhoto
+   * Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported.
    * @return coverPhoto
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_COVER_PHOTO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCoverPhoto() {
+  public URI getCoverPhoto() {
     return coverPhoto;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_COVER_PHOTO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCoverPhoto(@javax.annotation.Nullable String coverPhoto) {
+  public void setCoverPhoto(@javax.annotation.Nullable URI coverPhoto) {
     this.coverPhoto = coverPhoto;
   }
 

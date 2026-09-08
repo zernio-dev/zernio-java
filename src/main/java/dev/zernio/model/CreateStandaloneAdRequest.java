@@ -163,7 +163,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T12:17:48.743751818Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T13:58:58.816512564Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1803,7 +1803,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Multiple Text Options (Advantage+ Flexible Format): supply 1-5 primary-text variations and Meta optimises delivery across them, WITHOUT enabling full Dynamic Creative (&#x60;dynamicCreative&#x60;). Uses &#x60;optimization_type: DEGREES_OF_FREEDOM&#x60; on the asset feed, so multiple ads per ad set are allowed (unlike &#x60;dynamicCreative&#x60; which is limited to one). Requires &#x60;imageUrl&#x60; or &#x60;video&#x60;, &#x60;linkUrl&#x60;, and &#x60;callToAction&#x60;. When set, the top-level &#x60;body&#x60; field is used as the &#x60;object_story_spec.link_data.message&#x60; (the preview text) and &#x60;headlines&#x60; must also be present. Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, and &#x60;creatives[]&#x60;. 
+   * Meta only. Multiple Text Options (Advantage+ Flexible Format): supply 1-5 primary-text variations and Meta optimises delivery across them, WITHOUT enabling full Dynamic Creative (&#x60;dynamicCreative&#x60;). Uses &#x60;optimization_type: DEGREES_OF_FREEDOM&#x60; on the asset feed, so multiple ads per ad set are allowed (unlike &#x60;dynamicCreative&#x60; which is limited to one). Requires &#x60;imageUrl&#x60; or &#x60;video&#x60;, &#x60;linkUrl&#x60;, and &#x60;callToAction&#x60;. When set, the top-level &#x60;body&#x60; field is used as the &#x60;object_story_spec.link_data.message&#x60; (the preview text) and &#x60;headlines&#x60; must also be present. On a video creative the copy lands in &#x60;video_data.message&#x60; / &#x60;video_data.title&#x60; instead of &#x60;link_data&#x60;. Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, and &#x60;creatives[]&#x60;. 
    * @return bodies
    */
   @javax.annotation.Nullable
@@ -1835,7 +1835,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Headline variations for Multiple Text Options. Must be sent alongside &#x60;bodies&#x60;. The top-level &#x60;headline&#x60; field is used as the &#x60;object_story_spec.link_data.name&#x60;. 
+   * Meta only. Headline variations for Multiple Text Options. Must be sent alongside &#x60;bodies&#x60;. The top-level &#x60;headline&#x60; field is used as the &#x60;object_story_spec.link_data.name&#x60; (&#x60;video_data.title&#x60; on a video creative). 
    * @return headlines
    */
   @javax.annotation.Nullable

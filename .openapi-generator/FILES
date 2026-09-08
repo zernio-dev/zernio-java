@@ -1384,6 +1384,7 @@ docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage200ResponseDataAttachmentsInner.md
 docs/SendInboxMessage200ResponseDataPartialFailure.md
 docs/SendInboxMessage200ResponseDataPartialFailurePlatformError.md
+docs/SendInboxMessage200ResponseWarningsInner.md
 docs/SendInboxMessage400Response.md
 docs/SendInboxMessage400ResponsePlatformError.md
 docs/SendInboxMessageRequest.md
@@ -3334,6 +3335,7 @@ src/main/java/dev/zernio/model/SendInboxMessage200ResponseData.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseDataAttachmentsInner.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseDataPartialFailure.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseDataPartialFailurePlatformError.java
+src/main/java/dev/zernio/model/SendInboxMessage200ResponseWarningsInner.java
 src/main/java/dev/zernio/model/SendInboxMessage400Response.java
 src/main/java/dev/zernio/model/SendInboxMessage400ResponsePlatformError.java
 src/main/java/dev/zernio/model/SendInboxMessageRequest.java
@@ -3847,3 +3849,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SendInboxMessage200ResponseWarningsInnerTest.java

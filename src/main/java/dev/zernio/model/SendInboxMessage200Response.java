@@ -25,7 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.SendInboxMessage200ResponseData;
+import dev.zernio.model.SendInboxMessage200ResponseWarningsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,13 +38,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SendInboxMessage200Response.JSON_PROPERTY_SUCCESS,
+  SendInboxMessage200Response.JSON_PROPERTY_WARNINGS,
   SendInboxMessage200Response.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T12:17:48.743751818Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T13:58:58.816512564Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
   private Boolean success;
+
+  public static final String JSON_PROPERTY_WARNINGS = "warnings";
+  @javax.annotation.Nullable
+  private List<SendInboxMessage200ResponseWarningsInner> warnings = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
@@ -71,6 +79,38 @@ public class SendInboxMessage200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSuccess(@javax.annotation.Nullable Boolean success) {
     this.success = success;
+  }
+
+
+  public SendInboxMessage200Response warnings(@javax.annotation.Nullable List<SendInboxMessage200ResponseWarningsInner> warnings) {
+    this.warnings = warnings;
+    return this;
+  }
+
+  public SendInboxMessage200Response addWarningsItem(SendInboxMessage200ResponseWarningsInner warningsItem) {
+    if (this.warnings == null) {
+      this.warnings = new ArrayList<>();
+    }
+    this.warnings.add(warningsItem);
+    return this;
+  }
+
+  /**
+   * Present when a successful send ignored replyTo on Instagram or Facebook Messenger. The message was sent without a quote; do not retry it to apply the reply.
+   * @return warnings
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<SendInboxMessage200ResponseWarningsInner> getWarnings() {
+    return warnings;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWarnings(@javax.annotation.Nullable List<SendInboxMessage200ResponseWarningsInner> warnings) {
+    this.warnings = warnings;
   }
 
 
@@ -111,12 +151,13 @@ public class SendInboxMessage200Response {
     }
     SendInboxMessage200Response sendInboxMessage200Response = (SendInboxMessage200Response) o;
     return Objects.equals(this.success, sendInboxMessage200Response.success) &&
+        Objects.equals(this.warnings, sendInboxMessage200Response.warnings) &&
         Objects.equals(this.data, sendInboxMessage200Response.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, data);
+    return Objects.hash(success, warnings, data);
   }
 
   @Override
@@ -124,6 +165,7 @@ public class SendInboxMessage200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessage200Response {\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -175,6 +217,16 @@ public class SendInboxMessage200Response {
     // add `success` to the URL query string
     if (getSuccess() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssuccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccess()))));
+    }
+
+    // add `warnings` to the URL query string
+    if (getWarnings() != null) {
+      for (int i = 0; i < getWarnings().size(); i++) {
+        if (getWarnings().get(i) != null) {
+          joiner.add(getWarnings().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swarnings%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `data` to the URL query string

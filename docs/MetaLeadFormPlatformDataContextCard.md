@@ -11,7 +11,7 @@
 |**content** | **List&lt;String&gt;** |  |  [optional] |
 |**style** | [**StyleEnum**](#StyleEnum) |  |  [optional] |
 |**buttonText** | **String** |  |  [optional] |
-|**coverPhoto** | **String** |  |  [optional] |
+|**coverPhoto** | **URI** | Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported. |  [optional] |
 
 
 
