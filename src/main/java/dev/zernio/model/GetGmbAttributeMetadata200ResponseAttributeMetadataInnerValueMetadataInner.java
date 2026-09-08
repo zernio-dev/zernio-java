@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.JSON_PROPERTY_VALUE,
   GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-07T22:05:55.899922593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner {
   public static final String JSON_PROPERTY_VALUE = "value";
   @javax.annotation.Nullable
