@@ -86013,6 +86013,10 @@ components:
       example:
         geoTargetId: geoTargetId
         negative: true
+        countryCode: countryCode
+        name: name
+        type: type
+        canonicalName: canonicalName
       properties:
         geoTargetId:
           description: "Numeric id from Google's geoTargetConstants/{id}."
@@ -86020,6 +86024,26 @@ components:
         negative:
           description: true = excluded location.
           type: boolean
+        name:
+          description: "Google's geo_target_constant.name, e.g. \"United States\"\
+            ; null when the id could not be resolved."
+          nullable: true
+          type: string
+        canonicalName:
+          description: "Google's geo_target_constant.canonical_name, e.g. \"California,\
+            \ United States\"; null when the id could not be resolved."
+          nullable: true
+          type: string
+        type:
+          description: "Google's geo_target_constant.target_type, e.g. \"Country\"\
+            , \"Region\", \"City\"; null when the id could not be resolved."
+          nullable: true
+          type: string
+        countryCode:
+          description: "Google's geo_target_constant.country_code, an ISO 3166-1 alpha-2\
+            \ code; null when the id could not be resolved."
+          nullable: true
+          type: string
     getCampaignTargeting_200_response_languages_inner:
       example:
         code: code
@@ -86056,8 +86080,16 @@ components:
         locations:
         - geoTargetId: geoTargetId
           negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
         - geoTargetId: geoTargetId
           negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
         cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         devices:
@@ -86153,6 +86185,37 @@ components:
           description: Always null on this read; see GET's description.
           nullable: true
           type: number
+    updateCampaignTargeting_200_response_locations_inner:
+      example:
+        geoTargetId: geoTargetId
+        negative: true
+        countryCode: countryCode
+        name: name
+        type: type
+        canonicalName: canonicalName
+      properties:
+        geoTargetId:
+          description: "Numeric id from Google's geoTargetConstants/{id}."
+          type: string
+        negative:
+          description: true = excluded location.
+          type: boolean
+        name:
+          description: Google's geo_target_constant.name; see GET's description.
+          nullable: true
+          type: string
+        canonicalName:
+          description: Google's geo_target_constant.canonical_name; see GET's description.
+          nullable: true
+          type: string
+        type:
+          description: Google's geo_target_constant.target_type; see GET's description.
+          nullable: true
+          type: string
+        countryCode:
+          description: Google's geo_target_constant.country_code; see GET's description.
+          nullable: true
+          type: string
     updateCampaignTargeting_200_response_languages_inner:
       example:
         code: code
@@ -86185,8 +86248,16 @@ components:
         locations:
         - geoTargetId: geoTargetId
           negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
         - geoTargetId: geoTargetId
           negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
         updated:
         - devices
         - devices
@@ -86208,7 +86279,7 @@ components:
           type: array
         locations:
           items:
-            $ref: "#/components/schemas/getCampaignTargeting_200_response_locations_inner"
+            $ref: "#/components/schemas/updateCampaignTargeting_200_response_locations_inner"
           type: array
         languages:
           items:
@@ -93976,8 +94047,9 @@ components:
         buttonText:
           type: string
         coverPhoto:
-          description: "Direct public JPEG or PNG image URL, up to 5 MB. Redirects,\
-            \ Ad Image hashes and IDs are not supported."
+          description: "Direct public JPEG or PNG image URL, up to 5 MB. Uploaded\
+            \ as an unpublished Page photo and attached to the form. Redirects, Ad\
+            \ Image hashes and IDs are not supported."
           format: uri
           type: string
     MetaLeadFormPlatformData:

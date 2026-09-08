@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_LOCATIONS,
   UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_LANGUAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T14:15:16.071951225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T15:37:58.634049722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargetingRequestTargeting {
   public static final String JSON_PROPERTY_DEVICES = "devices";
   @javax.annotation.Nullable

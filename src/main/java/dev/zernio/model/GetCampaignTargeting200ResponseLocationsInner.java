@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -34,9 +38,13 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_GEO_TARGET_ID,
-  GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_NEGATIVE
+  GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_NEGATIVE,
+  GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_NAME,
+  GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_CANONICAL_NAME,
+  GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_TYPE,
+  GetCampaignTargeting200ResponseLocationsInner.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T14:15:16.071951225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T15:37:58.634049722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignTargeting200ResponseLocationsInner {
   public static final String JSON_PROPERTY_GEO_TARGET_ID = "geoTargetId";
   @javax.annotation.Nullable
@@ -45,6 +53,18 @@ public class GetCampaignTargeting200ResponseLocationsInner {
   public static final String JSON_PROPERTY_NEGATIVE = "negative";
   @javax.annotation.Nullable
   private Boolean negative;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CANONICAL_NAME = "canonicalName";
+  private JsonNullable<String> canonicalName = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private JsonNullable<String> type = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_COUNTRY_CODE = "countryCode";
+  private JsonNullable<String> countryCode = JsonNullable.<String>undefined();
 
   public GetCampaignTargeting200ResponseLocationsInner() { 
   }
@@ -97,6 +117,134 @@ public class GetCampaignTargeting200ResponseLocationsInner {
   }
 
 
+  public GetCampaignTargeting200ResponseLocationsInner name(@javax.annotation.Nullable String name) {
+    this.name = JsonNullable.<String>of(name);
+    return this;
+  }
+
+  /**
+   * Google&#39;s geo_target_constant.name, e.g. \&quot;United States\&quot;; null when the id could not be resolved.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getName() {
+        return name.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
+    this.name = name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = JsonNullable.<String>of(name);
+  }
+
+
+  public GetCampaignTargeting200ResponseLocationsInner canonicalName(@javax.annotation.Nullable String canonicalName) {
+    this.canonicalName = JsonNullable.<String>of(canonicalName);
+    return this;
+  }
+
+  /**
+   * Google&#39;s geo_target_constant.canonical_name, e.g. \&quot;California, United States\&quot;; null when the id could not be resolved.
+   * @return canonicalName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCanonicalName() {
+        return canonicalName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CANONICAL_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCanonicalName_JsonNullable() {
+    return canonicalName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CANONICAL_NAME)
+  public void setCanonicalName_JsonNullable(JsonNullable<String> canonicalName) {
+    this.canonicalName = canonicalName;
+  }
+
+  public void setCanonicalName(@javax.annotation.Nullable String canonicalName) {
+    this.canonicalName = JsonNullable.<String>of(canonicalName);
+  }
+
+
+  public GetCampaignTargeting200ResponseLocationsInner type(@javax.annotation.Nullable String type) {
+    this.type = JsonNullable.<String>of(type);
+    return this;
+  }
+
+  /**
+   * Google&#39;s geo_target_constant.target_type, e.g. \&quot;Country\&quot;, \&quot;Region\&quot;, \&quot;City\&quot;; null when the id could not be resolved.
+   * @return type
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getType() {
+        return type.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getType_JsonNullable() {
+    return type;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  public void setType_JsonNullable(JsonNullable<String> type) {
+    this.type = type;
+  }
+
+  public void setType(@javax.annotation.Nullable String type) {
+    this.type = JsonNullable.<String>of(type);
+  }
+
+
+  public GetCampaignTargeting200ResponseLocationsInner countryCode(@javax.annotation.Nullable String countryCode) {
+    this.countryCode = JsonNullable.<String>of(countryCode);
+    return this;
+  }
+
+  /**
+   * Google&#39;s geo_target_constant.country_code, an ISO 3166-1 alpha-2 code; null when the id could not be resolved.
+   * @return countryCode
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCountryCode() {
+        return countryCode.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCountryCode_JsonNullable() {
+    return countryCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COUNTRY_CODE)
+  public void setCountryCode_JsonNullable(JsonNullable<String> countryCode) {
+    this.countryCode = countryCode;
+  }
+
+  public void setCountryCode(@javax.annotation.Nullable String countryCode) {
+    this.countryCode = JsonNullable.<String>of(countryCode);
+  }
+
+
   /**
    * Return true if this getCampaignTargeting_200_response_locations_inner object is equal to o.
    */
@@ -110,12 +258,27 @@ public class GetCampaignTargeting200ResponseLocationsInner {
     }
     GetCampaignTargeting200ResponseLocationsInner getCampaignTargeting200ResponseLocationsInner = (GetCampaignTargeting200ResponseLocationsInner) o;
     return Objects.equals(this.geoTargetId, getCampaignTargeting200ResponseLocationsInner.geoTargetId) &&
-        Objects.equals(this.negative, getCampaignTargeting200ResponseLocationsInner.negative);
+        Objects.equals(this.negative, getCampaignTargeting200ResponseLocationsInner.negative) &&
+        equalsNullable(this.name, getCampaignTargeting200ResponseLocationsInner.name) &&
+        equalsNullable(this.canonicalName, getCampaignTargeting200ResponseLocationsInner.canonicalName) &&
+        equalsNullable(this.type, getCampaignTargeting200ResponseLocationsInner.type) &&
+        equalsNullable(this.countryCode, getCampaignTargeting200ResponseLocationsInner.countryCode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoTargetId, negative);
+    return Objects.hash(geoTargetId, negative, hashCodeNullable(name), hashCodeNullable(canonicalName), hashCodeNullable(type), hashCodeNullable(countryCode));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -124,6 +287,10 @@ public class GetCampaignTargeting200ResponseLocationsInner {
     sb.append("class GetCampaignTargeting200ResponseLocationsInner {\n");
     sb.append("    geoTargetId: ").append(toIndentedString(geoTargetId)).append("\n");
     sb.append("    negative: ").append(toIndentedString(negative)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    canonicalName: ").append(toIndentedString(canonicalName)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +346,26 @@ public class GetCampaignTargeting200ResponseLocationsInner {
     // add `negative` to the URL query string
     if (getNegative() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%snegative%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNegative()))));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `canonicalName` to the URL query string
+    if (getCanonicalName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scanonicalName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCanonicalName()))));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `countryCode` to the URL query string
+    if (getCountryCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scountryCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountryCode()))));
     }
 
     return joiner.toString();

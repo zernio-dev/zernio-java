@@ -11,7 +11,7 @@
 |**content** | **List&lt;String&gt;** |  |  [optional] |
 |**style** | [**StyleEnum**](#StyleEnum) |  |  [optional] |
 |**buttonText** | **String** |  |  [optional] |
-|**coverPhoto** | **URI** | Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported. |  [optional] |
+|**coverPhoto** | **URI** | Direct public JPEG or PNG image URL, up to 5 MB. Uploaded as an unpublished Page photo and attached to the form. Redirects, Ad Image hashes and IDs are not supported. |  [optional] |
 
 
 

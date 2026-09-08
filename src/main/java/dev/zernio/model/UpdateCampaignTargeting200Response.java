@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetCampaignTargeting200ResponseLocationsInner;
 import dev.zernio.model.UpdateCampaignTargeting200ResponseDevicesInner;
 import dev.zernio.model.UpdateCampaignTargeting200ResponseLanguagesInner;
+import dev.zernio.model.UpdateCampaignTargeting200ResponseLocationsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargeting200Response.JSON_PROPERTY_LOCATIONS,
   UpdateCampaignTargeting200Response.JSON_PROPERTY_LANGUAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T14:15:16.071951225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T15:37:58.634049722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargeting200Response {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable
@@ -97,7 +97,7 @@ public class UpdateCampaignTargeting200Response {
 
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable
-  private List<GetCampaignTargeting200ResponseLocationsInner> locations = new ArrayList<>();
+  private List<UpdateCampaignTargeting200ResponseLocationsInner> locations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_LANGUAGES = "languages";
   @javax.annotation.Nullable
@@ -194,12 +194,12 @@ public class UpdateCampaignTargeting200Response {
   }
 
 
-  public UpdateCampaignTargeting200Response locations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseLocationsInner> locations) {
+  public UpdateCampaignTargeting200Response locations(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseLocationsInner> locations) {
     this.locations = locations;
     return this;
   }
 
-  public UpdateCampaignTargeting200Response addLocationsItem(GetCampaignTargeting200ResponseLocationsInner locationsItem) {
+  public UpdateCampaignTargeting200Response addLocationsItem(UpdateCampaignTargeting200ResponseLocationsInner locationsItem) {
     if (this.locations == null) {
       this.locations = new ArrayList<>();
     }
@@ -214,14 +214,14 @@ public class UpdateCampaignTargeting200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<GetCampaignTargeting200ResponseLocationsInner> getLocations() {
+  public List<UpdateCampaignTargeting200ResponseLocationsInner> getLocations() {
     return locations;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseLocationsInner> locations) {
+  public void setLocations(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseLocationsInner> locations) {
     this.locations = locations;
   }
 
