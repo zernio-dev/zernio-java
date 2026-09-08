@@ -9,6 +9,7 @@ A Meta generic template (product card) sent as the automation's first DM. It REP
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
+|**imageAspectRatio** | [**ImageAspectRatioEnum**](#ImageAspectRatioEnum) | Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400. |  [optional] |
 |**elements** | [**List&lt;CommentAutomationTemplateElement&gt;**](CommentAutomationTemplateElement.md) |  |  |
 
 
@@ -18,6 +19,15 @@ A Meta generic template (product card) sent as the automation's first DM. It REP
 | Name | Value |
 |---- | -----|
 | GENERIC | &quot;generic&quot; |
+
+
+
+## Enum: ImageAspectRatioEnum
+
+| Name | Value |
+|---- | -----|
+| HORIZONTAL | &quot;horizontal&quot; |
+| SQUARE | &quot;square&quot; |
 
 
 

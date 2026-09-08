@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CommentAutomationTemplate.JSON_PROPERTY_TYPE,
+  CommentAutomationTemplate.JSON_PROPERTY_IMAGE_ASPECT_RATIO,
   CommentAutomationTemplate.JSON_PROPERTY_ELEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:08:10.425325168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationTemplate {
   /**
    * Gets or Sets type
@@ -78,6 +79,45 @@ public class CommentAutomationTemplate {
   @javax.annotation.Nonnull
   private TypeEnum type;
 
+  /**
+   * Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400.
+   */
+  public enum ImageAspectRatioEnum {
+    HORIZONTAL(String.valueOf("horizontal")),
+    
+    SQUARE(String.valueOf("square"));
+
+    private String value;
+
+    ImageAspectRatioEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ImageAspectRatioEnum fromValue(String value) {
+      for (ImageAspectRatioEnum b : ImageAspectRatioEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_IMAGE_ASPECT_RATIO = "imageAspectRatio";
+  @javax.annotation.Nullable
+  private ImageAspectRatioEnum imageAspectRatio;
+
   public static final String JSON_PROPERTY_ELEMENTS = "elements";
   @javax.annotation.Nonnull
   private List<CommentAutomationTemplateElement> elements = new ArrayList<>();
@@ -106,6 +146,30 @@ public class CommentAutomationTemplate {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
+  }
+
+
+  public CommentAutomationTemplate imageAspectRatio(@javax.annotation.Nullable ImageAspectRatioEnum imageAspectRatio) {
+    this.imageAspectRatio = imageAspectRatio;
+    return this;
+  }
+
+  /**
+   * Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400.
+   * @return imageAspectRatio
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_ASPECT_RATIO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ImageAspectRatioEnum getImageAspectRatio() {
+    return imageAspectRatio;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_ASPECT_RATIO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImageAspectRatio(@javax.annotation.Nullable ImageAspectRatioEnum imageAspectRatio) {
+    this.imageAspectRatio = imageAspectRatio;
   }
 
 
@@ -154,12 +218,13 @@ public class CommentAutomationTemplate {
     }
     CommentAutomationTemplate commentAutomationTemplate = (CommentAutomationTemplate) o;
     return Objects.equals(this.type, commentAutomationTemplate.type) &&
+        Objects.equals(this.imageAspectRatio, commentAutomationTemplate.imageAspectRatio) &&
         Objects.equals(this.elements, commentAutomationTemplate.elements);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, elements);
+    return Objects.hash(type, imageAspectRatio, elements);
   }
 
   @Override
@@ -167,6 +232,7 @@ public class CommentAutomationTemplate {
     StringBuilder sb = new StringBuilder();
     sb.append("class CommentAutomationTemplate {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    imageAspectRatio: ").append(toIndentedString(imageAspectRatio)).append("\n");
     sb.append("    elements: ").append(toIndentedString(elements)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -218,6 +284,11 @@ public class CommentAutomationTemplate {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `imageAspectRatio` to the URL query string
+    if (getImageAspectRatio() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%simageAspectRatio%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getImageAspectRatio()))));
     }
 
     // add `elements` to the URL query string

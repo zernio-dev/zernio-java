@@ -33,13 +33,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Platform-dependent template payload. Ignored on Telegram.  Instagram / Facebook: a generic template (carousel). Set &#x60;type: generic&#x60; and provide up to 10 &#x60;elements&#x60;, each with a &#x60;title&#x60; (required) and optional &#x60;subtitle&#x60;, &#x60;imageUrl&#x60;, and &#x60;buttons&#x60;. Mutually exclusive with the top-level &#x60;buttons&#x60; field (sending both is a 400); put the card&#39;s buttons on its &#x60;elements&#x60; instead.  WhatsApp: sends an approved WhatsApp template message, the only message type WhatsApp accepts when the 24-hour customer-service window is closed. Provide exactly one element carrying the template reference: &#x60;{ \&quot;elements\&quot;: [{ \&quot;name\&quot;: \&quot;order_update\&quot;, \&quot;language\&quot;: \&quot;en_US\&quot;, \&quot;components\&quot;: [...] }] }&#x60; (&#x60;type&#x60; is ignored on WhatsApp). &#x60;components&#x60; is optional and is forwarded unchanged as the &#x60;template.components&#x60; array of Meta&#39;s Cloud API send payload; use it to fill body/header variables and button parameters, e.g. &#x60;[{ \&quot;type\&quot;: \&quot;body\&quot;, \&quot;parameters\&quot;: [{ \&quot;type\&quot;: \&quot;text\&quot;, \&quot;text\&quot;: \&quot;John\&quot; }] }]&#x60;. Templates with media headers (image, video, document) must include the header component with its media link here at send time. To send a template to a phone number with no existing conversation, or to have media headers filled in automatically from the template definition, use the create-conversation endpoint (POST /v1/inbox/conversations) instead. 
+ * Platform-dependent template payload. Ignored on Telegram.  Instagram / Facebook: a generic template (carousel). Set &#x60;type: generic&#x60; and provide up to 10 &#x60;elements&#x60;, each with a &#x60;title&#x60; (required) and optional &#x60;subtitle&#x60;, &#x60;imageUrl&#x60;, and &#x60;buttons&#x60;. Mutually exclusive with the top-level &#x60;buttons&#x60; field (sending both is a 400); put the card&#39;s buttons on its &#x60;elements&#x60; instead. On Facebook, &#x60;imageAspectRatio&#x60; (&#x60;horizontal&#x60;, the default, or &#x60;square&#x60;) sets how Messenger renders the element images; Instagram has no such setting and rejects it.  WhatsApp: sends an approved WhatsApp template message, the only message type WhatsApp accepts when the 24-hour customer-service window is closed. Provide exactly one element carrying the template reference: &#x60;{ \&quot;elements\&quot;: [{ \&quot;name\&quot;: \&quot;order_update\&quot;, \&quot;language\&quot;: \&quot;en_US\&quot;, \&quot;components\&quot;: [...] }] }&#x60; (&#x60;type&#x60; is ignored on WhatsApp). &#x60;components&#x60; is optional and is forwarded unchanged as the &#x60;template.components&#x60; array of Meta&#39;s Cloud API send payload; use it to fill body/header variables and button parameters, e.g. &#x60;[{ \&quot;type\&quot;: \&quot;body\&quot;, \&quot;parameters\&quot;: [{ \&quot;type\&quot;: \&quot;text\&quot;, \&quot;text\&quot;: \&quot;John\&quot; }] }]&#x60;. Templates with media headers (image, video, document) must include the header component with its media link here at send time. To send a template to a phone number with no existing conversation, or to have media headers filled in automatically from the template definition, use the create-conversation endpoint (POST /v1/inbox/conversations) instead. 
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestTemplate.JSON_PROPERTY_TYPE,
+  SendInboxMessageRequestTemplate.JSON_PROPERTY_IMAGE_ASPECT_RATIO,
   SendInboxMessageRequestTemplate.JSON_PROPERTY_ELEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:08:10.425325168Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestTemplate {
   /**
    * Template type. Required for Instagram/Facebook generic templates; ignored on WhatsApp.
@@ -78,6 +79,45 @@ public class SendInboxMessageRequestTemplate {
   @javax.annotation.Nullable
   private TypeEnum type;
 
+  /**
+   * Facebook only. Aspect ratio Messenger renders element images at: horizontal (1.91:1, default) or square (1:1). A 400 on Instagram.
+   */
+  public enum ImageAspectRatioEnum {
+    HORIZONTAL(String.valueOf("horizontal")),
+    
+    SQUARE(String.valueOf("square"));
+
+    private String value;
+
+    ImageAspectRatioEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ImageAspectRatioEnum fromValue(String value) {
+      for (ImageAspectRatioEnum b : ImageAspectRatioEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_IMAGE_ASPECT_RATIO = "imageAspectRatio";
+  @javax.annotation.Nullable
+  private ImageAspectRatioEnum imageAspectRatio;
+
   public static final String JSON_PROPERTY_ELEMENTS = "elements";
   @javax.annotation.Nullable
   private List<SendInboxMessageRequestTemplateElementsInner> elements = new ArrayList<>();
@@ -106,6 +146,30 @@ public class SendInboxMessageRequestTemplate {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
+  }
+
+
+  public SendInboxMessageRequestTemplate imageAspectRatio(@javax.annotation.Nullable ImageAspectRatioEnum imageAspectRatio) {
+    this.imageAspectRatio = imageAspectRatio;
+    return this;
+  }
+
+  /**
+   * Facebook only. Aspect ratio Messenger renders element images at: horizontal (1.91:1, default) or square (1:1). A 400 on Instagram.
+   * @return imageAspectRatio
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_ASPECT_RATIO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ImageAspectRatioEnum getImageAspectRatio() {
+    return imageAspectRatio;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_ASPECT_RATIO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImageAspectRatio(@javax.annotation.Nullable ImageAspectRatioEnum imageAspectRatio) {
+    this.imageAspectRatio = imageAspectRatio;
   }
 
 
@@ -154,12 +218,13 @@ public class SendInboxMessageRequestTemplate {
     }
     SendInboxMessageRequestTemplate sendInboxMessageRequestTemplate = (SendInboxMessageRequestTemplate) o;
     return Objects.equals(this.type, sendInboxMessageRequestTemplate.type) &&
+        Objects.equals(this.imageAspectRatio, sendInboxMessageRequestTemplate.imageAspectRatio) &&
         Objects.equals(this.elements, sendInboxMessageRequestTemplate.elements);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, elements);
+    return Objects.hash(type, imageAspectRatio, elements);
   }
 
   @Override
@@ -167,6 +232,7 @@ public class SendInboxMessageRequestTemplate {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessageRequestTemplate {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    imageAspectRatio: ").append(toIndentedString(imageAspectRatio)).append("\n");
     sb.append("    elements: ").append(toIndentedString(elements)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -218,6 +284,11 @@ public class SendInboxMessageRequestTemplate {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `imageAspectRatio` to the URL query string
+    if (getImageAspectRatio() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%simageAspectRatio%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getImageAspectRatio()))));
     }
 
     // add `elements` to the URL query string

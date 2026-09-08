@@ -40962,6 +40962,7 @@ components:
         Up to 10 elements, rendered as a horizontally swipeable carousel.
         Rendering confirmed on the Instagram and Messenger mobile apps.
       example:
+        imageAspectRatio: horizontal
         elements:
         - buttons:
           - payload: payload
@@ -41048,6 +41049,14 @@ components:
         type:
           enum:
           - generic
+          type: string
+        imageAspectRatio:
+          description: "Facebook only. How Messenger renders each element imageUrl:\
+            \ horizontal (1.91:1, the default) or square (1:1). Instagram has no such\
+            \ setting, so an Instagram automation carrying it is a 400."
+          enum:
+          - horizontal
+          - square
           type: string
         elements:
           items:
@@ -69473,7 +69482,9 @@ components:
         and provide up to 10 `elements`, each with a `title` (required) and
         optional `subtitle`, `imageUrl`, and `buttons`. Mutually exclusive with
         the top-level `buttons` field (sending both is a 400); put the card's
-        buttons on its `elements` instead.
+        buttons on its `elements` instead. On Facebook, `imageAspectRatio`
+        (`horizontal`, the default, or `square`) sets how Messenger renders the
+        element images; Instagram has no such setting and rejects it.
 
         WhatsApp: sends an approved WhatsApp template message, the only message
         type WhatsApp accepts when the 24-hour customer-service window is closed.
@@ -69494,6 +69505,13 @@ components:
             ignored on WhatsApp.
           enum:
           - generic
+          type: string
+        imageAspectRatio:
+          description: "Facebook only. Aspect ratio Messenger renders element images\
+            \ at: horizontal (1.91:1, default) or square (1:1). A 400 on Instagram."
+          enum:
+          - horizontal
+          - square
           type: string
         elements:
           items:
@@ -82702,6 +82720,7 @@ components:
     listCommentAutomations_200_response_automations_inner:
       example:
         template:
+          imageAspectRatio: horizontal
           elements:
           - buttons:
             - payload: payload
@@ -82933,6 +82952,7 @@ components:
       example:
         automations:
         - template:
+            imageAspectRatio: horizontal
             elements:
             - buttons:
               - payload: payload
@@ -83067,6 +83087,7 @@ components:
           name: name
           platformPostId: platformPostId
         - template:
+            imageAspectRatio: horizontal
             elements:
             - buttons:
               - payload: payload
