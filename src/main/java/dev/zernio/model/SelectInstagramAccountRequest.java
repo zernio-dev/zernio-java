@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SelectInstagramAccountRequest.JSON_PROPERTY_TEMP_TOKEN,
   SelectInstagramAccountRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectInstagramAccountRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

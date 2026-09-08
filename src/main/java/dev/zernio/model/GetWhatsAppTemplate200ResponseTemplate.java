@@ -41,10 +41,11 @@ import dev.zernio.ApiClient;
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_CATEGORY,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_LANGUAGE,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_COMPONENTS,
+  GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_REJECTED_REASON,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_QUALITY_SCORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -69,6 +70,10 @@ public class GetWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_COMPONENTS = "components";
   @javax.annotation.Nullable
   private List<Object> components = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS = "message_send_ttl_seconds";
+  @javax.annotation.Nullable
+  private Integer messageSendTtlSeconds;
 
   public static final String JSON_PROPERTY_REJECTED_REASON = "rejected_reason";
   @javax.annotation.Nullable
@@ -233,6 +238,30 @@ public class GetWhatsAppTemplate200ResponseTemplate {
   }
 
 
+  public GetWhatsAppTemplate200ResponseTemplate messageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+    return this;
+  }
+
+  /**
+   * Only when a custom TTL is set; absent while the category default applies.
+   * @return messageSendTtlSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMessageSendTtlSeconds() {
+    return messageSendTtlSeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+  }
+
+
   public GetWhatsAppTemplate200ResponseTemplate rejectedReason(@javax.annotation.Nullable String rejectedReason) {
     this.rejectedReason = rejectedReason;
     return this;
@@ -299,13 +328,14 @@ public class GetWhatsAppTemplate200ResponseTemplate {
         Objects.equals(this.category, getWhatsAppTemplate200ResponseTemplate.category) &&
         Objects.equals(this.language, getWhatsAppTemplate200ResponseTemplate.language) &&
         Objects.equals(this.components, getWhatsAppTemplate200ResponseTemplate.components) &&
+        Objects.equals(this.messageSendTtlSeconds, getWhatsAppTemplate200ResponseTemplate.messageSendTtlSeconds) &&
         Objects.equals(this.rejectedReason, getWhatsAppTemplate200ResponseTemplate.rejectedReason) &&
         Objects.equals(this.qualityScore, getWhatsAppTemplate200ResponseTemplate.qualityScore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, status, category, language, components, rejectedReason, qualityScore);
+    return Objects.hash(id, name, status, category, language, components, messageSendTtlSeconds, rejectedReason, qualityScore);
   }
 
   @Override
@@ -318,6 +348,7 @@ public class GetWhatsAppTemplate200ResponseTemplate {
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
+    sb.append("    messageSendTtlSeconds: ").append(toIndentedString(messageSendTtlSeconds)).append("\n");
     sb.append("    rejectedReason: ").append(toIndentedString(rejectedReason)).append("\n");
     sb.append("    qualityScore: ").append(toIndentedString(qualityScore)).append("\n");
     sb.append("}");
@@ -399,6 +430,11 @@ public class GetWhatsAppTemplate200ResponseTemplate {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getComponents().get(i)))));
       }
+    }
+
+    // add `message_send_ttl_seconds` to the URL query string
+    if (getMessageSendTtlSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage_send_ttl_seconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessageSendTtlSeconds()))));
     }
 
     // add `rejected_reason` to the URL query string

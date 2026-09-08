@@ -13,6 +13,7 @@
 |**category** | **String** |  |  [optional] |
 |**language** | **String** | The variant actually returned. |  [optional] |
 |**components** | **List&lt;Object&gt;** |  |  [optional] |
+|**messageSendTtlSeconds** | **Integer** | Only when a custom TTL is set; absent while the category default applies. |  [optional] |
 |**rejectedReason** | **String** | Only when status is REJECTED. |  [optional] |
 |**qualityScore** | **Object** | Post-approval quality (GREEN/YELLOW/RED), when Meta reports one. |  [optional] |
 

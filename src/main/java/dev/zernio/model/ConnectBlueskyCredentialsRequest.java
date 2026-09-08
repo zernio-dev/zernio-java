@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ConnectBlueskyCredentialsRequest.JSON_PROPERTY_STATE,
   ConnectBlueskyCredentialsRequest.JSON_PROPERTY_REDIRECT_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectBlueskyCredentialsRequest {
   public static final String JSON_PROPERTY_IDENTIFIER = "identifier";
   @javax.annotation.Nonnull

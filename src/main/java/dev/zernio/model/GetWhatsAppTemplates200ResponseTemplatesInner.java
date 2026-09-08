@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   GetWhatsAppTemplates200ResponseTemplatesInner.JSON_PROPERTY_STATUS,
   GetWhatsAppTemplates200ResponseTemplatesInner.JSON_PROPERTY_CATEGORY,
   GetWhatsAppTemplates200ResponseTemplatesInner.JSON_PROPERTY_LANGUAGE,
+  GetWhatsAppTemplates200ResponseTemplatesInner.JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS,
   GetWhatsAppTemplates200ResponseTemplatesInner.JSON_PROPERTY_COMPONENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppTemplates200ResponseTemplatesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -137,6 +138,10 @@ public class GetWhatsAppTemplates200ResponseTemplatesInner {
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   @javax.annotation.Nullable
   private String language;
+
+  public static final String JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS = "message_send_ttl_seconds";
+  @javax.annotation.Nullable
+  private Integer messageSendTtlSeconds;
 
   public static final String JSON_PROPERTY_COMPONENTS = "components";
   @javax.annotation.Nullable
@@ -265,6 +270,30 @@ public class GetWhatsAppTemplates200ResponseTemplatesInner {
   }
 
 
+  public GetWhatsAppTemplates200ResponseTemplatesInner messageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+    return this;
+  }
+
+  /**
+   * Only when a custom TTL is set; absent while the category default applies.
+   * @return messageSendTtlSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMessageSendTtlSeconds() {
+    return messageSendTtlSeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+  }
+
+
   public GetWhatsAppTemplates200ResponseTemplatesInner components(@javax.annotation.Nullable List<Object> components) {
     this.components = components;
     return this;
@@ -314,12 +343,13 @@ public class GetWhatsAppTemplates200ResponseTemplatesInner {
         Objects.equals(this.status, getWhatsAppTemplates200ResponseTemplatesInner.status) &&
         Objects.equals(this.category, getWhatsAppTemplates200ResponseTemplatesInner.category) &&
         Objects.equals(this.language, getWhatsAppTemplates200ResponseTemplatesInner.language) &&
+        Objects.equals(this.messageSendTtlSeconds, getWhatsAppTemplates200ResponseTemplatesInner.messageSendTtlSeconds) &&
         Objects.equals(this.components, getWhatsAppTemplates200ResponseTemplatesInner.components);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, status, category, language, components);
+    return Objects.hash(id, name, status, category, language, messageSendTtlSeconds, components);
   }
 
   @Override
@@ -331,6 +361,7 @@ public class GetWhatsAppTemplates200ResponseTemplatesInner {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    messageSendTtlSeconds: ").append(toIndentedString(messageSendTtlSeconds)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -402,6 +433,11 @@ public class GetWhatsAppTemplates200ResponseTemplatesInner {
     // add `language` to the URL query string
     if (getLanguage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLanguage()))));
+    }
+
+    // add `message_send_ttl_seconds` to the URL query string
+    if (getMessageSendTtlSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage_send_ttl_seconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessageSendTtlSeconds()))));
     }
 
     // add `components` to the URL query string

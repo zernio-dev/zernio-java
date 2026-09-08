@@ -38,9 +38,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateWhatsAppTemplateRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateWhatsAppTemplateRequest.JSON_PROPERTY_LANGUAGE,
-  UpdateWhatsAppTemplateRequest.JSON_PROPERTY_COMPONENTS
+  UpdateWhatsAppTemplateRequest.JSON_PROPERTY_COMPONENTS,
+  UpdateWhatsAppTemplateRequest.JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -51,8 +52,12 @@ public class UpdateWhatsAppTemplateRequest {
   private String language;
 
   public static final String JSON_PROPERTY_COMPONENTS = "components";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<WhatsAppTemplateComponent> components = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS = "message_send_ttl_seconds";
+  @javax.annotation.Nullable
+  private Integer messageSendTtlSeconds;
 
   public UpdateWhatsAppTemplateRequest() { 
   }
@@ -105,7 +110,7 @@ public class UpdateWhatsAppTemplateRequest {
   }
 
 
-  public UpdateWhatsAppTemplateRequest components(@javax.annotation.Nonnull List<WhatsAppTemplateComponent> components) {
+  public UpdateWhatsAppTemplateRequest components(@javax.annotation.Nullable List<WhatsAppTemplateComponent> components) {
     this.components = components;
     return this;
   }
@@ -119,21 +124,45 @@ public class UpdateWhatsAppTemplateRequest {
   }
 
   /**
-   * Updated template components
+   * Updated template components. Optional when only message_send_ttl_seconds changes; at least one of the two is required.
    * @return components
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<WhatsAppTemplateComponent> getComponents() {
     return components;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setComponents(@javax.annotation.Nonnull List<WhatsAppTemplateComponent> components) {
+  @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setComponents(@javax.annotation.Nullable List<WhatsAppTemplateComponent> components) {
     this.components = components;
+  }
+
+
+  public UpdateWhatsAppTemplateRequest messageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+    return this;
+  }
+
+  /**
+   * Delivery validity window in seconds: a message not delivered within it is dropped. Range depends on category: AUTHENTICATION 30 to 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days); -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises the template, it clears the TTL (read it back to check).
+   * @return messageSendTtlSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMessageSendTtlSeconds() {
+    return messageSendTtlSeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
   }
 
 
@@ -151,12 +180,13 @@ public class UpdateWhatsAppTemplateRequest {
     UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest = (UpdateWhatsAppTemplateRequest) o;
     return Objects.equals(this.accountId, updateWhatsAppTemplateRequest.accountId) &&
         Objects.equals(this.language, updateWhatsAppTemplateRequest.language) &&
-        Objects.equals(this.components, updateWhatsAppTemplateRequest.components);
+        Objects.equals(this.components, updateWhatsAppTemplateRequest.components) &&
+        Objects.equals(this.messageSendTtlSeconds, updateWhatsAppTemplateRequest.messageSendTtlSeconds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, language, components);
+    return Objects.hash(accountId, language, components, messageSendTtlSeconds);
   }
 
   @Override
@@ -166,6 +196,7 @@ public class UpdateWhatsAppTemplateRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
+    sb.append("    messageSendTtlSeconds: ").append(toIndentedString(messageSendTtlSeconds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,6 +262,11 @@ public class UpdateWhatsAppTemplateRequest {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `message_send_ttl_seconds` to the URL query string
+    if (getMessageSendTtlSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage_send_ttl_seconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessageSendTtlSeconds()))));
     }
 
     return joiner.toString();

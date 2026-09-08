@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreatePost200Response.JSON_PROPERTY_CAN_PUBLISH,
   CreatePost200Response.JSON_PROPERTY_TIKTOK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePost200Response {
   public static final String JSON_PROPERTY_DRY_RUN = "dryRun";
   @javax.annotation.Nonnull

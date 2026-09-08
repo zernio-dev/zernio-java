@@ -45,9 +45,10 @@ import dev.zernio.ApiClient;
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_COMPONENTS,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_NAME,
   CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BODY_INPUTS,
-  CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BUTTON_INPUTS
+  CreateWhatsAppTemplateRequest.JSON_PROPERTY_LIBRARY_TEMPLATE_BUTTON_INPUTS,
+  CreateWhatsAppTemplateRequest.JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T07:52:17.380252585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T09:04:58.100664495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -160,6 +161,10 @@ public class CreateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_LIBRARY_TEMPLATE_BUTTON_INPUTS = "library_template_button_inputs";
   @javax.annotation.Nullable
   private List<CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner> libraryTemplateButtonInputs = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS = "message_send_ttl_seconds";
+  @javax.annotation.Nullable
+  private Integer messageSendTtlSeconds;
 
   public CreateWhatsAppTemplateRequest() { 
   }
@@ -396,6 +401,30 @@ public class CreateWhatsAppTemplateRequest {
   }
 
 
+  public CreateWhatsAppTemplateRequest messageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+    return this;
+  }
+
+  /**
+   * Delivery validity window in seconds: a message not delivered within it is dropped. Range depends on category: AUTHENTICATION 30 to 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days); -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises the template, it clears the TTL (read it back to check).
+   * @return messageSendTtlSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMessageSendTtlSeconds() {
+    return messageSendTtlSeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessageSendTtlSeconds(@javax.annotation.Nullable Integer messageSendTtlSeconds) {
+    this.messageSendTtlSeconds = messageSendTtlSeconds;
+  }
+
+
   /**
    * Return true if this createWhatsAppTemplate_request object is equal to o.
    */
@@ -416,12 +445,13 @@ public class CreateWhatsAppTemplateRequest {
         Objects.equals(this.components, createWhatsAppTemplateRequest.components) &&
         Objects.equals(this.libraryTemplateName, createWhatsAppTemplateRequest.libraryTemplateName) &&
         Objects.equals(this.libraryTemplateBodyInputs, createWhatsAppTemplateRequest.libraryTemplateBodyInputs) &&
-        Objects.equals(this.libraryTemplateButtonInputs, createWhatsAppTemplateRequest.libraryTemplateButtonInputs);
+        Objects.equals(this.libraryTemplateButtonInputs, createWhatsAppTemplateRequest.libraryTemplateButtonInputs) &&
+        Objects.equals(this.messageSendTtlSeconds, createWhatsAppTemplateRequest.messageSendTtlSeconds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, name, category, language, parameterFormat, components, libraryTemplateName, libraryTemplateBodyInputs, libraryTemplateButtonInputs);
+    return Objects.hash(accountId, name, category, language, parameterFormat, components, libraryTemplateName, libraryTemplateBodyInputs, libraryTemplateButtonInputs, messageSendTtlSeconds);
   }
 
   @Override
@@ -437,6 +467,7 @@ public class CreateWhatsAppTemplateRequest {
     sb.append("    libraryTemplateName: ").append(toIndentedString(libraryTemplateName)).append("\n");
     sb.append("    libraryTemplateBodyInputs: ").append(toIndentedString(libraryTemplateBodyInputs)).append("\n");
     sb.append("    libraryTemplateButtonInputs: ").append(toIndentedString(libraryTemplateButtonInputs)).append("\n");
+    sb.append("    messageSendTtlSeconds: ").append(toIndentedString(messageSendTtlSeconds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -537,6 +568,11 @@ public class CreateWhatsAppTemplateRequest {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `message_send_ttl_seconds` to the URL query string
+    if (getMessageSendTtlSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage_send_ttl_seconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessageSendTtlSeconds()))));
     }
 
     return joiner.toString();

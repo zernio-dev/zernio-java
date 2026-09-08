@@ -12,6 +12,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**category** | [**CategoryEnum**](#CategoryEnum) |  |  [optional] |
 |**language** | **String** |  |  [optional] |
+|**messageSendTtlSeconds** | **Integer** | Only when a custom TTL is set; absent while the category default applies. |  [optional] |
 |**components** | **List&lt;Object&gt;** |  |  [optional] |
 
 
