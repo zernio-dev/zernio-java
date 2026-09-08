@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetAdMedia200ResponseMediaInner.JSON_PROPERTY_LENGTH,
   GetAdMedia200ResponseMediaInner.JSON_PROPERTY_INDEX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T13:58:58.816512564Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T14:15:16.071951225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdMedia200ResponseMediaInner {
   /**
    * Gets or Sets type

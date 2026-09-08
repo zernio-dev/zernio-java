@@ -5989,6 +5989,15 @@ paths:
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The requested scheduledFor collides with another post already\
+            \ occupying that slot in the same queue (code: queue_slot_conflict). Choose\
+            \ a different time, omit scheduledFor and let the queue assign the next\
+            \ open slot, or send queueId: null to schedule this post outside the queue."
       summary: Update post
       tags:
       - Posts

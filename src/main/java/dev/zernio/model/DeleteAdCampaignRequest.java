@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DeleteAdCampaignRequest.JSON_PROPERTY_PLATFORM,
   DeleteAdCampaignRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T13:58:58.816512564Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T14:15:16.071951225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteAdCampaignRequest {
   /**
    * Gets or Sets platform
