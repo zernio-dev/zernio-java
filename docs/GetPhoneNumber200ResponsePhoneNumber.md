@@ -13,7 +13,7 @@
 |**country** | **String** |  |  [optional] |
 |**metaPreverifiedId** | **String** |  |  [optional] |
 |**metaVerificationStatus** | **String** |  |  [optional] |
-|**onfidoVerificationUrl** | **String** | For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise. |  [optional] |
+|**onfidoVerificationUrl** | **String** | For a regulated number with an Onfido ID step: the link to forward to the end user. Appears once the order is placed; null otherwise. |  [optional] |
 |**endUserFirstName** | **String** |  |  [optional] |
 |**endUserLastName** | **String** |  |  [optional] |
 |**regulatoryDeclineReason** | **String** | Reviewer rejection reason when status is regulatory_declined. |  [optional] |

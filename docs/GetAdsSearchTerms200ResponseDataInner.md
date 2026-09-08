@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**searchTerm** | **String** |  |  [optional] |
-|**status** | **String** | ADDED / EXCLUDED / ADDED_EXCLUDED / NONE — whether the term is already a keyword or a negative. |  [optional] |
+|**status** | **String** | ADDED / EXCLUDED / ADDED_EXCLUDED / NONE: whether the term is already a keyword or a negative. |  [optional] |
 |**matchType** | **String** | How the term matched (BROAD, PHRASE, EXACT, NEAR_PHRASE, NEAR_EXACT). |  [optional] |
 |**campaignId** | **String** |  |  [optional] |
 |**campaignName** | **String** |  |  [optional] |

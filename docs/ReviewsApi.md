@@ -19,7 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Delete review reply
 
-Delete a reply to a review (Google Business only). Requires accountId in request body.
+Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
 
 ### Example
 
@@ -93,7 +93,7 @@ public class Example {
 
 Delete review reply
 
-Delete a reply to a review (Google Business only). Requires accountId in request body.
+Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
 
 ### Example
 
@@ -171,7 +171,7 @@ ApiResponse<[**DeleteInboxReviewReply200Response**](DeleteInboxReviewReply200Res
 
 List reviews
 
-Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
 
 ### Example
 
@@ -203,7 +203,7 @@ public class Example {
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific social account ID
+        String accountId = "accountId_example"; // String | Filter by specific account ID
         try {
             ListInboxReviews200Response result = apiInstance.listInboxReviews(profileId, platform, minRating, maxRating, hasReply, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println(result);
@@ -232,7 +232,7 @@ public class Example {
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific social account ID | [optional] |
+| **accountId** | **String**| Filter by specific account ID | [optional] |
 
 ### Return type
 
@@ -261,7 +261,7 @@ public class Example {
 
 List reviews
 
-Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
 
 ### Example
 
@@ -294,7 +294,7 @@ public class Example {
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific social account ID
+        String accountId = "accountId_example"; // String | Filter by specific account ID
         try {
             ApiResponse<ListInboxReviews200Response> response = apiInstance.listInboxReviewsWithHttpInfo(profileId, platform, minRating, maxRating, hasReply, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -325,7 +325,7 @@ public class Example {
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific social account ID | [optional] |
+| **accountId** | **String**| Filter by specific account ID | [optional] |
 
 ### Return type
 
@@ -378,7 +378,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
-        String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business)
+        String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business Profile)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
@@ -400,7 +400,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **reviewId** | **String**| Review ID (URL-encoded for Google Business) | |
+| **reviewId** | **String**| Review ID (URL-encoded for Google Business Profile) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
@@ -457,7 +457,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
-        String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business)
+        String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business Profile)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
@@ -481,7 +481,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **reviewId** | **String**| Review ID (URL-encoded for Google Business) | |
+| **reviewId** | **String**| Review ID (URL-encoded for Google Business Profile) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 

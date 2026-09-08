@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Per-period usage counts. Fields present depend on &#x60;billingSystem&#x60;: Stripe returns &#x60;uploads&#x60; / &#x60;profiles&#x60; / &#x60;lastReset&#x60;; Metronome returns &#x60;connectedAccounts&#x60; / &#x60;xApiCalls&#x60; / &#x60;xApiCallsByOperation&#x60;. 
+ * Per-period usage counts. Fields present depend on &#x60;billingSystem&#x60;: Stripe returns &#x60;uploads&#x60; / &#x60;profiles&#x60; / &#x60;lastReset&#x60;; usage-based billing returns &#x60;connectedAccounts&#x60; / &#x60;xApiCalls&#x60; / &#x60;xApiCallsByOperation&#x60;. 
  */
 @JsonPropertyOrder({
   UsageStatsUsage.JSON_PROPERTY_UPLOADS,
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UsageStatsUsage.JSON_PROPERTY_X_API_CALLS,
   UsageStatsUsage.JSON_PROPERTY_X_API_CALLS_BY_OPERATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsUsage {
   public static final String JSON_PROPERTY_UPLOADS = "uploads";
   @javax.annotation.Nullable
@@ -151,7 +151,7 @@ public class UsageStatsUsage {
   }
 
   /**
-   * Metronome users only. Accounts currently connected across the team.
+   * Usage-based billing only. Accounts currently connected across the team.
    * @return connectedAccounts
    */
   @javax.annotation.Nullable
@@ -209,7 +209,7 @@ public class UsageStatsUsage {
   }
 
   /**
-   * Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. 
+   * Usage-based billing only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source: it covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. 
    * @return xApiCallsByOperation
    */
   @javax.annotation.Nullable

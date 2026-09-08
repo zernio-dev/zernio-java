@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WorkflowEdge.JSON_PROPERTY_TARGET,
   WorkflowEdge.JSON_PROPERTY_SOURCE_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowEdge {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -140,7 +140,7 @@ public class WorkflowEdge {
   }
 
   /**
-   * Selects a branch output of a multi-output node. Null (or omitted) &#x3D; the node&#39;s single/default output. Known handles per node type:    - **condition** — a rule&#39;s &#x60;id&#x60;, or &#x60;&#39;default&#39;&#x60; (no rule matched)   - **wait_for_reply** — &#x60;&#39;reply&#39;&#x60; (contact replied) | &#x60;&#39;timeout&#39;&#x60; (no reply in window)   - **webhook** — &#x60;&#39;success&#39;&#x60; (2xx) | &#x60;&#39;error&#39;&#x60; (non-2xx / fetch failed)   - **ai** — &#x60;&#39;success&#39;&#x60; (text/JSON response) | &#x60;&#39;tool:&lt;toolName&gt;&#39;&#x60; (model invoked     that tool) | &#x60;&#39;error&#39;&#x60; (upstream failure / non-JSON in JSON mode)   - **start_call** — &#x60;&#39;success&#39;&#x60; | &#x60;&#39;permission_required&#39;&#x60; | &#x60;&#39;failed&#39;&#x60;   - **a_b_split** — &#x60;&#39;a&#39;&#x60; | &#x60;&#39;b&#39;&#x60;   - **enroll_sequence** — &#x60;&#39;success&#39;&#x60; | &#x60;&#39;error&#39;&#x60; 
+   * Selects a branch output of a multi-output node. Null (or omitted) &#x3D; the node&#39;s single/default output. Known handles per node type:    - **condition**: a rule&#39;s &#x60;id&#x60;, or &#x60;&#39;default&#39;&#x60; (no rule matched)   - **wait_for_reply**: &#x60;&#39;reply&#39;&#x60; (contact replied) | &#x60;&#39;timeout&#39;&#x60; (no reply in window)   - **webhook**: &#x60;&#39;success&#39;&#x60; (2xx) | &#x60;&#39;error&#39;&#x60; (non-2xx / fetch failed)   - **ai**: &#x60;&#39;success&#39;&#x60; (text/JSON response) | &#x60;&#39;tool:&lt;toolName&gt;&#39;&#x60; (model invoked     that tool) | &#x60;&#39;error&#39;&#x60; (upstream failure / non-JSON in JSON mode)   - **start_call**: &#x60;&#39;success&#39;&#x60; | &#x60;&#39;permission_required&#39;&#x60; | &#x60;&#39;failed&#39;&#x60;   - **a_b_split**: &#x60;&#39;a&#39;&#x60; | &#x60;&#39;b&#39;&#x60;   - **enroll_sequence**: &#x60;&#39;success&#39;&#x60; | &#x60;&#39;error&#39;&#x60; 
    * @return sourceHandle
    */
   @javax.annotation.Nullable

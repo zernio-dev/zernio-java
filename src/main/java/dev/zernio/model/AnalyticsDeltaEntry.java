@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AnalyticsDeltaEntry.JSON_PROPERTY_IS_DELETED,
   AnalyticsDeltaEntry.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsDeltaEntry {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nonnull
@@ -116,7 +116,7 @@ public class AnalyticsDeltaEntry {
   }
 
   /**
-   * Social account this post was published through
+   * Account this post was published through
    * @return accountId
    */
   @javax.annotation.Nonnull

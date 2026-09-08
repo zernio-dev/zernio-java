@@ -57,7 +57,7 @@ import dev.zernio.ApiClient;
   ExternalPostWebhookPost.JSON_PROPERTY_SOURCE,
   ExternalPostWebhookPost.JSON_PROPERTY_DELETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostWebhookPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -112,7 +112,7 @@ public class ExternalPostWebhookPost {
   private String mediaAudioType;
 
   /**
-   * Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.
+   * Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events.
    */
   public enum SourceEnum {
     EXTERNAL(String.valueOf("external"));
@@ -208,7 +208,7 @@ public class ExternalPostWebhookPost {
   }
 
   /**
-   * Zernio social account ID the post belongs to.
+   * Zernio account ID the post belongs to.
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -480,7 +480,7 @@ public class ExternalPostWebhookPost {
   }
 
   /**
-   * Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.
+   * Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events.
    * @return source
    */
   @javax.annotation.Nonnull

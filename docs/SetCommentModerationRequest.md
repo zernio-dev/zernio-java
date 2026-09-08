@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | The social account ID |  |
+|**accountId** | **String** | The account ID |  |
 |**platform** | [**PlatformEnum**](#PlatformEnum) | Only YouTube supports comment moderation |  |
 |**moderationStatus** | [**ModerationStatusEnum**](#ModerationStatusEnum) | published approves the comment, rejected removes it, heldForReview returns it to the queue. |  |
 |**banAuthor** | **Boolean** | Also ban the comment&#39;s author, auto-rejecting their future comments. Only valid when moderationStatus is \&quot;rejected\&quot;; any other pairing is a 400.  |  [optional] |

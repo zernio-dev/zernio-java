@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_LIFETIME_MIN_SPEND_TARGET,
   UpdateAdSetRequestPlatformSpecificData.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequestPlatformSpecificData {
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
   @javax.annotation.Nullable
@@ -178,7 +178,7 @@ public class UpdateAdSetRequestPlatformSpecificData {
   }
 
   /**
-   * Meta &#x60;daily_min_spend_target&#x60;: the least this ad set should spend per day, in whole currency units of the ad account. It reserves a share of a CAMPAIGN budget for one ad set, so it requires a campaign using Advantage campaign budget (CBO). On an ad set that owns its budget (ABO) this returns 409 — move the budget to the campaign with &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60; first. Meta treats it as a target, not a guarantee, and rejects the combined minimum of a campaign&#39;s ad sets going over the campaign budget. Mutually exclusive with &#x60;lifetimeMinSpendTarget&#x60; (400): the flavour must match the campaign budget type, a daily budget takes a daily target. Read it back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;daily_min_spend_target&#x60;. 
+   * Meta &#x60;daily_min_spend_target&#x60;: the least this ad set should spend per day, in whole currency units of the ad account. It reserves a share of a CAMPAIGN budget for one ad set, so it requires a campaign using Advantage campaign budget (CBO). On an ad set that owns its budget (ABO) this returns 409. Move the budget to the campaign with &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60; first. Meta treats it as a target, not a guarantee, and rejects the combined minimum of a campaign&#39;s ad sets going over the campaign budget. Mutually exclusive with &#x60;lifetimeMinSpendTarget&#x60; (400): the flavour must match the campaign budget type, a daily budget takes a daily target. Read it back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;daily_min_spend_target&#x60;. 
    * @return dailyMinSpendTarget
    */
   @javax.annotation.Nullable

@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * End-user / current-carrier account info that authorizes the port. The losing carrier matches every field against its records and rejects the whole port on a mismatch — enter values exactly as they appear on the carrier bill. 
+ * End-user / current-carrier account info that authorizes the port. The losing carrier matches every field against its records and rejects the whole port on a mismatch, so enter values exactly as they appear on the carrier bill. 
  */
 @JsonPropertyOrder({
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_ENTITY_NAME,
@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_POSTAL_CODE,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequestEndUser {
   public static final String JSON_PROPERTY_ENTITY_NAME = "entityName";
   @javax.annotation.Nonnull
@@ -183,7 +183,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Full name (first + last) of the person authorizing the port — must match the LOA signature.
+   * Full name (first + last) of the person authorizing the port, which must match the LOA signature.
    * @return authPersonName
    */
   @javax.annotation.Nonnull
@@ -231,7 +231,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).
+   * Account number with the losing carrier. Required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).
    * @return accountNumber
    */
   @javax.annotation.Nonnull

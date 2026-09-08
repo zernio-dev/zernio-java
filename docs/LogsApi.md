@@ -48,7 +48,7 @@ public class Example {
         Integer skip = 0; // Integer | Number of logs to skip (for pagination)
         String accountId = "accountId_example"; // String | Filter by connected account ID
         String event = "event_example"; // String | Filter webhook logs by event (e.g. post.published, message.received)
-        String requestId = "requestId_example"; // String | Correlation ID — returns every log spawned by a single API request
+        String requestId = "requestId_example"; // String | Correlation ID. Returns every log spawned by a single API request
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Precise start instant (ISO 8601); narrows within the day range
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Precise end instant (ISO 8601)
         Integer statusCode = 56; // Integer | Filter by exact HTTP status code (api_request logs)
@@ -83,7 +83,7 @@ public class Example {
 | **skip** | **Integer**| Number of logs to skip (for pagination) | [optional] [default to 0] |
 | **accountId** | **String**| Filter by connected account ID | [optional] |
 | **event** | **String**| Filter webhook logs by event (e.g. post.published, message.received) | [optional] |
-| **requestId** | **String**| Correlation ID — returns every log spawned by a single API request | [optional] |
+| **requestId** | **String**| Correlation ID. Returns every log spawned by a single API request | [optional] |
 | **from** | **OffsetDateTime**| Precise start instant (ISO 8601); narrows within the day range | [optional] |
 | **to** | **OffsetDateTime**| Precise end instant (ISO 8601) | [optional] |
 | **statusCode** | **Integer**| Filter by exact HTTP status code (api_request logs) | [optional] |
@@ -150,7 +150,7 @@ public class Example {
         Integer skip = 0; // Integer | Number of logs to skip (for pagination)
         String accountId = "accountId_example"; // String | Filter by connected account ID
         String event = "event_example"; // String | Filter webhook logs by event (e.g. post.published, message.received)
-        String requestId = "requestId_example"; // String | Correlation ID — returns every log spawned by a single API request
+        String requestId = "requestId_example"; // String | Correlation ID. Returns every log spawned by a single API request
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Precise start instant (ISO 8601); narrows within the day range
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Precise end instant (ISO 8601)
         Integer statusCode = 56; // Integer | Filter by exact HTTP status code (api_request logs)
@@ -187,7 +187,7 @@ public class Example {
 | **skip** | **Integer**| Number of logs to skip (for pagination) | [optional] [default to 0] |
 | **accountId** | **String**| Filter by connected account ID | [optional] |
 | **event** | **String**| Filter webhook logs by event (e.g. post.published, message.received) | [optional] |
-| **requestId** | **String**| Correlation ID — returns every log spawned by a single API request | [optional] |
+| **requestId** | **String**| Correlation ID. Returns every log spawned by a single API request | [optional] |
 | **from** | **OffsetDateTime**| Precise start instant (ISO 8601); narrows within the day range | [optional] |
 | **to** | **OffsetDateTime**| Precise end instant (ISO 8601) | [optional] |
 | **statusCode** | **Integer**| Filter by exact HTTP status code (api_request logs) | [optional] |

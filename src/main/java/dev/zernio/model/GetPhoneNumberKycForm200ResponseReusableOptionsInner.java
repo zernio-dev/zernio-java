@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_INSTANT,
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -68,7 +68,7 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   }
 
   /**
-   * Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).
+   * Opaque option id. Pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).
    * @return id
    */
   @javax.annotation.Nullable
@@ -92,7 +92,7 @@ public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   }
 
   /**
-   * Display only — the number this verification was submitted for. Not a selection key.
+   * Display only. The number this verification was submitted for. Not a selection key.
    * @return fromPhoneNumber
    */
   @javax.annotation.Nullable

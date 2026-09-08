@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | WhatsApp social account ID |  |
+|**accountId** | **String** | WhatsApp account ID |  |
 |**name** | **String** | New flow name |  [optional] |
 |**categories** | [**List&lt;CategoriesEnum&gt;**](#List&lt;CategoriesEnum&gt;) |  |  [optional] |
 |**endpointUri** | **URI** | HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used. |  [optional] |

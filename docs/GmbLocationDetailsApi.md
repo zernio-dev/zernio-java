@@ -17,7 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get location details
 
-Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
+Returns detailed Google Business Profile location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
 
 ### Example
 
@@ -94,7 +94,7 @@ public class Example {
 
 Get location details
 
-Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
+Returns detailed Google Business Profile location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
 
 ### Example
 
@@ -175,7 +175,7 @@ ApiResponse<[**GetGoogleBusinessLocationDetails200Response**](GetGoogleBusinessL
 
 Update location details
 
-Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
+Updates Google Business Profile location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
 
 ### Example
 
@@ -252,7 +252,7 @@ public class Example {
 
 Update location details
 
-Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
+Updates Google Business Profile location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
 
 ### Example
 

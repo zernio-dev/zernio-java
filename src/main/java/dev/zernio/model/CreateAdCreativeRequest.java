@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   CreateAdCreativeRequest.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateAdCreativeRequest.JSON_PROPERTY_MULTI_ADVERTISER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreativeRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -139,7 +139,7 @@ public class CreateAdCreativeRequest {
   private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
 
   /**
-   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
    */
   public enum MultiAdvertiserEnum {
     OPT_IN(String.valueOf("OPT_IN")),
@@ -490,7 +490,7 @@ public class CreateAdCreativeRequest {
   }
 
   /**
-   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
    * @return multiAdvertiser
    */
   @javax.annotation.Nullable

@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_LISTED_COUNT,
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_BOARD_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStatsAllOfAccountStats {
   public static final String JSON_PROPERTY_FOLLOWING_COUNT = "followingCount";
   @javax.annotation.Nullable
@@ -173,7 +173,7 @@ public class AccountWithFollowerStatsAllOfAccountStats {
   }
 
   /**
-   * Total tweets (X/Twitter)
+   * Total tweets (X)
    * @return tweetCount
    */
   @javax.annotation.Nullable
@@ -317,7 +317,7 @@ public class AccountWithFollowerStatsAllOfAccountStats {
   }
 
   /**
-   * Lists the user appears on (X/Twitter)
+   * Lists the user appears on (X)
    * @return listedCount
    */
   @javax.annotation.Nullable

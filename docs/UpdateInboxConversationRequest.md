@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | Social account ID |  |
+|**accountId** | **String** | Account ID |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 
 

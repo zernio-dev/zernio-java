@@ -54,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -291,7 +291,7 @@ public class UsersApi {
 
   /**
    * List users
-   * Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+   * Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
    * @return ListUsers200Response
    * @throws ApiException if fails to make API call
    */
@@ -301,7 +301,7 @@ public class UsersApi {
 
   /**
    * List users
-   * Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+   * Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
    * @param headers Optional headers to include in the request
    * @return ListUsers200Response
    * @throws ApiException if fails to make API call
@@ -313,7 +313,7 @@ public class UsersApi {
 
   /**
    * List users
-   * Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+   * Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
    * @return ApiResponse&lt;ListUsers200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -323,7 +323,7 @@ public class UsersApi {
 
   /**
    * List users
-   * Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+   * Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListUsers200Response&gt;
    * @throws ApiException if fails to make API call

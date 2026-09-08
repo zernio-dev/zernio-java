@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   InboxWebhookConversation.JSON_PROPERTY_STATUS,
   InboxWebhookConversation.JSON_PROPERTY_CONTACT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookConversation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -288,7 +288,7 @@ public class InboxWebhookConversation {
   }
 
   /**
-   * Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection. Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators join any inbox webhook back to the CRM Contact without needing to look at the sender — which matters for outgoing and delivery-status events whose sender is the business. 
+   * Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection. Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators join any inbox webhook back to the CRM Contact without needing to look at the sender, which matters for outgoing and delivery-status events whose sender is the business. 
    * @return contactId
    */
   @javax.annotation.Nullable

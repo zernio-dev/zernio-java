@@ -64,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterEngagementApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -306,7 +306,7 @@ public class TwitterEngagementApi {
 
   /**
    * Follow a user
-   * Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+   * Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
    * @param followUserRequest  (required)
    * @return FollowUser200Response
    * @throws ApiException if fails to make API call
@@ -317,7 +317,7 @@ public class TwitterEngagementApi {
 
   /**
    * Follow a user
-   * Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+   * Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
    * @param followUserRequest  (required)
    * @param headers Optional headers to include in the request
    * @return FollowUser200Response
@@ -330,7 +330,7 @@ public class TwitterEngagementApi {
 
   /**
    * Follow a user
-   * Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+   * Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
    * @param followUserRequest  (required)
    * @return ApiResponse&lt;FollowUser200Response&gt;
    * @throws ApiException if fails to make API call
@@ -341,7 +341,7 @@ public class TwitterEngagementApi {
 
   /**
    * Follow a user
-   * Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+   * Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
    * @param followUserRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;FollowUser200Response&gt;
@@ -430,7 +430,7 @@ public class TwitterEngagementApi {
   /**
    * Look up a tweet
    * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
-   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param accountId The account ID whose X token is used for the lookup (required)
    * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
    * @return GetTweet200Response
    * @throws ApiException if fails to make API call
@@ -442,7 +442,7 @@ public class TwitterEngagementApi {
   /**
    * Look up a tweet
    * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
-   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param accountId The account ID whose X token is used for the lookup (required)
    * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
    * @param headers Optional headers to include in the request
    * @return GetTweet200Response
@@ -456,7 +456,7 @@ public class TwitterEngagementApi {
   /**
    * Look up a tweet
    * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
-   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param accountId The account ID whose X token is used for the lookup (required)
    * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
    * @return ApiResponse&lt;GetTweet200Response&gt;
    * @throws ApiException if fails to make API call
@@ -468,7 +468,7 @@ public class TwitterEngagementApi {
   /**
    * Look up a tweet
    * Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
-   * @param accountId The social account ID whose X token is used for the lookup (required)
+   * @param accountId The account ID whose X token is used for the lookup (required)
    * @param id Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetTweet200Response&gt;
@@ -836,8 +836,8 @@ public class TwitterEngagementApi {
 
   /**
    * Search recent tweets
-   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
-   * @param accountId The social account ID (required)
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The account ID (required)
    * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
    * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
    * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
@@ -855,8 +855,8 @@ public class TwitterEngagementApi {
 
   /**
    * Search recent tweets
-   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
-   * @param accountId The social account ID (required)
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The account ID (required)
    * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
    * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
    * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
@@ -876,8 +876,8 @@ public class TwitterEngagementApi {
 
   /**
    * Search recent tweets
-   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
-   * @param accountId The social account ID (required)
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The account ID (required)
    * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
    * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
    * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
@@ -895,8 +895,8 @@ public class TwitterEngagementApi {
 
   /**
    * Search recent tweets
-   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
-   * @param accountId The social account ID (required)
+   * Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+   * @param accountId The account ID (required)
    * @param query X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. (required)
    * @param limit Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)
    * @param sinceId Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)
@@ -1162,9 +1162,9 @@ public class TwitterEngagementApi {
 
   /**
    * Unfollow a user
-   * Unfollow a user on X/Twitter. 
+   * Unfollow a user on X. 
    * @param accountId  (required)
-   * @param targetUserId The Twitter ID of the user to unfollow (required)
+   * @param targetUserId The X ID of the user to unfollow (required)
    * @return UnfollowUser200Response
    * @throws ApiException if fails to make API call
    */
@@ -1174,9 +1174,9 @@ public class TwitterEngagementApi {
 
   /**
    * Unfollow a user
-   * Unfollow a user on X/Twitter. 
+   * Unfollow a user on X. 
    * @param accountId  (required)
-   * @param targetUserId The Twitter ID of the user to unfollow (required)
+   * @param targetUserId The X ID of the user to unfollow (required)
    * @param headers Optional headers to include in the request
    * @return UnfollowUser200Response
    * @throws ApiException if fails to make API call
@@ -1188,9 +1188,9 @@ public class TwitterEngagementApi {
 
   /**
    * Unfollow a user
-   * Unfollow a user on X/Twitter. 
+   * Unfollow a user on X. 
    * @param accountId  (required)
-   * @param targetUserId The Twitter ID of the user to unfollow (required)
+   * @param targetUserId The X ID of the user to unfollow (required)
    * @return ApiResponse&lt;UnfollowUser200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1200,9 +1200,9 @@ public class TwitterEngagementApi {
 
   /**
    * Unfollow a user
-   * Unfollow a user on X/Twitter. 
+   * Unfollow a user on X. 
    * @param accountId  (required)
-   * @param targetUserId The Twitter ID of the user to unfollow (required)
+   * @param targetUserId The X ID of the user to unfollow (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnfollowUser200Response&gt;
    * @throws ApiException if fails to make API call

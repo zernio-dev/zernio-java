@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Billed spend by product family over a window, from Metronome&#39;s invoice breakdown (the CHARGE view). Returned by &#x60;GET /v1/usage&#x60;. 
+ * Billed spend by product family over a window, from the usage-based invoice breakdown (the CHARGE view). Returned by &#x60;GET /v1/usage&#x60;. 
  */
 @JsonPropertyOrder({
   UsageMetering.JSON_PROPERTY_SUPPORTED,
@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   UsageMetering.JSON_PROPERTY_ATTRIBUTION,
   UsageMetering.JSON_PROPERTY_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMetering {
   public static final String JSON_PROPERTY_SUPPORTED = "supported";
   @javax.annotation.Nullable
@@ -148,7 +148,7 @@ public class UsageMetering {
   }
 
   /**
-   * False for legacy Stripe accounts (no Metronome invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero.
+   * False for legacy Stripe accounts (no usage-based invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero.
    * @return supported
    */
   @javax.annotation.Nullable

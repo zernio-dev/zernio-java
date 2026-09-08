@@ -39,7 +39,7 @@ public class Example {
 
         AdLibraryApi apiInstance = new AdLibraryApi(defaultClient);
         String platform = "meta"; // String | Which archive to search. `meta` needs no accountId. Required unless accountId is given.
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform.
         String q = "q_example"; // String | Keyword search. Meta does not translate it, so write it in the ads' language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given.
         String pageIds = "pageIds_example"; // String | Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list.
         String advertiser = "advertiser_example"; // String | LinkedIn only. Advertiser (Page) name to search.
@@ -75,7 +75,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. | [optional] [enum: meta, linkedin] |
-| **accountId** | **String**| Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. | [optional] |
+| **accountId** | **String**| Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. | [optional] |
 | **q** | **String**| Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. | [optional] |
 | **pageIds** | **String**| Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. | [optional] |
 | **advertiser** | **String**| LinkedIn only. Advertiser (Page) name to search. | [optional] |
@@ -148,7 +148,7 @@ public class Example {
 
         AdLibraryApi apiInstance = new AdLibraryApi(defaultClient);
         String platform = "meta"; // String | Which archive to search. `meta` needs no accountId. Required unless accountId is given.
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform.
         String q = "q_example"; // String | Keyword search. Meta does not translate it, so write it in the ads' language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given.
         String pageIds = "pageIds_example"; // String | Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list.
         String advertiser = "advertiser_example"; // String | LinkedIn only. Advertiser (Page) name to search.
@@ -186,7 +186,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. | [optional] [enum: meta, linkedin] |
-| **accountId** | **String**| Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. | [optional] |
+| **accountId** | **String**| Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. | [optional] |
 | **q** | **String**| Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. | [optional] |
 | **pageIds** | **String**| Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. | [optional] |
 | **advertiser** | **String**| LinkedIn only. Advertiser (Page) name to search. | [optional] |

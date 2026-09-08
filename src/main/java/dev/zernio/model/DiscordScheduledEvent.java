@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints. Fields below are the subset Zernio consumes — Discord may return more (e.g. creator, image hash) which we pass through verbatim. 
+ * Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints. Fields below are the subset Zernio consumes. Discord may return more (e.g. creator, image hash) which we pass through verbatim. 
  */
 @JsonPropertyOrder({
   DiscordScheduledEvent.JSON_PROPERTY_ID,
@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   DiscordScheduledEvent.JSON_PROPERTY_USER_COUNT,
   DiscordScheduledEvent.JSON_PROPERTY_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordScheduledEvent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -86,7 +86,7 @@ public class DiscordScheduledEvent {
   private JsonNullable<OffsetDateTime> scheduledEndTime = JsonNullable.<OffsetDateTime>undefined();
 
   /**
-   * Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
+   * Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events.
    */
   public enum PrivacyLevelEnum {
     NUMBER_2(Integer.valueOf(2));
@@ -453,7 +453,7 @@ public class DiscordScheduledEvent {
   }
 
   /**
-   * Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
+   * Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events.
    * @return privacyLevel
    */
   @javax.annotation.Nullable

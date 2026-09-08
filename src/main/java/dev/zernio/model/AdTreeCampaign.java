@@ -80,7 +80,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_AD_SETS,
   AdTreeCampaign.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -348,7 +348,7 @@ public class AdTreeCampaign {
   }
 
   /**
-   * Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced) — a campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.
+   * Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced). A campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.
    * @return createdTime
    */
   @javax.annotation.Nullable
@@ -640,7 +640,7 @@ public class AdTreeCampaign {
   }
 
   /**
-   * Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.
+   * Meta-only. Mirrors Campaign.is_budget_schedule_enabled: true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.
    * @return isBudgetScheduleEnabled
    */
   @javax.annotation.Nullable
@@ -984,7 +984,7 @@ public class AdTreeCampaign {
   }
 
   /**
-   * Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).
+   * Representative ROAS floor for the campaign, bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).
    * @return roasAverageFloor
    */
   @javax.annotation.Nullable
@@ -1080,7 +1080,7 @@ public class AdTreeCampaign {
   }
 
   /**
-   * Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it.
+   * Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend. Summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it.
    * @return daily
    */
   @javax.annotation.Nullable

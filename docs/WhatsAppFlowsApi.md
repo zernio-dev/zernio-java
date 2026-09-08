@@ -217,7 +217,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteWhatsAppFlow(flowId, accountId);
             System.out.println(result);
@@ -238,7 +238,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -293,7 +293,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteWhatsAppFlowWithHttpInfo(flowId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -316,7 +316,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -525,7 +525,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String fields = "fields_example"; // String | Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri)
         try {
             GetWhatsAppFlow200Response result = apiInstance.getWhatsAppFlow(flowId, accountId, fields);
@@ -547,7 +547,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **fields** | **String**| Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) | [optional] |
 
 ### Return type
@@ -602,7 +602,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String fields = "fields_example"; // String | Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri)
         try {
             ApiResponse<GetWhatsAppFlow200Response> response = apiInstance.getWhatsAppFlowWithHttpInfo(flowId, accountId, fields);
@@ -626,7 +626,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **fields** | **String**| Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) | [optional] |
 
 ### Return type
@@ -681,7 +681,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppFlowJson200Response result = apiInstance.getWhatsAppFlowJson(flowId, accountId);
             System.out.println(result);
@@ -702,7 +702,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -756,7 +756,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppFlowJson200Response> response = apiInstance.getWhatsAppFlowJsonWithHttpInfo(flowId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -779,7 +779,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -833,7 +833,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Boolean invalidate = true; // Boolean | Mint a fresh preview link (default false)
         try {
             GetWhatsAppFlowPreview200Response result = apiInstance.getWhatsAppFlowPreview(flowId, accountId, invalidate);
@@ -855,7 +855,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **invalidate** | **Boolean**| Mint a fresh preview link (default false) | [optional] |
 
 ### Return type
@@ -910,7 +910,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Boolean invalidate = true; // Boolean | Mint a fresh preview link (default false)
         try {
             ApiResponse<GetWhatsAppFlowPreview200Response> response = apiInstance.getWhatsAppFlowPreviewWithHttpInfo(flowId, accountId, invalidate);
@@ -934,7 +934,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **invalidate** | **Boolean**| Mint a fresh preview link (default false) | [optional] |
 
 ### Return type
@@ -988,7 +988,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppFlowsEncryptionKey200Response result = apiInstance.getWhatsAppFlowsEncryptionKey(accountId);
             System.out.println(result);
@@ -1008,7 +1008,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1064,7 +1064,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> response = apiInstance.getWhatsAppFlowsEncryptionKeyWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1086,7 +1086,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1119,7 +1119,7 @@ ApiResponse<[**GetWhatsAppFlowsEncryptionKey200Response**](GetWhatsAppFlowsEncry
 
 List flow responses
 
-List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
 
 ### Example
 
@@ -1142,7 +1142,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String flowId = "flowId_example"; // String | Scope to responses for this flow
         Integer limit = 50; // Integer | Max responses to return
         try {
@@ -1164,7 +1164,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **flowId** | **String**| Scope to responses for this flow | [optional] |
 | **limit** | **Integer**| Max responses to return | [optional] [default to 50] |
 
@@ -1195,7 +1195,7 @@ public class Example {
 
 List flow responses
 
-List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
 
 ### Example
 
@@ -1219,7 +1219,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String flowId = "flowId_example"; // String | Scope to responses for this flow
         Integer limit = 50; // Integer | Max responses to return
         try {
@@ -1243,7 +1243,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **flowId** | **String**| Scope to responses for this flow | [optional] |
 | **limit** | **Integer**| Max responses to return | [optional] [default to 50] |
 
@@ -1275,7 +1275,7 @@ ApiResponse<[**ListWhatsAppFlowResponses200Response**](ListWhatsAppFlowResponses
 
 List flow versions
 
-List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
 
 ### Example
 
@@ -1299,7 +1299,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ListWhatsAppFlowVersions200Response result = apiInstance.listWhatsAppFlowVersions(flowId, accountId);
             System.out.println(result);
@@ -1320,7 +1320,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1349,7 +1349,7 @@ public class Example {
 
 List flow versions
 
-List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
 
 ### Example
 
@@ -1374,7 +1374,7 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<ListWhatsAppFlowVersions200Response> response = apiInstance.listWhatsAppFlowVersionsWithHttpInfo(flowId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1397,7 +1397,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1450,7 +1450,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ListWhatsAppFlows200Response result = apiInstance.listWhatsAppFlows(accountId);
             System.out.println(result);
@@ -1470,7 +1470,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1524,7 +1524,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<ListWhatsAppFlows200Response> response = apiInstance.listWhatsAppFlowsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1546,7 +1546,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 

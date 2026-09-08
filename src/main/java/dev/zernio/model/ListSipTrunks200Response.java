@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListSipTrunks200Response.JSON_PROPERTY_TRUNKS,
   ListSipTrunks200Response.JSON_PROPERTY_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSipTrunks200Response {
   public static final String JSON_PROPERTY_TRUNKS = "trunks";
   @javax.annotation.Nullable
@@ -90,7 +90,7 @@ public class ListSipTrunks200Response {
   }
 
   /**
-   * Whether this workspace can create SIP trunks. Managing existing trunks always works.
+   * Whether this team can create SIP trunks. Managing existing trunks always works.
    * @return enabled
    */
   @javax.annotation.Nullable

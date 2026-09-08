@@ -40,9 +40,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, or a quote-reply to an earlier message)
+ * Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, or a WhatsApp inbound that Meta Business Agent is answering)
  */
 @JsonPropertyOrder({
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_STANDBY,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_QUOTED_MESSAGE_ID,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_QUOTED_MESSAGE,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_QUICK_REPLY_PAYLOAD,
@@ -65,8 +66,12 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
+  public static final String JSON_PROPERTY_STANDBY = "standby";
+  @javax.annotation.Nullable
+  private Boolean standby;
+
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
   private String quotedMessageId;
@@ -225,6 +230,30 @@ public class WebhookPayloadMessageMetadata {
 
   public WebhookPayloadMessageMetadata() { 
   }
+
+  public WebhookPayloadMessageMetadata standby(@javax.annotation.Nullable Boolean standby) {
+    this.standby = standby;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. true when this inbound arrived while Meta Business Agent held the conversation: the agent answers it, and Zernio only observes. Sending a reply takes control back. See conversation.control_changed.
+   * @return standby
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STANDBY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getStandby() {
+    return standby;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STANDBY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStandby(@javax.annotation.Nullable Boolean standby) {
+    this.standby = standby;
+  }
+
 
   public WebhookPayloadMessageMetadata quotedMessageId(@javax.annotation.Nullable String quotedMessageId) {
     this.quotedMessageId = quotedMessageId;
@@ -728,7 +757,7 @@ public class WebhookPayloadMessageMetadata {
   }
 
   /**
-   * Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, just the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;. 
+   * Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, only the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;. 
    * @return noRenderableContent
    */
   @javax.annotation.Nullable
@@ -758,7 +787,8 @@ public class WebhookPayloadMessageMetadata {
       return false;
     }
     WebhookPayloadMessageMetadata webhookPayloadMessageMetadata = (WebhookPayloadMessageMetadata) o;
-    return Objects.equals(this.quotedMessageId, webhookPayloadMessageMetadata.quotedMessageId) &&
+    return Objects.equals(this.standby, webhookPayloadMessageMetadata.standby) &&
+        Objects.equals(this.quotedMessageId, webhookPayloadMessageMetadata.quotedMessageId) &&
         Objects.equals(this.quotedMessage, webhookPayloadMessageMetadata.quotedMessage) &&
         Objects.equals(this.quickReplyPayload, webhookPayloadMessageMetadata.quickReplyPayload) &&
         Objects.equals(this.postbackPayload, webhookPayloadMessageMetadata.postbackPayload) &&
@@ -783,13 +813,14 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotedMessageId, quotedMessage, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
+    return Objects.hash(standby, quotedMessageId, quotedMessage, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageMetadata {\n");
+    sb.append("    standby: ").append(toIndentedString(standby)).append("\n");
     sb.append("    quotedMessageId: ").append(toIndentedString(quotedMessageId)).append("\n");
     sb.append("    quotedMessage: ").append(toIndentedString(quotedMessage)).append("\n");
     sb.append("    quickReplyPayload: ").append(toIndentedString(quickReplyPayload)).append("\n");
@@ -857,6 +888,11 @@ public class WebhookPayloadMessageMetadata {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `standby` to the URL query string
+    if (getStandby() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstandby%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStandby()))));
+    }
 
     // add `quotedMessageId` to the URL query string
     if (getQuotedMessageId() != null) {

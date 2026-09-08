@@ -14,7 +14,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**participantName** | **String** |  |  [optional] |
 |**participantId** | **String** |  |  [optional] |
-|**participantVerifiedType** | [**ParticipantVerifiedTypeEnum**](#ParticipantVerifiedTypeEnum) | X/Twitter verified badge type. Only present for Twitter/X conversations. |  [optional] |
+|**participantVerifiedType** | [**ParticipantVerifiedTypeEnum**](#ParticipantVerifiedTypeEnum) | X verified badge type. Only present for X conversations. |  [optional] |
 |**lastMessage** | **String** |  |  [optional] |
 |**lastMessageAt** | **OffsetDateTime** |  |  [optional] |
 |**updatedTime** | **OffsetDateTime** |  |  [optional] |

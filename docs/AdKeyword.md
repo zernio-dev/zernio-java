@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
-|**accountId** | **String** | Social account ID owning the sync |  [optional] |
+|**accountId** | **String** | Account ID owning the sync |  [optional] |
 |**profileId** | **String** |  |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**adAccountId** | **String** | Google customer ID |  [optional] |

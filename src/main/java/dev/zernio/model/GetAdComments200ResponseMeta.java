@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200ResponseMeta {
   /**
    * Which side these comments are on (same as &#x60;placement&#x60;).
@@ -92,7 +92,7 @@ public class GetAdComments200ResponseMeta {
   private PlatformEnum platform;
 
   /**
-   * The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+   * The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
    */
   public enum PlacementEnum {
     FACEBOOK(String.valueOf("facebook")),
@@ -198,7 +198,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+   * The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
    * @return placement
    */
   @javax.annotation.Nonnull
@@ -294,7 +294,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
+   * Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
    * @return facebookAccountId
    */
   @javax.annotation.Nullable
@@ -374,7 +374,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Instagram-only. The connected Instagram SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.
+   * Instagram-only. The connected Instagram SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.
    * @return instagramAccountId
    */
   @javax.annotation.Nullable
@@ -398,7 +398,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Social account ID (ads SocialAccount).
+   * Account ID (ads SocialAccount).
    * @return accountId
    */
   @javax.annotation.Nonnull

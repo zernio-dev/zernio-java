@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   Blog.JSON_PROPERTY_TITLE,
   Blog.JSON_PROPERTY_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Blog {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

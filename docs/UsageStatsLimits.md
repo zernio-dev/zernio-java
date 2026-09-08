@@ -2,7 +2,7 @@
 
 # UsageStatsLimits
 
-Plan limits. For Metronome users both fields are `-1` (unlimited).
+Plan limits. For accounts on usage-based billing both fields are `-1` (unlimited).
 
 ## Properties
 

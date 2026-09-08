@@ -2,7 +2,7 @@
 
 # GetInboxPostComments200ResponseMetaAdComments
 
-(Facebook/Instagram only) Present when this post has no organic comments but is a boosted post — the engagement lives on the ad. Use the ad-comments endpoint instead.
+(Facebook/Instagram only) Present when this post has no organic comments but is a boosted post: the engagement lives on the ad. Use the ad-comments endpoint instead.
 
 ## Properties
 

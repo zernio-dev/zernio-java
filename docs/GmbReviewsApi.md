@@ -175,7 +175,7 @@ ApiResponse<[**BatchGetGoogleBusinessReviews200Response**](BatchGetGoogleBusines
 
 Delete a review reply
 
-Removes the business owner reply from a Google Business review. The review itself remains.
+Removes the business owner reply from a Google Business Profile review. The review itself remains.
 
 ### Example
 
@@ -240,7 +240,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply deleted successfully |  -  |
-| **400** | Invalid request, non-GBP account, or account missing location metadata |  -  |
+| **400** | Invalid request, non-Google Business Profile account, or account missing location metadata |  -  |
 | **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to delete reply |  -  |
@@ -251,7 +251,7 @@ public class Example {
 
 Delete a review reply
 
-Removes the business owner reply from a Google Business review. The review itself remains.
+Removes the business owner reply from a Google Business Profile review. The review itself remains.
 
 ### Example
 
@@ -319,7 +319,7 @@ ApiResponse<[**DeleteGoogleBusinessReviewReply200Response**](DeleteGoogleBusines
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply deleted successfully |  -  |
-| **400** | Invalid request, non-GBP account, or account missing location metadata |  -  |
+| **400** | Invalid request, non-Google Business Profile account, or account missing location metadata |  -  |
 | **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to delete reply |  -  |
@@ -331,7 +331,7 @@ ApiResponse<[**DeleteGoogleBusinessReviewReply200Response**](DeleteGoogleBusines
 
 Get a review
 
-Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
 
 ### Example
 
@@ -409,7 +409,7 @@ public class Example {
 
 Get a review
 
-Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
 
 ### Example
 
@@ -491,7 +491,7 @@ ApiResponse<[**GetGoogleBusinessReview200Response**](GetGoogleBusinessReview200R
 
 Get reviews
 
-Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
 
 ### Example
 
@@ -560,7 +560,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reviews fetched successfully |  -  |
-| **400** | Invalid request - not a Google Business account or missing location |  -  |
+| **400** | Invalid request - not a Google Business Profile account or missing location |  -  |
 | **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
@@ -572,7 +572,7 @@ public class Example {
 
 Get reviews
 
-Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
 
 ### Example
 
@@ -644,7 +644,7 @@ ApiResponse<[**GetGoogleBusinessReviews200Response**](GetGoogleBusinessReviews20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reviews fetched successfully |  -  |
-| **400** | Invalid request - not a Google Business account or missing location |  -  |
+| **400** | Invalid request - not a Google Business Profile account or missing location |  -  |
 | **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
@@ -657,7 +657,7 @@ ApiResponse<[**GetGoogleBusinessReviews200Response**](GetGoogleBusinessReviews20
 
 Reply to a review
 
-Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
 
 ### Example
 
@@ -724,7 +724,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply posted successfully |  -  |
-| **400** | Invalid request, missing comment, non-GBP account, or account missing location metadata |  -  |
+| **400** | Invalid request, missing comment, non-Google Business Profile account, or account missing location metadata |  -  |
 | **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to post reply |  -  |
@@ -735,7 +735,7 @@ public class Example {
 
 Reply to a review
 
-Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
 
 ### Example
 
@@ -805,7 +805,7 @@ ApiResponse<[**ReplyToGoogleBusinessReview200Response**](ReplyToGoogleBusinessRe
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply posted successfully |  -  |
-| **400** | Invalid request, missing comment, non-GBP account, or account missing location metadata |  -  |
+| **400** | Invalid request, missing comment, non-Google Business Profile account, or account missing location metadata |  -  |
 | **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to post reply |  -  |

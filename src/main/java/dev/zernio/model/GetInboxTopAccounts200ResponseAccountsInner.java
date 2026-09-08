@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxTopAccounts200ResponseAccountsInner.JSON_PROPERTY_MEDIAN_RESPONSE_SECONDS,
   GetInboxTopAccounts200ResponseAccountsInner.JSON_PROPERTY_REPLIED_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxTopAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -311,7 +311,7 @@ public class GetInboxTopAccounts200ResponseAccountsInner {
   }
 
   /**
-   * Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as &#39;—&#39; instead of &#39;0s&#39;
+   * Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as an em dash instead of &#39;0s&#39;
    * @return repliedCount
    */
   @javax.annotation.Nullable

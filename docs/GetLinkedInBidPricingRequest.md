@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | Zernio social account ID (LinkedIn). |  |
+|**accountId** | **String** | Zernio account ID (LinkedIn). |  |
 |**adAccountId** | **String** | LinkedIn ad account ID (numeric). |  |
 |**spec** | [**TargetingSpec**](TargetingSpec.md) | Same targeting spec used by POST /v1/ads/create. |  |
 |**campaignType** | [**CampaignTypeEnum**](#CampaignTypeEnum) | Defaults to SPONSORED_UPDATES. |  [optional] |

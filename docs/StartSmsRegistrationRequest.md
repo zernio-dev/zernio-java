@@ -13,7 +13,7 @@
 |**campaign** | [**StartSmsRegistrationRequestCampaign**](StartSmsRegistrationRequestCampaign.md) |  |  [optional] |
 |**messagingBrandName** | **String** | DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets. |  [optional] |
 |**wizardValues** | **Map&lt;String, String&gt;** | Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit. |  [optional] |
-|**resubmitRequestId** | **String** | Resubmit a registration that was returned for changes — updates it in place instead of creating a new one. |  [optional] |
+|**resubmitRequestId** | **String** | Resubmit a registration that was returned for changes. Updates it in place instead of creating a new one. |  [optional] |
 |**tollFree** | [**StartSmsRegistrationRequestTollFree**](StartSmsRegistrationRequestTollFree.md) |  |  [optional] |
 
 

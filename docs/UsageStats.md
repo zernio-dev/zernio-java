@@ -2,7 +2,7 @@
 
 # UsageStats
 
-Plan and usage stats. The response shape depends on `billingSystem`:   * Stripe users (default): per-period counters like `usage.uploads` and     `usage.profiles` are returned, scoped by the plan's `limits`.   * Metronome users (usage-based): `limits` are unlimited (-1). The     `usage` block carries connected-account and per-X-operation counts,     and the `spend` block carries current-period costs plus the X cap. 
+Plan and usage stats. The response shape depends on `billingSystem`:   * Stripe users (default): per-period counters like `usage.uploads` and     `usage.profiles` are returned, scoped by the plan's `limits`.   * Usage-based billing users: `limits` are unlimited (-1). The     `usage` block carries connected-account and per-X-operation counts,     and the `spend` block carries current-period costs plus the X cap. 
 
 ## Properties
 
@@ -16,7 +16,7 @@ Plan and usage stats. The response shape depends on `billingSystem`:   * Stripe 
 |**hasAccess** | **Boolean** | True if the account is in good standing. False for past-due/unpaid/paused subscriptions. |  [optional] |
 |**customerId** | **String** | Stripe customer ID, when present. |  [optional] |
 |**isInvitedUser** | **Boolean** | True if this is a team member; limits/usage reflect the account owner. |  [optional] |
-|**autoUpgradeEnabled** | **Boolean** | Stripe-only. Always false for Metronome users. |  [optional] |
+|**autoUpgradeEnabled** | **Boolean** | Stripe-only. Always false for accounts on usage-based billing. |  [optional] |
 |**limits** | [**UsageStatsLimits**](UsageStatsLimits.md) |  |  [optional] |
 |**usage** | [**UsageStatsUsage**](UsageStatsUsage.md) |  |  [optional] |
 |**spend** | [**UsageStatsSpend**](UsageStatsSpend.md) |  |  [optional] |

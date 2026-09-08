@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | WhatsApp social account ID |  |
+|**accountId** | **String** | WhatsApp account ID |  |
 |**name** | **String** | Flow display name |  |
 |**categories** | [**List&lt;CategoriesEnum&gt;**](#List&lt;CategoriesEnum&gt;) | Flow categories |  |
 |**cloneFlowId** | **String** | Optional: ID of an existing flow to clone the Flow JSON from |  [optional] |

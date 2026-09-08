@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Account billing state — plan, cycle, balance, spend caps, and payment / access status. Returned by &#x60;GET /v1/billing&#x60;. 
+ * Account billing state: plan, cycle, balance, spend caps, and payment / access status. Returned by &#x60;GET /v1/billing&#x60;. 
  */
 @JsonPropertyOrder({
   BillingSnapshot.JSON_PROPERTY_BILLING_SYSTEM,
@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   BillingSnapshot.JSON_PROPERTY_STATUS,
   BillingSnapshot.JSON_PROPERTY_LEGACY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshot {
   /**
    * Gets or Sets billingSystem

@@ -43,7 +43,7 @@ public class Example {
 
         GmbAttributesApi apiInstance = new GmbAttributesApi(defaultClient);
         String accountId = "accountId_example"; // String | 
-        String locationId = "locationId_example"; // String | GBP location ID (e.g. \"6257659026299438786\"). If omitted, uses the account's stored selectedLocationId. Mutually exclusive with categoryName. 
+        String locationId = "locationId_example"; // String | Google Business Profile location ID (e.g. \"6257659026299438786\"). If omitted, uses the account's stored selectedLocationId. Mutually exclusive with categoryName. 
         String categoryName = "categoryName_example"; // String | Category resource name, must start with \"categories/\" (e.g. \"categories/gcid:plumber\"). Required together with regionCode. Mutually exclusive with locationId. 
         String regionCode = "regionCode_example"; // String | BCP-47 region code (e.g. \"US\", \"ES\"). Required when categoryName is provided. 
         String languageCode = "languageCode_example"; // String | BCP-47 language code for display names (e.g. \"en\", \"es\"). Optional when categoryName is provided. Omitted from the Google call when not supplied. 
@@ -69,7 +69,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
-| **locationId** | **String**| GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  | [optional] |
+| **locationId** | **String**| Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  | [optional] |
 | **categoryName** | **String**| Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  | [optional] |
 | **regionCode** | **String**| BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  | [optional] |
 | **languageCode** | **String**| BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  | [optional] |
@@ -129,7 +129,7 @@ public class Example {
 
         GmbAttributesApi apiInstance = new GmbAttributesApi(defaultClient);
         String accountId = "accountId_example"; // String | 
-        String locationId = "locationId_example"; // String | GBP location ID (e.g. \"6257659026299438786\"). If omitted, uses the account's stored selectedLocationId. Mutually exclusive with categoryName. 
+        String locationId = "locationId_example"; // String | Google Business Profile location ID (e.g. \"6257659026299438786\"). If omitted, uses the account's stored selectedLocationId. Mutually exclusive with categoryName. 
         String categoryName = "categoryName_example"; // String | Category resource name, must start with \"categories/\" (e.g. \"categories/gcid:plumber\"). Required together with regionCode. Mutually exclusive with locationId. 
         String regionCode = "regionCode_example"; // String | BCP-47 region code (e.g. \"US\", \"ES\"). Required when categoryName is provided. 
         String languageCode = "languageCode_example"; // String | BCP-47 language code for display names (e.g. \"en\", \"es\"). Optional when categoryName is provided. Omitted from the Google call when not supplied. 
@@ -157,7 +157,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
-| **locationId** | **String**| GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  | [optional] |
+| **locationId** | **String**| Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  | [optional] |
 | **categoryName** | **String**| Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  | [optional] |
 | **regionCode** | **String**| BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  | [optional] |
 | **languageCode** | **String**| BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  | [optional] |
@@ -193,7 +193,7 @@ ApiResponse<[**GetGmbAttributeMetadata200Response**](GetGmbAttributeMetadata200R
 
 Get attributes
 
-Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
 
 ### Example
 
@@ -267,7 +267,7 @@ public class Example {
 
 Get attributes
 
-Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
 
 ### Example
 

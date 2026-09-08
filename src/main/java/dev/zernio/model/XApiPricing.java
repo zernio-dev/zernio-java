@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Canonical X/Twitter API pricing table. Zernio passes X API costs through at exact rates with zero markup, so every call you make has a known per-unit price. Use this payload alongside &#x60;/v1/usage-stats&#x60; (which returns per-operation call counts via &#x60;xApiCallsByOperation&#x60;) to compute exact cost attribution by X action. 
+ * Canonical X API pricing table. Zernio passes X API costs through at exact rates with zero markup, so every call you make has a known per-unit price. Use this payload alongside &#x60;/v1/usage-stats&#x60; (which returns per-operation call counts via &#x60;xApiCallsByOperation&#x60;) to compute exact cost attribution by X action. 
  */
 @JsonPropertyOrder({
   XApiPricing.JSON_PROPERTY_CURRENCY,
@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   XApiPricing.JSON_PROPERTY_TIERS,
   XApiPricing.JSON_PROPERTY_OPERATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiPricing {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
@@ -105,7 +105,7 @@ public class XApiPricing {
   }
 
   /**
-   * Always 0% — Zernio does not mark up X API rates.
+   * Always 0%, because Zernio does not mark up X API rates.
    * @return markup
    */
   @javax.annotation.Nullable

@@ -36,14 +36,14 @@ import dev.zernio.ApiClient;
   XApiOperationTriggeredByInner.JSON_PROPERTY_METHOD,
   XApiOperationTriggeredByInner.JSON_PROPERTY_METERING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiOperationTriggeredByInner {
   public static final String JSON_PROPERTY_METHOD = "method";
   @javax.annotation.Nullable
   private String method;
 
   /**
-   * When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed 
+   * When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed 
    */
   public enum MeteringEnum {
     ALWAYS(String.valueOf("always")),
@@ -118,7 +118,7 @@ public class XApiOperationTriggeredByInner {
   }
 
   /**
-   * When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed 
+   * When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed 
    * @return metering
    */
   @javax.annotation.Nullable

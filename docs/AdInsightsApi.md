@@ -248,7 +248,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
-| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -325,7 +325,7 @@ ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHis
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
-| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -400,7 +400,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
-| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -477,7 +477,7 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
-| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -819,7 +819,7 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 
 Google Ads search terms report
 
-The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
 ### Example
 
@@ -905,7 +905,7 @@ public class Example {
 
 Google Ads search terms report
 
-The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
 ### Example
 
@@ -1533,7 +1533,7 @@ public class Example {
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
-        String objectId = "objectId_example"; // String | Meta only (required there): insights node — act_<n>, campaign id, ad set id or ad id.
+        String objectId = "objectId_example"; // String | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id).
         String query = "query_example"; // String | Google only (required there): the GAQL SELECT statement to run.
         String customerId = "customerId_example"; // String | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts.
         String pageToken = "pageToken_example"; // String | Google only: cursor from paging.nextPageToken of the previous page.
@@ -1571,7 +1571,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. | |
-| **objectId** | **String**| Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. | [optional] |
+| **objectId** | **String**| Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional] |
 | **query** | **String**| Google only (required there): the GAQL SELECT statement to run. | [optional] |
 | **customerId** | **String**| Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional] |
 | **pageToken** | **String**| Google only: cursor from paging.nextPageToken of the previous page. | [optional] |
@@ -1608,7 +1608,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Insight rows (raw platform shape) |  -  |
-| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL) — message carries the platform&#39;s error |  -  |
+| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |
@@ -1644,7 +1644,7 @@ public class Example {
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
-        String objectId = "objectId_example"; // String | Meta only (required there): insights node — act_<n>, campaign id, ad set id or ad id.
+        String objectId = "objectId_example"; // String | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id).
         String query = "query_example"; // String | Google only (required there): the GAQL SELECT statement to run.
         String customerId = "customerId_example"; // String | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts.
         String pageToken = "pageToken_example"; // String | Google only: cursor from paging.nextPageToken of the previous page.
@@ -1684,7 +1684,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. | |
-| **objectId** | **String**| Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. | [optional] |
+| **objectId** | **String**| Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional] |
 | **query** | **String**| Google only (required there): the GAQL SELECT statement to run. | [optional] |
 | **customerId** | **String**| Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional] |
 | **pageToken** | **String**| Google only: cursor from paging.nextPageToken of the previous page. | [optional] |
@@ -1721,7 +1721,7 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Insight rows (raw platform shape) |  -  |
-| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL) — message carries the platform&#39;s error |  -  |
+| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |

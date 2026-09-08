@@ -52,11 +52,12 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_UPDATED_TIME,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_STATUS,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_UNREAD_COUNT,
+  ListInboxConversations200ResponseDataInner.JSON_PROPERTY_THREAD_CONTROL,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_URL,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_INSTAGRAM_PROFILE,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -86,7 +87,7 @@ public class ListInboxConversations200ResponseDataInner {
   private JsonNullable<String> participantPicture = JsonNullable.<String>undefined();
 
   /**
-   * X/Twitter verified badge type. Only present for Twitter/X conversations.
+   * X verified badge type. Only present for X conversations.
    */
   public enum ParticipantVerifiedTypeEnum {
     BLUE(String.valueOf("blue")),
@@ -176,6 +177,47 @@ public class ListInboxConversations200ResponseDataInner {
 
   public static final String JSON_PROPERTY_UNREAD_COUNT = "unreadCount";
   private JsonNullable<Integer> unreadCount = JsonNullable.<Integer>undefined();
+
+  /**
+   * WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control.
+   */
+  public enum ThreadControlEnum {
+    APP(String.valueOf("app")),
+    
+    AI_AGENT(String.valueOf("ai_agent")),
+    
+    OTHER(String.valueOf("other"));
+
+    private String value;
+
+    ThreadControlEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ThreadControlEnum fromValue(String value) {
+      for (ThreadControlEnum b : ThreadControlEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_THREAD_CONTROL = "threadControl";
+  @javax.annotation.Nullable
+  private ThreadControlEnum threadControl;
 
   public static final String JSON_PROPERTY_URL = "url";
   private JsonNullable<String> url = JsonNullable.<String>undefined();
@@ -373,7 +415,7 @@ public class ListInboxConversations200ResponseDataInner {
   }
 
   /**
-   * X/Twitter verified badge type. Only present for Twitter/X conversations.
+   * X verified badge type. Only present for X conversations.
    * @return participantVerifiedType
    */
   @javax.annotation.Nullable
@@ -503,6 +545,30 @@ public class ListInboxConversations200ResponseDataInner {
   }
 
 
+  public ListInboxConversations200ResponseDataInner threadControl(@javax.annotation.Nullable ThreadControlEnum threadControl) {
+    this.threadControl = threadControl;
+    return this;
+  }
+
+  /**
+   * WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control.
+   * @return threadControl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THREAD_CONTROL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ThreadControlEnum getThreadControl() {
+    return threadControl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_THREAD_CONTROL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThreadControl(@javax.annotation.Nullable ThreadControlEnum threadControl) {
+    this.threadControl = threadControl;
+  }
+
+
   public ListInboxConversations200ResponseDataInner url(@javax.annotation.Nullable String url) {
     this.url = JsonNullable.<String>of(url);
     return this;
@@ -607,6 +673,7 @@ public class ListInboxConversations200ResponseDataInner {
         Objects.equals(this.updatedTime, listInboxConversations200ResponseDataInner.updatedTime) &&
         Objects.equals(this.status, listInboxConversations200ResponseDataInner.status) &&
         equalsNullable(this.unreadCount, listInboxConversations200ResponseDataInner.unreadCount) &&
+        Objects.equals(this.threadControl, listInboxConversations200ResponseDataInner.threadControl) &&
         equalsNullable(this.url, listInboxConversations200ResponseDataInner.url) &&
         Objects.equals(this.instagramProfile, listInboxConversations200ResponseDataInner.instagramProfile) &&
         Objects.equals(this.metadata, listInboxConversations200ResponseDataInner.metadata);
@@ -618,7 +685,7 @@ public class ListInboxConversations200ResponseDataInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, participantId, participantName, hashCodeNullable(participantPicture), hashCodeNullable(participantVerifiedType), lastMessage, updatedTime, status, hashCodeNullable(unreadCount), hashCodeNullable(url), instagramProfile, metadata);
+    return Objects.hash(id, platform, accountId, accountUsername, participantId, participantName, hashCodeNullable(participantPicture), hashCodeNullable(participantVerifiedType), lastMessage, updatedTime, status, hashCodeNullable(unreadCount), threadControl, hashCodeNullable(url), instagramProfile, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -644,6 +711,7 @@ public class ListInboxConversations200ResponseDataInner {
     sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    unreadCount: ").append(toIndentedString(unreadCount)).append("\n");
+    sb.append("    threadControl: ").append(toIndentedString(threadControl)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    instagramProfile: ").append(toIndentedString(instagramProfile)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
@@ -752,6 +820,11 @@ public class ListInboxConversations200ResponseDataInner {
     // add `unreadCount` to the URL query string
     if (getUnreadCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sunreadCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnreadCount()))));
+    }
+
+    // add `threadControl` to the URL query string
+    if (getThreadControl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sthreadControl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThreadControl()))));
     }
 
     // add `url` to the URL query string

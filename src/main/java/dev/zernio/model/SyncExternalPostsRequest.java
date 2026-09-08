@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SyncExternalPostsRequest.JSON_PROPERTY_URL,
   SyncExternalPostsRequest.JSON_PROPERTY_POST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SyncExternalPostsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -84,7 +84,7 @@ public class SyncExternalPostsRequest {
   }
 
   /**
-   * The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to just refresh and return the account&#39;s recent posts.
+   * The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to refresh and return the account&#39;s recent posts.
    * @return url
    */
   @javax.annotation.Nullable

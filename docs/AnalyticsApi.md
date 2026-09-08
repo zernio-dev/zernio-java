@@ -22,10 +22,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getFacebookPostReactionsWithHttpInfo**](AnalyticsApi.md#getFacebookPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions |
 | [**getFollowerStats**](AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
-| [**getGoogleBusinessPerformance**](AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get GBP performance metrics |
-| [**getGoogleBusinessPerformanceWithHttpInfo**](AnalyticsApi.md#getGoogleBusinessPerformanceWithHttpInfo) | **GET** /v1/analytics/googlebusiness/performance | Get GBP performance metrics |
-| [**getGoogleBusinessSearchKeywords**](AnalyticsApi.md#getGoogleBusinessSearchKeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get GBP search keywords |
-| [**getGoogleBusinessSearchKeywordsWithHttpInfo**](AnalyticsApi.md#getGoogleBusinessSearchKeywordsWithHttpInfo) | **GET** /v1/analytics/googlebusiness/search-keywords | Get GBP search keywords |
+| [**getGoogleBusinessPerformance**](AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics |
+| [**getGoogleBusinessPerformanceWithHttpInfo**](AnalyticsApi.md#getGoogleBusinessPerformanceWithHttpInfo) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics |
+| [**getGoogleBusinessSearchKeywords**](AnalyticsApi.md#getGoogleBusinessSearchKeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords |
+| [**getGoogleBusinessSearchKeywordsWithHttpInfo**](AnalyticsApi.md#getGoogleBusinessSearchKeywordsWithHttpInfo) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords |
 | [**getInstagramAccountInsights**](AnalyticsApi.md#getInstagramAccountInsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram insights |
 | [**getInstagramAccountInsightsWithHttpInfo**](AnalyticsApi.md#getInstagramAccountInsightsWithHttpInfo) | **GET** /v1/analytics/instagram/account-insights | Get Instagram insights |
 | [**getInstagramDemographics**](AnalyticsApi.md#getInstagramDemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram demographics |
@@ -91,7 +91,7 @@ public class Example {
         String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
         String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
-        String accountId = "accountId_example"; // String | Filter by social account ID
+        String accountId = "accountId_example"; // String | Filter by account ID
         String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
@@ -121,7 +121,7 @@ public class Example {
 | **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
 | **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
-| **accountId** | **String**| Filter by social account ID | [optional] |
+| **accountId** | **String**| Filter by account ID | [optional] |
 | **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
@@ -189,7 +189,7 @@ public class Example {
         String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
         String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
-        String accountId = "accountId_example"; // String | Filter by social account ID
+        String accountId = "accountId_example"; // String | Filter by account ID
         String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
@@ -221,7 +221,7 @@ public class Example {
 | **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
 | **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
-| **accountId** | **String**| Filter by social account ID | [optional] |
+| **accountId** | **String**| Filter by account ID | [optional] |
 | **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
@@ -263,7 +263,7 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 
 Analytics changed since a cursor
 
-Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you last used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
 
 ### Example
 
@@ -346,7 +346,7 @@ public class Example {
 
 Analytics changed since a cursor
 
-Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call &#x60;GET /v1/analytics&#x60; once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from &#x60;GET /v1/analytics&#x60;, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO &#x60;cursor&#x60;: it answers with an empty &#x60;data&#x60; array plus the feed&#39;s current position in &#x60;nextCursor&#x60;. Send that &#x60;nextCursor&#x60; back on the next call and you receive everything written since. &#x60;nextCursor&#x60; is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT &#x60;syncedAt&#x60;: &#x60;syncedAt&#x60; is stamped when an account&#39;s sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **&#x60;hasMore: false&#x60; does not mean the feed ended.** This stream has no end and &#x60;nextCursor&#x60; is never null. &#x60;hasMore: true&#x60; means more changes are already waiting, so call again straight away. &#x60;hasMore: false&#x60; means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an &#x60;analytics.synced&#x60; webhook lands will therefore often return an empty page for that account. Do not read an empty page as \&quot;nothing changed\&quot;: poll again with the SAME cursor you last used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a &#x60;400&#x60; (a day of margin, because expiry is lazy). Recover by re-bootstrapping from &#x60;GET /v1/analytics&#x60; and taking a fresh cursor from a call to this endpoint with no &#x60;cursor&#x60;. A consumer that polls at least daily never reaches this.  Pairs with the &#x60;analytics.synced&#x60; webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the &#x60;nextCursor&#x60; this endpoint gave you.  Requires the same analytics access as &#x60;GET /v1/analytics&#x60;, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
 
 ### Example
 
@@ -458,7 +458,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
+        String accountId = "accountId_example"; // String | Filter by account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetBestTimeToPost200Response result = apiInstance.getBestTimeToPost(platform, profileId, accountId, source);
@@ -481,7 +481,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
+| **accountId** | **String**| Filter by account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -537,7 +537,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
+        String accountId = "accountId_example"; // String | Filter by account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetBestTimeToPost200Response> response = apiInstance.getBestTimeToPostWithHttpInfo(platform, profileId, accountId, source);
@@ -562,7 +562,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
+| **accountId** | **String**| Filter by account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -618,7 +618,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
+        String accountId = "accountId_example"; // String | Filter by account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetContentDecay200Response result = apiInstance.getContentDecay(platform, profileId, accountId, source);
@@ -641,7 +641,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
+| **accountId** | **String**| Filter by account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -698,7 +698,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
+        String accountId = "accountId_example"; // String | Filter by account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetContentDecay200Response> response = apiInstance.getContentDecayWithHttpInfo(platform, profileId, accountId, source);
@@ -723,7 +723,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
+| **accountId** | **String**| Filter by account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -780,7 +780,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID
+        String accountId = "accountId_example"; // String | Filter by account ID
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
@@ -806,7 +806,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID | [optional] |
+| **accountId** | **String**| Filter by account ID | [optional] |
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
@@ -865,7 +865,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID
+        String accountId = "accountId_example"; // String | Filter by account ID
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
@@ -893,7 +893,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID | [optional] |
+| **accountId** | **String**| Filter by account ID | [optional] |
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
@@ -1255,7 +1255,7 @@ ApiResponse<[**FacebookPostEarningsResponse**](FacebookPostEarningsResponse.md)>
 
 Get Facebook post reactions
 
-Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. The post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
 
 ### Example
 
@@ -1331,7 +1331,7 @@ public class Example {
 
 Get Facebook post reactions
 
-Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. The post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
 
 ### Example
 
@@ -1411,7 +1411,7 @@ ApiResponse<[**GetFacebookPostReactions200Response**](GetFacebookPostReactions20
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected social accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
 
 ### Example
 
@@ -1491,7 +1491,7 @@ public class Example {
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected social accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
 
 ### Example
 
@@ -1573,7 +1573,7 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 
 > GetGoogleBusinessPerformance200Response getGoogleBusinessPerformance(accountId, metrics, startDate, endDate)
 
-Get GBP performance metrics
+Get Google Business Profile performance metrics
 
 Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
 
@@ -1653,7 +1653,7 @@ public class Example {
 
 > ApiResponse<GetGoogleBusinessPerformance200Response> getGoogleBusinessPerformance getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate)
 
-Get GBP performance metrics
+Get Google Business Profile performance metrics
 
 Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
 
@@ -1737,7 +1737,7 @@ ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerfo
 
 > GetGoogleBusinessSearchKeywords200Response getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth)
 
-Get GBP search keywords
+Get Google Business Profile search keywords
 
 Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
 
@@ -1815,7 +1815,7 @@ public class Example {
 
 > ApiResponse<GetGoogleBusinessSearchKeywords200Response> getGoogleBusinessSearchKeywords getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth)
 
-Get GBP search keywords
+Get Google Business Profile search keywords
 
 Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
 
@@ -3260,7 +3260,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
+        String accountId = "accountId_example"; // String | Filter by account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetPostingFrequency200Response result = apiInstance.getPostingFrequency(platform, profileId, accountId, source);
@@ -3283,7 +3283,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
+| **accountId** | **String**| Filter by account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -3339,7 +3339,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
+        String accountId = "accountId_example"; // String | Filter by account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetPostingFrequency200Response> response = apiInstance.getPostingFrequencyWithHttpInfo(platform, profileId, accountId, source);
@@ -3364,7 +3364,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
+| **accountId** | **String**| Filter by account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -4245,7 +4245,7 @@ ApiResponse<[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md
 
 Sync an external post
 
-Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a newly published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was synced inside that window, the live fetch is skipped.  &#x60;accountId&#x60; is required, because a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business Profile, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
 
 ### Example
 
@@ -4317,7 +4317,7 @@ public class Example {
 
 Sync an external post
 
-Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a newly published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was synced inside that window, the live fetch is skipped.  &#x60;accountId&#x60; is required, because a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business Profile, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
 
 ### Example
 

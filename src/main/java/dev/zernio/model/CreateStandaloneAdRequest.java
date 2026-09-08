@@ -163,7 +163,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -341,7 +341,7 @@ public class CreateStandaloneAdRequest {
   private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
 
   /**
-   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
    */
   public enum MultiAdvertiserEnum {
     OPT_IN(String.valueOf("OPT_IN")),
@@ -505,7 +505,7 @@ public class CreateStandaloneAdRequest {
   private CampaignStatusEnum campaignStatus;
 
   /**
-   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour; omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
    */
   public enum BudgetLevelEnum {
     ADSET(String.valueOf("adset")),
@@ -576,7 +576,7 @@ public class CreateStandaloneAdRequest {
   private List<String> descriptions = new ArrayList<>();
 
   /**
-   * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
+   * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X.
    */
   public enum CallToActionEnum {
     LEARN_MORE(String.valueOf("LEARN_MORE")),
@@ -1132,7 +1132,7 @@ public class CreateStandaloneAdRequest {
   private CreateStandaloneAdRequestBrandIdentity brandIdentity;
 
   /**
-   * TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. 
+   * TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field, because TikTok requires the original organic post&#39;s author identity for Spark. 
    */
   public enum IdentityTypeEnum {
     TT_USER(String.valueOf("TT_USER")),
@@ -1451,7 +1451,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. The RESERVED prediction id the R&amp;F ad set runs on (reserving mints a new id — pass that one). Requires buyingType RESERVED.
+   * Meta only. The RESERVED prediction id the R&amp;F ad set runs on (reserving mints a new id, so pass that one). Requires buyingType RESERVED.
    * @return rfPredictionId
    */
   @javax.annotation.Nullable
@@ -1507,7 +1507,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+   * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
    * @return multiAdvertiser
    */
   @javax.annotation.Nullable
@@ -1531,7 +1531,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist — pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad.
+   * Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist, so pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad.
    * @return validateOnly
    */
   @javax.annotation.Nullable
@@ -1555,7 +1555,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents — Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
+   * Budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
    * @return budgetAmount
    */
   @javax.annotation.Nullable
@@ -1651,7 +1651,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour; omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
    * @return budgetLevel
    */
   @javax.annotation.Nullable
@@ -1699,7 +1699,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required for Meta, Google, Pinterest, LinkedIn, and OpenAI Ads on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400, OpenAI&#x3D;50 (min 3). On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title. On OpenAI Ads this is the chat card&#39;s title.
+   * Required for Meta, Google, Pinterest, LinkedIn, and OpenAI Ads on legacy + attach shapes (skip for multi-creative; use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400, OpenAI&#x3D;50 (min 3). On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title. On OpenAI Ads this is the chat card&#39;s title.
    * @return headline
    */
   @javax.annotation.Nullable
@@ -1723,7 +1723,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Display only — defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided.
+   * Google Display only. Defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided.
    * @return longHeadline
    */
   @javax.annotation.Nullable
@@ -1747,7 +1747,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). On OpenAI Ads this is the chat card&#39;s body text. Max: Google&#x3D;90, Pinterest&#x3D;500, OpenAI&#x3D;100.
+   * Required on legacy + attach shapes. For X this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). On OpenAI Ads this is the chat card&#39;s body text. Max: Google&#x3D;90, Pinterest&#x3D;500, OpenAI&#x3D;100.
    * @return body
    */
   @javax.annotation.Nullable
@@ -1771,7 +1771,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only (facebook/instagram). Link description — the secondary text shown below the headline (Meta&#39;s link_data.description; on video creatives mapped to video_data.link_description). When omitted, Meta auto-pulls the destination URL&#39;s OpenGraph description. Applies on legacy, attach, and placementAssets shapes; for multi-creative use creatives[].description (this field is the shared fallback). For multi-text variations use &#x60;descriptions&#x60; (array) instead.
+   * Meta only (facebook/instagram). Link description: the secondary text shown below the headline (Meta&#39;s link_data.description; on video creatives mapped to video_data.link_description). When omitted, Meta auto-pulls the destination URL&#39;s OpenGraph description. Applies on legacy, attach, and placementAssets shapes; for multi-creative use creatives[].description (this field is the shared fallback). For multi-text variations use &#x60;descriptions&#x60; (array) instead.
    * @return description
    */
   @javax.annotation.Nullable
@@ -1891,7 +1891,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
+   * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X.
    * @return callToAction
    */
   @javax.annotation.Nullable
@@ -1963,7 +1963,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads unless &#x60;video&#x60; is set. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627). Required for OpenAI Ads (uploaded as the chat card&#39;s image; OpenAI has no video ad format).
+   * Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads unless &#x60;video&#x60; is set. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627). Required for OpenAI Ads (uploaded as the chat card&#39;s image; OpenAI has no video ad format).
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -2067,7 +2067,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets) OR &#x60;translations&#x60;/&#x60;defaultLocale&#x60; (its own per-locale asset feed, Meta only), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD, true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram), TikTok, and LinkedIn. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. On LinkedIn the &#x60;adSetId&#x60; is the LinkedIn Campaign ID (numeric); we attach a new Creative to that Campaign, so the Campaign&#39;s &#x60;platformSpecificData&#x60; bidding, targeting, budget and schedule are inherited (passing those fields returns 400). 
+   * When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta, and passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets) OR &#x60;translations&#x60;/&#x60;defaultLocale&#x60; (its own per-locale asset feed, Meta only), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD, true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram), TikTok, and LinkedIn. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. On LinkedIn the &#x60;adSetId&#x60; is the LinkedIn Campaign ID (numeric); we attach a new Creative to that Campaign, so the Campaign&#39;s &#x60;platformSpecificData&#x60; bidding, targeting, budget and schedule are inherited (passing those fields returns 400). 
    * @return adSetId
    */
   @javax.annotation.Nullable
@@ -2091,7 +2091,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta + LinkedIn. On Meta: add the new ad set under this EXISTING campaign instead of creating a new one (multi-ad-set audience testing). The new ad set&#39;s budget is matched to the campaign&#39;s mode automatically: for a CBO campaign (campaign-level budget) omit &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; — the campaign owns the budget; for an ABO campaign pass them (they go on the new ad set). On LinkedIn: create a new Campaign (and its Creative) under this EXISTING CampaignGroup. On failure only the entities we authored are cleaned up; the pre-existing parent is left untouched and is never (re)activated. Mutually exclusive with &#x60;adSetId&#x60; and &#x60;creatives[]&#x60;. 
+   * Meta + LinkedIn. On Meta: add the new ad set under this EXISTING campaign instead of creating a new one (multi-ad-set audience testing). The new ad set&#39;s budget is matched to the campaign&#39;s mode automatically: for a CBO campaign (campaign-level budget) omit &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60;, since the campaign owns the budget; for an ABO campaign pass them (they go on the new ad set). On LinkedIn: create a new Campaign (and its Creative) under this EXISTING CampaignGroup. On failure only the entities we authored are cleaned up; the pre-existing parent is left untouched and is never (re)activated. Mutually exclusive with &#x60;adSetId&#x60; and &#x60;creatives[]&#x60;. 
    * @return existingCampaignId
    */
   @javax.annotation.Nullable
@@ -2187,7 +2187,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform.
+   * LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad. Accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform.
    * @return organizationId
    */
   @javax.annotation.Nullable
@@ -2211,7 +2211,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Nested targeting object — the same TargetingSpec shape as &#x60;POST /v1/ads/boost&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences. Merged UNDER the flat inline targeting fields below: &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields (a flat field present on the body replaces the nested value entirely). Both forms are equivalent; use whichever your integration already builds. 
+   * Nested targeting object, the same TargetingSpec shape as &#x60;POST /v1/ads/boost&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences. Merged UNDER the flat inline targeting fields below: &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields (a flat field present on the body replaces the nested value entirely). Both forms are equivalent; use whichever your integration already builds. 
    * @return targeting
    */
   @javax.annotation.Nullable
@@ -2751,7 +2751,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. A raw Meta-native targeting spec (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, &#x60;user_os&#x60;, &#x60;wireless_carrier&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Sent alone it reaches the ad set VERBATIM (the clone-a-campaign&#39;s-targeting-exactly path). Meta validates and surfaces any errors.  Can be combined with the camelCase targeting fields (countries/regions/cities/interests/ageMin/..., &#x60;targeting&#x60;, &#x60;savedTargetingId&#x60;, &#x60;audienceId&#x60;): rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key, with the camelCase side winning on collision (the camelCase precedence chain stays &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields). The merge goes one level deep inside &#x60;geo_locations&#x60; and &#x60;excluded_geo_locations&#x60;: built sub-keys win, raw-only sub-keys such as &#x60;location_types&#x60; survive alongside built &#x60;countries&#x60;. Array values (&#x60;flexible_spec&#x60;, ...) are replaced as a WHOLE key when the camelCase spec builds them, never element-merged. When rawTargeting is present the defaults the camelCase builder normally injects (US geo, &#x60;targeting_automation.advantage_audience: 0&#x60;) are suppressed, so raw&#39;s values are not clobbered — include &#x60;targeting_automation&#x60; in the raw spec (or send &#x60;advantageAudience&#x60;) as Meta requires it on create. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). 
+   * Meta only. A raw Meta-native targeting spec (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, &#x60;user_os&#x60;, &#x60;wireless_carrier&#x60;, business places, etc.), exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Sent alone it reaches the ad set VERBATIM (the clone-a-campaign&#39;s-targeting-exactly path). Meta validates and surfaces any errors.  Can be combined with the camelCase targeting fields (countries/regions/cities/interests/ageMin/..., &#x60;targeting&#x60;, &#x60;savedTargetingId&#x60;, &#x60;audienceId&#x60;): rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key, with the camelCase side winning on collision (the camelCase precedence chain stays &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields). The merge goes one level deep inside &#x60;geo_locations&#x60; and &#x60;excluded_geo_locations&#x60;: built sub-keys win, raw-only sub-keys such as &#x60;location_types&#x60; survive alongside built &#x60;countries&#x60;. Array values (&#x60;flexible_spec&#x60;, ...) are replaced as a WHOLE key when the camelCase spec builds them, never element-merged. When rawTargeting is present the defaults the camelCase builder normally injects (US geo, &#x60;targeting_automation.advantage_audience: 0&#x60;) are suppressed, so raw&#39;s values are not clobbered. Include &#x60;targeting_automation&#x60; in the raw spec (or send &#x60;advantageAudience&#x60;) as Meta requires it on create. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). 
    * @return rawTargeting
    */
   @javax.annotation.Nullable
@@ -2951,7 +2951,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we use the Instagram actor Meta already runs the Page&#39;s other ads as, falling back to the Page&#39;s page-backed Instagram account. Useful when a Page has more than one eligible IG account. 
+   * Meta only. Override the Instagram account the ad is delivered as. Pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we use the Instagram actor Meta already runs the Page&#39;s other ads as, falling back to the Page&#39;s page-backed Instagram account. Useful when a Page has more than one eligible IG account. 
    * @return instagramAccountId
    */
   @javax.annotation.Nullable
@@ -3063,7 +3063,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Multi-language ads (Dynamic Language Optimization): ONE ad carrying per-locale copy and, optionally, per-locale media — the \&quot;Languages\&quot; toggle in Ads Manager. Keeps social proof (likes/comments/shares) on a SINGLE post instead of splitting it across one ad per language.  The ad&#39;s top-level copy is the DEFAULT shown to every locale you do NOT list, and it counts as one of the language variants.  IMPORTANT, and the opposite of what you might expect: text does NOT inherit. Every entry must carry its own &#x60;headline&#x60;, &#x60;body&#x60; AND &#x60;description&#x60;, and all of them must be DISTINCT from each other and from the ad&#39;s top-level copy. Meta deduplicates identical strings inside the asset feed, so two locales sharing a string collapse into one asset and the create fails with a misleading \&quot;Too few ... texts provided in asset creation\&quot; (subcode 1885817) that names a field which is actually present. We validate this before calling Meta and return a 400 naming the offending locale and field. &#x60;description&#x60; is therefore effectively required on the ad whenever &#x60;translations&#x60; is present, even though it is optional otherwise.  Do NOT list &#x60;defaultLocale&#x60; inside &#x60;translations&#x60;: Meta rejects the duplicate with \&quot;The language asset feed includes an unsupported targeting field\&quot; (subcode 1885985).  Media DOES inherit and is uploaded once when shared, and &#x60;linkUrl&#x60; inherits too: each locale may name its own landing page and unlisted locales fall back to the ad&#39;s top-level &#x60;linkUrl&#x60;. Note that Meta enforces Dynamic Creative image dimensions on language feeds, so an &#x60;imageUrl&#x60; that works on a normal ad may be rejected with \&quot;The following images have invalid dimensions for Dynamic Creative\&quot; (subcode 1885558). Video is not affected.  Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, &#x60;existingCreativeId&#x60; and &#x60;creatives[]&#x60;. Meta allows one &#x60;asset_feed_spec&#x60; shape per creative. 
+   * Meta only. Multi-language ads (Dynamic Language Optimization): ONE ad carrying per-locale copy and, optionally, per-locale media: the \&quot;Languages\&quot; toggle in Ads Manager. Keeps social proof (likes/comments/shares) on a SINGLE post instead of splitting it across one ad per language.  The ad&#39;s top-level copy is the DEFAULT shown to every locale you do NOT list, and it counts as one of the language variants.  IMPORTANT, and the opposite of what you might expect: text does NOT inherit. Every entry must carry its own &#x60;headline&#x60;, &#x60;body&#x60; AND &#x60;description&#x60;, and all of them must be DISTINCT from each other and from the ad&#39;s top-level copy. Meta deduplicates identical strings inside the asset feed, so two locales sharing a string collapse into one asset and the create fails with a misleading \&quot;Too few ... texts provided in asset creation\&quot; (subcode 1885817) that names a field which is actually present. We validate this before calling Meta and return a 400 naming the offending locale and field. &#x60;description&#x60; is therefore effectively required on the ad whenever &#x60;translations&#x60; is present, even though it is optional otherwise.  Do NOT list &#x60;defaultLocale&#x60; inside &#x60;translations&#x60;: Meta rejects the duplicate with \&quot;The language asset feed includes an unsupported targeting field\&quot; (subcode 1885985).  Media DOES inherit and is uploaded once when shared, and &#x60;linkUrl&#x60; inherits too: each locale may name its own landing page and unlisted locales fall back to the ad&#39;s top-level &#x60;linkUrl&#x60;. Meta enforces Dynamic Creative image dimensions on language feeds, so an &#x60;imageUrl&#x60; that works on a normal ad may be rejected with \&quot;The following images have invalid dimensions for Dynamic Creative\&quot; (subcode 1885558). Video is not affected.  Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, &#x60;existingCreativeId&#x60; and &#x60;creatives[]&#x60;. Meta allows one &#x60;asset_feed_spec&#x60; shape per creative. 
    * @return translations
    */
   @javax.annotation.Nullable
@@ -3327,7 +3327,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Search only. Sitelink assets to create and attach at the campaign level. Each entry becomes an Asset (with sitelink_asset + Asset.final_urls) plus a CampaignAsset link (field_type SITELINK). Approval is async — Google reviews assets after creation; poll asset.policy_summary later to read the verdict. Google requires at least two sitelinks to surface them on an ad; four or more is Google&#39;s own recommendation for maximum visibility. The response&#39;s creative.sitelinks[] echoes each input plus its Google resourceName. 
+   * Google Search only. Sitelink assets to create and attach at the campaign level. Each entry becomes an Asset (with sitelink_asset + Asset.final_urls) plus a CampaignAsset link (field_type SITELINK). Approval is async: Google reviews assets after creation; poll asset.policy_summary later to read the verdict. Google requires at least two sitelinks to surface them on an ad; four or more is Google&#39;s own recommendation for maximum visibility. The response&#39;s creative.sitelinks[] echoes each input plus its Google resourceName. 
    * @return sitelinks
    */
   @javax.annotation.Nullable
@@ -3391,7 +3391,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Search only. Structured snippets — one header from Google&#39;s predefined list plus 3-10 values (max 25 chars each). Each becomes one Asset (&#x60;structured_snippet_asset&#x60;) plus a CampaignAsset link with field_type STRUCTURED_SNIPPET. 
+   * Google Search only. Structured snippets: one header from Google&#39;s predefined list plus 3-10 values (max 25 chars each). Each becomes one Asset (&#x60;structured_snippet_asset&#x60;) plus a CampaignAsset link with field_type STRUCTURED_SNIPPET. 
    * @return structuredSnippets
    */
   @javax.annotation.Nullable
@@ -3447,7 +3447,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Conversion attribution window for the ad set — maps 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; 
+   * Meta only. Conversion attribution window for the ad set, mapping 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; 
    * @return attributionSpec
    */
   @javax.annotation.Nullable
@@ -3741,7 +3741,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. 
+   * TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field, because TikTok requires the original organic post&#39;s author identity for Spark. 
    * @return identityType
    */
   @javax.annotation.Nullable

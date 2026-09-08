@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateInboxConversationRequest.JSON_PROPERTY_ACCOUNT_ID,
   UpdateInboxConversationRequest.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -90,7 +90,7 @@ public class UpdateInboxConversationRequest {
   }
 
   /**
-   * Social account ID
+   * Account ID
    * @return accountId
    */
   @javax.annotation.Nonnull

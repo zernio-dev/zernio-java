@@ -167,7 +167,7 @@ ApiResponse<[**GetUser200Response**](GetUser200Response.md)>
 
 List users
 
-Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
 
 ### Example
 
@@ -234,7 +234,7 @@ This endpoint does not need any parameter.
 
 List users
 
-Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
 
 ### Example
 

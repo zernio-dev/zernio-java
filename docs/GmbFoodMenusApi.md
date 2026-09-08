@@ -17,7 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get food menus
 
-Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
 
 ### Example
 
@@ -82,7 +82,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Food menus fetched successfully |  -  |
-| **400** | Invalid request - not a Google Business account or missing location |  -  |
+| **400** | Invalid request - not a Google Business Profile account or missing location |  -  |
 | **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
@@ -94,7 +94,7 @@ public class Example {
 
 Get food menus
 
-Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
 
 ### Example
 
@@ -162,7 +162,7 @@ ApiResponse<[**GetGoogleBusinessFoodMenus200Response**](GetGoogleBusinessFoodMen
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Food menus fetched successfully |  -  |
-| **400** | Invalid request - not a Google Business account or missing location |  -  |
+| **400** | Invalid request - not a Google Business Profile account or missing location |  -  |
 | **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
@@ -175,7 +175,7 @@ ApiResponse<[**GetGoogleBusinessFoodMenus200Response**](GetGoogleBusinessFoodMen
 
 Update food menus
 
-Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
 
 ### Example
 
@@ -254,7 +254,7 @@ public class Example {
 
 Update food menus
 
-Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
 
 ### Example
 

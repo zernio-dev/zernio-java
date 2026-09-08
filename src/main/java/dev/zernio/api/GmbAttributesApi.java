@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbAttributesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -170,7 +170,7 @@ public class GmbAttributesApi {
    * Get attribute metadata
    * Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
    * @param accountId  (required)
-   * @param locationId GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
+   * @param locationId Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
    * @param categoryName Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)
    * @param regionCode BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)
    * @param languageCode BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)
@@ -187,7 +187,7 @@ public class GmbAttributesApi {
    * Get attribute metadata
    * Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
    * @param accountId  (required)
-   * @param locationId GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
+   * @param locationId Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
    * @param categoryName Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)
    * @param regionCode BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)
    * @param languageCode BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)
@@ -206,7 +206,7 @@ public class GmbAttributesApi {
    * Get attribute metadata
    * Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
    * @param accountId  (required)
-   * @param locationId GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
+   * @param locationId Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
    * @param categoryName Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)
    * @param regionCode BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)
    * @param languageCode BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)
@@ -223,7 +223,7 @@ public class GmbAttributesApi {
    * Get attribute metadata
    * Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
    * @param accountId  (required)
-   * @param locationId GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
+   * @param locationId Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)
    * @param categoryName Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)
    * @param regionCode BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)
    * @param languageCode BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)
@@ -335,7 +335,7 @@ public class GmbAttributesApi {
 
   /**
    * Get attributes
-   * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+   * Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return GetGoogleBusinessAttributes200Response
@@ -347,7 +347,7 @@ public class GmbAttributesApi {
 
   /**
    * Get attributes
-   * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+   * Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
@@ -361,7 +361,7 @@ public class GmbAttributesApi {
 
   /**
    * Get attributes
-   * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+   * Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;GetGoogleBusinessAttributes200Response&gt;
@@ -373,7 +373,7 @@ public class GmbAttributesApi {
 
   /**
    * Get attributes
-   * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+   * Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request

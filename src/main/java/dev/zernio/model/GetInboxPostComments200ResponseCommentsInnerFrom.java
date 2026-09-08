@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_IS_OWNER,
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_VERIFIED_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInnerFrom {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -66,7 +66,7 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
   private Boolean isOwner;
 
   /**
-   * X/Twitter verified badge type. Only present for Twitter/X comments.
+   * X verified badge type. Only present for X comments.
    */
   public enum VerifiedTypeEnum {
     BLUE(String.valueOf("blue")),
@@ -244,7 +244,7 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
   }
 
   /**
-   * X/Twitter verified badge type. Only present for Twitter/X comments.
+   * X verified badge type. Only present for X comments.
    * @return verifiedType
    */
   @javax.annotation.Nullable

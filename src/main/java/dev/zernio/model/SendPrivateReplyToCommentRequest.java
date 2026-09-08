@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendPrivateReplyToCommentRequest.JSON_PROPERTY_QUICK_REPLIES,
   SendPrivateReplyToCommentRequest.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendPrivateReplyToCommentRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -69,7 +69,7 @@ public class SendPrivateReplyToCommentRequest {
   }
 
   /**
-   * The social account ID (Instagram or Facebook)
+   * The account ID (Instagram or Facebook)
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -125,7 +125,7 @@ public class SendPrivateReplyToCommentRequest {
   }
 
   /**
-   * Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land — use &#x60;buttons&#x60; instead for cold reach. 
+   * Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land. Use &#x60;buttons&#x60; instead for cold reach. 
    * @return quickReplies
    */
   @javax.annotation.Nullable

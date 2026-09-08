@@ -12,7 +12,7 @@
 |**username** | **String** |  |  [optional] |
 |**picture** | **String** |  |  [optional] |
 |**isOwner** | **Boolean** |  |  [optional] |
-|**verifiedType** | [**VerifiedTypeEnum**](#VerifiedTypeEnum) | X/Twitter verified badge type. Only present for Twitter/X comments. |  [optional] |
+|**verifiedType** | [**VerifiedTypeEnum**](#VerifiedTypeEnum) | X verified badge type. Only present for X comments. |  [optional] |
 
 
 

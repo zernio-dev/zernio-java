@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * A platform measurement tag — the thing you create, install on a website, send events to, and target ads against. On Meta this is a Pixel (&#x60;kind: pixel&#x60;). The shape is platform-neutral so other platforms (Pinterest Tag, LinkedIn Insight Tag, etc.) can be added without changing the contract; platform-specific fields are simply absent where a platform has no equivalent. Returned by &#x60;listTrackingTags&#x60;, &#x60;createTrackingTag&#x60;, &#x60;getTrackingTag&#x60;, and &#x60;updateTrackingTag&#x60;. 
+ * A platform measurement tag: the thing you create, install on a website, send events to, and target ads against. On Meta this is a Pixel (&#x60;kind: pixel&#x60;). The shape is platform-neutral so other platforms (Pinterest Tag, LinkedIn Insight Tag, etc.) can be added without changing the contract; platform-specific fields are absent where a platform has no equivalent. Returned by &#x60;listTrackingTags&#x60;, &#x60;createTrackingTag&#x60;, &#x60;getTrackingTag&#x60;, and &#x60;updateTrackingTag&#x60;. 
  */
 @JsonPropertyOrder({
   TrackingTag.JSON_PROPERTY_ID,
@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   TrackingTag.JSON_PROPERTY_OWNER_BUSINESS_ID,
   TrackingTag.JSON_PROPERTY_OWNER_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingTag {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -412,7 +412,7 @@ public class TrackingTag {
   }
 
   /**
-   * Convenience flag derived from &#x60;lastFiredTime&#x60; — has the tag ever fired.
+   * Convenience flag derived from &#x60;lastFiredTime&#x60;: has the tag ever fired.
    * @return installed
    */
   @javax.annotation.Nullable
@@ -460,7 +460,7 @@ public class TrackingTag {
   }
 
   /**
-   * Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. 
+   * Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account. Such tags can&#39;t be shared with other ad accounts. 
    * @return ownerBusinessId
    */
   @javax.annotation.Nullable

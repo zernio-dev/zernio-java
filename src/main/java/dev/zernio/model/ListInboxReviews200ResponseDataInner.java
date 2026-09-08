@@ -60,7 +60,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REPLY,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -133,7 +133,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.
+   * Review identifier. For Google Business Profile this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.
    * @return id
    */
   @javax.annotation.Nullable
@@ -229,7 +229,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Bare GBP location id the review belongs to. Google Business only; absent for other platforms.
+   * Bare Google Business Profile location id the review belongs to. Google Business Profile only; absent for other platforms.
    * @return locationId
    */
   @javax.annotation.Nullable
@@ -253,7 +253,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Human-readable GBP location display name. Google Business only; absent for other platforms.
+   * Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms.
    * @return locationName
    */
   @javax.annotation.Nullable
@@ -405,7 +405,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Whether the review has at least one photo. Google Business only; always false for other platforms.
+   * Whether the review has at least one photo. Google Business Profile only; always false for other platforms.
    * @return hasPhotos
    */
   @javax.annotation.Nullable
@@ -429,7 +429,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms.
+   * Number of photos attached to the review (photos only; videos are not counted). Google Business Profile only; 0 for other platforms.
    * @return photoCount
    */
   @javax.annotation.Nullable
@@ -461,7 +461,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Photos attached to the review. Google Business only; always an empty array for other platforms.
+   * Photos attached to the review. Google Business Profile only; always an empty array for other platforms.
    * @return photos
    */
   @javax.annotation.Nullable

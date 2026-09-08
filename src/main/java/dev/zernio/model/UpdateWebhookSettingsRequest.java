@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -106,6 +106,8 @@ public class UpdateWebhookSettingsRequest {
     MESSAGE_RECEIVED(String.valueOf("message.received")),
     
     CONVERSATION_STARTED(String.valueOf("conversation.started")),
+    
+    CONVERSATION_CONTROL_CHANGED(String.valueOf("conversation.control_changed")),
     
     CALL_RECEIVED(String.valueOf("call.received")),
     

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdStatusChangedError.JSON_PROPERTY_SUMMARY,
   WebhookPayloadAdStatusChangedError.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdStatusChangedError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull
@@ -60,7 +60,7 @@ public class WebhookPayloadAdStatusChangedError {
   }
 
   /**
-   * Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator — &#x60;summary&#x60; and &#x60;message&#x60; are localized. 
+   * Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator, since &#x60;summary&#x60; and &#x60;message&#x60; are localized. 
    * @return code
    */
   @javax.annotation.Nonnull
@@ -84,7 +84,7 @@ public class WebhookPayloadAdStatusChangedError {
   }
 
   /**
-   * Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale — display only, do not match on it. 
+   * Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale. Display only, do not match on it. 
    * @return summary
    */
   @javax.annotation.Nullable
@@ -108,7 +108,7 @@ public class WebhookPayloadAdStatusChangedError {
   }
 
   /**
-   * Full human-readable error message (Meta &#x60;error_message&#x60;). Localized — display only. 
+   * Full human-readable error message (Meta &#x60;error_message&#x60;). Localized, display only. 
    * @return message
    */
   @javax.annotation.Nullable

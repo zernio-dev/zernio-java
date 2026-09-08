@@ -211,7 +211,7 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 
 Create an alphanumeric sender ID
 
-Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
 
 ### Example
 
@@ -277,8 +277,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
-| **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
-| **409** | Billing setup is incomplete for this workspace (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
+| **403** | The team is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Billing setup is incomplete for this team (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 ## createSmsSenderIdWithHttpInfo
@@ -287,7 +287,7 @@ public class Example {
 
 Create an alphanumeric sender ID
 
-Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
 
 ### Example
 
@@ -356,8 +356,8 @@ ApiResponse<[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
-| **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
-| **409** | Billing setup is incomplete for this workspace (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
+| **403** | The team is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Billing setup is incomplete for this team (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 
@@ -367,7 +367,7 @@ ApiResponse<[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)>
 
 Deactivate a brand/campaign registration
 
-Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
 
 ### Example
 
@@ -440,7 +440,7 @@ public class Example {
 
 Deactivate a brand/campaign registration
 
-Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
 
 ### Example
 
@@ -667,7 +667,7 @@ ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
 
 Disable SMS on a number
 
-Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
 
 ### Example
 
@@ -739,7 +739,7 @@ public class Example {
 
 Disable SMS on a number
 
-Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
 
 ### Example
 
@@ -815,7 +815,7 @@ ApiResponse<[**DisableSmsOnNumber200Response**](DisableSmsOnNumber200Response.md
 
 Enable SMS on a number
 
-Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
 
 ### Example
 
@@ -888,7 +888,7 @@ public class Example {
 
 Enable SMS on a number
 
-Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
 
 ### Example
 
@@ -1286,7 +1286,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         SmsApi apiInstance = new SmsApi(defaultClient);
-        Boolean includeDeactivated = true; // Boolean | Deactivated (terminated) registrations are hidden by default — pass true to include them.
+        Boolean includeDeactivated = true; // Boolean | Deactivated (terminated) registrations are hidden by default. Pass true to include them.
         try {
             ListSmsRegistrations200Response result = apiInstance.listSmsRegistrations(includeDeactivated);
             System.out.println(result);
@@ -1306,7 +1306,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **includeDeactivated** | **Boolean**| Deactivated (terminated) registrations are hidden by default — pass true to include them. | [optional] |
+| **includeDeactivated** | **Boolean**| Deactivated (terminated) registrations are hidden by default. Pass true to include them. | [optional] |
 
 ### Return type
 
@@ -1357,7 +1357,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         SmsApi apiInstance = new SmsApi(defaultClient);
-        Boolean includeDeactivated = true; // Boolean | Deactivated (terminated) registrations are hidden by default — pass true to include them.
+        Boolean includeDeactivated = true; // Boolean | Deactivated (terminated) registrations are hidden by default. Pass true to include them.
         try {
             ApiResponse<ListSmsRegistrations200Response> response = apiInstance.listSmsRegistrationsWithHttpInfo(includeDeactivated);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1379,7 +1379,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **includeDeactivated** | **Boolean**| Deactivated (terminated) registrations are hidden by default — pass true to include them. | [optional] |
+| **includeDeactivated** | **Boolean**| Deactivated (terminated) registrations are hidden by default. Pass true to include them. | [optional] |
 
 ### Return type
 
@@ -1465,7 +1465,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The workspace&#39;s sender IDs, newest first. |  -  |
+| **200** | The team&#39;s sender IDs, newest first. |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listSmsSenderIdsWithHttpInfo
@@ -1533,7 +1533,7 @@ ApiResponse<[**ListSmsSenderIds200Response**](ListSmsSenderIds200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The workspace&#39;s sender IDs, newest first. |  -  |
+| **200** | The team&#39;s sender IDs, newest first. |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -1839,7 +1839,7 @@ ApiResponse<[**PreflightSmsRegistration200Response**](PreflightSmsRegistration20
 
 Request a higher sender ID daily limit
 
-Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
 
 ### Example
 
@@ -1913,7 +1913,7 @@ public class Example {
 
 Request a higher sender ID daily limit
 
-Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
 
 ### Example
 
@@ -1991,7 +1991,7 @@ ApiResponse<[**RequestSmsSenderIdLimitIncrease200Response**](RequestSmsSenderIdL
 
 Re-send the sole-prop OTP
 
-Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
 
 ### Example
 
@@ -2057,7 +2057,7 @@ public class Example {
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
-| **429** | A code was just sent — wait a minute before requesting another |  -  |
+| **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
 ## resendSmsRegistrationOtpWithHttpInfo
 
@@ -2065,7 +2065,7 @@ public class Example {
 
 Re-send the sole-prop OTP
 
-Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
 
 ### Example
 
@@ -2134,7 +2134,7 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
-| **429** | A code was just sent — wait a minute before requesting another |  -  |
+| **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
 
 ## respondToSmsRegistrationReview
@@ -2143,7 +2143,7 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 
 Reply to a change request
 
-Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
 
 ### Example
 
@@ -2219,7 +2219,7 @@ public class Example {
 
 Reply to a change request
 
-Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
 
 ### Example
 
@@ -2909,7 +2909,7 @@ ApiResponse<[**StartSmsRegistration200Response**](StartSmsRegistration200Respons
 
 Upload opt-in form proof for an appeal
 
-Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
 
 ### Example
 
@@ -2984,7 +2984,7 @@ public class Example {
 
 Upload opt-in form proof for an appeal
 
-Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
 
 ### Example
 
@@ -3063,7 +3063,7 @@ ApiResponse<[**UploadSmsOptInProofFile200Response**](UploadSmsOptInProofFile200R
 
 Upload opt-in form proof
 
-Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
 
 ### Example
 
@@ -3135,7 +3135,7 @@ public class Example {
 
 Upload opt-in form proof
 
-Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
 
 ### Example
 

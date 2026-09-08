@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Multi-creative shape — N ads returned sharing platformCampaignId / platformAdSetId.
+ * Multi-creative shape: N ads returned sharing platformCampaignId / platformAdSetId.
  */
 @JsonPropertyOrder({
   CreateStandaloneAd201ResponseOneOf1.JSON_PROPERTY_ADS,
@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd201ResponseOneOf1.JSON_PROPERTY_PLATFORM_AD_SET_ID,
   CreateStandaloneAd201ResponseOneOf1.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd201ResponseOneOf1 {
   public static final String JSON_PROPERTY_ADS = "ads";
   @javax.annotation.Nullable

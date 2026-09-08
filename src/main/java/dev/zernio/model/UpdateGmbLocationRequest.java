@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateGmbLocationRequest.JSON_PROPERTY_SELECTED_LOCATION_ID,
   UpdateGmbLocationRequest.JSON_PROPERTY_GOOGLE_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGmbLocationRequest {
   public static final String JSON_PROPERTY_SELECTED_LOCATION_ID = "selectedLocationId";
   @javax.annotation.Nonnull
@@ -79,7 +79,7 @@ public class UpdateGmbLocationRequest {
   }
 
   /**
-   * Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. 
+   * Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. 
    * @return googleAccountId
    */
   @javax.annotation.Nullable

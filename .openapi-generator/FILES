@@ -211,6 +211,7 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
+docs/Conversation.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
@@ -844,6 +845,7 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
+docs/GetWhatsAppSdkConfig200Response.md
 docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
 docs/GetWhatsAppTemplate409Response.md
@@ -1448,6 +1450,9 @@ docs/SendWhatsAppFlowMessageRequestHeader.md
 docs/SequencesApi.md
 docs/SetCommentModerationRequest.md
 docs/SetContactFieldValueRequest.md
+docs/SetConversationThreadControl200Response.md
+docs/SetConversationThreadControl200ResponseControl.md
+docs/SetConversationThreadControlRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
@@ -1791,6 +1796,8 @@ docs/WebhookPayloadCommentCommentAttachment.md
 docs/WebhookPayloadCommentCommentAuthor.md
 docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md
 docs/WebhookPayloadCommentPost.md
+docs/WebhookPayloadConversationControlChanged.md
+docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadExternalPost.md
@@ -2191,6 +2198,7 @@ src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignupRequest.java
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
 src/main/java/dev/zernio/model/ConnectedApp.java
+src/main/java/dev/zernio/model/Conversation.java
 src/main/java/dev/zernio/model/ConversionAction.java
 src/main/java/dev/zernio/model/ConversionActionTagSnippetsInner.java
 src/main/java/dev/zernio/model/ConversionDestination.java
@@ -2821,6 +2829,7 @@ src/main/java/dev/zernio/model/GetWhatsAppNumberInfo200ResponseWaba.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberRemediation200Response.java
+src/main/java/dev/zernio/model/GetWhatsAppSdkConfig200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200ResponseTemplate.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate409Response.java
@@ -3399,6 +3408,9 @@ src/main/java/dev/zernio/model/SendWhatsAppFlowMessageRequestFlowActionPayload.j
 src/main/java/dev/zernio/model/SendWhatsAppFlowMessageRequestHeader.java
 src/main/java/dev/zernio/model/SetCommentModerationRequest.java
 src/main/java/dev/zernio/model/SetContactFieldValueRequest.java
+src/main/java/dev/zernio/model/SetConversationThreadControl200Response.java
+src/main/java/dev/zernio/model/SetConversationThreadControl200ResponseControl.java
+src/main/java/dev/zernio/model/SetConversationThreadControlRequest.java
 src/main/java/dev/zernio/model/SetInstagramIceBreakersRequest.java
 src/main/java/dev/zernio/model/SetInstagramIceBreakersRequestIceBreakersInner.java
 src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
@@ -3732,6 +3744,8 @@ src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAttachment.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAuthor.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAuthorInstagramProfile.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentPost.java
+src/main/java/dev/zernio/model/WebhookPayloadConversationControlChanged.java
+src/main/java/dev/zernio/model/WebhookPayloadConversationControlChangedControl.java
 src/main/java/dev/zernio/model/WebhookPayloadConversationStarted.java
 src/main/java/dev/zernio/model/WebhookPayloadConversationStartedConversation.java
 src/main/java/dev/zernio/model/WebhookPayloadExternalPost.java
@@ -3851,3 +3865,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetWhatsAppSdkConfig200ResponseTest.java
+src/test/java/dev/zernio/model/SetConversationThreadControl200ResponseControlTest.java
+src/test/java/dev/zernio/model/SetConversationThreadControl200ResponseTest.java
+src/test/java/dev/zernio/model/SetConversationThreadControlRequestTest.java
+src/test/java/dev/zernio/model/WebhookPayloadConversationControlChangedControlTest.java
+src/test/java/dev/zernio/model/WebhookPayloadConversationControlChangedTest.java

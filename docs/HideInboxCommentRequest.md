@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | The social account ID |  |
+|**accountId** | **String** | The account ID |  |
 
 
 

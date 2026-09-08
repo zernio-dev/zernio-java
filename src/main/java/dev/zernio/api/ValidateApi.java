@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -423,7 +423,7 @@ public class ValidateApi {
 
   /**
    * Validate character count
-   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  Twitter/X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X (Twitter) returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
+   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
    * @param validatePostLengthRequest  (required)
    * @return ValidatePostLength200Response
    * @throws ApiException if fails to make API call
@@ -434,7 +434,7 @@ public class ValidateApi {
 
   /**
    * Validate character count
-   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  Twitter/X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X (Twitter) returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
+   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
    * @param validatePostLengthRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ValidatePostLength200Response
@@ -447,7 +447,7 @@ public class ValidateApi {
 
   /**
    * Validate character count
-   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  Twitter/X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X (Twitter) returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
+   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
    * @param validatePostLengthRequest  (required)
    * @return ApiResponse&lt;ValidatePostLength200Response&gt;
    * @throws ApiException if fails to make API call
@@ -458,7 +458,7 @@ public class ValidateApi {
 
   /**
    * Validate character count
-   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  Twitter/X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X (Twitter) returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
+   * Check weighted character count per platform and whether the text is within each platform&#39;s limit.  X uses weighted counting (URLs &#x3D; 23 chars via t.co, emojis &#x3D; 2 chars). All other platforms use plain character length.  Returns counts and limits for all 15 supported platform variants.  X returns two rows and this endpoint cannot tell you which one applies to you: it takes only &#x60;text&#x60;, so it never resolves an account. &#x60;twitter&#x60; (280) is the free tier limit. &#x60;twitterPremium&#x60; (25000) applies only when the target X account has a paid X subscription, and publishing enforces 280 instead for any post carrying a poll (this endpoint has no poll input, so the &#x60;twitterPremium&#x60; row always shows 25000). A free account trusting the &#x60;twitterPremium&#x60; row can pass validation here and still fail at publish time, where the account&#39;s real limit is enforced.  To validate against the per-account limit, use &#x60;POST /v1/tools/validate/post&#x60; instead: it accepts an &#x60;accountId&#x60; per platform entry, resolves X Premium status, and checks the text against the limit publishing enforces, including the poll cap. A missing, foreign, or invalid &#x60;accountId&#x60; falls back to the conservative 280. 
    * @param validatePostLengthRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ValidatePostLength200Response&gt;
@@ -548,7 +548,7 @@ public class ValidateApi {
    * Check subreddit existence
    * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
-   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
+   * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @return ValidateSubreddit200Response
    * @throws ApiException if fails to make API call
    */
@@ -560,7 +560,7 @@ public class ValidateApi {
    * Check subreddit existence
    * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
-   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
+   * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @param headers Optional headers to include in the request
    * @return ValidateSubreddit200Response
    * @throws ApiException if fails to make API call
@@ -574,7 +574,7 @@ public class ValidateApi {
    * Check subreddit existence
    * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
-   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
+   * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @return ApiResponse&lt;ValidateSubreddit200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -586,7 +586,7 @@ public class ValidateApi {
    * Check subreddit existence
    * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
-   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
+   * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ValidateSubreddit200Response&gt;
    * @throws ApiException if fails to make API call

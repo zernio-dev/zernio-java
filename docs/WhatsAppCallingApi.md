@@ -1281,7 +1281,7 @@ ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording20
 
 Get calling config for a number
 
-The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
 
 ### Example
 
@@ -1354,7 +1354,7 @@ public class Example {
 
 Get calling config for a number
 
-The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
 
 ### Example
 
@@ -1454,7 +1454,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppCallingConfig200Response result = apiInstance.getWhatsAppCallingConfig(accountId);
             System.out.println(result);
@@ -1474,7 +1474,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1527,7 +1527,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppCallingConfig200Response> response = apiInstance.getWhatsAppCallingConfigWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1549,7 +1549,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1645,7 +1645,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | No active call permission — send a permission request first. |  -  |
+| **409** | No active call permission. Send a permission request first. |  -  |
 | **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
 
@@ -1724,7 +1724,7 @@ ApiResponse<[**InitiateWhatsAppCall200Response**](InitiateWhatsAppCall200Respons
 |-------------|-------------|------------------|
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | No active call permission — send a permission request first. |  -  |
+| **409** | No active call permission. Send a permission request first. |  -  |
 | **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
 

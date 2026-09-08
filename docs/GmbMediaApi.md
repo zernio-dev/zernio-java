@@ -175,7 +175,7 @@ ApiResponse<[**CreateGoogleBusinessMedia200Response**](CreateGoogleBusinessMedia
 
 Delete photo
 
-Deletes a photo or media item from a GBP location.
+Deletes a photo or media item from a Google Business Profile location.
 
 ### Example
 
@@ -251,7 +251,7 @@ public class Example {
 
 Delete photo
 
-Deletes a photo or media item from a GBP location.
+Deletes a photo or media item from a Google Business Profile location.
 
 ### Example
 

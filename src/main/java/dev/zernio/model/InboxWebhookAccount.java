@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   InboxWebhookAccount.JSON_PROPERTY_USERNAME,
   InboxWebhookAccount.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -75,7 +75,7 @@ public class InboxWebhookAccount {
   }
 
   /**
-   * Social account ID
+   * Account ID
    * @return id
    */
   @javax.annotation.Nonnull
@@ -99,7 +99,7 @@ public class InboxWebhookAccount {
   }
 
   /**
-   * Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.
+   * Account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.
    * @return accountId
    */
   @javax.annotation.Nullable
@@ -123,7 +123,7 @@ public class InboxWebhookAccount {
   }
 
   /**
-   * Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.
+   * Zernio profile ID this account belongs to. Use it to route or filter inbox webhooks by profile. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.
    * @return profileId
    */
   @javax.annotation.Nullable

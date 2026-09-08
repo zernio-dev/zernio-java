@@ -181,7 +181,7 @@ ApiResponse<[**BookmarkPost200Response**](BookmarkPost200Response.md)>
 
 Follow a user
 
-Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
 
 ### Example
 
@@ -255,7 +255,7 @@ public class Example {
 
 Follow a user
 
-Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
 
 ### Example
 
@@ -356,7 +356,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
-        String accountId = "accountId_example"; // String | The social account ID whose X token is used for the lookup
+        String accountId = "accountId_example"; // String | The account ID whose X token is used for the lookup
         String id = "id_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
         try {
             GetTweet200Response result = apiInstance.getTweet(accountId, id);
@@ -377,7 +377,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The social account ID whose X token is used for the lookup | |
+| **accountId** | **String**| The account ID whose X token is used for the lookup | |
 | **id** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) | |
 
 ### Return type
@@ -435,7 +435,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
-        String accountId = "accountId_example"; // String | The social account ID whose X token is used for the lookup
+        String accountId = "accountId_example"; // String | The account ID whose X token is used for the lookup
         String id = "id_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
         try {
             ApiResponse<GetTweet200Response> response = apiInstance.getTweetWithHttpInfo(accountId, id);
@@ -458,7 +458,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The social account ID whose X token is used for the lookup | |
+| **accountId** | **String**| The account ID whose X token is used for the lookup | |
 | **id** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) | |
 
 ### Return type
@@ -801,7 +801,7 @@ ApiResponse<[**RetweetPost200Response**](RetweetPost200Response.md)>
 
 Search recent tweets
 
-Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
 
 ### Example
 
@@ -824,7 +824,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
-        String accountId = "accountId_example"; // String | The social account ID
+        String accountId = "accountId_example"; // String | The account ID
         String query = "query_example"; // String | X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.
         Integer limit = 10; // Integer | Results per page. X requires a minimum of 10; values below 10 are rejected.
         String sinceId = "sinceId_example"; // String | Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400.
@@ -852,7 +852,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The social account ID | |
+| **accountId** | **String**| The account ID | |
 | **query** | **String**| X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. | |
 | **limit** | **Integer**| Results per page. X requires a minimum of 10; values below 10 are rejected. | [optional] [default to 10] |
 | **sinceId** | **String**| Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. | [optional] |
@@ -893,7 +893,7 @@ public class Example {
 
 Search recent tweets
 
-Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
 
 ### Example
 
@@ -917,7 +917,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
-        String accountId = "accountId_example"; // String | The social account ID
+        String accountId = "accountId_example"; // String | The account ID
         String query = "query_example"; // String | X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.
         Integer limit = 10; // Integer | Results per page. X requires a minimum of 10; values below 10 are rejected.
         String sinceId = "sinceId_example"; // String | Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400.
@@ -947,7 +947,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The social account ID | |
+| **accountId** | **String**| The account ID | |
 | **query** | **String**| X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. | |
 | **limit** | **Integer**| Results per page. X requires a minimum of 10; values below 10 are rejected. | [optional] [default to 10] |
 | **sinceId** | **String**| Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. | [optional] |
@@ -1145,7 +1145,7 @@ ApiResponse<[**UndoRetweet200Response**](UndoRetweet200Response.md)>
 
 Unfollow a user
 
-Unfollow a user on X/Twitter. 
+Unfollow a user on X. 
 
 ### Example
 
@@ -1169,7 +1169,7 @@ public class Example {
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
         String accountId = "accountId_example"; // String | 
-        String targetUserId = "targetUserId_example"; // String | The Twitter ID of the user to unfollow
+        String targetUserId = "targetUserId_example"; // String | The X ID of the user to unfollow
         try {
             UnfollowUser200Response result = apiInstance.unfollowUser(accountId, targetUserId);
             System.out.println(result);
@@ -1190,7 +1190,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
-| **targetUserId** | **String**| The Twitter ID of the user to unfollow | |
+| **targetUserId** | **String**| The X ID of the user to unfollow | |
 
 ### Return type
 
@@ -1221,7 +1221,7 @@ public class Example {
 
 Unfollow a user
 
-Unfollow a user on X/Twitter. 
+Unfollow a user on X. 
 
 ### Example
 
@@ -1246,7 +1246,7 @@ public class Example {
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
         String accountId = "accountId_example"; // String | 
-        String targetUserId = "targetUserId_example"; // String | The Twitter ID of the user to unfollow
+        String targetUserId = "targetUserId_example"; // String | The X ID of the user to unfollow
         try {
             ApiResponse<UnfollowUser200Response> response = apiInstance.unfollowUserWithHttpInfo(accountId, targetUserId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1269,7 +1269,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
-| **targetUserId** | **String**| The Twitter ID of the user to unfollow | |
+| **targetUserId** | **String**| The X ID of the user to unfollow | |
 
 ### Return type
 

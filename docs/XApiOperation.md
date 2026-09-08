@@ -9,8 +9,8 @@ A single X API operation with its per-call price and the Zernio platform methods
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**operation** | **String** | Internal operation key. Matches keys in &#x60;xApiCallsByOperation&#x60;. |  [optional] |
-|**eventType** | **String** | Metronome &#x60;event_type&#x60; emitted when this operation runs. |  [optional] |
-|**displayName** | **String** | Human-readable label shown on Metronome invoices. |  [optional] |
+|**eventType** | **String** | Metering &#x60;event_type&#x60; emitted when this operation runs. |  [optional] |
+|**displayName** | **String** | Human-readable label shown on invoices. |  [optional] |
 |**pricePerCallUsd** | **BigDecimal** |  |  [optional] |
 |**pricePerCallCents** | **BigDecimal** | Per-call price in cents. Fractional values are intentional. |  [optional] |
 |**tier** | **String** | Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards.  |  [optional] |

@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_AD_ID,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_PLACEMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -109,7 +109,7 @@ public class ListInboxComments200ResponseDataInner {
   private String adId;
 
   /**
-   * Which side of the ad this row&#39;s comments are on — only on ad rows.
+   * Which side of the ad this row&#39;s comments are on, only on ad rows.
    */
   public enum PlacementEnum {
     FACEBOOK(String.valueOf("facebook")),
@@ -252,7 +252,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here.
+   * The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption. The creative text isn&#39;t exposed here.
    * @return content
    */
   @javax.annotation.Nullable
@@ -500,7 +500,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Internal Zernio ad id — only on ad rows.
+   * Internal Zernio ad id, only on ad rows.
    * @return adId
    */
   @javax.annotation.Nullable
@@ -524,7 +524,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Which side of the ad this row&#39;s comments are on — only on ad rows.
+   * Which side of the ad this row&#39;s comments are on, only on ad rows.
    * @return placement
    */
   @javax.annotation.Nullable

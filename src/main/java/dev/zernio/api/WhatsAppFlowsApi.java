@@ -70,7 +70,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppFlowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -314,7 +314,7 @@ public class WhatsAppFlowsApi {
    * Delete flow
    * Delete a DRAFT flow. This is irreversible. Only flows in DRAFT status can be deleted. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
@@ -326,7 +326,7 @@ public class WhatsAppFlowsApi {
    * Delete flow
    * Delete a DRAFT flow. This is irreversible. Only flows in DRAFT status can be deleted. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
@@ -340,7 +340,7 @@ public class WhatsAppFlowsApi {
    * Delete flow
    * Delete a DRAFT flow. This is irreversible. Only flows in DRAFT status can be deleted. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -352,7 +352,7 @@ public class WhatsAppFlowsApi {
    * Delete flow
    * Delete a DRAFT flow. This is irreversible. Only flows in DRAFT status can be deleted. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
@@ -587,7 +587,7 @@ public class WhatsAppFlowsApi {
    * Get flow
    * Get details for a specific flow, including status, categories, validation errors, and preview URL. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param fields Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)
    * @return GetWhatsAppFlow200Response
    * @throws ApiException if fails to make API call
@@ -600,7 +600,7 @@ public class WhatsAppFlowsApi {
    * Get flow
    * Get details for a specific flow, including status, categories, validation errors, and preview URL. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param fields Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppFlow200Response
@@ -615,7 +615,7 @@ public class WhatsAppFlowsApi {
    * Get flow
    * Get details for a specific flow, including status, categories, validation errors, and preview URL. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param fields Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)
    * @return ApiResponse&lt;GetWhatsAppFlow200Response&gt;
    * @throws ApiException if fails to make API call
@@ -628,7 +628,7 @@ public class WhatsAppFlowsApi {
    * Get flow
    * Get details for a specific flow, including status, categories, validation errors, and preview URL. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param fields Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppFlow200Response&gt;
@@ -734,7 +734,7 @@ public class WhatsAppFlowsApi {
    * Get flow JSON asset
    * Get the flow JSON asset metadata, including a temporary download URL for the Flow JSON file. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppFlowJson200Response
    * @throws ApiException if fails to make API call
    */
@@ -746,7 +746,7 @@ public class WhatsAppFlowsApi {
    * Get flow JSON asset
    * Get the flow JSON asset metadata, including a temporary download URL for the Flow JSON file. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppFlowJson200Response
    * @throws ApiException if fails to make API call
@@ -760,7 +760,7 @@ public class WhatsAppFlowsApi {
    * Get flow JSON asset
    * Get the flow JSON asset metadata, including a temporary download URL for the Flow JSON file. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppFlowJson200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -772,7 +772,7 @@ public class WhatsAppFlowsApi {
    * Get flow JSON asset
    * Get the flow JSON asset metadata, including a temporary download URL for the Flow JSON file. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppFlowJson200Response&gt;
    * @throws ApiException if fails to make API call
@@ -875,7 +875,7 @@ public class WhatsAppFlowsApi {
    * Get flow preview URL
    * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param invalidate Mint a fresh preview link (default false) (optional)
    * @return GetWhatsAppFlowPreview200Response
    * @throws ApiException if fails to make API call
@@ -888,7 +888,7 @@ public class WhatsAppFlowsApi {
    * Get flow preview URL
    * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param invalidate Mint a fresh preview link (default false) (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppFlowPreview200Response
@@ -903,7 +903,7 @@ public class WhatsAppFlowsApi {
    * Get flow preview URL
    * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param invalidate Mint a fresh preview link (default false) (optional)
    * @return ApiResponse&lt;GetWhatsAppFlowPreview200Response&gt;
    * @throws ApiException if fails to make API call
@@ -916,7 +916,7 @@ public class WhatsAppFlowsApi {
    * Get flow preview URL
    * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param invalidate Mint a fresh preview link (default false) (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppFlowPreview200Response&gt;
@@ -1021,7 +1021,7 @@ public class WhatsAppFlowsApi {
   /**
    * Get Flows encryption key status
    * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppFlowsEncryptionKey200Response
    * @throws ApiException if fails to make API call
    */
@@ -1032,7 +1032,7 @@ public class WhatsAppFlowsApi {
   /**
    * Get Flows encryption key status
    * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppFlowsEncryptionKey200Response
    * @throws ApiException if fails to make API call
@@ -1045,7 +1045,7 @@ public class WhatsAppFlowsApi {
   /**
    * Get Flows encryption key status
    * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppFlowsEncryptionKey200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1056,7 +1056,7 @@ public class WhatsAppFlowsApi {
   /**
    * Get Flows encryption key status
    * Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppFlowsEncryptionKey200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1152,8 +1152,8 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow responses
-   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
-   * @param accountId WhatsApp social account ID (required)
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp account ID (required)
    * @param flowId Scope to responses for this flow (optional)
    * @param limit Max responses to return (optional, default to 50)
    * @return ListWhatsAppFlowResponses200Response
@@ -1165,8 +1165,8 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow responses
-   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
-   * @param accountId WhatsApp social account ID (required)
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp account ID (required)
    * @param flowId Scope to responses for this flow (optional)
    * @param limit Max responses to return (optional, default to 50)
    * @param headers Optional headers to include in the request
@@ -1180,8 +1180,8 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow responses
-   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
-   * @param accountId WhatsApp social account ID (required)
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp account ID (required)
    * @param flowId Scope to responses for this flow (optional)
    * @param limit Max responses to return (optional, default to 50)
    * @return ApiResponse&lt;ListWhatsAppFlowResponses200Response&gt;
@@ -1193,8 +1193,8 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow responses
-   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
-   * @param accountId WhatsApp social account ID (required)
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp account ID (required)
    * @param flowId Scope to responses for this flow (optional)
    * @param limit Max responses to return (optional, default to 50)
    * @param headers Optional headers to include in the request
@@ -1296,9 +1296,9 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow versions
-   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ListWhatsAppFlowVersions200Response
    * @throws ApiException if fails to make API call
    */
@@ -1308,9 +1308,9 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow versions
-   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppFlowVersions200Response
    * @throws ApiException if fails to make API call
@@ -1322,9 +1322,9 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow versions
-   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;ListWhatsAppFlowVersions200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1334,9 +1334,9 @@ public class WhatsAppFlowsApi {
 
   /**
    * List flow versions
-   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
    * @param flowId Flow ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppFlowVersions200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1438,7 +1438,7 @@ public class WhatsAppFlowsApi {
   /**
    * List flows
    * List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ListWhatsAppFlows200Response
    * @throws ApiException if fails to make API call
    */
@@ -1449,7 +1449,7 @@ public class WhatsAppFlowsApi {
   /**
    * List flows
    * List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppFlows200Response
    * @throws ApiException if fails to make API call
@@ -1462,7 +1462,7 @@ public class WhatsAppFlowsApi {
   /**
    * List flows
    * List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;ListWhatsAppFlows200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1473,7 +1473,7 @@ public class WhatsAppFlowsApi {
   /**
    * List flows
    * List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppFlows200Response&gt;
    * @throws ApiException if fails to make API call

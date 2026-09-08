@@ -2,7 +2,7 @@
 
 # WebhookPayloadComment
 
-Webhook payload for comment received events (Instagram, Facebook, Twitter/X, YouTube, LinkedIn, Bluesky, Reddit)
+Webhook payload for comment received events (Instagram, Facebook, X, YouTube, LinkedIn, Bluesky, Reddit)
 
 ## Properties
 

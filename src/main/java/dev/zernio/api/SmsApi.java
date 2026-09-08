@@ -83,7 +83,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -334,7 +334,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @return CreateSmsSenderId200Response
    * @throws ApiException if fails to make API call
@@ -345,7 +345,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateSmsSenderId200Response
@@ -358,7 +358,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @return ApiResponse&lt;CreateSmsSenderId200Response&gt;
    * @throws ApiException if fails to make API call
@@ -369,7 +369,7 @@ public class SmsApi {
 
   /**
    * Create an alphanumeric sender ID
-   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+   * Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
    * @param createSmsSenderIdRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateSmsSenderId200Response&gt;
@@ -457,7 +457,7 @@ public class SmsApi {
 
   /**
    * Deactivate a brand/campaign registration
-   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
    * @param id  (required)
    * @return DeactivateSmsRegistration200Response
    * @throws ApiException if fails to make API call
@@ -468,7 +468,7 @@ public class SmsApi {
 
   /**
    * Deactivate a brand/campaign registration
-   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
    * @param id  (required)
    * @param headers Optional headers to include in the request
    * @return DeactivateSmsRegistration200Response
@@ -481,7 +481,7 @@ public class SmsApi {
 
   /**
    * Deactivate a brand/campaign registration
-   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
    * @param id  (required)
    * @return ApiResponse&lt;DeactivateSmsRegistration200Response&gt;
    * @throws ApiException if fails to make API call
@@ -492,7 +492,7 @@ public class SmsApi {
 
   /**
    * Deactivate a brand/campaign registration
-   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
    * @param id  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeactivateSmsRegistration200Response&gt;
@@ -693,7 +693,7 @@ public class SmsApi {
 
   /**
    * Disable SMS on a number
-   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
    * @param id  (required)
    * @return DisableSmsOnNumber200Response
    * @throws ApiException if fails to make API call
@@ -704,7 +704,7 @@ public class SmsApi {
 
   /**
    * Disable SMS on a number
-   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
    * @param id  (required)
    * @param headers Optional headers to include in the request
    * @return DisableSmsOnNumber200Response
@@ -717,7 +717,7 @@ public class SmsApi {
 
   /**
    * Disable SMS on a number
-   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
    * @param id  (required)
    * @return ApiResponse&lt;DisableSmsOnNumber200Response&gt;
    * @throws ApiException if fails to make API call
@@ -728,7 +728,7 @@ public class SmsApi {
 
   /**
    * Disable SMS on a number
-   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
    * @param id  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DisableSmsOnNumber200Response&gt;
@@ -811,7 +811,7 @@ public class SmsApi {
 
   /**
    * Enable SMS on a number
-   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @return EnableSmsOnNumber200Response
    * @throws ApiException if fails to make API call
@@ -822,7 +822,7 @@ public class SmsApi {
 
   /**
    * Enable SMS on a number
-   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @param headers Optional headers to include in the request
    * @return EnableSmsOnNumber200Response
@@ -835,7 +835,7 @@ public class SmsApi {
 
   /**
    * Enable SMS on a number
-   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @return ApiResponse&lt;EnableSmsOnNumber200Response&gt;
    * @throws ApiException if fails to make API call
@@ -846,7 +846,7 @@ public class SmsApi {
 
   /**
    * Enable SMS on a number
-   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;EnableSmsOnNumber200Response&gt;
@@ -1182,7 +1182,7 @@ public class SmsApi {
   /**
    * List carrier registrations
    * 
-   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)
    * @return ListSmsRegistrations200Response
    * @throws ApiException if fails to make API call
    */
@@ -1193,7 +1193,7 @@ public class SmsApi {
   /**
    * List carrier registrations
    * 
-   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)
    * @param headers Optional headers to include in the request
    * @return ListSmsRegistrations200Response
    * @throws ApiException if fails to make API call
@@ -1206,7 +1206,7 @@ public class SmsApi {
   /**
    * List carrier registrations
    * 
-   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)
    * @return ApiResponse&lt;ListSmsRegistrations200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1217,7 +1217,7 @@ public class SmsApi {
   /**
    * List carrier registrations
    * 
-   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListSmsRegistrations200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1673,7 +1673,7 @@ public class SmsApi {
 
   /**
    * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+   * Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
    * @param requestSmsSenderIdLimitIncreaseRequest  (required)
    * @return RequestSmsSenderIdLimitIncrease200Response
    * @throws ApiException if fails to make API call
@@ -1684,7 +1684,7 @@ public class SmsApi {
 
   /**
    * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+   * Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
    * @param requestSmsSenderIdLimitIncreaseRequest  (required)
    * @param headers Optional headers to include in the request
    * @return RequestSmsSenderIdLimitIncrease200Response
@@ -1697,7 +1697,7 @@ public class SmsApi {
 
   /**
    * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+   * Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
    * @param requestSmsSenderIdLimitIncreaseRequest  (required)
    * @return ApiResponse&lt;RequestSmsSenderIdLimitIncrease200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1708,7 +1708,7 @@ public class SmsApi {
 
   /**
    * Request a higher sender ID daily limit
-   * Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+   * Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
    * @param requestSmsSenderIdLimitIncreaseRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;RequestSmsSenderIdLimitIncrease200Response&gt;
@@ -1796,7 +1796,7 @@ public class SmsApi {
 
   /**
    * Re-send the sole-prop OTP
-   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
    * @param id  (required)
    * @return ResendSmsRegistrationOtp200Response
    * @throws ApiException if fails to make API call
@@ -1807,7 +1807,7 @@ public class SmsApi {
 
   /**
    * Re-send the sole-prop OTP
-   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
    * @param id  (required)
    * @param headers Optional headers to include in the request
    * @return ResendSmsRegistrationOtp200Response
@@ -1820,7 +1820,7 @@ public class SmsApi {
 
   /**
    * Re-send the sole-prop OTP
-   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
    * @param id  (required)
    * @return ApiResponse&lt;ResendSmsRegistrationOtp200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1831,7 +1831,7 @@ public class SmsApi {
 
   /**
    * Re-send the sole-prop OTP
-   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
    * @param id  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ResendSmsRegistrationOtp200Response&gt;
@@ -1914,7 +1914,7 @@ public class SmsApi {
 
   /**
    * Reply to a change request
-   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
    * @param id  (required)
    * @param respondToSmsRegistrationReviewRequest  (required)
    * @return RespondToSmsRegistrationReview200Response
@@ -1926,7 +1926,7 @@ public class SmsApi {
 
   /**
    * Reply to a change request
-   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
    * @param id  (required)
    * @param respondToSmsRegistrationReviewRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1940,7 +1940,7 @@ public class SmsApi {
 
   /**
    * Reply to a change request
-   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
    * @param id  (required)
    * @param respondToSmsRegistrationReviewRequest  (required)
    * @return ApiResponse&lt;RespondToSmsRegistrationReview200Response&gt;
@@ -1952,7 +1952,7 @@ public class SmsApi {
 
   /**
    * Reply to a change request
-   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+   * Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
    * @param id  (required)
    * @param respondToSmsRegistrationReviewRequest  (required)
    * @param headers Optional headers to include in the request
@@ -2540,7 +2540,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof for an appeal
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @return UploadSmsOptInProofFile200Response
@@ -2552,7 +2552,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof for an appeal
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @param headers Optional headers to include in the request
@@ -2566,7 +2566,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof for an appeal
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;
@@ -2578,7 +2578,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof for an appeal
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @param headers Optional headers to include in the request
@@ -2700,7 +2700,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @return UploadSmsOptInProofFile200Response
    * @throws ApiException if fails to make API call
@@ -2711,7 +2711,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @param headers Optional headers to include in the request
    * @return UploadSmsOptInProofFile200Response
@@ -2724,7 +2724,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2735,7 +2735,7 @@ public class SmsApi {
 
   /**
    * Upload opt-in form proof
-   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;

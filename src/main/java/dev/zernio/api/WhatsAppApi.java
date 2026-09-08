@@ -102,7 +102,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -223,7 +223,7 @@ public class WhatsAppApi {
    * Add participants
    * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -236,7 +236,7 @@ public class WhatsAppApi {
    * Add participants
    * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -251,7 +251,7 @@ public class WhatsAppApi {
    * Add participants
    * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -264,7 +264,7 @@ public class WhatsAppApi {
    * Add participants
    * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -378,7 +378,7 @@ public class WhatsAppApi {
    * Approve join requests
    * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -391,7 +391,7 @@ public class WhatsAppApi {
    * Approve join requests
    * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -406,7 +406,7 @@ public class WhatsAppApi {
    * Approve join requests
    * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -419,7 +419,7 @@ public class WhatsAppApi {
    * Approve join requests
    * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -654,7 +654,7 @@ public class WhatsAppApi {
 
   /**
    * Provision CTWA dataset
-   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
    * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @return CreateWhatsAppDataset200Response
    * @throws ApiException if fails to make API call
@@ -665,7 +665,7 @@ public class WhatsAppApi {
 
   /**
    * Provision CTWA dataset
-   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
    * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateWhatsAppDataset200Response
@@ -678,7 +678,7 @@ public class WhatsAppApi {
 
   /**
    * Provision CTWA dataset
-   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
    * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @return ApiResponse&lt;CreateWhatsAppDataset200Response&gt;
    * @throws ApiException if fails to make API call
@@ -689,7 +689,7 @@ public class WhatsAppApi {
 
   /**
    * Provision CTWA dataset
-   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
    * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateWhatsAppDataset200Response&gt;
@@ -902,7 +902,7 @@ public class WhatsAppApi {
    * Create invite link
    * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return CreateWhatsAppGroupInviteLink200Response
    * @throws ApiException if fails to make API call
    */
@@ -914,7 +914,7 @@ public class WhatsAppApi {
    * Create invite link
    * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return CreateWhatsAppGroupInviteLink200Response
    * @throws ApiException if fails to make API call
@@ -928,7 +928,7 @@ public class WhatsAppApi {
    * Create invite link
    * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;CreateWhatsAppGroupInviteLink200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -940,7 +940,7 @@ public class WhatsAppApi {
    * Create invite link
    * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateWhatsAppGroupInviteLink200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1166,7 +1166,7 @@ public class WhatsAppApi {
    * Delete group
    * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
    */
@@ -1178,7 +1178,7 @@ public class WhatsAppApi {
    * Delete group
    * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -1192,7 +1192,7 @@ public class WhatsAppApi {
    * Delete group
    * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1204,7 +1204,7 @@ public class WhatsAppApi {
    * Delete group
    * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1307,7 +1307,7 @@ public class WhatsAppApi {
    * Delete template
    * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
    * @return DeleteWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
@@ -1320,7 +1320,7 @@ public class WhatsAppApi {
    * Delete template
    * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
    * @param headers Optional headers to include in the request
    * @return DeleteWhatsAppTemplate200Response
@@ -1335,7 +1335,7 @@ public class WhatsAppApi {
    * Delete template
    * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
    * @return ApiResponse&lt;DeleteWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1348,7 +1348,7 @@ public class WhatsAppApi {
    * Delete template
    * Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteWhatsAppTemplate200Response&gt;
@@ -1454,7 +1454,7 @@ public class WhatsAppApi {
    * Delete template by id
    * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return DeleteWhatsAppTemplateById200Response
    * @throws ApiException if fails to make API call
    */
@@ -1466,7 +1466,7 @@ public class WhatsAppApi {
    * Delete template by id
    * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return DeleteWhatsAppTemplateById200Response
    * @throws ApiException if fails to make API call
@@ -1480,7 +1480,7 @@ public class WhatsAppApi {
    * Delete template by id
    * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;DeleteWhatsAppTemplateById200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1492,7 +1492,7 @@ public class WhatsAppApi {
    * Delete template by id
    * Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteWhatsAppTemplateById200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1859,7 +1859,7 @@ public class WhatsAppApi {
   /**
    * List blocked users
    * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Page size. (optional)
    * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
    * @return GetWhatsAppBlockedUsers200Response
@@ -1872,7 +1872,7 @@ public class WhatsAppApi {
   /**
    * List blocked users
    * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Page size. (optional)
    * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
    * @param headers Optional headers to include in the request
@@ -1887,7 +1887,7 @@ public class WhatsAppApi {
   /**
    * List blocked users
    * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Page size. (optional)
    * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
    * @return ApiResponse&lt;GetWhatsAppBlockedUsers200Response&gt;
@@ -1900,7 +1900,7 @@ public class WhatsAppApi {
   /**
    * List blocked users
    * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Page size. (optional)
    * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
    * @param headers Optional headers to include in the request
@@ -2003,7 +2003,7 @@ public class WhatsAppApi {
   /**
    * Get business profile
    * Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppBusinessProfile200Response
    * @throws ApiException if fails to make API call
    */
@@ -2014,7 +2014,7 @@ public class WhatsAppApi {
   /**
    * Get business profile
    * Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppBusinessProfile200Response
    * @throws ApiException if fails to make API call
@@ -2027,7 +2027,7 @@ public class WhatsAppApi {
   /**
    * Get business profile
    * Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppBusinessProfile200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2038,7 +2038,7 @@ public class WhatsAppApi {
   /**
    * Get business profile
    * Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppBusinessProfile200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2134,8 +2134,8 @@ public class WhatsAppApi {
 
   /**
    * Get CTWA conversions dataset
-   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
-   * @param accountId WhatsApp social account ID (required)
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppDataset200Response
    * @throws ApiException if fails to make API call
    */
@@ -2145,8 +2145,8 @@ public class WhatsAppApi {
 
   /**
    * Get CTWA conversions dataset
-   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
-   * @param accountId WhatsApp social account ID (required)
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppDataset200Response
    * @throws ApiException if fails to make API call
@@ -2158,8 +2158,8 @@ public class WhatsAppApi {
 
   /**
    * Get CTWA conversions dataset
-   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
-   * @param accountId WhatsApp social account ID (required)
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppDataset200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2169,8 +2169,8 @@ public class WhatsAppApi {
 
   /**
    * Get CTWA conversions dataset
-   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
-   * @param accountId WhatsApp social account ID (required)
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppDataset200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2267,7 +2267,7 @@ public class WhatsAppApi {
   /**
    * Get display name status
    * Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppDisplayName200Response
    * @throws ApiException if fails to make API call
    */
@@ -2278,7 +2278,7 @@ public class WhatsAppApi {
   /**
    * Get display name status
    * Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppDisplayName200Response
    * @throws ApiException if fails to make API call
@@ -2291,7 +2291,7 @@ public class WhatsAppApi {
   /**
    * Get display name status
    * Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppDisplayName200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2302,7 +2302,7 @@ public class WhatsAppApi {
   /**
    * Get display name status
    * Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppDisplayName200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2400,7 +2400,7 @@ public class WhatsAppApi {
    * Get group info
    * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppGroupChat200Response
    * @throws ApiException if fails to make API call
    */
@@ -2412,7 +2412,7 @@ public class WhatsAppApi {
    * Get group info
    * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppGroupChat200Response
    * @throws ApiException if fails to make API call
@@ -2426,7 +2426,7 @@ public class WhatsAppApi {
    * Get group info
    * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppGroupChat200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2438,7 +2438,7 @@ public class WhatsAppApi {
    * Get group info
    * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppGroupChat200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2681,7 +2681,7 @@ public class WhatsAppApi {
    * Get template
    * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @return GetWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
@@ -2694,7 +2694,7 @@ public class WhatsAppApi {
    * Get template
    * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppTemplate200Response
@@ -2709,7 +2709,7 @@ public class WhatsAppApi {
    * Get template
    * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2722,7 +2722,7 @@ public class WhatsAppApi {
    * Get template
    * Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
    * @param templateName Template name (the family). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param language Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
@@ -2828,7 +2828,7 @@ public class WhatsAppApi {
    * Get template by id
    * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
    */
@@ -2840,7 +2840,7 @@ public class WhatsAppApi {
    * Get template by id
    * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppTemplate200Response
    * @throws ApiException if fails to make API call
@@ -2854,7 +2854,7 @@ public class WhatsAppApi {
    * Get template by id
    * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2866,7 +2866,7 @@ public class WhatsAppApi {
    * Get template by id
    * Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
    * @param templateId Meta template id (numeric). (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppTemplate200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2968,7 +2968,7 @@ public class WhatsAppApi {
   /**
    * List templates
    * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact template name; returns every language variant of that family. (optional)
    * @param language Exact language code (e.g. en_US). (optional)
    * @param status  (optional)
@@ -2982,7 +2982,7 @@ public class WhatsAppApi {
   /**
    * List templates
    * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact template name; returns every language variant of that family. (optional)
    * @param language Exact language code (e.g. en_US). (optional)
    * @param status  (optional)
@@ -2998,7 +2998,7 @@ public class WhatsAppApi {
   /**
    * List templates
    * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact template name; returns every language variant of that family. (optional)
    * @param language Exact language code (e.g. en_US). (optional)
    * @param status  (optional)
@@ -3012,7 +3012,7 @@ public class WhatsAppApi {
   /**
    * List templates
    * List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact template name; returns every language variant of that family. (optional)
    * @param language Exact language code (e.g. en_US). (optional)
    * @param status  (optional)
@@ -3118,7 +3118,7 @@ public class WhatsAppApi {
   /**
    * Get business username
    * Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsappBusinessUsername200Response
    * @throws ApiException if fails to make API call
    */
@@ -3129,7 +3129,7 @@ public class WhatsAppApi {
   /**
    * Get business username
    * Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsappBusinessUsername200Response
    * @throws ApiException if fails to make API call
@@ -3142,7 +3142,7 @@ public class WhatsAppApi {
   /**
    * Get business username
    * Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsappBusinessUsername200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -3153,7 +3153,7 @@ public class WhatsAppApi {
   /**
    * Get business username
    * Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsappBusinessUsername200Response&gt;
    * @throws ApiException if fails to make API call
@@ -3250,7 +3250,7 @@ public class WhatsAppApi {
   /**
    * Get username suggestions
    * Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsappBusinessUsernameSuggestions200Response
    * @throws ApiException if fails to make API call
    */
@@ -3261,7 +3261,7 @@ public class WhatsAppApi {
   /**
    * Get username suggestions
    * Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsappBusinessUsernameSuggestions200Response
    * @throws ApiException if fails to make API call
@@ -3274,7 +3274,7 @@ public class WhatsAppApi {
   /**
    * Get username suggestions
    * Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsappBusinessUsernameSuggestions200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -3285,7 +3285,7 @@ public class WhatsAppApi {
   /**
    * Get username suggestions
    * Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsappBusinessUsernameSuggestions200Response&gt;
    * @throws ApiException if fails to make API call
@@ -3382,7 +3382,7 @@ public class WhatsAppApi {
   /**
    * List account notifications
    * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Maximum events to return (optional, default to 50)
    * @return ListWhatsAppAccountEvents200Response
    * @throws ApiException if fails to make API call
@@ -3394,7 +3394,7 @@ public class WhatsAppApi {
   /**
    * List account notifications
    * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Maximum events to return (optional, default to 50)
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppAccountEvents200Response
@@ -3408,7 +3408,7 @@ public class WhatsAppApi {
   /**
    * List account notifications
    * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Maximum events to return (optional, default to 50)
    * @return ApiResponse&lt;ListWhatsAppAccountEvents200Response&gt;
    * @throws ApiException if fails to make API call
@@ -3420,7 +3420,7 @@ public class WhatsAppApi {
   /**
    * List account notifications
    * Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Maximum events to return (optional, default to 50)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppAccountEvents200Response&gt;
@@ -3520,7 +3520,7 @@ public class WhatsAppApi {
   /**
    * List conversion events
    * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max events to return (1-200, default 50). (optional, default to 50)
    * @return ListWhatsAppConversions200Response
    * @throws ApiException if fails to make API call
@@ -3532,7 +3532,7 @@ public class WhatsAppApi {
   /**
    * List conversion events
    * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max events to return (1-200, default 50). (optional, default to 50)
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppConversions200Response
@@ -3546,7 +3546,7 @@ public class WhatsAppApi {
   /**
    * List conversion events
    * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max events to return (1-200, default 50). (optional, default to 50)
    * @return ApiResponse&lt;ListWhatsAppConversions200Response&gt;
    * @throws ApiException if fails to make API call
@@ -3558,7 +3558,7 @@ public class WhatsAppApi {
   /**
    * List conversion events
    * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max events to return (1-200, default 50). (optional, default to 50)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppConversions200Response&gt;
@@ -3658,7 +3658,7 @@ public class WhatsAppApi {
   /**
    * List active groups
    * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
    * @return ListWhatsAppGroupChats200Response
@@ -3671,7 +3671,7 @@ public class WhatsAppApi {
   /**
    * List active groups
    * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
    * @param headers Optional headers to include in the request
@@ -3686,7 +3686,7 @@ public class WhatsAppApi {
   /**
    * List active groups
    * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
    * @return ApiResponse&lt;ListWhatsAppGroupChats200Response&gt;
@@ -3699,7 +3699,7 @@ public class WhatsAppApi {
   /**
    * List active groups
    * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
    * @param headers Optional headers to include in the request
@@ -3803,7 +3803,7 @@ public class WhatsAppApi {
    * List join requests
    * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ListWhatsAppGroupJoinRequests200Response
    * @throws ApiException if fails to make API call
    */
@@ -3815,7 +3815,7 @@ public class WhatsAppApi {
    * List join requests
    * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppGroupJoinRequests200Response
    * @throws ApiException if fails to make API call
@@ -3829,7 +3829,7 @@ public class WhatsAppApi {
    * List join requests
    * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;ListWhatsAppGroupJoinRequests200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -3841,7 +3841,7 @@ public class WhatsAppApi {
    * List join requests
    * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppGroupJoinRequests200Response&gt;
    * @throws ApiException if fails to make API call
@@ -4072,7 +4072,7 @@ public class WhatsAppApi {
    * Reject join requests
    * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -4085,7 +4085,7 @@ public class WhatsAppApi {
    * Reject join requests
    * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -4100,7 +4100,7 @@ public class WhatsAppApi {
    * Reject join requests
    * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -4113,7 +4113,7 @@ public class WhatsAppApi {
    * Reject join requests
    * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -4227,7 +4227,7 @@ public class WhatsAppApi {
    * Remove participants
    * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -4240,7 +4240,7 @@ public class WhatsAppApi {
    * Remove participants
    * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -4255,7 +4255,7 @@ public class WhatsAppApi {
    * Remove participants
    * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -4268,7 +4268,7 @@ public class WhatsAppApi {
    * Remove participants
    * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -4997,7 +4997,7 @@ public class WhatsAppApi {
    * Update group settings
    * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -5010,7 +5010,7 @@ public class WhatsAppApi {
    * Update group settings
    * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -5025,7 +5025,7 @@ public class WhatsAppApi {
    * Update group settings
    * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -5038,7 +5038,7 @@ public class WhatsAppApi {
    * Update group settings
    * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -5414,8 +5414,8 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
-   * @param accountId WhatsApp social account ID (required)
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+   * @param accountId WhatsApp account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @return UnpublishPost200Response
    * @throws ApiException if fails to make API call
@@ -5426,8 +5426,8 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
-   * @param accountId WhatsApp social account ID (required)
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+   * @param accountId WhatsApp account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @param headers Optional headers to include in the request
    * @return UnpublishPost200Response
@@ -5440,8 +5440,8 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
-   * @param accountId WhatsApp social account ID (required)
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+   * @param accountId WhatsApp account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
    * @throws ApiException if fails to make API call
@@ -5452,8 +5452,8 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
-   * @param accountId WhatsApp social account ID (required)
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+   * @param accountId WhatsApp account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UnpublishPost200Response&gt;

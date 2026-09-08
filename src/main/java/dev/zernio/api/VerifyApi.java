@@ -56,7 +56,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VerifyApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -175,7 +175,7 @@ public class VerifyApi {
 
   /**
    * Check a verification code
-   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
    * @param verificationId  (required)
    * @param checkVerificationRequest  (required)
    * @return CheckVerification200Response
@@ -187,7 +187,7 @@ public class VerifyApi {
 
   /**
    * Check a verification code
-   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
    * @param verificationId  (required)
    * @param checkVerificationRequest  (required)
    * @param headers Optional headers to include in the request
@@ -201,7 +201,7 @@ public class VerifyApi {
 
   /**
    * Check a verification code
-   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
    * @param verificationId  (required)
    * @param checkVerificationRequest  (required)
    * @return ApiResponse&lt;CheckVerification200Response&gt;
@@ -213,7 +213,7 @@ public class VerifyApi {
 
   /**
    * Check a verification code
-   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+   * Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
    * @param verificationId  (required)
    * @param checkVerificationRequest  (required)
    * @param headers Optional headers to include in the request

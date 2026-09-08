@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbMediaApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -319,7 +319,7 @@ public class GmbMediaApi {
 
   /**
    * Delete photo
-   * Deletes a photo or media item from a GBP location.
+   * Deletes a photo or media item from a Google Business Profile location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -332,7 +332,7 @@ public class GmbMediaApi {
 
   /**
    * Delete photo
-   * Deletes a photo or media item from a GBP location.
+   * Deletes a photo or media item from a Google Business Profile location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -347,7 +347,7 @@ public class GmbMediaApi {
 
   /**
    * Delete photo
-   * Deletes a photo or media item from a GBP location.
+   * Deletes a photo or media item from a Google Business Profile location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -360,7 +360,7 @@ public class GmbMediaApi {
 
   /**
    * Delete photo
-   * Deletes a photo or media item from a GBP location.
+   * Deletes a photo or media item from a Google Business Profile location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)

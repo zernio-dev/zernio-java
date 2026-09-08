@@ -9,7 +9,7 @@ One changed analytics snapshot. Metrics are the absolute values recorded at `syn
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**postId** | **String** | External post ID. The same identifier as &#x60;posts[]._id&#x60; in GET /v1/analytics. |  |
-|**accountId** | **String** | Social account this post was published through |  |
+|**accountId** | **String** | Account this post was published through |  |
 |**profileId** | **String** | Profile the account belongs to |  |
 |**platform** | **String** |  |  |
 |**platformPostId** | **String** | Platform-side post ID (for example the YouTube video ID) |  |

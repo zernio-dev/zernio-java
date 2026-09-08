@@ -34,14 +34,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * TikTok Business Center entity. Returned by &#x60;GET /v1/ads/business-centers&#x60;. BCs are TikTok&#39;s agency container — one BC owns N advertisers (ad accounts). Most solo advertisers don&#39;t have one; the agency token uses BCs to roll up multi-client access. 
+ * TikTok Business Center entity. Returned by &#x60;GET /v1/ads/business-centers&#x60;. BCs are TikTok&#39;s agency container: one BC owns N advertisers (ad accounts). Most solo advertisers don&#39;t have one; the agency token uses BCs to roll up multi-client access. 
  */
 @JsonPropertyOrder({
   BusinessCenter.JSON_PROPERTY_BC_ID,
   BusinessCenter.JSON_PROPERTY_NAME,
   BusinessCenter.JSON_PROPERTY_ADVERTISER_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessCenter {
   public static final String JSON_PROPERTY_BC_ID = "bcId";
   @javax.annotation.Nullable
@@ -111,7 +111,7 @@ public class BusinessCenter {
   }
 
   /**
-   * Number of advertisers reachable under this BC for the calling token. &#x60;null&#x60; when the BC asset walk returned empty or failed (typical for agency apps without full BC asset read scope) — distinct from &#x60;0&#x60;, which would imply the BC genuinely has no advertisers. 
+   * Number of advertisers reachable under this BC for the calling token. &#x60;null&#x60; when the BC asset walk returned empty or failed (typical for agency apps without full BC asset read scope), distinct from &#x60;0&#x60;, which would imply the BC genuinely has no advertisers. 
    * @return advertiserCount
    */
   @javax.annotation.Nullable

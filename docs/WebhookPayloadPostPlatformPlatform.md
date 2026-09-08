@@ -2,7 +2,7 @@
 
 # WebhookPayloadPostPlatformPlatform
 
-The specific platform that just transitioned to a terminal state.
+The specific platform that transitioned to a terminal state.
 
 ## Properties
 

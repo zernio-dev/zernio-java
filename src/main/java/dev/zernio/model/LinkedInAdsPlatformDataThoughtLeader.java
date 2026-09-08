@@ -30,12 +30,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * POST /v1/ads/create only. Sponsors an existing LinkedIn post (a share or ugcPost authored by your organization&#39;s Company Page) as the creative, keeping its commentary, author and engagement. Unlike boostPost, which provisions its own CampaignGroup + Campaign around the post, this variant attaches the reference under the campaign /v1/ads/create builds — same shape as every other format, so the caller can pick bidding / targeting / schedule freely. No headline, body, imageUrl or organization are needed; the referenced post carries its own commentary and author. Mutually exclusive with the other creative sources. Posts from personal profiles (Thought Leader Ads) are NOT supported (see postUrn). 
+ * POST /v1/ads/create only. Sponsors an existing LinkedIn post (a share or ugcPost authored by your organization&#39;s Company Page) as the creative, keeping its commentary, author and engagement. Unlike boostPost, which provisions its own CampaignGroup + Campaign around the post, this variant attaches the reference under the campaign /v1/ads/create builds, the same shape as every other format, so the caller can pick bidding / targeting / schedule freely. No headline, body, imageUrl or organization are needed; the referenced post carries its own commentary and author. Mutually exclusive with the other creative sources. Posts from personal profiles (Thought Leader Ads) are NOT supported (see postUrn). 
  */
 @JsonPropertyOrder({
   LinkedInAdsPlatformDataThoughtLeader.JSON_PROPERTY_POST_URN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataThoughtLeader {
   public static final String JSON_PROPERTY_POST_URN = "postUrn";
   @javax.annotation.Nonnull

@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AttachCampaignAssetsRequest.JSON_PROPERTY_CALLOUTS,
   AttachCampaignAssetsRequest.JSON_PROPERTY_STRUCTURED_SNIPPETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachCampaignAssetsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -74,7 +74,7 @@ public class AttachCampaignAssetsRequest {
   }
 
   /**
-   * Zernio Google Ads SocialAccount id — resolves the customer id + refresh token.
+   * Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token.
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -130,7 +130,7 @@ public class AttachCampaignAssetsRequest {
   }
 
   /**
-   * See POST /v1/ads/create sitelinks — same shape.
+   * See POST /v1/ads/create sitelinks, same shape.
    * @return sitelinks
    */
   @javax.annotation.Nullable

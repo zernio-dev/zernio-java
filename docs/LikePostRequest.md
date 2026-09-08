@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | The social account acting as the liker |  |
+|**accountId** | **String** | The account acting as the liker |  |
 |**reactionType** | [**ReactionTypeEnum**](#ReactionTypeEnum) | (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms. |  [optional] |
 |**cid** | **String** | (Bluesky only) Content identifier of the post |  [optional] |
 

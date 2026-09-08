@@ -2,7 +2,7 @@
 
 # AdjustConversionsRequestAdjustmentsInnerUser
 
-ENHANCEMENT only — first-party identifiers (hashed server-side). At least one of email/phone required.
+ENHANCEMENT only. First-party identifiers (hashed server-side). At least one of email/phone required.
 
 ## Properties
 

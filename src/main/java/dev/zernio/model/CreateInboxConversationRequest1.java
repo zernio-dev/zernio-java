@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest1.JSON_PROPERTY_ATTACHMENT,
   CreateInboxConversationRequest1.JSON_PROPERTY_SKIP_DM_CHECK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest1 {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -111,7 +111,7 @@ public class CreateInboxConversationRequest1 {
   }
 
   /**
-   * The social account ID to send from
+   * The account ID to send from
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -135,7 +135,7 @@ public class CreateInboxConversationRequest1 {
   }
 
   /**
-   * Twitter numeric user ID of the recipient
+   * X numeric user ID of the recipient
    * @return participantId
    */
   @javax.annotation.Nullable
@@ -159,7 +159,7 @@ public class CreateInboxConversationRequest1 {
   }
 
   /**
-   * Twitter username (with or without @) of the recipient
+   * X username (with or without @) of the recipient
    * @return participantUsername
    */
   @javax.annotation.Nullable

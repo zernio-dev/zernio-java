@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * X/Twitter only. Per-account opt-in toggles for background API operations that incur X API pass-through costs. Each call is billed via Metronome at the X tier rate. Either field can be sent independently; omitted fields are unchanged. 
+ * X only. Per-account opt-in toggles for background API operations that incur X API pass-through costs. Each call is billed at the X tier rate. Either field can be sent independently; omitted fields are unchanged. 
  */
 @JsonPropertyOrder({
   UpdateAccountRequestXCapabilities.JSON_PROPERTY_ANALYTICS,
   UpdateAccountRequestXCapabilities.JSON_PROPERTY_INBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountRequestXCapabilities {
   public static final String JSON_PROPERTY_ANALYTICS = "analytics";
   @javax.annotation.Nullable
@@ -55,7 +55,7 @@ public class UpdateAccountRequestXCapabilities {
   }
 
   /**
-   * Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing — actual rate depends on X&#39;s pricing tier). 
+   * Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing; the actual rate depends on X&#39;s pricing tier). 
    * @return analytics
    */
   @javax.annotation.Nullable

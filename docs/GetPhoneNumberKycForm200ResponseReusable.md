@@ -10,7 +10,7 @@ Present when this account already has a reusable verification for the country (s
 |------------ | ------------- | ------------- | -------------|
 |**available** | **Boolean** |  |  [optional] |
 |**fromPhoneNumber** | **String** |  |  [optional] |
-|**details** | [**List&lt;GetPhoneNumberKycForm200ResponseReusableDetailsInner&gt;**](GetPhoneNumberKycForm200ResponseReusableDetailsInner.md) | Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails. |  [optional] |
+|**details** | [**List&lt;GetPhoneNumberKycForm200ResponseReusableDetailsInner&gt;**](GetPhoneNumberKycForm200ResponseReusableDetailsInner.md) | Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort. May be empty if the provider lookup fails. |  [optional] |
 |**options** | [**List&lt;GetPhoneNumberKycForm200ResponseReusableOptionsInner&gt;**](GetPhoneNumberKycForm200ResponseReusableOptionsInner.md) | One entry per distinct approved verification, newest first. |  [optional] |
 
 

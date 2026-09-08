@@ -369,7 +369,7 @@ ApiResponse<[**CustomConversionResult**](CustomConversionResult.md)>
 
 Schedule a budget increase
 
-Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules; the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
 
 ### Example
 
@@ -442,7 +442,7 @@ public class Example {
 
 Schedule a budget increase
 
-Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules; the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
 
 ### Example
 
@@ -977,7 +977,7 @@ ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
 
 ### Example
 
@@ -1058,7 +1058,7 @@ public class Example {
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
 
 ### Example
 
@@ -1340,7 +1340,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String accountId = "accountId_example"; // String | Account ID (metaads, or a facebook/instagram posting account)
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
         try {
             UpdateAdAccount200Response result = apiInstance.getDsaDefaults(accountId, adAccountId);
@@ -1361,7 +1361,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **accountId** | **String**| Account ID (metaads, or a facebook/instagram posting account) | |
 | **adAccountId** | **String**| Meta ad account ID (act_...) | |
 
 ### Return type
@@ -1384,7 +1384,7 @@ public class Example {
 | **200** | Current DSA defaults (empty object when none are set) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Social account not found |  -  |
+| **404** | Account not found |  -  |
 
 ## getDsaDefaultsWithHttpInfo
 
@@ -1416,7 +1416,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String accountId = "accountId_example"; // String | Account ID (metaads, or a facebook/instagram posting account)
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
         try {
             ApiResponse<UpdateAdAccount200Response> response = apiInstance.getDsaDefaultsWithHttpInfo(accountId, adAccountId);
@@ -1439,7 +1439,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **accountId** | **String**| Account ID (metaads, or a facebook/instagram posting account) | |
 | **adAccountId** | **String**| Meta ad account ID (act_...) | |
 
 ### Return type
@@ -1462,7 +1462,7 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 | **200** | Current DSA defaults (empty object when none are set) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Social account not found |  -  |
+| **404** | Account not found |  -  |
 
 
 ## getDsaRecommendations
@@ -1494,7 +1494,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String accountId = "accountId_example"; // String | Account ID (metaads, or a facebook/instagram posting account)
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
         try {
             GetDsaRecommendations200Response result = apiInstance.getDsaRecommendations(accountId, adAccountId);
@@ -1515,7 +1515,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **accountId** | **String**| Account ID (metaads, or a facebook/instagram posting account) | |
 | **adAccountId** | **String**| Meta ad account ID (act_...) | |
 
 ### Return type
@@ -1538,7 +1538,7 @@ public class Example {
 | **200** | Suggested DSA strings (may be empty when Meta has no recommendations) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Social account not found |  -  |
+| **404** | Account not found |  -  |
 
 ## getDsaRecommendationsWithHttpInfo
 
@@ -1570,7 +1570,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String accountId = "accountId_example"; // String | Account ID (metaads, or a facebook/instagram posting account)
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
         try {
             ApiResponse<GetDsaRecommendations200Response> response = apiInstance.getDsaRecommendationsWithHttpInfo(accountId, adAccountId);
@@ -1593,7 +1593,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **accountId** | **String**| Account ID (metaads, or a facebook/instagram posting account) | |
 | **adAccountId** | **String**| Meta ad account ID (act_...) | |
 
 ### Return type
@@ -1616,7 +1616,7 @@ ApiResponse<[**GetDsaRecommendations200Response**](GetDsaRecommendations200Respo
 | **200** | Suggested DSA strings (may be empty when Meta has no recommendations) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Social account not found |  -  |
+| **404** | Account not found |  -  |
 
 
 ## getValueRuleSet
@@ -1939,7 +1939,7 @@ ApiResponse<[**ListAccountCallouts200Response**](ListAccountCallouts200Response.
 
 List ad accounts
 
-Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
 
 ### Example
 
@@ -1962,7 +1962,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID
+        String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Filter response to a single platform ad account ID (e.g. `act_123` for Meta, advertiser_id for TikTok). Returns at most one item.
         Integer limit = 56; // Integer | Clamp the returned `accounts[]` length. Useful for typeahead pickers on agency tokens with hundreds of advertisers.
         try {
@@ -1984,7 +1984,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID | |
+| **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. | [optional] |
 | **limit** | **Integer**| Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. | [optional] |
 
@@ -2016,7 +2016,7 @@ public class Example {
 
 List ad accounts
 
-Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
 
 ### Example
 
@@ -2040,7 +2040,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID
+        String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Filter response to a single platform ad account ID (e.g. `act_123` for Meta, advertiser_id for TikTok). Returns at most one item.
         Integer limit = 56; // Integer | Clamp the returned `accounts[]` length. Useful for typeahead pickers on agency tokens with hundreds of advertisers.
         try {
@@ -2064,7 +2064,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID | |
+| **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. | [optional] |
 | **limit** | **Integer**| Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. | [optional] |
 
@@ -3436,7 +3436,7 @@ public class Example {
 | **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Social account not found |  -  |
+| **404** | Account not found |  -  |
 
 ## updateAdAccountWithHttpInfo
 
@@ -3512,7 +3512,7 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 | **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Social account not found |  -  |
+| **404** | Account not found |  -  |
 
 
 ## updateValueRuleSet

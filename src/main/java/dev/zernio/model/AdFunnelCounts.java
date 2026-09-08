@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Named conversion-funnel steps, resolved from the same data as &#x60;actions&#x60; so you never have to parse action-type strings yourself.  Meta reports one event under several action types at once (&#x60;offsite_conversion.fb_pixel_purchase&#x60;, &#x60;omni_purchase&#x60;, &#x60;purchase&#x60;, …). Each field below takes the FIRST family member present rather than summing them, which is what makes these counts safe to add up — summing the raw &#x60;actions&#x60; keys yourself double or triple counts. The same priority order backs &#x60;conversions&#x60;, so a purchase-optimised campaign reports the identical number in &#x60;conversions&#x60; and &#x60;funnel.purchases&#x60;.  Every field is 0 when that step never fired. Populated for Meta ads; other platforms report a different action taxonomy and generally leave these at 0 (read &#x60;actions&#x60; for those). At ad-set and campaign level each step is summed from its per-ad values. 
+ * Named conversion-funnel steps, resolved from the same data as &#x60;actions&#x60; so you never have to parse action-type strings yourself.  Meta reports one event under several action types at once (&#x60;offsite_conversion.fb_pixel_purchase&#x60;, &#x60;omni_purchase&#x60;, &#x60;purchase&#x60;, …). Each field below takes the FIRST family member present rather than summing them, which is what makes these counts safe to add up. Summing the raw &#x60;actions&#x60; keys yourself double or triple counts. The same priority order backs &#x60;conversions&#x60;, so a purchase-optimised campaign reports the identical number in &#x60;conversions&#x60; and &#x60;funnel.purchases&#x60;.  Every field is 0 when that step never fired. Populated for Meta ads; other platforms report a different action taxonomy and generally leave these at 0 (read &#x60;actions&#x60; for those). At ad-set and campaign level each step is summed from its per-ad values. 
  */
 @JsonPropertyOrder({
   AdFunnelCounts.JSON_PROPERTY_LANDING_PAGE_VIEWS,
@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   AdFunnelCounts.JSON_PROPERTY_MESSAGING_CONVERSATIONS_STARTED,
   AdFunnelCounts.JSON_PROPERTY_MESSAGING_FIRST_REPLIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdFunnelCounts {
   public static final String JSON_PROPERTY_LANDING_PAGE_VIEWS = "landingPageViews";
   @javax.annotation.Nullable
@@ -110,7 +110,7 @@ public class AdFunnelCounts {
   }
 
   /**
-   * Landing page views — the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;.
+   * Landing page views: the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;.
    * @return landingPageViews
    */
   @javax.annotation.Nullable
@@ -302,7 +302,7 @@ public class AdFunnelCounts {
   }
 
   /**
-   * Leads, from either the website pixel or an instant form — whichever the ad uses.
+   * Leads, from either the website pixel or an instant form, whichever the ad uses.
    * @return leads
    */
   @javax.annotation.Nullable
@@ -374,7 +374,7 @@ public class AdFunnelCounts {
   }
 
   /**
-   * Messaging conversations started within 7 days — the headline metric for click-to-WhatsApp and click-to-Messenger ads.
+   * Messaging conversations started within 7 days, the headline metric for click-to-WhatsApp and click-to-Messenger ads.
    * @return messagingConversationsStarted
    */
   @javax.annotation.Nullable

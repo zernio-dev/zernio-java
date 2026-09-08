@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountGroupsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -171,7 +171,7 @@ public class AccountGroupsApi {
 
   /**
    * Create group
-   * Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+   * Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
    * @param createAccountGroupRequest  (required)
    * @return CreateAccountGroup201Response
    * @throws ApiException if fails to make API call
@@ -182,7 +182,7 @@ public class AccountGroupsApi {
 
   /**
    * Create group
-   * Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+   * Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
    * @param createAccountGroupRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateAccountGroup201Response
@@ -195,7 +195,7 @@ public class AccountGroupsApi {
 
   /**
    * Create group
-   * Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+   * Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
    * @param createAccountGroupRequest  (required)
    * @return ApiResponse&lt;CreateAccountGroup201Response&gt;
    * @throws ApiException if fails to make API call
@@ -206,7 +206,7 @@ public class AccountGroupsApi {
 
   /**
    * Create group
-   * Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+   * Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
    * @param createAccountGroupRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateAccountGroup201Response&gt;

@@ -2,7 +2,7 @@
 
 # CreateStandaloneAd201ResponseOneOf1
 
-Multi-creative shape — N ads returned sharing platformCampaignId / platformAdSetId.
+Multi-creative shape: N ads returned sharing platformCampaignId / platformAdSetId.
 
 ## Properties
 

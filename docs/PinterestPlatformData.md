@@ -13,7 +13,7 @@
 |**link** | **URI** | Destination link (pin URL) |  [optional] |
 |**coverImageUrl** | **URI** | Optional cover image for video pins |  [optional] |
 |**coverImageKeyFrameTime** | **Integer** | Optional key frame time in seconds for derived video cover |  [optional] |
-|**isAiGenerated** | **Boolean** | When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection. |  [optional] |
+|**isAiGenerated** | **Boolean** | When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false omits the disclosure. Pinterest may still label a Pin on its own detection. |  [optional] |
 
 
 

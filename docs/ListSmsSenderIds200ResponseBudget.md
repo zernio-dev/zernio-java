@@ -2,7 +2,7 @@
 
 # ListSmsSenderIds200ResponseBudget
 
-Workspace-wide daily sending budget, shared by every sender ID (resets midnight UTC).
+Team-wide daily sending budget, shared by every sender ID (resets midnight UTC).
 
 ## Properties
 

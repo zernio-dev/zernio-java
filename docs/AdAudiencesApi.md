@@ -635,7 +635,7 @@ ApiResponse<[**GetAdAudience200Response**](GetAdAudience200Response.md)>
 
 List custom audiences
 
-Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
+Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X.
 
 ### Example
 
@@ -658,7 +658,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID
+        String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
         String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences.
@@ -681,7 +681,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID | |
+| **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
 | **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
@@ -713,7 +713,7 @@ public class Example {
 
 List custom audiences
 
-Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
+Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X.
 
 ### Example
 
@@ -737,7 +737,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID
+        String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
         String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences.
@@ -762,7 +762,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID | |
+| **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
 | **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
@@ -795,7 +795,7 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 
 Replace audience companies
 
-Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
 
 ### Example
 
@@ -872,7 +872,7 @@ public class Example {
 
 Replace audience companies
 
-Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
 
 ### Example
 

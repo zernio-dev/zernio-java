@@ -10,7 +10,7 @@ At least one mutable field beyond `adAccountId` is required; the route returns 4
 |------------ | ------------- | ------------- | -------------|
 |**adAccountId** | **String** |  |  |
 |**name** | **String** |  |  [optional] |
-|**enabled** | **Boolean** | Setting &#x60;false&#x60; is equivalent to calling DELETE — the rule will appear as &#x60;inactive&#x60; afterwards.  |  [optional] |
+|**enabled** | **Boolean** | Setting &#x60;false&#x60; is equivalent to calling DELETE: the rule will appear as &#x60;inactive&#x60; afterwards.  |  [optional] |
 |**attributionType** | [**AttributionTypeEnum**](#AttributionTypeEnum) |  |  [optional] |
 |**postClickAttributionWindowSize** | [**PostClickAttributionWindowSizeEnum**](#PostClickAttributionWindowSizeEnum) | 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types.  |  [optional] |
 |**viewThroughAttributionWindowSize** | [**ViewThroughAttributionWindowSizeEnum**](#ViewThroughAttributionWindowSizeEnum) | 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types.  |  [optional] |

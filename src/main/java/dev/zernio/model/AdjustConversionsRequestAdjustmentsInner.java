@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AdjustConversionsRequestAdjustmentsInner.JSON_PROPERTY_USER,
   AdjustConversionsRequestAdjustmentsInner.JSON_PROPERTY_USER_AGENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdjustConversionsRequestAdjustmentsInner {
   /**
    * Gets or Sets adjustmentType
@@ -201,7 +201,7 @@ public class AdjustConversionsRequestAdjustmentsInner {
   }
 
   /**
-   * Alternative key — the original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT.
+   * Alternative key. The original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT.
    * @return gclid
    */
   @javax.annotation.Nullable
@@ -249,7 +249,7 @@ public class AdjustConversionsRequestAdjustmentsInner {
   }
 
   /**
-   * RESTATEMENT only — the corrected TOTAL conversion value.
+   * RESTATEMENT only. The corrected TOTAL conversion value.
    * @return restatementValue
    */
   @javax.annotation.Nullable
@@ -273,7 +273,7 @@ public class AdjustConversionsRequestAdjustmentsInner {
   }
 
   /**
-   * RESTATEMENT only — ISO 4217 currency for &#x60;restatementValue&#x60;.
+   * RESTATEMENT only. ISO 4217 currency for &#x60;restatementValue&#x60;.
    * @return currency
    */
   @javax.annotation.Nullable
@@ -321,7 +321,7 @@ public class AdjustConversionsRequestAdjustmentsInner {
   }
 
   /**
-   * ENHANCEMENT only — the original conversion&#39;s user agent (improves match quality).
+   * ENHANCEMENT only. The original conversion&#39;s user agent (improves match quality).
    * @return userAgent
    */
   @javax.annotation.Nullable

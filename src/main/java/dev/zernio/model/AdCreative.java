@@ -62,7 +62,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();
@@ -302,7 +302,7 @@ public class AdCreative {
   }
 
   /**
-   * Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews — when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available.
+   * Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews: when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available.
    * @return objectType
    */
   @javax.annotation.Nullable
@@ -326,7 +326,7 @@ public class AdCreative {
   }
 
   /**
-   * Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead.
+   * Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent, because Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead.
    * @return objectStoryId
    */
   @javax.annotation.Nullable
@@ -358,7 +358,7 @@ public class AdCreative {
   }
 
   /**
-   * Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it.
+   * Meta &#x60;effective_object_story_id&#x60;, the &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it.
    * @return effectiveObjectStoryId
    */
   @javax.annotation.Nullable
@@ -422,7 +422,7 @@ public class AdCreative {
   }
 
   /**
-   * Meta &#x60;effective_instagram_media_id&#x60; — the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad.
+   * Meta &#x60;effective_instagram_media_id&#x60;, the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad.
    * @return effectiveInstagramMediaId
    */
   @javax.annotation.Nullable
@@ -454,7 +454,7 @@ public class AdCreative {
   }
 
   /**
-   * Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media.
+   * Meta &#x60;instagram_user_id&#x60;, the Instagram-scoped business ID that owns the boosted media.
    * @return instagramUserId
    */
   @javax.annotation.Nullable
@@ -486,7 +486,7 @@ public class AdCreative {
   }
 
   /**
-   * Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media.
+   * Meta &#x60;instagram_permalink_url&#x60;, the public Instagram post URL of the boosted media.
    * @return instagramPermalinkUrl
    */
   @javax.annotation.Nullable

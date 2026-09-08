@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppFlowRequest.JSON_PROPERTY_CATEGORIES,
   UpdateWhatsAppFlowRequest.JSON_PROPERTY_ENDPOINT_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppFlowRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -115,7 +115,7 @@ public class UpdateWhatsAppFlowRequest {
   }
 
   /**
-   * WhatsApp social account ID
+   * WhatsApp account ID
    * @return accountId
    */
   @javax.annotation.Nonnull

@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CALLING_ENABLED,
   ListPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -283,7 +283,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   }
 
   /**
-   * For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.
+   * For regulated numbers, who it&#39;s registered for (company or person), set from the submitted KYC.
    * @return registrantName
    */
   @javax.annotation.Nullable
@@ -371,7 +371,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   }
 
   /**
-   * False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them.
+   * False for numbers you brought yourself (connected via Meta embedded signup). They live on your own carrier, so SMS/Calls can&#39;t be enabled on them.
    * @return hostedByZernio
    */
   @javax.annotation.Nullable
@@ -523,7 +523,7 @@ public class ListPhoneNumbers200ResponseNumbersInner {
   }
 
   /**
-   * For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
+   * For regulated (Tier 3/4) numbers with an Onfido ID-verification step: the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
    * @return onfidoVerificationUrl
    */
   @javax.annotation.Nullable

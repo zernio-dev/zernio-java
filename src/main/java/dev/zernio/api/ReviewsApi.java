@@ -56,7 +56,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -175,7 +175,7 @@ public class ReviewsApi {
 
   /**
    * Delete review reply
-   * Delete a reply to a review (Google Business only). Requires accountId in request body.
+   * Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
    * @param reviewId  (required)
    * @param deleteInboxReviewReplyRequest  (required)
    * @return DeleteInboxReviewReply200Response
@@ -187,7 +187,7 @@ public class ReviewsApi {
 
   /**
    * Delete review reply
-   * Delete a reply to a review (Google Business only). Requires accountId in request body.
+   * Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
    * @param reviewId  (required)
    * @param deleteInboxReviewReplyRequest  (required)
    * @param headers Optional headers to include in the request
@@ -201,7 +201,7 @@ public class ReviewsApi {
 
   /**
    * Delete review reply
-   * Delete a reply to a review (Google Business only). Requires accountId in request body.
+   * Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
    * @param reviewId  (required)
    * @param deleteInboxReviewReplyRequest  (required)
    * @return ApiResponse&lt;DeleteInboxReviewReply200Response&gt;
@@ -213,7 +213,7 @@ public class ReviewsApi {
 
   /**
    * Delete review reply
-   * Delete a reply to a review (Google Business only). Requires accountId in request body.
+   * Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
    * @param reviewId  (required)
    * @param deleteInboxReviewReplyRequest  (required)
    * @param headers Optional headers to include in the request
@@ -307,7 +307,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -317,7 +317,7 @@ public class ReviewsApi {
    * @param sortOrder  (optional, default to desc)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
-   * @param accountId Filter by specific social account ID (optional)
+   * @param accountId Filter by specific account ID (optional)
    * @return ListInboxReviews200Response
    * @throws ApiException if fails to make API call
    */
@@ -327,7 +327,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -337,7 +337,7 @@ public class ReviewsApi {
    * @param sortOrder  (optional, default to desc)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
-   * @param accountId Filter by specific social account ID (optional)
+   * @param accountId Filter by specific account ID (optional)
    * @param headers Optional headers to include in the request
    * @return ListInboxReviews200Response
    * @throws ApiException if fails to make API call
@@ -349,7 +349,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -359,7 +359,7 @@ public class ReviewsApi {
    * @param sortOrder  (optional, default to desc)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
-   * @param accountId Filter by specific social account ID (optional)
+   * @param accountId Filter by specific account ID (optional)
    * @return ApiResponse&lt;ListInboxReviews200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -369,7 +369,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -379,7 +379,7 @@ public class ReviewsApi {
    * @param sortOrder  (optional, default to desc)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
-   * @param accountId Filter by specific social account ID (optional)
+   * @param accountId Filter by specific account ID (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListInboxReviews200Response&gt;
    * @throws ApiException if fails to make API call
@@ -490,7 +490,7 @@ public class ReviewsApi {
   /**
    * Reply to review
    * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
-   * @param reviewId Review ID (URL-encoded for Google Business) (required)
+   * @param reviewId Review ID (URL-encoded for Google Business Profile) (required)
    * @param replyToInboxReviewRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ReplyToInboxReview200Response
@@ -503,7 +503,7 @@ public class ReviewsApi {
   /**
    * Reply to review
    * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
-   * @param reviewId Review ID (URL-encoded for Google Business) (required)
+   * @param reviewId Review ID (URL-encoded for Google Business Profile) (required)
    * @param replyToInboxReviewRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
@@ -518,7 +518,7 @@ public class ReviewsApi {
   /**
    * Reply to review
    * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
-   * @param reviewId Review ID (URL-encoded for Google Business) (required)
+   * @param reviewId Review ID (URL-encoded for Google Business Profile) (required)
    * @param replyToInboxReviewRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;ReplyToInboxReview200Response&gt;
@@ -531,7 +531,7 @@ public class ReviewsApi {
   /**
    * Reply to review
    * Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
-   * @param reviewId Review ID (URL-encoded for Google Business) (required)
+   * @param reviewId Review ID (URL-encoded for Google Business Profile) (required)
    * @param replyToInboxReviewRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request

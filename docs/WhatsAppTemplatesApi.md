@@ -38,7 +38,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppTemplatesApi apiInstance = new WhatsAppTemplatesApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String name = "name_example"; // String | Exact library template name
         String language = "language_example"; // String | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field.
         try {
@@ -60,7 +60,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **name** | **String**| Exact library template name | |
 | **language** | **String**| Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. | [optional] |
 
@@ -116,7 +116,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppTemplatesApi apiInstance = new WhatsAppTemplatesApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String name = "name_example"; // String | Exact library template name
         String language = "language_example"; // String | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field.
         try {
@@ -140,7 +140,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **name** | **String**| Exact library template name | |
 | **language** | **String**| Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. | [optional] |
 

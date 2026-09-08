@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SyncExternalPosts200Response.JSON_PROPERTY_POST,
   SyncExternalPosts200Response.JSON_PROPERTY_POSTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SyncExternalPosts200Response {
   public static final String JSON_PROPERTY_SYNCED = "synced";
   @javax.annotation.Nullable
@@ -96,7 +96,7 @@ public class SyncExternalPosts200Response {
   }
 
   /**
-   * Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided — whether the post was found.
+   * Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided: whether the post was found.
    * @return found
    */
   @javax.annotation.Nullable

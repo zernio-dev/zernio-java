@@ -115,7 +115,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         AddWhatsAppGroupParticipantsRequest addWhatsAppGroupParticipantsRequest = new AddWhatsAppGroupParticipantsRequest(); // AddWhatsAppGroupParticipantsRequest | 
         try {
             UnpublishPost200Response result = apiInstance.addWhatsAppGroupParticipants(groupId, accountId, addWhatsAppGroupParticipantsRequest);
@@ -137,7 +137,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **addWhatsAppGroupParticipantsRequest** | [**AddWhatsAppGroupParticipantsRequest**](AddWhatsAppGroupParticipantsRequest.md)|  | |
 
 ### Return type
@@ -192,7 +192,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         AddWhatsAppGroupParticipantsRequest addWhatsAppGroupParticipantsRequest = new AddWhatsAppGroupParticipantsRequest(); // AddWhatsAppGroupParticipantsRequest | 
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.addWhatsAppGroupParticipantsWithHttpInfo(groupId, accountId, addWhatsAppGroupParticipantsRequest);
@@ -216,7 +216,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **addWhatsAppGroupParticipantsRequest** | [**AddWhatsAppGroupParticipantsRequest**](AddWhatsAppGroupParticipantsRequest.md)|  | |
 
 ### Return type
@@ -271,7 +271,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest = new ApproveWhatsAppGroupJoinRequestsRequest(); // ApproveWhatsAppGroupJoinRequestsRequest | 
         try {
             UnpublishPost200Response result = apiInstance.approveWhatsAppGroupJoinRequests(groupId, accountId, approveWhatsAppGroupJoinRequestsRequest);
@@ -293,7 +293,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **approveWhatsAppGroupJoinRequestsRequest** | [**ApproveWhatsAppGroupJoinRequestsRequest**](ApproveWhatsAppGroupJoinRequestsRequest.md)|  | |
 
 ### Return type
@@ -348,7 +348,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest = new ApproveWhatsAppGroupJoinRequestsRequest(); // ApproveWhatsAppGroupJoinRequestsRequest | 
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.approveWhatsAppGroupJoinRequestsWithHttpInfo(groupId, accountId, approveWhatsAppGroupJoinRequestsRequest);
@@ -372,7 +372,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **approveWhatsAppGroupJoinRequestsRequest** | [**ApproveWhatsAppGroupJoinRequestsRequest**](ApproveWhatsAppGroupJoinRequestsRequest.md)|  | |
 
 ### Return type
@@ -551,7 +551,7 @@ ApiResponse<[**BlockWhatsAppUsers200Response**](BlockWhatsAppUsers200Response.md
 
 Provision CTWA dataset
 
-Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
 
 ### Example
 
@@ -616,7 +616,7 @@ public class Example {
 | **200** | Dataset provisioned (or already present) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
-| **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60; — reconnect required |  -  |
+| **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60;. Reconnect required |  -  |
 | **502** | Upstream Meta failure during provisioning |  -  |
 
 ## createWhatsAppDatasetWithHttpInfo
@@ -625,7 +625,7 @@ public class Example {
 
 Provision CTWA dataset
 
-Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
 
 ### Example
 
@@ -693,7 +693,7 @@ ApiResponse<[**CreateWhatsAppDataset200Response**](CreateWhatsAppDataset200Respo
 | **200** | Dataset provisioned (or already present) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
-| **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60; — reconnect required |  -  |
+| **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60;. Reconnect required |  -  |
 | **502** | Upstream Meta failure during provisioning |  -  |
 
 
@@ -875,7 +875,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             CreateWhatsAppGroupInviteLink200Response result = apiInstance.createWhatsAppGroupInviteLink(groupId, accountId);
             System.out.println(result);
@@ -896,7 +896,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -950,7 +950,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<CreateWhatsAppGroupInviteLink200Response> response = apiInstance.createWhatsAppGroupInviteLinkWithHttpInfo(groupId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -973,7 +973,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1177,7 +1177,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             UnpublishPost200Response result = apiInstance.deleteWhatsAppGroupChat(groupId, accountId);
             System.out.println(result);
@@ -1198,7 +1198,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1253,7 +1253,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.deleteWhatsAppGroupChatWithHttpInfo(groupId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1276,7 +1276,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1331,7 +1331,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateName = "templateName_example"; // String | Template name (the family).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String language = "language_example"; // String | Delete only this language variant (e.g. es). Omit to delete the whole family.
         try {
             DeleteWhatsAppTemplate200Response result = apiInstance.deleteWhatsAppTemplate(templateName, accountId, language);
@@ -1353,7 +1353,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateName** | **String**| Template name (the family). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **language** | **String**| Delete only this language variant (e.g. es). Omit to delete the whole family. | [optional] |
 
 ### Return type
@@ -1411,7 +1411,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateName = "templateName_example"; // String | Template name (the family).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String language = "language_example"; // String | Delete only this language variant (e.g. es). Omit to delete the whole family.
         try {
             ApiResponse<DeleteWhatsAppTemplate200Response> response = apiInstance.deleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
@@ -1435,7 +1435,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateName** | **String**| Template name (the family). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **language** | **String**| Delete only this language variant (e.g. es). Omit to delete the whole family. | [optional] |
 
 ### Return type
@@ -1493,7 +1493,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateId = "templateId_example"; // String | Meta template id (numeric).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             DeleteWhatsAppTemplateById200Response result = apiInstance.deleteWhatsAppTemplateById(templateId, accountId);
             System.out.println(result);
@@ -1514,7 +1514,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateId** | **String**| Meta template id (numeric). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1570,7 +1570,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateId = "templateId_example"; // String | Meta template id (numeric).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<DeleteWhatsAppTemplateById200Response> response = apiInstance.deleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1593,7 +1593,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateId** | **String**| Meta template id (numeric). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -1948,7 +1948,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 56; // Integer | Page size.
         String after = "after_example"; // String | Cursor from a previous response's `nextCursor`.
         try {
@@ -1970,7 +1970,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Page size. | [optional] |
 | **after** | **String**| Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. | [optional] |
 
@@ -2025,7 +2025,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 56; // Integer | Page size.
         String after = "after_example"; // String | Cursor from a previous response's `nextCursor`.
         try {
@@ -2049,7 +2049,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Page size. | [optional] |
 | **after** | **String**| Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. | [optional] |
 
@@ -2104,7 +2104,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppBusinessProfile200Response result = apiInstance.getWhatsAppBusinessProfile(accountId);
             System.out.println(result);
@@ -2124,7 +2124,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2178,7 +2178,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppBusinessProfile200Response> response = apiInstance.getWhatsAppBusinessProfileWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2200,7 +2200,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2231,7 +2231,7 @@ ApiResponse<[**GetWhatsAppBusinessProfile200Response**](GetWhatsAppBusinessProfi
 
 Get CTWA conversions dataset
 
-Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
 
 ### Example
 
@@ -2254,7 +2254,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppDataset200Response result = apiInstance.getWhatsAppDataset(accountId);
             System.out.println(result);
@@ -2274,7 +2274,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2303,7 +2303,7 @@ public class Example {
 
 Get CTWA conversions dataset
 
-Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
 
 ### Example
 
@@ -2327,7 +2327,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppDataset200Response> response = apiInstance.getWhatsAppDatasetWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2349,7 +2349,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2402,7 +2402,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppDisplayName200Response result = apiInstance.getWhatsAppDisplayName(accountId);
             System.out.println(result);
@@ -2422,7 +2422,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2476,7 +2476,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppDisplayName200Response> response = apiInstance.getWhatsAppDisplayNameWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2498,7 +2498,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2553,7 +2553,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppGroupChat200Response result = apiInstance.getWhatsAppGroupChat(groupId, accountId);
             System.out.println(result);
@@ -2574,7 +2574,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2629,7 +2629,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppGroupChat200Response> response = apiInstance.getWhatsAppGroupChatWithHttpInfo(groupId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2652,7 +2652,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -2863,7 +2863,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateName = "templateName_example"; // String | Template name (the family).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String language = "language_example"; // String | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages.
         try {
             GetWhatsAppTemplate200Response result = apiInstance.getWhatsAppTemplate(templateName, accountId, language);
@@ -2885,7 +2885,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateName** | **String**| Template name (the family). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **language** | **String**| Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. | [optional] |
 
 ### Return type
@@ -2943,7 +2943,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateName = "templateName_example"; // String | Template name (the family).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String language = "language_example"; // String | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages.
         try {
             ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.getWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
@@ -2967,7 +2967,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateName** | **String**| Template name (the family). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **language** | **String**| Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. | [optional] |
 
 ### Return type
@@ -3025,7 +3025,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateId = "templateId_example"; // String | Meta template id (numeric).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsAppTemplate200Response result = apiInstance.getWhatsAppTemplateById(templateId, accountId);
             System.out.println(result);
@@ -3046,7 +3046,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateId** | **String**| Meta template id (numeric). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -3102,7 +3102,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String templateId = "templateId_example"; // String | Meta template id (numeric).
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.getWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3125,7 +3125,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **templateId** | **String**| Meta template id (numeric). | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -3180,7 +3180,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String name = "name_example"; // String | Exact template name; returns every language variant of that family.
         String language = "language_example"; // String | Exact language code (e.g. en_US).
         String status = "APPROVED"; // String | 
@@ -3203,7 +3203,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **name** | **String**| Exact template name; returns every language variant of that family. | [optional] |
 | **language** | **String**| Exact language code (e.g. en_US). | [optional] |
 | **status** | **String**|  | [optional] [enum: APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION] |
@@ -3260,7 +3260,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         String name = "name_example"; // String | Exact template name; returns every language variant of that family.
         String language = "language_example"; // String | Exact language code (e.g. en_US).
         String status = "APPROVED"; // String | 
@@ -3285,7 +3285,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **name** | **String**| Exact template name; returns every language variant of that family. | [optional] |
 | **language** | **String**| Exact language code (e.g. en_US). | [optional] |
 | **status** | **String**|  | [optional] [enum: APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION] |
@@ -3342,7 +3342,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsappBusinessUsername200Response result = apiInstance.getWhatsappBusinessUsername(accountId);
             System.out.println(result);
@@ -3362,7 +3362,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -3415,7 +3415,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsappBusinessUsername200Response> response = apiInstance.getWhatsappBusinessUsernameWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3437,7 +3437,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -3490,7 +3490,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             GetWhatsappBusinessUsernameSuggestions200Response result = apiInstance.getWhatsappBusinessUsernameSuggestions(accountId);
             System.out.println(result);
@@ -3510,7 +3510,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -3563,7 +3563,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> response = apiInstance.getWhatsappBusinessUsernameSuggestionsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3585,7 +3585,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -3638,7 +3638,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 50; // Integer | Maximum events to return
         try {
             ListWhatsAppAccountEvents200Response result = apiInstance.listWhatsAppAccountEvents(accountId, limit);
@@ -3659,7 +3659,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Maximum events to return | [optional] [default to 50] |
 
 ### Return type
@@ -3714,7 +3714,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 50; // Integer | Maximum events to return
         try {
             ApiResponse<ListWhatsAppAccountEvents200Response> response = apiInstance.listWhatsAppAccountEventsWithHttpInfo(accountId, limit);
@@ -3737,7 +3737,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Maximum events to return | [optional] [default to 50] |
 
 ### Return type
@@ -3792,7 +3792,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 50; // Integer | Max events to return (1-200, default 50).
         try {
             ListWhatsAppConversions200Response result = apiInstance.listWhatsAppConversions(accountId, limit);
@@ -3813,7 +3813,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Max events to return (1-200, default 50). | [optional] [default to 50] |
 
 ### Return type
@@ -3867,7 +3867,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 50; // Integer | Max events to return (1-200, default 50).
         try {
             ApiResponse<ListWhatsAppConversions200Response> response = apiInstance.listWhatsAppConversionsWithHttpInfo(accountId, limit);
@@ -3890,7 +3890,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Max events to return (1-200, default 50). | [optional] [default to 50] |
 
 ### Return type
@@ -3944,7 +3944,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 25; // Integer | Max groups to return
         String after = "after_example"; // String | Pagination cursor
         try {
@@ -3966,7 +3966,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Max groups to return | [optional] [default to 25] |
 | **after** | **String**| Pagination cursor | [optional] |
 
@@ -4021,7 +4021,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         Integer limit = 25; // Integer | Max groups to return
         String after = "after_example"; // String | Pagination cursor
         try {
@@ -4045,7 +4045,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **limit** | **Integer**| Max groups to return | [optional] [default to 25] |
 | **after** | **String**| Pagination cursor | [optional] |
 
@@ -4101,7 +4101,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ListWhatsAppGroupJoinRequests200Response result = apiInstance.listWhatsAppGroupJoinRequests(groupId, accountId);
             System.out.println(result);
@@ -4122,7 +4122,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -4176,7 +4176,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         try {
             ApiResponse<ListWhatsAppGroupJoinRequests200Response> response = apiInstance.listWhatsAppGroupJoinRequestsWithHttpInfo(groupId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -4199,7 +4199,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 
 ### Return type
 
@@ -4409,7 +4409,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         RejectWhatsAppGroupJoinRequestsRequest rejectWhatsAppGroupJoinRequestsRequest = new RejectWhatsAppGroupJoinRequestsRequest(); // RejectWhatsAppGroupJoinRequestsRequest | 
         try {
             UnpublishPost200Response result = apiInstance.rejectWhatsAppGroupJoinRequests(groupId, accountId, rejectWhatsAppGroupJoinRequestsRequest);
@@ -4431,7 +4431,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **rejectWhatsAppGroupJoinRequestsRequest** | [**RejectWhatsAppGroupJoinRequestsRequest**](RejectWhatsAppGroupJoinRequestsRequest.md)|  | |
 
 ### Return type
@@ -4486,7 +4486,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         RejectWhatsAppGroupJoinRequestsRequest rejectWhatsAppGroupJoinRequestsRequest = new RejectWhatsAppGroupJoinRequestsRequest(); // RejectWhatsAppGroupJoinRequestsRequest | 
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.rejectWhatsAppGroupJoinRequestsWithHttpInfo(groupId, accountId, rejectWhatsAppGroupJoinRequestsRequest);
@@ -4510,7 +4510,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **rejectWhatsAppGroupJoinRequestsRequest** | [**RejectWhatsAppGroupJoinRequestsRequest**](RejectWhatsAppGroupJoinRequestsRequest.md)|  | |
 
 ### Return type
@@ -4565,7 +4565,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest = new RemoveWhatsAppGroupParticipantsRequest(); // RemoveWhatsAppGroupParticipantsRequest | 
         try {
             UnpublishPost200Response result = apiInstance.removeWhatsAppGroupParticipants(groupId, accountId, removeWhatsAppGroupParticipantsRequest);
@@ -4587,7 +4587,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **removeWhatsAppGroupParticipantsRequest** | [**RemoveWhatsAppGroupParticipantsRequest**](RemoveWhatsAppGroupParticipantsRequest.md)|  | |
 
 ### Return type
@@ -4642,7 +4642,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest = new RemoveWhatsAppGroupParticipantsRequest(); // RemoveWhatsAppGroupParticipantsRequest | 
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.removeWhatsAppGroupParticipantsWithHttpInfo(groupId, accountId, removeWhatsAppGroupParticipantsRequest);
@@ -4666,7 +4666,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **removeWhatsAppGroupParticipantsRequest** | [**RemoveWhatsAppGroupParticipantsRequest**](RemoveWhatsAppGroupParticipantsRequest.md)|  | |
 
 ### Return type
@@ -5471,7 +5471,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         UpdateWhatsAppGroupChatRequest updateWhatsAppGroupChatRequest = new UpdateWhatsAppGroupChatRequest(); // UpdateWhatsAppGroupChatRequest | 
         try {
             UnpublishPost200Response result = apiInstance.updateWhatsAppGroupChat(groupId, accountId, updateWhatsAppGroupChatRequest);
@@ -5493,7 +5493,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **updateWhatsAppGroupChatRequest** | [**UpdateWhatsAppGroupChatRequest**](UpdateWhatsAppGroupChatRequest.md)|  | |
 
 ### Return type
@@ -5549,7 +5549,7 @@ public class Example {
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
         String groupId = "groupId_example"; // String | Group ID
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         UpdateWhatsAppGroupChatRequest updateWhatsAppGroupChatRequest = new UpdateWhatsAppGroupChatRequest(); // UpdateWhatsAppGroupChatRequest | 
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.updateWhatsAppGroupChatWithHttpInfo(groupId, accountId, updateWhatsAppGroupChatRequest);
@@ -5573,7 +5573,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupId** | **String**| Group ID | |
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **updateWhatsAppGroupChatRequest** | [**UpdateWhatsAppGroupChatRequest**](UpdateWhatsAppGroupChatRequest.md)|  | |
 
 ### Return type
@@ -5919,7 +5919,7 @@ ApiResponse<[**UpdateWhatsAppTemplateById200Response**](UpdateWhatsAppTemplateBy
 
 Upload profile picture
 
-Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
 
 ### Example
 
@@ -5942,7 +5942,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         File _file = new File("/path/to/file"); // File | Image file (JPEG or PNG, max 5MB, recommended 640x640)
         try {
             UnpublishPost200Response result = apiInstance.uploadWhatsAppProfilePhoto(accountId, _file);
@@ -5963,7 +5963,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **_file** | **File**| Image file (JPEG or PNG, max 5MB, recommended 640x640) | |
 
 ### Return type
@@ -5995,7 +5995,7 @@ public class Example {
 
 Upload profile picture
 
-Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
 
 ### Example
 
@@ -6019,7 +6019,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String accountId = "accountId_example"; // String | WhatsApp account ID
         File _file = new File("/path/to/file"); // File | Image file (JPEG or PNG, max 5MB, recommended 640x640)
         try {
             ApiResponse<UnpublishPost200Response> response = apiInstance.uploadWhatsAppProfilePhotoWithHttpInfo(accountId, _file);
@@ -6042,7 +6042,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| WhatsApp social account ID | |
+| **accountId** | **String**| WhatsApp account ID | |
 | **_file** | **File**| Image file (JPEG or PNG, max 5MB, recommended 640x640) | |
 
 ### Return type

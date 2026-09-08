@@ -40,6 +40,7 @@
 | ANALYTICS_SYNCED | &quot;analytics.synced&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | CONVERSATION_STARTED | &quot;conversation.started&quot; |
+| CONVERSATION_CONTROL_CHANGED | &quot;conversation.control_changed&quot; |
 | CALL_RECEIVED | &quot;call.received&quot; |
 | CALL_ENDED | &quot;call.ended&quot; |
 | CALL_FAILED | &quot;call.failed&quot; |

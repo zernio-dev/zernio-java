@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateConversionDestinationRequest.JSON_PROPERTY_VALUE_TYPE,
   UpdateConversionDestinationRequest.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateConversionDestinationRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull
@@ -288,7 +288,7 @@ public class UpdateConversionDestinationRequest {
   }
 
   /**
-   * Setting &#x60;false&#x60; is equivalent to calling DELETE — the rule will appear as &#x60;inactive&#x60; afterwards. 
+   * Setting &#x60;false&#x60; is equivalent to calling DELETE: the rule will appear as &#x60;inactive&#x60; afterwards. 
    * @return enabled
    */
   @javax.annotation.Nullable

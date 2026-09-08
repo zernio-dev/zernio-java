@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentPost.JSON_PROPERTY_IMAGE_URL,
   WebhookPayloadCommentPost.JSON_PROPERTY_PERMALINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -118,7 +118,7 @@ public class WebhookPayloadCommentPost {
   }
 
   /**
-   * Post text, from our synced copy — no platform call is made on the comment path, so null when the post was never synced.
+   * Post text, from our synced copy. No platform call is made on the comment path, so null when the post was never synced.
    * @return content
    */
   @javax.annotation.Nullable

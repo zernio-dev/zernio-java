@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   EnableSmsOnNumber200Response.JSON_PROPERTY_REUSABLE,
   EnableSmsOnNumber200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableSmsOnNumber200Response {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
@@ -179,7 +179,7 @@ public class EnableSmsOnNumber200Response {
   }
 
   /**
-   * The SMS social account ID (present when enabled).
+   * The SMS account ID (present when enabled).
    * @return id
    */
   @javax.annotation.Nullable

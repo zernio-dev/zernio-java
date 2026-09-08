@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | WhatsApp social account ID |  |
+|**accountId** | **String** | WhatsApp account ID |  |
 |**to** | **String** | Recipient phone number (E.164 format, e.g. +1234567890) |  |
 |**flowId** | **String** | Published flow ID |  |
 |**flowCta** | **String** | CTA button text (e.g. &#39;Book Now&#39;, &#39;Sign Up&#39;) |  |

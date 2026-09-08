@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
-|**accountId** | **String** | Owning social account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access. |  [optional] |
+|**accountId** | **String** | Owning account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access. |  [optional] |
 |**conversationId** | **String** | Inbox conversation with the counterparty, when one exists. |  [optional] |
 |**contactId** | **String** | CRM Contact for the counterparty, when resolved. |  [optional] |
 |**channel** | [**ChannelEnum**](#ChannelEnum) |  |  [optional] |
@@ -31,7 +31,7 @@
 |**transferredAt** | **OffsetDateTime** | When the call was blind-transferred (POST /v1/voice/calls/{id}/transfer). |  [optional] |
 |**durationSeconds** | **Integer** |  |  [optional] |
 |**endReason** | [**EndReasonEnum**](#EndReasonEnum) |  |  [optional] |
-|**hangupCause** | **String** | Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit) — the actual motive when endReason is a coarse bucket. |  [optional] |
+|**hangupCause** | **String** | Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit). The actual motive when endReason is a coarse bucket. |  [optional] |
 |**sipHangupCause** | **String** | SIP response code that ended the call, when SIP-signalled (e.g. &#39;403&#39;, &#39;488&#39;). The real failure reason for SIP legs. |  [optional] |
 |**callErrors** | [**List&lt;CallRecordCallErrorsInner&gt;**](CallRecordCallErrorsInner.md) | Per-call failure log (dial failed, bridge failed, recording error). |  [optional] |
 |**recordingUrl** | **String** | May be expired. Resolve a fresh playable URL via GET /v1/calls/{id}/recording (any channel). |  [optional] |

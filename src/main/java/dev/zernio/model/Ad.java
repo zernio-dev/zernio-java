@@ -84,7 +84,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -196,7 +196,7 @@ public class Ad {
   private AdTypeEnum adType;
 
   /**
-   * Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
+   * Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify. An unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
    */
   public enum CreativeTypeEnum {
     CAROUSEL(String.valueOf("carousel")),
@@ -238,7 +238,7 @@ public class Ad {
   private JsonNullable<CreativeTypeEnum> creativeType = JsonNullable.<CreativeTypeEnum>undefined();
 
   /**
-   * Available goals vary by platform. Meta (Facebook/Instagram) supports all 10 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization, &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads and &#x60;page_likes&#x60; &#x3D; Page Likes conversion location under Engagement). TikTok supports engagement, traffic, awareness, video_views, lead_generation, conversions, app_promotion. LinkedIn supports all Meta goals except app_promotion / lead_conversion / catalog_sales / page_likes. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest supports only engagement, traffic, awareness, video_views. Google Ads supports only engagement, traffic, awareness (video_views is rejected at create with 422 FEATURE_NOT_AVAILABLE).
+   * Available goals vary by platform. Meta (Facebook/Instagram) supports all 10 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization, &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads and &#x60;page_likes&#x60; &#x3D; Page Likes conversion location under Engagement). TikTok supports engagement, traffic, awareness, video_views, lead_generation, conversions, app_promotion. LinkedIn supports all Meta goals except app_promotion / lead_conversion / catalog_sales / page_likes. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest supports only engagement, traffic, awareness, video_views. Google Ads supports only engagement, traffic, awareness (video_views is rejected at create with 422 FEATURE_NOT_AVAILABLE).
    */
   public enum GoalEnum {
     ENGAGEMENT(String.valueOf("engagement")),
@@ -570,7 +570,7 @@ public class Ad {
   }
 
   /**
-   * Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
+   * Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify. An unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
    * @return creativeType
    */
   @javax.annotation.Nullable
@@ -602,7 +602,7 @@ public class Ad {
   }
 
   /**
-   * Available goals vary by platform. Meta (Facebook/Instagram) supports all 10 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization, &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads and &#x60;page_likes&#x60; &#x3D; Page Likes conversion location under Engagement). TikTok supports engagement, traffic, awareness, video_views, lead_generation, conversions, app_promotion. LinkedIn supports all Meta goals except app_promotion / lead_conversion / catalog_sales / page_likes. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest supports only engagement, traffic, awareness, video_views. Google Ads supports only engagement, traffic, awareness (video_views is rejected at create with 422 FEATURE_NOT_AVAILABLE).
+   * Available goals vary by platform. Meta (Facebook/Instagram) supports all 10 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization, &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads and &#x60;page_likes&#x60; &#x3D; Page Likes conversion location under Engagement). TikTok supports engagement, traffic, awareness, video_views, lead_generation, conversions, app_promotion. LinkedIn supports all Meta goals except app_promotion / lead_conversion / catalog_sales / page_likes. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest supports only engagement, traffic, awareness, video_views. Google Ads supports only engagement, traffic, awareness (video_views is rejected at create with 422 FEATURE_NOT_AVAILABLE).
    * @return goal
    */
   @javax.annotation.Nullable
@@ -954,7 +954,7 @@ public class Ad {
   }
 
   /**
-   * LinkedIn only. Why the parent campaign is (or is not) delivering, verbatim from LinkedIn. A campaign can report &#x60;status: ACTIVE&#x60; and still serve nothing; this array is what says so.  - &#x60;[]&#x60; means no serving data: a non-LinkedIn ad, or a LinkedIn ad not yet re-synced. - &#x60;[\&quot;RUNNABLE\&quot;]&#x60; means the campaign is eligible to serve. - Anything else is a hold. Known values include ACCOUNT_SERVING_HOLD, ACCOUNT_TOTAL_BUDGET_HOLD,   ACCOUNT_END_DATE_HOLD, CAMPAIGN_START_DATE_HOLD, CAMPAIGN_END_DATE_HOLD,   CAMPAIGN_TOTAL_BUDGET_HOLD, CAMPAIGN_AUDIENCE_COUNT_HOLD, CAMPAIGN_GROUP_START_DATE_HOLD,   CAMPAIGN_GROUP_END_DATE_HOLD, CAMPAIGN_GROUP_TOTAL_BUDGET_HOLD, CAMPAIGN_GROUP_STATUS_HOLD and   STOPPED. The list is open on purpose, so treat unrecognized values as holds rather than errors.  The end-date and total-budget holds are terminal and surface as &#x60;status: completed&#x60;; the rest surface as &#x60;status: paused&#x60;. Note that a hold is not the only cause of zero delivery: with manual, target-cost or cost-cap bidding, a &#x60;bidAmount&#x60; of 0 stops delivery while &#x60;servingStatuses&#x60; still reads &#x60;[\&quot;RUNNABLE\&quot;]&#x60;. Check &#x60;costType&#x60; / &#x60;bidAmount&#x60; / &#x60;optimizationGoal&#x60; as well. 
+   * LinkedIn only. Why the parent campaign is (or is not) delivering, verbatim from LinkedIn. A campaign can report &#x60;status: ACTIVE&#x60; and still serve nothing; this array is what says so.  - &#x60;[]&#x60; means no serving data: a non-LinkedIn ad, or a LinkedIn ad not yet re-synced. - &#x60;[\&quot;RUNNABLE\&quot;]&#x60; means the campaign is eligible to serve. - Anything else is a hold. Known values include ACCOUNT_SERVING_HOLD, ACCOUNT_TOTAL_BUDGET_HOLD,   ACCOUNT_END_DATE_HOLD, CAMPAIGN_START_DATE_HOLD, CAMPAIGN_END_DATE_HOLD,   CAMPAIGN_TOTAL_BUDGET_HOLD, CAMPAIGN_AUDIENCE_COUNT_HOLD, CAMPAIGN_GROUP_START_DATE_HOLD,   CAMPAIGN_GROUP_END_DATE_HOLD, CAMPAIGN_GROUP_TOTAL_BUDGET_HOLD, CAMPAIGN_GROUP_STATUS_HOLD and   STOPPED. The list is open on purpose, so treat unrecognized values as holds rather than errors.  The end-date and total-budget holds are terminal and surface as &#x60;status: completed&#x60;; the rest surface as &#x60;status: paused&#x60;. A hold is not the only cause of zero delivery: with manual, target-cost or cost-cap bidding, a &#x60;bidAmount&#x60; of 0 stops delivery while &#x60;servingStatuses&#x60; still reads &#x60;[\&quot;RUNNABLE\&quot;]&#x60;. Check &#x60;costType&#x60; / &#x60;bidAmount&#x60; / &#x60;optimizationGoal&#x60; as well. 
    * @return servingStatuses
    */
   @javax.annotation.Nullable
@@ -1010,7 +1010,7 @@ public class Ad {
   }
 
   /**
-   * Platform-reported creation timestamp (Meta &#x60;created_time&#x60;, TikTok &#x60;create_time&#x60;). Distinct from &#x60;createdAt&#x60; which reflects when Zernio first synced the doc — for sort/filter by \&quot;when the ad was actually created on the platform\&quot;, read this field. &#x60;null&#x60; for legacy ads synced before this field was added; aggregations fall back to &#x60;createdAt&#x60; in that case. 
+   * Platform-reported creation timestamp (Meta &#x60;created_time&#x60;, TikTok &#x60;create_time&#x60;). Distinct from &#x60;createdAt&#x60; which reflects when Zernio first synced the doc. To sort or filter by \&quot;when the ad was actually created on the platform\&quot;, read this field. &#x60;null&#x60; for legacy ads synced before this field was added; aggregations fall back to &#x60;createdAt&#x60; in that case. 
    * @return platformCreatedAt
    */
   @javax.annotation.Nullable

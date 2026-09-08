@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ReviewWebhookReviewReviewer.JSON_PROPERTY_NAME,
   ReviewWebhookReviewReviewer.JSON_PROPERTY_PROFILE_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewWebhookReviewReviewer {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -60,7 +60,7 @@ public class ReviewWebhookReviewReviewer {
   }
 
   /**
-   * Platform reviewer ID. Null when the platform does not expose it (common on Google Business anonymous reviews).
+   * Platform reviewer ID. Null when the platform does not expose it (common on Google Business Profile anonymous reviews).
    * @return id
    */
   @javax.annotation.Nullable

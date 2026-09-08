@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * A discoverable conversion destination on an ad platform — a Meta pixel, Google conversion action, or LinkedIn conversion rule. Returned by &#x60;listConversionDestinations&#x60;, &#x60;getConversionDestination&#x60;, &#x60;createConversionDestination&#x60;, and &#x60;updateConversionDestination&#x60;. 
+ * A discoverable conversion destination on an ad platform: a Meta pixel, Google conversion action, or LinkedIn conversion rule. Returned by &#x60;listConversionDestinations&#x60;, &#x60;getConversionDestination&#x60;, &#x60;createConversionDestination&#x60;, and &#x60;updateConversionDestination&#x60;. 
  */
 @JsonPropertyOrder({
   ConversionDestination.JSON_PROPERTY_ID,
@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ConversionDestination.JSON_PROPERTY_STATUS,
   ConversionDestination.JSON_PROPERTY_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionDestination {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

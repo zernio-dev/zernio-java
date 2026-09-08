@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**enabled** | **Boolean** |  |  [optional] |
-|**id** | **String** | The SMS social account ID (present when enabled). |  [optional] |
+|**id** | **String** | The SMS account ID (present when enabled). |  [optional] |
 |**phoneNumber** | **String** |  |  [optional] |
 |**isActive** | **Boolean** | False for US numbers until their registration is approved. |  [optional] |
 |**country** | **String** |  |  [optional] |

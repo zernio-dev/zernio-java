@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Fired once when a new conversation begins, in either direction. A conversation starts the first time an account and a contact exchange a message on any DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit, Bluesky, SMS). Platform-agnostic — one subscription covers every DM platform. 
+ * Fired once when a new conversation begins, in either direction. A conversation starts the first time an account and a contact exchange a message on any DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky, SMS). Platform-agnostic: one subscription covers every DM platform. 
  */
 @JsonPropertyOrder({
   WebhookPayloadConversationStarted.JSON_PROPERTY_ID,
@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversationStarted.JSON_PROPERTY_STARTED_AT,
   WebhookPayloadConversationStarted.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversationStarted {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

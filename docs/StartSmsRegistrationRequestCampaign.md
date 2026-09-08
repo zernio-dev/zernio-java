@@ -2,7 +2,7 @@
 
 # StartSmsRegistrationRequestCampaign
 
-Required for 10DLC. What you'll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (`optinMessage`, `optoutMessage`, `helpMessage`) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures — submissions that don't are rewritten to the compliant template before the campaign is filed. 
+Required for 10DLC. What you'll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (`optinMessage`, `optoutMessage`, `helpMessage`) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures. Submissions that don't are rewritten to the compliant template before the campaign is filed. 
 
 ## Properties
 
@@ -11,7 +11,7 @@ Required for 10DLC. What you'll send and how recipients opt in/out. The opt-in/o
 |**usecase** | **String** |  |  |
 |**subUsecases** | [**List&lt;SubUsecasesEnum&gt;**](#List&lt;SubUsecasesEnum&gt;) | The concrete kinds of messages a MIXED campaign sends (the carrier registry requires 2-5, and reviewers match them against the sample messages). Omitted: a default pair is applied for MIXED.  |  [optional] |
 |**description** | **String** |  |  |
-|**messageFlow** | **String** | How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify. |  |
+|**messageFlow** | **String** | How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in, because carrier reviewers reject campaigns whose consent they can&#39;t verify. |  |
 |**sample1** | **String** |  |  |
 |**sample2** | **String** | Second example message; carriers require two distinct samples, so it must differ from sample1. |  |
 |**helpMessage** | **String** |  |  [optional] |

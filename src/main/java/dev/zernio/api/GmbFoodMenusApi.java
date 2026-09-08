@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbFoodMenusApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -168,7 +168,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Get food menus
-   * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+   * Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return GetGoogleBusinessFoodMenus200Response
@@ -180,7 +180,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Get food menus
-   * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+   * Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
@@ -194,7 +194,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Get food menus
-   * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+   * Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;GetGoogleBusinessFoodMenus200Response&gt;
@@ -206,7 +206,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Get food menus
-   * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+   * Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
@@ -305,7 +305,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Update food menus
-   * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+   * Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -318,7 +318,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Update food menus
-   * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+   * Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -333,7 +333,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Update food menus
-   * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+   * Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -346,7 +346,7 @@ public class GmbFoodMenusApi {
 
   /**
    * Update food menus
-   * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+   * Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)

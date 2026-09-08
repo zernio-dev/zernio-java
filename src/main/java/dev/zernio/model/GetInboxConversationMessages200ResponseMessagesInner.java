@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENT_VIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -105,7 +105,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   private JsonNullable<String> senderName = JsonNullable.<String>undefined();
 
   /**
-   * X/Twitter verified badge type. Only present for Twitter/X messages.
+   * X verified badge type. Only present for X messages.
    */
   public enum SenderVerifiedTypeEnum {
     BLUE(String.valueOf("blue")),
@@ -522,7 +522,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
   /**
-   * X/Twitter verified badge type. Only present for Twitter/X messages.
+   * X verified badge type. Only present for X messages.
    * @return senderVerifiedType
    */
   @javax.annotation.Nullable

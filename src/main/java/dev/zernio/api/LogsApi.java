@@ -47,7 +47,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LogsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -177,7 +177,7 @@ public class LogsApi {
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
    * @param accountId Filter by connected account ID (optional)
    * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
-   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param requestId Correlation ID. Returns every log spawned by a single API request (optional)
    * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
    * @param to Precise end instant (ISO 8601) (optional)
    * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
@@ -203,7 +203,7 @@ public class LogsApi {
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
    * @param accountId Filter by connected account ID (optional)
    * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
-   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param requestId Correlation ID. Returns every log spawned by a single API request (optional)
    * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
    * @param to Precise end instant (ISO 8601) (optional)
    * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
@@ -231,7 +231,7 @@ public class LogsApi {
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
    * @param accountId Filter by connected account ID (optional)
    * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
-   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param requestId Correlation ID. Returns every log spawned by a single API request (optional)
    * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
    * @param to Precise end instant (ISO 8601) (optional)
    * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
@@ -257,7 +257,7 @@ public class LogsApi {
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
    * @param accountId Filter by connected account ID (optional)
    * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
-   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param requestId Correlation ID. Returns every log spawned by a single API request (optional)
    * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
    * @param to Precise end instant (ISO 8601) (optional)
    * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)

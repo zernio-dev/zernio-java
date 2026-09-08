@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Plan and usage stats. The response shape depends on &#x60;billingSystem&#x60;:   * Stripe users (default): per-period counters like &#x60;usage.uploads&#x60; and     &#x60;usage.profiles&#x60; are returned, scoped by the plan&#39;s &#x60;limits&#x60;.   * Metronome users (usage-based): &#x60;limits&#x60; are unlimited (-1). The     &#x60;usage&#x60; block carries connected-account and per-X-operation counts,     and the &#x60;spend&#x60; block carries current-period costs plus the X cap. 
+ * Plan and usage stats. The response shape depends on &#x60;billingSystem&#x60;:   * Stripe users (default): per-period counters like &#x60;usage.uploads&#x60; and     &#x60;usage.profiles&#x60; are returned, scoped by the plan&#39;s &#x60;limits&#x60;.   * Usage-based billing users: &#x60;limits&#x60; are unlimited (-1). The     &#x60;usage&#x60; block carries connected-account and per-X-operation counts,     and the &#x60;spend&#x60; block carries current-period costs plus the X cap. 
  */
 @JsonPropertyOrder({
   UsageStats.JSON_PROPERTY_BILLING_SYSTEM,
@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   UsageStats.JSON_PROPERTY_USAGE,
   UsageStats.JSON_PROPERTY_SPEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStats {
   /**
    * Which billing system the account is on. Shape of &#x60;usage&#x60;/&#x60;spend&#x60; differs.
@@ -382,7 +382,7 @@ public class UsageStats {
   }
 
   /**
-   * Stripe-only. Always false for Metronome users.
+   * Stripe-only. Always false for accounts on usage-based billing.
    * @return autoUpgradeEnabled
    */
   @javax.annotation.Nullable

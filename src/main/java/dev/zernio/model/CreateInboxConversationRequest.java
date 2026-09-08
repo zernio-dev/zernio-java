@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA,
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_LOCATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -148,7 +148,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * The social account ID to send from
+   * The account ID to send from
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -196,7 +196,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.
+   * Recipient handle/username, an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.
    * @return participantUsername
    */
   @javax.annotation.Nullable
@@ -244,7 +244,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
+   * X only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
    * @return skipDmCheck
    */
   @javax.annotation.Nullable

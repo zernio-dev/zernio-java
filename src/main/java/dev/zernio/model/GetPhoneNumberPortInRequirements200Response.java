@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberPortInRequirements200Response.JSON_PROPERTY_SUPPORTED,
   GetPhoneNumberPortInRequirements200Response.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberPortInRequirements200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -116,7 +116,7 @@ public class GetPhoneNumberPortInRequirements200Response {
   }
 
   /**
-   * false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification) — porting it needs support.
+   * false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification). Porting it needs support.
    * @return supported
    */
   @javax.annotation.Nullable

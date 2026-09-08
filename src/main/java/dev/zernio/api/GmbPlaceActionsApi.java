@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbPlaceActionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -321,7 +321,7 @@ public class GmbPlaceActionsApi {
 
   /**
    * Delete action link
-   * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+   * Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -334,7 +334,7 @@ public class GmbPlaceActionsApi {
 
   /**
    * Delete action link
-   * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+   * Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -349,7 +349,7 @@ public class GmbPlaceActionsApi {
 
   /**
    * Delete action link
-   * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+   * Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -362,7 +362,7 @@ public class GmbPlaceActionsApi {
 
   /**
    * Delete action link
-   * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+   * Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)

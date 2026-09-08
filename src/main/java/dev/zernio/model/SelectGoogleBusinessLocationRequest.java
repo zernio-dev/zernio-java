@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_PENDING_DATA_TOKEN,
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectGoogleBusinessLocationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -95,7 +95,7 @@ public class SelectGoogleBusinessLocationRequest {
   }
 
   /**
-   * The Google Business location ID selected by the user
+   * The Google Business Profile location ID selected by the user
    * @return locationId
    */
   @javax.annotation.Nonnull
@@ -119,7 +119,7 @@ public class SelectGoogleBusinessLocationRequest {
   }
 
   /**
-   * Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. 
+   * Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. 
    * @return accountId
    */
   @javax.annotation.Nullable

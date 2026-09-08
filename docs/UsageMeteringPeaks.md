@@ -2,7 +2,7 @@
 
 # UsageMeteringPeaks
 
-Peak counts over the window (Metronome COUNT metrics + live active-number count). Null when `profileId` / `accountId` is set.
+Peak counts over the window (usage-based COUNT metrics + live active-number count). Null when `profileId` / `accountId` is set.
 
 ## Properties
 

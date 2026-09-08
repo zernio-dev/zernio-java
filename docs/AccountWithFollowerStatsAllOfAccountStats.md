@@ -11,13 +11,13 @@ Platform-specific account stats from the latest daily snapshot. Fields vary by p
 |**followingCount** | **BigDecimal** | Number of accounts being followed |  [optional] |
 |**mediaCount** | **BigDecimal** | Total media posts (Instagram) |  [optional] |
 |**videoCount** | **BigDecimal** | Total videos (YouTube, TikTok) |  [optional] |
-|**tweetCount** | **BigDecimal** | Total tweets (X/Twitter) |  [optional] |
+|**tweetCount** | **BigDecimal** | Total tweets (X) |  [optional] |
 |**postsCount** | **BigDecimal** | Total posts (Bluesky) |  [optional] |
 |**pinCount** | **BigDecimal** | Total pins (Pinterest) |  [optional] |
 |**totalViews** | **BigDecimal** | Total channel views (YouTube) |  [optional] |
 |**likesCount** | **BigDecimal** | Total likes received (TikTok) |  [optional] |
 |**monthlyViews** | **BigDecimal** | Monthly profile views (Pinterest) |  [optional] |
-|**listedCount** | **BigDecimal** | Lists the user appears on (X/Twitter) |  [optional] |
+|**listedCount** | **BigDecimal** | Lists the user appears on (X) |  [optional] |
 |**boardCount** | **BigDecimal** | Total boards (Pinterest) |  [optional] |
 
 

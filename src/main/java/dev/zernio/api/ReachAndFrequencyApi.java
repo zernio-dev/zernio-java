@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReachAndFrequencyApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -311,7 +311,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Create a Reach &amp; Frequency prediction
-   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+   * Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
    * @param createRfPredictionRequest  (required)
    * @return CreateRfPrediction201Response
    * @throws ApiException if fails to make API call
@@ -322,7 +322,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Create a Reach &amp; Frequency prediction
-   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+   * Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
    * @param createRfPredictionRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateRfPrediction201Response
@@ -335,7 +335,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Create a Reach &amp; Frequency prediction
-   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+   * Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
    * @param createRfPredictionRequest  (required)
    * @return ApiResponse&lt;CreateRfPrediction201Response&gt;
    * @throws ApiException if fails to make API call
@@ -346,7 +346,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Create a Reach &amp; Frequency prediction
-   * Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+   * Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
    * @param createRfPredictionRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateRfPrediction201Response&gt;
@@ -585,7 +585,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Reserve a Reach &amp; Frequency prediction
-   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
    * @param predictionId  (required)
    * @param reserveRfPredictionRequest  (required)
    * @return ReserveRfPrediction201Response
@@ -597,7 +597,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Reserve a Reach &amp; Frequency prediction
-   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
    * @param predictionId  (required)
    * @param reserveRfPredictionRequest  (required)
    * @param headers Optional headers to include in the request
@@ -611,7 +611,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Reserve a Reach &amp; Frequency prediction
-   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
    * @param predictionId  (required)
    * @param reserveRfPredictionRequest  (required)
    * @return ApiResponse&lt;ReserveRfPrediction201Response&gt;
@@ -623,7 +623,7 @@ public class ReachAndFrequencyApi {
 
   /**
    * Reserve a Reach &amp; Frequency prediction
-   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+   * Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
    * @param predictionId  (required)
    * @param reserveRfPredictionRequest  (required)
    * @param headers Optional headers to include in the request

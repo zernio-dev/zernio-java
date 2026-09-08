@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * **Deprecated.** Legacy 3-tier aggregate. Operations outside the three historical prices ($0.005/$0.010/$0.015) — notably the $0.200 \&quot;Posts with URL\&quot; tier added April 2026 — are silently excluded from this shape. Use &#x60;xApiCallsByOperation&#x60; instead; it captures every tier and is the source of truth for per-operation call counts. 
+ * **Deprecated.** Legacy 3-tier aggregate. Operations outside the three historical prices ($0.005/$0.010/$0.015), notably the $0.200 \&quot;Posts with URL\&quot; tier added April 2026, are silently excluded from this shape. Use &#x60;xApiCallsByOperation&#x60; instead; it captures every tier and is the source of truth for per-operation call counts. 
  * @deprecated
  */
 @Deprecated
@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   UsageStatsUsageXApiCalls.JSON_PROPERTY_X_API010,
   UsageStatsUsageXApiCalls.JSON_PROPERTY_X_API015
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsUsageXApiCalls {
   public static final String JSON_PROPERTY_X_API005 = "x_api_005";
   @javax.annotation.Nullable

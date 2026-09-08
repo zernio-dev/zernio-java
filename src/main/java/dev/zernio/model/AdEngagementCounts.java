@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * The single &#x60;engagement&#x60; total split into the interactions behind it.  Note that &#x60;engagement&#x60; is not the sum of these: Meta&#39;s own &#x60;post_engagement&#x60; and &#x60;page_engagement&#x60; totals already contain the individual interactions, and all of them are counted into &#x60;engagement&#x60;. Use these fields when you need a specific interaction, and &#x60;engagement&#x60; only as the coarse total it has always been.  Populated for Meta and, since 2026-08, TikTok (&#x60;reactions&#x60; &#x3D; paid likes, &#x60;comments&#x60;, &#x60;shares&#x60;; TikTok&#39;s &#x60;follow&#x60; count lives in &#x60;actions.follow&#x60;, not here). Other platforms leave these at 0. TikTok history note: paused TikTok ads are not re-synced, so campaigns that ended before the rollout keep 0s here. 
+ * The single &#x60;engagement&#x60; total split into the interactions behind it.  &#x60;engagement&#x60; is not the sum of these: Meta&#39;s own &#x60;post_engagement&#x60; and &#x60;page_engagement&#x60; totals already contain the individual interactions, and all of them are counted into &#x60;engagement&#x60;. Use these fields when you need a specific interaction, and &#x60;engagement&#x60; only as the coarse total it has always been.  Populated for Meta and, since 2026-08, TikTok (&#x60;reactions&#x60; &#x3D; paid likes, &#x60;comments&#x60;, &#x60;shares&#x60;; TikTok&#39;s &#x60;follow&#x60; count lives in &#x60;actions.follow&#x60;, not here). Other platforms leave these at 0. TikTok history note: paused TikTok ads are not re-synced, so campaigns that ended before the rollout keep 0s here. 
  */
 @JsonPropertyOrder({
   AdEngagementCounts.JSON_PROPERTY_POST_ENGAGEMENT,
@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AdEngagementCounts.JSON_PROPERTY_VIDEO_VIEWS,
   AdEngagementCounts.JSON_PROPERTY_LINK_CLICKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdEngagementCounts {
   public static final String JSON_PROPERTY_POST_ENGAGEMENT = "postEngagement";
   @javax.annotation.Nullable

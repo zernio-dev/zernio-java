@@ -2,7 +2,7 @@
 
 # DiscordScheduledEvent
 
-Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints. Fields below are the subset Zernio consumes — Discord may return more (e.g. creator, image hash) which we pass through verbatim. 
+Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints. Fields below are the subset Zernio consumes. Discord may return more (e.g. creator, image hash) which we pass through verbatim. 
 
 ## Properties
 
@@ -16,7 +16,7 @@ Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events e
 |**description** | **String** |  |  [optional] |
 |**scheduledStartTime** | **OffsetDateTime** |  |  [optional] |
 |**scheduledEndTime** | **OffsetDateTime** | Required for external events; optional for voice/stage. |  [optional] |
-|**privacyLevel** | [**PrivacyLevelEnum**](#PrivacyLevelEnum) | Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events. |  [optional] |
+|**privacyLevel** | [**PrivacyLevelEnum**](#PrivacyLevelEnum) | Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events. |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | 1&#x3D;SCHEDULED, 2&#x3D;ACTIVE, 3&#x3D;COMPLETED, 4&#x3D;CANCELED |  [optional] |
 |**entityType** | [**EntityTypeEnum**](#EntityTypeEnum) | 1&#x3D;STAGE_INSTANCE, 2&#x3D;VOICE, 3&#x3D;EXTERNAL |  [optional] |
 |**entityId** | **String** |  |  [optional] |

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AnalyticsListResponse.JSON_PROPERTY_ACCOUNTS,
   AnalyticsListResponse.JSON_PROPERTY_HAS_ANALYTICS_ACCESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponse {
   public static final String JSON_PROPERTY_OVERVIEW = "overview";
   @javax.annotation.Nullable
@@ -164,7 +164,7 @@ public class AnalyticsListResponse {
   }
 
   /**
-   * Connected social accounts (followerCount and followersLastUpdated only included if user has analytics add-on)
+   * Connected accounts (followerCount and followersLastUpdated only included if user has analytics add-on)
    * @return accounts
    */
   @javax.annotation.Nullable

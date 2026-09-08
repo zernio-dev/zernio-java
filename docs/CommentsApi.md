@@ -436,7 +436,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
-| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT — response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to read this post on the platform (code platform_api_error, type platform_error) |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
@@ -524,7 +524,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
-| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT — response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to read this post on the platform (code platform_api_error, type platform_error) |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
@@ -537,7 +537,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
 
 ### Example
 
@@ -614,7 +614,7 @@ public class Example {
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
 
 ### Example
 
@@ -695,7 +695,7 @@ ApiResponse<[**HideInboxComment200Response**](HideInboxComment200Response.md)>
 
 Like comment
 
-Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below). For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers comments and replies on feed posts, reels and carousels. Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Content from private accounts cannot be liked. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
+Like or upvote a comment on a post. Supported platforms: Facebook, X, Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below). For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers comments and replies on feed posts, reels and carousels. Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Content from private accounts cannot be liked. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
 
 ### Example
 
@@ -772,7 +772,7 @@ public class Example {
 
 Like comment
 
-Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below). For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers comments and replies on feed posts, reels and carousels. Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Content from private accounts cannot be liked. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
+Like or upvote a comment on a post. Supported platforms: Facebook, X, Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below). For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers comments and replies on feed posts, reels and carousels. Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Content from private accounts cannot be liked. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
 
 ### Example
 
@@ -853,7 +853,7 @@ ApiResponse<[**LikeInboxComment200Response**](LikeInboxComment200Response.md)>
 
 Like post
 
-Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release (see below). Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers feed images, reels and carousels (stories and private-account media are not likeable). Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
+Like (or react to) a post as a connected account. Supported platforms: LinkedIn, X, Facebook, YouTube, Bluesky, and Instagram in limited release (see below). Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers feed images, reels and carousels (stories and private-account media are not likeable). Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
 
 ### Example
 
@@ -929,7 +929,7 @@ public class Example {
 
 Like post
 
-Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release (see below). Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers feed images, reels and carousels (stories and private-account media are not likeable). Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
+Like (or react to) a post as a connected account. Supported platforms: LinkedIn, X, Facebook, YouTube, Bluesky, and Instagram in limited release (see below). Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call.  Instagram is in LIMITED RELEASE and not generally available: the call needs &#x60;instagram_manage_engagement&#x60;, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code &#x60;PLATFORM_BETA_RESTRICTED&#x60; for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers feed images, reels and carousels (stories and private-account media are not likeable). Only an account connected through Facebook Login can be granted &#x60;instagram_manage_engagement&#x60;: an Instagram Login connection returns a 400 with code &#x60;instagram_likes_require_facebook_login&#x60;, and an account whose token predates the permission returns a 403 with code &#x60;reconnect_required&#x60;. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
 
 ### Example
 
@@ -1009,7 +1009,7 @@ ApiResponse<[**LikePost200Response**](LikePost200Response.md)>
 
 List commented posts
 
-Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  Responses are cached for up to 10 minutes, so the feed may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which fires for every new comment across your posts and carries the post reference needed to keep this list current.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
+Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  Responses are cached for up to 10 minutes, so the feed may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which fires for every new comment across your posts and carries the post reference needed to keep this list current.  For users with the Ads add-on (accounts on usage-based billing always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
 
 ### Example
 
@@ -1040,7 +1040,7 @@ public class Example {
         String sortOrder = "asc"; // String | Sort order
         Integer limit = 50; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific social account ID
+        String accountId = "accountId_example"; // String | Filter by specific account ID
         try {
             ListInboxComments200Response result = apiInstance.listInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println(result);
@@ -1068,7 +1068,7 @@ public class Example {
 | **sortOrder** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific social account ID | [optional] |
+| **accountId** | **String**| Filter by specific account ID | [optional] |
 
 ### Return type
 
@@ -1097,7 +1097,7 @@ public class Example {
 
 List commented posts
 
-Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  Responses are cached for up to 10 minutes, so the feed may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which fires for every new comment across your posts and carries the post reference needed to keep this list current.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
+Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  Responses are cached for up to 10 minutes, so the feed may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which fires for every new comment across your posts and carries the post reference needed to keep this list current.  For users with the Ads add-on (accounts on usage-based billing always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
 
 ### Example
 
@@ -1129,7 +1129,7 @@ public class Example {
         String sortOrder = "asc"; // String | Sort order
         Integer limit = 50; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific social account ID
+        String accountId = "accountId_example"; // String | Filter by specific account ID
         try {
             ApiResponse<ListInboxComments200Response> response = apiInstance.listInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1159,7 +1159,7 @@ public class Example {
 | **sortOrder** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific social account ID | [optional] |
+| **accountId** | **String**| Filter by specific account ID | [optional] |
 
 ### Return type
 
@@ -1355,7 +1355,7 @@ ApiResponse<[**ReplyToInboxPost200Response**](ReplyToInboxPost200Response.md)>
 
 Send private reply
 
-Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. 
+Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. 
 
 ### Example
 
@@ -1433,7 +1433,7 @@ public class Example {
 
 Send private reply
 
-Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. 
+Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Since late August 2026 Instagram refuses buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so), and the failed call still consumes the comment&#39;s single private reply. To reach non-followers send plain text and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. 
 
 ### Example
 
@@ -1515,7 +1515,7 @@ ApiResponse<[**SendPrivateReplyToComment200Response**](SendPrivateReplyToComment
 
 Set comment moderation status
 
-Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X and does not apply to YouTube. 
 
 ### Example
 
@@ -1594,7 +1594,7 @@ public class Example {
 
 Set comment moderation status
 
-Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X and does not apply to YouTube. 
 
 ### Example
 
@@ -1677,7 +1677,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
 
 ### Example
 
@@ -1754,7 +1754,7 @@ public class Example {
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
 
 ### Example
 
@@ -1835,7 +1835,7 @@ ApiResponse<[**HideInboxComment200Response**](HideInboxComment200Response.md)>
 
 Unlike comment
 
-Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query parameter is required. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. 
+Remove a like from a comment. Supported platforms: Facebook, X, Bluesky, Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query parameter is required. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. 
 
 ### Example
 
@@ -1914,7 +1914,7 @@ public class Example {
 
 Unlike comment
 
-Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query parameter is required. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. 
+Remove a like from a comment. Supported platforms: Facebook, X, Bluesky, Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query parameter is required. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. 
 
 ### Example
 
@@ -1997,7 +1997,7 @@ ApiResponse<[**UnlikeInboxComment200Response**](UnlikeInboxComment200Response.md
 
 Unlike post
 
-Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release. On YouTube this clears the rating. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+Remove this account&#39;s like from a post. Supported platforms: LinkedIn, X, Facebook, YouTube, Bluesky, and Instagram in limited release. On YouTube this clears the rating. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
 
 ### Example
 
@@ -2075,7 +2075,7 @@ public class Example {
 
 Unlike post
 
-Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release. On YouTube this clears the rating. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+Remove this account&#39;s like from a post. Supported platforms: LinkedIn, X, Facebook, YouTube, Bluesky, and Instagram in limited release. On YouTube this clears the rating. Instagram has the same limited release, Facebook Login, &#x60;instagram_manage_engagement&#x60; and burst-limit constraints as liking. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
 
 ### Example
 

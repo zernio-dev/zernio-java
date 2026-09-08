@@ -177,7 +177,7 @@ ApiResponse<[**CreateGoogleBusinessPlaceAction200Response**](CreateGoogleBusines
 
 Delete action link
 
-Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
 
 ### Example
 
@@ -253,7 +253,7 @@ public class Example {
 
 Delete action link
 
-Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
 
 ### Example
 

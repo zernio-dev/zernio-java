@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PHONE_NUMBER_TYPE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -184,7 +184,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
   /**
-   * ISO country of the number — pass it to GET /v1/phone-numbers/port-in/requirements for international numbers.
+   * ISO country of the number. Pass it to GET /v1/phone-numbers/port-in/requirements for international numbers.
    * @return countryCode
    */
   @javax.annotation.Nullable
@@ -216,7 +216,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
   /**
-   * Carrier number-type classification (local, mobile, national, toll_free…) — the numberType for the requirements endpoint.
+   * Carrier number-type classification (local, mobile, national, toll_free…), the numberType for the requirements endpoint.
    * @return phoneNumberType
    */
   @javax.annotation.Nullable

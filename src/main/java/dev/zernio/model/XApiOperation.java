@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   XApiOperation.JSON_PROPERTY_TIER,
   XApiOperation.JSON_PROPERTY_TRIGGERED_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiOperation {
   public static final String JSON_PROPERTY_OPERATION = "operation";
   @javax.annotation.Nullable
@@ -108,7 +108,7 @@ public class XApiOperation {
   }
 
   /**
-   * Metronome &#x60;event_type&#x60; emitted when this operation runs.
+   * Metering &#x60;event_type&#x60; emitted when this operation runs.
    * @return eventType
    */
   @javax.annotation.Nullable
@@ -132,7 +132,7 @@ public class XApiOperation {
   }
 
   /**
-   * Human-readable label shown on Metronome invoices.
+   * Human-readable label shown on invoices.
    * @return displayName
    */
   @javax.annotation.Nullable

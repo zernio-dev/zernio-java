@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | The social account ID |  |
+|**accountId** | **String** | The account ID |  |
 |**reactionType** | [**ReactionTypeEnum**](#ReactionTypeEnum) | (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms. |  [optional] |
 |**cid** | **String** | (Bluesky only) Content identifier for the comment |  [optional] |
 

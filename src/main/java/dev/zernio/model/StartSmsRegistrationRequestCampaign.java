@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Required for 10DLC. What you&#39;ll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (&#x60;optinMessage&#x60;, &#x60;optoutMessage&#x60;, &#x60;helpMessage&#x60;) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures — submissions that don&#39;t are rewritten to the compliant template before the campaign is filed. 
+ * Required for 10DLC. What you&#39;ll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (&#x60;optinMessage&#x60;, &#x60;optoutMessage&#x60;, &#x60;helpMessage&#x60;) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures. Submissions that don&#39;t are rewritten to the compliant template before the campaign is filed. 
  */
 @JsonPropertyOrder({
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_USECASE,
@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_PRIVACY_POLICY_LINK,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_TERMS_AND_CONDITIONS_LINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestCampaign {
   public static final String JSON_PROPERTY_USECASE = "usecase";
   @javax.annotation.Nonnull
@@ -273,7 +273,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
   /**
-   * How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify.
+   * How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in, because carrier reviewers reject campaigns whose consent they can&#39;t verify.
    * @return messageFlow
    */
   @javax.annotation.Nonnull

@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Metronome users only. Current-period spend summary.
+ * Usage-based billing only. Current-period spend summary.
  */
 @JsonPropertyOrder({
   UsageStatsSpend.JSON_PROPERTY_CURRENT_PERIOD_CENTS,
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_CENTS,
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_LIMIT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsSpend {
   public static final String JSON_PROPERTY_CURRENT_PERIOD_CENTS = "currentPeriodCents";
   @javax.annotation.Nullable
@@ -116,7 +116,7 @@ public class UsageStatsSpend {
   }
 
   /**
-   * Current-period X/Twitter API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. 
+   * Current-period X API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. 
    * @return xSpendCents
    */
   @javax.annotation.Nullable

@@ -69,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1306,7 +1306,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for a number
-   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @return GetWhatsAppCalling200Response
    * @throws ApiException if fails to make API call
@@ -1317,7 +1317,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for a number
-   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppCalling200Response
@@ -1330,7 +1330,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for a number
-   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @return ApiResponse&lt;GetWhatsAppCalling200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1341,7 +1341,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for a number
-   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
    * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppCalling200Response&gt;
@@ -1425,7 +1425,7 @@ public class WhatsAppCallingApi {
   /**
    * Get calling config for an account
    * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return GetWhatsAppCallingConfig200Response
    * @throws ApiException if fails to make API call
    */
@@ -1436,7 +1436,7 @@ public class WhatsAppCallingApi {
   /**
    * Get calling config for an account
    * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppCallingConfig200Response
    * @throws ApiException if fails to make API call
@@ -1449,7 +1449,7 @@ public class WhatsAppCallingApi {
   /**
    * Get calling config for an account
    * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @return ApiResponse&lt;GetWhatsAppCallingConfig200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1460,7 +1460,7 @@ public class WhatsAppCallingApi {
   /**
    * Get calling config for an account
    * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppCallingConfig200Response&gt;
    * @throws ApiException if fails to make API call

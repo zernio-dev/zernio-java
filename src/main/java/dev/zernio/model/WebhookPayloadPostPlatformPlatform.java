@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * The specific platform that just transitioned to a terminal state.
+ * The specific platform that transitioned to a terminal state.
  */
 @JsonPropertyOrder({
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_NAME,
@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_ERROR,
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_DELETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPlatformPlatform {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

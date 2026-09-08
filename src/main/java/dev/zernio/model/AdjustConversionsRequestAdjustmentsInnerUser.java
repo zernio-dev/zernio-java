@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * ENHANCEMENT only — first-party identifiers (hashed server-side). At least one of email/phone required.
+ * ENHANCEMENT only. First-party identifiers (hashed server-side). At least one of email/phone required.
  */
 @JsonPropertyOrder({
   AdjustConversionsRequestAdjustmentsInnerUser.JSON_PROPERTY_EMAIL,
   AdjustConversionsRequestAdjustmentsInnerUser.JSON_PROPERTY_PHONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdjustConversionsRequestAdjustmentsInnerUser {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable

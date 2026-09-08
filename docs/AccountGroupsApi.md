@@ -21,7 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create group
 
-Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
 
 ### Example
 
@@ -94,7 +94,7 @@ public class Example {
 
 Create group
 
-Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
 
 ### Example
 

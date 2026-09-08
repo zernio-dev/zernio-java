@@ -2,7 +2,7 @@
 
 # CreateStandaloneAd201ResponseOneOf
 
-Legacy + attach shapes — one ad returned.
+Legacy + attach shapes: one ad returned.
 
 ## Properties
 

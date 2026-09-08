@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:06:36.729664195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:29:47.184149075Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplatesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -172,7 +172,7 @@ public class WhatsAppTemplatesApi {
   /**
    * Look up a library template
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact library template name (required)
    * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @return GetWhatsAppLibraryTemplate200Response
@@ -185,7 +185,7 @@ public class WhatsAppTemplatesApi {
   /**
    * Look up a library template
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact library template name (required)
    * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @param headers Optional headers to include in the request
@@ -200,7 +200,7 @@ public class WhatsAppTemplatesApi {
   /**
    * Look up a library template
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact library template name (required)
    * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @return ApiResponse&lt;GetWhatsAppLibraryTemplate200Response&gt;
@@ -213,7 +213,7 @@ public class WhatsAppTemplatesApi {
   /**
    * Look up a library template
    * Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
-   * @param accountId WhatsApp social account ID (required)
+   * @param accountId WhatsApp account ID (required)
    * @param name Exact library template name (required)
    * @param language Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)
    * @param headers Optional headers to include in the request

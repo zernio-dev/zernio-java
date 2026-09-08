@@ -14,7 +14,7 @@
 |**message** | **String** |  |  [optional] |
 |**senderId** | **String** |  |  [optional] |
 |**senderName** | **String** |  |  [optional] |
-|**senderVerifiedType** | [**SenderVerifiedTypeEnum**](#SenderVerifiedTypeEnum) | X/Twitter verified badge type. Only present for Twitter/X messages. |  [optional] |
+|**senderVerifiedType** | [**SenderVerifiedTypeEnum**](#SenderVerifiedTypeEnum) | X verified badge type. Only present for X messages. |  [optional] |
 |**direction** | [**DirectionEnum**](#DirectionEnum) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**attachments** | [**List&lt;GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner&gt;**](GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md) |  |  [optional] |
