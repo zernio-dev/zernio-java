@@ -436,7 +436,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
-| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;), or the upstream platform rejected the request (type platform_error, code platform_api_error; the provider&#39;s own payload is in platformError). Meta returns code 100 with error_subcode 33 both for a story past its 24h life and for a deleted post, so the two are indistinguishable from the response.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to read this post on the platform (code platform_api_error, type platform_error) |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
@@ -524,7 +524,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
-| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;), or the upstream platform rejected the request (type platform_error, code platform_api_error; the provider&#39;s own payload is in platformError). Meta returns code 100 with error_subcode 33 both for a story past its 24h life and for a deleted post, so the two are indistinguishable from the response.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to read this post on the platform (code platform_api_error, type platform_error) |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |

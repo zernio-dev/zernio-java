@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.JSON_PROPERTY_KEYWORD,
   GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.JSON_PROPERTY_IMPRESSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:59:11.475110767Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T09:43:42.378524097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessSearchKeywords200ResponseKeywordsInner {
   public static final String JSON_PROPERTY_KEYWORD = "keyword";
   @javax.annotation.Nullable

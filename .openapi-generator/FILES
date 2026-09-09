@@ -4019,15 +4019,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateMessagingAd201ResponseTest.java
-src/test/java/dev/zernio/model/TikTokDryRunVerdictTest.java
-src/test/java/dev/zernio/model/TikTokDryRunVerdictTiktokInnerTest.java
-src/test/java/dev/zernio/model/UpdateAdTrackingTags200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensionsTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestLatlngTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestMoreHoursInnerTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestOpenInfoTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestServiceAreaPlacesPlaceInfosInnerTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestServiceAreaPlacesTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestServiceAreaTest.java
-src/test/java/dev/zernio/model/UpdateGoogleBusinessLocationDetailsRequestStorefrontAddressTest.java
