@@ -49,6 +49,7 @@ import dev.zernio.ApiClient;
  * CreateMessagingAdRequest
  */
 @JsonPropertyOrder({
+  CreateMessagingAdRequest.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateMessagingAdRequest.JSON_PROPERTY_ACCOUNT_ID,
   CreateMessagingAdRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   CreateMessagingAdRequest.JSON_PROPERTY_NAME,
@@ -90,8 +91,47 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES,
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures;
+
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
@@ -507,6 +547,38 @@ public class CreateMessagingAdRequest {
 
   public CreateMessagingAdRequest() { 
   }
+
+  public CreateMessagingAdRequest creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public CreateMessagingAdRequest putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+  }
+
 
   public CreateMessagingAdRequest accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
@@ -1564,7 +1636,8 @@ public class CreateMessagingAdRequest {
       return false;
     }
     CreateMessagingAdRequest createMessagingAdRequest = (CreateMessagingAdRequest) o;
-    return Objects.equals(this.accountId, createMessagingAdRequest.accountId) &&
+    return Objects.equals(this.creativeFeatures, createMessagingAdRequest.creativeFeatures) &&
+        Objects.equals(this.accountId, createMessagingAdRequest.accountId) &&
         Objects.equals(this.adAccountId, createMessagingAdRequest.adAccountId) &&
         Objects.equals(this.name, createMessagingAdRequest.name) &&
         Objects.equals(this.existingPostId, createMessagingAdRequest.existingPostId) &&
@@ -1608,13 +1681,14 @@ public class CreateMessagingAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities, destination);
+    return Objects.hash(creativeFeatures, accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities, destination);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateMessagingAdRequest {\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -1701,6 +1775,15 @@ public class CreateMessagingAdRequest {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
+    }
 
     // add `accountId` to the URL query string
     if (getAccountId() != null) {

@@ -45,6 +45,7 @@ import dev.zernio.ApiClient;
  * BoostPostRequest
  */
 @JsonPropertyOrder({
+  BoostPostRequest.JSON_PROPERTY_CREATIVE_FEATURES,
   BoostPostRequest.JSON_PROPERTY_POST_ID,
   BoostPostRequest.JSON_PROPERTY_PLATFORM_POST_ID,
   BoostPostRequest.JSON_PROPERTY_ACCOUNT_ID,
@@ -78,8 +79,47 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
   private String postId;
@@ -376,6 +416,38 @@ public class BoostPostRequest {
 
   public BoostPostRequest() { 
   }
+
+  public BoostPostRequest creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public BoostPostRequest putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+  }
+
 
   public BoostPostRequest postId(@javax.annotation.Nullable String postId) {
     this.postId = postId;
@@ -1203,7 +1275,8 @@ public class BoostPostRequest {
       return false;
     }
     BoostPostRequest boostPostRequest = (BoostPostRequest) o;
-    return Objects.equals(this.postId, boostPostRequest.postId) &&
+    return Objects.equals(this.creativeFeatures, boostPostRequest.creativeFeatures) &&
+        Objects.equals(this.postId, boostPostRequest.postId) &&
         Objects.equals(this.platformPostId, boostPostRequest.platformPostId) &&
         Objects.equals(this.accountId, boostPostRequest.accountId) &&
         Objects.equals(this.adAccountId, boostPostRequest.adAccountId) &&
@@ -1239,13 +1312,14 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
+    return Objects.hash(creativeFeatures, postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BoostPostRequest {\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    postId: ").append(toIndentedString(postId)).append("\n");
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
@@ -1324,6 +1398,15 @@ public class BoostPostRequest {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
+    }
 
     // add `postId` to the URL query string
     if (getPostId() != null) {

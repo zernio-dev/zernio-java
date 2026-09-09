@@ -15,8 +15,8 @@ What the ad optimises against. Behaviour depends on the platform.  **Meta**: for
 |**applicationId** | **String** | App ID. Required for &#x60;goal: app_promotion&#x60;. |  [optional] |
 |**objectStoreUrl** | **URI** | App Store / Play Store listing URL. Required for &#x60;goal: app_promotion&#x60;. |  [optional] |
 |**customConversionId** | **String** | Custom Conversion ID, when optimising against one instead of a standard event. Accepted alone by this API, without &#x60;pixelId&#x60; or &#x60;customEventType&#x60;. If &#x60;pixelId&#x60; is also sent, &#x60;customEventType&#x60; is still required on the promoted_object (Meta rejects &#x60;pixel_id&#x60; without &#x60;custom_event_type&#x60;, error_subcode 1885014).  |  [optional] |
-|**productCatalogId** | **String** | Catalog ID for catalog/Advantage+ Shopping campaigns. |  [optional] |
-|**productSetId** | **String** | Product Set ID inside the catalog. |  [optional] |
+|**productCatalogId** | **String** | Optional catalog ID. If supplied with productSetId, the set must belong to this catalog. A catalog ID cannot replace productSetId. |  [optional] |
+|**productSetId** | **String** | Meta product SET ID from GET /v1/ads/catalogs/{catalogId}/product-sets. Zernio checks that the token can read the set and its product_catalog before creation. A catalog ID or inaccessible set returns a precise 400 naming promotedObject.productSetId. A mismatch with productCatalogId names promotedObject.productCatalogId. |  [optional] |
 |**offlineConversionDataSetId** | **String** | Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id). |  [optional] |
 |**whatsappPhoneNumber** | **String** | Meta only. WhatsApp number on messaging-destination ad sets. |  [optional] |
 

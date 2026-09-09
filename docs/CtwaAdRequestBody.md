@@ -8,6 +8,7 @@ In addition to the `required` list, the request must use EXACTLY ONE of the two 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object. |  [optional] |
 |**accountId** | **String** | Facebook or Instagram SocialAccount ID. |  |
 |**adAccountId** | **String** | Meta ad account ID, e.g. &#x60;act_123456789&#x60;. |  |
 |**name** | **String** | Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  |  |
@@ -47,6 +48,15 @@ In addition to the `required` list, the request must use EXACTLY ONE of the two 
 |**dsaPayor** | **String** | Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor.  |  [optional] |
 |**regionalRegulatedCategories** | **List&lt;String&gt;** | Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. BRAZIL_REGULATION, SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV). Forwarded to the ad set. |  [optional] |
 |**regionalRegulationIdentities** | **Map&lt;String, Integer&gt;** | Meta only. Beneficiary/payer entity IDs required alongside regionalRegulatedCategories. Values are numeric IDs from the advertiser&#39;s Meta verification/authorization setup. Keys depend on the declared category: BRAZIL_REGULATION and THAILAND_UNIVERSAL use universal_beneficiary / universal_payer; SINGAPORE_UNIVERSAL uses singapore_universal_beneficiary / singapore_universal_payer; TAIWAN_UNIVERSAL uses taiwan_universal_beneficiary / taiwan_universal_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary / taiwan_finserv_payer; AUSTRALIA_FINSERV uses australia_finserv_beneficiary / australia_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer. Both beneficiary and payer must be included. If omitted and the advertiser has set defaults in Meta Ads Manager advertising settings, Meta auto-fills them.  |  [optional] |
+
+
+
+## Enum: Map&lt;String, InnerEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| OPT_IN | &quot;OPT_IN&quot; |
+| OPT_OUT | &quot;OPT_OUT&quot; |
 
 
 

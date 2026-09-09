@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta. |  [optional] |
 |**postId** | **String** | Zernio post ID (provide this or platformPostId) |  [optional] |
 |**platformPostId** | **String** | Platform post ID (alternative to postId) |  [optional] |
 |**accountId** | **String** | Account ID |  |
@@ -39,6 +40,15 @@
 |**leadGenFormId** | **String** | Lead Gen form ID to attach to the boosted ad&#39;s creative. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;. On Meta this is the leadgen_forms ID (create one via POST /v1/ads/lead-forms). On LinkedIn this is the adForm ID (create one via POST /v1/ads/lead-forms with a LinkedIn account); the creative&#39;s &#x60;leadgenCallToAction.destination&#x60; is set to &#x60;urn:li:adForm:{id}&#x60;. Ignored for other goals. |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each). |  [optional] |
 |**optimizationGoal** | **String** | Meta only. Explicit ad-set &#x60;optimization_goal&#x60; override. When omitted, defaults to the value derived from &#x60;goal&#x60;. Messaging boosts always use CONVERSATIONS and reject another optimizationGoal. Otherwise the value must be compatible with the objective Meta derives from &#x60;goal&#x60;, not with the objective used by &#x60;POST /v1/ads/create&#x60; for the same &#x60;goal&#x60; name: boost maps &#x60;goal: \&quot;engagement\&quot;&#x60; to objective &#x60;OUTCOME_AWARENESS&#x60;, which accepts &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;AD_RECALL_LIFT&#x60;, or THRUPLAY-class values, and rejects &#x60;POST_ENGAGEMENT&#x60; (that value is only valid under &#x60;OUTCOME_ENGAGEMENT&#x60;, which create uses for the same goal name).  |  [optional] |
+
+
+
+## Enum: Map&lt;String, InnerEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| OPT_IN | &quot;OPT_IN&quot; |
+| OPT_OUT | &quot;OPT_OUT&quot; |
 
 
 

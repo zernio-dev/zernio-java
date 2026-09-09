@@ -24,16 +24,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.MetaPromotion;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset: fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives. Those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: requires new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;);   a text-only creative update returns 400. Uploads the media, creates a new inline   media creative on the same campaign, and pauses the old creative (best-effort).   The old creative is retained for historical reporting. &#x60;videoId&#x60; and   &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
+ * Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset: fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives. Those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting.   &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; are Meta-only. Omitted settings are   preserved from the live creative, including full rebuilds. Send   &#x60;promotion: null&#x60; to remove the explicit offer from the replacement.   A supplied creativeFeatures map overrides individual existing keys. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: requires new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;);   a text-only creative update returns 400. Uploads the media, creates a new inline   media creative on the same campaign, and pauses the old creative (best-effort).   The old creative is retained for historical reporting. &#x60;videoId&#x60; and   &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
  */
 @JsonPropertyOrder({
+  UpdateAdRequestCreative.JSON_PROPERTY_PROMOTION,
+  UpdateAdRequestCreative.JSON_PROPERTY_CREATIVE_FEATURES,
   UpdateAdRequestCreative.JSON_PROPERTY_HEADLINE,
   UpdateAdRequestCreative.JSON_PROPERTY_BODY,
   UpdateAdRequestCreative.JSON_PROPERTY_DESCRIPTION,
@@ -44,8 +49,51 @@ import dev.zernio.ApiClient;
   UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_ID,
   UpdateAdRequestCreative.JSON_PROPERTY_EXISTING_CREATIVE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestCreative {
+  public static final String JSON_PROPERTY_PROMOTION = "promotion";
+  @javax.annotation.Nullable
+  private MetaPromotion promotion;
+
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nullable
   private String headline;
@@ -84,6 +132,62 @@ public class UpdateAdRequestCreative {
 
   public UpdateAdRequestCreative() { 
   }
+
+  public UpdateAdRequestCreative promotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+    return this;
+  }
+
+  /**
+   * Get promotion
+   * @return promotion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MetaPromotion getPromotion() {
+    return promotion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+  }
+
+
+  public UpdateAdRequestCreative creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public UpdateAdRequestCreative putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+  }
+
 
   public UpdateAdRequestCreative headline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
@@ -313,7 +417,9 @@ public class UpdateAdRequestCreative {
       return false;
     }
     UpdateAdRequestCreative updateAdRequestCreative = (UpdateAdRequestCreative) o;
-    return Objects.equals(this.headline, updateAdRequestCreative.headline) &&
+    return Objects.equals(this.promotion, updateAdRequestCreative.promotion) &&
+        Objects.equals(this.creativeFeatures, updateAdRequestCreative.creativeFeatures) &&
+        Objects.equals(this.headline, updateAdRequestCreative.headline) &&
         Objects.equals(this.body, updateAdRequestCreative.body) &&
         Objects.equals(this.description, updateAdRequestCreative.description) &&
         Objects.equals(this.callToAction, updateAdRequestCreative.callToAction) &&
@@ -326,13 +432,15 @@ public class UpdateAdRequestCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(headline, body, description, callToAction, linkUrl, imageUrl, videoUrl, videoId, existingCreativeId);
+    return Objects.hash(promotion, creativeFeatures, headline, body, description, callToAction, linkUrl, imageUrl, videoUrl, videoId, existingCreativeId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdRequestCreative {\n");
+    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -388,6 +496,20 @@ public class UpdateAdRequestCreative {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `promotion` to the URL query string
+    if (getPromotion() != null) {
+      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
+    }
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
+    }
 
     // add `headline` to the URL query string
     if (getHeadline() != null) {

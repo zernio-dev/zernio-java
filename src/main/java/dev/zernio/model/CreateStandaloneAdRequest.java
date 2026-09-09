@@ -46,6 +46,7 @@ import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.KeywordEntry;
+import dev.zernio.model.MetaPromotion;
 import dev.zernio.model.TargetingSpec;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -76,6 +77,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BILLING_EVENT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUYING_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_RF_PREDICTION_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateStandaloneAdRequest.JSON_PROPERTY_MULTI_ADVERTISER,
   CreateStandaloneAdRequest.JSON_PROPERTY_VALIDATE_ONLY,
@@ -163,7 +165,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -301,6 +303,10 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   private String rfPredictionId;
 
+  public static final String JSON_PROPERTY_PROMOTION = "promotion";
+  @javax.annotation.Nullable
+  private MetaPromotion promotion;
+
   /**
    * Gets or Sets inner
    */
@@ -338,7 +344,7 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
   @javax.annotation.Nullable
-  private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+  private Map<String, InnerEnum> creativeFeatures;
 
   /**
    * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
@@ -1469,6 +1475,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest promotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+    return this;
+  }
+
+  /**
+   * Get promotion
+   * @return promotion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MetaPromotion getPromotion() {
+    return promotion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+  }
+
+
   public CreateStandaloneAdRequest creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
     this.creativeFeatures = creativeFeatures;
     return this;
@@ -1483,7 +1513,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Advantage+ creative enhancements: a partial map of Meta creative feature keys (snake_case, e.g. enhance_cta, image_brightness_and_contrast, text_optimizations) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Meta validates the keys; unspecified features default to OPT_OUT. The legacy standard_enhancements bundle is deprecated by Meta and rejected.
+   * Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.
    * @return creativeFeatures
    */
   @javax.annotation.Nullable
@@ -2067,7 +2097,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta, and passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets) OR &#x60;translations&#x60;/&#x60;defaultLocale&#x60; (its own per-locale asset feed, Meta only), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD, true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram), Google Ads, TikTok, and LinkedIn. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. On LinkedIn the &#x60;adSetId&#x60; is the LinkedIn Campaign ID (numeric); we attach a new Creative to that Campaign, so the Campaign&#39;s &#x60;platformSpecificData&#x60; bidding, targeting, budget and schedule are inherited (passing those fields returns 400).  On Google Ads the &#x60;adSetId&#x60; is the AD GROUP id. &#x60;goal&#x60; is still REQUIRED even though budget and targeting are inherited from the ad group. Send &#x60;campaignType: \&quot;search\&quot;&#x60; to attach into a Search ad group, including one created by &#x60;POST /v1/ads/ad-sets&#x60; (always SEARCH_STANDARD): without it the request is treated as Display and requires &#x60;images.landscape&#x60; + &#x60;images.square&#x60; + &#x60;businessName&#x60;, and the resulting display creative does not match a Search ad group. &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; and bidding fields (&#x60;bidStrategy&#x60;, &#x60;bidAmount&#x60;, &#x60;portfolioBidStrategyId&#x60;) return 400 on this shape; the ad group already owns them. 
+   * When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta, and passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;. &#x60;dynamicCreative&#x60; returns 400 in attach mode: create a new dynamic ad set by omitting &#x60;adSetId&#x60; instead.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets) OR &#x60;translations&#x60;/&#x60;defaultLocale&#x60; (its own per-locale asset feed, Meta only), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD, true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram), Google Ads, TikTok, and LinkedIn. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. On LinkedIn the &#x60;adSetId&#x60; is the LinkedIn Campaign ID (numeric); we attach a new Creative to that Campaign, so the Campaign&#39;s &#x60;platformSpecificData&#x60; bidding, targeting, budget and schedule are inherited (passing those fields returns 400).  On Google Ads the &#x60;adSetId&#x60; is the AD GROUP id. &#x60;goal&#x60; is still REQUIRED even though budget and targeting are inherited from the ad group. Send &#x60;campaignType: \&quot;search\&quot;&#x60; to attach into a Search ad group, including one created by &#x60;POST /v1/ads/ad-sets&#x60; (always SEARCH_STANDARD): without it the request is treated as Display and requires &#x60;images.landscape&#x60; + &#x60;images.square&#x60; + &#x60;businessName&#x60;, and the resulting display creative does not match a Search ad group. &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; and bidding fields (&#x60;bidStrategy&#x60;, &#x60;bidAmount&#x60;, &#x60;portfolioBidStrategyId&#x60;) return 400 on this shape; the ad group already owns them. 
    * @return adSetId
    */
   @javax.annotation.Nullable
@@ -3831,6 +3861,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.billingEvent, createStandaloneAdRequest.billingEvent) &&
         Objects.equals(this.buyingType, createStandaloneAdRequest.buyingType) &&
         Objects.equals(this.rfPredictionId, createStandaloneAdRequest.rfPredictionId) &&
+        Objects.equals(this.promotion, createStandaloneAdRequest.promotion) &&
         Objects.equals(this.creativeFeatures, createStandaloneAdRequest.creativeFeatures) &&
         Objects.equals(this.multiAdvertiser, createStandaloneAdRequest.multiAdvertiser) &&
         Objects.equals(this.validateOnly, createStandaloneAdRequest.validateOnly) &&
@@ -3921,7 +3952,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, promotion, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
   }
 
   @Override
@@ -3940,6 +3971,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    billingEvent: ").append(toIndentedString(billingEvent)).append("\n");
     sb.append("    buyingType: ").append(toIndentedString(buyingType)).append("\n");
     sb.append("    rfPredictionId: ").append(toIndentedString(rfPredictionId)).append("\n");
+    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    multiAdvertiser: ").append(toIndentedString(multiAdvertiser)).append("\n");
     sb.append("    validateOnly: ").append(toIndentedString(validateOnly)).append("\n");
@@ -4131,6 +4163,11 @@ public class CreateStandaloneAdRequest {
     // add `rfPredictionId` to the URL query string
     if (getRfPredictionId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srfPredictionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRfPredictionId()))));
+    }
+
+    // add `promotion` to the URL query string
+    if (getPromotion() != null) {
+      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
     }
 
     // add `creativeFeatures` to the URL query string

@@ -25,8 +25,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInnerVideo;
+import dev.zernio.model.MetaPromotion;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,6 +38,8 @@ import dev.zernio.ApiClient;
  * Each creative must supply EXACTLY ONE of &#x60;imageUrl&#x60; (image creative) or &#x60;video&#x60; (video creative).
  */
 @JsonPropertyOrder({
+  CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_PROMOTION,
+  CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_NAME,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_HEADLINE,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_BODY,
@@ -44,8 +49,51 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_CALL_TO_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCreativesInner {
+  public static final String JSON_PROPERTY_PROMOTION = "promotion";
+  @javax.annotation.Nullable
+  private MetaPromotion promotion;
+
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures;
+
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
@@ -163,6 +211,62 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   public CreateStandaloneAdRequestCreativesInner() { 
   }
+
+  public CreateStandaloneAdRequestCreativesInner promotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+    return this;
+  }
+
+  /**
+   * Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer.
+   * @return promotion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MetaPromotion getPromotion() {
+    return promotion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+  }
+
+
+  public CreateStandaloneAdRequestCreativesInner creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public CreateStandaloneAdRequestCreativesInner putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+  }
+
 
   public CreateStandaloneAdRequestCreativesInner name(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -368,7 +472,9 @@ public class CreateStandaloneAdRequestCreativesInner {
       return false;
     }
     CreateStandaloneAdRequestCreativesInner createStandaloneAdRequestCreativesInner = (CreateStandaloneAdRequestCreativesInner) o;
-    return Objects.equals(this.name, createStandaloneAdRequestCreativesInner.name) &&
+    return Objects.equals(this.promotion, createStandaloneAdRequestCreativesInner.promotion) &&
+        Objects.equals(this.creativeFeatures, createStandaloneAdRequestCreativesInner.creativeFeatures) &&
+        Objects.equals(this.name, createStandaloneAdRequestCreativesInner.name) &&
         Objects.equals(this.headline, createStandaloneAdRequestCreativesInner.headline) &&
         Objects.equals(this.body, createStandaloneAdRequestCreativesInner.body) &&
         Objects.equals(this.description, createStandaloneAdRequestCreativesInner.description) &&
@@ -380,13 +486,15 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, headline, body, description, imageUrl, video, linkUrl, callToAction);
+    return Objects.hash(promotion, creativeFeatures, name, headline, body, description, imageUrl, video, linkUrl, callToAction);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestCreativesInner {\n");
+    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
@@ -441,6 +549,20 @@ public class CreateStandaloneAdRequestCreativesInner {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `promotion` to the URL query string
+    if (getPromotion() != null) {
+      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
+    }
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
+    }
 
     // add `name` to the URL query string
     if (getName() != null) {

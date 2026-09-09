@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -269,7 +269,7 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
   /**
-   * Catalog ID for catalog/Advantage+ Shopping campaigns.
+   * Optional catalog ID. If supplied with productSetId, the set must belong to this catalog. A catalog ID cannot replace productSetId.
    * @return productCatalogId
    */
   @javax.annotation.Nullable
@@ -293,7 +293,7 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
   /**
-   * Product Set ID inside the catalog.
+   * Meta product SET ID from GET /v1/ads/catalogs/{catalogId}/product-sets. Zernio checks that the token can read the set and its product_catalog before creation. A catalog ID or inaccessible set returns a precise 400 naming promotedObject.productSetId. A mismatch with productCatalogId names promotedObject.productCatalogId.
    * @return productSetId
    */
   @javax.annotation.Nullable

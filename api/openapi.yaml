@@ -31719,7 +31719,9 @@ paths:
         Duplicates a single ad via Meta's native `POST /{ad-id}/copies`. The copy is created
         paused. `adSetId` retargets the copy into another ad set; omitted = the source's own ad
         set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered
-        automatically (`syncAfter: false` to skip).
+        automatically (`syncAfter: false` to skip). Creative settings returned by Meta,
+        including explicit promotion metadata and creativeFeatures, are preserved when the
+        native copy requires a creative rebuild. Metadata Meta does not return cannot be recovered.
       operationId: duplicateAd
       parameters:
       - description: "Optional client-generated unique key (e.g. a UUID) that makes\
@@ -32481,8 +32483,24 @@ paths:
         - the creative's `effective_instagram_media_id` (Instagram side)
 
         Any of the four resolve to the same ad. Caller doesn't need a translation step.
+        By default, creative.promotion and creative.creativeFeatures contain stored requested
+        settings, which do not confirm platform application. With `refreshPromotion=true`,
+        Meta promotion metadata is read live and exposed as `ad.creative.promotion`
+        with `promotionStatus`. Only `applied` confirms an offer; `not_returned` means the
+        creative read succeeded without promotion metadata, and `unavailable` means it failed.
       operationId: getAd
       parameters:
+      - description: Meta only. Read current promotion metadata from Meta and include
+          promotionStatus. Omit for stored creative settings with no promotion-specific
+          Graph call.
+        explode: true
+        in: query
+        name: refreshPromotion
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       - description: |
           Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs. See description for details.
         explode: false
@@ -32499,6 +32517,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getAd_200_response"
           description: Ad details
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -32579,6 +32599,11 @@ paths:
       requestBody:
         content:
           application/json:
+            example:
+              creative:
+                promotion: null
+                creativeFeatures:
+                  auto_promotion_tag: OPT_OUT
             schema:
               $ref: "#/components/schemas/updateAd_request"
         required: true
@@ -34476,11 +34501,28 @@ paths:
         `existingCreativeId`. Provide exactly one of `imageUrl` (uploaded server-side),
         `imageHash` (from POST /v1/ads/images or the library list), or `carouselCards` (2-10
         hand-built cards). The Page (and linked Instagram account, when present) is resolved
-        from `accountId` as the story actor.
+        from `accountId` as the story actor. `promotion` configures an explicit offer separately
+        from Advantage+ `creativeFeatures`. Only when `promotion` is supplied does the response
+        read the creative back from Meta;
+        `promotionStatus: not_returned` means Meta accepted creation but omitted promotion
+        metadata, so the requested offer is not confirmed as applied.
       operationId: createAdCreative
       requestBody:
         content:
           application/json:
+            example:
+              accountId: 69fc524892b3d8e85f893e73
+              adAccountId: act_123456789
+              headline: Save on your next order
+              body: Use SAVE20 at checkout.
+              linkUrl: https://example.com/shop
+              imageUrl: https://example.com/ad.jpg
+              promotion:
+                type: PERCENTAGE_OFF
+                value: 20
+                code: SAVE20
+              creativeFeatures:
+                auto_promotion_tag: OPT_OUT
             schema:
               $ref: "#/components/schemas/createAdCreative_request"
         required: true
@@ -34488,6 +34530,11 @@ paths:
         "201":
           content:
             application/json:
+              example:
+                adAccountId: act_123456789
+                creativeId: "123456789012345"
+                promotion: null
+                promotionStatus: not_returned
               schema:
                 $ref: "#/components/schemas/createAdCreative_201_response"
           description: Creative created
@@ -36122,6 +36169,16 @@ paths:
         - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting.
         - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.
 
+        Meta accepts `promotion` and `creativeFeatures` on the single and attach shapes and
+        as defaults for `creatives[]`. An item replaces the whole feature map; its `promotion`
+        replaces the default offer, and `promotion: null` disables that default for the item.
+        Reusing `existingCreativeId` uses the existing creative settings instead of new settings.
+        Requested settings are persisted for lists, exports, and default ad-detail reads.
+        Only ads supplied a `promotion` receive live readback; multi-create batches those reads
+        in groups of up to 50 IDs without per-ad fallback. Inspect `ad.creative.promotionStatus` (or
+        `ads[].creative.promotionStatus`). `not_returned` means Meta omitted the metadata;
+        successful creation does not by itself prove the offer was applied or will display.
+
         Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.
 
         LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content "dark post" authored by a Company Page (see `organizationId`). Supported goals are engagement, traffic, awareness, and video_views (video ads use the `video` field; video_views requires a video), and traffic ads require `linkUrl`.
@@ -36133,6 +36190,25 @@ paths:
       requestBody:
         content:
           application/json:
+            example:
+              accountId: 69fc524892b3d8e85f893e73
+              adAccountId: act_123456789
+              name: Autumn promotion
+              goal: traffic
+              budgetAmount: 5
+              budgetType: daily
+              status: PAUSED
+              headline: Save on your next order
+              body: Use SAVE20 at checkout.
+              callToAction: SHOP_NOW
+              linkUrl: https://example.com/shop
+              imageUrl: https://example.com/ad.jpg
+              promotion:
+                type: PERCENTAGE_OFF
+                value: 20
+                code: SAVE20
+              creativeFeatures:
+                auto_promotion_tag: OPT_OUT
             schema:
               $ref: "#/components/schemas/createStandaloneAd_request"
         required: true
@@ -37600,8 +37676,9 @@ paths:
   /v1/ads/catalogs/{catalogId}/product-sets:
     get:
       description: "Lists a Meta product catalog's product sets, the unit a catalog\
-        \ ad promotes. Pass the chosen set as `promotedObject.productSetId` on POST\
-        \ /v1/ads/create with `goal: catalog_sales`."
+        \ ad promotes. Pass the chosen set id, not the parent catalog id, as `promotedObject.productSetId`\
+        \ on POST /v1/ads/create with `goal: catalog_sales`. Creation verifies set\
+        \ visibility and returns 400 for a catalog id or an inaccessible set."
       operationId: listAdCatalogProductSets
       parameters:
       - description: Meta product catalog ID (from GET /v1/ads/catalogs)
@@ -43250,6 +43327,7 @@ components:
             url: https://openapi-generator.tech
             thumbnailUrl: https://openapi-generator.tech
           body: body
+          creativeFeatures: ""
           headline: headline
         - existingPostId: existingPostId
           objectStoryId: objectStoryId
@@ -43262,6 +43340,7 @@ components:
             url: https://openapi-generator.tech
             thumbnailUrl: https://openapi-generator.tech
           body: body
+          creativeFeatures: ""
           headline: headline
         placements:
           whatsappPositions:
@@ -43352,6 +43431,7 @@ components:
           id: id
         - name: name
           id: id
+        creativeFeatures: ""
         metros:
         - name: name
           key: key
@@ -43359,6 +43439,12 @@ components:
           key: key
         status: ACTIVE
       properties:
+        creativeFeatures:
+          allOf:
+          - $ref: "#/components/schemas/MetaCreativeFeatures"
+          description: "Meta enhancement settings for single or attached ads, and\
+            \ defaults for creatives[]. An item replaces the entire map, including\
+            \ with an empty object."
         accountId:
           description: Facebook or Instagram SocialAccount ID.
           minLength: 1
@@ -53243,32 +53329,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -53313,32 +53401,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -53581,32 +53671,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -53651,32 +53743,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -53940,32 +54034,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -54010,32 +54106,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -54531,32 +54629,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -54601,32 +54701,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -54890,32 +54992,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -54960,32 +55064,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -56931,6 +57037,76 @@ components:
           items:
             type: string
           type: array
+    MetaCreativeFeatures:
+      additionalProperties:
+        enum:
+        - OPT_IN
+        - OPT_OUT
+        type: string
+      description: Meta Advantage+ creative enhancements. Map snake_case feature names
+        to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features
+        default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate
+        promotion field for an explicit offer. The deprecated standard_enhancements
+        bundle is rejected by Meta.
+      example:
+        auto_promotion_tag: OPT_IN
+    MetaPromotion:
+      description: "Meta explicit Promotion offer. Maps to creative_sourcing_spec.promotion_metadata_spec\
+        \ with promotion_source ADVERTISER_INPUT. Dates become Unix seconds. Send\
+        \ null to omit an explicit offer on a new creative or remove it when rebuilding.\
+        \ Creation success alone does not confirm application: inspect promotionStatus\
+        \ in the response."
+      example:
+        type: PERCENTAGE_OFF
+        value: 20
+        code: SAVE20
+        startDate: 2026-10-01T00:00:00Z
+        endDate: 2026-10-31T23:59:59Z
+      properties:
+        type:
+          description: Promotion type accepted by Meta. PERCENTAGE_OFF values cannot
+            exceed 100.
+          enum:
+          - AMOUNT_OFF
+          - FREE_RETURN
+          - FREE_SHIPPING
+          - PERCENTAGE_OFF
+          - PROMO_CODE
+          type: string
+        value:
+          description: "Nonnegative promotion value passed to Meta unchanged. AMOUNT_OFF\
+            \ units are not confirmed, including major versus minor currency units.\
+            \ For PERCENTAGE_OFF this is the percentage discount, at most 100."
+          minimum: 0
+          type: number
+        code:
+          description: Optional promotion code.
+          minLength: 1
+          type: string
+        startDate:
+          description: Optional ISO 8601 start timestamp with a timezone offset or
+            Z.
+          format: date-time
+          type: string
+        endDate:
+          description: Optional ISO 8601 end timestamp with a timezone offset or Z.
+            Must be after startDate when both are set.
+          format: date-time
+          type: string
+      required:
+      - type
+      - value
+    MetaPromotionStatus:
+      description: Meta creative readback result. applied means Meta returned promotion
+        metadata; not_returned means the read succeeded without promotion metadata;
+        unavailable means the read failed. Only applied confirms the returned offer.
+        Missing metadata is not proof that Ads Manager displays the requested Promotion.
+      enum:
+      - applied
+      - not_returned
+      - unavailable
+      example: not_returned
+      type: string
     Ad:
       example:
         bidStrategy: ""
@@ -56963,32 +57139,34 @@ components:
         bidAmount: 5
         roasAverageFloor: 2.0
         creative:
-          instagramPermalinkUrl: instagramPermalinkUrl
           effectiveInstagramMediaId: effectiveInstagramMediaId
           servingHoldReasons:
           - UNDER_REVIEW
-          instagramUserId: instagramUserId
           whatsappPhoneNumber: "+12025550123"
           videoId: videoId
-          pinterestTitle: pinterestTitle
-          pageId: pageId
           body: body
           effectiveObjectStoryId: effectiveObjectStoryId
           creativeId: creativeId
+          promotionStatus: not_returned
           objectType: objectType
-          googleDescription: googleDescription
           videoUrl: videoUrl
           objectStoryId: objectStoryId
           pinterestDescription: pinterestDescription
           imageUrl: imageUrl
-          isServing: true
           linkUrl: linkUrl
           googleHeadline: googleHeadline
+          thumbnailUrl: thumbnailUrl
+          pinterestImageUrl: pinterestImageUrl
+          instagramPermalinkUrl: instagramPermalinkUrl
+          instagramUserId: instagramUserId
+          pinterestTitle: pinterestTitle
+          pageId: pageId
+          googleDescription: googleDescription
+          isServing: true
           mediaUrls:
           - mediaUrls
           - mediaUrls
-          thumbnailUrl: thumbnailUrl
-          pinterestImageUrl: pinterestImageUrl
+          promotion: ""
         schedule:
           endDate: 2000-01-23T04:56:07.000+00:00
           startDate: 2000-01-23T04:56:07.000+00:00
@@ -57285,32 +57463,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -57355,32 +57535,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -57898,32 +58080,34 @@ components:
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
-              instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
               servingHoldReasons:
               - UNDER_REVIEW
-              instagramUserId: instagramUserId
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
-              pinterestTitle: pinterestTitle
-              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
+              promotionStatus: not_returned
               objectType: objectType
-              googleDescription: googleDescription
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
-              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              thumbnailUrl: thumbnailUrl
+              pinterestImageUrl: pinterestImageUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              pinterestTitle: pinterestTitle
+              pageId: pageId
+              googleDescription: googleDescription
+              isServing: true
               mediaUrls:
               - mediaUrls
               - mediaUrls
-              thumbnailUrl: thumbnailUrl
-              pinterestImageUrl: pinterestImageUrl
+              promotion: ""
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
@@ -57968,32 +58152,34 @@ components:
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
-              instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
               servingHoldReasons:
               - UNDER_REVIEW
-              instagramUserId: instagramUserId
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
-              pinterestTitle: pinterestTitle
-              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
+              promotionStatus: not_returned
               objectType: objectType
-              googleDescription: googleDescription
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
-              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              thumbnailUrl: thumbnailUrl
+              pinterestImageUrl: pinterestImageUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              pinterestTitle: pinterestTitle
+              pageId: pageId
+              googleDescription: googleDescription
+              isServing: true
               mediaUrls:
               - mediaUrls
               - mediaUrls
-              thumbnailUrl: thumbnailUrl
-              pinterestImageUrl: pinterestImageUrl
+              promotion: ""
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
@@ -58257,32 +58443,34 @@ components:
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
-              instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
               servingHoldReasons:
               - UNDER_REVIEW
-              instagramUserId: instagramUserId
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
-              pinterestTitle: pinterestTitle
-              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
+              promotionStatus: not_returned
               objectType: objectType
-              googleDescription: googleDescription
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
-              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              thumbnailUrl: thumbnailUrl
+              pinterestImageUrl: pinterestImageUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              pinterestTitle: pinterestTitle
+              pageId: pageId
+              googleDescription: googleDescription
+              isServing: true
               mediaUrls:
               - mediaUrls
               - mediaUrls
-              thumbnailUrl: thumbnailUrl
-              pinterestImageUrl: pinterestImageUrl
+              promotion: ""
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
@@ -58327,32 +58515,34 @@ components:
             bidAmount: 5
             roasAverageFloor: 2.0
             creative:
-              instagramPermalinkUrl: instagramPermalinkUrl
               effectiveInstagramMediaId: effectiveInstagramMediaId
               servingHoldReasons:
               - UNDER_REVIEW
-              instagramUserId: instagramUserId
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
-              pinterestTitle: pinterestTitle
-              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
+              promotionStatus: not_returned
               objectType: objectType
-              googleDescription: googleDescription
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
               imageUrl: imageUrl
-              isServing: true
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              thumbnailUrl: thumbnailUrl
+              pinterestImageUrl: pinterestImageUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              pinterestTitle: pinterestTitle
+              pageId: pageId
+              googleDescription: googleDescription
+              isServing: true
               mediaUrls:
               - mediaUrls
               - mediaUrls
-              thumbnailUrl: thumbnailUrl
-              pinterestImageUrl: pinterestImageUrl
+              promotion: ""
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
@@ -88968,32 +89158,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -89038,32 +89230,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -91557,32 +91751,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -91627,32 +91823,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -91916,32 +92114,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -91986,32 +92186,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -92507,32 +92709,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -92577,32 +92781,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -92866,32 +93072,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -92936,32 +93144,34 @@ components:
               bidAmount: 5
               roasAverageFloor: 2.0
               creative:
-                instagramPermalinkUrl: instagramPermalinkUrl
                 effectiveInstagramMediaId: effectiveInstagramMediaId
                 servingHoldReasons:
                 - UNDER_REVIEW
-                instagramUserId: instagramUserId
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
-                pinterestTitle: pinterestTitle
-                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
+                promotionStatus: not_returned
                 objectType: objectType
-                googleDescription: googleDescription
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
                 imageUrl: imageUrl
-                isServing: true
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                thumbnailUrl: thumbnailUrl
+                pinterestImageUrl: pinterestImageUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                pinterestTitle: pinterestTitle
+                pageId: pageId
+                googleDescription: googleDescription
+                isServing: true
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
-                thumbnailUrl: thumbnailUrl
-                pinterestImageUrl: pinterestImageUrl
+                promotion: ""
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
@@ -93336,32 +93546,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -93519,6 +93731,10 @@ components:
           GET /v1/ads/creatives and ignores every other field. Meta creatives are
           immutable, so any change creates a new creative and repoints the ad; the old
           creative is retained on the ad account for historical reporting.
+          `promotion` and `creativeFeatures` are Meta-only. Omitted settings are
+          preserved from the live creative, including full rebuilds. Send
+          `promotion: null` to remove the explicit offer from the replacement.
+          A supplied creativeFeatures map overrides individual existing keys.
         - **TikTok**: patch-style. Pass any subset; `headline` is ignored (TikTok creatives
           have no headline slot). `body` becomes the in-feed `ad_text`; `linkUrl` becomes
           `landing_page_url`; `videoUrl` triggers a fresh upload. `description`, `videoId`
@@ -93529,6 +93745,21 @@ components:
           The old creative is retained for historical reporting. `videoId` and
           `existingCreativeId` are Meta-only and return 400.
       properties:
+        promotion:
+          $ref: "#/components/schemas/MetaPromotion"
+        creativeFeatures:
+          additionalProperties:
+            enum:
+            - OPT_IN
+            - OPT_OUT
+            type: string
+          description: Meta Advantage+ creative enhancements. Map snake_case feature
+            names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified
+            features default to OPT_OUT. auto_promotion_tag is an enhancement; use
+            the separate promotion field for an explicit offer. The deprecated standard_enhancements
+            bundle is rejected by Meta.
+          example:
+            auto_promotion_tag: OPT_IN
         headline:
           description: Meta and LinkedIn (TikTok has no headline slot)
           type: string
@@ -93609,32 +93840,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -95242,15 +95475,15 @@ components:
         urlTags:
           description: Appended to every outbound URL (e.g. utm_source=fb).
           type: string
+        promotion:
+          $ref: "#/components/schemas/MetaPromotion"
         creativeFeatures:
-          additionalProperties:
-            enum:
-            - OPT_IN
-            - OPT_OUT
-            type: string
-          description: "Advantage+ creative enhancements: partial map of Meta creative\
-            \ feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec.\
-            \ Unspecified features default to OPT_OUT."
+          allOf:
+          - $ref: "#/components/schemas/MetaCreativeFeatures"
+          description: "Meta only. Applied to each new creative, including standalone\
+            \ and attach shapes. With creatives[], these are defaults; an item replaces\
+            \ the whole feature map, including an empty map. auto_promotion_tag is\
+            \ an enhancement; an explicit offer uses promotion."
         multiAdvertiser:
           description: "Meta only. Multi-advertiser ads: whether Meta may show this\
             \ ad alongside other advertisers' in one unit. Meta auto-enrols since\
@@ -95270,12 +95503,23 @@ components:
       example:
         adAccountId: adAccountId
         creativeId: creativeId
+        promotion:
+          type: PERCENTAGE_OFF
+          value: 20
+          code: SAVE20
+          startDate: 2026-10-01T00:00:00Z
+          endDate: 2026-10-31T23:59:59Z
+        promotionStatus: not_returned
       properties:
         adAccountId:
           type: string
         creativeId:
           description: "Platform creative id, reusable via existingCreativeId."
           type: string
+        promotion:
+          $ref: "#/components/schemas/MetaPromotion"
+        promotionStatus:
+          $ref: "#/components/schemas/MetaPromotionStatus"
     getAdCreative_200_response:
       example:
         creative: "{}"
@@ -96561,6 +96805,19 @@ components:
           type: array
     boostPost_request:
       properties:
+        creativeFeatures:
+          additionalProperties:
+            enum:
+            - OPT_IN
+            - OPT_OUT
+            type: string
+          description: Meta Advantage+ creative enhancements. Map snake_case feature
+            names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified
+            features default to OPT_OUT. auto_promotion_tag is an enhancement; use
+            the separate promotion field for an explicit offer. The deprecated standard_enhancements
+            bundle is rejected by Meta.
+          example:
+            auto_promotion_tag: OPT_IN
         postId:
           description: Zernio post ID (provide this or platformPostId)
           type: string
@@ -96911,6 +97168,16 @@ components:
       description: Each creative must supply EXACTLY ONE of `imageUrl` (image creative)
         or `video` (video creative).
       properties:
+        promotion:
+          allOf:
+          - $ref: "#/components/schemas/MetaPromotion"
+          description: Overrides the top-level offer for this item. Omit to inherit;
+            null disables the inherited offer.
+        creativeFeatures:
+          allOf:
+          - $ref: "#/components/schemas/MetaCreativeFeatures"
+          description: Replaces the entire top-level creativeFeatures map for this
+            item. Omit to inherit; an empty map clears these defaults.
         name:
           description: "Exact name for this ad. Falls back to `<name> #N` (N = 1-based\
             \ position)."
@@ -97138,7 +97405,10 @@ components:
         (`imageUrl`, `headline`, `body`, `linkUrl`, `callToAction`) are ignored. Mutually
         exclusive with the `creatives[]` multi-creative shape. Exactly ONE of `imageUrls` /
         `videoUrls` is required (Meta allows one ad format per asset feed; sending both →
-        400). Meta limits: ≤10 images or ≤10 videos, ≤5 bodies / titles / descriptions.
+        400). Limits remain 10 images or videos and 5 bodies, titles or descriptions.
+        The ad set is created with `is_dynamic_creative: true`. Combining this field
+        with `adSetId` returns 400: omit `adSetId` to create a new dynamic ad set.
+        Multiple headlines go in `titles`; multiple primary texts go in `bodies`.
       properties:
         imageUrls:
           description: Pool of image URLs (1-10). Uploaded to the ad account and referenced
@@ -97663,10 +97933,15 @@ components:
             error_subcode 1885014).
           type: string
         productCatalogId:
-          description: Catalog ID for catalog/Advantage+ Shopping campaigns.
+          description: "Optional catalog ID. If supplied with productSetId, the set\
+            \ must belong to this catalog. A catalog ID cannot replace productSetId."
           type: string
         productSetId:
-          description: Product Set ID inside the catalog.
+          description: "Meta product SET ID from GET /v1/ads/catalogs/{catalogId}/product-sets.\
+            \ Zernio checks that the token can read the set and its product_catalog\
+            \ before creation. A catalog ID or inaccessible set returns a precise\
+            \ 400 naming promotedObject.productSetId. A mismatch with productCatalogId\
+            \ names promotedObject.productCatalogId."
           type: string
         offlineConversionDataSetId:
           description: "Meta only. Offline event set (dataset) to optimise toward.\
@@ -97768,17 +98043,15 @@ components:
             \ on (reserving mints a new id, so pass that one). Requires buyingType\
             \ RESERVED."
           type: string
+        promotion:
+          $ref: "#/components/schemas/MetaPromotion"
         creativeFeatures:
-          additionalProperties:
-            enum:
-            - OPT_IN
-            - OPT_OUT
-            type: string
-          description: "Meta only. Advantage+ creative enhancements: a partial map\
-            \ of Meta creative feature keys (snake_case, e.g. enhance_cta, image_brightness_and_contrast,\
-            \ text_optimizations) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec.\
-            \ Meta validates the keys; unspecified features default to OPT_OUT. The\
-            \ legacy standard_enhancements bundle is deprecated by Meta and rejected."
+          allOf:
+          - $ref: "#/components/schemas/MetaCreativeFeatures"
+          description: "Meta only. Applied to each new creative, including standalone\
+            \ and attach shapes. With creatives[], these are defaults; an item replaces\
+            \ the whole feature map, including an empty map. auto_promotion_tag is\
+            \ an enhancement; an explicit offer uses promotion."
         multiAdvertiser:
           description: "Meta only. Multi-advertiser ads: whether Meta may show this\
             \ ad alongside other advertisers' in one unit. Meta auto-enrols since\
@@ -98036,7 +98309,8 @@ components:
             are inherited from the ad set on Meta, and passing `bidStrategy`
             in attach mode returns 400. To change an existing ad set's
             bid, use `PUT /v1/ads/ad-sets/{adSetId}`. Mutually exclusive
-            with `creatives[]`.
+            with `creatives[]`. `dynamicCreative` returns 400 in attach mode: create
+            a new dynamic ad set by omitting `adSetId` instead.
 
             The attached ad takes the full single-creative surface:
             `headline`/`body`/`description`/`callToAction` plus either
@@ -98713,32 +98987,34 @@ components:
           bidAmount: 5
           roasAverageFloor: 2.0
           creative:
-            instagramPermalinkUrl: instagramPermalinkUrl
             effectiveInstagramMediaId: effectiveInstagramMediaId
             servingHoldReasons:
             - UNDER_REVIEW
-            instagramUserId: instagramUserId
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
-            pinterestTitle: pinterestTitle
-            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
+            promotionStatus: not_returned
             objectType: objectType
-            googleDescription: googleDescription
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
             imageUrl: imageUrl
-            isServing: true
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            googleDescription: googleDescription
+            isServing: true
             mediaUrls:
             - mediaUrls
             - mediaUrls
-            thumbnailUrl: thumbnailUrl
-            pinterestImageUrl: pinterestImageUrl
+            promotion: ""
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -103047,6 +103323,7 @@ components:
           url: https://openapi-generator.tech
           thumbnailUrl: https://openapi-generator.tech
         body: body
+        creativeFeatures: ""
         headline: headline
       properties:
         existingPostId:
@@ -103062,6 +103339,11 @@ components:
             \ with existingPostId and fresh creative fields."
           pattern: ^\d+_\d+$
           type: string
+        creativeFeatures:
+          allOf:
+          - $ref: "#/components/schemas/MetaCreativeFeatures"
+          description: Replaces the top-level creativeFeatures map for this item.
+            Omit to inherit; an empty object clears inherited enrollment choices.
         headline:
           maxLength: 255
           minLength: 1
@@ -109269,32 +109551,34 @@ components:
     Ad_creative:
       description: Platform-specific creative data. Fields vary by platform.
       example:
-        instagramPermalinkUrl: instagramPermalinkUrl
         effectiveInstagramMediaId: effectiveInstagramMediaId
         servingHoldReasons:
         - UNDER_REVIEW
-        instagramUserId: instagramUserId
         whatsappPhoneNumber: "+12025550123"
         videoId: videoId
-        pinterestTitle: pinterestTitle
-        pageId: pageId
         body: body
         effectiveObjectStoryId: effectiveObjectStoryId
         creativeId: creativeId
+        promotionStatus: not_returned
         objectType: objectType
-        googleDescription: googleDescription
         videoUrl: videoUrl
         objectStoryId: objectStoryId
         pinterestDescription: pinterestDescription
         imageUrl: imageUrl
-        isServing: true
         linkUrl: linkUrl
         googleHeadline: googleHeadline
+        thumbnailUrl: thumbnailUrl
+        pinterestImageUrl: pinterestImageUrl
+        instagramPermalinkUrl: instagramPermalinkUrl
+        instagramUserId: instagramUserId
+        pinterestTitle: pinterestTitle
+        pageId: pageId
+        googleDescription: googleDescription
+        isServing: true
         mediaUrls:
         - mediaUrls
         - mediaUrls
-        thumbnailUrl: thumbnailUrl
-        pinterestImageUrl: pinterestImageUrl
+        promotion: ""
       properties:
         thumbnailUrl:
           description: Primary thumbnail/image URL
@@ -109314,6 +109598,14 @@ components:
             \ Null for non-video ads."
           nullable: true
           type: string
+        promotion:
+          allOf:
+          - $ref: "#/components/schemas/MetaPromotion"
+          description: "Meta offer read from the live creative on creation or GET\
+            \ /v1/ads/{adId}. Null when metadata is not returned or cannot be read.\
+            \ Requested values are never echoed as applied."
+        promotionStatus:
+          $ref: "#/components/schemas/MetaPromotionStatus"
         creativeId:
           description: Meta ad creative id backing this ad. Reusable via existingCreativeId
             on POST /v1/ads/create.

@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object. |  [optional] |
 |**accountId** | **String** | Facebook or Instagram SocialAccount ID. |  |
 |**adAccountId** | **String** | Meta ad account ID, e.g. &#x60;act_123456789&#x60;. |  |
 |**name** | **String** | Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  |  |
@@ -48,6 +49,15 @@
 |**regionalRegulationIdentities** | **Map&lt;String, Integer&gt;** | Meta only. Beneficiary/payer entity IDs required alongside regionalRegulatedCategories. Values are numeric IDs from the advertiser&#39;s Meta verification/authorization setup. Keys depend on the declared category: BRAZIL_REGULATION and THAILAND_UNIVERSAL use universal_beneficiary / universal_payer; SINGAPORE_UNIVERSAL uses singapore_universal_beneficiary / singapore_universal_payer; TAIWAN_UNIVERSAL uses taiwan_universal_beneficiary / taiwan_universal_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary / taiwan_finserv_payer; AUSTRALIA_FINSERV uses australia_finserv_beneficiary / australia_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer. Both beneficiary and payer must be included. If omitted and the advertiser has set defaults in Meta Ads Manager advertising settings, Meta auto-fills them.  |  [optional] |
 |**phoneNumber** | **String** | E.164 number the CALL_NOW CTA dials (e.g. +34600111222). |  |
 |**linkUrl** | **URI** | Website shown as the creative&#39;s link. Required: Meta rejects tel: as link_data.link; the phone number rides only the CTA. |  |
+
+
+
+## Enum: Map&lt;String, InnerEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| OPT_IN | &quot;OPT_IN&quot; |
+| OPT_OUT | &quot;OPT_OUT&quot; |
 
 
 

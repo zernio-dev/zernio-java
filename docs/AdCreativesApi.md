@@ -43,7 +43,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create a standalone creative
 
-Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor.
+Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
 
 ### Example
 
@@ -118,7 +118,7 @@ public class Example {
 
 Create a standalone creative
 
-Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor.
+Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
 
 ### Example
 
@@ -1131,7 +1131,7 @@ ApiResponse<[**GetAdPreviews200Response**](GetAdPreviews200Response.md)>
 
 List a catalog&#39;s product sets
 
-Lists a Meta product catalog&#39;s product sets, the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+Lists a Meta product catalog&#39;s product sets, the unit a catalog ad promotes. Pass the chosen set id, not the parent catalog id, as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;. Creation verifies set visibility and returns 400 for a catalog id or an inaccessible set.
 
 ### Example
 
@@ -1206,7 +1206,7 @@ public class Example {
 
 List a catalog&#39;s product sets
 
-Lists a Meta product catalog&#39;s product sets, the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+Lists a Meta product catalog&#39;s product sets, the unit a catalog ad promotes. Pass the chosen set id, not the parent catalog id, as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;. Creation verifies set visibility and returns 400 for a catalog id or an inaccessible set.
 
 ### Example
 

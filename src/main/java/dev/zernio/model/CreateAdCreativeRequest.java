@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateAdCreativeRequestCarouselCardsInner;
+import dev.zernio.model.MetaPromotion;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,10 +51,11 @@ import dev.zernio.ApiClient;
   CreateAdCreativeRequest.JSON_PROPERTY_IMAGE_HASH,
   CreateAdCreativeRequest.JSON_PROPERTY_CAROUSEL_CARDS,
   CreateAdCreativeRequest.JSON_PROPERTY_URL_TAGS,
+  CreateAdCreativeRequest.JSON_PROPERTY_PROMOTION,
   CreateAdCreativeRequest.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateAdCreativeRequest.JSON_PROPERTY_MULTI_ADVERTISER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreativeRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -99,6 +101,10 @@ public class CreateAdCreativeRequest {
   @javax.annotation.Nullable
   private String urlTags;
 
+  public static final String JSON_PROPERTY_PROMOTION = "promotion";
+  @javax.annotation.Nullable
+  private MetaPromotion promotion;
+
   /**
    * Gets or Sets inner
    */
@@ -136,7 +142,7 @@ public class CreateAdCreativeRequest {
 
   public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
   @javax.annotation.Nullable
-  private Map<String, InnerEnum> creativeFeatures = new HashMap<>();
+  private Map<String, InnerEnum> creativeFeatures;
 
   /**
    * Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
@@ -452,6 +458,30 @@ public class CreateAdCreativeRequest {
   }
 
 
+  public CreateAdCreativeRequest promotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+    return this;
+  }
+
+  /**
+   * Get promotion
+   * @return promotion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MetaPromotion getPromotion() {
+    return promotion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+  }
+
+
   public CreateAdCreativeRequest creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
     this.creativeFeatures = creativeFeatures;
     return this;
@@ -466,7 +496,7 @@ public class CreateAdCreativeRequest {
   }
 
   /**
-   * Advantage+ creative enhancements: partial map of Meta creative feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Unspecified features default to OPT_OUT.
+   * Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.
    * @return creativeFeatures
    */
   @javax.annotation.Nullable
@@ -531,13 +561,14 @@ public class CreateAdCreativeRequest {
         Objects.equals(this.imageHash, createAdCreativeRequest.imageHash) &&
         Objects.equals(this.carouselCards, createAdCreativeRequest.carouselCards) &&
         Objects.equals(this.urlTags, createAdCreativeRequest.urlTags) &&
+        Objects.equals(this.promotion, createAdCreativeRequest.promotion) &&
         Objects.equals(this.creativeFeatures, createAdCreativeRequest.creativeFeatures) &&
         Objects.equals(this.multiAdvertiser, createAdCreativeRequest.multiAdvertiser);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, headline, body, description, callToAction, linkUrl, imageUrl, imageHash, carouselCards, urlTags, creativeFeatures, multiAdvertiser);
+    return Objects.hash(accountId, adAccountId, headline, body, description, callToAction, linkUrl, imageUrl, imageHash, carouselCards, urlTags, promotion, creativeFeatures, multiAdvertiser);
   }
 
   @Override
@@ -555,6 +586,7 @@ public class CreateAdCreativeRequest {
     sb.append("    imageHash: ").append(toIndentedString(imageHash)).append("\n");
     sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
     sb.append("    urlTags: ").append(toIndentedString(urlTags)).append("\n");
+    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    multiAdvertiser: ").append(toIndentedString(multiAdvertiser)).append("\n");
     sb.append("}");
@@ -662,6 +694,11 @@ public class CreateAdCreativeRequest {
     // add `urlTags` to the URL query string
     if (getUrlTags() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%surlTags%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrlTags()))));
+    }
+
+    // add `promotion` to the URL query string
+    if (getPromotion() != null) {
+      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
     }
 
     // add `creativeFeatures` to the URL query string

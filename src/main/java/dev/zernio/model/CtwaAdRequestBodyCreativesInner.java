@@ -28,6 +28,8 @@ import dev.zernio.model.CtwaAdRequestBodyCreativesInnerVideo;
 import dev.zernio.model.CtwaAdRequestBodyCreativesInnerWelcomeMessage;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,13 +40,14 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_EXISTING_POST_ID,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_OBJECT_STORY_ID,
+  CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_CREATIVE_FEATURES,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_HEADLINE,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_BODY,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_IMAGE_URL,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_VIDEO,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_WELCOME_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyCreativesInner {
   public static final String JSON_PROPERTY_EXISTING_POST_ID = "existingPostId";
   @javax.annotation.Nullable
@@ -53,6 +56,45 @@ public class CtwaAdRequestBodyCreativesInner {
   public static final String JSON_PROPERTY_OBJECT_STORY_ID = "objectStoryId";
   @javax.annotation.Nullable
   private String objectStoryId;
+
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures;
 
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nullable
@@ -122,6 +164,38 @@ public class CtwaAdRequestBodyCreativesInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectStoryId(@javax.annotation.Nullable String objectStoryId) {
     this.objectStoryId = objectStoryId;
+  }
+
+
+  public CtwaAdRequestBodyCreativesInner creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public CtwaAdRequestBodyCreativesInner putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Replaces the top-level creativeFeatures map for this item. Omit to inherit; an empty object clears inherited enrollment choices.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
   }
 
 
@@ -259,6 +333,7 @@ public class CtwaAdRequestBodyCreativesInner {
     CtwaAdRequestBodyCreativesInner ctwaAdRequestBodyCreativesInner = (CtwaAdRequestBodyCreativesInner) o;
     return Objects.equals(this.existingPostId, ctwaAdRequestBodyCreativesInner.existingPostId) &&
         Objects.equals(this.objectStoryId, ctwaAdRequestBodyCreativesInner.objectStoryId) &&
+        Objects.equals(this.creativeFeatures, ctwaAdRequestBodyCreativesInner.creativeFeatures) &&
         Objects.equals(this.headline, ctwaAdRequestBodyCreativesInner.headline) &&
         Objects.equals(this.body, ctwaAdRequestBodyCreativesInner.body) &&
         Objects.equals(this.imageUrl, ctwaAdRequestBodyCreativesInner.imageUrl) &&
@@ -268,7 +343,7 @@ public class CtwaAdRequestBodyCreativesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(existingPostId, objectStoryId, headline, body, imageUrl, video, welcomeMessage);
+    return Objects.hash(existingPostId, objectStoryId, creativeFeatures, headline, body, imageUrl, video, welcomeMessage);
   }
 
   @Override
@@ -277,6 +352,7 @@ public class CtwaAdRequestBodyCreativesInner {
     sb.append("class CtwaAdRequestBodyCreativesInner {\n");
     sb.append("    existingPostId: ").append(toIndentedString(existingPostId)).append("\n");
     sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
@@ -337,6 +413,15 @@ public class CtwaAdRequestBodyCreativesInner {
     // add `objectStoryId` to the URL query string
     if (getObjectStoryId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjectStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectStoryId()))));
+    }
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
     }
 
     // add `headline` to the URL query string

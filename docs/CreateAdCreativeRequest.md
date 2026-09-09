@@ -18,7 +18,8 @@
 |**imageHash** | **String** | Existing library image hash (POST /v1/ads/images or GET /v1/ads/images). |  [optional] |
 |**carouselCards** | [**List&lt;CreateAdCreativeRequestCarouselCardsInner&gt;**](CreateAdCreativeRequestCarouselCardsInner.md) |  |  [optional] |
 |**urlTags** | **String** | Appended to every outbound URL (e.g. utm_source&#x3D;fb). |  [optional] |
-|**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Advantage+ creative enhancements: partial map of Meta creative feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Unspecified features default to OPT_OUT. |  [optional] |
+|**promotion** | [**MetaPromotion**](MetaPromotion.md) |  |  [optional] |
+|**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion. |  [optional] |
 |**multiAdvertiser** | [**MultiAdvertiserEnum**](#MultiAdvertiserEnum) | Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there. |  [optional] |
 
 

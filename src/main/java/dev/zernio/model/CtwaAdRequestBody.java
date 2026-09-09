@@ -49,6 +49,7 @@ import dev.zernio.ApiClient;
  * In addition to the &#x60;required&#x60; list, the request must use EXACTLY ONE of the two shapes:  - Single-creative: &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;,   OR &#x60;existingPostId&#x60; / &#x60;objectStoryId&#x60; to reuse an organic post. - Multi-creative: a non-empty &#x60;creatives[]&#x60; array. Top-level   creative fields must NOT be set on this shape.  Existing post references work on messaging and CTWA only (not call ads). They cannot be combined with each other or with headline, body, imageUrl, video, or welcomeMessage. No media is uploaded and the organic post is retained. Fresh creatives still require headline, body, and image or video.  The route enforces this at the Zod boundary; OpenAPI&#39;s &#x60;required&#x60; cannot express the OR cleanly. 
  */
 @JsonPropertyOrder({
+  CtwaAdRequestBody.JSON_PROPERTY_CREATIVE_FEATURES,
   CtwaAdRequestBody.JSON_PROPERTY_ACCOUNT_ID,
   CtwaAdRequestBody.JSON_PROPERTY_AD_ACCOUNT_ID,
   CtwaAdRequestBody.JSON_PROPERTY_NAME,
@@ -89,8 +90,47 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBody {
+  /**
+   * Gets or Sets inner
+   */
+  public enum InnerEnum {
+    OPT_IN(String.valueOf("OPT_IN")),
+    
+    OPT_OUT(String.valueOf("OPT_OUT"));
+
+    private String value;
+
+    InnerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InnerEnum fromValue(String value) {
+      for (InnerEnum b : InnerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
+  @javax.annotation.Nullable
+  private Map<String, InnerEnum> creativeFeatures;
+
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
@@ -465,6 +505,38 @@ public class CtwaAdRequestBody {
 
   public CtwaAdRequestBody() { 
   }
+
+  public CtwaAdRequestBody creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+    return this;
+  }
+
+  public CtwaAdRequestBody putCreativeFeaturesItem(String key, InnerEnum creativeFeaturesItem) {
+    if (this.creativeFeatures == null) {
+      this.creativeFeatures = new HashMap<>();
+    }
+    this.creativeFeatures.put(key, creativeFeaturesItem);
+    return this;
+  }
+
+  /**
+   * Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object.
+   * @return creativeFeatures
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, InnerEnum> getCreativeFeatures() {
+    return creativeFeatures;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVE_FEATURES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
+    this.creativeFeatures = creativeFeatures;
+  }
+
 
   public CtwaAdRequestBody accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
@@ -1498,7 +1570,8 @@ public class CtwaAdRequestBody {
       return false;
     }
     CtwaAdRequestBody ctwaAdRequestBody = (CtwaAdRequestBody) o;
-    return Objects.equals(this.accountId, ctwaAdRequestBody.accountId) &&
+    return Objects.equals(this.creativeFeatures, ctwaAdRequestBody.creativeFeatures) &&
+        Objects.equals(this.accountId, ctwaAdRequestBody.accountId) &&
         Objects.equals(this.adAccountId, ctwaAdRequestBody.adAccountId) &&
         Objects.equals(this.name, ctwaAdRequestBody.name) &&
         Objects.equals(this.existingPostId, ctwaAdRequestBody.existingPostId) &&
@@ -1541,13 +1614,14 @@ public class CtwaAdRequestBody {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities);
+    return Objects.hash(creativeFeatures, accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CtwaAdRequestBody {\n");
+    sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -1633,6 +1707,15 @@ public class CtwaAdRequestBody {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `creativeFeatures` to the URL query string
+    if (getCreativeFeatures() != null) {
+      for (String _key : getCreativeFeatures().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%screativeFeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
+      }
+    }
 
     // add `accountId` to the URL query string
     if (getAccountId() != null) {

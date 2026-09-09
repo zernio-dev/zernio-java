@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.MetaPromotion;
+import dev.zernio.model.MetaPromotionStatus;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -34,9 +36,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreateAdCreative201Response.JSON_PROPERTY_AD_ACCOUNT_ID,
-  CreateAdCreative201Response.JSON_PROPERTY_CREATIVE_ID
+  CreateAdCreative201Response.JSON_PROPERTY_CREATIVE_ID,
+  CreateAdCreative201Response.JSON_PROPERTY_PROMOTION,
+  CreateAdCreative201Response.JSON_PROPERTY_PROMOTION_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreative201Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable
@@ -45,6 +49,14 @@ public class CreateAdCreative201Response {
   public static final String JSON_PROPERTY_CREATIVE_ID = "creativeId";
   @javax.annotation.Nullable
   private String creativeId;
+
+  public static final String JSON_PROPERTY_PROMOTION = "promotion";
+  @javax.annotation.Nullable
+  private MetaPromotion promotion;
+
+  public static final String JSON_PROPERTY_PROMOTION_STATUS = "promotionStatus";
+  @javax.annotation.Nullable
+  private MetaPromotionStatus promotionStatus;
 
   public CreateAdCreative201Response() { 
   }
@@ -97,6 +109,54 @@ public class CreateAdCreative201Response {
   }
 
 
+  public CreateAdCreative201Response promotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+    return this;
+  }
+
+  /**
+   * Get promotion
+   * @return promotion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MetaPromotion getPromotion() {
+    return promotion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+    this.promotion = promotion;
+  }
+
+
+  public CreateAdCreative201Response promotionStatus(@javax.annotation.Nullable MetaPromotionStatus promotionStatus) {
+    this.promotionStatus = promotionStatus;
+    return this;
+  }
+
+  /**
+   * Get promotionStatus
+   * @return promotionStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MetaPromotionStatus getPromotionStatus() {
+    return promotionStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTION_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotionStatus(@javax.annotation.Nullable MetaPromotionStatus promotionStatus) {
+    this.promotionStatus = promotionStatus;
+  }
+
+
   /**
    * Return true if this createAdCreative_201_response object is equal to o.
    */
@@ -110,12 +170,14 @@ public class CreateAdCreative201Response {
     }
     CreateAdCreative201Response createAdCreative201Response = (CreateAdCreative201Response) o;
     return Objects.equals(this.adAccountId, createAdCreative201Response.adAccountId) &&
-        Objects.equals(this.creativeId, createAdCreative201Response.creativeId);
+        Objects.equals(this.creativeId, createAdCreative201Response.creativeId) &&
+        Objects.equals(this.promotion, createAdCreative201Response.promotion) &&
+        Objects.equals(this.promotionStatus, createAdCreative201Response.promotionStatus);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(adAccountId, creativeId);
+    return Objects.hash(adAccountId, creativeId, promotion, promotionStatus);
   }
 
   @Override
@@ -124,6 +186,8 @@ public class CreateAdCreative201Response {
     sb.append("class CreateAdCreative201Response {\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    creativeId: ").append(toIndentedString(creativeId)).append("\n");
+    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
+    sb.append("    promotionStatus: ").append(toIndentedString(promotionStatus)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +243,16 @@ public class CreateAdCreative201Response {
     // add `creativeId` to the URL query string
     if (getCreativeId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%screativeId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreativeId()))));
+    }
+
+    // add `promotion` to the URL query string
+    if (getPromotion() != null) {
+      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
+    }
+
+    // add `promotionStatus` to the URL query string
+    if (getPromotionStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spromotionStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPromotionStatus()))));
     }
 
     return joiner.toString();

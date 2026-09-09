@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-09T17:01:40.751460665Z[Etc/UTC]
+- Build date: 2026-09-09T17:34:27.960226611Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2684,6 +2684,8 @@ Class | Method | HTTP request | Description
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
  - [MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
+ - [MetaPromotion](docs/MetaPromotion.md)
+ - [MetaPromotionStatus](docs/MetaPromotionStatus.md)
  - [Money](docs/Money.md)
  - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)

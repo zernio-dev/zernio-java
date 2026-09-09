@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and optimises them into the best-performing variations within a single ad (mapped to the creative&#39;s &#x60;asset_feed_spec&#x60;). When set, the top-level single-creative fields (&#x60;imageUrl&#x60;, &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) are ignored. Mutually exclusive with the &#x60;creatives[]&#x60; multi-creative shape. Exactly ONE of &#x60;imageUrls&#x60; / &#x60;videoUrls&#x60; is required (Meta allows one ad format per asset feed; sending both → 400). Meta limits: ≤10 images or ≤10 videos, ≤5 bodies / titles / descriptions. 
+ * Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and optimises them into the best-performing variations within a single ad (mapped to the creative&#39;s &#x60;asset_feed_spec&#x60;). When set, the top-level single-creative fields (&#x60;imageUrl&#x60;, &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) are ignored. Mutually exclusive with the &#x60;creatives[]&#x60; multi-creative shape. Exactly ONE of &#x60;imageUrls&#x60; / &#x60;videoUrls&#x60; is required (Meta allows one ad format per asset feed; sending both → 400). Limits remain 10 images or videos and 5 bodies, titles or descriptions. The ad set is created with &#x60;is_dynamic_creative: true&#x60;. Combining this field with &#x60;adSetId&#x60; returns 400: omit &#x60;adSetId&#x60; to create a new dynamic ad set. Multiple headlines go in &#x60;titles&#x60;; multiple primary texts go in &#x60;bodies&#x60;. 
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_IMAGE_URLS,
@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_CALL_TO_ACTION_TYPES,
   CreateStandaloneAdRequestDynamicCreative.JSON_PROPERTY_AD_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:34:27.960226611Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestDynamicCreative {
   public static final String JSON_PROPERTY_IMAGE_URLS = "imageUrls";
   @javax.annotation.Nullable
