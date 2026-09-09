@@ -24,162 +24,231 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.CreatePost200ResponseTiktokInner;
+import dev.zernio.model.Post;
+import dev.zernio.model.PostCreateResponse;
+import dev.zernio.model.TikTokDryRunVerdict;
+import dev.zernio.model.TikTokDryRunVerdictTiktokInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * CreatePost200Response
- */
-@JsonPropertyOrder({
-  CreatePost200Response.JSON_PROPERTY_DRY_RUN,
-  CreatePost200Response.JSON_PROPERTY_CAN_PUBLISH,
-  CreatePost200Response.JSON_PROPERTY_TIKTOK
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:22:44.956394475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class CreatePost200Response {
-  public static final String JSON_PROPERTY_DRY_RUN = "dryRun";
-  @javax.annotation.Nonnull
-  private Boolean dryRun;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_CAN_PUBLISH = "canPublish";
-  @javax.annotation.Nonnull
-  private Boolean canPublish;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:59:11.475110767Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = CreatePost200Response.CreatePost200ResponseDeserializer.class)
+@JsonSerialize(using = CreatePost200Response.CreatePost200ResponseSerializer.class)
+public class CreatePost200Response extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CreatePost200Response.class.getName());
 
-  public static final String JSON_PROPERTY_TIKTOK = "tiktok";
-  @javax.annotation.Nonnull
-  private List<CreatePost200ResponseTiktokInner> tiktok = new ArrayList<>();
+    public static class CreatePost200ResponseSerializer extends StdSerializer<CreatePost200Response> {
+        public CreatePost200ResponseSerializer(Class<CreatePost200Response> t) {
+            super(t);
+        }
 
-  public CreatePost200Response() { 
-  }
+        public CreatePost200ResponseSerializer() {
+            this(null);
+        }
 
-  public CreatePost200Response dryRun(@javax.annotation.Nonnull Boolean dryRun) {
-    this.dryRun = dryRun;
-    return this;
-  }
-
-  /**
-   * Always true on this response
-   * @return dryRun
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_DRY_RUN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Boolean getDryRun() {
-    return dryRun;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DRY_RUN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDryRun(@javax.annotation.Nonnull Boolean dryRun) {
-    this.dryRun = dryRun;
-  }
-
-
-  public CreatePost200Response canPublish(@javax.annotation.Nonnull Boolean canPublish) {
-    this.canPublish = canPublish;
-    return this;
-  }
-
-  /**
-   * True only when every evaluated TikTok account can publish now
-   * @return canPublish
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CAN_PUBLISH, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Boolean getCanPublish() {
-    return canPublish;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CAN_PUBLISH, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCanPublish(@javax.annotation.Nonnull Boolean canPublish) {
-    this.canPublish = canPublish;
-  }
-
-
-  public CreatePost200Response tiktok(@javax.annotation.Nonnull List<CreatePost200ResponseTiktokInner> tiktok) {
-    this.tiktok = tiktok;
-    return this;
-  }
-
-  public CreatePost200Response addTiktokItem(CreatePost200ResponseTiktokInner tiktokItem) {
-    if (this.tiktok == null) {
-      this.tiktok = new ArrayList<>();
+        @Override
+        public void serialize(CreatePost200Response value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
-    this.tiktok.add(tiktokItem);
-    return this;
-  }
 
-  /**
-   * One verdict per &#x60;tiktok&#x60; entry in the request, in request order
-   * @return tiktok
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TIKTOK, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<CreatePost200ResponseTiktokInner> getTiktok() {
-    return tiktok;
-  }
+    public static class CreatePost200ResponseDeserializer extends StdDeserializer<CreatePost200Response> {
+        public CreatePost200ResponseDeserializer() {
+            this(CreatePost200Response.class);
+        }
 
+        public CreatePost200ResponseDeserializer(Class<?> vc) {
+            super(vc);
+        }
 
-  @JsonProperty(value = JSON_PROPERTY_TIKTOK, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTiktok(@javax.annotation.Nonnull List<CreatePost200ResponseTiktokInner> tiktok) {
-    this.tiktok = tiktok;
-  }
+        @Override
+        public CreatePost200Response deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize PostCreateResponse
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (PostCreateResponse.class.equals(Integer.class) || PostCreateResponse.class.equals(Long.class) || PostCreateResponse.class.equals(Float.class) || PostCreateResponse.class.equals(Double.class) || PostCreateResponse.class.equals(Boolean.class) || PostCreateResponse.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((PostCreateResponse.class.equals(Integer.class) || PostCreateResponse.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((PostCreateResponse.class.equals(Float.class) || PostCreateResponse.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (PostCreateResponse.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (PostCreateResponse.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PostCreateResponse.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'PostCreateResponse'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'PostCreateResponse'", e);
+            }
 
+            // deserialize TikTokDryRunVerdict
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (TikTokDryRunVerdict.class.equals(Integer.class) || TikTokDryRunVerdict.class.equals(Long.class) || TikTokDryRunVerdict.class.equals(Float.class) || TikTokDryRunVerdict.class.equals(Double.class) || TikTokDryRunVerdict.class.equals(Boolean.class) || TikTokDryRunVerdict.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((TikTokDryRunVerdict.class.equals(Integer.class) || TikTokDryRunVerdict.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((TikTokDryRunVerdict.class.equals(Float.class) || TikTokDryRunVerdict.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (TikTokDryRunVerdict.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (TikTokDryRunVerdict.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(TikTokDryRunVerdict.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'TikTokDryRunVerdict'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'TikTokDryRunVerdict'", e);
+            }
 
-  /**
-   * Return true if this createPost_200_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+            if (match == 1) {
+                CreatePost200Response ret = new CreatePost200Response();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for CreatePost200Response: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public CreatePost200Response getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "CreatePost200Response cannot be null");
+        }
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
+
+    public CreatePost200Response() {
+        super("oneOf", Boolean.FALSE);
     }
-    CreatePost200Response createPost200Response = (CreatePost200Response) o;
-    return Objects.equals(this.dryRun, createPost200Response.dryRun) &&
-        Objects.equals(this.canPublish, createPost200Response.canPublish) &&
-        Objects.equals(this.tiktok, createPost200Response.tiktok);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(dryRun, canPublish, tiktok);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreatePost200Response {\n");
-    sb.append("    dryRun: ").append(toIndentedString(dryRun)).append("\n");
-    sb.append("    canPublish: ").append(toIndentedString(canPublish)).append("\n");
-    sb.append("    tiktok: ").append(toIndentedString(tiktok)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public CreatePost200Response(PostCreateResponse o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public CreatePost200Response(TikTokDryRunVerdict o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("PostCreateResponse", PostCreateResponse.class);
+        schemas.put("TikTokDryRunVerdict", TikTokDryRunVerdict.class);
+        JSON.registerDescendants(CreatePost200Response.class, Collections.unmodifiableMap(schemas));
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return CreatePost200Response.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * PostCreateResponse, TikTokDryRunVerdict
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(PostCreateResponse.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(TikTokDryRunVerdict.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be PostCreateResponse, TikTokDryRunVerdict");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * PostCreateResponse, TikTokDryRunVerdict
+     *
+     * @return The actual instance (PostCreateResponse, TikTokDryRunVerdict)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `PostCreateResponse`. If the actual instance is not `PostCreateResponse`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `PostCreateResponse`
+     * @throws ClassCastException if the instance is not `PostCreateResponse`
+     */
+    public PostCreateResponse getPostCreateResponse() throws ClassCastException {
+        return (PostCreateResponse)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `TikTokDryRunVerdict`. If the actual instance is not `TikTokDryRunVerdict`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `TikTokDryRunVerdict`
+     * @throws ClassCastException if the instance is not `TikTokDryRunVerdict`
+     */
+    public TikTokDryRunVerdict getTikTokDryRunVerdict() throws ClassCastException {
+        return (TikTokDryRunVerdict)super.getActualInstance();
+    }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -213,27 +282,20 @@ public class CreatePost200Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `dryRun` to the URL query string
-    if (getDryRun() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdryRun%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDryRun()))));
-    }
-
-    // add `canPublish` to the URL query string
-    if (getCanPublish() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scanPublish%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCanPublish()))));
-    }
-
-    // add `tiktok` to the URL query string
-    if (getTiktok() != null) {
-      for (int i = 0; i < getTiktok().size(); i++) {
-        if (getTiktok().get(i) != null) {
-          joiner.add(getTiktok().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stiktok%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+    if (getActualInstance() instanceof TikTokDryRunVerdict) {
+        if (getActualInstance() != null) {
+          joiner.add(((TikTokDryRunVerdict)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
         }
-      }
+        return joiner.toString();
     }
-
-    return joiner.toString();
+    if (getActualInstance() instanceof PostCreateResponse) {
+        if (getActualInstance() != null) {
+          joiner.add(((PostCreateResponse)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
+    }
+    return null;
   }
+
 }
 

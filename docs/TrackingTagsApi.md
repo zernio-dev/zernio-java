@@ -1315,7 +1315,7 @@ ApiResponse<Void>
 
 ## updateAdTrackingTags
 
-> void updateAdTrackingTags(adId, updateAdTrackingTagsRequest)
+> UpdateAdTrackingTags200Response updateAdTrackingTags(adId, updateAdTrackingTagsRequest)
 
 Set ad tracking tags
 
@@ -1345,7 +1345,8 @@ public class Example {
         String adId = "adId_example"; // String | 
         UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = new UpdateAdTrackingTagsRequest(); // UpdateAdTrackingTagsRequest | 
         try {
-            apiInstance.updateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+            UpdateAdTrackingTags200Response result = apiInstance.updateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TrackingTagsApi#updateAdTrackingTags");
             System.err.println("Status code: " + e.getCode());
@@ -1367,8 +1368,8 @@ public class Example {
 
 ### Return type
 
+[**UpdateAdTrackingTags200Response**](UpdateAdTrackingTags200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -1382,7 +1383,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Updated |  -  |
+| **200** | The tags as they now stand, in the same shape the GET on this path returns: &#x60;platform&#x60; plus the fields that platform supports. Meta returns &#x60;level&#x60;, &#x60;urlTags&#x60; and &#x60;templateUrlSpec&#x60;; Google returns &#x60;trackingUrlTemplate&#x60; and &#x60;finalUrlSuffix&#x60;. A field the platform does not support is absent.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
@@ -1392,7 +1393,7 @@ null (empty response body)
 
 ## updateAdTrackingTagsWithHttpInfo
 
-> ApiResponse<Void> updateAdTrackingTags updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest)
+> ApiResponse<UpdateAdTrackingTags200Response> updateAdTrackingTags updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest)
 
 Set ad tracking tags
 
@@ -1423,9 +1424,10 @@ public class Example {
         String adId = "adId_example"; // String | 
         UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = new UpdateAdTrackingTagsRequest(); // UpdateAdTrackingTagsRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+            ApiResponse<UpdateAdTrackingTags200Response> response = apiInstance.updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling TrackingTagsApi#updateAdTrackingTags");
             System.err.println("Status code: " + e.getCode());
@@ -1447,8 +1449,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**UpdateAdTrackingTags200Response**](UpdateAdTrackingTags200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -1462,7 +1464,7 @@ ApiResponse<Void>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Updated |  -  |
+| **200** | The tags as they now stand, in the same shape the GET on this path returns: &#x60;platform&#x60; plus the fields that platform supports. Meta returns &#x60;level&#x60;, &#x60;urlTags&#x60; and &#x60;templateUrlSpec&#x60;; Google returns &#x60;trackingUrlTemplate&#x60; and &#x60;finalUrlSuffix&#x60;. A field the platform does not support is absent.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |

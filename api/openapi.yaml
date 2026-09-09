@@ -5491,23 +5491,14 @@ paths:
         "200":
           content:
             application/json:
-              example:
-                dryRun: true
-                canPublish: false
-                tiktok:
-                - accountId: 64e1f0a9e2b5af0012ab34de
-                  canPublish: true
-                  alreadyPostedToday: false
-                  reason: Account can publish now.
-                - accountId: 64e1f0a9e2b5af0012ab34df
-                  canPublish: false
-                  alreadyPostedToday: false
-                  reason: "Daily TikTok Direct Post limit reached. Use tiktokSettings.draft:\
-                    \ true to continue posting via Creator Inbox."
               schema:
                 $ref: "#/components/schemas/createPost_200_response"
-          description: "dryRun preview (TikTok only): nothing was created. Deliberately\
-            \ carries no numeric cap detail, only a per-account go/no-go and a reason."
+          description: |
+            A dryRun preview (TikTok only): nothing was created. Deliberately carries no numeric
+            cap detail, only a per-account go/no-go and a reason.
+
+            The schema is a union only so generated clients can type both success shapes of this
+            operation: a 200 is always the dry-run verdict, and a created post is always a 201.
         "201":
           content:
             application/json:
@@ -21245,8 +21236,6 @@ paths:
           description: "Calls, newest first"
         "401":
           $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: Not enrolled in the calling beta
       security:
       - bearerAuth: []
       summary: List all calls (unified history)
@@ -21283,8 +21272,6 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: Not enrolled in the calling beta
         "404":
           description: Call not found
       security:
@@ -21335,8 +21322,6 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: Not enrolled in the calling beta
         "404":
           description: "Call not found, or no recording is available for this call"
         "502":
@@ -33426,7 +33411,15 @@ paths:
         required: true
       responses:
         "200":
-          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdTrackingTags_200_response"
+          description: |
+            The tags as they now stand, in the same shape the GET on this path returns:
+            `platform` plus the fields that platform supports. Meta returns `level`,
+            `urlTags` and `templateUrlSpec`; Google returns `trackingUrlTemplate` and
+            `finalUrlSuffix`. A field the platform does not support is absent.
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -35317,6 +35310,10 @@ paths:
         "422":
           description: "Platform ads connection required (TikTok Ads, X Ads) or missing\
             \ linked account"
+        "501":
+          description: |
+            The requested option is not supported on this platform: `validateOnly` outside Meta,
+            or a shape the adapter does not implement. Carries code `feature_not_available`.
         "502":
           description: |
             The platform rejected the request, or failed to produce media the ad
@@ -38334,7 +38331,15 @@ paths:
         required: true
       responses:
         "201":
-          description: Ad(s) created and submitted for review
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createMessagingAd_201_response"
+          description: |
+            Ad(s) created and submitted for review. The route shares its handler with
+            `POST /v1/ads/ctwa`, so the body is the same tagged union discriminated by
+            `adType`: `single` carries `{ adType, ad, message }`, and `multi` carries
+            `{ adType, ads, platformCampaignId, platformAdSetId, message }`.
         "400":
           description: Invalid input
         "401":
@@ -38378,7 +38383,15 @@ paths:
         required: true
       responses:
         "201":
-          description: Ad(s) created and submitted for review
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createMessagingAd_201_response"
+          description: |
+            Ad(s) created and submitted for review. The route shares its handler with
+            `POST /v1/ads/ctwa`, so the body is the same tagged union discriminated by
+            `adType`: `single` carries `{ adType, ad, message }`, and `multi` carries
+            `{ adType, ads, platformCampaignId, platformAdSetId, message }`.
         "400":
           description: Invalid input
         "401":
@@ -38435,7 +38448,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/createCtwaAd_201_response"
+                $ref: "#/components/schemas/createMessagingAd_201_response"
           description: |
             CTWA ad(s) created and submitted to Meta for review. Response is a
             tagged union discriminated by `adType`:
@@ -51113,6 +51126,36 @@ components:
       properties:
         post:
           $ref: "#/components/schemas/Post"
+    TikTokDryRunVerdict:
+      example:
+        dryRun: true
+        tiktok:
+        - accountId: accountId
+          reason: reason
+          alreadyPostedToday: true
+          canPublish: true
+        - accountId: accountId
+          reason: reason
+          alreadyPostedToday: true
+          canPublish: true
+        canPublish: true
+      properties:
+        dryRun:
+          description: Always true on this response
+          type: boolean
+        canPublish:
+          description: True only when every evaluated TikTok account can publish now
+          type: boolean
+        tiktok:
+          description: "One verdict per `tiktok` entry in the request, in request\
+            \ order"
+          items:
+            $ref: "#/components/schemas/TikTokDryRunVerdict_tiktok_inner"
+          type: array
+      required:
+      - canPublish
+      - dryRun
+      - tiktok
     PostCreateResponse:
       example:
         post:
@@ -61433,59 +61476,10 @@ components:
             Only used when queuedFromProfile is also provided.
             If omitted, uses the profile's default queue.
           type: string
-    createPost_200_response_tiktok_inner:
-      example:
-        accountId: accountId
-        reason: reason
-        alreadyPostedToday: true
-        canPublish: true
-      properties:
-        accountId:
-          type: string
-        canPublish:
-          type: boolean
-        alreadyPostedToday:
-          description: Whether this account already published a Direct Post today
-            (an account that did can keep publishing). Absent for Creator Inbox drafts
-            and when no per-user limit applies.
-          type: boolean
-        reason:
-          description: Human-readable explanation of the verdict
-          type: string
-      required:
-      - accountId
-      - canPublish
-      - reason
     createPost_200_response:
-      example:
-        dryRun: true
-        tiktok:
-        - accountId: accountId
-          reason: reason
-          alreadyPostedToday: true
-          canPublish: true
-        - accountId: accountId
-          reason: reason
-          alreadyPostedToday: true
-          canPublish: true
-        canPublish: true
-      properties:
-        dryRun:
-          description: Always true on this response
-          type: boolean
-        canPublish:
-          description: True only when every evaluated TikTok account can publish now
-          type: boolean
-        tiktok:
-          description: "One verdict per `tiktok` entry in the request, in request\
-            \ order"
-          items:
-            $ref: "#/components/schemas/createPost_200_response_tiktok_inner"
-          type: array
-      required:
-      - canPublish
-      - dryRun
-      - tiktok
+      oneOf:
+      - $ref: "#/components/schemas/TikTokDryRunVerdict"
+      - $ref: "#/components/schemas/PostCreateResponse"
     createPost_403_response:
       example:
         code: ACCOUNT_DISCONNECTED
@@ -66050,6 +66044,90 @@ components:
           $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceItems_inner_freeFormServiceItem"
         price:
           $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceItems_inner_price"
+    updateGoogleBusinessLocationDetails_request_storefrontAddress:
+      description: Postal address of the storefront. Use updateMask='storefrontAddress'.
+        Omit for service-area-only businesses.
+      properties:
+        regionCode:
+          description: ISO 3166-1 alpha-2 country code (e.g. 'BR')
+          type: string
+        languageCode:
+          type: string
+        postalCode:
+          type: string
+        administrativeArea:
+          description: State or province
+          type: string
+        locality:
+          description: City
+          type: string
+        addressLines:
+          items:
+            type: string
+          type: array
+    updateGoogleBusinessLocationDetails_request_serviceArea_places_placeInfos_inner:
+      properties:
+        placeName:
+          description: "Localized area name (e.g. 'Sao Paulo, SP, Brasil')"
+          type: string
+        placeId:
+          description: Google Place ID for the area
+          type: string
+    updateGoogleBusinessLocationDetails_request_serviceArea_places:
+      properties:
+        placeInfos:
+          items:
+            $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceArea_places_placeInfos_inner"
+          type: array
+    updateGoogleBusinessLocationDetails_request_serviceArea:
+      description: "Areas the business serves. Use updateMask='serviceArea'. Full\
+        \ replacement: send every place you want to keep."
+      properties:
+        businessType:
+          enum:
+          - CUSTOMER_LOCATION_ONLY
+          - CUSTOMER_AND_BUSINESS_LOCATION
+          type: string
+        places:
+          $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceArea_places"
+        regionCode:
+          description: Immutable. CLDR region code of the country the business is
+            based in (e.g. 'BR')
+          type: string
+    updateGoogleBusinessLocationDetails_request_openInfo:
+      description: Open/closed status of the location. Use updateMask='openInfo'.
+      properties:
+        status:
+          enum:
+          - OPEN
+          - CLOSED_PERMANENTLY
+          - CLOSED_TEMPORARILY
+          type: string
+        openingDate:
+          $ref: "#/components/schemas/getGoogleBusinessLocationDetails_200_response_specialHours_specialHourPeriods_inner_startDate"
+    updateGoogleBusinessLocationDetails_request_moreHours_inner:
+      properties:
+        hoursTypeId:
+          description: "Hours type from Google's catalog (e.g. 'DELIVERY', 'DRIVE_THROUGH')"
+          type: string
+        periods:
+          items:
+            $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_regularHours_periods_inner"
+          type: array
+    updateGoogleBusinessLocationDetails_request_latlng:
+      description: "Precise coordinates. Use updateMask='latlng'. Google restricts\
+        \ latlng writes to approved clients, so this update may be silently ignored\
+        \ or rejected."
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+    updateGoogleBusinessLocationDetails_request_adWordsLocationExtensions:
+      description: Alternate phone shown in Google Ads location extensions. Use updateMask='adWordsLocationExtensions'.
+      properties:
+        adPhone:
+          type: string
     updateGoogleBusinessLocationDetails_request:
       additionalProperties: {}
       properties:
@@ -66076,6 +66154,35 @@ components:
           items:
             $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceItems_inner"
           type: array
+        title:
+          description: Business name. Use updateMask='title'.
+          type: string
+        storeCode:
+          description: "External store identifier, unique within the account. Use\
+            \ updateMask='storeCode'."
+          type: string
+        labels:
+          description: "Free-form, internal-only labels for grouping (1-255 characters\
+            \ each). Use updateMask='labels'."
+          items:
+            type: string
+          type: array
+        storefrontAddress:
+          $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_storefrontAddress"
+        serviceArea:
+          $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_serviceArea"
+        openInfo:
+          $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_openInfo"
+        moreHours:
+          description: "Additional hours for specific services (delivery, drive-through,\
+            \ etc.). Use updateMask='moreHours'."
+          items:
+            $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_moreHours_inner"
+          type: array
+        latlng:
+          $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_latlng"
+        adWordsLocationExtensions:
+          $ref: "#/components/schemas/updateGoogleBusinessLocationDetails_request_adWordsLocationExtensions"
       required:
       - updateMask
     updateGoogleBusinessLocationDetails_200_response:
@@ -93547,6 +93654,13 @@ components:
           additionalProperties:
             type: string
           description: LinkedIn only. key -> static value.
+    updateAdTrackingTags_200_response:
+      additionalProperties: {}
+      example:
+        platform: platform
+      properties:
+        platform:
+          type: string
     getAdComments_200_response_pagination:
       example:
         cursor: cursor
@@ -99917,6 +100031,15 @@ components:
             type: string
         required:
         - destination
+    createMessagingAd_201_response:
+      discriminator:
+        mapping:
+          single: "#/components/schemas/CtwaSingleResponse"
+          multi: "#/components/schemas/CtwaMultiResponse"
+        propertyName: adType
+      oneOf:
+      - $ref: "#/components/schemas/CtwaSingleResponse"
+      - $ref: "#/components/schemas/CtwaMultiResponse"
     createCallAd_request:
       allOf:
       - $ref: "#/components/schemas/CtwaAdRequestBody"
@@ -99932,15 +100055,6 @@ components:
         required:
         - linkUrl
         - phoneNumber
-    createCtwaAd_201_response:
-      discriminator:
-        mapping:
-          single: "#/components/schemas/CtwaSingleResponse"
-          multi: "#/components/schemas/CtwaMultiResponse"
-        propertyName: adType
-      oneOf:
-      - $ref: "#/components/schemas/CtwaSingleResponse"
-      - $ref: "#/components/schemas/CtwaMultiResponse"
     listCustomConversions_200_response:
       example:
         data:
@@ -106764,6 +106878,29 @@ components:
           items:
             $ref: "#/components/schemas/LinkedInAggregateAnalyticsDailyResponse_analytics_impressions_inner"
           type: array
+    TikTokDryRunVerdict_tiktok_inner:
+      example:
+        accountId: accountId
+        reason: reason
+        alreadyPostedToday: true
+        canPublish: true
+      properties:
+        accountId:
+          type: string
+        canPublish:
+          type: boolean
+        alreadyPostedToday:
+          description: Whether this account already published a Direct Post today
+            (an account that did can keep publishing). Absent for Creator Inbox drafts
+            and when no per-user limit applies.
+          type: boolean
+        reason:
+          description: Human-readable explanation of the verdict
+          type: string
+      required:
+      - accountId
+      - canPublish
+      - reason
     PostPublishIncompleteResponse_platformResults_inner:
       example:
         error: error

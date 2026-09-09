@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-09T08:22:44.956394475Z[Etc/UTC]
+- Build date: 2026-09-09T08:59:11.475110767Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1759,7 +1759,6 @@ Class | Method | HTTP request | Description
  - [CreateConversionDestination201Response](docs/CreateConversionDestination201Response.md)
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
- - [CreateCtwaAd201Response](docs/CreateCtwaAd201Response.md)
  - [CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
@@ -1797,6 +1796,7 @@ Class | Method | HTTP request | Description
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
  - [CreateLeadFormRequestPlatformSpecificData](docs/CreateLeadFormRequestPlatformSpecificData.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
+ - [CreateMessagingAd201Response](docs/CreateMessagingAd201Response.md)
  - [CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
@@ -1811,7 +1811,6 @@ Class | Method | HTTP request | Description
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
  - [CreatePost200Response](docs/CreatePost200Response.md)
- - [CreatePost200ResponseTiktokInner](docs/CreatePost200ResponseTiktokInner.md)
  - [CreatePost403Response](docs/CreatePost403Response.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
@@ -2990,6 +2989,8 @@ Class | Method | HTTP request | Description
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)
+ - [TikTokDryRunVerdict](docs/TikTokDryRunVerdict.md)
+ - [TikTokDryRunVerdictTiktokInner](docs/TikTokDryRunVerdictTiktokInner.md)
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
@@ -3047,6 +3048,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetRequestPlatformSpecificDataPromotedObject](docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
+ - [UpdateAdTrackingTags200Response](docs/UpdateAdTrackingTags200Response.md)
  - [UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)
@@ -3102,17 +3104,25 @@ Class | Method | HTTP request | Description
  - [UpdateGoogleBusinessFoodMenusRequest](docs/UpdateGoogleBusinessFoodMenusRequest.md)
  - [UpdateGoogleBusinessLocationDetails200Response](docs/UpdateGoogleBusinessLocationDetails200Response.md)
  - [UpdateGoogleBusinessLocationDetailsRequest](docs/UpdateGoogleBusinessLocationDetailsRequest.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions](docs/UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions.md)
  - [UpdateGoogleBusinessLocationDetailsRequestCategories](docs/UpdateGoogleBusinessLocationDetailsRequestCategories.md)
  - [UpdateGoogleBusinessLocationDetailsRequestCategoriesAdditionalCategoriesInner](docs/UpdateGoogleBusinessLocationDetailsRequestCategoriesAdditionalCategoriesInner.md)
  - [UpdateGoogleBusinessLocationDetailsRequestCategoriesPrimaryCategory](docs/UpdateGoogleBusinessLocationDetailsRequestCategoriesPrimaryCategory.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestLatlng](docs/UpdateGoogleBusinessLocationDetailsRequestLatlng.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner](docs/UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestOpenInfo](docs/UpdateGoogleBusinessLocationDetailsRequestOpenInfo.md)
  - [UpdateGoogleBusinessLocationDetailsRequestProfile](docs/UpdateGoogleBusinessLocationDetailsRequestProfile.md)
  - [UpdateGoogleBusinessLocationDetailsRequestRegularHours](docs/UpdateGoogleBusinessLocationDetailsRequestRegularHours.md)
  - [UpdateGoogleBusinessLocationDetailsRequestRegularHoursPeriodsInner](docs/UpdateGoogleBusinessLocationDetailsRequestRegularHoursPeriodsInner.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestServiceArea](docs/UpdateGoogleBusinessLocationDetailsRequestServiceArea.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestServiceAreaPlaces](docs/UpdateGoogleBusinessLocationDetailsRequestServiceAreaPlaces.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestServiceAreaPlacesPlaceInfosInner](docs/UpdateGoogleBusinessLocationDetailsRequestServiceAreaPlacesPlaceInfosInner.md)
  - [UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner.md)
  - [UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItem](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItem.md)
  - [UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItemLabel](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItemLabel.md)
  - [UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerPrice](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerPrice.md)
  - [UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerStructuredServiceItem](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerStructuredServiceItem.md)
+ - [UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress](docs/UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress.md)
  - [UpdateGoogleBusinessPlaceAction200Response](docs/UpdateGoogleBusinessPlaceAction200Response.md)
  - [UpdateGoogleBusinessPlaceActionRequest](docs/UpdateGoogleBusinessPlaceActionRequest.md)
  - [UpdateGoogleBusinessServices200Response](docs/UpdateGoogleBusinessServices200Response.md)

@@ -2,14 +2,36 @@
 
 # CreatePost200Response
 
+## oneOf schemas
+* [PostCreateResponse](PostCreateResponse.md)
+* [TikTokDryRunVerdict](TikTokDryRunVerdict.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.CreatePost200Response;
+import dev.zernio.model.PostCreateResponse;
+import dev.zernio.model.TikTokDryRunVerdict;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**dryRun** | **Boolean** | Always true on this response |  |
-|**canPublish** | **Boolean** | True only when every evaluated TikTok account can publish now |  |
-|**tiktok** | [**List&lt;CreatePost200ResponseTiktokInner&gt;**](CreatePost200ResponseTiktokInner.md) | One verdict per &#x60;tiktok&#x60; entry in the request, in request order |  |
+public class Example {
+    public static void main(String[] args) {
+        CreatePost200Response exampleCreatePost200Response = new CreatePost200Response();
 
+        // create a new PostCreateResponse
+        PostCreateResponse examplePostCreateResponse = new PostCreateResponse();
+        // set CreatePost200Response to PostCreateResponse
+        exampleCreatePost200Response.setActualInstance(examplePostCreateResponse);
+        // to get back the PostCreateResponse set earlier
+        PostCreateResponse testPostCreateResponse = (PostCreateResponse) exampleCreatePost200Response.getActualInstance();
+
+        // create a new TikTokDryRunVerdict
+        TikTokDryRunVerdict exampleTikTokDryRunVerdict = new TikTokDryRunVerdict();
+        // set CreatePost200Response to TikTokDryRunVerdict
+        exampleCreatePost200Response.setActualInstance(exampleTikTokDryRunVerdict);
+        // to get back the TikTokDryRunVerdict set earlier
+        TikTokDryRunVerdict testTikTokDryRunVerdict = (TikTokDryRunVerdict) exampleCreatePost200Response.getActualInstance();
+    }
+}
+```
 
 

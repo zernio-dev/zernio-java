@@ -28,6 +28,7 @@ import dev.zernio.model.GetTrackingTagStats200Response;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListTrackingTagSharedAccounts200Response;
 import dev.zernio.model.ListTrackingTags200Response;
+import dev.zernio.model.UpdateAdTrackingTags200Response;
 import dev.zernio.model.UpdateAdTrackingTagsRequest;
 import dev.zernio.model.UpdateTrackingTagRequest;
 
@@ -62,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:22:44.956394475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:59:11.475110767Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingTagsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1256,10 +1257,11 @@ public class TrackingTagsApi {
    * Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE, with no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
    * @param adId  (required)
    * @param updateAdTrackingTagsRequest  (required)
+   * @return UpdateAdTrackingTags200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateAdTrackingTags(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest) throws ApiException {
-    updateAdTrackingTags(adId, updateAdTrackingTagsRequest, null);
+  public UpdateAdTrackingTags200Response updateAdTrackingTags(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest) throws ApiException {
+    return updateAdTrackingTags(adId, updateAdTrackingTagsRequest, null);
   }
 
   /**
@@ -1268,10 +1270,12 @@ public class TrackingTagsApi {
    * @param adId  (required)
    * @param updateAdTrackingTagsRequest  (required)
    * @param headers Optional headers to include in the request
+   * @return UpdateAdTrackingTags200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateAdTrackingTags(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
-    updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest, headers);
+  public UpdateAdTrackingTags200Response updateAdTrackingTags(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdTrackingTags200Response> localVarResponse = updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -1279,10 +1283,10 @@ public class TrackingTagsApi {
    * Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE, with no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
    * @param adId  (required)
    * @param updateAdTrackingTagsRequest  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateAdTrackingTags200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest) throws ApiException {
+  public ApiResponse<UpdateAdTrackingTags200Response> updateAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest) throws ApiException {
     return updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest, null);
   }
 
@@ -1292,10 +1296,10 @@ public class TrackingTagsApi {
    * @param adId  (required)
    * @param updateAdTrackingTagsRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateAdTrackingTags200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateAdTrackingTags200Response> updateAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateAdTrackingTagsRequestBuilder(adId, updateAdTrackingTagsRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1310,13 +1314,24 @@ public class TrackingTagsApi {
           throw getApiException("updateAdTrackingTags", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdTrackingTags200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdTrackingTags200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdTrackingTags200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdTrackingTags200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {

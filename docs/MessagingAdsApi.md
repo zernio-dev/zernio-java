@@ -15,7 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## createCallAd
 
-> void createCallAd(createCallAdRequest)
+> CreateMessagingAd201Response createCallAd(createCallAdRequest)
 
 Create Click-to-Call ad
 
@@ -44,7 +44,8 @@ public class Example {
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateCallAdRequest createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
         try {
-            apiInstance.createCallAd(createCallAdRequest);
+            CreateMessagingAd201Response result = apiInstance.createCallAd(createCallAdRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createCallAd");
             System.err.println("Status code: " + e.getCode());
@@ -65,8 +66,8 @@ public class Example {
 
 ### Return type
 
+[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -80,7 +81,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad(s) created and submitted for review |  -  |
+| **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
@@ -90,7 +91,7 @@ null (empty response body)
 
 ## createCallAdWithHttpInfo
 
-> ApiResponse<Void> createCallAd createCallAdWithHttpInfo(createCallAdRequest)
+> ApiResponse<CreateMessagingAd201Response> createCallAd createCallAdWithHttpInfo(createCallAdRequest)
 
 Create Click-to-Call ad
 
@@ -120,9 +121,10 @@ public class Example {
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateCallAdRequest createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.createCallAdWithHttpInfo(createCallAdRequest);
+            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createCallAdWithHttpInfo(createCallAdRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createCallAd");
             System.err.println("Status code: " + e.getCode());
@@ -143,8 +145,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -158,7 +160,7 @@ ApiResponse<Void>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad(s) created and submitted for review |  -  |
+| **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
@@ -169,7 +171,7 @@ ApiResponse<Void>
 
 ## createCtwaAd
 
-> CreateCtwaAd201Response createCtwaAd(ctwaAdRequestBody)
+> CreateMessagingAd201Response createCtwaAd(ctwaAdRequestBody)
 
 Create Click-to-WhatsApp ad (deprecated)
 
@@ -198,7 +200,7 @@ public class Example {
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CtwaAdRequestBody ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
         try {
-            CreateCtwaAd201Response result = apiInstance.createCtwaAd(ctwaAdRequestBody);
+            CreateMessagingAd201Response result = apiInstance.createCtwaAd(ctwaAdRequestBody);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createCtwaAd");
@@ -220,7 +222,7 @@ public class Example {
 
 ### Return type
 
-[**CreateCtwaAd201Response**](CreateCtwaAd201Response.md)
+[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
 
 
 ### Authorization
@@ -245,7 +247,7 @@ public class Example {
 
 ## createCtwaAdWithHttpInfo
 
-> ApiResponse<CreateCtwaAd201Response> createCtwaAd createCtwaAdWithHttpInfo(ctwaAdRequestBody)
+> ApiResponse<CreateMessagingAd201Response> createCtwaAd createCtwaAdWithHttpInfo(ctwaAdRequestBody)
 
 Create Click-to-WhatsApp ad (deprecated)
 
@@ -275,7 +277,7 @@ public class Example {
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CtwaAdRequestBody ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
         try {
-            ApiResponse<CreateCtwaAd201Response> response = apiInstance.createCtwaAdWithHttpInfo(ctwaAdRequestBody);
+            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createCtwaAdWithHttpInfo(ctwaAdRequestBody);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -299,7 +301,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateCtwaAd201Response**](CreateCtwaAd201Response.md)>
+ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 
 
 ### Authorization
@@ -325,7 +327,7 @@ ApiResponse<[**CreateCtwaAd201Response**](CreateCtwaAd201Response.md)>
 
 ## createMessagingAd
 
-> void createMessagingAd(createMessagingAdRequest)
+> CreateMessagingAd201Response createMessagingAd(createMessagingAdRequest)
 
 Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 
@@ -354,7 +356,8 @@ public class Example {
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
         try {
-            apiInstance.createMessagingAd(createMessagingAdRequest);
+            CreateMessagingAd201Response result = apiInstance.createMessagingAd(createMessagingAdRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createMessagingAd");
             System.err.println("Status code: " + e.getCode());
@@ -375,8 +378,8 @@ public class Example {
 
 ### Return type
 
+[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -390,7 +393,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad(s) created and submitted for review |  -  |
+| **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
@@ -400,7 +403,7 @@ null (empty response body)
 
 ## createMessagingAdWithHttpInfo
 
-> ApiResponse<Void> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest)
+> ApiResponse<CreateMessagingAd201Response> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest)
 
 Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 
@@ -430,9 +433,10 @@ public class Example {
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest);
+            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createMessagingAd");
             System.err.println("Status code: " + e.getCode());
@@ -453,8 +457,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -468,7 +472,7 @@ ApiResponse<Void>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad(s) created and submitted for review |  -  |
+| **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |

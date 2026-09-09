@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   BulkUpdateAdCampaignStatus200Response.JSON_PROPERTY_TOTALS,
   BulkUpdateAdCampaignStatus200Response.JSON_PROPERTY_RESULTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:22:44.956394475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:59:11.475110767Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUpdateAdCampaignStatus200Response {
   /**
    * Gets or Sets status

@@ -30,10 +30,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetGoogleBusinessLocationDetails200ResponsePhoneNumbers;
 import dev.zernio.model.GetGoogleBusinessLocationDetails200ResponseSpecialHours;
+import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions;
 import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestCategories;
+import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestLatlng;
+import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner;
+import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestOpenInfo;
 import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestProfile;
 import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestRegularHours;
+import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestServiceArea;
 import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner;
+import dev.zernio.model.UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,9 +58,18 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_WEBSITE_URI,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_PHONE_NUMBERS,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_CATEGORIES,
-  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SERVICE_ITEMS
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SERVICE_ITEMS,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_TITLE,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_STORE_CODE,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_LABELS,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_STOREFRONT_ADDRESS,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SERVICE_AREA,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_OPEN_INFO,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_MORE_HOURS,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_LATLNG,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_AD_WORDS_LOCATION_EXTENSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:22:44.956394475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:59:11.475110767Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequest {
   public static final String JSON_PROPERTY_UPDATE_MASK = "updateMask";
   @javax.annotation.Nonnull
@@ -87,6 +102,42 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
   public static final String JSON_PROPERTY_SERVICE_ITEMS = "serviceItems";
   @javax.annotation.Nullable
   private List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TITLE = "title";
+  @javax.annotation.Nullable
+  private String title;
+
+  public static final String JSON_PROPERTY_STORE_CODE = "storeCode";
+  @javax.annotation.Nullable
+  private String storeCode;
+
+  public static final String JSON_PROPERTY_LABELS = "labels";
+  @javax.annotation.Nullable
+  private List<String> labels = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_STOREFRONT_ADDRESS = "storefrontAddress";
+  @javax.annotation.Nullable
+  private UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress storefrontAddress;
+
+  public static final String JSON_PROPERTY_SERVICE_AREA = "serviceArea";
+  @javax.annotation.Nullable
+  private UpdateGoogleBusinessLocationDetailsRequestServiceArea serviceArea;
+
+  public static final String JSON_PROPERTY_OPEN_INFO = "openInfo";
+  @javax.annotation.Nullable
+  private UpdateGoogleBusinessLocationDetailsRequestOpenInfo openInfo;
+
+  public static final String JSON_PROPERTY_MORE_HOURS = "moreHours";
+  @javax.annotation.Nullable
+  private List<UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner> moreHours = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_LATLNG = "latlng";
+  @javax.annotation.Nullable
+  private UpdateGoogleBusinessLocationDetailsRequestLatlng latlng;
+
+  public static final String JSON_PROPERTY_AD_WORDS_LOCATION_EXTENSIONS = "adWordsLocationExtensions";
+  @javax.annotation.Nullable
+  private UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions adWordsLocationExtensions;
 
   public UpdateGoogleBusinessLocationDetailsRequest() { 
   }
@@ -290,6 +341,238 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
     this.serviceItems = serviceItems;
   }
 
+
+  public UpdateGoogleBusinessLocationDetailsRequest title(@javax.annotation.Nullable String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * Business name. Use updateMask&#x3D;&#39;title&#39;.
+   * @return title
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTitle() {
+    return title;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTitle(@javax.annotation.Nullable String title) {
+    this.title = title;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest storeCode(@javax.annotation.Nullable String storeCode) {
+    this.storeCode = storeCode;
+    return this;
+  }
+
+  /**
+   * External store identifier, unique within the account. Use updateMask&#x3D;&#39;storeCode&#39;.
+   * @return storeCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STORE_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getStoreCode() {
+    return storeCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STORE_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStoreCode(@javax.annotation.Nullable String storeCode) {
+    this.storeCode = storeCode;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest labels(@javax.annotation.Nullable List<String> labels) {
+    this.labels = labels;
+    return this;
+  }
+
+  public UpdateGoogleBusinessLocationDetailsRequest addLabelsItem(String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new ArrayList<>();
+    }
+    this.labels.add(labelsItem);
+    return this;
+  }
+
+  /**
+   * Free-form, internal-only labels for grouping (1-255 characters each). Use updateMask&#x3D;&#39;labels&#39;.
+   * @return labels
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LABELS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getLabels() {
+    return labels;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LABELS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLabels(@javax.annotation.Nullable List<String> labels) {
+    this.labels = labels;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest storefrontAddress(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress storefrontAddress) {
+    this.storefrontAddress = storefrontAddress;
+    return this;
+  }
+
+  /**
+   * Get storefrontAddress
+   * @return storefrontAddress
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STOREFRONT_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress getStorefrontAddress() {
+    return storefrontAddress;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STOREFRONT_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStorefrontAddress(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress storefrontAddress) {
+    this.storefrontAddress = storefrontAddress;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest serviceArea(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestServiceArea serviceArea) {
+    this.serviceArea = serviceArea;
+    return this;
+  }
+
+  /**
+   * Get serviceArea
+   * @return serviceArea
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_AREA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateGoogleBusinessLocationDetailsRequestServiceArea getServiceArea() {
+    return serviceArea;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_AREA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServiceArea(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestServiceArea serviceArea) {
+    this.serviceArea = serviceArea;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest openInfo(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestOpenInfo openInfo) {
+    this.openInfo = openInfo;
+    return this;
+  }
+
+  /**
+   * Get openInfo
+   * @return openInfo
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPEN_INFO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateGoogleBusinessLocationDetailsRequestOpenInfo getOpenInfo() {
+    return openInfo;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OPEN_INFO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOpenInfo(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestOpenInfo openInfo) {
+    this.openInfo = openInfo;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest moreHours(@javax.annotation.Nullable List<UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner> moreHours) {
+    this.moreHours = moreHours;
+    return this;
+  }
+
+  public UpdateGoogleBusinessLocationDetailsRequest addMoreHoursItem(UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner moreHoursItem) {
+    if (this.moreHours == null) {
+      this.moreHours = new ArrayList<>();
+    }
+    this.moreHours.add(moreHoursItem);
+    return this;
+  }
+
+  /**
+   * Additional hours for specific services (delivery, drive-through, etc.). Use updateMask&#x3D;&#39;moreHours&#39;.
+   * @return moreHours
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MORE_HOURS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner> getMoreHours() {
+    return moreHours;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MORE_HOURS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMoreHours(@javax.annotation.Nullable List<UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner> moreHours) {
+    this.moreHours = moreHours;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest latlng(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestLatlng latlng) {
+    this.latlng = latlng;
+    return this;
+  }
+
+  /**
+   * Get latlng
+   * @return latlng
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LATLNG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateGoogleBusinessLocationDetailsRequestLatlng getLatlng() {
+    return latlng;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LATLNG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLatlng(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestLatlng latlng) {
+    this.latlng = latlng;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest adWordsLocationExtensions(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions adWordsLocationExtensions) {
+    this.adWordsLocationExtensions = adWordsLocationExtensions;
+    return this;
+  }
+
+  /**
+   * Get adWordsLocationExtensions
+   * @return adWordsLocationExtensions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_WORDS_LOCATION_EXTENSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions getAdWordsLocationExtensions() {
+    return adWordsLocationExtensions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_WORDS_LOCATION_EXTENSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdWordsLocationExtensions(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions adWordsLocationExtensions) {
+    this.adWordsLocationExtensions = adWordsLocationExtensions;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -353,13 +636,22 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
         Objects.equals(this.websiteUri, updateGoogleBusinessLocationDetailsRequest.websiteUri) &&
         Objects.equals(this.phoneNumbers, updateGoogleBusinessLocationDetailsRequest.phoneNumbers) &&
         Objects.equals(this.categories, updateGoogleBusinessLocationDetailsRequest.categories) &&
-        Objects.equals(this.serviceItems, updateGoogleBusinessLocationDetailsRequest.serviceItems)&&
+        Objects.equals(this.serviceItems, updateGoogleBusinessLocationDetailsRequest.serviceItems) &&
+        Objects.equals(this.title, updateGoogleBusinessLocationDetailsRequest.title) &&
+        Objects.equals(this.storeCode, updateGoogleBusinessLocationDetailsRequest.storeCode) &&
+        Objects.equals(this.labels, updateGoogleBusinessLocationDetailsRequest.labels) &&
+        Objects.equals(this.storefrontAddress, updateGoogleBusinessLocationDetailsRequest.storefrontAddress) &&
+        Objects.equals(this.serviceArea, updateGoogleBusinessLocationDetailsRequest.serviceArea) &&
+        Objects.equals(this.openInfo, updateGoogleBusinessLocationDetailsRequest.openInfo) &&
+        Objects.equals(this.moreHours, updateGoogleBusinessLocationDetailsRequest.moreHours) &&
+        Objects.equals(this.latlng, updateGoogleBusinessLocationDetailsRequest.latlng) &&
+        Objects.equals(this.adWordsLocationExtensions, updateGoogleBusinessLocationDetailsRequest.adWordsLocationExtensions)&&
         Objects.equals(this.additionalProperties, updateGoogleBusinessLocationDetailsRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updateMask, regularHours, specialHours, profile, websiteUri, phoneNumbers, categories, serviceItems, additionalProperties);
+    return Objects.hash(updateMask, regularHours, specialHours, profile, websiteUri, phoneNumbers, categories, serviceItems, title, storeCode, labels, storefrontAddress, serviceArea, openInfo, moreHours, latlng, adWordsLocationExtensions, additionalProperties);
   }
 
   @Override
@@ -374,6 +666,15 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    serviceItems: ").append(toIndentedString(serviceItems)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    storeCode: ").append(toIndentedString(storeCode)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    storefrontAddress: ").append(toIndentedString(storefrontAddress)).append("\n");
+    sb.append("    serviceArea: ").append(toIndentedString(serviceArea)).append("\n");
+    sb.append("    openInfo: ").append(toIndentedString(openInfo)).append("\n");
+    sb.append("    moreHours: ").append(toIndentedString(moreHours)).append("\n");
+    sb.append("    latlng: ").append(toIndentedString(latlng)).append("\n");
+    sb.append("    adWordsLocationExtensions: ").append(toIndentedString(adWordsLocationExtensions)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -465,6 +766,60 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `title` to the URL query string
+    if (getTitle() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stitle%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTitle()))));
+    }
+
+    // add `storeCode` to the URL query string
+    if (getStoreCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstoreCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStoreCode()))));
+    }
+
+    // add `labels` to the URL query string
+    if (getLabels() != null) {
+      for (int i = 0; i < getLabels().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%slabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getLabels().get(i)))));
+      }
+    }
+
+    // add `storefrontAddress` to the URL query string
+    if (getStorefrontAddress() != null) {
+      joiner.add(getStorefrontAddress().toUrlQueryString(prefix + "storefrontAddress" + suffix));
+    }
+
+    // add `serviceArea` to the URL query string
+    if (getServiceArea() != null) {
+      joiner.add(getServiceArea().toUrlQueryString(prefix + "serviceArea" + suffix));
+    }
+
+    // add `openInfo` to the URL query string
+    if (getOpenInfo() != null) {
+      joiner.add(getOpenInfo().toUrlQueryString(prefix + "openInfo" + suffix));
+    }
+
+    // add `moreHours` to the URL query string
+    if (getMoreHours() != null) {
+      for (int i = 0; i < getMoreHours().size(); i++) {
+        if (getMoreHours().get(i) != null) {
+          joiner.add(getMoreHours().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smoreHours%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `latlng` to the URL query string
+    if (getLatlng() != null) {
+      joiner.add(getLatlng().toUrlQueryString(prefix + "latlng" + suffix));
+    }
+
+    // add `adWordsLocationExtensions` to the URL query string
+    if (getAdWordsLocationExtensions() != null) {
+      joiner.add(getAdWordsLocationExtensions().toUrlQueryString(prefix + "adWordsLocationExtensions" + suffix));
     }
 
     return joiner.toString();
