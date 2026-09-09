@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCarouselCardsInner.JSON_PROPERTY_DESCRIPTION,
   CreateStandaloneAdRequestCarouselCardsInner.JSON_PROPERTY_CALL_TO_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:39:14.921349149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCarouselCardsInner {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nonnull
@@ -95,7 +95,7 @@ public class CreateStandaloneAdRequestCarouselCardsInner {
   }
 
   /**
-   * Card destination URL. Defaults to the top-level linkUrl.
+   * Card destination URL. Defaults to the top-level linkUrl, or Meta&#39;s lead-form link when leadGenFormId is set and neither is provided.
    * @return linkUrl
    */
   @javax.annotation.Nullable

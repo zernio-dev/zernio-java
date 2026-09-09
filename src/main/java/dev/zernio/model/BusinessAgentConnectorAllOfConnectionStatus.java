@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BusinessAgentConnectorAllOfConnectionStatus.JSON_PROPERTY_STATUS,
   BusinessAgentConnectorAllOfConnectionStatus.JSON_PROPERTY_ERROR_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:39:14.921349149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentConnectorAllOfConnectionStatus {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

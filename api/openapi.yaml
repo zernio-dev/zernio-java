@@ -31484,7 +31484,7 @@ paths:
         directly, independent of the `ads` rollup GET /v1/ads/tree uses, so a
         newly created standalone ad group with no ad yet (POST /v1/ads/ad-sets,
         Google only) is visible here even though it is invisible in the tree
-        until an ad joins it via `existingAdGroupId`. Returns at most 500
+        until an ad joins it via `adSetId` on POST /v1/ads/create. Returns at most 500
         rows, newest first.
       operationId: listAdSets
       parameters:
@@ -31552,7 +31552,7 @@ paths:
     post:
       description: |-
         Google Ads compliance row C.190: creates an ad group WITHOUT an ad,
-        under an existing campaign. Ads join it later via `existingAdGroupId`
+        under an existing campaign. Ads join it later via `adSetId`
         on POST /v1/ads/create. Google only; every other platform returns 501.
 
         Created `PAUSED` unless `status: ACTIVE`. The new ad group has no ad
@@ -35408,7 +35408,7 @@ paths:
 
         - Legacy single-creative shape (all platforms, the default).
         - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting.
-        - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.
+        - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.
 
         Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.
 
@@ -96049,7 +96049,8 @@ components:
           format: uri
           type: string
         linkUrl:
-          description: Card destination URL. Defaults to the top-level linkUrl.
+          description: "Card destination URL. Defaults to the top-level linkUrl, or\
+            \ Meta's lead-form link when leadGenFormId is set and neither is provided."
           format: uri
           type: string
         headline:
@@ -96800,10 +96801,11 @@ components:
             \ Forms must be owned by the sponsoredAccount (not the organization) for\
             \ the URN to resolve. Also required on every Meta ATTACH (`adSetId`) call\
             \ that targets a lead ad set (the form attaches per-ad; Meta rejects a\
-            \ formless ad in a lead ad set). Both `placementAssets` (per-placement\
-            \ creative) and `dynamicCreative` (multi-text / multi-asset pool, e.g.\
-            \ multiple headlines and primary texts) ARE supported on Meta instant-form\
-            \ lead ads."
+            \ formless ad in a lead ad set). `placementAssets`, `dynamicCreative`\
+            \ and `carouselCards` (Meta multi-card Instant-Form lead ad; `linkUrl`\
+            \ and per-card `linkUrl` are optional and forwarded as real destinations\
+            \ when sent, falling back to Meta's lead-form link when omitted) ARE supported\
+            \ on Meta instant-form lead ads."
           type: string
         imageUrl:
           description: "Image creative for Meta/Google/Pinterest/LinkedIn on legacy\
@@ -96854,30 +96856,46 @@ components:
             to build N full ads sharing one ad set: create the first ad
             via the normal shape, then attach the rest one call each.
 
-            Supported on Meta (facebook, instagram), TikTok, and
-            LinkedIn. On TikTok the `adSetId` is the ad group ID; the
+            Supported on Meta (facebook, instagram), Google Ads, TikTok,
+            and LinkedIn. On TikTok the `adSetId` is the ad group ID; the
             new ad inherits the ad group's bid + budget + targeting.
             On LinkedIn the `adSetId` is the LinkedIn Campaign ID
             (numeric); we attach a new Creative to that Campaign, so
             the Campaign's `platformSpecificData` bidding, targeting,
             budget and schedule are inherited (passing those fields
             returns 400).
+
+            On Google Ads the `adSetId` is the AD GROUP id. `goal` is
+            still REQUIRED even though budget and targeting are
+            inherited from the ad group. Send `campaignType: "search"`
+            to attach into a Search ad group, including one created by
+            `POST /v1/ads/ad-sets` (always SEARCH_STANDARD): without it
+            the request is treated as Display and requires
+            `images.landscape` + `images.square` + `businessName`, and
+            the resulting display creative does not match a Search ad
+            group.
+            `budgetAmount`/`budgetType` and bidding fields
+            (`bidStrategy`, `bidAmount`, `portfolioBidStrategyId`)
+            return 400 on this shape; the ad group already owns them.
           type: string
         existingCampaignId:
           description: |
-            Meta + LinkedIn. On Meta: add the new ad set under this
-            EXISTING campaign instead of creating a new one
-            (multi-ad-set audience testing). The new ad set's budget
-            is matched to the campaign's mode automatically: for a
-            CBO campaign (campaign-level budget) omit
+            Meta, Google Ads, and LinkedIn. On Meta: add the new ad
+            set under this EXISTING campaign instead of creating a new
+            one (multi-ad-set audience testing). The new ad set's
+            budget is matched to the campaign's mode automatically:
+            for a CBO campaign (campaign-level budget) omit
             `budgetAmount`/`budgetType`, since the campaign owns the
             budget; for an ABO campaign pass them (they go on the new
             ad set). On LinkedIn: create a new Campaign (and its
-            Creative) under this EXISTING CampaignGroup. On failure
-            only the entities we authored are cleaned up; the
-            pre-existing parent is left untouched and is never
-            (re)activated. Mutually exclusive with `adSetId` and
-            `creatives[]`.
+            Creative) under this EXISTING CampaignGroup. On Google
+            Ads: create a new ad group under this EXISTING campaign;
+            the new ad group inherits the campaign's budget, so omit
+            `budgetAmount`/`budgetType` (and any bidding field), or
+            the request returns 400. On failure only the entities we
+            authored are cleaned up; the pre-existing parent is left
+            untouched and is never (re)activated. Mutually exclusive
+            with `adSetId` and `creatives[]`.
           type: string
         existingCreativeId:
           description: |
@@ -97114,12 +97132,16 @@ components:
           description: |
             Meta only. Hand-built carousel: 2-10 authored cards in DETERMINISTIC order, mapped to
             the creative's `link_data.child_attachments`. Unlike `dynamicCreative`,
-            you control the card order and per-card copy/link. Requires top-level `body`,
-            `linkUrl` and `callToAction`. Those become the ad's own Destination and
-            button (`link_data.link` / `link_data.call_to_action`), and double as the per-card fallback when a card omits its own.
+            you control the card order and per-card copy/link. Requires top-level `body`
+            and `callToAction`; `linkUrl` is also required UNLESS `leadGenFormId` is set. Those
+            become the ad's own Destination and button (`link_data.link` / `link_data.call_to_action`),
+            and double as the per-card fallback when a card omits its own.
             Mutually exclusive with `imageUrl`/`video`, `creatives[]`, `dynamicCreative`,
-            `placementAssets`, `existingCreativeId`, `adSetId`, `leadGenFormId` and goal
-            `catalog_sales`.
+            `placementAssets`, `existingCreativeId`, `adSetId` and goal
+            `catalog_sales`. Combines with `leadGenFormId` to build a carousel Instant-Form
+            lead ad: `linkUrl` and per-card `linkUrl` become OPTIONAL and, when sent, are
+            forwarded as the real card and top-level destinations; when omitted, the
+            destination falls back to Meta's lead-form link.
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_carouselCards_inner"
           maxItems: 10
