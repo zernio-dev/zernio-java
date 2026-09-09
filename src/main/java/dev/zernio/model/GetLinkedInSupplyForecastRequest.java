@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   GetLinkedInSupplyForecastRequest.JSON_PROPERTY_ENABLE_AUDIENCE_EXPANSION,
   GetLinkedInSupplyForecastRequest.JSON_PROPERTY_CONNECTED_TELEVISION_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:17:07.976972884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInSupplyForecastRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

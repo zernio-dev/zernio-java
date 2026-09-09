@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AppealSmsRegistration200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:17:07.976972884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AppealSmsRegistration200Response {
   /**
    * Gets or Sets status

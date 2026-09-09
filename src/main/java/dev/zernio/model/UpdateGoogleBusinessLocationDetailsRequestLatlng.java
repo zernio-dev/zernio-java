@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequestLatlng.JSON_PROPERTY_LATITUDE,
   UpdateGoogleBusinessLocationDetailsRequestLatlng.JSON_PROPERTY_LONGITUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:17:07.976972884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequestLatlng {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   @javax.annotation.Nullable

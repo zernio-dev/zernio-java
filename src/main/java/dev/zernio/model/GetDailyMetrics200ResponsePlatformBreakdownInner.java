@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetDailyMetrics200ResponsePlatformBreakdownInner.JSON_PROPERTY_CLICKS,
   GetDailyMetrics200ResponsePlatformBreakdownInner.JSON_PROPERTY_VIEWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:17:07.976972884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetDailyMetrics200ResponsePlatformBreakdownInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

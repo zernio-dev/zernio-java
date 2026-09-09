@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   BusinessAgentBudget.JSON_PROPERTY_TIME_WINDOW,
   BusinessAgentBudget.JSON_PROPERTY_MAX_BUDGET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:17:07.976972884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentBudget {
   public static final String JSON_PROPERTY_BUDGET_ID = "budget_id";
   @javax.annotation.Nullable
