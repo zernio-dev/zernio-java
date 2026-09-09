@@ -35,17 +35,58 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SendInboxMessage400Response.JSON_PROPERTY_ERROR,
+  SendInboxMessage400Response.JSON_PROPERTY_TYPE,
   SendInboxMessage400Response.JSON_PROPERTY_CODE,
+  SendInboxMessage400Response.JSON_PROPERTY_PLATFORM,
   SendInboxMessage400Response.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T12:08:25.034111231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:18:46.208303963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
 
   /**
-   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
+   * Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures.
+   */
+  public enum TypeEnum {
+    PLATFORM_ERROR(String.valueOf("platform_error")),
+    
+    INVALID_REQUEST_ERROR(String.valueOf("invalid_request_error"));
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  @javax.annotation.Nullable
+  private TypeEnum type;
+
+  /**
+   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError).
    */
   public enum CodeEnum {
     PLATFORM_LIMITATION(String.valueOf("PLATFORM_LIMITATION")),
@@ -56,7 +97,9 @@ public class SendInboxMessage400Response {
     
     DIRECT_SEND_LIMITED(String.valueOf("DIRECT_SEND_LIMITED")),
     
-    DIRECT_SEND_BLOCKED(String.valueOf("DIRECT_SEND_BLOCKED"));
+    DIRECT_SEND_BLOCKED(String.valueOf("DIRECT_SEND_BLOCKED")),
+    
+    PLATFORM_API_ERROR(String.valueOf("platform_api_error"));
 
     private String value;
 
@@ -89,6 +132,10 @@ public class SendInboxMessage400Response {
   @javax.annotation.Nullable
   private CodeEnum code;
 
+  public static final String JSON_PROPERTY_PLATFORM = "platform";
+  @javax.annotation.Nullable
+  private String platform;
+
   public static final String JSON_PROPERTY_PLATFORM_ERROR = "platformError";
   @javax.annotation.Nullable
   private SendInboxMessage400ResponsePlatformError platformError;
@@ -120,13 +167,37 @@ public class SendInboxMessage400Response {
   }
 
 
+  public SendInboxMessage400Response type(@javax.annotation.Nullable TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures.
+   * @return type
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(@javax.annotation.Nullable TypeEnum type) {
+    this.type = type;
+  }
+
+
   public SendInboxMessage400Response code(@javax.annotation.Nullable CodeEnum code) {
     this.code = code;
     return this;
   }
 
   /**
-   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
+   * Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError).
    * @return code
    */
   @javax.annotation.Nullable
@@ -141,6 +212,30 @@ public class SendInboxMessage400Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCode(@javax.annotation.Nullable CodeEnum code) {
     this.code = code;
+  }
+
+
+  public SendInboxMessage400Response platform(@javax.annotation.Nullable String platform) {
+    this.platform = platform;
+    return this;
+  }
+
+  /**
+   * Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook).
+   * @return platform
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatform() {
+    return platform;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatform(@javax.annotation.Nullable String platform) {
+    this.platform = platform;
   }
 
 
@@ -181,13 +276,15 @@ public class SendInboxMessage400Response {
     }
     SendInboxMessage400Response sendInboxMessage400Response = (SendInboxMessage400Response) o;
     return Objects.equals(this.error, sendInboxMessage400Response.error) &&
+        Objects.equals(this.type, sendInboxMessage400Response.type) &&
         Objects.equals(this.code, sendInboxMessage400Response.code) &&
+        Objects.equals(this.platform, sendInboxMessage400Response.platform) &&
         Objects.equals(this.platformError, sendInboxMessage400Response.platformError);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, code, platformError);
+    return Objects.hash(error, type, code, platform, platformError);
   }
 
   @Override
@@ -195,7 +292,9 @@ public class SendInboxMessage400Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessage400Response {\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    platformError: ").append(toIndentedString(platformError)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -249,9 +348,19 @@ public class SendInboxMessage400Response {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
     }
 
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
     // add `code` to the URL query string
     if (getCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCode()))));
+    }
+
+    // add `platform` to the URL query string
+    if (getPlatform() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
     }
 
     // add `platformError` to the URL query string

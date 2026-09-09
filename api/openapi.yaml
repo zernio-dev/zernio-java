@@ -17512,17 +17512,27 @@ paths:
           description: "Bad request (e.g., attachment not supported for platform,\
             \ validation error, category combined with a template or attachment, category\
             \ used on a non-WhatsApp account, or the WhatsApp Business Account is\
-            \ not eligible for Direct Send)"
+            \ not eligible for Direct Send). Meta rejections (e.g. sending outside\
+            \ the messaging window) arrive with code platform_api_error, type platform_error,\
+            \ and platform + platformError set."
         "500":
           description: "The platform rejected or failed the send. Zernio does NOT\
             \ retry a send internally: a message send is not idempotent, and an opaque\
             \ upstream failure (for example WhatsApp 131000) does not say whether\
             \ the message was delivered. Retrying this request may deliver the message\
-            \ twice. Retry only if your use case tolerates a duplicate."
+            \ twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures\
+            \ also arrive as a platform_error envelope (code platform_api_error, with\
+            \ platform and platformError set)."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Inbox addon required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Inbox addon required, or Meta rejected the send outside the\
+            \ messaging window (type platform_error, code platform_api_error, platform,\
+            \ platformError with code/subcode/fbtraceId/type)"
         "409":
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
@@ -32489,9 +32499,11 @@ paths:
           list are removed); a kind left out is untouched. Any other `targeting` field
           returns 400: Google cannot mutate broad targeting post-create without recreating
           the campaign. `creative` returns 501.
-        - **LinkedIn**: status, budget, targeting (geo countries only, applied to the
-          LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a
-          replacement inline creative on the same campaign, pauses the old one).
+        - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),
+          the B2B facets, and audience segments; applied to the LinkedIn Campaign via
+          PARTIAL_UPDATE, and REPLACES the campaign's entire targetingCriteria, not a merge),
+          and creative (uploads new media, creates a replacement inline creative on the same
+          campaign, pauses the old one).
         - **Pinterest / X / OpenAI Ads**: status + budget only. Sending
           `targeting` or `creative` returns 501 with code `unsupported_platform_operation`.
           OpenAI Ads budget is lifetime-only (see `budget.type` below).
@@ -32544,8 +32556,9 @@ paths:
                 $ref: "#/components/schemas/updateAd_200_response"
           description: Ad updated
         "400":
-          description: "Invalid status transition, budget below minimum, or a LinkedIn\
-            \ creative update without imageUrl or videoUrl"
+          description: "Invalid status transition, budget below minimum, a LinkedIn\
+            \ creative update without imageUrl or videoUrl, or a LinkedIn targeting\
+            \ update without countries or regions"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -74101,8 +74114,18 @@ components:
           fbtraceId: fbtraceId
           type: type
         error: error
+        type: platform_error
+        platform: platform
       properties:
         error:
+          type: string
+        type:
+          description: "Present on Meta pass-through rejections: platform_error when\
+            \ Meta rejected the send (see platform/platformError below), invalid_request_error\
+            \ for validation failures."
+          enum:
+          - platform_error
+          - invalid_request_error
           type: string
         code:
           description: "Stable machine-readable reason. PLATFORM_LIMITATION covers\
@@ -74111,13 +74134,18 @@ components:
             \ no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED\
             \ mean the WhatsApp Business Account needs Meta to grant or restore Direct\
             \ Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its\
-            \ own."
+            \ own; platform_api_error means Meta itself rejected the send (see platformError)."
           enum:
           - PLATFORM_LIMITATION
           - MISSING_PARTICIPANT
           - DIRECT_SEND_NOT_ELIGIBLE
           - DIRECT_SEND_LIMITED
           - DIRECT_SEND_BLOCKED
+          - platform_api_error
+          type: string
+        platform:
+          description: "Present alongside code platform_api_error. The platform that\
+            \ rejected the send (e.g. instagram, facebook)."
           type: string
         platformError:
           $ref: "#/components/schemas/sendInboxMessage_400_response_platformError"
@@ -92521,8 +92549,8 @@ components:
     updateAd_request_targeting:
       description: |
         Meta + TikTok (demographics/interests), Google (keyword and device
-        bid adjustment edits only), and LinkedIn (geo countries). Pinterest / X
-        return 501.
+        bid adjustment edits only), and LinkedIn (countries or regions required).
+        Pinterest / X return 501.
       properties:
         keywords:
           description: |

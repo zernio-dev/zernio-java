@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
+ * Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (countries or regions required). Pinterest / X return 501. 
  */
 @JsonPropertyOrder({
   UpdateAdRequestTargeting.JSON_PROPERTY_KEYWORDS,
@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS,
   UpdateAdRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T12:08:25.034111231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:18:46.208303963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable

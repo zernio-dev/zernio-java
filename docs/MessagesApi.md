@@ -1896,10 +1896,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Message sent |  -  |
-| **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send) |  -  |
-| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. |  -  |
+| **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send). Meta rejections (e.g. sending outside the messaging window) arrive with code platform_api_error, type platform_error, and platform + platformError set. |  -  |
+| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
@@ -1979,10 +1979,10 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Message sent |  -  |
-| **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send) |  -  |
-| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. |  -  |
+| **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send). Meta rejections (e.g. sending outside the messaging window) arrive with code platform_api_error, type platform_error, and platform + platformError set. |  -  |
+| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
