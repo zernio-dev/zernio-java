@@ -10,7 +10,7 @@ WhatsApp only. Who answers a conversation changed: Meta Business Agent took it o
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Stable webhook event ID |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
-|**conversation** | [**WebhookPayloadConversationStartedConversation**](WebhookPayloadConversationStartedConversation.md) |  |  |
+|**conversation** | [**InboxWebhookConversationDetail**](InboxWebhookConversationDetail.md) |  |  |
 |**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |
 |**control** | [**WebhookPayloadConversationControlChangedControl**](WebhookPayloadConversationControlChangedControl.md) |  |  |
 |**changedAt** | **OffsetDateTime** |  |  |

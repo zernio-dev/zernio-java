@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-09T14:49:26.468869477Z[Etc/UTC]
+- Build date: 2026-09-09T15:23:23.334871925Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1706,7 +1706,6 @@ Class | Method | HTTP request | Description
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)
- - [Conversation](docs/Conversation.md)
  - [ConversionAction](docs/ConversionAction.md)
  - [ConversionActionTagSnippetsInner](docs/ConversionActionTagSnippetsInner.md)
  - [ConversionDestination](docs/ConversionDestination.md)
@@ -2382,6 +2381,7 @@ Class | Method | HTTP request | Description
  - [InboxMessageEditHistoryEntry](docs/InboxMessageEditHistoryEntry.md)
  - [InboxWebhookAccount](docs/InboxWebhookAccount.md)
  - [InboxWebhookConversation](docs/InboxWebhookConversation.md)
+ - [InboxWebhookConversationDetail](docs/InboxWebhookConversationDetail.md)
  - [InboxWebhookMessage](docs/InboxWebhookMessage.md)
  - [InboxWebhookMessageAttachmentsInner](docs/InboxWebhookMessageAttachmentsInner.md)
  - [InboxWebhookMessageSender](docs/InboxWebhookMessageSender.md)
@@ -3300,7 +3300,6 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadConversationControlChanged](docs/WebhookPayloadConversationControlChanged.md)
  - [WebhookPayloadConversationControlChangedControl](docs/WebhookPayloadConversationControlChangedControl.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
- - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
  - [WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)
  - [WebhookPayloadLead](docs/WebhookPayloadLead.md)
  - [WebhookPayloadLeadAccount](docs/WebhookPayloadLeadAccount.md)

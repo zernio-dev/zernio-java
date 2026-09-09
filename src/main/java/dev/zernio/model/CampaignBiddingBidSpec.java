@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CampaignBiddingBidSpec.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CampaignBiddingBidSpec.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T15:23:23.334871925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignBiddingBidSpec {
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable

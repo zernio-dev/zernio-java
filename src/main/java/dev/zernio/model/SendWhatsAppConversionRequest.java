@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppConversionRequest.JSON_PROPERTY_EXTERNAL_ID,
   SendWhatsAppConversionRequest.JSON_PROPERTY_TEST_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T15:23:23.334871925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppConversionRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

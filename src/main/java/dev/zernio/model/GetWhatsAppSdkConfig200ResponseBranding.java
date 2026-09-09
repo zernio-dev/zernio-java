@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppSdkConfig200ResponseBranding.JSON_PROPERTY_PRIMARY_COLOR,
   GetWhatsAppSdkConfig200ResponseBranding.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T15:23:23.334871925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppSdkConfig200ResponseBranding {
   public static final String JSON_PROPERTY_BRAND_NAME = "brandName";
   private JsonNullable<String> brandName = JsonNullable.<String>undefined();

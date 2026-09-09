@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   BusinessAgentBusinessInformation.JSON_PROPERTY_BUSINESS_DESCRIPTION,
   BusinessAgentBusinessInformation.JSON_PROPERTY_CONTACT_INFO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T15:23:23.334871925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentBusinessInformation {
   public static final String JSON_PROPERTY_PAYMENT_METHOD = "payment_method";
   @javax.annotation.Nullable

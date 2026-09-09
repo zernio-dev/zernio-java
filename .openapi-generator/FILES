@@ -247,7 +247,6 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
-docs/Conversation.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
@@ -935,6 +934,7 @@ docs/InboxMessageEditAttachment.md
 docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
 docs/InboxWebhookConversation.md
+docs/InboxWebhookConversationDetail.md
 docs/InboxWebhookMessage.md
 docs/InboxWebhookMessageAttachmentsInner.md
 docs/InboxWebhookMessageSender.md
@@ -1880,7 +1880,6 @@ docs/WebhookPayloadCommentPost.md
 docs/WebhookPayloadConversationControlChanged.md
 docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
-docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
@@ -2315,7 +2314,6 @@ src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignupRequest.java
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
 src/main/java/dev/zernio/model/ConnectedApp.java
-src/main/java/dev/zernio/model/Conversation.java
 src/main/java/dev/zernio/model/ConversionAction.java
 src/main/java/dev/zernio/model/ConversionActionTagSnippetsInner.java
 src/main/java/dev/zernio/model/ConversionDestination.java
@@ -2991,6 +2989,7 @@ src/main/java/dev/zernio/model/InboxMessageEditAttachment.java
 src/main/java/dev/zernio/model/InboxMessageEditHistoryEntry.java
 src/main/java/dev/zernio/model/InboxWebhookAccount.java
 src/main/java/dev/zernio/model/InboxWebhookConversation.java
+src/main/java/dev/zernio/model/InboxWebhookConversationDetail.java
 src/main/java/dev/zernio/model/InboxWebhookMessage.java
 src/main/java/dev/zernio/model/InboxWebhookMessageAttachmentsInner.java
 src/main/java/dev/zernio/model/InboxWebhookMessageSender.java
@@ -3909,7 +3908,6 @@ src/main/java/dev/zernio/model/WebhookPayloadCommentPost.java
 src/main/java/dev/zernio/model/WebhookPayloadConversationControlChanged.java
 src/main/java/dev/zernio/model/WebhookPayloadConversationControlChangedControl.java
 src/main/java/dev/zernio/model/WebhookPayloadConversationStarted.java
-src/main/java/dev/zernio/model/WebhookPayloadConversationStartedConversation.java
 src/main/java/dev/zernio/model/WebhookPayloadExternalPost.java
 src/main/java/dev/zernio/model/WebhookPayloadLead.java
 src/main/java/dev/zernio/model/WebhookPayloadLeadAccount.java
@@ -4027,3 +4025,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/InboxWebhookConversationDetailTest.java

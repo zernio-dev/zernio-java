@@ -25,8 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.InboxWebhookAccount;
+import dev.zernio.model.InboxWebhookConversationDetail;
 import dev.zernio.model.WebhookPayloadConversationControlChangedControl;
-import dev.zernio.model.WebhookPayloadConversationStartedConversation;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversationControlChanged.JSON_PROPERTY_CHANGED_AT,
   WebhookPayloadConversationControlChanged.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T15:23:23.334871925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversationControlChanged {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -90,7 +90,7 @@ public class WebhookPayloadConversationControlChanged {
 
   public static final String JSON_PROPERTY_CONVERSATION = "conversation";
   @javax.annotation.Nonnull
-  private WebhookPayloadConversationStartedConversation conversation;
+  private InboxWebhookConversationDetail conversation;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   @javax.annotation.Nonnull
@@ -159,7 +159,7 @@ public class WebhookPayloadConversationControlChanged {
   }
 
 
-  public WebhookPayloadConversationControlChanged conversation(@javax.annotation.Nonnull WebhookPayloadConversationStartedConversation conversation) {
+  public WebhookPayloadConversationControlChanged conversation(@javax.annotation.Nonnull InboxWebhookConversationDetail conversation) {
     this.conversation = conversation;
     return this;
   }
@@ -171,14 +171,14 @@ public class WebhookPayloadConversationControlChanged {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public WebhookPayloadConversationStartedConversation getConversation() {
+  public InboxWebhookConversationDetail getConversation() {
     return conversation;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConversation(@javax.annotation.Nonnull WebhookPayloadConversationStartedConversation conversation) {
+  public void setConversation(@javax.annotation.Nonnull InboxWebhookConversationDetail conversation) {
     this.conversation = conversation;
   }
 

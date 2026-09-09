@@ -46162,6 +46162,67 @@ components:
       - id
       - platformConversationId
       - status
+    InboxWebhookConversationDetail:
+      description: "The conversation object included in conversation lifecycle webhook\
+        \ payloads (conversation.started, conversation.control_changed)."
+      example:
+        participantId: participantId
+        contactId: contactId
+        platformConversationId: platformConversationId
+        participantPicture: participantPicture
+        id: id
+        participantName: participantName
+        participantUsername: participantUsername
+        platform: instagram
+        status: active
+      properties:
+        id:
+          description: Internal conversation ID
+          type: string
+        platform:
+          enum:
+          - instagram
+          - facebook
+          - telegram
+          - whatsapp
+          - twitter
+          - reddit
+          - bluesky
+          - sms
+          - slack
+          type: string
+        platformConversationId:
+          type: string
+        participantId:
+          description: "Contact's platform identifier (IGSID, PSID, wa_id, etc.)"
+          type: string
+        participantName:
+          type: string
+        participantUsername:
+          description: Contact's handle when the platform exposes one
+          type: string
+        participantPicture:
+          type: string
+        status:
+          enum:
+          - active
+          - archived
+          type: string
+        contactId:
+          description: |
+            Zernio CRM Contact ID for the participant, when one exists. Resolved by
+            joining `participantId` to the ContactChannel collection (same join
+            used by message.*, reaction.received, and call.* webhooks). Best-effort:
+            omitted when no channel matches or `participantId` is absent. Lets
+            integrators seed the CRM straight from `conversation.started` without
+            waiting for the first `message.*` event.
+          type: string
+      required:
+      - id
+      - participantName
+      - platform
+      - platformConversationId
+      - status
     InboxWebhookAccount:
       description: The account context included in inbox webhook payloads.
       example:
@@ -46968,7 +47029,7 @@ components:
           - conversation.started
           type: string
         conversation:
-          $ref: "#/components/schemas/WebhookPayloadConversationStarted_conversation"
+          $ref: "#/components/schemas/InboxWebhookConversationDetail"
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         startedAt:
@@ -47028,7 +47089,7 @@ components:
           - conversation.control_changed
           type: string
         conversation:
-          $ref: "#/components/schemas/WebhookPayloadConversationStarted/properties/conversation"
+          $ref: "#/components/schemas/InboxWebhookConversationDetail"
         account:
           $ref: "#/components/schemas/InboxWebhookAccount"
         control:
@@ -59399,65 +59460,6 @@ components:
           type: string
       required:
       - id
-    conversation:
-      example:
-        participantId: participantId
-        contactId: contactId
-        platformConversationId: platformConversationId
-        participantPicture: participantPicture
-        id: id
-        participantName: participantName
-        participantUsername: participantUsername
-        platform: instagram
-        status: active
-      properties:
-        id:
-          description: Internal conversation ID
-          type: string
-        platform:
-          enum:
-          - instagram
-          - facebook
-          - telegram
-          - whatsapp
-          - twitter
-          - reddit
-          - bluesky
-          - sms
-          - slack
-          type: string
-        platformConversationId:
-          type: string
-        participantId:
-          description: "Contact's platform identifier (IGSID, PSID, wa_id, etc.)"
-          type: string
-        participantName:
-          type: string
-        participantUsername:
-          description: Contact's handle when the platform exposes one
-          type: string
-        participantPicture:
-          type: string
-        status:
-          enum:
-          - active
-          - archived
-          type: string
-        contactId:
-          description: |
-            Zernio CRM Contact ID for the participant, when one exists. Resolved by
-            joining `participantId` to the ContactChannel collection (same join
-            used by message.*, reaction.received, and call.* webhooks). Best-effort:
-            omitted when no channel matches or `participantId` is absent. Lets
-            integrators seed the CRM straight from `conversation.started` without
-            waiting for the first `message.*` event.
-          type: string
-      required:
-      - id
-      - participantName
-      - platform
-      - platformConversationId
-      - status
     validatePostLength_request:
       properties:
         text:
@@ -104650,65 +104652,6 @@ components:
             title/message.
           nullable: true
           type: string
-    WebhookPayloadConversationStarted_conversation:
-      example:
-        participantId: participantId
-        contactId: contactId
-        platformConversationId: platformConversationId
-        participantPicture: participantPicture
-        id: id
-        participantName: participantName
-        participantUsername: participantUsername
-        platform: instagram
-        status: active
-      properties:
-        id:
-          description: Internal conversation ID
-          type: string
-        platform:
-          enum:
-          - instagram
-          - facebook
-          - telegram
-          - whatsapp
-          - twitter
-          - reddit
-          - bluesky
-          - sms
-          - slack
-          type: string
-        platformConversationId:
-          type: string
-        participantId:
-          description: "Contact's platform identifier (IGSID, PSID, wa_id, etc.)"
-          type: string
-        participantName:
-          type: string
-        participantUsername:
-          description: Contact's handle when the platform exposes one
-          type: string
-        participantPicture:
-          type: string
-        status:
-          enum:
-          - active
-          - archived
-          type: string
-        contactId:
-          description: |
-            Zernio CRM Contact ID for the participant, when one exists. Resolved by
-            joining `participantId` to the ContactChannel collection (same join
-            used by message.*, reaction.received, and call.* webhooks). Best-effort:
-            omitted when no channel matches or `participantId` is absent. Lets
-            integrators seed the CRM straight from `conversation.started` without
-            waiting for the first `message.*` event.
-          type: string
-      required:
-      - id
-      - participantName
-      - platform
-      - platformConversationId
-      - status
     WebhookPayloadConversationControlChanged_control:
       example:
         owner: app

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppNumberCountries200ResponseCountriesInner.JSON_PROPERTY_NEEDS_KYC,
   ListWhatsAppNumberCountries200ResponseCountriesInner.JSON_PROPERTY_OUTBOUND_CALLING_AVAILABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:49:26.468869477Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T15:23:23.334871925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppNumberCountries200ResponseCountriesInner {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
