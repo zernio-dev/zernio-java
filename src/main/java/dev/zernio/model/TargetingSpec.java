@@ -64,7 +64,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:18:46.208303963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:43:35.323352073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -887,7 +887,7 @@ public class TargetingSpec {
   }
 
   /**
-   * Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400).
+   * Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400).
    * @return audienceInclude
    */
   @javax.annotation.Nullable

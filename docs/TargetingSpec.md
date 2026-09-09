@@ -29,7 +29,7 @@ Normalized, platform-agnostic ad-targeting spec. Every field is optional, an emp
 |**companySizes** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
 |**seniorities** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
 |**jobFunctions** | **List&lt;String&gt;** | LinkedIn B2B only. |  [optional] |
-|**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400). |  [optional] |
+|**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400). |  [optional] |
 |**audienceExclude** | **List&lt;String&gt;** | Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400). |  [optional] |
 
 
