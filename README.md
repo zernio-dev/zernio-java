@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-09T10:58:52.142594033Z[Etc/UTC]
+- Build date: 2026-09-09T12:08:25.034111231Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1329,6 +1329,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**rejectWhatsAppGroupJoinRequestsWithHttpInfo**](docs/WhatsAppApi.md#rejectWhatsAppGroupJoinRequestsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests
 *WhatsAppApi* | [**removeWhatsAppGroupParticipants**](docs/WhatsAppApi.md#removeWhatsAppGroupParticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants
 *WhatsAppApi* | [**removeWhatsAppGroupParticipantsWithHttpInfo**](docs/WhatsAppApi.md#removeWhatsAppGroupParticipantsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants
+*WhatsAppApi* | [**requestWhatsAppVerificationCode**](docs/WhatsAppApi.md#requestWhatsAppVerificationCode) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number
+*WhatsAppApi* | [**requestWhatsAppVerificationCodeWithHttpInfo**](docs/WhatsAppApi.md#requestWhatsAppVerificationCodeWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number
 *WhatsAppApi* | [**sendWhatsAppConversion**](docs/WhatsAppApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *WhatsAppApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/WhatsAppApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *WhatsAppApi* | [**setWhatsappBusinessUsername**](docs/WhatsAppApi.md#setWhatsappBusinessUsername) | **POST** /v1/whatsapp/business-profile/username | Set business username
@@ -1347,6 +1349,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**updateWhatsAppTemplateByIdWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppTemplateByIdWithHttpInfo) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id
 *WhatsAppApi* | [**uploadWhatsAppProfilePhoto**](docs/WhatsAppApi.md#uploadWhatsAppProfilePhoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
 *WhatsAppApi* | [**uploadWhatsAppProfilePhotoWithHttpInfo**](docs/WhatsAppApi.md#uploadWhatsAppProfilePhotoWithHttpInfo) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
+*WhatsAppApi* | [**verifyWhatsAppNumber**](docs/WhatsAppApi.md#verifyWhatsAppNumber) | **POST** /v1/accounts/{accountId}/whatsapp/verify-code | Verify the Meta re-verification code for a BYO WhatsApp number
+*WhatsAppApi* | [**verifyWhatsAppNumberWithHttpInfo**](docs/WhatsAppApi.md#verifyWhatsAppNumberWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/verify-code | Verify the Meta re-verification code for a BYO WhatsApp number
 *WhatsAppCallingApi* | [**disableWhatsAppCalling**](docs/WhatsAppCallingApi.md#disableWhatsAppCalling) | **DELETE** /v1/phone-numbers/{id}/whatsapp/calling | Disable calling on a number
 *WhatsAppCallingApi* | [**disableWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#disableWhatsAppCallingWithHttpInfo) | **DELETE** /v1/phone-numbers/{id}/whatsapp/calling | Disable calling on a number
 *WhatsAppCallingApi* | [**disableWhatsAppCallingLegacy**](docs/WhatsAppCallingApi.md#disableWhatsAppCallingLegacy) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number
@@ -2772,6 +2776,8 @@ Class | Method | HTTP request | Description
  - [ReplyToPhoneNumberReviewerRequestAttachmentsInner](docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md)
  - [RequestSmsSenderIdLimitIncrease200Response](docs/RequestSmsSenderIdLimitIncrease200Response.md)
  - [RequestSmsSenderIdLimitIncreaseRequest](docs/RequestSmsSenderIdLimitIncreaseRequest.md)
+ - [RequestWhatsAppVerificationCode200Response](docs/RequestWhatsAppVerificationCode200Response.md)
+ - [RequestWhatsAppVerificationCodeRequest](docs/RequestWhatsAppVerificationCodeRequest.md)
  - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
  - [ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
@@ -3254,6 +3260,8 @@ Class | Method | HTTP request | Description
  - [VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
  - [VerifyWhatsAppCallerIdRequest](docs/VerifyWhatsAppCallerIdRequest.md)
+ - [VerifyWhatsAppNumber200Response](docs/VerifyWhatsAppNumber200Response.md)
+ - [VerifyWhatsAppNumberRequest](docs/VerifyWhatsAppNumberRequest.md)
  - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookLog](docs/WebhookLog.md)

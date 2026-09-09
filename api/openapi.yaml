@@ -7348,6 +7348,131 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/whatsapp/request-code:
+    post:
+      description: |
+        For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that
+        Meta demoted to re-verification, this requests a new OTP from Meta. The code lands
+        on the customer's own handset, so verifying it is necessarily self-service; call
+        POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives.
+        Rate-limited to one request per 10 minutes per account, and Meta enforces its own
+        cooldown on top of that.
+      operationId: requestWhatsAppVerificationCode
+      parameters:
+      - description: The WhatsApp account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/requestWhatsAppVerificationCode_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/requestWhatsAppVerificationCode_200_response"
+          description: "Code requested, or the number was already CONNECTED and no\
+            \ code was needed."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register\
+            \ instead."
+        "422":
+          description: "The account has no phone number bound yet, it runs in coexistence\
+            \ with the WhatsApp Business app, or Meta rejected the code request."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Our own 10-minute-per-account cooldown is active, or Meta\
+            \ has escalated to a multi-hour lockout after repeated attempts."
+          headers:
+            Retry-After:
+              description: Seconds remaining until the cooldown or lockout clears.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Meta could not dispatch a code for this number yet. Retry shortly.
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      summary: Request a Meta re-verification code for a BYO WhatsApp number
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/whatsapp/verify-code:
+    post:
+      description: |
+        Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code.
+        This only verifies the number with Meta; it does not register it on the Cloud API.
+        Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation.
+      operationId: verifyWhatsAppNumber
+      parameters:
+      - description: The WhatsApp account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              code: "749456"
+            schema:
+              $ref: "#/components/schemas/verifyWhatsAppNumber_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/verifyWhatsAppNumber_200_response"
+          description: Number verified with Meta
+        "400":
+          description: "The code is malformed, or Meta rejected it as wrong or expired."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: The account has no phone number bound to it yet.
+      summary: Verify the Meta re-verification code for a BYO WhatsApp number
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/health:
     get:
       description: |
@@ -62447,8 +62572,9 @@ components:
     registerWhatsAppNumber_request:
       properties:
         pin:
-          description: The 6-digit two-step verification PIN set on the number. Omit
-            it only if the number has no PIN of its own.
+          description: "The 6-digit two-step verification PIN set on the number. Omitting\
+            \ it applies Zernio's managed default registration PIN, the same one every\
+            \ Embedded Signup connect sets automatically."
           pattern: "^\\d{6}$"
           type: string
     registerWhatsAppNumber_200_response:
@@ -62458,6 +62584,56 @@ components:
         phoneNumberId: phoneNumberId
       properties:
         registered:
+          type: boolean
+        accountId:
+          type: string
+        phoneNumberId:
+          type: string
+    requestWhatsAppVerificationCode_request:
+      properties:
+        method:
+          default: SMS
+          enum:
+          - SMS
+          - VOICE
+          type: string
+        language:
+          default: en_US
+          description: "Meta locale code for the verification message, e.g. en_US."
+          type: string
+    requestWhatsAppVerificationCode_200_response:
+      example:
+        accountId: accountId
+        requested: true
+        method: method
+        alreadyActive: true
+        phoneNumberId: phoneNumberId
+      properties:
+        requested:
+          type: boolean
+        alreadyActive:
+          type: boolean
+        method:
+          type: string
+        accountId:
+          type: string
+        phoneNumberId:
+          type: string
+    verifyWhatsAppNumber_request:
+      properties:
+        code:
+          description: The 6-digit code Meta sent to the phone. Non-digit separators
+            (e.g. "749-456") are stripped automatically.
+          type: string
+      required:
+      - code
+    verifyWhatsAppNumber_200_response:
+      example:
+        accountId: accountId
+        verified: true
+        phoneNumberId: phoneNumberId
+      properties:
+        verified:
           type: boolean
         accountId:
           type: string
@@ -86789,8 +86965,11 @@ components:
             Omit for an account-wide (any-post / any-story) automation.
           type: string
         postId:
-          description: Zernio post ID. Required only when also targeting a specific
-            post via platformPostId.
+          description: "Zernio post ID. Optional and never required. Use it INSTEAD\
+            \ of platformPostId to bind a per-post automation to a not-yet-published\
+            \ Zernio post: the automation stays pending and arms itself when that\
+            \ post publishes. For a post already live on the platform, pass platformPostId\
+            \ alone and omit this."
           type: string
         postTitle:
           description: Post content snippet for display

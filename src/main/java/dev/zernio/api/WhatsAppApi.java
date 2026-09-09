@@ -54,6 +54,8 @@ import dev.zernio.model.RegisterWhatsAppNumber200Response;
 import dev.zernio.model.RegisterWhatsAppNumberRequest;
 import dev.zernio.model.RejectWhatsAppGroupJoinRequestsRequest;
 import dev.zernio.model.RemoveWhatsAppGroupParticipantsRequest;
+import dev.zernio.model.RequestWhatsAppVerificationCode200Response;
+import dev.zernio.model.RequestWhatsAppVerificationCodeRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
 import dev.zernio.model.SetWhatsappBusinessUsername200Response;
@@ -70,6 +72,8 @@ import dev.zernio.model.UpdateWhatsAppTemplateById200Response;
 import dev.zernio.model.UpdateWhatsAppTemplateByIdRequest;
 import dev.zernio.model.UpdateWhatsAppTemplateRequest;
 import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
+import dev.zernio.model.VerifyWhatsAppNumber200Response;
+import dev.zernio.model.VerifyWhatsAppNumberRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -102,7 +106,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:58:52.142594033Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T12:08:25.034111231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4379,6 +4383,134 @@ public class WhatsAppApi {
   }
 
   /**
+   * Request a Meta re-verification code for a BYO WhatsApp number
+   * For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param requestWhatsAppVerificationCodeRequest  (optional)
+   * @return RequestWhatsAppVerificationCode200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RequestWhatsAppVerificationCode200Response requestWhatsAppVerificationCode(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest) throws ApiException {
+    return requestWhatsAppVerificationCode(accountId, requestWhatsAppVerificationCodeRequest, null);
+  }
+
+  /**
+   * Request a Meta re-verification code for a BYO WhatsApp number
+   * For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param requestWhatsAppVerificationCodeRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return RequestWhatsAppVerificationCode200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RequestWhatsAppVerificationCode200Response requestWhatsAppVerificationCode(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RequestWhatsAppVerificationCode200Response> localVarResponse = requestWhatsAppVerificationCodeWithHttpInfo(accountId, requestWhatsAppVerificationCodeRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Request a Meta re-verification code for a BYO WhatsApp number
+   * For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param requestWhatsAppVerificationCodeRequest  (optional)
+   * @return ApiResponse&lt;RequestWhatsAppVerificationCode200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RequestWhatsAppVerificationCode200Response> requestWhatsAppVerificationCodeWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest) throws ApiException {
+    return requestWhatsAppVerificationCodeWithHttpInfo(accountId, requestWhatsAppVerificationCodeRequest, null);
+  }
+
+  /**
+   * Request a Meta re-verification code for a BYO WhatsApp number
+   * For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param requestWhatsAppVerificationCodeRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RequestWhatsAppVerificationCode200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RequestWhatsAppVerificationCode200Response> requestWhatsAppVerificationCodeWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = requestWhatsAppVerificationCodeRequestBuilder(accountId, requestWhatsAppVerificationCodeRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("requestWhatsAppVerificationCode", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RequestWhatsAppVerificationCode200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RequestWhatsAppVerificationCode200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RequestWhatsAppVerificationCode200Response>() {});
+        
+
+        return new ApiResponse<RequestWhatsAppVerificationCode200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder requestWhatsAppVerificationCodeRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling requestWhatsAppVerificationCode");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/whatsapp/request-code"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(requestWhatsAppVerificationCodeRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Send WhatsApp conversion event
    * Forward a WhatsApp Business Messaging conversion event (&#x60;LeadSubmitted&#x60;, &#x60;Purchase&#x60;, &#x60;AddToCart&#x60;, &#x60;InitiateCheckout&#x60;, &#x60;ViewContent&#x60;) to Meta&#39;s Conversions API with &#x60;action_source &#x3D; business_messaging&#x60; and &#x60;messaging_channel &#x3D; whatsapp&#x60;. The endpoint looks up the originating CTWA click ID (&#x60;ctwa_clid&#x60;) captured on the first inbound message of the conversation and replays it on every event so Meta can attribute the conversion back to the Click-to-WhatsApp ad that drove the chat.  Configuration prerequisite on the WhatsApp account metadata:   - &#x60;metaCapiDatasetId&#x60;: the Meta dataset ID linked to the WABA.     Provision one with &#x60;POST /v1/whatsapp/dataset&#x60;.  The WABA ID (already set automatically at connect time) is forwarded as &#x60;user_data.whatsapp_business_account_id&#x60;, which is the per-channel attribution identifier Meta requires for WhatsApp events. No Facebook Page ID is needed (that field is the Messenger-branch identifier).  Identify the conversation by either &#x60;conversationId&#x60; (preferred) or &#x60;phoneE164&#x60; (digits only, no &#x60;+&#x60;). At least one is required. If the conversation has no captured &#x60;ctwa_clid&#x60;, the request returns 422 because there is nothing to attribute.  Token and dataset coupling: the WhatsApp account&#39;s accessToken must have access to the configured &#x60;metaCapiDatasetId&#x60;. By default a WABA&#39;s system-user token is scoped to the WABA&#39;s own Business Manager and cannot post to a pixel owned by a different Business; Meta returns code 100 in that case. Either share the dataset with the WhatsApp app&#39;s Business in BM, or use a dataset already in the same Business as the WABA. 
    * @param sendWhatsAppConversionRequest  (required)
@@ -5563,6 +5695,138 @@ public class WhatsAppApi {
     localVarRequestBuilder
         .header("Content-Type", entity.getContentType().getValue())
         .method("POST", formDataPublisher);
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Verify the Meta re-verification code for a BYO WhatsApp number
+   * Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param verifyWhatsAppNumberRequest  (required)
+   * @return VerifyWhatsAppNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifyWhatsAppNumber200Response verifyWhatsAppNumber(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest) throws ApiException {
+    return verifyWhatsAppNumber(accountId, verifyWhatsAppNumberRequest, null);
+  }
+
+  /**
+   * Verify the Meta re-verification code for a BYO WhatsApp number
+   * Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param verifyWhatsAppNumberRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return VerifyWhatsAppNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifyWhatsAppNumber200Response verifyWhatsAppNumber(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<VerifyWhatsAppNumber200Response> localVarResponse = verifyWhatsAppNumberWithHttpInfo(accountId, verifyWhatsAppNumberRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Verify the Meta re-verification code for a BYO WhatsApp number
+   * Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param verifyWhatsAppNumberRequest  (required)
+   * @return ApiResponse&lt;VerifyWhatsAppNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifyWhatsAppNumber200Response> verifyWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest) throws ApiException {
+    return verifyWhatsAppNumberWithHttpInfo(accountId, verifyWhatsAppNumberRequest, null);
+  }
+
+  /**
+   * Verify the Meta re-verification code for a BYO WhatsApp number
+   * Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+   * @param accountId The WhatsApp account ID (required)
+   * @param verifyWhatsAppNumberRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;VerifyWhatsAppNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifyWhatsAppNumber200Response> verifyWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = verifyWhatsAppNumberRequestBuilder(accountId, verifyWhatsAppNumberRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("verifyWhatsAppNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<VerifyWhatsAppNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        VerifyWhatsAppNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<VerifyWhatsAppNumber200Response>() {});
+        
+
+        return new ApiResponse<VerifyWhatsAppNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder verifyWhatsAppNumberRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling verifyWhatsAppNumber");
+    }
+    // verify the required parameter 'verifyWhatsAppNumberRequest' is set
+    if (verifyWhatsAppNumberRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'verifyWhatsAppNumberRequest' when calling verifyWhatsAppNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/whatsapp/verify-code"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(verifyWhatsAppNumberRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

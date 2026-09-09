@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**method** | [**MethodEnum**](#MethodEnum) | Delivery method for the verification code |  [optional] |
+|**method** | [**MethodEnum**](#MethodEnum) |  |  [optional] |
+|**language** | **String** | Meta locale code for the verification message, e.g. en_US. |  [optional] |
 
 
 

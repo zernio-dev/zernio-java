@@ -68,7 +68,7 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_AUDIENCE,
   CreateCommentAutomationRequest.JSON_PROPERTY_FOLLOW_GATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:58:52.142594033Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T12:08:25.034111231Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -342,7 +342,7 @@ public class CreateCommentAutomationRequest {
   }
 
   /**
-   * Zernio post ID. Required only when also targeting a specific post via platformPostId.
+   * Zernio post ID. Optional and never required. Use it INSTEAD of platformPostId to bind a per-post automation to a not-yet-published Zernio post: the automation stays pending and arms itself when that post publishes. For a post already live on the platform, pass platformPostId alone and omit this.
    * @return postId
    */
   @javax.annotation.Nullable

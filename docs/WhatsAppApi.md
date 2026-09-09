@@ -64,6 +64,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**rejectWhatsAppGroupJoinRequestsWithHttpInfo**](WhatsAppApi.md#rejectWhatsAppGroupJoinRequestsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests |
 | [**removeWhatsAppGroupParticipants**](WhatsAppApi.md#removeWhatsAppGroupParticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
 | [**removeWhatsAppGroupParticipantsWithHttpInfo**](WhatsAppApi.md#removeWhatsAppGroupParticipantsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
+| [**requestWhatsAppVerificationCode**](WhatsAppApi.md#requestWhatsAppVerificationCode) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number |
+| [**requestWhatsAppVerificationCodeWithHttpInfo**](WhatsAppApi.md#requestWhatsAppVerificationCodeWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number |
 | [**sendWhatsAppConversion**](WhatsAppApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**sendWhatsAppConversionWithHttpInfo**](WhatsAppApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**setWhatsappBusinessUsername**](WhatsAppApi.md#setWhatsappBusinessUsername) | **POST** /v1/whatsapp/business-profile/username | Set business username |
@@ -82,6 +84,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateWhatsAppTemplateByIdWithHttpInfo**](WhatsAppApi.md#updateWhatsAppTemplateByIdWithHttpInfo) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id |
 | [**uploadWhatsAppProfilePhoto**](WhatsAppApi.md#uploadWhatsAppProfilePhoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture |
 | [**uploadWhatsAppProfilePhotoWithHttpInfo**](WhatsAppApi.md#uploadWhatsAppProfilePhotoWithHttpInfo) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture |
+| [**verifyWhatsAppNumber**](WhatsAppApi.md#verifyWhatsAppNumber) | **POST** /v1/accounts/{accountId}/whatsapp/verify-code | Verify the Meta re-verification code for a BYO WhatsApp number |
+| [**verifyWhatsAppNumberWithHttpInfo**](WhatsAppApi.md#verifyWhatsAppNumberWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/verify-code | Verify the Meta re-verification code for a BYO WhatsApp number |
 
 
 
@@ -4691,6 +4695,168 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **401** | Unauthorized |  -  |
 
 
+## requestWhatsAppVerificationCode
+
+> RequestWhatsAppVerificationCode200Response requestWhatsAppVerificationCode(accountId, requestWhatsAppVerificationCodeRequest)
+
+Request a Meta re-verification code for a BYO WhatsApp number
+
+For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | The WhatsApp account ID
+        RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest = new RequestWhatsAppVerificationCodeRequest(); // RequestWhatsAppVerificationCodeRequest | 
+        try {
+            RequestWhatsAppVerificationCode200Response result = apiInstance.requestWhatsAppVerificationCode(accountId, requestWhatsAppVerificationCodeRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#requestWhatsAppVerificationCode");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The WhatsApp account ID | |
+| **requestWhatsAppVerificationCodeRequest** | [**RequestWhatsAppVerificationCodeRequest**](RequestWhatsAppVerificationCodeRequest.md)|  | [optional] |
+
+### Return type
+
+[**RequestWhatsAppVerificationCode200Response**](RequestWhatsAppVerificationCode200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
+| **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
+| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+## requestWhatsAppVerificationCodeWithHttpInfo
+
+> ApiResponse<RequestWhatsAppVerificationCode200Response> requestWhatsAppVerificationCode requestWhatsAppVerificationCodeWithHttpInfo(accountId, requestWhatsAppVerificationCodeRequest)
+
+Request a Meta re-verification code for a BYO WhatsApp number
+
+For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | The WhatsApp account ID
+        RequestWhatsAppVerificationCodeRequest requestWhatsAppVerificationCodeRequest = new RequestWhatsAppVerificationCodeRequest(); // RequestWhatsAppVerificationCodeRequest | 
+        try {
+            ApiResponse<RequestWhatsAppVerificationCode200Response> response = apiInstance.requestWhatsAppVerificationCodeWithHttpInfo(accountId, requestWhatsAppVerificationCodeRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#requestWhatsAppVerificationCode");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The WhatsApp account ID | |
+| **requestWhatsAppVerificationCodeRequest** | [**RequestWhatsAppVerificationCodeRequest**](RequestWhatsAppVerificationCodeRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**RequestWhatsAppVerificationCode200Response**](RequestWhatsAppVerificationCode200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
+| **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
+| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+
 ## sendWhatsAppConversion
 
 > SendWhatsAppConversion200Response sendWhatsAppConversion(sendWhatsAppConversionRequest)
@@ -6067,4 +6233,160 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **422** | Profile photo is locked for WhatsApp coexistence numbers (manage it in the WhatsApp Business app) |  -  |
+
+
+## verifyWhatsAppNumber
+
+> VerifyWhatsAppNumber200Response verifyWhatsAppNumber(accountId, verifyWhatsAppNumberRequest)
+
+Verify the Meta re-verification code for a BYO WhatsApp number
+
+Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | The WhatsApp account ID
+        VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest = new VerifyWhatsAppNumberRequest(); // VerifyWhatsAppNumberRequest | 
+        try {
+            VerifyWhatsAppNumber200Response result = apiInstance.verifyWhatsAppNumber(accountId, verifyWhatsAppNumberRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#verifyWhatsAppNumber");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The WhatsApp account ID | |
+| **verifyWhatsAppNumberRequest** | [**VerifyWhatsAppNumberRequest**](VerifyWhatsAppNumberRequest.md)|  | |
+
+### Return type
+
+[**VerifyWhatsAppNumber200Response**](VerifyWhatsAppNumber200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number verified with Meta |  -  |
+| **400** | The code is malformed, or Meta rejected it as wrong or expired. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The account has no phone number bound to it yet. |  -  |
+
+## verifyWhatsAppNumberWithHttpInfo
+
+> ApiResponse<VerifyWhatsAppNumber200Response> verifyWhatsAppNumber verifyWhatsAppNumberWithHttpInfo(accountId, verifyWhatsAppNumberRequest)
+
+Verify the Meta re-verification code for a BYO WhatsApp number
+
+Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | The WhatsApp account ID
+        VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest = new VerifyWhatsAppNumberRequest(); // VerifyWhatsAppNumberRequest | 
+        try {
+            ApiResponse<VerifyWhatsAppNumber200Response> response = apiInstance.verifyWhatsAppNumberWithHttpInfo(accountId, verifyWhatsAppNumberRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#verifyWhatsAppNumber");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The WhatsApp account ID | |
+| **verifyWhatsAppNumberRequest** | [**VerifyWhatsAppNumberRequest**](VerifyWhatsAppNumberRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**VerifyWhatsAppNumber200Response**](VerifyWhatsAppNumber200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number verified with Meta |  -  |
+| **400** | The code is malformed, or Meta rejected it as wrong or expired. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The account has no phone number bound to it yet. |  -  |
 

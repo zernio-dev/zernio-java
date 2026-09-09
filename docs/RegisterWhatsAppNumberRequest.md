@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**pin** | **String** | The 6-digit two-step verification PIN set on the number. Omit it only if the number has no PIN of its own. |  [optional] |
+|**pin** | **String** | The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically. |  [optional] |
 
 
 
