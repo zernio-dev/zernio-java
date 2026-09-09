@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   VerifyWhatsAppNumberRequest.JSON_PROPERTY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:43:35.323352073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:19:15.739445792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VerifyWhatsAppNumberRequest {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull

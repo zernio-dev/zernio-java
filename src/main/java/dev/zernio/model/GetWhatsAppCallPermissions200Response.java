@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallPermissions200Response.JSON_PROPERTY_PERMISSION,
   GetWhatsAppCallPermissions200Response.JSON_PROPERTY_ACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:43:35.323352073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:19:15.739445792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallPermissions200Response {
   public static final String JSON_PROPERTY_PERMISSION = "permission";
   @javax.annotation.Nullable

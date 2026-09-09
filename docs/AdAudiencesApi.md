@@ -50,7 +50,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String audienceId = "audienceId_example"; // String | 
+        String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
         AddUsersToAdAudienceRequest addUsersToAdAudienceRequest = new AddUsersToAdAudienceRequest(); // AddUsersToAdAudienceRequest | 
         try {
             AddUsersToAdAudience200Response result = apiInstance.addUsersToAdAudience(audienceId, addUsersToAdAudienceRequest);
@@ -71,7 +71,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceId** | **String**|  | |
+| **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
 | **addUsersToAdAudienceRequest** | [**AddUsersToAdAudienceRequest**](AddUsersToAdAudienceRequest.md)|  | |
 
 ### Return type
@@ -128,7 +128,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String audienceId = "audienceId_example"; // String | 
+        String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
         AddUsersToAdAudienceRequest addUsersToAdAudienceRequest = new AddUsersToAdAudienceRequest(); // AddUsersToAdAudienceRequest | 
         try {
             ApiResponse<AddUsersToAdAudience200Response> response = apiInstance.addUsersToAdAudienceWithHttpInfo(audienceId, addUsersToAdAudienceRequest);
@@ -151,7 +151,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceId** | **String**|  | |
+| **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
 | **addUsersToAdAudienceRequest** | [**AddUsersToAdAudienceRequest**](AddUsersToAdAudienceRequest.md)|  | |
 
 ### Return type
@@ -508,7 +508,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String audienceId = "audienceId_example"; // String | 
+        String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
         try {
             GetAdAudience200Response result = apiInstance.getAdAudience(audienceId);
             System.out.println(result);
@@ -528,7 +528,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceId** | **String**|  | |
+| **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
 
 ### Return type
 
@@ -582,7 +582,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String audienceId = "audienceId_example"; // String | 
+        String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
         try {
             ApiResponse<GetAdAudience200Response> response = apiInstance.getAdAudienceWithHttpInfo(audienceId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -604,7 +604,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceId** | **String**|  | |
+| **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
 
 ### Return type
 
@@ -818,7 +818,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String audienceId = "audienceId_example"; // String | 
+        String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
         ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest = new ReplaceAdAudienceCompaniesRequest(); // ReplaceAdAudienceCompaniesRequest | 
         try {
             ReplaceAdAudienceCompanies200Response result = apiInstance.replaceAdAudienceCompanies(audienceId, replaceAdAudienceCompaniesRequest);
@@ -839,7 +839,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceId** | **String**|  | |
+| **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
 | **replaceAdAudienceCompaniesRequest** | [**ReplaceAdAudienceCompaniesRequest**](ReplaceAdAudienceCompaniesRequest.md)|  | |
 
 ### Return type
@@ -896,7 +896,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
-        String audienceId = "audienceId_example"; // String | 
+        String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
         ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest = new ReplaceAdAudienceCompaniesRequest(); // ReplaceAdAudienceCompaniesRequest | 
         try {
             ApiResponse<ReplaceAdAudienceCompanies200Response> response = apiInstance.replaceAdAudienceCompaniesWithHttpInfo(audienceId, replaceAdAudienceCompaniesRequest);
@@ -919,7 +919,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **audienceId** | **String**|  | |
+| **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
 | **replaceAdAudienceCompaniesRequest** | [**ReplaceAdAudienceCompaniesRequest**](ReplaceAdAudienceCompaniesRequest.md)|  | |
 
 ### Return type

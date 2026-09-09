@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_SIZE,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:43:35.323352073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:19:15.739445792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAudiences200ResponseAudiencesInner {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
@@ -145,7 +145,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
   }
 
   /**
-   * Get id
+   * The Zernio audience id. Pass this as audienceId on GET /v1/ads/audiences/{audienceId} and the companies/users upload endpoints. Null when the audience was not created through Zernio.
    * @return id
    */
   @javax.annotation.Nullable

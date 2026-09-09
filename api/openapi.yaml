@@ -37120,7 +37120,9 @@ paths:
         available).
       operationId: getAdAudience
       parameters:
-      - explode: false
+      - description: "The Zernio audience id (the id field of GET /v1/ads/audiences),\
+          \ not the platform segment id."
+        explode: false
         in: path
         name: audienceId
         required: true
@@ -37228,7 +37230,9 @@ paths:
         `POST /v1/ads/audiences/{audienceId}/companies`. This endpoint 422s for every other audience type.
       operationId: addUsersToAdAudience
       parameters:
-      - explode: false
+      - description: "The Zernio audience id (the id field of GET /v1/ads/audiences),\
+          \ not the platform segment id."
+        explode: false
         in: path
         name: audienceId
         required: true
@@ -37302,7 +37306,9 @@ paths:
         every change after that.
       operationId: replaceAdAudienceCompanies
       parameters:
-      - explode: false
+      - description: "The Zernio audience id (the id field of GET /v1/ads/audiences),\
+          \ not the platform segment id."
+        explode: false
         in: path
         name: audienceId
         required: true
@@ -98834,6 +98840,9 @@ components:
         status: status
       properties:
         id:
+          description: "The Zernio audience id. Pass this as audienceId on GET /v1/ads/audiences/{audienceId}\
+            \ and the companies/users upload endpoints. Null when the audience was\
+            \ not created through Zernio."
           nullable: true
           type: string
         accountId:
@@ -99142,13 +99151,13 @@ components:
           type: string
     getAdAudience_200_response:
       example:
-        metaData: "{}"
         audience: "{}"
+        platformData: "{}"
       properties:
         audience:
           type: object
-        metaData:
-          description: Fresh data from Meta API
+        platformData:
+          description: Fresh data from the platform API
           nullable: true
           type: object
     updateAdAudience_request:

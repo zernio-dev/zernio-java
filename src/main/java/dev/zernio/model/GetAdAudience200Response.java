@@ -38,16 +38,16 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetAdAudience200Response.JSON_PROPERTY_AUDIENCE,
-  GetAdAudience200Response.JSON_PROPERTY_META_DATA
+  GetAdAudience200Response.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T13:43:35.323352073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T14:19:15.739445792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAudience200Response {
   public static final String JSON_PROPERTY_AUDIENCE = "audience";
   @javax.annotation.Nullable
   private Object audience;
 
-  public static final String JSON_PROPERTY_META_DATA = "metaData";
-  private JsonNullable<Object> metaData = JsonNullable.<Object>undefined();
+  public static final String JSON_PROPERTY_PLATFORM_DATA = "platformData";
+  private JsonNullable<Object> platformData = JsonNullable.<Object>undefined();
 
   public GetAdAudience200Response() { 
   }
@@ -76,35 +76,35 @@ public class GetAdAudience200Response {
   }
 
 
-  public GetAdAudience200Response metaData(@javax.annotation.Nullable Object metaData) {
-    this.metaData = JsonNullable.<Object>of(metaData);
+  public GetAdAudience200Response platformData(@javax.annotation.Nullable Object platformData) {
+    this.platformData = JsonNullable.<Object>of(platformData);
     return this;
   }
 
   /**
-   * Fresh data from Meta API
-   * @return metaData
+   * Fresh data from the platform API
+   * @return platformData
    */
   @javax.annotation.Nullable
   @JsonIgnore
-  public Object getMetaData() {
-        return metaData.orElse(null);
+  public Object getPlatformData() {
+        return platformData.orElse(null);
   }
 
-  @JsonProperty(value = JSON_PROPERTY_META_DATA, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getMetaData_JsonNullable() {
-    return metaData;
+  public JsonNullable<Object> getPlatformData_JsonNullable() {
+    return platformData;
   }
   
-  @JsonProperty(JSON_PROPERTY_META_DATA)
-  public void setMetaData_JsonNullable(JsonNullable<Object> metaData) {
-    this.metaData = metaData;
+  @JsonProperty(JSON_PROPERTY_PLATFORM_DATA)
+  public void setPlatformData_JsonNullable(JsonNullable<Object> platformData) {
+    this.platformData = platformData;
   }
 
-  public void setMetaData(@javax.annotation.Nullable Object metaData) {
-    this.metaData = JsonNullable.<Object>of(metaData);
+  public void setPlatformData(@javax.annotation.Nullable Object platformData) {
+    this.platformData = JsonNullable.<Object>of(platformData);
   }
 
 
@@ -121,7 +121,7 @@ public class GetAdAudience200Response {
     }
     GetAdAudience200Response getAdAudience200Response = (GetAdAudience200Response) o;
     return Objects.equals(this.audience, getAdAudience200Response.audience) &&
-        equalsNullable(this.metaData, getAdAudience200Response.metaData);
+        equalsNullable(this.platformData, getAdAudience200Response.platformData);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -130,7 +130,7 @@ public class GetAdAudience200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(audience, hashCodeNullable(metaData));
+    return Objects.hash(audience, hashCodeNullable(platformData));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -145,7 +145,7 @@ public class GetAdAudience200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetAdAudience200Response {\n");
     sb.append("    audience: ").append(toIndentedString(audience)).append("\n");
-    sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
+    sb.append("    platformData: ").append(toIndentedString(platformData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -198,9 +198,9 @@ public class GetAdAudience200Response {
       joiner.add(String.format(java.util.Locale.ROOT, "%saudience%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudience()))));
     }
 
-    // add `metaData` to the URL query string
-    if (getMetaData() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smetaData%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetaData()))));
+    // add `platformData` to the URL query string
+    if (getPlatformData() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatformData%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformData()))));
     }
 
     return joiner.toString();

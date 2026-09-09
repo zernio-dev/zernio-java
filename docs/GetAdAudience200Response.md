@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**audience** | **Object** |  |  [optional] |
-|**metaData** | **Object** | Fresh data from Meta API |  [optional] |
+|**platformData** | **Object** | Fresh data from the platform API |  [optional] |
 
 
 
