@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ConversionActionTagSnippetsInner.JSON_PROPERTY_GLOBAL_SITE_TAG,
   ConversionActionTagSnippetsInner.JSON_PROPERTY_EVENT_SNIPPET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:09:35.238143425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:15:10.286484945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionActionTagSnippetsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
