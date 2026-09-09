@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AttachCampaignAssetsRequestSitelinksInner.JSON_PROPERTY_DESCRIPTION1,
   AttachCampaignAssetsRequestSitelinksInner.JSON_PROPERTY_DESCRIPTION2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachCampaignAssetsRequestSitelinksInner {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull

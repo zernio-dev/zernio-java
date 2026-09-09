@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetLinkedInBidPricingRequest.JSON_PROPERTY_OPTIMIZATION_TARGET_TYPE,
   GetLinkedInBidPricingRequest.JSON_PROPERTY_DAILY_BUDGET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInBidPricingRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

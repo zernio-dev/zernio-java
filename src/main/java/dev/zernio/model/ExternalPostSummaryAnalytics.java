@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   ExternalPostSummaryAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   ExternalPostSummaryAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:26:35.444854450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostSummaryAnalytics {
   public static final String JSON_PROPERTY_LIKES = "likes";
   @javax.annotation.Nullable
