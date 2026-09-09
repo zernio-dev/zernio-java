@@ -27,6 +27,7 @@ Platform-specific creative data. Fields vary by platform.
 |**googleHeadline** | **String** | Google Ads headline |  [optional] |
 |**googleDescription** | **String** | Google Ads description |  [optional] |
 |**linkUrl** | **String** | Destination URL |  [optional] |
+|**whatsappPhoneNumber** | **String** | Explicit E.164 WhatsApp number supplied when creating a Meta boost or messaging ad. Absent when omitted by the caller or on older records. |  [optional] |
 |**pinterestImageUrl** | **String** |  |  [optional] |
 |**pinterestTitle** | **String** |  |  [optional] |
 |**pinterestDescription** | **String** |  |  [optional] |

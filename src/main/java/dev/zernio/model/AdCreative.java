@@ -58,11 +58,12 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_GOOGLE_HEADLINE,
   AdCreative.JSON_PROPERTY_GOOGLE_DESCRIPTION,
   AdCreative.JSON_PROPERTY_LINK_URL,
+  AdCreative.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER,
   AdCreative.JSON_PROPERTY_PINTEREST_IMAGE_URL,
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:01:40.751460665Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();
@@ -128,6 +129,10 @@ public class AdCreative {
   public static final String JSON_PROPERTY_LINK_URL = "linkUrl";
   @javax.annotation.Nullable
   private String linkUrl;
+
+  public static final String JSON_PROPERTY_WHATSAPP_PHONE_NUMBER = "whatsappPhoneNumber";
+  @javax.annotation.Nullable
+  private String whatsappPhoneNumber;
 
   public static final String JSON_PROPERTY_PINTEREST_IMAGE_URL = "pinterestImageUrl";
   @javax.annotation.Nullable
@@ -704,6 +709,30 @@ public class AdCreative {
   }
 
 
+  public AdCreative whatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+    return this;
+  }
+
+  /**
+   * Explicit E.164 WhatsApp number supplied when creating a Meta boost or messaging ad. Absent when omitted by the caller or on older records.
+   * @return whatsappPhoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWhatsappPhoneNumber() {
+    return whatsappPhoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWhatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+  }
+
+
   public AdCreative pinterestImageUrl(@javax.annotation.Nullable String pinterestImageUrl) {
     this.pinterestImageUrl = pinterestImageUrl;
     return this;
@@ -807,6 +836,7 @@ public class AdCreative {
         Objects.equals(this.googleHeadline, adCreative.googleHeadline) &&
         Objects.equals(this.googleDescription, adCreative.googleDescription) &&
         Objects.equals(this.linkUrl, adCreative.linkUrl) &&
+        Objects.equals(this.whatsappPhoneNumber, adCreative.whatsappPhoneNumber) &&
         Objects.equals(this.pinterestImageUrl, adCreative.pinterestImageUrl) &&
         Objects.equals(this.pinterestTitle, adCreative.pinterestTitle) &&
         Objects.equals(this.pinterestDescription, adCreative.pinterestDescription);
@@ -818,7 +848,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), hashCodeNullable(creativeId), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), hashCodeNullable(creativeId), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, whatsappPhoneNumber, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -851,6 +881,7 @@ public class AdCreative {
     sb.append("    googleHeadline: ").append(toIndentedString(googleHeadline)).append("\n");
     sb.append("    googleDescription: ").append(toIndentedString(googleDescription)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
+    sb.append("    whatsappPhoneNumber: ").append(toIndentedString(whatsappPhoneNumber)).append("\n");
     sb.append("    pinterestImageUrl: ").append(toIndentedString(pinterestImageUrl)).append("\n");
     sb.append("    pinterestTitle: ").append(toIndentedString(pinterestTitle)).append("\n");
     sb.append("    pinterestDescription: ").append(toIndentedString(pinterestDescription)).append("\n");
@@ -1002,6 +1033,11 @@ public class AdCreative {
     // add `linkUrl` to the URL query string
     if (getLinkUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slinkUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkUrl()))));
+    }
+
+    // add `whatsappPhoneNumber` to the URL query string
+    if (getWhatsappPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swhatsappPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWhatsappPhoneNumber()))));
     }
 
     // add `pinterestImageUrl` to the URL query string

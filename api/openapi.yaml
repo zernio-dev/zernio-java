@@ -36025,7 +36025,9 @@ paths:
         **Messaging boosts (Meta).** Use `goal: engagement` with
         `callToAction: WHATSAPP_MESSAGE`, `MESSAGE_PAGE`, or `INSTAGRAM_MESSAGE`.
         The CTA implies WHATSAPP, MESSENGER, or INSTAGRAM_DIRECT respectively;
-        `destinationType` alone also selects the matching CTA. Omit `linkUrl`.
+        `destinationType` alone does not select a messaging CTA. Omit `linkUrl`
+        only for messaging CTAs. Plain link CTAs keep their goal and link behavior
+        when combined with an independent `destinationType`.
         The campaign uses OUTCOME_ENGAGEMENT and the ad set uses CONVERSATIONS
         with the promoted Page. Optional `whatsappPhoneNumber` selects a number
         already paired with that Page. Conflicting CTA/destination, instant form,
@@ -36056,6 +36058,7 @@ paths:
               name: WhatsApp post boost
               goal: engagement
               callToAction: WHATSAPP_MESSAGE
+              whatsappPhoneNumber: "+12025550123"
               budget:
                 amount: 2.61
                 type: daily
@@ -43389,7 +43392,8 @@ components:
           description: "WhatsApp only. Optional E.164 number already paired with the\
             \ Facebook Page. Omit to let Meta select the paired number. Sent to the\
             \ creative CTA and, when creating a new ad set, its promoted_object. Attach\
-            \ requests do not change the existing ad set."
+            \ requests do not change the existing ad set. Stored as creative.whatsappPhoneNumber\
+            \ on every created ad."
           pattern: "^\\+[1-9]\\d{6,14}$"
           type: string
         headline:
@@ -53244,6 +53248,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -53313,6 +53318,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -53580,6 +53586,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -53649,6 +53656,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -53937,6 +53945,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -54006,6 +54015,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -54526,6 +54536,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -54595,6 +54606,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -54883,6 +54895,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -54952,6 +54965,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -56954,6 +56968,7 @@ components:
           servingHoldReasons:
           - UNDER_REVIEW
           instagramUserId: instagramUserId
+          whatsappPhoneNumber: "+12025550123"
           videoId: videoId
           pinterestTitle: pinterestTitle
           pageId: pageId
@@ -57275,6 +57290,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -57344,6 +57360,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -57886,6 +57903,7 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               instagramUserId: instagramUserId
+              whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -57955,6 +57973,7 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               instagramUserId: instagramUserId
+              whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -58243,6 +58262,7 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               instagramUserId: instagramUserId
+              whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -58312,6 +58332,7 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               instagramUserId: instagramUserId
+              whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -88952,6 +88973,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -89021,6 +89043,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -91539,6 +91562,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -91608,6 +91632,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -91896,6 +91921,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -91965,6 +91991,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -92485,6 +92512,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -92554,6 +92582,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -92842,6 +92871,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -92911,6 +92941,7 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 instagramUserId: instagramUserId
+                whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -93310,6 +93341,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -93582,6 +93614,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -96572,10 +96605,10 @@ components:
           type: string
         destinationType:
           description: "Meta only. Ad-set destination_type: where the click LANDS,\
-            \ as opposed to instagramAccountId which is who the ad runs as. Messaging\
-            \ destinations imply their matching CTA and require goal engagement. Lead\
-            \ ads use ON_AD; combining an instant form with a messaging destination\
-            \ is rejected."
+            \ as opposed to instagramAccountId which is who the ad runs as. Independent\
+            \ of plain link CTAs and their goal. A messaging callToAction selects\
+            \ its destination automatically; an explicit destinationType must then\
+            \ match. Lead ads use ON_AD."
           enum:
           - INSTAGRAM_PROFILE
           - WEBSITE
@@ -96586,8 +96619,8 @@ components:
           type: string
         whatsappPhoneNumber:
           description: Meta WhatsApp only. E.164 number already paired with the Page.
-            Omit to use the default pairing. Requires WHATSAPP destinationType or
-            WHATSAPP_MESSAGE callToAction.
+            Omit to use the default pairing. Requires WHATSAPP_MESSAGE callToAction.
+            Stored as creative.whatsappPhoneNumber on the ad.
           pattern: "^\\+[1-9]\\d{6,14}$"
           type: string
         currency:
@@ -96760,9 +96793,10 @@ components:
         status:
           description: "Meta, TikTok, and LinkedIn. Publish state of the created entities.\
             \ Omitted or ACTIVE publishes live (default); PAUSED creates them paused\
-            \ so you can review before they spend. On LinkedIn the whole campaign\
-            \ group, campaign, and creative hierarchy stays PAUSED (intendedStatus\
-            \ PAUSED on each)."
+            \ so you can review before they spend. On Meta a new campaign stays paused\
+            \ until explicitly activated; an attached ad is itself paused. On LinkedIn\
+            \ the whole campaign group, campaign, and creative hierarchy stays PAUSED\
+            \ (intendedStatus PAUSED on each)."
           enum:
           - ACTIVE
           - PAUSED
@@ -98684,6 +98718,7 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             instagramUserId: instagramUserId
+            whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -109239,6 +109274,7 @@ components:
         servingHoldReasons:
         - UNDER_REVIEW
         instagramUserId: instagramUserId
+        whatsappPhoneNumber: "+12025550123"
         videoId: videoId
         pinterestTitle: pinterestTitle
         pageId: pageId
@@ -109362,6 +109398,11 @@ components:
           type: string
         linkUrl:
           description: Destination URL
+          type: string
+        whatsappPhoneNumber:
+          description: Explicit E.164 WhatsApp number supplied when creating a Meta
+            boost or messaging ad. Absent when omitted by the caller or on older records.
+          example: "+12025550123"
           type: string
         pinterestImageUrl:
           type: string
