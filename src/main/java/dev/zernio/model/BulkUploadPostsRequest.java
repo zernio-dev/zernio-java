@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   BulkUploadPostsRequest.JSON_PROPERTY_FILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:32:10.155538216Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:58:52.142594033Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUploadPostsRequest {
   public static final String JSON_PROPERTY_FILE = "file";
   @javax.annotation.Nullable

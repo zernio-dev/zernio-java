@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PHONE_NUMBER,
   SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_FEATURES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:32:10.155538216Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:58:52.142594033Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
