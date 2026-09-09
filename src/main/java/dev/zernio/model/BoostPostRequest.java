@@ -55,6 +55,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_BUDGET,
   BoostPostRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
   BoostPostRequest.JSON_PROPERTY_DESTINATION_TYPE,
+  BoostPostRequest.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER,
   BoostPostRequest.JSON_PROPERTY_CURRENCY,
   BoostPostRequest.JSON_PROPERTY_SCHEDULE,
   BoostPostRequest.JSON_PROPERTY_TARGETING,
@@ -77,7 +78,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -161,7 +162,7 @@ public class BoostPostRequest {
   private String instagramAccountId;
 
   /**
-   * Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
+   * Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected.
    */
   public enum DestinationTypeEnum {
     INSTAGRAM_PROFILE(String.valueOf("INSTAGRAM_PROFILE")),
@@ -172,7 +173,9 @@ public class BoostPostRequest {
     
     MESSENGER(String.valueOf("MESSENGER")),
     
-    WHATSAPP(String.valueOf("WHATSAPP"));
+    WHATSAPP(String.valueOf("WHATSAPP")),
+    
+    INSTAGRAM_DIRECT(String.valueOf("INSTAGRAM_DIRECT"));
 
     private String value;
 
@@ -204,6 +207,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_DESTINATION_TYPE = "destinationType";
   @javax.annotation.Nullable
   private DestinationTypeEnum destinationType;
+
+  public static final String JSON_PROPERTY_WHATSAPP_PHONE_NUMBER = "whatsappPhoneNumber";
+  @javax.annotation.Nullable
+  private String whatsappPhoneNumber;
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
@@ -592,7 +599,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
+   * Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected.
    * @return destinationType
    */
   @javax.annotation.Nullable
@@ -607,6 +614,30 @@ public class BoostPostRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDestinationType(@javax.annotation.Nullable DestinationTypeEnum destinationType) {
     this.destinationType = destinationType;
+  }
+
+
+  public BoostPostRequest whatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+    return this;
+  }
+
+  /**
+   * Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP destinationType or WHATSAPP_MESSAGE callToAction.
+   * @return whatsappPhoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWhatsappPhoneNumber() {
+    return whatsappPhoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWhatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
   }
 
 
@@ -974,7 +1005,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * Destination URL for the CTA button. Send it together with &#x60;callToAction&#x60;.  **Meta**: adds a top-level &#x60;call_to_action&#x60; to the post-reference creative. This is what gives a &#x60;traffic&#x60; boost a clickable destination without replacing the creative and losing the post&#39;s social proof. Ignored when &#x60;leadGenFormId&#x60; is set, which supplies its own destination. Live-verified against a Page-post creative.  **TikTok**: maps to &#x60;landing_page_url&#x60; on the Spark Ad creative (&#x60;AdcreateCreatives.landing_page_url&#x60;); Spark Ads have no clickable destination without it.  Ignored on LinkedIn / Pinterest / X / Google, which infer the destination from the boosted post. 
+   * Website URL for non-messaging CTA buttons. Send it with &#x60;callToAction&#x60;. Omit for messaging boosts.  **Meta**: adds a top-level &#x60;call_to_action&#x60; to the post-reference creative. This is what gives a &#x60;traffic&#x60; boost a clickable destination without replacing the creative and losing the post&#39;s social proof. Ignored when &#x60;leadGenFormId&#x60; is set, which supplies its own destination. Live-verified against a Page-post creative.  **TikTok**: maps to &#x60;landing_page_url&#x60; on the Spark Ad creative (&#x60;AdcreateCreatives.landing_page_url&#x60;); Spark Ads have no clickable destination without it.  Ignored on LinkedIn / Pinterest / X / Google, which infer the destination from the boosted post. 
    * @return linkUrl
    */
   @javax.annotation.Nullable
@@ -998,7 +1029,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * CTA button label. Send it together with &#x60;linkUrl&#x60;: a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
+   * CTA button label. Non-messaging CTAs require &#x60;linkUrl&#x60;. WHATSAPP_MESSAGE, MESSAGE_PAGE, and INSTAGRAM_MESSAGE do not require a URL and reject linkUrl.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, &#x60;WHATSAPP_MESSAGE&#x60;, &#x60;MESSAGE_PAGE&#x60;, and &#x60;INSTAGRAM_MESSAGE&#x60;. VIEW_INSTAGRAM_PROFILE requires linkUrl; the messaging CTAs select their destination automatically.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
    * @return callToAction
    */
   @javax.annotation.Nullable
@@ -1142,7 +1173,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * Meta only. Explicit ad-set &#x60;optimization_goal&#x60; override. When omitted, defaults to the value derived from &#x60;goal&#x60;. The value must be compatible with the objective Meta derives from &#x60;goal&#x60;, not with the objective used by &#x60;POST /v1/ads/create&#x60; for the same &#x60;goal&#x60; name: boost maps &#x60;goal: \&quot;engagement\&quot;&#x60; to objective &#x60;OUTCOME_AWARENESS&#x60;, which accepts &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;AD_RECALL_LIFT&#x60;, or THRUPLAY-class values, and rejects &#x60;POST_ENGAGEMENT&#x60; (that value is only valid under &#x60;OUTCOME_ENGAGEMENT&#x60;, which create uses for the same goal name). 
+   * Meta only. Explicit ad-set &#x60;optimization_goal&#x60; override. When omitted, defaults to the value derived from &#x60;goal&#x60;. Messaging boosts always use CONVERSATIONS and reject another optimizationGoal. Otherwise the value must be compatible with the objective Meta derives from &#x60;goal&#x60;, not with the objective used by &#x60;POST /v1/ads/create&#x60; for the same &#x60;goal&#x60; name: boost maps &#x60;goal: \&quot;engagement\&quot;&#x60; to objective &#x60;OUTCOME_AWARENESS&#x60;, which accepts &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;AD_RECALL_LIFT&#x60;, or THRUPLAY-class values, and rejects &#x60;POST_ENGAGEMENT&#x60; (that value is only valid under &#x60;OUTCOME_ENGAGEMENT&#x60;, which create uses for the same goal name). 
    * @return optimizationGoal
    */
   @javax.annotation.Nullable
@@ -1182,6 +1213,7 @@ public class BoostPostRequest {
         Objects.equals(this.budget, boostPostRequest.budget) &&
         Objects.equals(this.instagramAccountId, boostPostRequest.instagramAccountId) &&
         Objects.equals(this.destinationType, boostPostRequest.destinationType) &&
+        Objects.equals(this.whatsappPhoneNumber, boostPostRequest.whatsappPhoneNumber) &&
         Objects.equals(this.currency, boostPostRequest.currency) &&
         Objects.equals(this.schedule, boostPostRequest.schedule) &&
         Objects.equals(this.targeting, boostPostRequest.targeting) &&
@@ -1207,7 +1239,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
   }
 
   @Override
@@ -1224,6 +1256,7 @@ public class BoostPostRequest {
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
     sb.append("    destinationType: ").append(toIndentedString(destinationType)).append("\n");
+    sb.append("    whatsappPhoneNumber: ").append(toIndentedString(whatsappPhoneNumber)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
     sb.append("    targeting: ").append(toIndentedString(targeting)).append("\n");
@@ -1340,6 +1373,11 @@ public class BoostPostRequest {
     // add `destinationType` to the URL query string
     if (getDestinationType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdestinationType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDestinationType()))));
+    }
+
+    // add `whatsappPhoneNumber` to the URL query string
+    if (getWhatsappPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swhatsappPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWhatsappPhoneNumber()))));
     }
 
     // add `currency` to the URL query string

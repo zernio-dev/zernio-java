@@ -43,11 +43,12 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequest.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   UpdateAdCampaignRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID,
+  UpdateAdCampaignRequest.JSON_PROPERTY_ALLOW_SHARED_BUDGET_UPDATE,
   UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Required: platform campaign IDs are not globally unique.
@@ -109,6 +110,10 @@ public class UpdateAdCampaignRequest {
   public static final String JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID = "portfolioBidStrategyId";
   @javax.annotation.Nullable
   private String portfolioBidStrategyId;
+
+  public static final String JSON_PROPERTY_ALLOW_SHARED_BUDGET_UPDATE = "allowSharedBudgetUpdate";
+  @javax.annotation.Nullable
+  private Boolean allowSharedBudgetUpdate = false;
 
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
@@ -269,6 +274,30 @@ public class UpdateAdCampaignRequest {
   }
 
 
+  public UpdateAdCampaignRequest allowSharedBudgetUpdate(@javax.annotation.Nullable Boolean allowSharedBudgetUpdate) {
+    this.allowSharedBudgetUpdate = allowSharedBudgetUpdate;
+    return this;
+  }
+
+  /**
+   * Google only. Explicitly allow changing a shared campaign budget, affecting every campaign that uses it. Does not bypass an unknown sharing state.
+   * @return allowSharedBudgetUpdate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_SHARED_BUDGET_UPDATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAllowSharedBudgetUpdate() {
+    return allowSharedBudgetUpdate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_SHARED_BUDGET_UPDATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllowSharedBudgetUpdate(@javax.annotation.Nullable Boolean allowSharedBudgetUpdate) {
+    this.allowSharedBudgetUpdate = allowSharedBudgetUpdate;
+  }
+
+
   public UpdateAdCampaignRequest budget(@javax.annotation.Nullable UpdateAdCampaignRequestBudget budget) {
     this.budget = budget;
     return this;
@@ -359,6 +388,7 @@ public class UpdateAdCampaignRequest {
         Objects.equals(this.bidAmount, updateAdCampaignRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, updateAdCampaignRequest.roasAverageFloor) &&
         Objects.equals(this.portfolioBidStrategyId, updateAdCampaignRequest.portfolioBidStrategyId) &&
+        Objects.equals(this.allowSharedBudgetUpdate, updateAdCampaignRequest.allowSharedBudgetUpdate) &&
         Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
         Objects.equals(this.name, updateAdCampaignRequest.name) &&
         Objects.equals(this.platformSpecificData, updateAdCampaignRequest.platformSpecificData);
@@ -366,7 +396,7 @@ public class UpdateAdCampaignRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, accountId, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, budget, name, platformSpecificData);
+    return Objects.hash(platform, accountId, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, allowSharedBudgetUpdate, budget, name, platformSpecificData);
   }
 
   @Override
@@ -379,6 +409,7 @@ public class UpdateAdCampaignRequest {
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    portfolioBidStrategyId: ").append(toIndentedString(portfolioBidStrategyId)).append("\n");
+    sb.append("    allowSharedBudgetUpdate: ").append(toIndentedString(allowSharedBudgetUpdate)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
@@ -457,6 +488,11 @@ public class UpdateAdCampaignRequest {
     // add `portfolioBidStrategyId` to the URL query string
     if (getPortfolioBidStrategyId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sportfolioBidStrategyId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortfolioBidStrategyId()))));
+    }
+
+    // add `allowSharedBudgetUpdate` to the URL query string
+    if (getAllowSharedBudgetUpdate() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallowSharedBudgetUpdate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowSharedBudgetUpdate()))));
     }
 
     // add `budget` to the URL query string

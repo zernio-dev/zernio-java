@@ -20,16 +20,20 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AddAccountCallouts201Response;
 import dev.zernio.model.AddAccountCalloutsRequest;
+import dev.zernio.model.CreateAdNegativeKeywordList201Response;
+import dev.zernio.model.CreateAdNegativeKeywordListRequest;
 import dev.zernio.model.CreateCustomConversionRequest;
 import dev.zernio.model.CreateHighDemandPeriod201Response;
 import dev.zernio.model.CreateHighDemandPeriodRequest;
 import dev.zernio.model.CreateValueRuleSet201Response;
 import dev.zernio.model.CreateValueRuleSetRequest;
 import dev.zernio.model.CustomConversionResult;
+import dev.zernio.model.DeleteAdNegativeKeywordList200Response;
 import dev.zernio.model.DeleteValueRuleSet200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetAdAccountFinance200Response;
 import dev.zernio.model.GetAdComments200Response;
+import dev.zernio.model.GetAdNegativeKeywordList200Response;
 import dev.zernio.model.GetAdsActivityLog200Response;
 import dev.zernio.model.GetDsaRecommendations200Response;
 import dev.zernio.model.GetValueRuleSet200Response;
@@ -38,6 +42,7 @@ import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListAccountCallouts200Response;
 import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAdLabels200Response;
+import dev.zernio.model.ListAdNegativeKeywordLists200Response;
 import dev.zernio.model.ListAdStudies200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
 import dev.zernio.model.ListCustomConversions200Response;
@@ -47,8 +52,12 @@ import dev.zernio.model.ListValueRuleSets200Response;
 import java.time.LocalDate;
 import dev.zernio.model.RemoveAccountCallout200Response;
 import dev.zernio.model.RemoveAccountCalloutRequest;
+import dev.zernio.model.ReplaceAdNegativeKeywordListKeywords200Response;
+import dev.zernio.model.ReplaceAdNegativeKeywordListKeywordsRequest;
 import dev.zernio.model.UpdateAdAccount200Response;
 import dev.zernio.model.UpdateAdAccountRequest;
+import dev.zernio.model.UpdateAdNegativeKeywordList200Response;
+import dev.zernio.model.UpdateAdNegativeKeywordListRequest;
 import dev.zernio.model.UpdateValueRuleSet200Response;
 import dev.zernio.model.UpdateValueRuleSetRequest;
 
@@ -77,7 +86,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -302,6 +311,129 @@ public class AdAccountsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addAccountCalloutsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a negative keyword list
+   * Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+   * @param createAdNegativeKeywordListRequest  (required)
+   * @return CreateAdNegativeKeywordList201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdNegativeKeywordList201Response createAdNegativeKeywordList(@javax.annotation.Nonnull CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest) throws ApiException {
+    return createAdNegativeKeywordList(createAdNegativeKeywordListRequest, null);
+  }
+
+  /**
+   * Create a negative keyword list
+   * Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+   * @param createAdNegativeKeywordListRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAdNegativeKeywordList201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdNegativeKeywordList201Response createAdNegativeKeywordList(@javax.annotation.Nonnull CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdNegativeKeywordList201Response> localVarResponse = createAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a negative keyword list
+   * Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+   * @param createAdNegativeKeywordListRequest  (required)
+   * @return ApiResponse&lt;CreateAdNegativeKeywordList201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdNegativeKeywordList201Response> createAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest) throws ApiException {
+    return createAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest, null);
+  }
+
+  /**
+   * Create a negative keyword list
+   * Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+   * @param createAdNegativeKeywordListRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAdNegativeKeywordList201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdNegativeKeywordList201Response> createAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAdNegativeKeywordListRequestBuilder(createAdNegativeKeywordListRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createAdNegativeKeywordList", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateAdNegativeKeywordList201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAdNegativeKeywordList201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdNegativeKeywordList201Response>() {});
+        
+
+        return new ApiResponse<CreateAdNegativeKeywordList201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createAdNegativeKeywordListRequestBuilder(@javax.annotation.Nonnull CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createAdNegativeKeywordListRequest' is set
+    if (createAdNegativeKeywordListRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createAdNegativeKeywordListRequest' when calling createAdNegativeKeywordList");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/negative-keyword-lists";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdNegativeKeywordListRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -684,6 +816,159 @@ public class AdAccountsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a negative keyword list
+   * Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @return DeleteAdNegativeKeywordList200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform) throws ApiException {
+    return deleteAdNegativeKeywordList(listId, accountId, customerId, platform, null);
+  }
+
+  /**
+   * Delete a negative keyword list
+   * Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return DeleteAdNegativeKeywordList200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a negative keyword list
+   * Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @return ApiResponse&lt;DeleteAdNegativeKeywordList200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform) throws ApiException {
+    return deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform, null);
+  }
+
+  /**
+   * Delete a negative keyword list
+   * Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteAdNegativeKeywordList200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAdNegativeKeywordListRequestBuilder(listId, accountId, customerId, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteAdNegativeKeywordList", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteAdNegativeKeywordList200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteAdNegativeKeywordList200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteAdNegativeKeywordList200Response>() {});
+        
+
+        return new ApiResponse<DeleteAdNegativeKeywordList200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteAdNegativeKeywordListRequestBuilder(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'listId' is set
+    if (listId == null) {
+      throw new ApiException(400, "Missing the required parameter 'listId' when calling deleteAdNegativeKeywordList");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAdNegativeKeywordList");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/negative-keyword-lists/{listId}"
+        .replace("{listId}", ApiClient.urlEncode(listId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -1101,6 +1386,159 @@ public class AdAccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "cursor";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get a negative keyword list
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @return GetAdNegativeKeywordList200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdNegativeKeywordList200Response getAdNegativeKeywordList(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform) throws ApiException {
+    return getAdNegativeKeywordList(listId, accountId, customerId, platform, null);
+  }
+
+  /**
+   * Get a negative keyword list
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdNegativeKeywordList200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdNegativeKeywordList200Response getAdNegativeKeywordList(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = getAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a negative keyword list
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @return ApiResponse&lt;GetAdNegativeKeywordList200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdNegativeKeywordList200Response> getAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform) throws ApiException {
+    return getAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform, null);
+  }
+
+  /**
+   * Get a negative keyword list
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+   * @param listId  (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdNegativeKeywordList200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdNegativeKeywordList200Response> getAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdNegativeKeywordListRequestBuilder(listId, accountId, customerId, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdNegativeKeywordList", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdNegativeKeywordList200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdNegativeKeywordList200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdNegativeKeywordList200Response>() {});
+        
+
+        return new ApiResponse<GetAdNegativeKeywordList200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdNegativeKeywordListRequestBuilder(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'listId' is set
+    if (listId == null) {
+      throw new ApiException(400, "Missing the required parameter 'listId' when calling getAdNegativeKeywordList");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdNegativeKeywordList");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/negative-keyword-lists/{listId}"
+        .replace("{listId}", ApiClient.urlEncode(listId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -2161,6 +2599,150 @@ public class AdAccountsApi {
   }
 
   /**
+   * List negative keyword lists
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @return ListAdNegativeKeywordLists200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdNegativeKeywordLists200Response listAdNegativeKeywordLists(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform) throws ApiException {
+    return listAdNegativeKeywordLists(accountId, customerId, platform, null);
+  }
+
+  /**
+   * List negative keyword lists
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAdNegativeKeywordLists200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdNegativeKeywordLists200Response listAdNegativeKeywordLists(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = listAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List negative keyword lists
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @return ApiResponse&lt;ListAdNegativeKeywordLists200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdNegativeKeywordLists200Response> listAdNegativeKeywordListsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform) throws ApiException {
+    return listAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform, null);
+  }
+
+  /**
+   * List negative keyword lists
+   * Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param platform  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdNegativeKeywordLists200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdNegativeKeywordLists200Response> listAdNegativeKeywordListsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdNegativeKeywordListsRequestBuilder(accountId, customerId, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdNegativeKeywordLists", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdNegativeKeywordLists200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdNegativeKeywordLists200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdNegativeKeywordLists200Response>() {});
+        
+
+        return new ApiResponse<ListAdNegativeKeywordLists200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdNegativeKeywordListsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdNegativeKeywordLists");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/negative-keyword-lists";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * A/B tests and lift studies
    * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
@@ -3171,6 +3753,138 @@ public class AdAccountsApi {
   }
 
   /**
+   * Replace negative list keywords
+   * Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+   * @param listId  (required)
+   * @param replaceAdNegativeKeywordListKeywordsRequest  (required)
+   * @return ReplaceAdNegativeKeywordListKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplaceAdNegativeKeywordListKeywords200Response replaceAdNegativeKeywordListKeywords(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest) throws ApiException {
+    return replaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest, null);
+  }
+
+  /**
+   * Replace negative list keywords
+   * Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+   * @param listId  (required)
+   * @param replaceAdNegativeKeywordListKeywordsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReplaceAdNegativeKeywordListKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplaceAdNegativeKeywordListKeywords200Response replaceAdNegativeKeywordListKeywords(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> localVarResponse = replaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Replace negative list keywords
+   * Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+   * @param listId  (required)
+   * @param replaceAdNegativeKeywordListKeywordsRequest  (required)
+   * @return ApiResponse&lt;ReplaceAdNegativeKeywordListKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> replaceAdNegativeKeywordListKeywordsWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest) throws ApiException {
+    return replaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest, null);
+  }
+
+  /**
+   * Replace negative list keywords
+   * Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+   * @param listId  (required)
+   * @param replaceAdNegativeKeywordListKeywordsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplaceAdNegativeKeywordListKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> replaceAdNegativeKeywordListKeywordsWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replaceAdNegativeKeywordListKeywordsRequestBuilder(listId, replaceAdNegativeKeywordListKeywordsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("replaceAdNegativeKeywordListKeywords", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplaceAdNegativeKeywordListKeywords200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplaceAdNegativeKeywordListKeywords200Response>() {});
+        
+
+        return new ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder replaceAdNegativeKeywordListKeywordsRequestBuilder(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'listId' is set
+    if (listId == null) {
+      throw new ApiException(400, "Missing the required parameter 'listId' when calling replaceAdNegativeKeywordListKeywords");
+    }
+    // verify the required parameter 'replaceAdNegativeKeywordListKeywordsRequest' is set
+    if (replaceAdNegativeKeywordListKeywordsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'replaceAdNegativeKeywordListKeywordsRequest' when calling replaceAdNegativeKeywordListKeywords");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/negative-keyword-lists/{listId}/keywords"
+        .replace("{listId}", ApiClient.urlEncode(listId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replaceAdNegativeKeywordListKeywordsRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Update ad account settings
    * Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
    * @param updateAdAccountRequest  (required)
@@ -3279,6 +3993,138 @@ public class AdAccountsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdAccountRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Rename a negative keyword list
+   * Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+   * @param listId  (required)
+   * @param updateAdNegativeKeywordListRequest  (required)
+   * @return UpdateAdNegativeKeywordList200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdNegativeKeywordList200Response updateAdNegativeKeywordList(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest) throws ApiException {
+    return updateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest, null);
+  }
+
+  /**
+   * Rename a negative keyword list
+   * Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+   * @param listId  (required)
+   * @param updateAdNegativeKeywordListRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdNegativeKeywordList200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdNegativeKeywordList200Response updateAdNegativeKeywordList(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdNegativeKeywordList200Response> localVarResponse = updateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Rename a negative keyword list
+   * Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+   * @param listId  (required)
+   * @param updateAdNegativeKeywordListRequest  (required)
+   * @return ApiResponse&lt;UpdateAdNegativeKeywordList200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdNegativeKeywordList200Response> updateAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest) throws ApiException {
+    return updateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest, null);
+  }
+
+  /**
+   * Rename a negative keyword list
+   * Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+   * @param listId  (required)
+   * @param updateAdNegativeKeywordListRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdNegativeKeywordList200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdNegativeKeywordList200Response> updateAdNegativeKeywordListWithHttpInfo(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdNegativeKeywordListRequestBuilder(listId, updateAdNegativeKeywordListRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdNegativeKeywordList", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdNegativeKeywordList200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdNegativeKeywordList200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdNegativeKeywordList200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdNegativeKeywordList200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdNegativeKeywordListRequestBuilder(@javax.annotation.Nonnull String listId, @javax.annotation.Nonnull UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'listId' is set
+    if (listId == null) {
+      throw new ApiException(400, "Missing the required parameter 'listId' when calling updateAdNegativeKeywordList");
+    }
+    // verify the required parameter 'updateAdNegativeKeywordListRequest' is set
+    if (updateAdNegativeKeywordListRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdNegativeKeywordListRequest' when calling updateAdNegativeKeywordList");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/negative-keyword-lists/{listId}"
+        .replace("{listId}", ApiClient.urlEncode(listId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdNegativeKeywordListRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

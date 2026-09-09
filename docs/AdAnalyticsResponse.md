@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**backfillPending** | **Boolean** | Present and true while historical data is being backfilled. |  [optional] |
 |**ad** | [**AdAnalyticsResponseAd**](AdAnalyticsResponseAd.md) |  |  [optional] |
-|**analytics** | [**CampaignAnalyticsResponseAnalytics**](CampaignAnalyticsResponseAnalytics.md) |  |  [optional] |
+|**analytics** | [**AdAnalyticsResponseAnalytics**](AdAnalyticsResponseAnalytics.md) |  |  [optional] |
 
 
 

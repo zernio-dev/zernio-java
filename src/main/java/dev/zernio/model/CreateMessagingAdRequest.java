@@ -52,6 +52,9 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_ACCOUNT_ID,
   CreateMessagingAdRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   CreateMessagingAdRequest.JSON_PROPERTY_NAME,
+  CreateMessagingAdRequest.JSON_PROPERTY_EXISTING_POST_ID,
+  CreateMessagingAdRequest.JSON_PROPERTY_OBJECT_STORY_ID,
+  CreateMessagingAdRequest.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER,
   CreateMessagingAdRequest.JSON_PROPERTY_HEADLINE,
   CreateMessagingAdRequest.JSON_PROPERTY_BODY,
   CreateMessagingAdRequest.JSON_PROPERTY_IMAGE_URL,
@@ -87,7 +90,7 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES,
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -100,6 +103,18 @@ public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
   private String name;
+
+  public static final String JSON_PROPERTY_EXISTING_POST_ID = "existingPostId";
+  @javax.annotation.Nullable
+  private String existingPostId;
+
+  public static final String JSON_PROPERTY_OBJECT_STORY_ID = "objectStoryId";
+  @javax.annotation.Nullable
+  private String objectStoryId;
+
+  public static final String JSON_PROPERTY_WHATSAPP_PHONE_NUMBER = "whatsappPhoneNumber";
+  @javax.annotation.Nullable
+  private String whatsappPhoneNumber;
 
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nullable
@@ -565,6 +580,78 @@ public class CreateMessagingAdRequest {
   }
 
 
+  public CreateMessagingAdRequest existingPostId(@javax.annotation.Nullable String existingPostId) {
+    this.existingPostId = existingPostId;
+    return this;
+  }
+
+  /**
+   * Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields.
+   * @return existingPostId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExistingPostId() {
+    return existingPostId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExistingPostId(@javax.annotation.Nullable String existingPostId) {
+    this.existingPostId = existingPostId;
+  }
+
+
+  public CreateMessagingAdRequest objectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = objectStoryId;
+    return this;
+  }
+
+  /**
+   * Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.
+   * @return objectStoryId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getObjectStoryId() {
+    return objectStoryId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObjectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = objectStoryId;
+  }
+
+
+  public CreateMessagingAdRequest whatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Optional E.164 number already paired with the Facebook Page. Omit to let Meta select the paired number. Sent to the creative CTA and, when creating a new ad set, its promoted_object. Attach requests do not change the existing ad set.
+   * @return whatsappPhoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWhatsappPhoneNumber() {
+    return whatsappPhoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWhatsappPhoneNumber(@javax.annotation.Nullable String whatsappPhoneNumber) {
+    this.whatsappPhoneNumber = whatsappPhoneNumber;
+  }
+
+
   public CreateMessagingAdRequest headline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
     return this;
@@ -619,7 +706,7 @@ public class CreateMessagingAdRequest {
   }
 
   /**
-   * Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. 
+   * Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;video&#x60; nor an existing post reference is supplied. 
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -699,7 +786,7 @@ public class CreateMessagingAdRequest {
   }
 
   /**
-   * Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. 
+   * Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry supplies headline, body, and image/video, or an existingPostId or objectStoryId reference. Fresh and existing creatives can be mixed. 
    * @return creatives
    */
   @javax.annotation.Nullable
@@ -1480,6 +1567,9 @@ public class CreateMessagingAdRequest {
     return Objects.equals(this.accountId, createMessagingAdRequest.accountId) &&
         Objects.equals(this.adAccountId, createMessagingAdRequest.adAccountId) &&
         Objects.equals(this.name, createMessagingAdRequest.name) &&
+        Objects.equals(this.existingPostId, createMessagingAdRequest.existingPostId) &&
+        Objects.equals(this.objectStoryId, createMessagingAdRequest.objectStoryId) &&
+        Objects.equals(this.whatsappPhoneNumber, createMessagingAdRequest.whatsappPhoneNumber) &&
         Objects.equals(this.headline, createMessagingAdRequest.headline) &&
         Objects.equals(this.body, createMessagingAdRequest.body) &&
         Objects.equals(this.imageUrl, createMessagingAdRequest.imageUrl) &&
@@ -1518,7 +1608,7 @@ public class CreateMessagingAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities, destination);
+    return Objects.hash(accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities, destination);
   }
 
   @Override
@@ -1528,6 +1618,9 @@ public class CreateMessagingAdRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    existingPostId: ").append(toIndentedString(existingPostId)).append("\n");
+    sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
+    sb.append("    whatsappPhoneNumber: ").append(toIndentedString(whatsappPhoneNumber)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
@@ -1622,6 +1715,21 @@ public class CreateMessagingAdRequest {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `existingPostId` to the URL query string
+    if (getExistingPostId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexistingPostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExistingPostId()))));
+    }
+
+    // add `objectStoryId` to the URL query string
+    if (getObjectStoryId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sobjectStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectStoryId()))));
+    }
+
+    // add `whatsappPhoneNumber` to the URL query string
+    if (getWhatsappPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swhatsappPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWhatsappPhoneNumber()))));
     }
 
     // add `headline` to the URL query string

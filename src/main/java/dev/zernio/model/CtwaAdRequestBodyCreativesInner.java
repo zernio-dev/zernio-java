@@ -33,23 +33,33 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Each entry must also include exactly one of &#x60;imageUrl&#x60; or &#x60;video&#x60;. 
+ * Supply headline, body, and image/video, or exactly one existing post reference. References cannot be combined with fresh creative fields.
  */
 @JsonPropertyOrder({
+  CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_EXISTING_POST_ID,
+  CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_OBJECT_STORY_ID,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_HEADLINE,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_BODY,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_IMAGE_URL,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_VIDEO,
   CtwaAdRequestBodyCreativesInner.JSON_PROPERTY_WELCOME_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyCreativesInner {
+  public static final String JSON_PROPERTY_EXISTING_POST_ID = "existingPostId";
+  @javax.annotation.Nullable
+  private String existingPostId;
+
+  public static final String JSON_PROPERTY_OBJECT_STORY_ID = "objectStoryId";
+  @javax.annotation.Nullable
+  private String objectStoryId;
+
   public static final String JSON_PROPERTY_HEADLINE = "headline";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String headline;
 
   public static final String JSON_PROPERTY_BODY = "body";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String body;
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
@@ -67,7 +77,55 @@ public class CtwaAdRequestBodyCreativesInner {
   public CtwaAdRequestBodyCreativesInner() { 
   }
 
-  public CtwaAdRequestBodyCreativesInner headline(@javax.annotation.Nonnull String headline) {
+  public CtwaAdRequestBodyCreativesInner existingPostId(@javax.annotation.Nullable String existingPostId) {
+    this.existingPostId = existingPostId;
+    return this;
+  }
+
+  /**
+   * Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields.
+   * @return existingPostId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExistingPostId() {
+    return existingPostId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExistingPostId(@javax.annotation.Nullable String existingPostId) {
+    this.existingPostId = existingPostId;
+  }
+
+
+  public CtwaAdRequestBodyCreativesInner objectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = objectStoryId;
+    return this;
+  }
+
+  /**
+   * Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.
+   * @return objectStoryId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getObjectStoryId() {
+    return objectStoryId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObjectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = objectStoryId;
+  }
+
+
+  public CtwaAdRequestBodyCreativesInner headline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
     return this;
   }
@@ -76,22 +134,22 @@ public class CtwaAdRequestBodyCreativesInner {
    * Get headline
    * @return headline
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHeadline() {
     return headline;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setHeadline(@javax.annotation.Nonnull String headline) {
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeadline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
   }
 
 
-  public CtwaAdRequestBodyCreativesInner body(@javax.annotation.Nonnull String body) {
+  public CtwaAdRequestBodyCreativesInner body(@javax.annotation.Nullable String body) {
     this.body = body;
     return this;
   }
@@ -100,17 +158,17 @@ public class CtwaAdRequestBodyCreativesInner {
    * Primary text shown above the image / video.
    * @return body
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBody() {
     return body;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBody(@javax.annotation.Nonnull String body) {
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBody(@javax.annotation.Nullable String body) {
     this.body = body;
   }
 
@@ -121,7 +179,7 @@ public class CtwaAdRequestBodyCreativesInner {
   }
 
   /**
-   * Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. 
+   * Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if neither &#x60;video&#x60; nor an existing post reference is supplied. 
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -199,7 +257,9 @@ public class CtwaAdRequestBodyCreativesInner {
       return false;
     }
     CtwaAdRequestBodyCreativesInner ctwaAdRequestBodyCreativesInner = (CtwaAdRequestBodyCreativesInner) o;
-    return Objects.equals(this.headline, ctwaAdRequestBodyCreativesInner.headline) &&
+    return Objects.equals(this.existingPostId, ctwaAdRequestBodyCreativesInner.existingPostId) &&
+        Objects.equals(this.objectStoryId, ctwaAdRequestBodyCreativesInner.objectStoryId) &&
+        Objects.equals(this.headline, ctwaAdRequestBodyCreativesInner.headline) &&
         Objects.equals(this.body, ctwaAdRequestBodyCreativesInner.body) &&
         Objects.equals(this.imageUrl, ctwaAdRequestBodyCreativesInner.imageUrl) &&
         Objects.equals(this.video, ctwaAdRequestBodyCreativesInner.video) &&
@@ -208,13 +268,15 @@ public class CtwaAdRequestBodyCreativesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(headline, body, imageUrl, video, welcomeMessage);
+    return Objects.hash(existingPostId, objectStoryId, headline, body, imageUrl, video, welcomeMessage);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CtwaAdRequestBodyCreativesInner {\n");
+    sb.append("    existingPostId: ").append(toIndentedString(existingPostId)).append("\n");
+    sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
@@ -266,6 +328,16 @@ public class CtwaAdRequestBodyCreativesInner {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `existingPostId` to the URL query string
+    if (getExistingPostId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexistingPostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExistingPostId()))));
+    }
+
+    // add `objectStoryId` to the URL query string
+    if (getObjectStoryId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sobjectStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectStoryId()))));
+    }
 
     // add `headline` to the URL query string
     if (getHeadline() != null) {

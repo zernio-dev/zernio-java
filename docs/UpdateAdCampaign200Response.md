@@ -9,7 +9,7 @@ Echoes back only the fields you sent, plus `updated`.
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**updated** | **Integer** | Local Ad documents mirrored. 0 on the empty-campaign path. |  [optional] |
-|**budget** | [**AdBudget**](AdBudget.md) |  |  [optional] |
+|**budget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  |  [optional] |
 |**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) |  |  [optional] |
 |**bidStrategy** | **BidStrategy** |  |  [optional] |
 |**bidAmount** | **BigDecimal** |  |  [optional] |

@@ -2,7 +2,7 @@
 
 # CtwaAdRequestBodyVideo
 
-Video creative for single-creative shape. Mutually exclusive with `imageUrl` and with `creatives[]`. Required on the single-creative shape if `imageUrl` is not supplied. 
+Video creative for single-creative shape. Mutually exclusive with `imageUrl` and with `creatives[]`. Required on the single-creative shape if neither `imageUrl` nor an existing post reference is supplied. 
 
 ## Properties
 

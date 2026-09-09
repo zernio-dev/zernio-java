@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdCampaignBudget;
-import dev.zernio.model.AdCampaignCampaignBudget;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdReviewStatus;
 import dev.zernio.model.AdStatus;
@@ -76,7 +75,7 @@ import dev.zernio.ApiClient;
   AdCampaign.JSON_PROPERTY_EARLIEST_AD,
   AdCampaign.JSON_PROPERTY_LATEST_AD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -155,12 +154,10 @@ public class AdCampaign {
   private Integer adCount;
 
   public static final String JSON_PROPERTY_BUDGET = "budget";
-  @javax.annotation.Nullable
-  private AdCampaignBudget budget;
+  private JsonNullable<AdCampaignBudget> budget = JsonNullable.<AdCampaignBudget>undefined();
 
   public static final String JSON_PROPERTY_CAMPAIGN_BUDGET = "campaignBudget";
-  @javax.annotation.Nullable
-  private AdCampaignCampaignBudget campaignBudget;
+  private JsonNullable<AdCampaignBudget> campaignBudget = JsonNullable.<AdCampaignBudget>undefined();
 
   /**
    * Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.
@@ -488,7 +485,7 @@ public class AdCampaign {
 
 
   public AdCampaign budget(@javax.annotation.Nullable AdCampaignBudget budget) {
-    this.budget = budget;
+    this.budget = JsonNullable.<AdCampaignBudget>of(budget);
     return this;
   }
 
@@ -497,22 +494,30 @@ public class AdCampaign {
    * @return budget
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public AdCampaignBudget getBudget() {
-    return budget;
+        return budget.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBudget(@javax.annotation.Nullable AdCampaignBudget budget) {
+
+  public JsonNullable<AdCampaignBudget> getBudget_JsonNullable() {
+    return budget;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUDGET)
+  public void setBudget_JsonNullable(JsonNullable<AdCampaignBudget> budget) {
     this.budget = budget;
   }
 
+  public void setBudget(@javax.annotation.Nullable AdCampaignBudget budget) {
+    this.budget = JsonNullable.<AdCampaignBudget>of(budget);
+  }
 
-  public AdCampaign campaignBudget(@javax.annotation.Nullable AdCampaignCampaignBudget campaignBudget) {
-    this.campaignBudget = campaignBudget;
+
+  public AdCampaign campaignBudget(@javax.annotation.Nullable AdCampaignBudget campaignBudget) {
+    this.campaignBudget = JsonNullable.<AdCampaignBudget>of(campaignBudget);
     return this;
   }
 
@@ -521,17 +526,25 @@ public class AdCampaign {
    * @return campaignBudget
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_BUDGET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AdCampaignCampaignBudget getCampaignBudget() {
-    return campaignBudget;
+  @JsonIgnore
+  public AdCampaignBudget getCampaignBudget() {
+        return campaignBudget.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCampaignBudget(@javax.annotation.Nullable AdCampaignCampaignBudget campaignBudget) {
+
+  public JsonNullable<AdCampaignBudget> getCampaignBudget_JsonNullable() {
+    return campaignBudget;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CAMPAIGN_BUDGET)
+  public void setCampaignBudget_JsonNullable(JsonNullable<AdCampaignBudget> campaignBudget) {
     this.campaignBudget = campaignBudget;
+  }
+
+  public void setCampaignBudget(@javax.annotation.Nullable AdCampaignBudget campaignBudget) {
+    this.campaignBudget = JsonNullable.<AdCampaignBudget>of(campaignBudget);
   }
 
 
@@ -1035,8 +1048,8 @@ public class AdCampaign {
         equalsNullable(this.platformCampaignStatus, adCampaign.platformCampaignStatus) &&
         equalsNullable(this.campaignIssuesInfo, adCampaign.campaignIssuesInfo) &&
         Objects.equals(this.adCount, adCampaign.adCount) &&
-        Objects.equals(this.budget, adCampaign.budget) &&
-        Objects.equals(this.campaignBudget, adCampaign.campaignBudget) &&
+        equalsNullable(this.budget, adCampaign.budget) &&
+        equalsNullable(this.campaignBudget, adCampaign.campaignBudget) &&
         equalsNullable(this.budgetLevel, adCampaign.budgetLevel) &&
         Objects.equals(this.isBudgetScheduleEnabled, adCampaign.isBudgetScheduleEnabled) &&
         equalsNullable(this.currency, adCampaign.currency) &&
@@ -1062,7 +1075,7 @@ public class AdCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, earliestAd, latestAd);
+    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, hashCodeNullable(budget), hashCodeNullable(campaignBudget), hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, earliestAd, latestAd);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

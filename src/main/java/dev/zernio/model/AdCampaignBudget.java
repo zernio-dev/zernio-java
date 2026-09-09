@@ -26,21 +26,29 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Effective budget (back-compat). Use &#x60;budgetLevel&#x60; to disambiguate CBO vs ABO.
+ * AdCampaignBudget
  */
 @JsonPropertyOrder({
   AdCampaignBudget.JSON_PROPERTY_AMOUNT,
-  AdCampaignBudget.JSON_PROPERTY_TYPE
+  AdCampaignBudget.JSON_PROPERTY_TYPE,
+  AdCampaignBudget.JSON_PROPERTY_AMOUNT_MICROS,
+  AdCampaignBudget.JSON_PROPERTY_EXPLICITLY_SHARED,
+  AdCampaignBudget.JSON_PROPERTY_RESOURCE_NAME,
+  AdCampaignBudget.JSON_PROPERTY_DELIVERY_METHOD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignBudget {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private BigDecimal amount;
 
   /**
@@ -79,13 +87,26 @@ public class AdCampaignBudget {
   }
 
   public static final String JSON_PROPERTY_TYPE = "type";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_AMOUNT_MICROS = "amountMicros";
+  @javax.annotation.Nullable
+  private String amountMicros;
+
+  public static final String JSON_PROPERTY_EXPLICITLY_SHARED = "explicitlyShared";
+  private JsonNullable<Boolean> explicitlyShared = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_RESOURCE_NAME = "resourceName";
+  private JsonNullable<String> resourceName = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_DELIVERY_METHOD = "deliveryMethod";
+  private JsonNullable<String> deliveryMethod = JsonNullable.<String>undefined();
 
   public AdCampaignBudget() { 
   }
 
-  public AdCampaignBudget amount(@javax.annotation.Nullable BigDecimal amount) {
+  public AdCampaignBudget amount(@javax.annotation.Nonnull BigDecimal amount) {
     this.amount = amount;
     return this;
   }
@@ -94,22 +115,22 @@ public class AdCampaignBudget {
    * Get amount
    * @return amount
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AMOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_AMOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public BigDecimal getAmount() {
     return amount;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_AMOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAmount(@javax.annotation.Nullable BigDecimal amount) {
+  @JsonProperty(value = JSON_PROPERTY_AMOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAmount(@javax.annotation.Nonnull BigDecimal amount) {
     this.amount = amount;
   }
 
 
-  public AdCampaignBudget type(@javax.annotation.Nullable TypeEnum type) {
+  public AdCampaignBudget type(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -118,23 +139,143 @@ public class AdCampaignBudget {
    * Get type
    * @return type
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(@javax.annotation.Nullable TypeEnum type) {
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
   }
 
 
+  public AdCampaignBudget amountMicros(@javax.annotation.Nullable String amountMicros) {
+    this.amountMicros = amountMicros;
+    return this;
+  }
+
   /**
-   * Return true if this AdCampaign_budget object is equal to o.
+   * Google only. Exact decimal micros; DAILY uses amount_micros and CUSTOM_PERIOD uses total_amount_micros.
+   * @return amountMicros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AMOUNT_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAmountMicros() {
+    return amountMicros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AMOUNT_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAmountMicros(@javax.annotation.Nullable String amountMicros) {
+    this.amountMicros = amountMicros;
+  }
+
+
+  public AdCampaignBudget explicitlyShared(@javax.annotation.Nullable Boolean explicitlyShared) {
+    this.explicitlyShared = JsonNullable.<Boolean>of(explicitlyShared);
+    return this;
+  }
+
+  /**
+   * Google only. True for a shared budget; null when unavailable. Shared writes require allowSharedBudgetUpdate&#x3D;true; unknown sharing status cannot be overridden.
+   * @return explicitlyShared
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Boolean getExplicitlyShared() {
+        return explicitlyShared.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_EXPLICITLY_SHARED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getExplicitlyShared_JsonNullable() {
+    return explicitlyShared;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPLICITLY_SHARED)
+  public void setExplicitlyShared_JsonNullable(JsonNullable<Boolean> explicitlyShared) {
+    this.explicitlyShared = explicitlyShared;
+  }
+
+  public void setExplicitlyShared(@javax.annotation.Nullable Boolean explicitlyShared) {
+    this.explicitlyShared = JsonNullable.<Boolean>of(explicitlyShared);
+  }
+
+
+  public AdCampaignBudget resourceName(@javax.annotation.Nullable String resourceName) {
+    this.resourceName = JsonNullable.<String>of(resourceName);
+    return this;
+  }
+
+  /**
+   * Google only. campaign_budget.resource_name, or null when unavailable.
+   * @return resourceName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getResourceName() {
+        return resourceName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_RESOURCE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getResourceName_JsonNullable() {
+    return resourceName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESOURCE_NAME)
+  public void setResourceName_JsonNullable(JsonNullable<String> resourceName) {
+    this.resourceName = resourceName;
+  }
+
+  public void setResourceName(@javax.annotation.Nullable String resourceName) {
+    this.resourceName = JsonNullable.<String>of(resourceName);
+  }
+
+
+  public AdCampaignBudget deliveryMethod(@javax.annotation.Nullable String deliveryMethod) {
+    this.deliveryMethod = JsonNullable.<String>of(deliveryMethod);
+    return this;
+  }
+
+  /**
+   * Google only. campaign_budget.delivery_method, typically STANDARD, or null when unavailable.
+   * @return deliveryMethod
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getDeliveryMethod() {
+        return deliveryMethod.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_DELIVERY_METHOD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getDeliveryMethod_JsonNullable() {
+    return deliveryMethod;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELIVERY_METHOD)
+  public void setDeliveryMethod_JsonNullable(JsonNullable<String> deliveryMethod) {
+    this.deliveryMethod = deliveryMethod;
+  }
+
+  public void setDeliveryMethod(@javax.annotation.Nullable String deliveryMethod) {
+    this.deliveryMethod = JsonNullable.<String>of(deliveryMethod);
+  }
+
+
+  /**
+   * Return true if this AdCampaignBudget object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -146,12 +287,27 @@ public class AdCampaignBudget {
     }
     AdCampaignBudget adCampaignBudget = (AdCampaignBudget) o;
     return Objects.equals(this.amount, adCampaignBudget.amount) &&
-        Objects.equals(this.type, adCampaignBudget.type);
+        Objects.equals(this.type, adCampaignBudget.type) &&
+        Objects.equals(this.amountMicros, adCampaignBudget.amountMicros) &&
+        equalsNullable(this.explicitlyShared, adCampaignBudget.explicitlyShared) &&
+        equalsNullable(this.resourceName, adCampaignBudget.resourceName) &&
+        equalsNullable(this.deliveryMethod, adCampaignBudget.deliveryMethod);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, type);
+    return Objects.hash(amount, type, amountMicros, hashCodeNullable(explicitlyShared), hashCodeNullable(resourceName), hashCodeNullable(deliveryMethod));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -160,6 +316,10 @@ public class AdCampaignBudget {
     sb.append("class AdCampaignBudget {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    amountMicros: ").append(toIndentedString(amountMicros)).append("\n");
+    sb.append("    explicitlyShared: ").append(toIndentedString(explicitlyShared)).append("\n");
+    sb.append("    resourceName: ").append(toIndentedString(resourceName)).append("\n");
+    sb.append("    deliveryMethod: ").append(toIndentedString(deliveryMethod)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -215,6 +375,26 @@ public class AdCampaignBudget {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `amountMicros` to the URL query string
+    if (getAmountMicros() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%samountMicros%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAmountMicros()))));
+    }
+
+    // add `explicitlyShared` to the URL query string
+    if (getExplicitlyShared() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexplicitlyShared%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExplicitlyShared()))));
+    }
+
+    // add `resourceName` to the URL query string
+    if (getResourceName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sresourceName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResourceName()))));
+    }
+
+    // add `deliveryMethod` to the URL query string
+    if (getDeliveryMethod() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdeliveryMethod%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeliveryMethod()))));
     }
 
     return joiner.toString();

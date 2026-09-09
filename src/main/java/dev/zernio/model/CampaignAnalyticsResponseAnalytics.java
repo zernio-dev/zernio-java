@@ -24,8 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.AdMetrics;
 import dev.zernio.model.CampaignAnalyticsResponseAnalyticsDailyInner;
+import dev.zernio.model.CampaignAnalyticsResponseAnalyticsImpressionShareCache;
+import dev.zernio.model.CampaignAnalyticsResponseAnalyticsSummary;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,14 +41,19 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CampaignAnalyticsResponseAnalytics.JSON_PROPERTY_SUMMARY,
+  CampaignAnalyticsResponseAnalytics.JSON_PROPERTY_IMPRESSION_SHARE_CACHE,
   CampaignAnalyticsResponseAnalytics.JSON_PROPERTY_DAILY,
   CampaignAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWNS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignAnalyticsResponseAnalytics {
   public static final String JSON_PROPERTY_SUMMARY = "summary";
   @javax.annotation.Nullable
-  private AdMetrics summary;
+  private CampaignAnalyticsResponseAnalyticsSummary summary;
+
+  public static final String JSON_PROPERTY_IMPRESSION_SHARE_CACHE = "impressionShareCache";
+  @javax.annotation.Nullable
+  private CampaignAnalyticsResponseAnalyticsImpressionShareCache impressionShareCache;
 
   public static final String JSON_PROPERTY_DAILY = "daily";
   @javax.annotation.Nullable
@@ -60,7 +66,7 @@ public class CampaignAnalyticsResponseAnalytics {
   public CampaignAnalyticsResponseAnalytics() { 
   }
 
-  public CampaignAnalyticsResponseAnalytics summary(@javax.annotation.Nullable AdMetrics summary) {
+  public CampaignAnalyticsResponseAnalytics summary(@javax.annotation.Nullable CampaignAnalyticsResponseAnalyticsSummary summary) {
     this.summary = summary;
     return this;
   }
@@ -72,15 +78,39 @@ public class CampaignAnalyticsResponseAnalytics {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_SUMMARY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AdMetrics getSummary() {
+  public CampaignAnalyticsResponseAnalyticsSummary getSummary() {
     return summary;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SUMMARY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSummary(@javax.annotation.Nullable AdMetrics summary) {
+  public void setSummary(@javax.annotation.Nullable CampaignAnalyticsResponseAnalyticsSummary summary) {
     this.summary = summary;
+  }
+
+
+  public CampaignAnalyticsResponseAnalytics impressionShareCache(@javax.annotation.Nullable CampaignAnalyticsResponseAnalyticsImpressionShareCache impressionShareCache) {
+    this.impressionShareCache = impressionShareCache;
+    return this;
+  }
+
+  /**
+   * Get impressionShareCache
+   * @return impressionShareCache
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMPRESSION_SHARE_CACHE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CampaignAnalyticsResponseAnalyticsImpressionShareCache getImpressionShareCache() {
+    return impressionShareCache;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IMPRESSION_SHARE_CACHE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImpressionShareCache(@javax.annotation.Nullable CampaignAnalyticsResponseAnalyticsImpressionShareCache impressionShareCache) {
+    this.impressionShareCache = impressionShareCache;
   }
 
 
@@ -161,13 +191,14 @@ public class CampaignAnalyticsResponseAnalytics {
     }
     CampaignAnalyticsResponseAnalytics campaignAnalyticsResponseAnalytics = (CampaignAnalyticsResponseAnalytics) o;
     return Objects.equals(this.summary, campaignAnalyticsResponseAnalytics.summary) &&
+        Objects.equals(this.impressionShareCache, campaignAnalyticsResponseAnalytics.impressionShareCache) &&
         Objects.equals(this.daily, campaignAnalyticsResponseAnalytics.daily) &&
         Objects.equals(this.breakdowns, campaignAnalyticsResponseAnalytics.breakdowns);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(summary, daily, breakdowns);
+    return Objects.hash(summary, impressionShareCache, daily, breakdowns);
   }
 
   @Override
@@ -175,6 +206,7 @@ public class CampaignAnalyticsResponseAnalytics {
     StringBuilder sb = new StringBuilder();
     sb.append("class CampaignAnalyticsResponseAnalytics {\n");
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
+    sb.append("    impressionShareCache: ").append(toIndentedString(impressionShareCache)).append("\n");
     sb.append("    daily: ").append(toIndentedString(daily)).append("\n");
     sb.append("    breakdowns: ").append(toIndentedString(breakdowns)).append("\n");
     sb.append("}");
@@ -227,6 +259,11 @@ public class CampaignAnalyticsResponseAnalytics {
     // add `summary` to the URL query string
     if (getSummary() != null) {
       joiner.add(getSummary().toUrlQueryString(prefix + "summary" + suffix));
+    }
+
+    // add `impressionShareCache` to the URL query string
+    if (getImpressionShareCache() != null) {
+      joiner.add(getImpressionShareCache().toUrlQueryString(prefix + "impressionShareCache" + suffix));
     }
 
     // add `daily` to the URL query string

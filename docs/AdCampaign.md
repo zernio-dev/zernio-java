@@ -16,7 +16,7 @@
 |**campaignIssuesInfo** | **List&lt;Object&gt;** | Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). |  [optional] |
 |**adCount** | **Integer** |  |  [optional] |
 |**budget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  |  [optional] |
-|**campaignBudget** | [**AdCampaignCampaignBudget**](AdCampaignCampaignBudget.md) |  |  [optional] |
+|**campaignBudget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  |  [optional] |
 |**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) | Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel. |  [optional] |
 |**isBudgetScheduleEnabled** | **Boolean** | Meta-only. Mirrors Campaign.is_budget_schedule_enabled. |  [optional] |
 |**currency** | **String** | ISO 4217 currency code for all budget amounts. Budgets are NOT normalized to USD. |  [optional] |

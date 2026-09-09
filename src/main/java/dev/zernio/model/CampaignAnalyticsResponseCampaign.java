@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdCampaignBudget;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,9 +42,10 @@ import dev.zernio.ApiClient;
   CampaignAnalyticsResponseCampaign.JSON_PROPERTY_NAME,
   CampaignAnalyticsResponseCampaign.JSON_PROPERTY_PLATFORM,
   CampaignAnalyticsResponseCampaign.JSON_PROPERTY_STATUS,
+  CampaignAnalyticsResponseCampaign.JSON_PROPERTY_BUDGET,
   CampaignAnalyticsResponseCampaign.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignAnalyticsResponseCampaign {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -58,6 +60,9 @@ public class CampaignAnalyticsResponseCampaign {
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private JsonNullable<String> status = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_BUDGET = "budget";
+  private JsonNullable<AdCampaignBudget> budget = JsonNullable.<AdCampaignBudget>undefined();
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private JsonNullable<String> currency = JsonNullable.<String>undefined();
@@ -177,6 +182,38 @@ public class CampaignAnalyticsResponseCampaign {
   }
 
 
+  public CampaignAnalyticsResponseCampaign budget(@javax.annotation.Nullable AdCampaignBudget budget) {
+    this.budget = JsonNullable.<AdCampaignBudget>of(budget);
+    return this;
+  }
+
+  /**
+   * Get budget
+   * @return budget
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public AdCampaignBudget getBudget() {
+        return budget.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<AdCampaignBudget> getBudget_JsonNullable() {
+    return budget;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUDGET)
+  public void setBudget_JsonNullable(JsonNullable<AdCampaignBudget> budget) {
+    this.budget = budget;
+  }
+
+  public void setBudget(@javax.annotation.Nullable AdCampaignBudget budget) {
+    this.budget = JsonNullable.<AdCampaignBudget>of(budget);
+  }
+
+
   public CampaignAnalyticsResponseCampaign currency(@javax.annotation.Nullable String currency) {
     this.currency = JsonNullable.<String>of(currency);
     return this;
@@ -225,6 +262,7 @@ public class CampaignAnalyticsResponseCampaign {
         equalsNullable(this.name, campaignAnalyticsResponseCampaign.name) &&
         Objects.equals(this.platform, campaignAnalyticsResponseCampaign.platform) &&
         equalsNullable(this.status, campaignAnalyticsResponseCampaign.status) &&
+        equalsNullable(this.budget, campaignAnalyticsResponseCampaign.budget) &&
         equalsNullable(this.currency, campaignAnalyticsResponseCampaign.currency);
   }
 
@@ -234,7 +272,7 @@ public class CampaignAnalyticsResponseCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, hashCodeNullable(name), platform, hashCodeNullable(status), hashCodeNullable(currency));
+    return Objects.hash(id, hashCodeNullable(name), platform, hashCodeNullable(status), hashCodeNullable(budget), hashCodeNullable(currency));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -252,6 +290,7 @@ public class CampaignAnalyticsResponseCampaign {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -318,6 +357,11 @@ public class CampaignAnalyticsResponseCampaign {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `budget` to the URL query string
+    if (getBudget() != null) {
+      joiner.add(getBudget().toUrlQueryString(prefix + "budget" + suffix));
     }
 
     // add `currency` to the URL query string

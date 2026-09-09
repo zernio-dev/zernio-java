@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateAdInsightsReportRequestFilteringInner.JSON_PROPERTY_OPERATOR,
   CreateAdInsightsReportRequestFilteringInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdInsightsReportRequestFilteringInner {
   public static final String JSON_PROPERTY_FIELD = "field";
   @javax.annotation.Nonnull

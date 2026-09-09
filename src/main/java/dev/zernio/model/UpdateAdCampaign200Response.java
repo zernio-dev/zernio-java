@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.AdBudget;
+import dev.zernio.model.AdCampaignBudget;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaign200Response.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID,
   UpdateAdCampaign200Response.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaign200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
@@ -53,7 +53,7 @@ public class UpdateAdCampaign200Response {
 
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
-  private AdBudget budget;
+  private AdCampaignBudget budget;
 
   /**
    * Gets or Sets budgetLevel
@@ -139,7 +139,7 @@ public class UpdateAdCampaign200Response {
   }
 
 
-  public UpdateAdCampaign200Response budget(@javax.annotation.Nullable AdBudget budget) {
+  public UpdateAdCampaign200Response budget(@javax.annotation.Nullable AdCampaignBudget budget) {
     this.budget = budget;
     return this;
   }
@@ -151,14 +151,14 @@ public class UpdateAdCampaign200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AdBudget getBudget() {
+  public AdCampaignBudget getBudget() {
     return budget;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBudget(@javax.annotation.Nullable AdBudget budget) {
+  public void setBudget(@javax.annotation.Nullable AdCampaignBudget budget) {
     this.budget = budget;
   }
 

@@ -31,14 +31,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Video creative for single-creative shape. Mutually exclusive with &#x60;imageUrl&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;imageUrl&#x60; is not supplied. 
+ * Video creative for single-creative shape. Mutually exclusive with &#x60;imageUrl&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;imageUrl&#x60; nor an existing post reference is supplied. 
  */
 @JsonPropertyOrder({
   CtwaAdRequestBodyVideo.JSON_PROPERTY_URL,
   CtwaAdRequestBodyVideo.JSON_PROPERTY_ID,
   CtwaAdRequestBodyVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:37:20.994404855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T16:56:51.952044096Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyVideo {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable
