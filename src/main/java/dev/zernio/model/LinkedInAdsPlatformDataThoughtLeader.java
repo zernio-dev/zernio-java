@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   LinkedInAdsPlatformDataThoughtLeader.JSON_PROPERTY_POST_URN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T09:43:42.378524097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:21:00.706584829Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataThoughtLeader {
   public static final String JSON_PROPERTY_POST_URN = "postUrn";
   @javax.annotation.Nonnull

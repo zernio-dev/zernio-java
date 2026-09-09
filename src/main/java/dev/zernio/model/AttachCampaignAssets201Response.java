@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AttachCampaignAssets201Response.JSON_PROPERTY_CALLOUT_ASSET_RESOURCE_NAMES,
   AttachCampaignAssets201Response.JSON_PROPERTY_STRUCTURED_SNIPPET_ASSET_RESOURCE_NAMES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T09:43:42.378524097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:21:00.706584829Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachCampaignAssets201Response {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable

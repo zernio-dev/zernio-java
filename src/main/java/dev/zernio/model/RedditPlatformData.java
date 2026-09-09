@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   RedditPlatformData.JSON_PROPERTY_VIDEOGIF,
   RedditPlatformData.JSON_PROPERTY_VIDEO_POSTER_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T09:43:42.378524097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T10:21:00.706584829Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditPlatformData {
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
   @javax.annotation.Nullable
@@ -178,7 +178,7 @@ public class RedditPlatformData {
   }
 
   /**
-   * When true, creates a text/self post even when a URL or media is provided.
+   * When true, creates a text-only self post and skips native media uploads, even when media is provided. For native video with body text, omit forceSelf and supply content plus a video mediaItem.
    * @return forceSelf
    */
   @javax.annotation.Nullable
@@ -322,7 +322,7 @@ public class RedditPlatformData {
   }
 
   /**
-   * Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically. 
+   * Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to explicitly publish an external link instead. The post content (or Reddit customContent override) is included as Markdown body text on the native video. When body text is present, upload failures or subreddit video restrictions fail the post without falling back to a link. Automatic link fallback applies only without body text. 
    * @return nativeVideo
    */
   @javax.annotation.Nullable
