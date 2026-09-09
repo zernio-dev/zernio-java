@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetStatus200Response.JSON_PROPERTY_SKIPPED_REASONS,
   UpdateAdSetStatus200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:15:10.286484945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:22:44.956394475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetStatus200Response {
   /**
    * The status written to the ad set. Absent when nothing was written (see message).
