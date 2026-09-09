@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object. |  [optional] |
+|**tracking** | [**AdTracking**](AdTracking.md) |  |  [optional] |
 |**accountId** | **String** | Facebook or Instagram SocialAccount ID. |  |
 |**adAccountId** | **String** | Meta ad account ID, e.g. &#x60;act_123456789&#x60;. |  |
 |**name** | **String** | Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  |  |

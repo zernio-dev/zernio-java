@@ -30,6 +30,7 @@ import java.math.BigDecimal;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
 import dev.zernio.model.BulkUpdateAdCampaignStatusRequest;
+import dev.zernio.model.CreateAdCampaign200Response;
 import dev.zernio.model.CreateAdCampaign201Response;
 import dev.zernio.model.CreateAdCampaignRequest;
 import dev.zernio.model.CreateAdSet201Response;
@@ -113,7 +114,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -743,10 +744,10 @@ public class AdCampaignsApi {
    * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
-   * @return CreateAdCampaign201Response
+   * @return CreateAdCampaign200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+  public CreateAdCampaign200Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
     return createAdCampaign(createAdCampaignRequest, idempotencyKey, null);
   }
 
@@ -756,11 +757,11 @@ public class AdCampaignsApi {
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
-   * @return CreateAdCampaign201Response
+   * @return CreateAdCampaign200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateAdCampaign201Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateAdCampaign201Response> localVarResponse = createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey, headers);
+  public CreateAdCampaign200Response createAdCampaign(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdCampaign200Response> localVarResponse = createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
@@ -769,10 +770,10 @@ public class AdCampaignsApi {
    * Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
-   * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
+   * @return ApiResponse&lt;CreateAdCampaign200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+  public ApiResponse<CreateAdCampaign200Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
     return createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey, null);
   }
 
@@ -782,10 +783,10 @@ public class AdCampaignsApi {
    * @param createAdCampaignRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateAdCampaign201Response&gt;
+   * @return ApiResponse&lt;CreateAdCampaign200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateAdCampaign201Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+  public ApiResponse<CreateAdCampaign200Response> createAdCampaignWithHttpInfo(@javax.annotation.Nonnull CreateAdCampaignRequest createAdCampaignRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = createAdCampaignRequestBuilder(createAdCampaignRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -801,7 +802,7 @@ public class AdCampaignsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CreateAdCampaign201Response>(
+          return new ApiResponse<CreateAdCampaign200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -811,10 +812,10 @@ public class AdCampaignsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateAdCampaign201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdCampaign201Response>() {});
+        CreateAdCampaign200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdCampaign200Response>() {});
         
 
-        return new ApiResponse<CreateAdCampaign201Response>(
+        return new ApiResponse<CreateAdCampaign200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

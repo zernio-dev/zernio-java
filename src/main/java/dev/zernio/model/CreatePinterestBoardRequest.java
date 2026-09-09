@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreatePinterestBoardRequest.JSON_PROPERTY_DESCRIPTION,
   CreatePinterestBoardRequest.JSON_PROPERTY_PRIVACY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePinterestBoardRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

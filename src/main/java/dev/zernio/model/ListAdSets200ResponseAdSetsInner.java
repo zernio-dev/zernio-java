@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ListAdSets200ResponseAdSetsInner.JSON_PROPERTY_IS_EXTERNAL,
   ListAdSets200ResponseAdSetsInner.JSON_PROPERTY_PLATFORM_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdSets200ResponseAdSetsInner {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable

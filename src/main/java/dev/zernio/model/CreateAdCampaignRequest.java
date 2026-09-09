@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdPromotedObject;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +41,10 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   CreateAdCampaignRequest.JSON_PROPERTY_NAME,
   CreateAdCampaignRequest.JSON_PROPERTY_GOAL,
+  CreateAdCampaignRequest.JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION,
+  CreateAdCampaignRequest.JSON_PROPERTY_PROMOTED_OBJECT,
+  CreateAdCampaignRequest.JSON_PROPERTY_BUYING_TYPE,
+  CreateAdCampaignRequest.JSON_PROPERTY_VALIDATE_ONLY,
   CreateAdCampaignRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   CreateAdCampaignRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateAdCampaignRequest.JSON_PROPERTY_BUDGET_TYPE,
@@ -49,7 +54,7 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CreateAdCampaignRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -119,6 +124,57 @@ public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_GOAL = "goal";
   @javax.annotation.Nonnull
   private GoalEnum goal;
+
+  public static final String JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION = "isSkadnetworkAttribution";
+  @javax.annotation.Nullable
+  private Boolean isSkadnetworkAttribution;
+
+  public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
+  @javax.annotation.Nullable
+  private AdPromotedObject promotedObject;
+
+  /**
+   * Meta only. SKAdNetwork app promotion requires AUCTION.
+   */
+  public enum BuyingTypeEnum {
+    AUCTION(String.valueOf("AUCTION")),
+    
+    RESERVED(String.valueOf("RESERVED"));
+
+    private String value;
+
+    BuyingTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BuyingTypeEnum fromValue(String value) {
+      for (BuyingTypeEnum b : BuyingTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUYING_TYPE = "buyingType";
+  @javax.annotation.Nullable
+  private BuyingTypeEnum buyingType;
+
+  public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
+  @javax.annotation.Nullable
+  private Boolean validateOnly;
 
   /**
    * Gets or Sets specialAdCategories
@@ -403,6 +459,102 @@ public class CreateAdCampaignRequest {
   }
 
 
+  public CreateAdCampaignRequest isSkadnetworkAttribution(@javax.annotation.Nullable Boolean isSkadnetworkAttribution) {
+    this.isSkadnetworkAttribution = isSkadnetworkAttribution;
+    return this;
+  }
+
+  /**
+   * Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign.
+   * @return isSkadnetworkAttribution
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsSkadnetworkAttribution() {
+    return isSkadnetworkAttribution;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsSkadnetworkAttribution(@javax.annotation.Nullable Boolean isSkadnetworkAttribution) {
+    this.isSkadnetworkAttribution = isSkadnetworkAttribution;
+  }
+
+
+  public CreateAdCampaignRequest promotedObject(@javax.annotation.Nullable AdPromotedObject promotedObject) {
+    this.promotedObject = promotedObject;
+    return this;
+  }
+
+  /**
+   * Get promotedObject
+   * @return promotedObject
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTED_OBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdPromotedObject getPromotedObject() {
+    return promotedObject;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTED_OBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotedObject(@javax.annotation.Nullable AdPromotedObject promotedObject) {
+    this.promotedObject = promotedObject;
+  }
+
+
+  public CreateAdCampaignRequest buyingType(@javax.annotation.Nullable BuyingTypeEnum buyingType) {
+    this.buyingType = buyingType;
+    return this;
+  }
+
+  /**
+   * Meta only. SKAdNetwork app promotion requires AUCTION.
+   * @return buyingType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUYING_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BuyingTypeEnum getBuyingType() {
+    return buyingType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUYING_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBuyingType(@javax.annotation.Nullable BuyingTypeEnum buyingType) {
+    this.buyingType = buyingType;
+  }
+
+
+  public CreateAdCampaignRequest validateOnly(@javax.annotation.Nullable Boolean validateOnly) {
+    this.validateOnly = validateOnly;
+    return this;
+  }
+
+  /**
+   * Meta only. Runs campaign validation without creating or persisting a campaign; Idempotency-Key storage is bypassed. Returns HTTP 200 with validateOnly true and status VALIDATED.
+   * @return validateOnly
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALIDATE_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getValidateOnly() {
+    return validateOnly;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALIDATE_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValidateOnly(@javax.annotation.Nullable Boolean validateOnly) {
+    this.validateOnly = validateOnly;
+  }
+
+
   public CreateAdCampaignRequest specialAdCategories(@javax.annotation.Nullable List<SpecialAdCategoriesEnum> specialAdCategories) {
     this.specialAdCategories = specialAdCategories;
     return this;
@@ -619,6 +771,10 @@ public class CreateAdCampaignRequest {
         Objects.equals(this.adAccountId, createAdCampaignRequest.adAccountId) &&
         Objects.equals(this.name, createAdCampaignRequest.name) &&
         Objects.equals(this.goal, createAdCampaignRequest.goal) &&
+        Objects.equals(this.isSkadnetworkAttribution, createAdCampaignRequest.isSkadnetworkAttribution) &&
+        Objects.equals(this.promotedObject, createAdCampaignRequest.promotedObject) &&
+        Objects.equals(this.buyingType, createAdCampaignRequest.buyingType) &&
+        Objects.equals(this.validateOnly, createAdCampaignRequest.validateOnly) &&
         Objects.equals(this.specialAdCategories, createAdCampaignRequest.specialAdCategories) &&
         Objects.equals(this.budgetAmount, createAdCampaignRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createAdCampaignRequest.budgetType) &&
@@ -631,7 +787,7 @@ public class CreateAdCampaignRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, specialAdCategories, budgetAmount, budgetType, status, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId);
+    return Objects.hash(accountId, adAccountId, name, goal, isSkadnetworkAttribution, promotedObject, buyingType, validateOnly, specialAdCategories, budgetAmount, budgetType, status, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId);
   }
 
   @Override
@@ -642,6 +798,10 @@ public class CreateAdCampaignRequest {
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
+    sb.append("    isSkadnetworkAttribution: ").append(toIndentedString(isSkadnetworkAttribution)).append("\n");
+    sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
+    sb.append("    buyingType: ").append(toIndentedString(buyingType)).append("\n");
+    sb.append("    validateOnly: ").append(toIndentedString(validateOnly)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
@@ -715,6 +875,26 @@ public class CreateAdCampaignRequest {
     // add `goal` to the URL query string
     if (getGoal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoal()))));
+    }
+
+    // add `isSkadnetworkAttribution` to the URL query string
+    if (getIsSkadnetworkAttribution() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisSkadnetworkAttribution%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsSkadnetworkAttribution()))));
+    }
+
+    // add `promotedObject` to the URL query string
+    if (getPromotedObject() != null) {
+      joiner.add(getPromotedObject().toUrlQueryString(prefix + "promotedObject" + suffix));
+    }
+
+    // add `buyingType` to the URL query string
+    if (getBuyingType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbuyingType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuyingType()))));
+    }
+
+    // add `validateOnly` to the URL query string
+    if (getValidateOnly() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalidateOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValidateOnly()))));
     }
 
     // add `specialAdCategories` to the URL query string

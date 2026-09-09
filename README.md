@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-09T17:46:10.243434531Z[Etc/UTC]
+- Build date: 2026-09-09T18:09:39.457592012Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -185,6 +185,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**createHighDemandPeriodWithHttpInfo**](docs/AdAccountsApi.md#createHighDemandPeriodWithHttpInfo) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase
 *AdAccountsApi* | [**createValueRuleSet**](docs/AdAccountsApi.md#createValueRuleSet) | **POST** /v1/ads/value-rule-sets | Create a value rule set
 *AdAccountsApi* | [**createValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#createValueRuleSetWithHttpInfo) | **POST** /v1/ads/value-rule-sets | Create a value rule set
+*AdAccountsApi* | [**deleteAdComment**](docs/AdAccountsApi.md#deleteAdComment) | **DELETE** /v1/ads/{adId}/comments/{commentId} | Delete an ad comment
+*AdAccountsApi* | [**deleteAdCommentWithHttpInfo**](docs/AdAccountsApi.md#deleteAdCommentWithHttpInfo) | **DELETE** /v1/ads/{adId}/comments/{commentId} | Delete an ad comment
 *AdAccountsApi* | [**deleteAdNegativeKeywordList**](docs/AdAccountsApi.md#deleteAdNegativeKeywordList) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list
 *AdAccountsApi* | [**deleteAdNegativeKeywordListWithHttpInfo**](docs/AdAccountsApi.md#deleteAdNegativeKeywordListWithHttpInfo) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list
 *AdAccountsApi* | [**deleteValueRuleSet**](docs/AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
@@ -201,8 +203,12 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**getDsaDefaultsWithHttpInfo**](docs/AdAccountsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
 *AdAccountsApi* | [**getDsaRecommendations**](docs/AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
 *AdAccountsApi* | [**getDsaRecommendationsWithHttpInfo**](docs/AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdAccountsApi* | [**getIosFourteenCampaignLimits**](docs/AdAccountsApi.md#getIosFourteenCampaignLimits) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits
+*AdAccountsApi* | [**getIosFourteenCampaignLimitsWithHttpInfo**](docs/AdAccountsApi.md#getIosFourteenCampaignLimitsWithHttpInfo) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits
 *AdAccountsApi* | [**getValueRuleSet**](docs/AdAccountsApi.md#getValueRuleSet) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set
 *AdAccountsApi* | [**getValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set
+*AdAccountsApi* | [**hideAdComment**](docs/AdAccountsApi.md#hideAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment
+*AdAccountsApi* | [**hideAdCommentWithHttpInfo**](docs/AdAccountsApi.md#hideAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment
 *AdAccountsApi* | [**listAccountCallouts**](docs/AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions
 *AdAccountsApi* | [**listAccountCalloutsWithHttpInfo**](docs/AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions
 *AdAccountsApi* | [**listAdAccounts**](docs/AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
@@ -215,6 +221,10 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listAdStudiesWithHttpInfo**](docs/AdAccountsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies
 *AdAccountsApi* | [**listAdsBusinessCenters**](docs/AdAccountsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdAccountsApi* | [**listAdsBusinessCentersWithHttpInfo**](docs/AdAccountsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers
+*AdAccountsApi* | [**listAdsInstagramAccounts**](docs/AdAccountsApi.md#listAdsInstagramAccounts) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities
+*AdAccountsApi* | [**listAdsInstagramAccountsWithHttpInfo**](docs/AdAccountsApi.md#listAdsInstagramAccountsWithHttpInfo) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities
+*AdAccountsApi* | [**listAdvertisableApplications**](docs/AdAccountsApi.md#listAdvertisableApplications) | **GET** /v1/ads/advertisable-applications | List advertisable apps
+*AdAccountsApi* | [**listAdvertisableApplicationsWithHttpInfo**](docs/AdAccountsApi.md#listAdvertisableApplicationsWithHttpInfo) | **GET** /v1/ads/advertisable-applications | List advertisable apps
 *AdAccountsApi* | [**listCustomConversions**](docs/AdAccountsApi.md#listCustomConversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
 *AdAccountsApi* | [**listCustomConversionsWithHttpInfo**](docs/AdAccountsApi.md#listCustomConversionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
 *AdAccountsApi* | [**listHighDemandPeriods**](docs/AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
@@ -227,6 +237,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**removeAccountCalloutWithHttpInfo**](docs/AdAccountsApi.md#removeAccountCalloutWithHttpInfo) | **DELETE** /v1/ads/accounts/callouts | Remove an account-level callout extension
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywords**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
+*AdAccountsApi* | [**replyToAdComment**](docs/AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
+*AdAccountsApi* | [**replyToAdCommentWithHttpInfo**](docs/AdAccountsApi.md#replyToAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
 *AdAccountsApi* | [**updateAdAccount**](docs/AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAccountsApi* | [**updateAdAccountWithHttpInfo**](docs/AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAccountsApi* | [**updateAdNegativeKeywordList**](docs/AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list
@@ -1527,6 +1539,7 @@ Class | Method | HTTP request | Description
  - [AdReviewStatus](docs/AdReviewStatus.md)
  - [AdSchedule](docs/AdSchedule.md)
  - [AdStatus](docs/AdStatus.md)
+ - [AdTracking](docs/AdTracking.md)
  - [AdTreeAdSet](docs/AdTreeAdSet.md)
  - [AdTreeAdSetAdSetBudget](docs/AdTreeAdSetAdSetBudget.md)
  - [AdTreeAdSetBudget](docs/AdTreeAdSetBudget.md)
@@ -1738,6 +1751,7 @@ Class | Method | HTTP request | Description
  - [CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
  - [CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
  - [CreateAdAudienceRequest](docs/CreateAdAudienceRequest.md)
+ - [CreateAdCampaign200Response](docs/CreateAdCampaign200Response.md)
  - [CreateAdCampaign201Response](docs/CreateAdCampaign201Response.md)
  - [CreateAdCampaignRequest](docs/CreateAdCampaignRequest.md)
  - [CreateAdCreative201Response](docs/CreateAdCreative201Response.md)
@@ -1880,11 +1894,9 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements](docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md)
  - [CreateStandaloneAdRequestPlacements](docs/CreateStandaloneAdRequestPlacements.md)
  - [CreateStandaloneAdRequestPlatformSpecificData](docs/CreateStandaloneAdRequestPlatformSpecificData.md)
- - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestSitelinksInner](docs/CreateStandaloneAdRequestSitelinksInner.md)
  - [CreateStandaloneAdRequestStructuredSnippetsInner](docs/CreateStandaloneAdRequestStructuredSnippetsInner.md)
- - [CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
  - [CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
  - [CreateTestLead200Response](docs/CreateTestLead200Response.md)
@@ -2224,6 +2236,8 @@ Class | Method | HTTP request | Description
  - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
  - [GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
+ - [GetIosFourteenCampaignLimits200Response](docs/GetIosFourteenCampaignLimits200Response.md)
+ - [GetIosFourteenCampaignLimits200ResponseLimits](docs/GetIosFourteenCampaignLimits200ResponseLimits.md)
  - [GetLeadForm200Response](docs/GetLeadForm200Response.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
@@ -2400,6 +2414,8 @@ Class | Method | HTTP request | Description
  - [GoogleBusinessReviewReviewReply](docs/GoogleBusinessReviewReviewReply.md)
  - [GoogleBusinessReviewReviewer](docs/GoogleBusinessReviewReviewer.md)
  - [HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
+ - [HideAdComment200Response](docs/HideAdComment200Response.md)
+ - [HideAdCommentRequest](docs/HideAdCommentRequest.md)
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
  - [InboxMessageEditAttachment](docs/InboxMessageEditAttachment.md)
@@ -2495,6 +2511,12 @@ Class | Method | HTTP request | Description
  - [ListAdVideos200Response](docs/ListAdVideos200Response.md)
  - [ListAds202Response](docs/ListAds202Response.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
+ - [ListAdsInstagramAccounts200Response](docs/ListAdsInstagramAccounts200Response.md)
+ - [ListAdsInstagramAccounts200ResponseAccountsInner](docs/ListAdsInstagramAccounts200ResponseAccountsInner.md)
+ - [ListAdsInstagramAccounts200ResponsePagesInner](docs/ListAdsInstagramAccounts200ResponsePagesInner.md)
+ - [ListAdsInstagramAccounts200ResponseResolved](docs/ListAdsInstagramAccounts200ResponseResolved.md)
+ - [ListAdvertisableApplications200Response](docs/ListAdvertisableApplications200Response.md)
+ - [ListAdvertisableApplications200ResponseApplicationsInner](docs/ListAdvertisableApplications200ResponseApplicationsInner.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)
  - [ListBidStrategies200Response](docs/ListBidStrategies200Response.md)
  - [ListBlogArticles200Response](docs/ListBlogArticles200Response.md)
@@ -2682,6 +2704,7 @@ Class | Method | HTTP request | Description
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
+ - [MetaInstagramIdentityRef](docs/MetaInstagramIdentityRef.md)
  - [MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
  - [MetaPromotion](docs/MetaPromotion.md)
@@ -2793,6 +2816,8 @@ Class | Method | HTTP request | Description
  - [ReplaceCampaignNegativeKeywordListsRequest](docs/ReplaceCampaignNegativeKeywordListsRequest.md)
  - [ReplaceCampaignNegativeKeywords200Response](docs/ReplaceCampaignNegativeKeywords200Response.md)
  - [ReplaceCampaignNegativeKeywordsRequest](docs/ReplaceCampaignNegativeKeywordsRequest.md)
+ - [ReplyToAdComment200Response](docs/ReplyToAdComment200Response.md)
+ - [ReplyToAdCommentRequest](docs/ReplyToAdCommentRequest.md)
  - [ReplyToGoogleBusinessReview200Response](docs/ReplyToGoogleBusinessReview200Response.md)
  - [ReplyToGoogleBusinessReviewRequest](docs/ReplyToGoogleBusinessReviewRequest.md)
  - [ReplyToInboxPost200Response](docs/ReplyToInboxPost200Response.md)

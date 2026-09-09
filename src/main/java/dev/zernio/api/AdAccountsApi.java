@@ -36,7 +36,10 @@ import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetAdNegativeKeywordList200Response;
 import dev.zernio.model.GetAdsActivityLog200Response;
 import dev.zernio.model.GetDsaRecommendations200Response;
+import dev.zernio.model.GetIosFourteenCampaignLimits200Response;
 import dev.zernio.model.GetValueRuleSet200Response;
+import dev.zernio.model.HideAdComment200Response;
+import dev.zernio.model.HideAdCommentRequest;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListAccountCallouts200Response;
@@ -45,6 +48,8 @@ import dev.zernio.model.ListAdLabels200Response;
 import dev.zernio.model.ListAdNegativeKeywordLists200Response;
 import dev.zernio.model.ListAdStudies200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
+import dev.zernio.model.ListAdsInstagramAccounts200Response;
+import dev.zernio.model.ListAdvertisableApplications200Response;
 import dev.zernio.model.ListCustomConversions200Response;
 import dev.zernio.model.ListHighDemandPeriods200Response;
 import dev.zernio.model.ListMetaBusinesses200Response;
@@ -54,6 +59,8 @@ import dev.zernio.model.RemoveAccountCallout200Response;
 import dev.zernio.model.RemoveAccountCalloutRequest;
 import dev.zernio.model.ReplaceAdNegativeKeywordListKeywords200Response;
 import dev.zernio.model.ReplaceAdNegativeKeywordListKeywordsRequest;
+import dev.zernio.model.ReplyToAdComment200Response;
+import dev.zernio.model.ReplyToAdCommentRequest;
 import dev.zernio.model.UpdateAdAccount200Response;
 import dev.zernio.model.UpdateAdAccountRequest;
 import dev.zernio.model.UpdateAdNegativeKeywordList200Response;
@@ -86,7 +93,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -828,6 +835,158 @@ public class AdAccountsApi {
   }
 
   /**
+   * Delete an ad comment
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @return ReplyToAdComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToAdComment200Response deleteAdComment(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until) throws ApiException {
+    return deleteAdComment(adId, commentId, since, until, null);
+  }
+
+  /**
+   * Delete an ad comment
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ReplyToAdComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToAdComment200Response deleteAdComment(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToAdComment200Response> localVarResponse = deleteAdCommentWithHttpInfo(adId, commentId, since, until, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete an ad comment
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @return ApiResponse&lt;ReplyToAdComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToAdComment200Response> deleteAdCommentWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until) throws ApiException {
+    return deleteAdCommentWithHttpInfo(adId, commentId, since, until, null);
+  }
+
+  /**
+   * Delete an ad comment
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplyToAdComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToAdComment200Response> deleteAdCommentWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAdCommentRequestBuilder(adId, commentId, since, until, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteAdComment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplyToAdComment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplyToAdComment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplyToAdComment200Response>() {});
+        
+
+        return new ApiResponse<ReplyToAdComment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteAdCommentRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling deleteAdComment");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling deleteAdComment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/comments/{commentId}"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Delete a negative keyword list
    * Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
    * @param listId  (required)
@@ -1265,61 +1424,69 @@ public class AdAccountsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
-   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
+   * @param since TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)
+   * @param until TikTok-only end date. Defaults to today in UTC. (optional)
    * @param cursor Pagination cursor from a previous response. (optional)
    * @return GetAdComments200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdComments200Response getAdComments(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
-    return getAdComments(adId, placement, limit, cursor, null);
+  public GetAdComments200Response getAdComments(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String cursor) throws ApiException {
+    return getAdComments(adId, placement, limit, since, until, cursor, null);
   }
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
-   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
+   * @param since TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)
+   * @param until TikTok-only end date. Defaults to today in UTC. (optional)
    * @param cursor Pagination cursor from a previous response. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdComments200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdComments200Response getAdComments(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdComments200Response> localVarResponse = getAdCommentsWithHttpInfo(adId, placement, limit, cursor, headers);
+  public GetAdComments200Response getAdComments(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdComments200Response> localVarResponse = getAdCommentsWithHttpInfo(adId, placement, limit, since, until, cursor, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
-   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
+   * @param since TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)
+   * @param until TikTok-only end date. Defaults to today in UTC. (optional)
    * @param cursor Pagination cursor from a previous response. (optional)
    * @return ApiResponse&lt;GetAdComments200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdComments200Response> getAdCommentsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
-    return getAdCommentsWithHttpInfo(adId, placement, limit, cursor, null);
+  public ApiResponse<GetAdComments200Response> getAdCommentsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String cursor) throws ApiException {
+    return getAdCommentsWithHttpInfo(adId, placement, limit, since, until, cursor, null);
   }
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
-   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
+   * @param since TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)
+   * @param until TikTok-only end date. Defaults to today in UTC. (optional)
    * @param cursor Pagination cursor from a previous response. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdComments200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdComments200Response> getAdCommentsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdCommentsRequestBuilder(adId, placement, limit, cursor, headers);
+  public ApiResponse<GetAdComments200Response> getAdCommentsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdCommentsRequestBuilder(adId, placement, limit, since, until, cursor, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1366,7 +1533,7 @@ public class AdAccountsApi {
     }
   }
 
-  private HttpRequest.Builder getAdCommentsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdCommentsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String placement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adId' is set
     if (adId == null) {
       throw new ApiException(400, "Missing the required parameter 'adId' when calling getAdComments");
@@ -1384,6 +1551,10 @@ public class AdAccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("placement", placement));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
     localVarQueryParameterBaseName = "cursor";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
 
@@ -2022,6 +2193,158 @@ public class AdAccountsApi {
   }
 
   /**
+   * Get iOS 14 campaign limits
+   * Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param applicationId Meta application ID from advertisable-applications. (required)
+   * @return GetIosFourteenCampaignLimits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetIosFourteenCampaignLimits200Response getIosFourteenCampaignLimits(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String applicationId) throws ApiException {
+    return getIosFourteenCampaignLimits(accountId, adAccountId, applicationId, null);
+  }
+
+  /**
+   * Get iOS 14 campaign limits
+   * Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param applicationId Meta application ID from advertisable-applications. (required)
+   * @param headers Optional headers to include in the request
+   * @return GetIosFourteenCampaignLimits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetIosFourteenCampaignLimits200Response getIosFourteenCampaignLimits(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String applicationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetIosFourteenCampaignLimits200Response> localVarResponse = getIosFourteenCampaignLimitsWithHttpInfo(accountId, adAccountId, applicationId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get iOS 14 campaign limits
+   * Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param applicationId Meta application ID from advertisable-applications. (required)
+   * @return ApiResponse&lt;GetIosFourteenCampaignLimits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetIosFourteenCampaignLimits200Response> getIosFourteenCampaignLimitsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String applicationId) throws ApiException {
+    return getIosFourteenCampaignLimitsWithHttpInfo(accountId, adAccountId, applicationId, null);
+  }
+
+  /**
+   * Get iOS 14 campaign limits
+   * Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param applicationId Meta application ID from advertisable-applications. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetIosFourteenCampaignLimits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetIosFourteenCampaignLimits200Response> getIosFourteenCampaignLimitsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String applicationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getIosFourteenCampaignLimitsRequestBuilder(accountId, adAccountId, applicationId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getIosFourteenCampaignLimits", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetIosFourteenCampaignLimits200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetIosFourteenCampaignLimits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetIosFourteenCampaignLimits200Response>() {});
+        
+
+        return new ApiResponse<GetIosFourteenCampaignLimits200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getIosFourteenCampaignLimitsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String applicationId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getIosFourteenCampaignLimits");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getIosFourteenCampaignLimits");
+    }
+    // verify the required parameter 'applicationId' is set
+    if (applicationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'applicationId' when calling getIosFourteenCampaignLimits");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ios-fourteen-campaign-limits";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "applicationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("applicationId", applicationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Read a value rule set
    * Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
    * @param valueRuleSetId Platform value rule set id. (required)
@@ -2151,6 +2474,172 @@ public class AdAccountsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Hide or unhide an ad comment
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param hideAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @return HideAdComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public HideAdComment200Response hideAdComment(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull HideAdCommentRequest hideAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until) throws ApiException {
+    return hideAdComment(adId, commentId, hideAdCommentRequest, since, until, null);
+  }
+
+  /**
+   * Hide or unhide an ad comment
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param hideAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @param headers Optional headers to include in the request
+   * @return HideAdComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public HideAdComment200Response hideAdComment(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull HideAdCommentRequest hideAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    ApiResponse<HideAdComment200Response> localVarResponse = hideAdCommentWithHttpInfo(adId, commentId, hideAdCommentRequest, since, until, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Hide or unhide an ad comment
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param hideAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @return ApiResponse&lt;HideAdComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<HideAdComment200Response> hideAdCommentWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull HideAdCommentRequest hideAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until) throws ApiException {
+    return hideAdCommentWithHttpInfo(adId, commentId, hideAdCommentRequest, since, until, null);
+  }
+
+  /**
+   * Hide or unhide an ad comment
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param hideAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;HideAdComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<HideAdComment200Response> hideAdCommentWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull HideAdCommentRequest hideAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = hideAdCommentRequestBuilder(adId, commentId, hideAdCommentRequest, since, until, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("hideAdComment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<HideAdComment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        HideAdComment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<HideAdComment200Response>() {});
+        
+
+        return new ApiResponse<HideAdComment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder hideAdCommentRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull HideAdCommentRequest hideAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling hideAdComment");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling hideAdComment");
+    }
+    // verify the required parameter 'hideAdCommentRequest' is set
+    if (hideAdCommentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'hideAdCommentRequest' when calling hideAdComment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/comments/{commentId}/hide"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(hideAdCommentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -3035,6 +3524,290 @@ public class AdAccountsApi {
   }
 
   /**
+   * List Instagram ad identities
+   * Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @return ListAdsInstagramAccounts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdsInstagramAccounts200Response listAdsInstagramAccounts(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listAdsInstagramAccounts(accountId, adAccountId, null);
+  }
+
+  /**
+   * List Instagram ad identities
+   * Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param headers Optional headers to include in the request
+   * @return ListAdsInstagramAccounts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdsInstagramAccounts200Response listAdsInstagramAccounts(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdsInstagramAccounts200Response> localVarResponse = listAdsInstagramAccountsWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Instagram ad identities
+   * Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @return ApiResponse&lt;ListAdsInstagramAccounts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdsInstagramAccounts200Response> listAdsInstagramAccountsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listAdsInstagramAccountsWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * List Instagram ad identities
+   * Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdsInstagramAccounts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdsInstagramAccounts200Response> listAdsInstagramAccountsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdsInstagramAccountsRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdsInstagramAccounts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdsInstagramAccounts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdsInstagramAccounts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdsInstagramAccounts200Response>() {});
+        
+
+        return new ApiResponse<ListAdsInstagramAccounts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdsInstagramAccountsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdsInstagramAccounts");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listAdsInstagramAccounts");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/instagram-accounts";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List advertisable apps
+   * Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @return ListAdvertisableApplications200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdvertisableApplications200Response listAdvertisableApplications(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listAdvertisableApplications(accountId, adAccountId, null);
+  }
+
+  /**
+   * List advertisable apps
+   * Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param headers Optional headers to include in the request
+   * @return ListAdvertisableApplications200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdvertisableApplications200Response listAdvertisableApplications(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdvertisableApplications200Response> localVarResponse = listAdvertisableApplicationsWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List advertisable apps
+   * Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @return ApiResponse&lt;ListAdvertisableApplications200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdvertisableApplications200Response> listAdvertisableApplicationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listAdvertisableApplicationsWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * List advertisable apps
+   * Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+   * @param accountId Zernio Meta Ads or Facebook SocialAccount ID. (required)
+   * @param adAccountId Meta ad account ID including the act_ prefix. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdvertisableApplications200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdvertisableApplications200Response> listAdvertisableApplicationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdvertisableApplicationsRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdvertisableApplications", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdvertisableApplications200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdvertisableApplications200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdvertisableApplications200Response>() {});
+        
+
+        return new ApiResponse<ListAdvertisableApplications200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdvertisableApplicationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdvertisableApplications");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listAdvertisableApplications");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/advertisable-applications";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List custom conversions
    * The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
    * @param accountId Meta ads SocialAccount id. (required)
@@ -3870,6 +4643,172 @@ public class AdAccountsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replaceAdNegativeKeywordListKeywordsRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reply to an ad comment
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param replyToAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @return ReplyToAdComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToAdComment200Response replyToAdComment(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull ReplyToAdCommentRequest replyToAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until) throws ApiException {
+    return replyToAdComment(adId, commentId, replyToAdCommentRequest, since, until, null);
+  }
+
+  /**
+   * Reply to an ad comment
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param replyToAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ReplyToAdComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToAdComment200Response replyToAdComment(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull ReplyToAdCommentRequest replyToAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToAdComment200Response> localVarResponse = replyToAdCommentWithHttpInfo(adId, commentId, replyToAdCommentRequest, since, until, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Reply to an ad comment
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param replyToAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @return ApiResponse&lt;ReplyToAdComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToAdComment200Response> replyToAdCommentWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull ReplyToAdCommentRequest replyToAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until) throws ApiException {
+    return replyToAdCommentWithHttpInfo(adId, commentId, replyToAdCommentRequest, since, until, null);
+  }
+
+  /**
+   * Reply to an ad comment
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
+   * @param commentId TikTok comment ID from the ad comment listing. (required)
+   * @param replyToAdCommentRequest  (required)
+   * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
+   * @param until End date of the comment lookup window. Defaults to today in UTC. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplyToAdComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToAdComment200Response> replyToAdCommentWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull ReplyToAdCommentRequest replyToAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replyToAdCommentRequestBuilder(adId, commentId, replyToAdCommentRequest, since, until, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("replyToAdComment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplyToAdComment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplyToAdComment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplyToAdComment200Response>() {});
+        
+
+        return new ApiResponse<ReplyToAdComment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder replyToAdCommentRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull ReplyToAdCommentRequest replyToAdCommentRequest, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling replyToAdComment");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling replyToAdComment");
+    }
+    // verify the required parameter 'replyToAdCommentRequest' is set
+    if (replyToAdCommentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'replyToAdCommentRequest' when calling replyToAdComment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/comments/{commentId}/reply"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replyToAdCommentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

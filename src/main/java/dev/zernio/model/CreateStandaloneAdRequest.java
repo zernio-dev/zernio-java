@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdPromotedObject;
+import dev.zernio.model.AdTracking;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
@@ -38,11 +40,9 @@ import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestPlacementAssets;
 import dev.zernio.model.CreateStandaloneAdRequestPlacements;
 import dev.zernio.model.CreateStandaloneAdRequestPlatformSpecificData;
-import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestSitelinksInner;
 import dev.zernio.model.CreateStandaloneAdRequestStructuredSnippetsInner;
-import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.KeywordEntry;
@@ -163,9 +163,13 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BRAND_IDENTITY,
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_SMART_PLUS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_USER_OS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_USER_DEVICE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_ATTRIBUTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -193,7 +197,7 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_TRACKING = "tracking";
   @javax.annotation.Nullable
-  private CreateStandaloneAdRequestTracking tracking;
+  private AdTracking tracking;
 
   /**
    * Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.  **Meta** - &#x60;conversions&#x60;: OUTCOME_SALES. Requires &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60; with a commerce event such as PURCHASE or START_TRIAL, or &#x60;promotedObject.customConversionId&#x60; to optimise against a Custom Conversion, or &#x60;customEventType: OTHER&#x60; + &#x60;customEventStr&#x60; to optimise against a pixel custom event. - &#x60;lead_conversion&#x60;: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT (or &#x60;promotedObject.customConversionId&#x60; to optimise against a Custom Conversion instead). Meta gates conversion events by objective, so leads-class events are rejected under &#x60;conversions&#x60;. - &#x60;lead_generation&#x60;: OUTCOME_LEADS with instant forms. Requires &#x60;leadGenFormId&#x60;. &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. - &#x60;app_promotion&#x60;: requires &#x60;promotedObject.applicationId&#x60; and &#x60;promotedObject.objectStoreUrl&#x60;. - &#x60;catalog_sales&#x60;: Advantage+ catalog ads, for example vehicle inventory. Requires &#x60;promotedObject.productSetId&#x60;, &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60;. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets. - &#x60;page_likes&#x60;: Page Likes conversion location under OUTCOME_ENGAGEMENT (destination_type ON_PAGE, optimization PAGE_LIKES). &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. The creative CTA is fixed to LIKE_PAGE targeting that Page; headline / body / linkUrl / callToAction / imageUrl / video are all optional (Meta derives the link and the Like button from the Page).  **TikTok** - &#x60;conversions&#x60;: website-conversion ad group. Requires &#x60;promotedObject.pixelId&#x60;, your TikTok Pixel ID. Accepts an optional &#x60;promotedObject.customEventType&#x60; with a TikTok optimization_event code your pixel tracks (newer pixels use e.g. SHOPPING for purchase events; legacy pixels use ON_WEB_ORDER, INITIATE_ORDER, ON_WEB_REGISTER or FORM). To inherit pixel and event from an existing ad group, pass &#x60;adSetId&#x60; instead.  **LinkedIn** - &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60; and &#x60;video_views&#x60; create standalone Direct Sponsored Content ads. &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires &#x60;video&#x60;. - &#x60;lead_generation&#x60;: requires &#x60;leadGenFormId&#x60; (an adForm ID from POST /v1/ads/lead-forms). The campaign objective is set to MAX_LEAD and the creative&#39;s &#x60;leadgenCallToAction&#x60; destination is set to &#x60;urn:li:adForm:{id}&#x60;. - &#x60;job_applicants&#x60; requires a &#x60;platformSpecificData.jobs&#x60; creative. - For &#x60;conversions&#x60; on LinkedIn, or to promote an existing post, use POST /v1/ads/boost.  **OpenAI Ads** - Only &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;conversions&#x60; are supported (other goals return 400). Maps to OpenAI&#39;s &#x60;bidding_type&#x60; (clicks, impressions, conversions respectively). &#x60;conversions&#x60; requires an active conversion event setting on the account; create a tracking tag with &#x60;defaultEventType&#x60; via the tracking-tags API (&#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60;), or configure a conversion event in OpenAI Ads Manager, or the request returns 422. 
@@ -1180,9 +1184,60 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   private Boolean smartPlus;
 
+  public static final String JSON_PROPERTY_USER_OS = "userOs";
+  @javax.annotation.Nullable
+  private List<String> userOs = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_USER_DEVICE = "userDevice";
+  @javax.annotation.Nullable
+  private List<String> userDevice = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION = "isSkadnetworkAttribution";
+  @javax.annotation.Nullable
+  private Boolean isSkadnetworkAttribution;
+
+  /**
+   * Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create.
+   */
+  public enum CampaignAttributionEnum {
+    AEM(String.valueOf("AEM")),
+    
+    SKADNETWORK(String.valueOf("SKADNETWORK"));
+
+    private String value;
+
+    CampaignAttributionEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CampaignAttributionEnum fromValue(String value) {
+      for (CampaignAttributionEnum b : CampaignAttributionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CAMPAIGN_ATTRIBUTION = "campaignAttribution";
+  @javax.annotation.Nullable
+  private CampaignAttributionEnum campaignAttribution;
+
   public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
   @javax.annotation.Nullable
-  private CreateStandaloneAdRequestPromotedObject promotedObject;
+  private AdPromotedObject promotedObject;
 
   public CreateStandaloneAdRequest() { 
   }
@@ -1331,7 +1386,7 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest tracking(@javax.annotation.Nullable CreateStandaloneAdRequestTracking tracking) {
+  public CreateStandaloneAdRequest tracking(@javax.annotation.Nullable AdTracking tracking) {
     this.tracking = tracking;
     return this;
   }
@@ -1343,14 +1398,14 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_TRACKING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CreateStandaloneAdRequestTracking getTracking() {
+  public AdTracking getTracking() {
     return tracking;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_TRACKING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTracking(@javax.annotation.Nullable CreateStandaloneAdRequestTracking tracking) {
+  public void setTracking(@javax.annotation.Nullable AdTracking tracking) {
     this.tracking = tracking;
   }
 
@@ -1561,7 +1616,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist, so pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad.
+   * Meta only. Validates the complete inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created, and validation bypasses Idempotency-Key storage. Supports a single image, existing video.id or existingCreativeId; media pools, new video uploads, creatives[], adSetId and RESERVED buying return 400. Existing campaign or creative nodes are marked skipped. Success returns 200 with per-node results; Meta rejection returns an error.
    * @return validateOnly
    */
   @javax.annotation.Nullable
@@ -3813,7 +3868,119 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest promotedObject(@javax.annotation.Nullable CreateStandaloneAdRequestPromotedObject promotedObject) {
+  public CreateStandaloneAdRequest userOs(@javax.annotation.Nullable List<String> userOs) {
+    this.userOs = userOs;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addUserOsItem(String userOsItem) {
+    if (this.userOs == null) {
+      this.userOs = new ArrayList<>();
+    }
+    this.userOs.add(userOsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting.
+   * @return userOs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USER_OS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getUserOs() {
+    return userOs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USER_OS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUserOs(@javax.annotation.Nullable List<String> userOs) {
+    this.userOs = userOs;
+  }
+
+
+  public CreateStandaloneAdRequest userDevice(@javax.annotation.Nullable List<String> userDevice) {
+    this.userDevice = userDevice;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addUserDeviceItem(String userDeviceItem) {
+    if (this.userDevice == null) {
+      this.userDevice = new ArrayList<>();
+    }
+    this.userDevice.add(userDeviceItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting.
+   * @return userDevice
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USER_DEVICE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getUserDevice() {
+    return userDevice;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USER_DEVICE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUserDevice(@javax.annotation.Nullable List<String> userDevice) {
+    this.userDevice = userDevice;
+  }
+
+
+  public CreateStandaloneAdRequest isSkadnetworkAttribution(@javax.annotation.Nullable Boolean isSkadnetworkAttribution) {
+    this.isSkadnetworkAttribution = isSkadnetworkAttribution;
+    return this;
+  }
+
+  /**
+   * Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign.
+   * @return isSkadnetworkAttribution
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsSkadnetworkAttribution() {
+    return isSkadnetworkAttribution;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_SKADNETWORK_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsSkadnetworkAttribution(@javax.annotation.Nullable Boolean isSkadnetworkAttribution) {
+    this.isSkadnetworkAttribution = isSkadnetworkAttribution;
+  }
+
+
+  public CreateStandaloneAdRequest campaignAttribution(@javax.annotation.Nullable CampaignAttributionEnum campaignAttribution) {
+    this.campaignAttribution = campaignAttribution;
+    return this;
+  }
+
+  /**
+   * Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create.
+   * @return campaignAttribution
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CampaignAttributionEnum getCampaignAttribution() {
+    return campaignAttribution;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignAttribution(@javax.annotation.Nullable CampaignAttributionEnum campaignAttribution) {
+    this.campaignAttribution = campaignAttribution;
+  }
+
+
+  public CreateStandaloneAdRequest promotedObject(@javax.annotation.Nullable AdPromotedObject promotedObject) {
     this.promotedObject = promotedObject;
     return this;
   }
@@ -3825,14 +3992,14 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PROMOTED_OBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CreateStandaloneAdRequestPromotedObject getPromotedObject() {
+  public AdPromotedObject getPromotedObject() {
     return promotedObject;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PROMOTED_OBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotedObject(@javax.annotation.Nullable CreateStandaloneAdRequestPromotedObject promotedObject) {
+  public void setPromotedObject(@javax.annotation.Nullable AdPromotedObject promotedObject) {
     this.promotedObject = promotedObject;
   }
 
@@ -3947,12 +4114,16 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.brandIdentity, createStandaloneAdRequest.brandIdentity) &&
         Objects.equals(this.identityType, createStandaloneAdRequest.identityType) &&
         Objects.equals(this.smartPlus, createStandaloneAdRequest.smartPlus) &&
+        Objects.equals(this.userOs, createStandaloneAdRequest.userOs) &&
+        Objects.equals(this.userDevice, createStandaloneAdRequest.userDevice) &&
+        Objects.equals(this.isSkadnetworkAttribution, createStandaloneAdRequest.isSkadnetworkAttribution) &&
+        Objects.equals(this.campaignAttribution, createStandaloneAdRequest.campaignAttribution) &&
         Objects.equals(this.promotedObject, createStandaloneAdRequest.promotedObject);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, promotion, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, promotion, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, userOs, userDevice, isSkadnetworkAttribution, campaignAttribution, promotedObject);
   }
 
   @Override
@@ -4057,6 +4228,10 @@ public class CreateStandaloneAdRequest {
     sb.append("    brandIdentity: ").append(toIndentedString(brandIdentity)).append("\n");
     sb.append("    identityType: ").append(toIndentedString(identityType)).append("\n");
     sb.append("    smartPlus: ").append(toIndentedString(smartPlus)).append("\n");
+    sb.append("    userOs: ").append(toIndentedString(userOs)).append("\n");
+    sb.append("    userDevice: ").append(toIndentedString(userDevice)).append("\n");
+    sb.append("    isSkadnetworkAttribution: ").append(toIndentedString(isSkadnetworkAttribution)).append("\n");
+    sb.append("    campaignAttribution: ").append(toIndentedString(campaignAttribution)).append("\n");
     sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -4744,6 +4919,34 @@ public class CreateStandaloneAdRequest {
     // add `smartPlus` to the URL query string
     if (getSmartPlus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssmartPlus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmartPlus()))));
+    }
+
+    // add `userOs` to the URL query string
+    if (getUserOs() != null) {
+      for (int i = 0; i < getUserOs().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserOs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUserOs().get(i)))));
+      }
+    }
+
+    // add `userDevice` to the URL query string
+    if (getUserDevice() != null) {
+      for (int i = 0; i < getUserDevice().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserDevice%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUserDevice().get(i)))));
+      }
+    }
+
+    // add `isSkadnetworkAttribution` to the URL query string
+    if (getIsSkadnetworkAttribution() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisSkadnetworkAttribution%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsSkadnetworkAttribution()))));
+    }
+
+    // add `campaignAttribution` to the URL query string
+    if (getCampaignAttribution() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scampaignAttribution%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignAttribution()))));
     }
 
     // add `promotedObject` to the URL query string

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdTracking;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
 import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import dev.zernio.model.CtwaAdRequestBodyCitiesInner;
@@ -50,6 +51,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CtwaAdRequestBody.JSON_PROPERTY_CREATIVE_FEATURES,
+  CtwaAdRequestBody.JSON_PROPERTY_TRACKING,
   CtwaAdRequestBody.JSON_PROPERTY_ACCOUNT_ID,
   CtwaAdRequestBody.JSON_PROPERTY_AD_ACCOUNT_ID,
   CtwaAdRequestBody.JSON_PROPERTY_NAME,
@@ -90,7 +92,7 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBody {
   /**
    * Gets or Sets inner
@@ -130,6 +132,10 @@ public class CtwaAdRequestBody {
   public static final String JSON_PROPERTY_CREATIVE_FEATURES = "creativeFeatures";
   @javax.annotation.Nullable
   private Map<String, InnerEnum> creativeFeatures;
+
+  public static final String JSON_PROPERTY_TRACKING = "tracking";
+  @javax.annotation.Nullable
+  private AdTracking tracking;
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -535,6 +541,30 @@ public class CtwaAdRequestBody {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
     this.creativeFeatures = creativeFeatures;
+  }
+
+
+  public CtwaAdRequestBody tracking(@javax.annotation.Nullable AdTracking tracking) {
+    this.tracking = tracking;
+    return this;
+  }
+
+  /**
+   * Get tracking
+   * @return tracking
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdTracking getTracking() {
+    return tracking;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTracking(@javax.annotation.Nullable AdTracking tracking) {
+    this.tracking = tracking;
   }
 
 
@@ -1571,6 +1601,7 @@ public class CtwaAdRequestBody {
     }
     CtwaAdRequestBody ctwaAdRequestBody = (CtwaAdRequestBody) o;
     return Objects.equals(this.creativeFeatures, ctwaAdRequestBody.creativeFeatures) &&
+        Objects.equals(this.tracking, ctwaAdRequestBody.tracking) &&
         Objects.equals(this.accountId, ctwaAdRequestBody.accountId) &&
         Objects.equals(this.adAccountId, ctwaAdRequestBody.adAccountId) &&
         Objects.equals(this.name, ctwaAdRequestBody.name) &&
@@ -1614,7 +1645,7 @@ public class CtwaAdRequestBody {
 
   @Override
   public int hashCode() {
-    return Objects.hash(creativeFeatures, accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities);
+    return Objects.hash(creativeFeatures, tracking, accountId, adAccountId, name, existingPostId, objectStoryId, whatsappPhoneNumber, headline, body, imageUrl, video, welcomeMessage, creatives, adSetId, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, status, campaignStatus, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, regionalRegulatedCategories, regionalRegulationIdentities);
   }
 
   @Override
@@ -1622,6 +1653,7 @@ public class CtwaAdRequestBody {
     StringBuilder sb = new StringBuilder();
     sb.append("class CtwaAdRequestBody {\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
+    sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -1715,6 +1747,11 @@ public class CtwaAdRequestBody {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCreativeFeatures().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCreativeFeatures().get(_key)))));
       }
+    }
+
+    // add `tracking` to the URL query string
+    if (getTracking() != null) {
+      joiner.add(getTracking().toUrlQueryString(prefix + "tracking" + suffix));
     }
 
     // add `accountId` to the URL query string

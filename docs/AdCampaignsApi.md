@@ -705,7 +705,7 @@ ApiResponse<[**BulkUpdateAdCampaignStatus200Response**](BulkUpdateAdCampaignStat
 
 ## createAdCampaign
 
-> CreateAdCampaign201Response createAdCampaign(createAdCampaignRequest, idempotencyKey)
+> CreateAdCampaign200Response createAdCampaign(createAdCampaignRequest, idempotencyKey)
 
 Create a standalone campaign
 
@@ -735,7 +735,7 @@ public class Example {
         CreateAdCampaignRequest createAdCampaignRequest = new CreateAdCampaignRequest(); // CreateAdCampaignRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            CreateAdCampaign201Response result = apiInstance.createAdCampaign(createAdCampaignRequest, idempotencyKey);
+            CreateAdCampaign200Response result = apiInstance.createAdCampaign(createAdCampaignRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#createAdCampaign");
@@ -758,7 +758,7 @@ public class Example {
 
 ### Return type
 
-[**CreateAdCampaign201Response**](CreateAdCampaign201Response.md)
+[**CreateAdCampaign200Response**](CreateAdCampaign200Response.md)
 
 
 ### Authorization
@@ -773,6 +773,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |
@@ -780,7 +781,7 @@ public class Example {
 
 ## createAdCampaignWithHttpInfo
 
-> ApiResponse<CreateAdCampaign201Response> createAdCampaign createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey)
+> ApiResponse<CreateAdCampaign200Response> createAdCampaign createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey)
 
 Create a standalone campaign
 
@@ -811,7 +812,7 @@ public class Example {
         CreateAdCampaignRequest createAdCampaignRequest = new CreateAdCampaignRequest(); // CreateAdCampaignRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key.
         try {
-            ApiResponse<CreateAdCampaign201Response> response = apiInstance.createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
+            ApiResponse<CreateAdCampaign200Response> response = apiInstance.createAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -836,7 +837,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateAdCampaign201Response**](CreateAdCampaign201Response.md)>
+ApiResponse<[**CreateAdCampaign200Response**](CreateAdCampaign200Response.md)>
 
 
 ### Authorization
@@ -851,6 +852,7 @@ ApiResponse<[**CreateAdCampaign201Response**](CreateAdCampaign201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |

@@ -40,6 +40,8 @@ import dev.zernio.ApiClient;
  * Normalized, platform-agnostic ad-targeting spec. Every field is optional, an empty object targets the platform&#39;s default broadest audience. Field names are camelCase and identical across &#x60;POST /v1/ads/create&#x60; (the &#x60;targeting&#x60; object), &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences, so a spec resolved once can be reused verbatim.  Entity ids (&#x60;regions[].key&#x60;, &#x60;cities[].key&#x60;, &#x60;zips[].key&#x60;, &#x60;metros[].key&#x60;, &#x60;interests[].id&#x60;, &#x60;behaviors[].id&#x60;) are the platform&#39;s opaque identifiers resolved via &#x60;GET /v1/ads/targeting/search&#x60;. A spec is therefore meaningful only for the platform it was built against, except the portable fields (&#x60;countries&#x60;, &#x60;ageMin&#x60;/&#x60;ageMax&#x60;, &#x60;gender&#x60;, &#x60;incomeTier&#x60;, &#x60;languages&#x60;) which carry across platforms. Fields a platform cannot honour are rejected at create time with &#x60;INVALID_FIELD_VALUE&#x60; naming the offending field (not silently dropped). 
  */
 @JsonPropertyOrder({
+  TargetingSpec.JSON_PROPERTY_USER_OS,
+  TargetingSpec.JSON_PROPERTY_USER_DEVICE,
   TargetingSpec.JSON_PROPERTY_COUNTRIES,
   TargetingSpec.JSON_PROPERTY_REGIONS,
   TargetingSpec.JSON_PROPERTY_CITIES,
@@ -64,8 +66,16 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
+  public static final String JSON_PROPERTY_USER_OS = "userOs";
+  @javax.annotation.Nullable
+  private List<String> userOs = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_USER_DEVICE = "userDevice";
+  @javax.annotation.Nullable
+  private List<String> userDevice = new ArrayList<>();
+
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
@@ -236,6 +246,70 @@ public class TargetingSpec {
 
   public TargetingSpec() { 
   }
+
+  public TargetingSpec userOs(@javax.annotation.Nullable List<String> userOs) {
+    this.userOs = userOs;
+    return this;
+  }
+
+  public TargetingSpec addUserOsItem(String userOsItem) {
+    if (this.userOs == null) {
+      this.userOs = new ArrayList<>();
+    }
+    this.userOs.add(userOsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting.
+   * @return userOs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USER_OS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getUserOs() {
+    return userOs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USER_OS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUserOs(@javax.annotation.Nullable List<String> userOs) {
+    this.userOs = userOs;
+  }
+
+
+  public TargetingSpec userDevice(@javax.annotation.Nullable List<String> userDevice) {
+    this.userDevice = userDevice;
+    return this;
+  }
+
+  public TargetingSpec addUserDeviceItem(String userDeviceItem) {
+    if (this.userDevice == null) {
+      this.userDevice = new ArrayList<>();
+    }
+    this.userDevice.add(userDeviceItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting.
+   * @return userDevice
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USER_DEVICE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getUserDevice() {
+    return userDevice;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USER_DEVICE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUserDevice(@javax.annotation.Nullable List<String> userDevice) {
+    this.userDevice = userDevice;
+  }
+
 
   public TargetingSpec countries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
@@ -949,7 +1023,9 @@ public class TargetingSpec {
       return false;
     }
     TargetingSpec targetingSpec = (TargetingSpec) o;
-    return Objects.equals(this.countries, targetingSpec.countries) &&
+    return Objects.equals(this.userOs, targetingSpec.userOs) &&
+        Objects.equals(this.userDevice, targetingSpec.userDevice) &&
+        Objects.equals(this.countries, targetingSpec.countries) &&
         Objects.equals(this.regions, targetingSpec.regions) &&
         Objects.equals(this.cities, targetingSpec.cities) &&
         Objects.equals(this.zips, targetingSpec.zips) &&
@@ -976,13 +1052,15 @@ public class TargetingSpec {
 
   @Override
   public int hashCode() {
-    return Objects.hash(countries, regions, cities, zips, metros, customLocations, excludedLocations, ageMin, ageMax, gender, incomeTier, languages, interests, behaviors, workPositions, workEmployers, workIndustries, industries, companySizes, seniorities, jobFunctions, audienceInclude, audienceExclude);
+    return Objects.hash(userOs, userDevice, countries, regions, cities, zips, metros, customLocations, excludedLocations, ageMin, ageMax, gender, incomeTier, languages, interests, behaviors, workPositions, workEmployers, workIndustries, industries, companySizes, seniorities, jobFunctions, audienceInclude, audienceExclude);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TargetingSpec {\n");
+    sb.append("    userOs: ").append(toIndentedString(userOs)).append("\n");
+    sb.append("    userDevice: ").append(toIndentedString(userDevice)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
     sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
@@ -1052,6 +1130,24 @@ public class TargetingSpec {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `userOs` to the URL query string
+    if (getUserOs() != null) {
+      for (int i = 0; i < getUserOs().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserOs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUserOs().get(i)))));
+      }
+    }
+
+    // add `userDevice` to the URL query string
+    if (getUserDevice() != null) {
+      for (int i = 0; i < getUserDevice().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserDevice%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUserDevice().get(i)))));
+      }
+    }
 
     // add `countries` to the URL query string
     if (getCountries() != null) {

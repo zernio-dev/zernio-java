@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -43,6 +44,9 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_PLATFORM_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_EFFECTIVE_STORY_ID,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_TIKTOK_ITEM_ID,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_SINCE,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_UNTIL,
   GetAdComments200ResponseMeta.JSON_PROPERTY_FACEBOOK_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_USER_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_PERMALINK,
@@ -50,15 +54,17 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200ResponseMeta {
   /**
-   * Which side these comments are on (same as &#x60;placement&#x60;).
+   * Platform of the comments.
    */
   public enum PlatformEnum {
     FACEBOOK(String.valueOf("facebook")),
     
-    INSTAGRAM(String.valueOf("instagram"));
+    INSTAGRAM(String.valueOf("instagram")),
+    
+    TIKTOK(String.valueOf("tiktok"));
 
     private String value;
 
@@ -127,7 +133,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   public static final String JSON_PROPERTY_PLACEMENT = "placement";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private PlacementEnum placement;
 
   public static final String JSON_PROPERTY_AD_ID = "adId";
@@ -135,12 +141,23 @@ public class GetAdComments200ResponseMeta {
   private String adId;
 
   public static final String JSON_PROPERTY_PLATFORM_AD_ID = "platformAdId";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String platformAdId;
 
   public static final String JSON_PROPERTY_EFFECTIVE_STORY_ID = "effectiveStoryId";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String effectiveStoryId;
+
+  public static final String JSON_PROPERTY_TIKTOK_ITEM_ID = "tiktokItemId";
+  private JsonNullable<String> tiktokItemId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SINCE = "since";
+  @javax.annotation.Nullable
+  private LocalDate since;
+
+  public static final String JSON_PROPERTY_UNTIL = "until";
+  @javax.annotation.Nullable
+  private LocalDate until;
 
   public static final String JSON_PROPERTY_FACEBOOK_ACCOUNT_ID = "facebookAccountId";
   private JsonNullable<String> facebookAccountId = JsonNullable.<String>undefined();
@@ -174,7 +191,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Which side these comments are on (same as &#x60;placement&#x60;).
+   * Platform of the comments.
    * @return platform
    */
   @javax.annotation.Nonnull
@@ -192,7 +209,7 @@ public class GetAdComments200ResponseMeta {
   }
 
 
-  public GetAdComments200ResponseMeta placement(@javax.annotation.Nonnull PlacementEnum placement) {
+  public GetAdComments200ResponseMeta placement(@javax.annotation.Nullable PlacementEnum placement) {
     this.placement = placement;
     return this;
   }
@@ -201,17 +218,17 @@ public class GetAdComments200ResponseMeta {
    * The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
    * @return placement
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PlacementEnum getPlacement() {
     return placement;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPlacement(@javax.annotation.Nonnull PlacementEnum placement) {
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlacement(@javax.annotation.Nullable PlacementEnum placement) {
     this.placement = placement;
   }
 
@@ -240,31 +257,31 @@ public class GetAdComments200ResponseMeta {
   }
 
 
-  public GetAdComments200ResponseMeta platformAdId(@javax.annotation.Nonnull String platformAdId) {
+  public GetAdComments200ResponseMeta platformAdId(@javax.annotation.Nullable String platformAdId) {
     this.platformAdId = platformAdId;
     return this;
   }
 
   /**
-   * Meta ad ID.
+   * Platform ad ID.
    * @return platformAdId
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_AD_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_AD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPlatformAdId() {
     return platformAdId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_AD_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPlatformAdId(@javax.annotation.Nonnull String platformAdId) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_AD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformAdId(@javax.annotation.Nullable String platformAdId) {
     this.platformAdId = platformAdId;
   }
 
 
-  public GetAdComments200ResponseMeta effectiveStoryId(@javax.annotation.Nonnull String effectiveStoryId) {
+  public GetAdComments200ResponseMeta effectiveStoryId(@javax.annotation.Nullable String effectiveStoryId) {
     this.effectiveStoryId = effectiveStoryId;
     return this;
   }
@@ -273,18 +290,98 @@ public class GetAdComments200ResponseMeta {
    * Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side.
    * @return effectiveStoryId
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_STORY_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEffectiveStoryId() {
     return effectiveStoryId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_STORY_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEffectiveStoryId(@javax.annotation.Nonnull String effectiveStoryId) {
+  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEffectiveStoryId(@javax.annotation.Nullable String effectiveStoryId) {
     this.effectiveStoryId = effectiveStoryId;
+  }
+
+
+  public GetAdComments200ResponseMeta tiktokItemId(@javax.annotation.Nullable String tiktokItemId) {
+    this.tiktokItemId = JsonNullable.<String>of(tiktokItemId);
+    return this;
+  }
+
+  /**
+   * TikTok-only video item ID. Null when the ad and comments do not expose it.
+   * @return tiktokItemId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getTiktokItemId() {
+        return tiktokItemId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TIKTOK_ITEM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getTiktokItemId_JsonNullable() {
+    return tiktokItemId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TIKTOK_ITEM_ID)
+  public void setTiktokItemId_JsonNullable(JsonNullable<String> tiktokItemId) {
+    this.tiktokItemId = tiktokItemId;
+  }
+
+  public void setTiktokItemId(@javax.annotation.Nullable String tiktokItemId) {
+    this.tiktokItemId = JsonNullable.<String>of(tiktokItemId);
+  }
+
+
+  public GetAdComments200ResponseMeta since(@javax.annotation.Nullable LocalDate since) {
+    this.since = since;
+    return this;
+  }
+
+  /**
+   * TikTok-only resolved start date.
+   * @return since
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SINCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LocalDate getSince() {
+    return since;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SINCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSince(@javax.annotation.Nullable LocalDate since) {
+    this.since = since;
+  }
+
+
+  public GetAdComments200ResponseMeta until(@javax.annotation.Nullable LocalDate until) {
+    this.until = until;
+    return this;
+  }
+
+  /**
+   * TikTok-only resolved end date.
+   * @return until
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNTIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LocalDate getUntil() {
+    return until;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNTIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUntil(@javax.annotation.Nullable LocalDate until) {
+    this.until = until;
   }
 
 
@@ -457,6 +554,9 @@ public class GetAdComments200ResponseMeta {
         Objects.equals(this.adId, getAdComments200ResponseMeta.adId) &&
         Objects.equals(this.platformAdId, getAdComments200ResponseMeta.platformAdId) &&
         Objects.equals(this.effectiveStoryId, getAdComments200ResponseMeta.effectiveStoryId) &&
+        equalsNullable(this.tiktokItemId, getAdComments200ResponseMeta.tiktokItemId) &&
+        Objects.equals(this.since, getAdComments200ResponseMeta.since) &&
+        Objects.equals(this.until, getAdComments200ResponseMeta.until) &&
         equalsNullable(this.facebookAccountId, getAdComments200ResponseMeta.facebookAccountId) &&
         Objects.equals(this.instagramUserId, getAdComments200ResponseMeta.instagramUserId) &&
         Objects.equals(this.instagramPermalink, getAdComments200ResponseMeta.instagramPermalink) &&
@@ -471,7 +571,7 @@ public class GetAdComments200ResponseMeta {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, hashCodeNullable(facebookAccountId), instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
+    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, hashCodeNullable(tiktokItemId), since, until, hashCodeNullable(facebookAccountId), instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -490,6 +590,9 @@ public class GetAdComments200ResponseMeta {
     sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
     sb.append("    platformAdId: ").append(toIndentedString(platformAdId)).append("\n");
     sb.append("    effectiveStoryId: ").append(toIndentedString(effectiveStoryId)).append("\n");
+    sb.append("    tiktokItemId: ").append(toIndentedString(tiktokItemId)).append("\n");
+    sb.append("    since: ").append(toIndentedString(since)).append("\n");
+    sb.append("    until: ").append(toIndentedString(until)).append("\n");
     sb.append("    facebookAccountId: ").append(toIndentedString(facebookAccountId)).append("\n");
     sb.append("    instagramUserId: ").append(toIndentedString(instagramUserId)).append("\n");
     sb.append("    instagramPermalink: ").append(toIndentedString(instagramPermalink)).append("\n");
@@ -566,6 +669,21 @@ public class GetAdComments200ResponseMeta {
     // add `effectiveStoryId` to the URL query string
     if (getEffectiveStoryId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%seffectiveStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffectiveStoryId()))));
+    }
+
+    // add `tiktokItemId` to the URL query string
+    if (getTiktokItemId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stiktokItemId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTiktokItemId()))));
+    }
+
+    // add `since` to the URL query string
+    if (getSince() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssince%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSince()))));
+    }
+
+    // add `until` to the URL query string
+    if (getUntil() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suntil%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUntil()))));
     }
 
     // add `facebookAccountId` to the URL query string

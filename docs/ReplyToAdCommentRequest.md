@@ -1,0 +1,13 @@
+
+
+# ReplyToAdCommentRequest
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**text** | **String** | Non-empty reply text. |  |
+
+
+

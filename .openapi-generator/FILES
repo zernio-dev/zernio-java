@@ -41,6 +41,7 @@ docs/AdReviewStatus.md
 docs/AdSchedule.md
 docs/AdStatus.md
 docs/AdTargetingApi.md
+docs/AdTracking.md
 docs/AdTreeAdSet.md
 docs/AdTreeAdSetAdSetBudget.md
 docs/AdTreeAdSetBudget.md
@@ -264,6 +265,7 @@ docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
 docs/CreateAdAudience201Response.md
 docs/CreateAdAudienceRequest.md
+docs/CreateAdCampaign200Response.md
 docs/CreateAdCampaign201Response.md
 docs/CreateAdCampaignRequest.md
 docs/CreateAdCreative201Response.md
@@ -406,11 +408,9 @@ docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
-docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestSitelinksInner.md
 docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
-docs/CreateStandaloneAdRequestTracking.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateTestLead200Response.md
@@ -752,6 +752,8 @@ docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
+docs/GetIosFourteenCampaignLimits200Response.md
+docs/GetIosFourteenCampaignLimits200ResponseLimits.md
 docs/GetLeadForm200Response.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
@@ -936,6 +938,8 @@ docs/GoogleBusinessReview.md
 docs/GoogleBusinessReviewReviewReply.md
 docs/GoogleBusinessReviewReviewer.md
 docs/HandleOAuthCallbackRequest.md
+docs/HideAdComment200Response.md
+docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/InboxAnalyticsApi.md
@@ -1036,6 +1040,12 @@ docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
 docs/ListAdsBusinessCenters200Response.md
+docs/ListAdsInstagramAccounts200Response.md
+docs/ListAdsInstagramAccounts200ResponseAccountsInner.md
+docs/ListAdsInstagramAccounts200ResponsePagesInner.md
+docs/ListAdsInstagramAccounts200ResponseResolved.md
+docs/ListAdvertisableApplications200Response.md
+docs/ListAdvertisableApplications200ResponseApplicationsInner.md
 docs/ListApiKeys200Response.md
 docs/ListBidStrategies200Response.md
 docs/ListBlogArticles200Response.md
@@ -1228,6 +1238,7 @@ docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
 docs/MetaAdsPlatformData.md
+docs/MetaInstagramIdentityRef.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/MetaPromotion.md
@@ -1345,6 +1356,8 @@ docs/ReplaceAdNegativeKeywordListKeywordsRequest.md
 docs/ReplaceCampaignNegativeKeywordListsRequest.md
 docs/ReplaceCampaignNegativeKeywords200Response.md
 docs/ReplaceCampaignNegativeKeywordsRequest.md
+docs/ReplyToAdComment200Response.md
+docs/ReplyToAdCommentRequest.md
 docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
@@ -2136,6 +2149,7 @@ src/main/java/dev/zernio/model/AdPromotedObject.java
 src/main/java/dev/zernio/model/AdReviewStatus.java
 src/main/java/dev/zernio/model/AdSchedule.java
 src/main/java/dev/zernio/model/AdStatus.java
+src/main/java/dev/zernio/model/AdTracking.java
 src/main/java/dev/zernio/model/AdTreeAdSet.java
 src/main/java/dev/zernio/model/AdTreeAdSetAdSetBudget.java
 src/main/java/dev/zernio/model/AdTreeAdSetBudget.java
@@ -2347,6 +2361,7 @@ src/main/java/dev/zernio/model/CreateAccountGroup201ResponseGroup.java
 src/main/java/dev/zernio/model/CreateAccountGroupRequest.java
 src/main/java/dev/zernio/model/CreateAdAudience201Response.java
 src/main/java/dev/zernio/model/CreateAdAudienceRequest.java
+src/main/java/dev/zernio/model/CreateAdCampaign200Response.java
 src/main/java/dev/zernio/model/CreateAdCampaign201Response.java
 src/main/java/dev/zernio/model/CreateAdCampaignRequest.java
 src/main/java/dev/zernio/model/CreateAdCreative201Response.java
@@ -2489,11 +2504,9 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInne
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlatformSpecificData.java
-src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestSitelinksInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestStructuredSnippetsInner.java
-src/main/java/dev/zernio/model/CreateStandaloneAdRequestTracking.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTranslationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
 src/main/java/dev/zernio/model/CreateTestLead200Response.java
@@ -2833,6 +2846,8 @@ src/main/java/dev/zernio/model/GetInstagramPublishingLimit200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseData.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseDataMetrics.java
+src/main/java/dev/zernio/model/GetIosFourteenCampaignLimits200Response.java
+src/main/java/dev/zernio/model/GetIosFourteenCampaignLimits200ResponseLimits.java
 src/main/java/dev/zernio/model/GetLeadForm200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics400Response.java
@@ -3009,6 +3024,8 @@ src/main/java/dev/zernio/model/GoogleBusinessReview.java
 src/main/java/dev/zernio/model/GoogleBusinessReviewReviewReply.java
 src/main/java/dev/zernio/model/GoogleBusinessReviewReviewer.java
 src/main/java/dev/zernio/model/HandleOAuthCallbackRequest.java
+src/main/java/dev/zernio/model/HideAdComment200Response.java
+src/main/java/dev/zernio/model/HideAdCommentRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
 src/main/java/dev/zernio/model/InboxMessageEditAttachment.java
@@ -3104,6 +3121,12 @@ src/main/java/dev/zernio/model/ListAdStudies200Response.java
 src/main/java/dev/zernio/model/ListAdVideos200Response.java
 src/main/java/dev/zernio/model/ListAds202Response.java
 src/main/java/dev/zernio/model/ListAdsBusinessCenters200Response.java
+src/main/java/dev/zernio/model/ListAdsInstagramAccounts200Response.java
+src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseAccountsInner.java
+src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponsePagesInner.java
+src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseResolved.java
+src/main/java/dev/zernio/model/ListAdvertisableApplications200Response.java
+src/main/java/dev/zernio/model/ListAdvertisableApplications200ResponseApplicationsInner.java
 src/main/java/dev/zernio/model/ListApiKeys200Response.java
 src/main/java/dev/zernio/model/ListBidStrategies200Response.java
 src/main/java/dev/zernio/model/ListBlogArticles200Response.java
@@ -3291,6 +3314,7 @@ src/main/java/dev/zernio/model/MediaContentType.java
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
 src/main/java/dev/zernio/model/MetaAdsPlatformData.java
+src/main/java/dev/zernio/model/MetaInstagramIdentityRef.java
 src/main/java/dev/zernio/model/MetaLeadFormPlatformData.java
 src/main/java/dev/zernio/model/MetaLeadFormPlatformDataContextCard.java
 src/main/java/dev/zernio/model/MetaPromotion.java
@@ -3402,6 +3426,8 @@ src/main/java/dev/zernio/model/ReplaceAdNegativeKeywordListKeywordsRequest.java
 src/main/java/dev/zernio/model/ReplaceCampaignNegativeKeywordListsRequest.java
 src/main/java/dev/zernio/model/ReplaceCampaignNegativeKeywords200Response.java
 src/main/java/dev/zernio/model/ReplaceCampaignNegativeKeywordsRequest.java
+src/main/java/dev/zernio/model/ReplyToAdComment200Response.java
+src/main/java/dev/zernio/model/ReplyToAdCommentRequest.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReview200Response.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200Response.java
@@ -4059,3 +4085,18 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdTrackingTest.java
+src/test/java/dev/zernio/model/CreateAdCampaign200ResponseTest.java
+src/test/java/dev/zernio/model/GetIosFourteenCampaignLimits200ResponseLimitsTest.java
+src/test/java/dev/zernio/model/GetIosFourteenCampaignLimits200ResponseTest.java
+src/test/java/dev/zernio/model/HideAdComment200ResponseTest.java
+src/test/java/dev/zernio/model/HideAdCommentRequestTest.java
+src/test/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseAccountsInnerTest.java
+src/test/java/dev/zernio/model/ListAdsInstagramAccounts200ResponsePagesInnerTest.java
+src/test/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseResolvedTest.java
+src/test/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseTest.java
+src/test/java/dev/zernio/model/ListAdvertisableApplications200ResponseApplicationsInnerTest.java
+src/test/java/dev/zernio/model/ListAdvertisableApplications200ResponseTest.java
+src/test/java/dev/zernio/model/MetaInstagramIdentityRefTest.java
+src/test/java/dev/zernio/model/ReplyToAdComment200ResponseTest.java
+src/test/java/dev/zernio/model/ReplyToAdCommentRequestTest.java

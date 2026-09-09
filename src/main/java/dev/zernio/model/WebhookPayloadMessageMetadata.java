@@ -66,7 +66,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T17:46:10.243434531Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_STANDBY = "standby";
   @javax.annotation.Nullable

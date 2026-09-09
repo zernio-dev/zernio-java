@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createHighDemandPeriodWithHttpInfo**](AdAccountsApi.md#createHighDemandPeriodWithHttpInfo) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase |
 | [**createValueRuleSet**](AdAccountsApi.md#createValueRuleSet) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
 | [**createValueRuleSetWithHttpInfo**](AdAccountsApi.md#createValueRuleSetWithHttpInfo) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
+| [**deleteAdComment**](AdAccountsApi.md#deleteAdComment) | **DELETE** /v1/ads/{adId}/comments/{commentId} | Delete an ad comment |
+| [**deleteAdCommentWithHttpInfo**](AdAccountsApi.md#deleteAdCommentWithHttpInfo) | **DELETE** /v1/ads/{adId}/comments/{commentId} | Delete an ad comment |
 | [**deleteAdNegativeKeywordList**](AdAccountsApi.md#deleteAdNegativeKeywordList) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**deleteAdNegativeKeywordListWithHttpInfo**](AdAccountsApi.md#deleteAdNegativeKeywordListWithHttpInfo) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**deleteValueRuleSet**](AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
@@ -30,8 +32,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**getDsaDefaultsWithHttpInfo**](AdAccountsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
 | [**getDsaRecommendations**](AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
 | [**getDsaRecommendationsWithHttpInfo**](AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
+| [**getIosFourteenCampaignLimits**](AdAccountsApi.md#getIosFourteenCampaignLimits) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits |
+| [**getIosFourteenCampaignLimitsWithHttpInfo**](AdAccountsApi.md#getIosFourteenCampaignLimitsWithHttpInfo) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits |
 | [**getValueRuleSet**](AdAccountsApi.md#getValueRuleSet) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
 | [**getValueRuleSetWithHttpInfo**](AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
+| [**hideAdComment**](AdAccountsApi.md#hideAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
+| [**hideAdCommentWithHttpInfo**](AdAccountsApi.md#hideAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
 | [**listAccountCallouts**](AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions |
 | [**listAccountCalloutsWithHttpInfo**](AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions |
 | [**listAdAccounts**](AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
@@ -44,6 +50,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdStudiesWithHttpInfo**](AdAccountsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies |
 | [**listAdsBusinessCenters**](AdAccountsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**listAdsBusinessCentersWithHttpInfo**](AdAccountsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
+| [**listAdsInstagramAccounts**](AdAccountsApi.md#listAdsInstagramAccounts) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities |
+| [**listAdsInstagramAccountsWithHttpInfo**](AdAccountsApi.md#listAdsInstagramAccountsWithHttpInfo) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities |
+| [**listAdvertisableApplications**](AdAccountsApi.md#listAdvertisableApplications) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
+| [**listAdvertisableApplicationsWithHttpInfo**](AdAccountsApi.md#listAdvertisableApplicationsWithHttpInfo) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
 | [**listCustomConversions**](AdAccountsApi.md#listCustomConversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
 | [**listCustomConversionsWithHttpInfo**](AdAccountsApi.md#listCustomConversionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
 | [**listHighDemandPeriods**](AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules |
@@ -56,6 +66,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**removeAccountCalloutWithHttpInfo**](AdAccountsApi.md#removeAccountCalloutWithHttpInfo) | **DELETE** /v1/ads/accounts/callouts | Remove an account-level callout extension |
 | [**replaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
+| [**replyToAdComment**](AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
+| [**replyToAdCommentWithHttpInfo**](AdAccountsApi.md#replyToAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
 | [**updateAdAccount**](AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdAccountWithHttpInfo**](AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdNegativeKeywordList**](AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
@@ -835,6 +847,176 @@ ApiResponse<[**CreateValueRuleSet201Response**](CreateValueRuleSet201Response.md
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
+## deleteAdComment
+
+> ReplyToAdComment200Response deleteAdComment(adId, commentId, since, until)
+
+Delete an ad comment
+
+Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
+        LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
+        try {
+            ReplyToAdComment200Response result = apiInstance.deleteAdComment(adId, commentId, since, until);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#deleteAdComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
+| **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
+
+### Return type
+
+[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+## deleteAdCommentWithHttpInfo
+
+> ApiResponse<ReplyToAdComment200Response> deleteAdComment deleteAdCommentWithHttpInfo(adId, commentId, since, until)
+
+Delete an ad comment
+
+Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
+        LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
+        try {
+            ApiResponse<ReplyToAdComment200Response> response = apiInstance.deleteAdCommentWithHttpInfo(adId, commentId, since, until);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#deleteAdComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
+| **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
+
+### Return type
+
+ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+
 ## deleteAdNegativeKeywordList
 
 > DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, customerId, platform)
@@ -1317,11 +1499,11 @@ ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.
 
 ## getAdComments
 
-> GetAdComments200Response getAdComments(adId, placement, limit, cursor)
+> GetAdComments200Response getAdComments(adId, placement, limit, since, until, cursor)
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
 
 ### Example
 
@@ -1344,12 +1526,14 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String adId = "adId_example"; // String | Internal Zernio ad ID (ObjectId).
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad/post ID.
         String placement = "facebook"; // String | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement.
         Integer limit = 25; // Integer | 
+        LocalDate since = LocalDate.now(); // LocalDate | TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days.
+        LocalDate until = LocalDate.now(); // LocalDate | TikTok-only end date. Defaults to today in UTC.
         String cursor = "cursor_example"; // String | Pagination cursor from a previous response.
         try {
-            GetAdComments200Response result = apiInstance.getAdComments(adId, placement, limit, cursor);
+            GetAdComments200Response result = apiInstance.getAdComments(adId, placement, limit, since, until, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#getAdComments");
@@ -1367,9 +1551,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **adId** | **String**| Internal Zernio ad ID (ObjectId). | |
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad/post ID. | |
 | **placement** | **String**| Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. | [optional] [enum: facebook, instagram] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
+| **since** | **LocalDate**| TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. | [optional] |
+| **until** | **LocalDate**| TikTok-only end date. Defaults to today in UTC. | [optional] |
 | **cursor** | **String**| Pagination cursor from a previous response. | [optional] |
 
 ### Return type
@@ -1389,20 +1575,20 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Comments on the ad |  -  |
+| **200** | Comments on the ad. |  -  |
 | **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code ad_not_commentable).  |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta or TikTok (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
 
 ## getAdCommentsWithHttpInfo
 
-> ApiResponse<GetAdComments200Response> getAdComments getAdCommentsWithHttpInfo(adId, placement, limit, cursor)
+> ApiResponse<GetAdComments200Response> getAdComments getAdCommentsWithHttpInfo(adId, placement, limit, since, until, cursor)
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
 
 ### Example
 
@@ -1426,12 +1612,14 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String adId = "adId_example"; // String | Internal Zernio ad ID (ObjectId).
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad/post ID.
         String placement = "facebook"; // String | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement.
         Integer limit = 25; // Integer | 
+        LocalDate since = LocalDate.now(); // LocalDate | TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days.
+        LocalDate until = LocalDate.now(); // LocalDate | TikTok-only end date. Defaults to today in UTC.
         String cursor = "cursor_example"; // String | Pagination cursor from a previous response.
         try {
-            ApiResponse<GetAdComments200Response> response = apiInstance.getAdCommentsWithHttpInfo(adId, placement, limit, cursor);
+            ApiResponse<GetAdComments200Response> response = apiInstance.getAdCommentsWithHttpInfo(adId, placement, limit, since, until, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1451,9 +1639,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **adId** | **String**| Internal Zernio ad ID (ObjectId). | |
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad/post ID. | |
 | **placement** | **String**| Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. | [optional] [enum: facebook, instagram] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
+| **since** | **LocalDate**| TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. | [optional] |
+| **until** | **LocalDate**| TikTok-only end date. Defaults to today in UTC. | [optional] |
 | **cursor** | **String**| Pagination cursor from a previous response. | [optional] |
 
 ### Return type
@@ -1473,10 +1663,10 @@ ApiResponse<[**GetAdComments200Response**](GetAdComments200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Comments on the ad |  -  |
+| **200** | Comments on the ad. |  -  |
 | **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code ad_not_commentable).  |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta or TikTok (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
 
@@ -2135,6 +2325,168 @@ ApiResponse<[**GetDsaRecommendations200Response**](GetDsaRecommendations200Respo
 | **404** | Account not found |  -  |
 
 
+## getIosFourteenCampaignLimits
+
+> GetIosFourteenCampaignLimits200Response getIosFourteenCampaignLimits(accountId, adAccountId, applicationId)
+
+Get iOS 14 campaign limits
+
+Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads or Facebook SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix.
+        String applicationId = "applicationId_example"; // String | Meta application ID from advertisable-applications.
+        try {
+            GetIosFourteenCampaignLimits200Response result = apiInstance.getIosFourteenCampaignLimits(accountId, adAccountId, applicationId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getIosFourteenCampaignLimits");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads or Facebook SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. | |
+| **applicationId** | **String**| Meta application ID from advertisable-applications. | |
+
+### Return type
+
+[**GetIosFourteenCampaignLimits200Response**](GetIosFourteenCampaignLimits200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Application campaign limits. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+## getIosFourteenCampaignLimitsWithHttpInfo
+
+> ApiResponse<GetIosFourteenCampaignLimits200Response> getIosFourteenCampaignLimits getIosFourteenCampaignLimitsWithHttpInfo(accountId, adAccountId, applicationId)
+
+Get iOS 14 campaign limits
+
+Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads or Facebook SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix.
+        String applicationId = "applicationId_example"; // String | Meta application ID from advertisable-applications.
+        try {
+            ApiResponse<GetIosFourteenCampaignLimits200Response> response = apiInstance.getIosFourteenCampaignLimitsWithHttpInfo(accountId, adAccountId, applicationId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getIosFourteenCampaignLimits");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads or Facebook SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. | |
+| **applicationId** | **String**| Meta application ID from advertisable-applications. | |
+
+### Return type
+
+ApiResponse<[**GetIosFourteenCampaignLimits200Response**](GetIosFourteenCampaignLimits200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Application campaign limits. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+
 ## getValueRuleSet
 
 > GetValueRuleSet200Response getValueRuleSet(valueRuleSetId, accountId)
@@ -2287,6 +2639,180 @@ ApiResponse<[**GetValueRuleSet200Response**](GetValueRuleSet200Response.md)>
 | **400** | Invalid input, or Meta rejected the read. A bad id comes back as GraphMethodException code 100 / subcode 33, which cannot be told apart from a permission problem. |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## hideAdComment
+
+> HideAdComment200Response hideAdComment(adId, commentId, hideAdCommentRequest, since, until)
+
+Hide or unhide an ad comment
+
+Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        HideAdCommentRequest hideAdCommentRequest = new HideAdCommentRequest(); // HideAdCommentRequest | 
+        LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
+        LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
+        try {
+            HideAdComment200Response result = apiInstance.hideAdComment(adId, commentId, hideAdCommentRequest, since, until);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#hideAdComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **hideAdCommentRequest** | [**HideAdCommentRequest**](HideAdCommentRequest.md)|  | |
+| **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
+| **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
+
+### Return type
+
+[**HideAdComment200Response**](HideAdComment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+## hideAdCommentWithHttpInfo
+
+> ApiResponse<HideAdComment200Response> hideAdComment hideAdCommentWithHttpInfo(adId, commentId, hideAdCommentRequest, since, until)
+
+Hide or unhide an ad comment
+
+Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        HideAdCommentRequest hideAdCommentRequest = new HideAdCommentRequest(); // HideAdCommentRequest | 
+        LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
+        LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
+        try {
+            ApiResponse<HideAdComment200Response> response = apiInstance.hideAdCommentWithHttpInfo(adId, commentId, hideAdCommentRequest, since, until);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#hideAdComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **hideAdCommentRequest** | [**HideAdCommentRequest**](HideAdCommentRequest.md)|  | |
+| **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
+| **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
+
+### Return type
+
+ApiResponse<[**HideAdComment200Response**](HideAdComment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
 
 
 ## listAccountCallouts
@@ -3255,6 +3781,322 @@ ApiResponse<[**ListAdsBusinessCenters200Response**](ListAdsBusinessCenters200Res
 | **422** | TikTok Ads not connected |  -  |
 
 
+## listAdsInstagramAccounts
+
+> ListAdsInstagramAccounts200Response listAdsInstagramAccounts(accountId, adAccountId)
+
+List Instagram ad identities
+
+Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads or Facebook SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix.
+        try {
+            ListAdsInstagramAccounts200Response result = apiInstance.listAdsInstagramAccounts(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdsInstagramAccounts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads or Facebook SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. | |
+
+### Return type
+
+[**ListAdsInstagramAccounts200Response**](ListAdsInstagramAccounts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Instagram identities and Page linkage. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+## listAdsInstagramAccountsWithHttpInfo
+
+> ApiResponse<ListAdsInstagramAccounts200Response> listAdsInstagramAccounts listAdsInstagramAccountsWithHttpInfo(accountId, adAccountId)
+
+List Instagram ad identities
+
+Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads or Facebook SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix.
+        try {
+            ApiResponse<ListAdsInstagramAccounts200Response> response = apiInstance.listAdsInstagramAccountsWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdsInstagramAccounts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads or Facebook SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. | |
+
+### Return type
+
+ApiResponse<[**ListAdsInstagramAccounts200Response**](ListAdsInstagramAccounts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Instagram identities and Page linkage. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+
+## listAdvertisableApplications
+
+> ListAdvertisableApplications200Response listAdvertisableApplications(accountId, adAccountId)
+
+List advertisable apps
+
+Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads or Facebook SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix.
+        try {
+            ListAdvertisableApplications200Response result = apiInstance.listAdvertisableApplications(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdvertisableApplications");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads or Facebook SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. | |
+
+### Return type
+
+[**ListAdvertisableApplications200Response**](ListAdvertisableApplications200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Applications available for promotion. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+## listAdvertisableApplicationsWithHttpInfo
+
+> ApiResponse<ListAdvertisableApplications200Response> listAdvertisableApplications listAdvertisableApplicationsWithHttpInfo(accountId, adAccountId)
+
+List advertisable apps
+
+Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads or Facebook SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix.
+        try {
+            ApiResponse<ListAdvertisableApplications200Response> response = apiInstance.listAdvertisableApplicationsWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdvertisableApplications");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads or Facebook SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. | |
+
+### Return type
+
+ApiResponse<[**ListAdvertisableApplications200Response**](ListAdvertisableApplications200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Applications available for promotion. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+
 ## listCustomConversions
 
 > ListCustomConversions200Response listCustomConversions(accountId, adAccountId)
@@ -4211,6 +5053,180 @@ ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegat
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
+
+
+## replyToAdComment
+
+> ReplyToAdComment200Response replyToAdComment(adId, commentId, replyToAdCommentRequest, since, until)
+
+Reply to an ad comment
+
+Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        ReplyToAdCommentRequest replyToAdCommentRequest = new ReplyToAdCommentRequest(); // ReplyToAdCommentRequest | 
+        LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
+        LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
+        try {
+            ReplyToAdComment200Response result = apiInstance.replyToAdComment(adId, commentId, replyToAdCommentRequest, since, until);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#replyToAdComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **replyToAdCommentRequest** | [**ReplyToAdCommentRequest**](ReplyToAdCommentRequest.md)|  | |
+| **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
+| **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
+
+### Return type
+
+[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+## replyToAdCommentWithHttpInfo
+
+> ApiResponse<ReplyToAdComment200Response> replyToAdComment replyToAdCommentWithHttpInfo(adId, commentId, replyToAdCommentRequest, since, until)
+
+Reply to an ad comment
+
+Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        ReplyToAdCommentRequest replyToAdCommentRequest = new ReplyToAdCommentRequest(); // ReplyToAdCommentRequest | 
+        LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
+        LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
+        try {
+            ApiResponse<ReplyToAdComment200Response> response = apiInstance.replyToAdCommentWithHttpInfo(adId, commentId, replyToAdCommentRequest, since, until);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#replyToAdComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **replyToAdCommentRequest** | [**ReplyToAdCommentRequest**](ReplyToAdCommentRequest.md)|  | |
+| **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
+| **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
+
+### Return type
+
+ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
 
 
 ## updateAdAccount
