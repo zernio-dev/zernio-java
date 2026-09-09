@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetWhatsAppSdkConfig200ResponseBranding;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -35,9 +36,9 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetWhatsAppSdkConfig200Response.JSON_PROPERTY_APP_ID,
   GetWhatsAppSdkConfig200Response.JSON_PROPERTY_CONFIG_ID,
-  GetWhatsAppSdkConfig200Response.JSON_PROPERTY_GRAPH_API_VERSION
+  GetWhatsAppSdkConfig200Response.JSON_PROPERTY_BRANDING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T16:59:25.827070942Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:09:35.238143425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppSdkConfig200Response {
   public static final String JSON_PROPERTY_APP_ID = "appId";
   @javax.annotation.Nonnull
@@ -47,9 +48,9 @@ public class GetWhatsAppSdkConfig200Response {
   @javax.annotation.Nonnull
   private String configId;
 
-  public static final String JSON_PROPERTY_GRAPH_API_VERSION = "graphApiVersion";
+  public static final String JSON_PROPERTY_BRANDING = "branding";
   @javax.annotation.Nonnull
-  private String graphApiVersion;
+  private GetWhatsAppSdkConfig200ResponseBranding branding;
 
   public GetWhatsAppSdkConfig200Response() { 
   }
@@ -60,7 +61,7 @@ public class GetWhatsAppSdkConfig200Response {
   }
 
   /**
-   * Meta app id for FB.init
+   * Meta app id
    * @return appId
    */
   @javax.annotation.Nonnull
@@ -84,7 +85,7 @@ public class GetWhatsAppSdkConfig200Response {
   }
 
   /**
-   * Embedded Signup configuration id for the config_id option of FB.login
+   * Embedded Signup configuration id
    * @return configId
    */
   @javax.annotation.Nonnull
@@ -102,27 +103,27 @@ public class GetWhatsAppSdkConfig200Response {
   }
 
 
-  public GetWhatsAppSdkConfig200Response graphApiVersion(@javax.annotation.Nonnull String graphApiVersion) {
-    this.graphApiVersion = graphApiVersion;
+  public GetWhatsAppSdkConfig200Response branding(@javax.annotation.Nonnull GetWhatsAppSdkConfig200ResponseBranding branding) {
+    this.branding = branding;
     return this;
   }
 
   /**
-   * Graph API version to pass to FB.init (for example v22.0)
-   * @return graphApiVersion
+   * Get branding
+   * @return branding
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GRAPH_API_VERSION, required = true)
+  @JsonProperty(value = JSON_PROPERTY_BRANDING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getGraphApiVersion() {
-    return graphApiVersion;
+  public GetWhatsAppSdkConfig200ResponseBranding getBranding() {
+    return branding;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_GRAPH_API_VERSION, required = true)
+  @JsonProperty(value = JSON_PROPERTY_BRANDING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGraphApiVersion(@javax.annotation.Nonnull String graphApiVersion) {
-    this.graphApiVersion = graphApiVersion;
+  public void setBranding(@javax.annotation.Nonnull GetWhatsAppSdkConfig200ResponseBranding branding) {
+    this.branding = branding;
   }
 
 
@@ -140,12 +141,12 @@ public class GetWhatsAppSdkConfig200Response {
     GetWhatsAppSdkConfig200Response getWhatsAppSdkConfig200Response = (GetWhatsAppSdkConfig200Response) o;
     return Objects.equals(this.appId, getWhatsAppSdkConfig200Response.appId) &&
         Objects.equals(this.configId, getWhatsAppSdkConfig200Response.configId) &&
-        Objects.equals(this.graphApiVersion, getWhatsAppSdkConfig200Response.graphApiVersion);
+        Objects.equals(this.branding, getWhatsAppSdkConfig200Response.branding);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(appId, configId, graphApiVersion);
+    return Objects.hash(appId, configId, branding);
   }
 
   @Override
@@ -154,7 +155,7 @@ public class GetWhatsAppSdkConfig200Response {
     sb.append("class GetWhatsAppSdkConfig200Response {\n");
     sb.append("    appId: ").append(toIndentedString(appId)).append("\n");
     sb.append("    configId: ").append(toIndentedString(configId)).append("\n");
-    sb.append("    graphApiVersion: ").append(toIndentedString(graphApiVersion)).append("\n");
+    sb.append("    branding: ").append(toIndentedString(branding)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,9 +213,9 @@ public class GetWhatsAppSdkConfig200Response {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconfigId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConfigId()))));
     }
 
-    // add `graphApiVersion` to the URL query string
-    if (getGraphApiVersion() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sgraphApiVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGraphApiVersion()))));
+    // add `branding` to the URL query string
+    if (getBranding() != null) {
+      joiner.add(getBranding().toUrlQueryString(prefix + "branding" + suffix));
     }
 
     return joiner.toString();

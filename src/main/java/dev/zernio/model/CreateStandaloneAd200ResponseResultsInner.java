@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd200ResponseResultsInner.JSON_PROPERTY_STATUS,
   CreateStandaloneAd200ResponseResultsInner.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T22:07:37.449107544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:09:35.238143425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd200ResponseResultsInner {
   /**
    * Gets or Sets node

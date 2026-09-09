@@ -38,9 +38,11 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_WABA_ID,
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_PHONE_NUMBER_ID,
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_IS_COEXISTENCE,
-  ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_EXPECTED_PHONE_NUMBER
+  ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_EXPECTED_PHONE_NUMBER,
+  ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_REDIRECT_URL,
+  ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_ECHO_CONNECT_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-08T22:07:37.449107544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T08:09:35.238143425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppEmbeddedSignupRequest {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull
@@ -65,6 +67,14 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
   public static final String JSON_PROPERTY_EXPECTED_PHONE_NUMBER = "expectedPhoneNumber";
   @javax.annotation.Nullable
   private String expectedPhoneNumber;
+
+  public static final String JSON_PROPERTY_REDIRECT_URL = "redirectUrl";
+  @javax.annotation.Nullable
+  private String redirectUrl;
+
+  public static final String JSON_PROPERTY_ECHO_CONNECT_TOKEN = "echoConnectToken";
+  @javax.annotation.Nullable
+  private Boolean echoConnectToken;
 
   public ConnectWhatsAppEmbeddedSignupRequest() { 
   }
@@ -213,6 +223,54 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
   }
 
 
+  public ConnectWhatsAppEmbeddedSignupRequest redirectUrl(@javax.annotation.Nullable String redirectUrl) {
+    this.redirectUrl = redirectUrl;
+    return this;
+  }
+
+  /**
+   * Hosted signup page only. When present, the response also carries &#x60;redirectUrl&#x60;, the URL the user should land on, with the outcome mapped exactly like the redirect flow (success params, or &#x60;error&#x60; and &#x60;platform&#x60; with the same values). Must be an absolute http(s) URL or a custom app scheme.
+   * @return redirectUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REDIRECT_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRedirectUrl() {
+    return redirectUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REDIRECT_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRedirectUrl(@javax.annotation.Nullable String redirectUrl) {
+    this.redirectUrl = redirectUrl;
+  }
+
+
+  public ConnectWhatsAppEmbeddedSignupRequest echoConnectToken(@javax.annotation.Nullable Boolean echoConnectToken) {
+    this.echoConnectToken = echoConnectToken;
+    return this;
+  }
+
+  /**
+   * Hosted signup page only. Append the connect token to the success redirect, as the redirect flow does for API-key callers.
+   * @return echoConnectToken
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ECHO_CONNECT_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getEchoConnectToken() {
+    return echoConnectToken;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ECHO_CONNECT_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEchoConnectToken(@javax.annotation.Nullable Boolean echoConnectToken) {
+    this.echoConnectToken = echoConnectToken;
+  }
+
+
   /**
    * Return true if this connectWhatsAppEmbeddedSignup_request object is equal to o.
    */
@@ -230,12 +288,14 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
         Objects.equals(this.wabaId, connectWhatsAppEmbeddedSignupRequest.wabaId) &&
         Objects.equals(this.phoneNumberId, connectWhatsAppEmbeddedSignupRequest.phoneNumberId) &&
         Objects.equals(this.isCoexistence, connectWhatsAppEmbeddedSignupRequest.isCoexistence) &&
-        Objects.equals(this.expectedPhoneNumber, connectWhatsAppEmbeddedSignupRequest.expectedPhoneNumber);
+        Objects.equals(this.expectedPhoneNumber, connectWhatsAppEmbeddedSignupRequest.expectedPhoneNumber) &&
+        Objects.equals(this.redirectUrl, connectWhatsAppEmbeddedSignupRequest.redirectUrl) &&
+        Objects.equals(this.echoConnectToken, connectWhatsAppEmbeddedSignupRequest.echoConnectToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, profileId, wabaId, phoneNumberId, isCoexistence, expectedPhoneNumber);
+    return Objects.hash(code, profileId, wabaId, phoneNumberId, isCoexistence, expectedPhoneNumber, redirectUrl, echoConnectToken);
   }
 
   @Override
@@ -248,6 +308,8 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
     sb.append("    phoneNumberId: ").append(toIndentedString(phoneNumberId)).append("\n");
     sb.append("    isCoexistence: ").append(toIndentedString(isCoexistence)).append("\n");
     sb.append("    expectedPhoneNumber: ").append(toIndentedString(expectedPhoneNumber)).append("\n");
+    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
+    sb.append("    echoConnectToken: ").append(toIndentedString(echoConnectToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -323,6 +385,16 @@ public class ConnectWhatsAppEmbeddedSignupRequest {
     // add `expectedPhoneNumber` to the URL query string
     if (getExpectedPhoneNumber() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sexpectedPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExpectedPhoneNumber()))));
+    }
+
+    // add `redirectUrl` to the URL query string
+    if (getRedirectUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sredirectUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRedirectUrl()))));
+    }
+
+    // add `echoConnectToken` to the URL query string
+    if (getEchoConnectToken() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sechoConnectToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEchoConnectToken()))));
     }
 
     return joiner.toString();

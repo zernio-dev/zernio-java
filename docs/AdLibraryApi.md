@@ -112,7 +112,7 @@ public class Example {
 | **200** | Archived ads (raw platform shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included on usage-based plans), or &#x60;payment_required&#x60;: the billing owner has no payment method on file and no legacy paid plan. Searches are free; the card keeps the shared archive quota for real accounts. |  -  |
 | **404** | Account not found |  -  |
 | **501** | Only supported on Meta and LinkedIn accounts |  -  |
 | **503** | Meta&#39;s Ad Library is unavailable on Zernio&#39;s side (&#x60;PLATFORM_DISABLED&#x60;); LinkedIn searches are unaffected. |  -  |
@@ -223,7 +223,7 @@ ApiResponse<[**SearchAdLibrary200Response**](SearchAdLibrary200Response.md)>
 | **200** | Archived ads (raw platform shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included on usage-based plans), or &#x60;payment_required&#x60;: the billing owner has no payment method on file and no legacy paid plan. Searches are free; the card keeps the shared archive quota for real accounts. |  -  |
 | **404** | Account not found |  -  |
 | **501** | Only supported on Meta and LinkedIn accounts |  -  |
 | **503** | Meta&#39;s Ad Library is unavailable on Zernio&#39;s side (&#x60;PLATFORM_DISABLED&#x60;); LinkedIn searches are unaffected. |  -  |

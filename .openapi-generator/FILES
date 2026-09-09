@@ -239,6 +239,8 @@ docs/ConnectSlackChannelRequest.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
+docs/ConnectWhatsAppEmbeddedSignup200Response.md
+docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md
 docs/ConnectWhatsAppEmbeddedSignupRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
@@ -881,6 +883,8 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
+docs/GetWhatsAppSdkConfig200Response.md
+docs/GetWhatsAppSdkConfig200ResponseBranding.md
 docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
 docs/GetWhatsAppTemplate409Response.md
@@ -2291,6 +2295,8 @@ src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
+src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignup200Response.java
+src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignup200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignupRequest.java
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
@@ -2928,6 +2934,8 @@ src/main/java/dev/zernio/model/GetWhatsAppNumberInfo200ResponseWaba.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberRemediation200Response.java
+src/main/java/dev/zernio/model/GetWhatsAppSdkConfig200Response.java
+src/main/java/dev/zernio/model/GetWhatsAppSdkConfig200ResponseBranding.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200ResponseTemplate.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate409Response.java
@@ -3991,3 +3999,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignup200ResponseAccountTest.java
+src/test/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignup200ResponseTest.java
+src/test/java/dev/zernio/model/GetWhatsAppSdkConfig200ResponseBrandingTest.java
