@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LeadGenApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -174,7 +174,7 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @return ArchiveLeadForm200Response
@@ -186,7 +186,7 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @param headers Optional headers to include in the request
@@ -200,7 +200,7 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @return ApiResponse&lt;ArchiveLeadForm200Response&gt;
@@ -212,7 +212,7 @@ public class LeadGenApi {
 
   /**
    * Archive a lead form
-   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+   * Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
    * @param headers Optional headers to include in the request
@@ -570,53 +570,57 @@ public class LeadGenApi {
 
   /**
    * Get a lead form
-   * 
+   * Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
+   * @param fields Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)
    * @return GetLeadForm200Response
    * @throws ApiException if fails to make API call
    */
-  public GetLeadForm200Response getLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return getLeadForm(formId, accountId, null);
+  public GetLeadForm200Response getLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields) throws ApiException {
+    return getLeadForm(formId, accountId, fields, null);
   }
 
   /**
    * Get a lead form
-   * 
+   * Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
+   * @param fields Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)
    * @param headers Optional headers to include in the request
    * @return GetLeadForm200Response
    * @throws ApiException if fails to make API call
    */
-  public GetLeadForm200Response getLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetLeadForm200Response> localVarResponse = getLeadFormWithHttpInfo(formId, accountId, headers);
+  public GetLeadForm200Response getLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetLeadForm200Response> localVarResponse = getLeadFormWithHttpInfo(formId, accountId, fields, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get a lead form
-   * 
+   * Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
+   * @param fields Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)
    * @return ApiResponse&lt;GetLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetLeadForm200Response> getLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return getLeadFormWithHttpInfo(formId, accountId, null);
+  public ApiResponse<GetLeadForm200Response> getLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields) throws ApiException {
+    return getLeadFormWithHttpInfo(formId, accountId, fields, null);
   }
 
   /**
    * Get a lead form
-   * 
+   * Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
    * @param formId Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). (required)
    * @param accountId Connected facebook or linkedin ads account id (selects the platform). (required)
+   * @param fields Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetLeadForm200Response> getLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getLeadFormRequestBuilder(formId, accountId, headers);
+  public ApiResponse<GetLeadForm200Response> getLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getLeadFormRequestBuilder(formId, accountId, fields, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -663,7 +667,7 @@ public class LeadGenApi {
     }
   }
 
-  private HttpRequest.Builder getLeadFormRequestBuilder(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getLeadFormRequestBuilder(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'formId' is set
     if (formId == null) {
       throw new ApiException(400, "Missing the required parameter 'formId' when calling getLeadForm");
@@ -683,6 +687,8 @@ public class LeadGenApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "fields";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fields", fields));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

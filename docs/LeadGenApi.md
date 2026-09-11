@@ -27,7 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Archive a lead form
 
-Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
 
 ### Example
 
@@ -94,6 +94,7 @@ public class Example {
 | **200** | Archived. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | No lead form with that id on the Page this account manages. |  -  |
 
 ## archiveLeadFormWithHttpInfo
 
@@ -101,7 +102,7 @@ public class Example {
 
 Archive a lead form
 
-Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
 
 ### Example
 
@@ -171,6 +172,7 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 | **200** | Archived. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | No lead form with that id on the Page this account manages. |  -  |
 
 
 ## createLeadForm
@@ -479,9 +481,11 @@ ApiResponse<[**CreateTestLead200Response**](CreateTestLead200Response.md)>
 
 ## getLeadForm
 
-> GetLeadForm200Response getLeadForm(formId, accountId)
+> GetLeadForm200Response getLeadForm(formId, accountId, fields)
 
 Get a lead form
+
+Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
 
 ### Example
 
@@ -506,8 +510,9 @@ public class Example {
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
         String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id (selects the platform).
+        String fields = "name,thank_you_page{title,body,button_type,website_url}"; // String | Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400. 
         try {
-            GetLeadForm200Response result = apiInstance.getLeadForm(formId, accountId);
+            GetLeadForm200Response result = apiInstance.getLeadForm(formId, accountId, fields);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LeadGenApi#getLeadForm");
@@ -527,6 +532,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
 | **accountId** | **String**| Connected facebook or linkedin ads account id (selects the platform). | |
+| **fields** | **String**| Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  | [optional] |
 
 ### Return type
 
@@ -545,15 +551,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Form metadata. |  -  |
+| **200** | Form metadata. Meta forms follow MetaLeadForm; LinkedIn forms return LinkedIn&#39;s own adForm shape. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | No lead form with that id on the Page this account manages. |  -  |
 
 ## getLeadFormWithHttpInfo
 
-> ApiResponse<GetLeadForm200Response> getLeadForm getLeadFormWithHttpInfo(formId, accountId)
+> ApiResponse<GetLeadForm200Response> getLeadForm getLeadFormWithHttpInfo(formId, accountId, fields)
 
 Get a lead form
+
+Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
 
 ### Example
 
@@ -579,8 +588,9 @@ public class Example {
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
         String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id (selects the platform).
+        String fields = "name,thank_you_page{title,body,button_type,website_url}"; // String | Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400. 
         try {
-            ApiResponse<GetLeadForm200Response> response = apiInstance.getLeadFormWithHttpInfo(formId, accountId);
+            ApiResponse<GetLeadForm200Response> response = apiInstance.getLeadFormWithHttpInfo(formId, accountId, fields);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -602,6 +612,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
 | **accountId** | **String**| Connected facebook or linkedin ads account id (selects the platform). | |
+| **fields** | **String**| Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  | [optional] |
 
 ### Return type
 
@@ -620,9 +631,10 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Form metadata. |  -  |
+| **200** | Form metadata. Meta forms follow MetaLeadForm; LinkedIn forms return LinkedIn&#39;s own adForm shape. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | No lead form with that id on the Page this account manages. |  -  |
 
 
 ## listFormLeads

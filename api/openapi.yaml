@@ -39019,7 +39019,8 @@ paths:
   /v1/ads/lead-forms/{formId}:
     delete:
       description: Neither platform hard-deletes a form; this archives it (Meta status=ARCHIVED;
-        LinkedIn state=ARCHIVED via PARTIAL_UPDATE).
+        LinkedIn state=ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the
+        Page the accountId manages.
       operationId: archiveLeadForm
       parameters:
       - description: Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
@@ -39049,6 +39050,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: No lead form with that id on the Page this account manages.
       summary: Archive a lead form
       tags:
       - Lead Gen
@@ -39059,6 +39062,8 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: |
+        Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read.
       operationId: getLeadForm
       parameters:
       - description: Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
@@ -39077,17 +39082,31 @@ paths:
         schema:
           type: string
         style: form
+      - description: |
+          Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.
+        example: "name,thank_you_page{title,body,button_type,website_url}"
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          maxLength: 2000
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/getLeadForm_200_response"
-          description: Form metadata.
+          description: Form metadata. Meta forms follow MetaLeadForm; LinkedIn forms
+            return LinkedIn's own adForm shape.
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: No lead form with that id on the Page this account manages.
       summary: Get a lead form
       tags:
       - Lead Gen
@@ -46235,6 +46254,152 @@ components:
             \ unescaped so Meta expands them; every other character is percent-encoded."
           items:
             $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
+          type: array
+    MetaLeadForm:
+      description: |
+        A Meta Lead Gen form as Graph returns it, in Meta's own snake_case. Read through GET /v1/ads/lead-forms/{formId}. Every setting POST /v1/ads/lead-forms writes is present here, so a form can be diffed against what was created and drift from edits made in Meta's form builder is detectable. A compound field is omitted entirely when the form has no value for it, and `fields` narrows the selection.
+      example:
+        privacy_policy_url: https://openapi-generator.tech
+        created_time: 2000-01-23T04:56:07.000+00:00
+        question_page_custom_headline: question_page_custom_headline
+        is_optimized_for_quality: true
+        organic_leads_count: 6
+        follow_up_action_url: https://openapi-generator.tech
+        tracking_parameters:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        questions:
+        - inline_context: inline_context
+          dependent_conditional_questions:
+          - "{}"
+          - "{}"
+          conditional_questions_choices:
+          - "{}"
+          - "{}"
+          options:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          id: id
+          label: label
+          type: type
+          conditional_questions_group_id: conditional_questions_group_id
+          key: key
+        - inline_context: inline_context
+          dependent_conditional_questions:
+          - "{}"
+          - "{}"
+          conditional_questions_choices:
+          - "{}"
+          - "{}"
+          options:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          id: id
+          label: label
+          type: type
+          conditional_questions_group_id: conditional_questions_group_id
+          key: key
+        legal_content:
+          privacy_policy:
+            link_text: link_text
+            url: https://openapi-generator.tech
+          id: id
+          custom_disclaimer: "{}"
+        context_card:
+          cover_photo:
+            id: id
+          style: LIST_STYLE
+          id: id
+          button_text: button_text
+          title: title
+          content:
+          - content
+          - content
+        locale: en_US
+        follow_up_action_text: follow_up_action_text
+        leads_count: 0
+        page_id: page_id
+        expired_leads_count: 1
+        name: name
+        thank_you_page:
+          country_code: country_code
+          website_url: https://openapi-generator.tech
+          button_type: VIEW_WEBSITE
+          lead_gen_use_case: lead_gen_use_case
+          business_phone_number: business_phone_number
+          id: id
+          button_text: button_text
+          title: title
+          body: body
+          enable_messenger: true
+          status: status
+        block_display_for_non_targeted_viewer: true
+        id: id
+        allow_organic_lead: true
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          description: "One of ACTIVE, ARCHIVED, DELETED or DRAFT."
+          type: string
+        locale:
+          example: en_US
+          type: string
+        created_time:
+          format: date-time
+          type: string
+        page_id:
+          description: "Owning Facebook Page. A form on any other Page is a 404, whether\
+            \ read or archived."
+          type: string
+        leads_count:
+          type: integer
+        organic_leads_count:
+          type: integer
+        expired_leads_count:
+          description: Leads Meta has aged out of the retention window.
+          type: integer
+        privacy_policy_url:
+          format: uri
+          type: string
+        follow_up_action_url:
+          format: uri
+          type: string
+        follow_up_action_text:
+          type: string
+        question_page_custom_headline:
+          type: string
+        is_optimized_for_quality:
+          type: boolean
+        block_display_for_non_targeted_viewer:
+          type: boolean
+        allow_organic_lead:
+          description: Whether the form can also be submitted from an organic Page
+            post.
+          type: boolean
+        tracking_parameters:
+          description: Custom key/value pairs attached to every lead of this form.
+          items:
+            $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
+          type: array
+        legal_content:
+          $ref: "#/components/schemas/MetaLeadForm_legal_content"
+        context_card:
+          $ref: "#/components/schemas/MetaLeadForm_context_card"
+        thank_you_page:
+          $ref: "#/components/schemas/MetaLeadForm_thank_you_page"
+        questions:
+          items:
+            $ref: "#/components/schemas/MetaLeadForm_questions_inner"
           type: array
     MetaInstagramIdentityRef:
       example:
@@ -102619,6 +102784,9 @@ components:
       - $ref: "#/components/schemas/LinkedInAdsPlatformData"
       - $ref: "#/components/schemas/MetaAdsPlatformData"
     boostPost_request_tracking_urlTags_inner:
+      example:
+        value: value
+        key: key
       properties:
         key:
           type: string
@@ -105376,15 +105544,104 @@ components:
           type: string
         form:
           $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+    getLeadForm_200_response_form:
+      oneOf:
+      - $ref: "#/components/schemas/MetaLeadForm"
+      - type: object
     getLeadForm_200_response:
       example:
-        form: "{}"
-        status: status
+        form:
+          privacy_policy_url: https://openapi-generator.tech
+          created_time: 2000-01-23T04:56:07.000+00:00
+          question_page_custom_headline: question_page_custom_headline
+          is_optimized_for_quality: true
+          organic_leads_count: 6
+          follow_up_action_url: https://openapi-generator.tech
+          tracking_parameters:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          questions:
+          - inline_context: inline_context
+            dependent_conditional_questions:
+            - "{}"
+            - "{}"
+            conditional_questions_choices:
+            - "{}"
+            - "{}"
+            options:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            id: id
+            label: label
+            type: type
+            conditional_questions_group_id: conditional_questions_group_id
+            key: key
+          - inline_context: inline_context
+            dependent_conditional_questions:
+            - "{}"
+            - "{}"
+            conditional_questions_choices:
+            - "{}"
+            - "{}"
+            options:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            id: id
+            label: label
+            type: type
+            conditional_questions_group_id: conditional_questions_group_id
+            key: key
+          legal_content:
+            privacy_policy:
+              link_text: link_text
+              url: https://openapi-generator.tech
+            id: id
+            custom_disclaimer: "{}"
+          context_card:
+            cover_photo:
+              id: id
+            style: LIST_STYLE
+            id: id
+            button_text: button_text
+            title: title
+            content:
+            - content
+            - content
+          locale: en_US
+          follow_up_action_text: follow_up_action_text
+          leads_count: 0
+          page_id: page_id
+          expired_leads_count: 1
+          name: name
+          thank_you_page:
+            country_code: country_code
+            website_url: https://openapi-generator.tech
+            button_type: VIEW_WEBSITE
+            lead_gen_use_case: lead_gen_use_case
+            business_phone_number: business_phone_number
+            id: id
+            button_text: button_text
+            title: title
+            body: body
+            enable_messenger: true
+            status: status
+          block_display_for_non_targeted_viewer: true
+          id: id
+          allow_organic_lead: true
+          status: status
+        status: success
       properties:
         status:
+          example: success
           type: string
         form:
-          type: object
+          $ref: "#/components/schemas/getLeadForm_200_response_form"
     archiveLeadForm_200_response:
       example:
         formId: formId
@@ -109388,6 +109645,151 @@ components:
         reason:
           enum:
           - max_attempts_reached
+    MetaLeadForm_legal_content_privacy_policy:
+      example:
+        link_text: link_text
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          format: uri
+          type: string
+        link_text:
+          type: string
+    MetaLeadForm_legal_content:
+      description: Privacy policy and custom disclaimer as Meta stores them.
+      example:
+        privacy_policy:
+          link_text: link_text
+          url: https://openapi-generator.tech
+        id: id
+        custom_disclaimer: "{}"
+      properties:
+        id:
+          type: string
+        privacy_policy:
+          $ref: "#/components/schemas/MetaLeadForm_legal_content_privacy_policy"
+        custom_disclaimer:
+          description: Set in Meta form builder only; there is no create parameter
+            for it.
+          type: object
+    MetaLeadForm_context_card:
+      example:
+        cover_photo:
+          id: id
+        style: LIST_STYLE
+        id: id
+        button_text: button_text
+        title: title
+        content:
+        - content
+        - content
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        style:
+          enum:
+          - LIST_STYLE
+          - PARAGRAPH_STYLE
+          type: string
+        content:
+          items:
+            type: string
+          type: array
+        button_text:
+          type: string
+        cover_photo:
+          $ref: "#/components/schemas/createTestLead_200_response_testLead"
+    MetaLeadForm_thank_you_page:
+      description: |
+        The form's single ending page, mirroring the thankYou* create fields. Meta has exactly one per form; there is no multiple-ending-page API (thank_you_pages and ending_pages are not Graph fields).
+      example:
+        country_code: country_code
+        website_url: https://openapi-generator.tech
+        button_type: VIEW_WEBSITE
+        lead_gen_use_case: lead_gen_use_case
+        business_phone_number: business_phone_number
+        id: id
+        button_text: button_text
+        title: title
+        body: body
+        enable_messenger: true
+        status: status
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        button_text:
+          type: string
+        button_type:
+          example: VIEW_WEBSITE
+          type: string
+        website_url:
+          format: uri
+          type: string
+        enable_messenger:
+          type: boolean
+        status:
+          type: string
+        lead_gen_use_case:
+          type: string
+        business_phone_number:
+          type: string
+        country_code:
+          type: string
+    MetaLeadForm_questions_inner:
+      example:
+        inline_context: inline_context
+        dependent_conditional_questions:
+        - "{}"
+        - "{}"
+        conditional_questions_choices:
+        - "{}"
+        - "{}"
+        options:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        id: id
+        label: label
+        type: type
+        conditional_questions_group_id: conditional_questions_group_id
+        key: key
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        label:
+          type: string
+        type:
+          description: "EMAIL, PHONE, FULL_NAME, CUSTOM, ..."
+          type: string
+        inline_context:
+          type: string
+        options:
+          items:
+            $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
+          type: array
+        conditional_questions_group_id:
+          description: READ-ONLY. Conditional logic can only be authored in Meta form
+            builder; Meta has no create parameter for it.
+          type: string
+        conditional_questions_choices:
+          description: READ-ONLY. Which answers reveal the conditional group.
+          items:
+            type: object
+          type: array
+        dependent_conditional_questions:
+          description: READ-ONLY. Questions revealed by the conditional group.
+          items:
+            type: object
+          type: array
     GoogleBusinessReview_reviewer:
       example:
         isAnonymous: true

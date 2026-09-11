@@ -1,6 +1,6 @@
 /*
  * Zernio API
- * API reference for Zernio. Authenticate with a Bearer API key. Base URL: https://zernio.com/api 
+ * API reference for Zernio. Authenticate with a Bearer API key. Base URL: https://zernio.com/api  Versioning and deprecation: all endpoints are versioned in the URL path (current version: /v1). Breaking changes only ship in a new path version; existing versions keep working. Deprecated operations are marked 'deprecated: true' in this spec and announced in the changelog (https://zernio.com/changelog) before removal.  Errors: every 4xx/5xx response is application/json with a machine-readable 'code' and a human-readable 'error' message (see the ErrorResponse schema). 
  *
  * The version of the OpenAPI document: 1.0.4
  * Contact: support@zernio.com
@@ -24,8 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetLeadForm200ResponseFormQuestionsInner;
-import dev.zernio.model.GetLeadForm200ResponseFormThankYouPage;
+import dev.zernio.model.BoostPostRequestTrackingUrlTagsInner;
+import dev.zernio.model.MetaLeadForm;
+import dev.zernio.model.MetaLeadFormContextCard;
+import dev.zernio.model.MetaLeadFormLegalContent;
+import dev.zernio.model.MetaLeadFormQuestionsInner;
+import dev.zernio.model.MetaLeadFormThankYouPage;
 import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -33,439 +37,222 @@ import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * Full form config — sufficient to duplicate the form via POST /v1/ads/lead-forms.
- */
-@JsonPropertyOrder({
-  GetLeadForm200ResponseForm.JSON_PROPERTY_ID,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_NAME,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_STATUS,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_LOCALE,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_CREATED_TIME,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_LEADS_COUNT,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_PRIVACY_POLICY_URL,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_FOLLOW_UP_ACTION_URL,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_QUESTIONS,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_THANK_YOU_PAGE,
-  GetLeadForm200ResponseForm.JSON_PROPERTY_CONTEXT_CARD
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class GetLeadForm200ResponseForm {
-  public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
-  private String id;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nullable
-  private String name;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = GetLeadForm200ResponseForm.GetLeadForm200ResponseFormDeserializer.class)
+@JsonSerialize(using = GetLeadForm200ResponseForm.GetLeadForm200ResponseFormSerializer.class)
+public class GetLeadForm200ResponseForm extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(GetLeadForm200ResponseForm.class.getName());
 
-  /**
-   * ARCHIVED forms can&#39;t receive new leads.
-   */
-  public enum StatusEnum {
-    ACTIVE(String.valueOf("ACTIVE")),
-    
-    ARCHIVED(String.valueOf("ARCHIVED"));
+    public static class GetLeadForm200ResponseFormSerializer extends StdSerializer<GetLeadForm200ResponseForm> {
+        public GetLeadForm200ResponseFormSerializer(Class<GetLeadForm200ResponseForm> t) {
+            super(t);
+        }
 
-    private String value;
+        public GetLeadForm200ResponseFormSerializer() {
+            this(null);
+        }
 
-    StatusEnum(String value) {
-      this.value = value;
+        @Override
+        public void serialize(GetLeadForm200ResponseForm value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
 
-    @JsonValue
-    public String getValue() {
-      return value;
+    public static class GetLeadForm200ResponseFormDeserializer extends StdDeserializer<GetLeadForm200ResponseForm> {
+        public GetLeadForm200ResponseFormDeserializer() {
+            this(GetLeadForm200ResponseForm.class);
+        }
+
+        public GetLeadForm200ResponseFormDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public GetLeadForm200ResponseForm deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize MetaLeadForm
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (MetaLeadForm.class.equals(Integer.class) || MetaLeadForm.class.equals(Long.class) || MetaLeadForm.class.equals(Float.class) || MetaLeadForm.class.equals(Double.class) || MetaLeadForm.class.equals(Boolean.class) || MetaLeadForm.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((MetaLeadForm.class.equals(Integer.class) || MetaLeadForm.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((MetaLeadForm.class.equals(Float.class) || MetaLeadForm.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (MetaLeadForm.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (MetaLeadForm.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(MetaLeadForm.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'MetaLeadForm'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'MetaLeadForm'", e);
+            }
+
+            // deserialize Object
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (Object.class.equals(Integer.class) || Object.class.equals(Long.class) || Object.class.equals(Float.class) || Object.class.equals(Double.class) || Object.class.equals(Boolean.class) || Object.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((Object.class.equals(Integer.class) || Object.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((Object.class.equals(Float.class) || Object.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (Object.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (Object.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(Object.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'Object'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'Object'", e);
+            }
+
+            if (match == 1) {
+                GetLeadForm200ResponseForm ret = new GetLeadForm200ResponseForm();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for GetLeadForm200ResponseForm: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public GetLeadForm200ResponseForm getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "GetLeadForm200ResponseForm cannot be null");
+        }
+    }
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
+
+    public GetLeadForm200ResponseForm() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public GetLeadForm200ResponseForm(MetaLeadForm o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public GetLeadForm200ResponseForm(Object o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("MetaLeadForm", MetaLeadForm.class);
+        schemas.put("Object", Object.class);
+        JSON.registerDescendants(GetLeadForm200ResponseForm.class, Collections.unmodifiableMap(schemas));
     }
 
     @Override
-    public String toString() {
-      return String.valueOf(value);
+    public Map<String, Class<?>> getSchemas() {
+        return GetLeadForm200ResponseForm.schemas;
     }
 
-    @JsonCreator
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * MetaLeadForm, Object
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(MetaLeadForm.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+
+        if (JSON.isInstanceOf(Object.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be MetaLeadForm, Object");
     }
-  }
 
-  public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nullable
-  private StatusEnum status;
-
-  public static final String JSON_PROPERTY_LOCALE = "locale";
-  @javax.annotation.Nullable
-  private String locale;
-
-  public static final String JSON_PROPERTY_CREATED_TIME = "created_time";
-  @javax.annotation.Nullable
-  private OffsetDateTime createdTime;
-
-  public static final String JSON_PROPERTY_LEADS_COUNT = "leads_count";
-  @javax.annotation.Nullable
-  private Integer leadsCount;
-
-  public static final String JSON_PROPERTY_PRIVACY_POLICY_URL = "privacy_policy_url";
-  @javax.annotation.Nullable
-  private URI privacyPolicyUrl;
-
-  public static final String JSON_PROPERTY_FOLLOW_UP_ACTION_URL = "follow_up_action_url";
-  @javax.annotation.Nullable
-  private URI followUpActionUrl;
-
-  public static final String JSON_PROPERTY_QUESTIONS = "questions";
-  @javax.annotation.Nullable
-  private List<GetLeadForm200ResponseFormQuestionsInner> questions = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_THANK_YOU_PAGE = "thank_you_page";
-  @javax.annotation.Nullable
-  private GetLeadForm200ResponseFormThankYouPage thankYouPage;
-
-  public static final String JSON_PROPERTY_CONTEXT_CARD = "context_card";
-  @javax.annotation.Nullable
-  private Object contextCard;
-
-  public GetLeadForm200ResponseForm() { 
-  }
-
-  public GetLeadForm200ResponseForm id(@javax.annotation.Nullable String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
-    this.id = id;
-  }
-
-
-  public GetLeadForm200ResponseForm name(@javax.annotation.Nullable String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
-    this.name = name;
-  }
-
-
-  public GetLeadForm200ResponseForm status(@javax.annotation.Nullable StatusEnum status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * ARCHIVED forms can&#39;t receive new leads.
-   * @return status
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
-    this.status = status;
-  }
-
-
-  public GetLeadForm200ResponseForm locale(@javax.annotation.Nullable String locale) {
-    this.locale = locale;
-    return this;
-  }
-
-  /**
-   * Get locale
-   * @return locale
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOCALE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getLocale() {
-    return locale;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_LOCALE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocale(@javax.annotation.Nullable String locale) {
-    this.locale = locale;
-  }
-
-
-  public GetLeadForm200ResponseForm createdTime(@javax.annotation.Nullable OffsetDateTime createdTime) {
-    this.createdTime = createdTime;
-    return this;
-  }
-
-  /**
-   * Get createdTime
-   * @return createdTime
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCreatedTime() {
-    return createdTime;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedTime(@javax.annotation.Nullable OffsetDateTime createdTime) {
-    this.createdTime = createdTime;
-  }
-
-
-  public GetLeadForm200ResponseForm leadsCount(@javax.annotation.Nullable Integer leadsCount) {
-    this.leadsCount = leadsCount;
-    return this;
-  }
-
-  /**
-   * Get leadsCount
-   * @return leadsCount
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LEADS_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getLeadsCount() {
-    return leadsCount;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_LEADS_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLeadsCount(@javax.annotation.Nullable Integer leadsCount) {
-    this.leadsCount = leadsCount;
-  }
-
-
-  public GetLeadForm200ResponseForm privacyPolicyUrl(@javax.annotation.Nullable URI privacyPolicyUrl) {
-    this.privacyPolicyUrl = privacyPolicyUrl;
-    return this;
-  }
-
-  /**
-   * Get privacyPolicyUrl
-   * @return privacyPolicyUrl
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PRIVACY_POLICY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getPrivacyPolicyUrl() {
-    return privacyPolicyUrl;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PRIVACY_POLICY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrivacyPolicyUrl(@javax.annotation.Nullable URI privacyPolicyUrl) {
-    this.privacyPolicyUrl = privacyPolicyUrl;
-  }
-
-
-  public GetLeadForm200ResponseForm followUpActionUrl(@javax.annotation.Nullable URI followUpActionUrl) {
-    this.followUpActionUrl = followUpActionUrl;
-    return this;
-  }
-
-  /**
-   * Get followUpActionUrl
-   * @return followUpActionUrl
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FOLLOW_UP_ACTION_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getFollowUpActionUrl() {
-    return followUpActionUrl;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_FOLLOW_UP_ACTION_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFollowUpActionUrl(@javax.annotation.Nullable URI followUpActionUrl) {
-    this.followUpActionUrl = followUpActionUrl;
-  }
-
-
-  public GetLeadForm200ResponseForm questions(@javax.annotation.Nullable List<GetLeadForm200ResponseFormQuestionsInner> questions) {
-    this.questions = questions;
-    return this;
-  }
-
-  public GetLeadForm200ResponseForm addQuestionsItem(GetLeadForm200ResponseFormQuestionsInner questionsItem) {
-    if (this.questions == null) {
-      this.questions = new ArrayList<>();
+    /**
+     * Get the actual instance, which can be the following:
+     * MetaLeadForm, Object
+     *
+     * @return The actual instance (MetaLeadForm, Object)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
     }
-    this.questions.add(questionsItem);
-    return this;
-  }
 
-  /**
-   * Get questions
-   * @return questions
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_QUESTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<GetLeadForm200ResponseFormQuestionsInner> getQuestions() {
-    return questions;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_QUESTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQuestions(@javax.annotation.Nullable List<GetLeadForm200ResponseFormQuestionsInner> questions) {
-    this.questions = questions;
-  }
-
-
-  public GetLeadForm200ResponseForm thankYouPage(@javax.annotation.Nullable GetLeadForm200ResponseFormThankYouPage thankYouPage) {
-    this.thankYouPage = thankYouPage;
-    return this;
-  }
-
-  /**
-   * Get thankYouPage
-   * @return thankYouPage
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_THANK_YOU_PAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetLeadForm200ResponseFormThankYouPage getThankYouPage() {
-    return thankYouPage;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_THANK_YOU_PAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThankYouPage(@javax.annotation.Nullable GetLeadForm200ResponseFormThankYouPage thankYouPage) {
-    this.thankYouPage = thankYouPage;
-  }
-
-
-  public GetLeadForm200ResponseForm contextCard(@javax.annotation.Nullable Object contextCard) {
-    this.contextCard = contextCard;
-    return this;
-  }
-
-  /**
-   * Intro card shown before the form questions (title, content, button label).
-   * @return contextCard
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTEXT_CARD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getContextCard() {
-    return contextCard;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CONTEXT_CARD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContextCard(@javax.annotation.Nullable Object contextCard) {
-    this.contextCard = contextCard;
-  }
-
-
-  /**
-   * Return true if this getLeadForm_200_response_form object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get the actual instance of `MetaLeadForm`. If the actual instance is not `MetaLeadForm`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `MetaLeadForm`
+     * @throws ClassCastException if the instance is not `MetaLeadForm`
+     */
+    public MetaLeadForm getMetaLeadForm() throws ClassCastException {
+        return (MetaLeadForm)super.getActualInstance();
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get the actual instance of `Object`. If the actual instance is not `Object`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `Object`
+     * @throws ClassCastException if the instance is not `Object`
+     */
+    public Object getObject() throws ClassCastException {
+        return (Object)super.getActualInstance();
     }
-    GetLeadForm200ResponseForm getLeadForm200ResponseForm = (GetLeadForm200ResponseForm) o;
-    return Objects.equals(this.id, getLeadForm200ResponseForm.id) &&
-        Objects.equals(this.name, getLeadForm200ResponseForm.name) &&
-        Objects.equals(this.status, getLeadForm200ResponseForm.status) &&
-        Objects.equals(this.locale, getLeadForm200ResponseForm.locale) &&
-        Objects.equals(this.createdTime, getLeadForm200ResponseForm.createdTime) &&
-        Objects.equals(this.leadsCount, getLeadForm200ResponseForm.leadsCount) &&
-        Objects.equals(this.privacyPolicyUrl, getLeadForm200ResponseForm.privacyPolicyUrl) &&
-        Objects.equals(this.followUpActionUrl, getLeadForm200ResponseForm.followUpActionUrl) &&
-        Objects.equals(this.questions, getLeadForm200ResponseForm.questions) &&
-        Objects.equals(this.thankYouPage, getLeadForm200ResponseForm.thankYouPage) &&
-        Objects.equals(this.contextCard, getLeadForm200ResponseForm.contextCard);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name, status, locale, createdTime, leadsCount, privacyPolicyUrl, followUpActionUrl, questions, thankYouPage, contextCard);
-  }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetLeadForm200ResponseForm {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
-    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
-    sb.append("    leadsCount: ").append(toIndentedString(leadsCount)).append("\n");
-    sb.append("    privacyPolicyUrl: ").append(toIndentedString(privacyPolicyUrl)).append("\n");
-    sb.append("    followUpActionUrl: ").append(toIndentedString(followUpActionUrl)).append("\n");
-    sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
-    sb.append("    thankYouPage: ").append(toIndentedString(thankYouPage)).append("\n");
-    sb.append("    contextCard: ").append(toIndentedString(contextCard)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
 
   /**
    * Convert the instance into URL query string.
@@ -499,67 +286,20 @@ public class GetLeadForm200ResponseForm {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
-    }
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
-    }
-
-    // add `status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
-    }
-
-    // add `locale` to the URL query string
-    if (getLocale() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%slocale%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocale()))));
-    }
-
-    // add `created_time` to the URL query string
-    if (getCreatedTime() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%screated_time%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedTime()))));
-    }
-
-    // add `leads_count` to the URL query string
-    if (getLeadsCount() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sleads_count%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLeadsCount()))));
-    }
-
-    // add `privacy_policy_url` to the URL query string
-    if (getPrivacyPolicyUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sprivacy_policy_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrivacyPolicyUrl()))));
-    }
-
-    // add `follow_up_action_url` to the URL query string
-    if (getFollowUpActionUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sfollow_up_action_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFollowUpActionUrl()))));
-    }
-
-    // add `questions` to the URL query string
-    if (getQuestions() != null) {
-      for (int i = 0; i < getQuestions().size(); i++) {
-        if (getQuestions().get(i) != null) {
-          joiner.add(getQuestions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%squestions%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+    if (getActualInstance() instanceof MetaLeadForm) {
+        if (getActualInstance() != null) {
+          joiner.add(((MetaLeadForm)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
         }
-      }
+        return joiner.toString();
     }
-
-    // add `thank_you_page` to the URL query string
-    if (getThankYouPage() != null) {
-      joiner.add(getThankYouPage().toUrlQueryString(prefix + "thank_you_page" + suffix));
+    if (getActualInstance() instanceof Object) {
+        if (getActualInstance() != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%sone_of_1%s=%s", prefix, suffix, ApiClient.urlEncode(String.valueOf(getActualInstance()))));
+        }
+        return joiner.toString();
     }
-
-    // add `context_card` to the URL query string
-    if (getContextCard() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scontext_card%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContextCard()))));
-    }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 

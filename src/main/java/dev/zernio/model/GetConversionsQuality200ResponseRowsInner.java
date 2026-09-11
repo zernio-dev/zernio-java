@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetConversionsQuality200ResponseRowsInner.JSON_PROPERTY_MATCH_KEYS,
   GetConversionsQuality200ResponseRowsInner.JSON_PROPERTY_EVENT_COVERAGE_PERCENTAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetConversionsQuality200ResponseRowsInner {
   public static final String JSON_PROPERTY_EVENT_NAME = "eventName";
   @javax.annotation.Nullable

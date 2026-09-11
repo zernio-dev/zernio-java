@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestBudget.JSON_PROPERTY_AMOUNT,
   BoostPostRequestBudget.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestBudget {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   @javax.annotation.Nonnull

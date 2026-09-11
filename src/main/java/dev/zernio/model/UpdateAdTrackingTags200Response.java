@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateAdTrackingTags200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdTrackingTags200Response {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

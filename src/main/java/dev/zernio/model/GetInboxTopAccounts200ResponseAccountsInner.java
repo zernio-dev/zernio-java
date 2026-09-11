@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxTopAccounts200ResponseAccountsInner.JSON_PROPERTY_MEDIAN_RESPONSE_SECONDS,
   GetInboxTopAccounts200ResponseAccountsInner.JSON_PROPERTY_REPLIED_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxTopAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
